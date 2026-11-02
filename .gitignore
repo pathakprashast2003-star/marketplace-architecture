@@ -5,3 +5,8 @@ scratch/
 node_modules/
 .env
 .env.local
+*.backup
+*.before_*
+*.current_*
+*.dunes
+*.ninjax_master

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS — Find The Creative Edge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      --sky-top: #8EE0FE;
+      --sky-mid: #68CBFD;
+      --sky-deep: #47B9FD;
+      
+      --wave-azure: #4E93F5;
+      --wave-cobalt: #2956D4;
+      
+      --text-white: #FFFFFF;
+      --text-dark: #1E0E38;
+      --text-secondary: rgba(30, 14, 56, 0.78);
+      
+      --btn-primary: #1E0E38;
+      --btn-primary-hover: #120624;
+      
+      --font-display: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-body);
+      background: var(--sky-mid);
+    }
+
+    /* ── FULL SCREEN OPENED-UP VIEWPORT ── */
+    .hero-viewport {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(145deg, var(--sky-top) 0%, var(--sky-mid) 50%, var(--sky-deep) 100%);
+      padding: 0 clamp(32px, 6vw, 96px);
+    }
+
+    /* ── BACKGROUND WAVES ── */
+    .bg-wave-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+    }
+
+    .bg-wave-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* ── TWO-COLUMN HERO GRID ── */
+    .hero-grid {
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+      height: 100%;
+    }
+
+
+
+    /* ── LEFT EDITORIAL CONTENT ── */
+    .hero-left-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      max-width: 720px;
+    }
+
+    .brand-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+      opacity: 0.85;
+    }
+
+    .brand-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--text-dark);
+      display: inline-block;
+    }
+
+    .headline-stack {
+      display: flex;
+      flex-direction: column;
+      line-height: 0.88;
+      letter-spacing: -0.045em;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(4.8rem, 9.4vw, 9.6rem);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      user-select: none;
+    }
+
+    .title-row {
+      display: block;
+    }
+
+    .text-white {
+      color: var(--text-white);
+      text-shadow: 0 4px 20px rgba(37, 99, 235, 0.18);
+    }
+
+    .text-dark {
+      color: var(--text-dark);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(17px, 1.35vw, 21px);
+      font-weight: 450;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 38px;
+      max-width: 520px;
+      letter-spacing: -0.015em;
+    }
+
+    .action-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .btn-discover {
+      background: var(--btn-primary);
+      color: #FFFFFF;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 980px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 24px rgba(30, 14, 56, 0.22);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-discover:hover {
+      background: var(--btn-primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(30, 14, 56, 0.32);
+    }
+
+    .btn-join {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      color: var(--text-dark);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 980px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-join:hover {
+      background: rgba(255, 255, 255, 0.95);
+      transform: translateY(-2px);
+    }
+
+    /* Apple-Style Minimal Indicator Bar (Clean, No Slop Emojis) */
+    .apple-spec-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 24px;
+      padding: 10px 0;
+      border-top: 1px solid rgba(30, 14, 56, 0.12);
+    }
+
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .spec-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(30, 14, 56, 0.55);
+    }
+
+    .spec-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+      letter-spacing: -0.01em;
+    }
+
+    .spec-divider {
+      width: 1px;
+      height: 24px;
+      background: rgba(30, 14, 56, 0.14);
+    }
+
+    /* ── RIGHT IMAGE VIEWPORT ── */
+    .hero-right-stage {
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      position: relative;
+    }
+
+    .image-container-slot {
+      width: 100%;
+      height: 96vh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      position: relative;
+      transform: translateY(-22px);
+    }
+
+    #heroCharacterSlot {
+      position: relative;
+      z-index: 2;
+      /* Scaled up ~7% for stronger hero presence */
+      max-height: 93vh;
+      max-width: 104%;
+      object-fit: contain;
+      object-position: bottom center;
+      /* Removed duplicate CSS drop-shadow: lets the clean native baked contact shadow shine without muddy blur */
+      filter: none;
+      user-select: none;
+      pointer-events: none;
+      animation: floatSubtle 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatSubtle {
+      0% {
+        transform: translateY(0px);
+      }
+      100% {
+        transform: translateY(-8px);
+      }
+    }
+
+    /* ── 3-WAY LAYOUT SWITCHER ── */
+    .preview-layout-switcher {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      padding: 4px 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .switcher-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.6);
+      padding: 0 8px 0 10px;
+    }
+
+    .switcher-tab {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .switcher-tab:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .switcher-tab.active {
+      background: #2563EB;
+      color: #FFFFFF;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+    }
+
+    /* ── MOBILE OPTIMIZATIONS ── */
+    @media (max-width: 900px) {
+      html, body {
+        height: auto;
+        min-height: 100dvh;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      .hero-viewport {
+        height: auto;
+        min-height: 100dvh;
+        padding: 24px 20px 88px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        height: auto;
+      }
+
+      .hero-left-content {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .headline-stack {
+        font-size: clamp(2.5rem, 11vw, 4.4rem);
+        margin-bottom: 18px;
+      }
+
+      .hero-subtitle {
+        font-size: 15px;
+        margin-bottom: 24px;
+        max-width: 100%;
+      }
+
+      .action-row {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .btn-discover, .btn-join {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        padding: 16px 20px;
+      }
+
+      .apple-spec-bar {
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .hero-right-stage {
+        height: auto;
+        width: 100%;
+      }
+
+      .image-container-slot {
+        height: clamp(340px, 48vh, 460px);
+        transform: translateY(0);
+      }
+
+      #heroCharacterSlot {
+        max-height: 100%;
+        width: auto;
+      }
+
+      .preview-layout-switcher {
+        top: auto;
+        bottom: 16px;
+        right: 50%;
+        transform: translateX(50%);
+        width: calc(100vw - 32px);
+        max-width: 380px;
+        justify-content: center;
+        padding: 4px;
+      }
+
+      .switcher-title {
+        display: none;
+      }
+
+      .switcher-tab {
+        font-size: 11px;
+        padding: 8px 10px;
+        flex: 1;
+        justify-content: center;
+        text-align: center;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── 3-WAY LAYOUT SWITCHER ── -->
+  <aside class="preview-layout-switcher" aria-label="Layout Switcher">
+    <span class="switcher-title">Layouts:</span>
+    <a href="/dunes.html" class="switcher-tab active">1. Dunes (Original)</a>
+    <a href="/" class="switcher-tab">2. Ninjax</a>
+    <a href="/nike_cloud_style.html" class="switcher-tab">3. Nike Cloud</a>
+  </aside>
+
+  <main class="hero-viewport">
+
+    <!-- ── BACKGROUND WAVES (GENTLE LOWER DUNES) ── -->
+    <div class="bg-wave-layer" aria-hidden="true">
+      <svg class="bg-wave-svg" viewBox="0 0 1440 900" fill="none" preserveAspectRatio="none">
+        
+        <!-- Left Soft Ground Wave (Under Pill Dock) -->
+        <path d="M0 760 C160 745 280 810 380 900 L0 900 Z" fill="#3B82F6" fill-opacity="0.2"/>
+
+        <!-- Upper Sweeping Azure Wave (Brought Down / Sleek Dune) -->
+        <path d="M520 900 C740 780 900 580 1200 530 C1320 510 1390 540 1440 560 L1440 900 Z" fill="#4E93F5"/>
+
+        <!-- Lower Deep Cobalt Wave (Brought Down / Subtle Ground) -->
+        <path d="M720 900 C900 850 1080 730 1280 710 C1360 700 1410 730 1440 750 L1440 900 Z" fill="#2956D4"/>
+      </svg>
+    </div>
+
+    <!-- ── TWO-COLUMN HERO GRID ── -->
+    <div class="hero-grid">
+
+      <!-- LEFT: TWO-TONE HEADLINE & ACTIONS -->
+      <section class="hero-left-content">
+        
+        <div class="brand-eyebrow">
+          <span class="brand-dot"></span>
+          <span>Talent Architecture &bull; 2026 Index</span>
+        </div>
+
+        <h1 class="headline-stack">
+          <span class="title-row text-white">WE FIND</span>
+          <span class="title-row text-white">THE</span>
+          <span class="title-row text-dark">CREATIVE</span>
+          <span class="title-row text-dark">EDGE</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Direct access to vetted directors, 3D artists, and cinematographers shaping modern visual culture.
+        </p>
+
+        <div class="action-row">
+          <a href="#" class="btn-discover" onclick="handleAction('discover', event)">
+            <span>Discover Talent</span>
+            <span>&rarr;</span>
+          </a>
+          <a href="#" class="btn-join" onclick="handleAction('join', event)">
+            <span>Join as Creator</span>
+          </a>
+        </div>
+
+        <div class="apple-spec-bar">
+          <div class="spec-item">
+            <span class="spec-label">Network</span>
+            <span class="spec-value">Top 1% Creators</span>
+          </div>
+          <div class="spec-divider"></div>
+          <div class="spec-item">
+            <span class="spec-label">Review</span>
+            <span class="spec-value">Verified Proof</span>
+          </div>
+          <div class="spec-divider"></div>
+          <div class="spec-item">
+            <span class="spec-label">Booking</span>
+            <span class="spec-value">Direct Terms</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT: CHARACTER IMAGE VIEWPORT -->
+      <section class="hero-right-stage">
+        <div class="image-container-slot">
+          <!-- 3D Drone Pilot Subject: Upward Flight -->
+          <img id="heroCharacterSlot" src="assets/upward_flight_pilot_drone.png" alt="Upward Flight: Pilot and Drone">
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <script>
+    function handleAction(type, e) {
+      if (e) e.preventDefault();
+      if (type === 'discover') {
+        alert("✨ Discovering verified creators on NEXUS.");
+      } else {
+        alert("🚀 Apply to join the NEXUS creator network.");
+      }
+    }
+
+    // Helper to drop in your image dynamically when ready
+    function setCharacterImage(src) {
+      const slot = document.getElementById('heroCharacterSlot');
+      if (slot && src) {
+        slot.src = src;
+        slot.style.display = 'block';
+      }
+    }
+  </script>
+
+</body>
+</html>

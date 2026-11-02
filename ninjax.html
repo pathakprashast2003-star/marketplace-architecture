@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS // NINJAX — Ride Beyond Boundaries</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    :root {
+      /* Ninjax Signature Palette: Solar Ember / Obsidian Carbon */
+      --solar-orange-core: #FF5500;
+      --solar-orange-bright: #FF6A00;
+      --solar-orange-deep: #D03B00;
+      --solar-orange-dark: #1F0700;
+      
+      --outer-shell-bg: #EAE6DF;
+      --card-border: rgba(255, 255, 255, 0.45);
+      
+      --text-white: #FFFFFF;
+      --text-soft: rgba(255, 255, 255, 0.85);
+      --text-muted: rgba(255, 255, 255, 0.60);
+      --text-dark: #0D0F14;
+      
+      --font-display: 'Cabinet Grotesk', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-body);
+      background: var(--outer-shell-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    /* ── 3-WAY LAYOUT SWITCHER ── */
+    .preview-layout-switcher {
+      position: fixed;
+      top: 14px;
+      right: 20px;
+      z-index: 1000;
+      background: rgba(13, 15, 20, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 4px 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .switcher-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.55);
+      padding: 0 8px 0 10px;
+    }
+
+    .switcher-tab {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .switcher-tab:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .switcher-tab.active {
+      background: #FF5500;
+      color: #FFFFFF;
+      font-weight: 700;
+      box-shadow: 0 2px 10px rgba(255, 85, 0, 0.45);
+    }
+
+    /* ── TOP UTILITY BRAND HEADER ── */
+    .top-brand-header {
+      width: min(1560px, calc(100vw - 48px));
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      padding: 0 8px;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .brand-logo-text {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--text-dark);
+    }
+
+    .brand-logo-dot {
+      color: #FF5500;
+    }
+
+    /* Nav center capsule */
+    .header-nav-pill {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 999px;
+      padding: 6px 20px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    }
+
+    .header-nav-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: #2D3139;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .header-nav-link:hover, .header-nav-link.active {
+      color: #FF5500;
+    }
+
+    .header-right-tools {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-right: 320px;
+    }
+
+    .tool-icon-btn {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .tool-icon-btn:hover {
+      background: #FFFFFF;
+      transform: translateY(-1px);
+    }
+
+    .bag-badge {
+      font-size: 10px;
+      font-weight: 800;
+      background: #FF5500;
+      color: #FFFFFF;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── MAIN SOLAR ORANGE HERO CARD (MUSEUM MATTE FRAME) ── */
+    .ninjax-hero-canvas {
+      width: min(1560px, calc(100vw - 48px));
+      height: calc(100vh - 84px);
+      margin-bottom: 20px;
+      border-radius: 36px;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(ellipse 90% 75% at 50% 32%, #FF6600 0%, #FF4D00 40%, #D43800 75%, #180600 100%);
+      box-shadow: 
+        0 28px 70px -12px rgba(255, 77, 0, 0.35),
+        0 12px 35px -8px rgba(13, 15, 20, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 0 120px rgba(0, 0, 0, 0.25);
+      border: 1.5px solid var(--card-border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Subtle ambient lighting vignette */
+    .vignette-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 40%, transparent 40%, rgba(20, 4, 0, 0.45) 90%);
+      z-index: 1;
+    }
+
+    /* ── PRODUCT HERO BIKE IMAGE LAYER ── */
+    .hero-bike-container {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .hero-bike-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      filter: contrast(1.04) brightness(1.02);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .ninjax-hero-canvas:hover .hero-bike-img {
+      transform: scale(1.015);
+    }
+
+    /* ── INTERACTIVE HOTSPOT PIN 1: PRICE SPEECH BUBBLE ($2,999) ── */
+    .hotspot-price-tag {
+      position: absolute;
+      top: 24%;
+      right: 34%;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      animation: floatBadge 3.5s ease-in-out infinite;
+    }
+
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .price-bubble {
+      background: #FFFFFF;
+      color: #0D0F14;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28), 0 2px 6px rgba(0, 0, 0, 0.12);
+      position: relative;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .price-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 35%;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid #FFFFFF;
+    }
+
+    .price-bubble:hover {
+      background: #0D0F14;
+      color: #FFFFFF;
+      transform: scale(1.05);
+    }
+
+    .price-bubble:hover::after {
+      border-top-color: #0D0F14;
+    }
+
+    /* Second interactive hotspot pin on rear shock */
+    .hotspot-radar-pin {
+      position: absolute;
+      top: 40%;
+      left: 48%;
+      z-index: 5;
+      cursor: pointer;
+    }
+
+    .radar-pulse {
+      width: 14px;
+      height: 14px;
+      background: #FFFFFF;
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+      transition: transform 0.2s ease;
+    }
+
+    .radar-pulse::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.8);
+      animation: radarRings 2s infinite ease-out;
+    }
+
+    @keyframes radarRings {
+      0% { transform: scale(0.6); opacity: 1; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    .radar-tooltip {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: rgba(13, 15, 20, 0.92);
+      backdrop-filter: blur(12px);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      padding: 6px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hotspot-radar-pin:hover .radar-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── CENTER STACKED KINETIC TYPOGRAPHY & CALL TO ACTION ── */
+    .hero-center-editorial {
+      position: absolute;
+      bottom: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 90%;
+      max-width: 900px;
+      pointer-events: none;
+    }
+
+    .hero-headline-stacked {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6.2vw, 84px);
+      font-weight: 900;
+      line-height: 0.92;
+      text-transform: uppercase;
+      letter-spacing: -0.035em;
+      color: #FFFFFF;
+      text-shadow: 0 4px 20px rgba(20, 5, 0, 0.55), 0 2px 4px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .headline-row {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(14px, 1.3vw, 17px);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: rgba(255, 255, 255, 0.92);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .hero-cta-wrap {
+      pointer-events: auto;
+    }
+
+    .btn-shop-now {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #0B0E14;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 14px 34px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-shop-now:hover {
+      background: #FFFFFF;
+      color: #0B0E14;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 85, 0, 0.3);
+    }
+
+    /* ── BOTTOM CONTROLS & SPECIFICATION DOCK ── */
+    .hero-bottom-controls-bar {
+      position: absolute;
+      bottom: 28px;
+      left: 36px;
+      right: 36px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+    }
+
+    /* Circular arrow buttons (<) (>) */
+    .carousel-nav-arrows {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      pointer-events: auto;
+    }
+
+    .carousel-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(13, 15, 20, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.2s ease;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .carousel-btn:hover {
+      background: #FFFFFF;
+      color: #0D0F14;
+      transform: scale(1.08);
+    }
+
+    .carousel-indicator {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 0.08em;
+      padding-left: 6px;
+    }
+
+    /* Right specs line */
+    .hero-right-specs {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.85);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      pointer-events: auto;
+    }
+
+    .spec-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .spec-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #FF5500;
+      box-shadow: 0 0 8px #FF5500;
+    }
+
+    /* ── RESPONSIVE MOBILE ADJUSTMENTS ── */
+    @media (max-width: 900px) {
+      html, body {
+        height: auto;
+        min-height: 100dvh;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      .top-brand-header {
+        padding: 0 16px;
+        height: 56px;
+      }
+
+      .header-nav-pill {
+        display: none;
+      }
+
+      .header-right-tools {
+        margin-right: 0;
+      }
+
+      .ninjax-hero-canvas {
+        width: calc(100vw - 20px);
+        height: 84vh;
+        border-radius: 28px;
+        margin-bottom: 16px;
+        background: radial-gradient(ellipse at 50% 30%, #E25B02 0%, #A53401 50%, #200E08 100%);
+      }
+
+      .hero-bike-container {
+        height: 52%;
+        top: 2%;
+        bottom: auto;
+      }
+
+      .hero-bike-img {
+        object-fit: cover;
+        object-position: 50% 50%;
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+      }
+
+      .hero-center-editorial {
+        bottom: 85px;
+        width: 94%;
+      }
+
+      .hero-headline-stacked {
+        font-size: 32px;
+        line-height: 0.95;
+        margin-bottom: 10px;
+      }
+
+      .hero-subtitle {
+        font-size: 13px;
+        margin-bottom: 18px;
+      }
+
+      .hotspot-price-tag {
+        top: 15%;
+        left: 62%;
+        right: auto;
+      }
+
+      .hotspot-radar-pin {
+        top: 27%;
+        left: 48%;
+      }
+
+      .hero-bottom-controls-bar {
+        bottom: 22px;
+        left: 20px;
+        right: 20px;
+      }
+
+      .hero-right-specs {
+        display: none;
+      }
+
+      .preview-layout-switcher {
+        top: auto;
+        bottom: 14px;
+        right: 50%;
+        transform: translateX(50%);
+        width: calc(100vw - 32px);
+        max-width: 400px;
+        justify-content: center;
+      }
+
+      .switcher-title {
+        display: none;
+      }
+
+      .switcher-tab {
+        font-size: 11px;
+        padding: 6px 10px;
+        flex: 1;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── 3-WAY LAYOUT SWITCHER ── -->
+  <aside class="preview-layout-switcher" aria-label="Layout Switcher">
+    <span class="switcher-title">Layouts:</span>
+    <a href="/dunes.html" class="switcher-tab">1. Dunes (Original)</a>
+    <a href="/" class="switcher-tab active">2. Ninjax</a>
+    <a href="/nike_cloud_style.html" class="switcher-tab">3. Nike Cloud</a>
+  </aside>
+
+  <!-- TOP BRAND HEADER -->
+  <header class="top-brand-header">
+    <a href="#" class="brand-mark">
+      <span class="brand-logo-text">nexus<span class="brand-logo-dot">.</span></span>
+    </a>
+
+    <!-- Center Navigation Pill -->
+    <nav class="header-nav-pill" aria-label="Primary Navigation">
+      <a href="#bikes" class="header-nav-link active">Mountain</a>
+      <a href="#performance" class="header-nav-link">Performance</a>
+      <a href="#lab" class="header-nav-link">Custom Lab</a>
+      <a href="#athletes" class="header-nav-link">Athletes</a>
+    </nav>
+
+    <div class="header-right-tools">
+      <a href="#search" class="tool-icon-btn" aria-label="Search Gear">
+        <span>🔍</span>
+      </a>
+      <a href="#cart" class="tool-icon-btn" aria-label="Cart">
+        <span>🛒</span>
+        <span class="bag-badge">0</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN SOLAR ORANGE HERO CARD -->
+  <main class="ninjax-hero-canvas">
+
+    <div class="vignette-layer" aria-hidden="true"></div>
+
+    <!-- Product Bike Image Layer -->
+    <div class="hero-bike-container">
+      <img src="assets/ninjax_bike_hero.jpg" alt="NEXUS Ninjax S-Works Mountain Bike" class="hero-bike-img">
+    </div>
+
+    <!-- Interactive Price Hotspot Pin (from reference) -->
+    <div class="hotspot-price-tag" title="Specialized S-Works Carbon Edition">
+      <div class="price-bubble">$2,999</div>
+    </div>
+
+    <!-- Interactive Chassis Hotspot Pin -->
+    <div class="hotspot-radar-pin">
+      <div class="radar-pulse"></div>
+      <div class="radar-tooltip">FACT 11m Carbon Chassis</div>
+    </div>
+
+    <!-- Center Stacked Kinetic Typography & CTA -->
+    <section class="hero-center-editorial">
+      <h1 class="hero-headline-stacked">
+        <span class="headline-row">RIDE BEYOND</span>
+        <span class="headline-row">BOUNDARIES</span>
+      </h1>
+      <p class="hero-subtitle">Pursue the summit... triumph over any route.</p>
+      
+      <div class="hero-cta-wrap">
+        <a href="#shop" class="btn-shop-now">SHOP NOW</a>
+      </div>
+    </section>
+
+    <!-- Bottom Controls & Spec Dock -->
+    <footer class="hero-bottom-controls-bar">
+      <!-- Carousel Arrows (<) (>) -->
+      <div class="carousel-nav-arrows">
+        <button class="carousel-btn" aria-label="Previous Slide">‹</button>
+        <button class="carousel-btn" aria-label="Next Slide">›</button>
+        <span class="carousel-indicator">01 / 03</span>
+      </div>
+
+      <!-- Right Spec Line -->
+      <div class="hero-right-specs">
+        <div class="spec-item">
+          <span class="spec-dot"></span>
+          <span>Carbon S-Works</span>
+        </div>
+        <div class="spec-item">
+          <span>Fox Factory 38</span>
+        </div>
+        <div class="spec-item">
+          <span>14.2 kg</span>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>

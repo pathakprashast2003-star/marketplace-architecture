@@ -3,2636 +3,726 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXUS — Curated Creative Marketplace & Talent Discovery</title>
-  <meta name="description" content="Connect with top commercial directors, brand photographers, 3D artists, and drone pilots worldwide. Zero escrow cuts, direct contact, transparent pricing.">
+  <title>NEXUS // NINJAX — Ride Beyond Boundaries</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,500;1,700;1,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   
   <style>
-    /* ==========================================================================
-       1. DESIGN SYSTEM TOKENS
-       ========================================================================== */
-    :root {
-      --bg-white: #FFFFFF;
-      --bg-canvas: #FAFBFF;
-      --bg-subtle: #F1F5F9;
-      --bg-pill: #EDF2F7;
-      
-      --purple-primary: #7C3AED;
-      --purple-deep: #5B21B6;
-      --indigo-accent: #4F46E5;
-      --purple-glow: rgba(124, 58, 237, 0.28);
-      --purple-light: #F5F3FF;
-      
-      --accent-coral: #FF5500;
-      --accent-cyan: #0284C7;
-      
-      --text-dark: #0F172A;
-      --text-muted: #475569;
-      --text-light: #94A3B8;
-      
-      --border-soft: rgba(226, 232, 240, 0.85);
-      --border-card: rgba(15, 23, 42, 0.06);
-      
-      --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.04);
-      --shadow-card: 0 12px 32px -6px rgba(15, 23, 42, 0.07), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
-      --shadow-hover: 0 24px 48px -10px rgba(15, 23, 42, 0.12);
-      
-      --radius-pill: 9999px;
-      --radius-card: 22px;
-      
-      --font-display: 'Outfit', sans-serif;
-      --font-body: 'Plus Jakarta Sans', sans-serif;
-    }
-
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    body {
-      background-color: var(--bg-canvas);
-      color: var(--text-dark);
+    :root {
+      /* Ninjax Signature Palette: Solar Ember / Obsidian Carbon */
+      --solar-orange-core: #FF5500;
+      --solar-orange-bright: #FF6A00;
+      --solar-orange-deep: #D03B00;
+      --solar-orange-dark: #1F0700;
+      
+      --outer-shell-bg: #EAE6DF;
+      --card-border: rgba(255, 255, 255, 0.45);
+      
+      --text-white: #FFFFFF;
+      --text-soft: rgba(255, 255, 255, 0.85);
+      --text-muted: rgba(255, 255, 255, 0.60);
+      --text-dark: #0D0F14;
+      
+      --font-display: 'Cabinet Grotesk', -apple-system, sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
       font-family: var(--font-body);
-      line-height: 1.5;
-      overflow-x: hidden;
-      min-height: 100vh;
-      position: relative;
-    }
-
-    .container {
-      max-width: 1380px;
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Top Announcement Bar */
-    .top-announcement {
-      background: linear-gradient(90deg, #7C3AED 0%, #4F46E5 50%, #6366F1 100%);
-      color: #FFFFFF;
-      font-size: 13px;
-      font-weight: 700;
-      text-align: center;
-      padding: 9px 16px;
+      background: var(--outer-shell-bg);
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
+      justify-content: flex-start;
     }
 
-    .top-announcement .badge {
-      background: #FFFFFF;
-      color: var(--purple-primary);
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 2px 10px;
-      border-radius: var(--radius-pill);
-      letter-spacing: 0.5px;
-    }
-
-    .top-announcement a {
-      color: #FFFFFF;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
-    /* Navbar */
-    .navbar-wrapper {
-      position: sticky;
+    /* ── 3-WAY LAYOUT SWITCHER ── */
+    .preview-layout-switcher {
+      position: fixed;
       top: 14px;
-      z-index: 100;
-      padding: 0 24px;
-      max-width: 1380px;
-      margin: 0 auto;
-    }
-
-    .navbar {
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius-pill);
-      padding: 10px 18px 10px 24px;
+      right: 20px;
+      z-index: 1000;
+      background: rgba(13, 15, 20, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 4px 6px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      box-shadow: var(--shadow-sm);
+      gap: 4px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
     }
 
-    .brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: var(--text-dark);
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 22px;
-      letter-spacing: -0.5px;
-    }
-
-    .brand-badge {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-weight: 900;
-      font-size: 16px;
-      box-shadow: 0 4px 12px var(--purple-glow);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 14px;
+    .switcher-title {
+      font-size: 11px;
       font-weight: 700;
-      transition: color 0.15s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.55);
+      padding: 0 8px 0 10px;
     }
 
-    .nav-links a:hover {
-      color: var(--purple-primary);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .btn-secondary {
-      background: #FFFFFF;
-      color: var(--text-dark);
-      border: 1.5px solid var(--border-soft);
-      padding: 9px 20px;
-      border-radius: var(--radius-pill);
-      font-size: 13.5px;
-      font-weight: 700;
-      cursor: pointer;
+    .switcher-tab {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
       text-decoration: none;
-      transition: all 0.15s ease;
-    }
-
-    .btn-secondary:hover {
-      background: var(--bg-subtle);
-      border-color: #CBD5E1;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
-      color: #FFFFFF;
-      border: none;
-      padding: 10px 24px;
-      border-radius: var(--radius-pill);
-      font-size: 13.5px;
-      font-weight: 800;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 14px var(--purple-glow);
-      transition: all 0.15s ease;
+      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(124, 58, 237, 0.4);
+    .switcher-tab:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.15);
     }
 
-    /* ==========================================================================
-       2. COHESIVE EDITORIAL HERO & CONCENTRIC BENTO STAGE (UNSLOPPED & TASTEFUL)
-       ========================================================================== */
-    .hero-wrapper {
-      position: relative;
-      background: 
-        radial-gradient(ellipse 65% 55% at 75% 42%, rgba(122, 103, 182, 0.14) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 50% at 20% 40%, rgba(124, 58, 237, 0.08) 0%, transparent 60%),
-        radial-gradient(ellipse 90% 70% at 50% 100%, #FAF8FF 0%, #F5F1FD 100%);
-      padding: 14px 20px 18px 20px;
-      overflow: hidden;
-      min-height: calc(100vh - 72px);
+    .switcher-tab.active {
+      background: #FF5500;
+      color: #FFFFFF;
+      font-weight: 700;
+      box-shadow: 0 2px 10px rgba(255, 85, 0, 0.45);
+    }
+
+    /* ── TOP UTILITY BRAND HEADER ── */
+    .top-brand-header {
+      width: min(1560px, calc(100vw - 48px));
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      padding: 0 8px;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .brand-logo-text {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--text-dark);
+    }
+
+    .brand-logo-dot {
+      color: #FF5500;
+    }
+
+    /* Nav center capsule */
+    .header-nav-pill {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 999px;
+      padding: 6px 20px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    }
+
+    .header-nav-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: #2D3139;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .header-nav-link:hover, .header-nav-link.active {
+      color: #FF5500;
+    }
+
+    .header-right-tools {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-right: 320px;
+    }
+
+    .tool-icon-btn {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .tool-icon-btn:hover {
+      background: #FFFFFF;
+      transform: translateY(-1px);
+    }
+
+    .bag-badge {
+      font-size: 10px;
+      font-weight: 800;
+      background: #FF5500;
+      color: #FFFFFF;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
     }
 
-    /* Subtle Studio Texture Mesh */
-    .hero-studio-mesh {
+    /* ── MAIN SOLAR ORANGE HERO CARD (MUSEUM MATTE FRAME) ── */
+    .ninjax-hero-canvas {
+      width: min(1560px, calc(100vw - 48px));
+      height: calc(100vh - 84px);
+      margin-bottom: 20px;
+      border-radius: 36px;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(ellipse 90% 75% at 50% 32%, #FF6600 0%, #FF4D00 40%, #D43800 75%, #180600 100%);
+      box-shadow: 
+        0 28px 70px -12px rgba(255, 77, 0, 0.35),
+        0 12px 35px -8px rgba(13, 15, 20, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 0 120px rgba(0, 0, 0, 0.25);
+      border: 1.5px solid var(--card-border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Subtle ambient lighting vignette */
+    .vignette-layer {
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(rgba(124, 58, 237, 0.04) 1px, transparent 1px);
-      background-size: 28px 28px;
       pointer-events: none;
+      background: radial-gradient(circle at 50% 40%, transparent 40%, rgba(20, 4, 0, 0.45) 90%);
       z-index: 1;
     }
 
-    /* Architectural Monumental Watermark Branding (like 'More' / 'Grapestical') */
-    .hero-monumental-bg {
+    /* ── PRODUCT HERO BIKE IMAGE LAYER ── */
+    .hero-bike-container {
       position: absolute;
-      top: 9%;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: var(--font-display);
-      font-size: clamp(60px, 8.5vw, 120px);
-      font-weight: 900;
-      letter-spacing: -2px;
-      text-transform: uppercase;
-      color: rgba(15, 23, 42, 0.035);
-      pointer-events: none;
-      user-select: none;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       z-index: 2;
+    }
+
+    .hero-bike-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      filter: contrast(1.04) brightness(1.02);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .ninjax-hero-canvas:hover .hero-bike-img {
+      transform: scale(1.015);
+    }
+
+    /* ── INTERACTIVE HOTSPOT PIN 1: PRICE SPEECH BUBBLE ($2,999) ── */
+    .hotspot-price-tag {
+      position: absolute;
+      top: 24%;
+      right: 34%;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      animation: floatBadge 3.5s ease-in-out infinite;
+    }
+
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .price-bubble {
+      background: #FFFFFF;
+      color: #0D0F14;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28), 0 2px 6px rgba(0, 0, 0, 0.12);
+      position: relative;
+      transition: all 0.2s ease;
       white-space: nowrap;
     }
 
-    /* Centered Panoramic Stage (Utilizes Full Screen Symmetrically) */
-    .hero-panoramic-stage {
-      width: 100%;
-      max-width: 1080px;
-      margin: 0 auto;
+    .price-bubble::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 35%;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid #FFFFFF;
+    }
+
+    .price-bubble:hover {
+      background: #0D0F14;
+      color: #FFFFFF;
+      transform: scale(1.05);
+    }
+
+    .price-bubble:hover::after {
+      border-top-color: #0D0F14;
+    }
+
+    /* Second interactive hotspot pin on rear shock */
+    .hotspot-radar-pin {
+      position: absolute;
+      top: 40%;
+      left: 48%;
+      z-index: 5;
+      cursor: pointer;
+    }
+
+    .radar-pulse {
+      width: 14px;
+      height: 14px;
+      background: #FFFFFF;
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+      transition: transform 0.2s ease;
+    }
+
+    .radar-pulse::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.8);
+      animation: radarRings 2s infinite ease-out;
+    }
+
+    @keyframes radarRings {
+      0% { transform: scale(0.6); opacity: 1; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    .radar-tooltip {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: rgba(13, 15, 20, 0.92);
+      backdrop-filter: blur(12px);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      padding: 6px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hotspot-radar-pin:hover .radar-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── CENTER STACKED KINETIC TYPOGRAPHY & CALL TO ACTION ── */
+    .hero-center-editorial {
+      position: absolute;
+      bottom: 90px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      position: relative;
-      z-index: 5;
+      width: 90%;
+      max-width: 900px;
+      pointer-events: none;
     }
 
-    /* Sleek Editorial Eyebrow Pill */
-    .hero-eyebrow-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(124, 58, 237, 0.22);
-      padding: 5px 14px;
-      border-radius: var(--radius-pill);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.8px;
-      color: #334155;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 10px rgba(124, 58, 237, 0.08);
-    }
-
-    .eyebrow-beacon {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #10B981;
-      box-shadow: 0 0 8px #10B981;
-      animation: pulse-beacon 2s infinite ease-in-out;
-    }
-
-    @keyframes pulse-beacon {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.35); opacity: 0.7; }
-    }
-
-    .eyebrow-sep {
-      color: #CBD5E1;
-      font-weight: 400;
-    }
-
-    .eyebrow-stat {
-      color: var(--purple-primary);
-      font-weight: 850;
-    }
-
-    /* Monumental Panoramic Headline */
-    .hero-headline {
+    .hero-headline-stacked {
       font-family: var(--font-display);
-      font-size: clamp(32px, 3.5vw, 50px);
-      font-weight: 850;
-      line-height: 1.1;
-      letter-spacing: -1.4px;
-      color: #0F172A;
-      margin-bottom: 10px;
-      max-width: 860px;
-      text-wrap: balance;
-    }
-
-    .headline-gradient {
-      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 50%, #9333EA 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline;
-    }
-
-    .hero-subtext {
-      font-size: 14.5px;
-      line-height: 1.5;
-      color: #475569;
-      margin-bottom: 15px;
-      font-weight: 500;
-      max-width: 600px;
-      text-wrap: pretty;
-    }
-
-    /* Centered Action Dock */
-    .hero-action-dock {
+      font-size: clamp(48px, 6.2vw, 84px);
+      font-weight: 900;
+      line-height: 0.92;
+      text-transform: uppercase;
+      letter-spacing: -0.035em;
+      color: #FFFFFF;
+      text-shadow: 0 4px 20px rgba(20, 5, 0, 0.55), 0 2px 4px rgba(0, 0, 0, 0.3);
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 12px;
-      width: 100%;
-      max-width: 640px;
-      flex-wrap: wrap;
-    }
-
-    /* Tactile Omni-Search Bar with / shortcut */
-    .hero-search-bar {
-      background: #FFFFFF;
-      border: 1.5px solid rgba(203, 213, 225, 0.85);
-      border-radius: var(--radius-pill);
-      padding: 5px 6px 5px 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.02);
-      flex: 1 1 320px;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .hero-search-bar:focus-within {
-      border-color: var(--purple-primary);
-      box-shadow: 0 0 0 4px var(--purple-glow), 0 12px 28px -4px rgba(124, 58, 237, 0.15);
-      transform: translateY(-1px);
-    }
-
-    .hero-search-bar input {
-      border: none;
-      outline: none;
-      background: transparent;
-      font-size: 13.5px;
-      color: var(--text-dark);
-      font-family: inherit;
-      width: 100%;
-      min-width: 0;
-      font-weight: 500;
-    }
-
-    .search-kbd-hint {
-      background: #F1F5F9;
-      border: 1px solid #CBD5E1;
-      border-radius: 6px;
-      padding: 2px 7px;
-      font-size: 11px;
-      font-weight: 800;
-      color: #64748B;
-      user-select: none;
-    }
-
-    .hero-search-btn {
-      background: var(--purple-primary);
-      color: #fff;
-      border: none;
-      padding: 8px 18px;
-      border-radius: var(--radius-pill);
-      font-size: 12.5px;
-      font-weight: 800;
-      cursor: pointer;
-      flex-shrink: 0;
-      transition: all 0.15s ease;
-      box-shadow: 0 4px 12px var(--purple-glow);
-    }
-
-    .hero-search-btn:hover {
-      background: var(--purple-deep);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      background: #FFFFFF;
-      color: #0F172A;
-      border: 1.5px solid #E2E8F0;
-      padding: 10px 22px;
-      border-radius: var(--radius-pill);
-      font-size: 13.5px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-secondary:hover {
-      background: #F8FAFC;
-      border-color: #CBD5E1;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
-    }
-
-    .hero-chips-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 7px;
       margin-bottom: 14px;
     }
 
-    .hero-chip {
-      background: #FFFFFF;
-      border: 1px solid rgba(226, 232, 240, 0.9);
-      padding: 5px 12px;
-      border-radius: var(--radius-pill);
-      font-size: 11.5px; 12px;
-      font-weight: 700;
-      color: #334155;
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      box-shadow: 0 2px 5px rgba(15, 23, 42, 0.03);
-    }
-
-    .hero-chip:hover {
-      background: var(--purple-light);
-      border-color: var(--purple-primary);
-      color: var(--purple-primary);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(124, 58, 237, 0.12);
-    }
-
-    .hero-trust-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      font-size: 12.5px;
-      color: #64748B;
-      font-weight: 600;
-      margin-top: 6px;
-      flex-wrap: wrap;
-    }
-
-    .hero-trust-row .badge-check {
-      color: #10B981;
-      font-weight: 800;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    /* ==========================================================================
-       REVOLVING 3D ORBITAL TALENT STAGE (CONTINUOUS DYNAMIC MOTION)
-       ========================================================================== */
-    .hero-orbit-stage {
-      width: 100%;
-      max-width: 1360px;
-      height: 380px;
-      margin: 0 auto 8px auto;
-      position: relative;
-      perspective: 1400px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
-      touch-action: pan-y;
-      overflow: visible;
-    }
-
-    .orbit-3d-cylinder {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transform-style: preserve-3d;
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* Individual 3D Orbiting Creator Card */
-    .orbit-card {
-      position: absolute;
-      width: 250px;
-      height: 350px;
-      border-radius: 20px;
-      overflow: hidden;
-      background: #0F172A;
-      box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.18) inset;
-      cursor: pointer;
-      transform-style: preserve-3d;
-      will-change: transform, opacity;
-      transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
-    }
-
-    .orbit-card:hover {
-      box-shadow: 0 24px 60px -8px rgba(124, 58, 237, 0.45), 0 0 0 2px rgba(255, 255, 255, 0.6) inset;
-    }
-
-    .orbit-card.is-center {
-      box-shadow: 0 24px 65px -8px rgba(124, 58, 237, 0.5), 0 0 0 2px rgba(255, 255, 255, 0.7) inset;
-    }
-
-    .orbit-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 20%;
+    .headline-row {
       display: block;
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(14px, 1.3vw, 17px);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: rgba(255, 255, 255, 0.92);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .hero-cta-wrap {
+      pointer-events: auto;
+    }
+
+    .btn-shop-now {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #0B0E14;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 14px 34px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-shop-now:hover {
+      background: #FFFFFF;
+      color: #0B0E14;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 85, 0, 0.3);
+    }
+
+    /* ── BOTTOM CONTROLS & SPECIFICATION DOCK ── */
+    .hero-bottom-controls-bar {
+      position: absolute;
+      bottom: 28px;
+      left: 36px;
+      right: 36px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       pointer-events: none;
     }
 
-    .orbit-card:hover img {
-      transform: scale(1.04);
+    /* Circular arrow buttons (<) (>) */
+    .carousel-nav-arrows {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      pointer-events: auto;
     }
 
-    /* Orbit Controls (Arrows & Indicators) */
-    .orbit-nav-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+    .carousel-btn {
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
-      color: #0F172A;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 120;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .orbit-nav-btn:hover {
-      background: #FFFFFF;
-      transform: translateY(-50%) scale(1.1);
-      box-shadow: 0 12px 30px rgba(124, 58, 237, 0.25);
-      color: var(--purple-primary);
-    }
-
-    .orbit-nav-prev { left: 16px; }
-    .orbit-nav-next { right: 16px; }
-
-    .orbit-dots-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      margin-top: 4px;
-      margin-bottom: 8px;
-      z-index: 20;
-      position: relative;
-    }
-
-    .orbit-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: var(--radius-pill);
-      background: rgba(148, 163, 184, 0.4);
-      cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .orbit-dot.is-active {
-      width: 24px;
-      background: var(--purple-primary);
-      box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
-    }
-
-    /* Feather-Light Card Tag in Top-Left (Anti-Slop: No Heavy Nested Cards) */
-    .bento-card-tag {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: rgba(15, 23, 42, 0.78);
+      background: rgba(13, 15, 20, 0.65);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      color: #FFFFFF;
-      padding: 5px 12px;
-      border-radius: var(--radius-pill);
-      font-size: 10.5px;
-      font-weight: 800;
-      letter-spacing: 0.6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
       border: 1px solid rgba(255, 255, 255, 0.22);
-      z-index: 5;
-      pointer-events: none;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.2s ease;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
     }
 
-    .bento-tag-beacon {
+    .carousel-btn:hover {
+      background: #FFFFFF;
+      color: #0D0F14;
+      transform: scale(1.08);
+    }
+
+    .carousel-indicator {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 0.08em;
+      padding-left: 6px;
+    }
+
+    /* Right specs line */
+    .hero-right-specs {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.85);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+      pointer-events: auto;
+    }
+
+    .spec-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .spec-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #22C55E;
-      box-shadow: 0 0 6px #22C55E;
+      background: #FF5500;
+      box-shadow: 0 0 8px #FF5500;
     }
 
-    /* Interactive Audio Equalizer on Top Card */
-    .bento-sound-indicator {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: rgba(15, 23, 42, 0.78);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: var(--radius-pill);
-      padding: 5px 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: #FFFFFF;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      z-index: 8;
-      transition: all 0.2s ease;
-    }
-
-    .bento-sound-indicator:hover {
-      background: rgba(124, 58, 237, 0.9);
-      border-color: rgba(255, 255, 255, 0.6);
-      transform: scale(1.05);
-    }
-
-    .eq-bars {
-      display: flex;
-      align-items: flex-end;
-      gap: 2px;
-      height: 12px;
-    }
-
-    .eq-bar {
-      width: 2.5px;
-      background: #FFFFFF;
-      border-radius: 1px;
-      transition: height 0.15s ease;
-    }
-
-    .bar-1 { height: 4px; animation: eq-bounce 0.8s infinite ease-in-out alternate; }
-    .bar-2 { height: 10px; animation: eq-bounce 0.6s infinite ease-in-out alternate 0.2s; }
-    .bar-3 { height: 7px; animation: eq-bounce 0.9s infinite ease-in-out alternate 0.4s; }
-    .bar-4 { height: 11px; animation: eq-bounce 0.7s infinite ease-in-out alternate 0.1s; }
-
-    @keyframes eq-bounce {
-      0% { height: 3px; }
-      100% { height: 12px; }
-    }
-
-    /* Floating Hover Credit Tooltip */
-    .bento-hover-credit {
-      position: absolute;
-      top: 44px;
-      left: 12px;
-      background: rgba(255, 255, 255, 0.95);
-      color: #0F172A;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 10.5px;
-      font-weight: 800;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      opacity: 0;
-      transform: translateY(4px);
-      transition: all 0.25s ease;
-      pointer-events: none;
-      z-index: 6;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .bento-card:hover .bento-hover-credit {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Minimal Gradient Scrim Footer (Zero Amputated Limbs, Pure Artwork Respect) */
-    .bento-scrim-footer {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(15, 23, 42, 0.92) 0%, rgba(15, 23, 42, 0.55) 50%, transparent 100%);
-      padding: 24px 14px 12px 14px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      color: #FFFFFF;
-      z-index: 5;
-    }
-
-    .bento-scrim-name {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 13px;
-      display: block;
-      color: #FFFFFF;
-      line-height: 1.2;
-    }
-
-    .bento-scrim-sub {
-      font-size: 10.5px;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.82);
-      display: block;
-      margin-top: 1px;
-    }
-
-    .bento-scrim-badge {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 2px;
-      font-size: 11px;
-      font-weight: 800;
-      color: #F59E0B;
-    }
-
-    .bento-tag-green {
-      background: rgba(34, 197, 94, 0.22);
-      border: 1px solid rgba(34, 197, 94, 0.45);
-      color: #4ADE80;
-      font-size: 8.5px;
-      font-weight: 850;
-      padding: 2px 6px;
-      border-radius: var(--radius-pill);
-      letter-spacing: 0.4px;
-    }
-
-    .bento-tag-blue {
-      background: rgba(2, 132, 199, 0.22);
-      border: 1px solid rgba(2, 132, 199, 0.45);
-      color: #38BDF8;
-      font-size: 8.5px;
-      font-weight: 850;
-      padding: 2px 6px;
-      border-radius: var(--radius-pill);
-      letter-spacing: 0.4px;
-    }
-
-    .bento-tag-gold {
-      background: rgba(245, 158, 11, 0.22);
-      border: 1px solid rgba(245, 158, 11, 0.45);
-      color: #FBBF24;
-      font-size: 8.5px;
-      font-weight: 850;
-      padding: 2px 6px;
-      border-radius: var(--radius-pill);
-      letter-spacing: 0.4px;
-    }
-
-    /* Wave Divider */
-    .wave-divider {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      line-height: 0;
-      transform: translateY(2px);
-    }
-
-    .wave-divider svg {
-      position: relative;
-      display: block;
-      width: calc(100% + 1.3px);
-      height: 60px;
-    }
-
-    .wave-divider .shape-fill {
-      fill: var(--bg-canvas);
-    }
-
-    /* ==========================================================================
-       3. VALUE STRIP (4 TRUST PILLARS)
-       ========================================================================== */
-    .value-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin: 40px auto 64px auto;
-      padding: 20px 24px;
-      background: #FFFFFF;
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .value-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .value-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: var(--purple-light);
-      border: 1px solid rgba(124, 58, 237, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-
-    .value-title {
-      font-weight: 800;
-      font-size: 14px;
-      color: var(--text-dark);
-    }
-
-    .value-desc {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    /* ==========================================================================
-       4. CREATIVE DISCIPLINES
-       ========================================================================== */
-    .section-title-wrap {
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 40px auto;
-    }
-
-    .section-title {
-      font-family: var(--font-display);
-      font-size: 36px;
-      font-weight: 900;
-      letter-spacing: -1px;
-      color: var(--text-dark);
-    }
-
-    .section-subtitle {
-      font-size: 16px;
-      color: var(--text-muted);
-      margin-top: 8px;
-    }
-
-    .disciplines-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-      margin-bottom: 72px;
-    }
-
-    .discipline-card {
-      background: #FFFFFF;
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius-card);
-      padding: 28px 22px;
-      text-align: center;
-      box-shadow: var(--shadow-card);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .discipline-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-hover);
-      border-color: rgba(124, 58, 237, 0.3);
-    }
-
-    .discipline-avatar {
-      width: 76px;
-      height: 76px;
-      border-radius: 22px;
-      margin: 0 auto 16px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      background: var(--purple-light);
-      border: 1px solid rgba(124, 58, 237, 0.15);
-      transition: transform 0.3s ease;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
-    }
-
-    .discipline-avatar-art img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .discipline-card:hover .discipline-avatar {
-      transform: scale(1.08) rotate(3deg);
-    }
-
-    .discipline-card-title {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 6px;
-    }
-
-    .discipline-card-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* ==========================================================================
-       5. TALENT EXPLORER CONSOLE
-       ========================================================================== */
-    .explorer-console {
-      background: #FFFFFF;
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-card);
-      padding: 24px;
-      margin-bottom: 32px;
-    }
-
-    .category-pills-bar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border-soft);
-      margin-bottom: 20px;
-      scrollbar-width: none;
-    }
-
-    .category-pills-bar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .category-pill {
-      background: var(--bg-pill);
-      color: var(--text-muted);
-      font-size: 13px;
-      font-weight: 700;
-      padding: 8px 18px;
-      border-radius: var(--radius-pill);
-      border: 1px solid transparent;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.15s ease;
-    }
-
-    .category-pill:hover {
-      background: #E2E8F0;
-      color: var(--text-dark);
-    }
-
-    .category-pill.active {
-      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
-      color: #FFFFFF;
-      box-shadow: 0 4px 12px var(--purple-glow);
-    }
-
-    .filter-controls-row {
-      display: grid;
-      grid-template-columns: 1.8fr 1.4fr 1fr 1fr;
-      gap: 18px;
-      align-items: center;
-    }
-
-    .search-input-wrap {
-      position: relative;
-    }
-
-    .search-input-wrap input {
-      width: 100%;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius-pill);
-      padding: 11px 18px 11px 44px;
-      font-size: 14px;
-      color: var(--text-dark);
-      outline: none;
-      transition: all 0.2s ease;
-      font-family: inherit;
-    }
-
-    .search-input-wrap input:focus {
-      background: #FFFFFF;
-      border-color: var(--purple-primary);
-      box-shadow: 0 0 0 3px var(--purple-glow);
-    }
-
-    .search-input-icon {
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-light);
-      font-size: 15px;
-    }
-
-    .price-slider {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 6px;
-      background: #E2E8F0;
-      border-radius: var(--radius-pill);
-      outline: none;
-    }
-
-    .price-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--purple-primary);
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.4);
-    }
-
-    .filter-select {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius-pill);
-      padding: 11px 16px;
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--text-dark);
-      outline: none;
-      cursor: pointer;
-      font-family: inherit;
-    }
-
-    /* Talent Grid */
-    .talent-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 24px;
-      margin-bottom: 72px;
-    }
-
-    .talent-card {
-      background: #FFFFFF;
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-card);
-      box-shadow: var(--shadow-card);
-      overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .talent-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-hover);
-      border-color: rgba(124, 58, 237, 0.3);
-    }
-
-    .talent-media-wrap {
-      width: 100%;
-      height: 200px;
-      position: relative;
-      overflow: hidden;
-      background: #F1F5F9;
-    }
-
-    .talent-media-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .talent-card:hover .talent-media-wrap img {
-      transform: scale(1.05);
-    }
-
-    .talent-badge-strip {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      right: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 5;
-    }
-
-    .founding-badge {
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(8px);
-      color: #7C3AED;
-      font-size: 11px;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: var(--radius-pill);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .favorite-btn {
-      width: 32px;
-      height: 32px;
-      background: rgba(255, 255, 255, 0.92);
-      border-radius: 50%;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: var(--text-muted);
-      box-shadow: var(--shadow-sm);
-      transition: all 0.15s ease;
-    }
-
-    .favorite-btn:hover {
-      color: #EF4444;
-      transform: scale(1.1);
-    }
-
-    .talent-info {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-
-    .talent-name {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--text-dark);
-    }
-
-    .talent-discipline {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--purple-primary);
-      margin-bottom: 12px;
-    }
-
-    .talent-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 18px;
-    }
-
-    .tag-chip {
-      background: var(--bg-subtle);
-      color: var(--text-muted);
-      font-size: 11.5px;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 6px;
-    }
-
-    .talent-footer-row {
-      margin-top: auto;
-      padding-top: 14px;
-      border-top: 1px solid var(--border-soft);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .rate-amount {
-      font-size: 17px;
-      font-weight: 900;
-      color: var(--text-dark);
-    }
-
-    .btn-book-direct {
-      background: var(--bg-subtle);
-      color: var(--text-dark);
-      border: 1px solid var(--border-soft);
-      padding: 7px 14px;
-      border-radius: var(--radius-pill);
-      font-size: 12.5px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .btn-book-direct:hover {
-      background: var(--purple-primary);
-      color: #FFFFFF;
-      border-color: var(--purple-primary);
-    }
-
-    /* ==========================================================================
-       6. ZERO-ESCROW SAVINGS CALCULATOR
-       ========================================================================== */
-    .calculator-section {
-      background: #FFFFFF;
-      border: 1px solid var(--border-soft);
-      border-radius: 28px;
-      box-shadow: var(--shadow-card);
-      padding: 48px 40px;
-      margin-bottom: 80px;
-    }
-
-    .calc-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-
-    .calc-card-legacy {
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius-card);
-      padding: 24px;
-      text-align: center;
-    }
-
-    .calc-card-nexus {
-      background: linear-gradient(135deg, #FAF5FF 0%, #FFFFFF 100%);
-      border: 2px solid var(--purple-primary);
-      border-radius: var(--radius-card);
-      padding: 24px;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.15);
-    }
-
-    .calc-badge-win {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--purple-primary);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 3px 12px;
-      border-radius: var(--radius-pill);
-      white-space: nowrap;
-    }
-
-    .calc-card-fee {
-      font-size: 32px;
-      font-weight: 900;
-      margin: 12px 0 6px 0;
-    }
-
-    /* ==========================================================================
-       7. FOUNDING MEMBER PASS BANNER
-       ========================================================================== */
-    .founding-banner {
-      background: linear-gradient(135deg, #1E1B4B 0%, #312E81 50%, #4338CA 100%);
-      color: #FFFFFF;
-      border-radius: 28px;
-      padding: 56px 48px;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 80px;
-      box-shadow: var(--shadow-hover);
-    }
-
-    .founding-quota-wrap {
-      margin: 28px 0;
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: var(--radius-pill);
-      height: 10px;
-      overflow: hidden;
-      max-width: 440px;
-    }
-
-    .founding-quota-fill {
-      width: 84%;
-      height: 100%;
-      background: linear-gradient(90deg, #7C3AED 0%, #A855F7 100%);
-      border-radius: var(--radius-pill);
-    }
-
-    /* Modal Styles */
-    .modal-backdrop {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    .modal-backdrop.active {
-      display: flex;
-    }
-
-    .modal-box {
-      background: #FFFFFF;
-      border-radius: 24px;
-      max-width: 560px;
-      width: 100%;
-      box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.25);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .modal-header {
-      padding: 24px 28px;
-      border-bottom: 1px solid var(--border-soft);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .modal-close-btn {
-      background: var(--bg-subtle);
-      border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-weight: 800;
-      color: var(--text-muted);
-    }
-
-    .modal-body {
-      padding: 28px;
-    }
-
-    .modal-field {
-      margin-bottom: 20px;
-    }
-
-    .modal-field label {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-dark);
-      margin-bottom: 8px;
-    }
-
-    .modal-field input,
-    .modal-field select,
-    .modal-field textarea {
-      width: 100%;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 12px 16px;
-      font-size: 14px;
-      color: var(--text-dark);
-      font-family: inherit;
-      outline: none;
-    }
-
-    .modal-field input:focus,
-    .modal-field textarea:focus {
-      background: #FFFFFF;
-      border-color: var(--purple-primary);
-      box-shadow: 0 0 0 3px var(--purple-glow);
-    }
-
-    /* Toast */
-    .activity-toast {
-      position: fixed;
-      bottom: 24px;
-      left: 24px;
-      background: #FFFFFF;
-      border: 1px solid var(--border-soft);
-      border-radius: var(--radius-pill);
-      padding: 8px 18px 8px 10px;
-      box-shadow: var(--shadow-hover);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      z-index: 90;
-      font-size: 12.5px;
-    }
-
-    .toast-avatar {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--purple-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      color: var(--purple-primary);
-    }
-
-    footer {
-      border-top: 1px solid var(--border-soft);
-      padding: 48px 0;
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    /* Responsive */
-    @media (max-width: 1140px) {
-      .hero-wrapper {
-        min-height: auto;
-        padding: 40px 16px 36px 16px;
-      }
-      .hero-panoramic-stage {
-        padding: 0 12px;
-      }
-      .hero-monumental-bg {
-        font-size: clamp(54px, 12vw, 92px);
-        top: 8%;
-      }
-      .bento-stage-cluster {
-        max-width: 780px;
-        grid-template-rows: 195px 235px;
+    /* ── RESPONSIVE MOBILE ADJUSTMENTS ── */
+    @media (max-width: 900px) {
+      html, body {
         height: auto;
+        min-height: 100dvh;
+        overflow-y: auto;
+        overflow-x: hidden;
       }
-      .bento-card-top {
-        height: 195px;
+
+      .top-brand-header {
+        padding: 0 16px;
+        height: 56px;
       }
-      .bento-card-bottom-left,
-      .bento-card-bottom-right {
-        height: 235px;
-      }
-      .disciplines-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .filter-controls-row {
-        grid-template-columns: 1fr;
-      }
-      .calc-grid {
-        grid-template-columns: 1fr;
-      }
-      .value-strip {
-        grid-template-columns: 1fr 1fr;
-      }
-      .nav-links {
+
+      .header-nav-pill {
         display: none;
       }
-    }
 
-    @media (max-width: 680px) {
-      .hero-wrapper {
-        padding: 24px 12px 20px 12px;
+      .header-right-tools {
+        margin-right: 0;
       }
-      .hero-panoramic-stage {
-        padding: 0 4px;
-        width: 100%;
-        max-width: 100%;
+
+      .ninjax-hero-canvas {
+        width: calc(100vw - 20px);
+        height: 84vh;
+        border-radius: 28px;
+        margin-bottom: 16px;
+        background: radial-gradient(ellipse at 50% 30%, #E25B02 0%, #A53401 50%, #200E08 100%);
       }
-      .hero-eyebrow-pill {
-        font-size: 10px;
-        padding: 4px 10px;
-        gap: 6px;
-        letter-spacing: 0.4px;
-        max-width: 92%;
+
+      .hero-bike-container {
+        height: 52%;
+        top: 2%;
+        bottom: auto;
       }
-      .hero-headline {
-        font-size: 24px;
-        letter-spacing: -0.5px;
-        line-height: 1.2;
-        padding: 0 10px;
-        margin-bottom: 8px;
-        text-wrap: normal;
-        word-break: normal;
-        hyphens: none;
+
+      .hero-bike-img {
+        object-fit: cover;
+        object-position: 50% 50%;
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
       }
-      .hero-subtext {
+
+      .hero-center-editorial {
+        bottom: 85px;
+        width: 94%;
+      }
+
+      .hero-headline-stacked {
+        font-size: 32px;
+        line-height: 0.95;
+        margin-bottom: 10px;
+      }
+
+      .hero-subtitle {
         font-size: 13px;
-        padding: 0 8px;
-        margin-bottom: 12px;
-        line-height: 1.45;
+        margin-bottom: 18px;
       }
-      .hero-action-dock {
-        flex-direction: column;
-        width: 100%;
-        max-width: 100%;
-        padding: 0 4px;
-        box-sizing: border-box;
-        gap: 8px;
+
+      .hotspot-price-tag {
+        top: 15%;
+        left: 62%;
+        right: auto;
       }
-      .hero-search-bar {
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-        flex: none;
-        padding: 5px 6px 5px 12px;
+
+      .hotspot-radar-pin {
+        top: 27%;
+        left: 48%;
       }
-      .hero-search-bar input {
-        font-size: 12.5px;
+
+      .hero-bottom-controls-bar {
+        bottom: 22px;
+        left: 20px;
+        right: 20px;
       }
-      .hero-search-btn {
-        padding: 7px 14px;
-        font-size: 11.5px;
-      }
-      .hero-action-dock .btn-primary {
-        width: 100%;
-        box-sizing: border-box;
-        justify-content: center;
-        padding: 9px 18px;
-      }
-      .hero-chips-row {
-        gap: 5px;
-        margin-bottom: 12px;
-      }
-      .hero-chip {
-        font-size: 10.5px;
-        padding: 4px 9px;
-      }
-      .hero-orbit-stage {
-        height: 330px;
-        margin-bottom: 6px;
-      }
-      .orbit-card {
-        width: 195px;
-        height: 285px;
-        border-radius: 16px;
-      }
-      .orbit-nav-prev { left: 4px; }
-      .orbit-nav-next { right: 4px; }
-      .orbit-nav-btn {
-        width: 32px;
-        height: 32px;
-      }
-      .hero-trust-row {
-        font-size: 11px;
-        gap: 6px;
-      }
-      .disciplines-grid {
-        grid-template-columns: 1fr;
-      }
-      .value-strip {
-        grid-template-columns: 1fr;
-      }
-      .activity-toast {
+
+      .hero-right-specs {
         display: none;
       }
-    }
 
-    /* Interactive Bento Pulse Highlight */
-    @keyframes bento-glow-pulse {
-      0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.7); transform: scale(1); }
-      50% { box-shadow: 0 0 0 12px rgba(124, 58, 237, 0); transform: scale(1.02); }
-      100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); transform: scale(1); }
-    }
+      .preview-layout-switcher {
+        top: auto;
+        bottom: 14px;
+        right: 50%;
+        transform: translateX(50%);
+        width: calc(100vw - 32px);
+        max-width: 400px;
+        justify-content: center;
+      }
 
-    .talent-card.bento-highlight {
-      animation: bento-glow-pulse 1.2s ease-out 2;
-      border-color: var(--purple-primary) !important;
+      .switcher-title {
+        display: none;
+      }
+
+      .switcher-tab {
+        font-size: 11px;
+        padding: 6px 10px;
+        flex: 1;
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
-  <main>
-    <!-- COHESIVE EDITORIAL HERO & BENTO STAGE (UNSLOPPED & AUTHENTIC) -->
-    <section class="hero-wrapper">
-      <div class="hero-studio-mesh"></div>
 
-      <!-- ARCHITECTURAL MONUMENTAL BACKGROUND BRANDING -->
-      <div class="hero-monumental-bg">NEXUS DIRECT</div>
+  <!-- ── 3-WAY LAYOUT SWITCHER ── -->
+  <aside class="preview-layout-switcher" aria-label="Layout Switcher">
+    <span class="switcher-title">Layouts:</span>
+    <a href="/dunes.html" class="switcher-tab">1. Dunes (Original)</a>
+    <a href="/" class="switcher-tab active">2. Ninjax</a>
+    <a href="/nike_cloud_style.html" class="switcher-tab">3. Nike Cloud</a>
+  </aside>
 
-      <!-- CENTERED PANORAMIC STAGE (CSS DESIGN AWARDS STANDARD) -->
-      <div class="hero-panoramic-stage">
-        <!-- SLEEK EDITORIAL EYEBROW PILL -->
-        <div class="hero-eyebrow-pill">
-          <span class="eyebrow-beacon"></span>
-          <span>DIRECT TALENT BOOKING</span>
-          <span class="eyebrow-sep">•</span>
-          <span class="eyebrow-stat">0% ESCROW CUTS</span>
-        </div>
+  <!-- TOP BRAND HEADER -->
+  <header class="top-brand-header">
+    <a href="#" class="brand-mark">
+      <span class="brand-logo-text">nexus<span class="brand-logo-dot">.</span></span>
+    </a>
 
-        <h1 class="hero-headline">
-          The Curated Stage for <span class="headline-gradient">Commercial Visionaries.</span>
-        </h1>
+    <!-- Center Navigation Pill -->
+    <nav class="header-nav-pill" aria-label="Primary Navigation">
+      <a href="#bikes" class="header-nav-link active">Mountain</a>
+      <a href="#performance" class="header-nav-link">Performance</a>
+      <a href="#lab" class="header-nav-link">Custom Lab</a>
+      <a href="#athletes" class="header-nav-link">Athletes</a>
+    </nav>
 
-        <p class="hero-subtext">
-          Connect directly with hand-vetted commercial directors, high-speed FPV drone pilots, and 3D motion designers. Zero platform escrow cuts, verified camera gear, and transparent day-rates.
-        </p>
+    <div class="header-right-tools">
+      <a href="#search" class="tool-icon-btn" aria-label="Search Gear">
+        <span>🔍</span>
+      </a>
+      <a href="#cart" class="tool-icon-btn" aria-label="Cart">
+        <span>🛒</span>
+        <span class="bag-badge">0</span>
+      </a>
+    </div>
+  </header>
 
-        <!-- CENTERED ACTION DOCK: FAST OMNI-SEARCH + POST BRIEF -->
-        <div class="hero-action-dock">
-          <div class="hero-search-bar" id="heroSearchBar">
-            <span style="font-size:15px; color:#94A3B8;">🔍</span>
-            <input type="text" id="heroSearchInput" placeholder="Search by gear (ARRI, RED, Sony FX6) or discipline..." onkeydown="if(event.key==='Enter') executeHeroSearch()">
-            <span class="search-kbd-hint">/</span>
-            <button class="hero-search-btn" onclick="executeHeroSearch()">Search</button>
-          </div>
-          <button class="btn-primary" onclick="openLeadModal()">
-            <span>Post Direct Brief</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-        </div>
+  <!-- MAIN SOLAR ORANGE HERO CARD -->
+  <main class="ninjax-hero-canvas">
 
-        <!-- FAST DISCIPLINE FILTER CHIPS -->
-        <div class="hero-chips-row">
-          <span class="hero-chip" onclick="filterCategory('Cinematography')">🎥 Directing & Film</span>
-          <span class="hero-chip" onclick="filterCategory('Drone & Aerial')">🛸 FPV Aerial</span>
-          <span class="hero-chip" onclick="filterCategory('3D & CGI')">🪐 3D Motion</span>
-          <span class="hero-chip" onclick="filterCategory('Photography')">📸 Commercial Still</span>
-          <a href="#explore" class="hero-chip" style="background: rgba(124, 58, 237, 0.08); color: var(--purple-primary); border-color: rgba(124, 58, 237, 0.3); font-weight: 800;">Explore 500+ →</a>
-        </div>
+    <div class="vignette-layer" aria-hidden="true"></div>
 
-        <!-- REVOLVING 3D ORBITAL TALENT SHOWCASE (FULL SCREEN DYNAMIC MOTION) -->
-        <div class="hero-orbit-stage" id="heroOrbitStage" aria-label="Revolving 3D Commercial Talent Showcase">
-          <!-- Left / Right Interactive Scrub Arrows -->
-          <button class="orbit-nav-btn orbit-nav-prev" onclick="rotateOrbit(-1)" aria-label="Previous creator">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="orbit-nav-btn orbit-nav-next" onclick="rotateOrbit(1)" aria-label="Next creator">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
-
-          <!-- The 3D Orbital Cylinder Container -->
-          <div class="orbit-3d-cylinder" id="orbitCylinder">
-
-            <!-- CARD 0: COMMERCIAL DIRECTOR & FILM ("CREATING! The Story") -->
-            <div class="orbit-card" data-index="0" onclick="handleOrbitCardClick(0, 'Cinematography', event)" title="View Commercial Directors">
-              <img src="assets/character_filmmaker.jpg" alt="Commercial Director & Cinematographer — Maya Lin">
-              <div class="bento-card-tag">
-                <span class="bento-tag-beacon"></span>
-                <span>DIRECTING & FILM</span>
-              </div>
-              <div class="bento-sound-indicator" id="bentoSoundToggle" onclick="toggleReelAudio(event)" title="Click to play commercial reel soundscape">
-                <div class="eq-bars">
-                  <span class="eq-bar bar-1"></span>
-                  <span class="eq-bar bar-2"></span>
-                  <span class="eq-bar bar-3"></span>
-                  <span class="eq-bar bar-4"></span>
-                </div>
-                <span>AUDIO PREVIEW</span>
-              </div>
-              <div class="bento-hover-credit">
-                <span>🏆 Cannes Lions Gold • Nike "Unstoppable"</span>
-              </div>
-              <div class="bento-scrim-footer">
-                <div>
-                  <span class="bento-scrim-name">Maya Lin & Studio</span>
-                  <span class="bento-scrim-sub">Commercial Director • ARRI Alexa LF</span>
-                </div>
-                <div class="bento-scrim-badge">
-                  <span>★ 4.99</span>
-                  <span class="bento-tag-green">AVAILABLE NOW</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- CARD 1: COMMERCIAL DRONE PILOT ("TAKING FLIGHT! / PILOT MODE ACTIVATED") -->
-            <div class="orbit-card" data-index="1" onclick="handleOrbitCardClick(1, 'Drone & Aerial', event)" title="View Commercial Drone Pilots">
-              <img src="assets/character_drone_pilot.jpg" alt="Commercial Drone Pilot — Kai Sorensen">
-              <div class="bento-card-tag">
-                <span class="bento-tag-beacon" style="background:#0284C7; box-shadow:0 0 6px #0284C7;"></span>
-                <span>FPV DRONE & AERIAL</span>
-              </div>
-              <div class="bento-hover-credit">
-                <span>⚡ Red Bull FPV Drift • 140mph Chase Cam</span>
-              </div>
-              <div class="bento-scrim-footer">
-                <div>
-                  <span class="bento-scrim-name">Kai Sorensen</span>
-                  <span class="bento-scrim-sub">Part 107 Pilot • Extreme Sports</span>
-                </div>
-                <div class="bento-scrim-badge">
-                  <span>★ 4.95</span>
-                  <span class="bento-tag-blue">14× BOOKED</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- CARD 2: DIGITAL DESIGNER ("Creative Energy / JUST DID IT!") -->
-            <div class="orbit-card" data-index="2" onclick="handleOrbitCardClick(2, 'Photography', event)" title="View Digital & Brand Designers">
-              <img src="assets/character_designer.jpg" alt="Lead Visual Designer — Sophie Zhang">
-              <div class="bento-card-tag">
-                <span class="bento-tag-beacon" style="background:#F59E0B; box-shadow:0 0 6px #F59E0B;"></span>
-                <span>DIGITAL DESIGN & BRAND</span>
-              </div>
-              <div class="bento-hover-credit">
-                <span>✨ Apple Design Award • Brand Systems</span>
-              </div>
-              <div class="bento-scrim-footer">
-                <div>
-                  <span class="bento-scrim-name">Sophie Zhang</span>
-                  <span class="bento-scrim-sub">Brand Systems • Motion & UI</span>
-                </div>
-                <div class="bento-scrim-badge">
-                  <span>★ 5.0</span>
-                  <span class="bento-tag-gold">TOP 1%</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- CARD 3: FPV DRIFT PILOT & ACTION ("Power within!") -->
-            <div class="orbit-card" data-index="3" onclick="handleOrbitCardClick(3, 'Drone & Aerial', event)" title="View High-Speed Action Cinematographers">
-              <img src="assets/bento_skater_authentic.jpg" alt="FPV Action Cinematographer — Liam Vance">
-              <div class="bento-card-tag">
-                <span class="bento-tag-beacon" style="background:#8B5CF6; box-shadow:0 0 6px #8B5CF6;"></span>
-                <span>ACTION & FPV CHASE</span>
-              </div>
-              <div class="bento-hover-credit">
-                <span>⚡ X Games Gold • Cinema Chase Cam</span>
-              </div>
-              <div class="bento-scrim-footer">
-                <div>
-                  <span class="bento-scrim-name">Liam Vance</span>
-                  <span class="bento-scrim-sub">Cinematic Drone • High-Speed FPV</span>
-                </div>
-                <div class="bento-scrim-badge">
-                  <span>★ 4.97</span>
-                  <span class="bento-tag-blue">VERIFIED PRO</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- CARD 4: 3D MOTION & CGI ("HIGH ENERGY MODE") -->
-            <div class="orbit-card" data-index="4" onclick="handleOrbitCardClick(4, '3D & CGI', event)" title="View 3D Motion Artists">
-              <img src="assets/bento_energy_authentic_clean.jpg" alt="3D Motion Designer — Elena Rostova">
-              <div class="bento-card-tag">
-                <span class="bento-tag-beacon" style="background:#EC4899; box-shadow:0 0 6px #EC4899;"></span>
-                <span>3D MOTION & CGI</span>
-              </div>
-              <div class="bento-hover-credit">
-                <span>🪐 Vogue Digital • Unreal Engine 5.5</span>
-              </div>
-              <div class="bento-scrim-footer">
-                <div>
-                  <span class="bento-scrim-name">Elena Rostova</span>
-                  <span class="bento-scrim-sub">3D Motion • Octane / C4D / UE5</span>
-                </div>
-                <div class="bento-scrim-badge">
-                  <span>★ 5.0</span>
-                  <span class="bento-tag-gold">TOP 1%</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ORBITAL DOT INDICATORS -->
-        <div class="orbit-dots-row" id="orbitDotsRow">
-          <span class="orbit-dot is-active" onclick="jumpToOrbitCard(0)"></span>
-          <span class="orbit-dot" onclick="jumpToOrbitCard(1)"></span>
-          <span class="orbit-dot" onclick="jumpToOrbitCard(2)"></span>
-          <span class="orbit-dot" onclick="jumpToOrbitCard(3)"></span>
-          <span class="orbit-dot" onclick="jumpToOrbitCard(4)"></span>
-        </div>
-
-        <!-- BALANCED SYMMETRICAL TRUST PROOF ROW -->
-        <div class="hero-trust-row">
-          <span class="badge-check">✓ Direct Creator Invoicing</span>
-          <span>•</span>
-          <span>Zero Escrow Traps</span>
-          <span>•</span>
-          <span>Production Insured</span>
-          <span>•</span>
-          <span>ARRI & RED Certified Gear</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Wave Divider -->
-    <div class="wave-divider">
-      <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-        <path class="shape-fill" d="M0,20 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"></path>
-      </svg>
+    <!-- Product Bike Image Layer -->
+    <div class="hero-bike-container">
+      <img src="assets/ninjax_bike_hero.jpg" alt="NEXUS Ninjax S-Works Mountain Bike" class="hero-bike-img">
     </div>
 
-    <!-- VALUE STRIP -->
-    <div class="container">
-      <div class="value-strip">
-        <div class="value-item">
-          <div class="value-icon">🛡️</div>
-          <div>
-            <div class="value-title">Zero Escrow Traps</div>
-            <div class="value-desc">Direct client invoicing without 20% cuts</div>
-          </div>
-        </div>
-        <div class="value-item">
-          <div class="value-icon">⚡</div>
-          <div>
-            <div class="value-title">30-Second Inquiries</div>
-            <div class="value-desc">Structured lead briefs sent to creators</div>
-          </div>
-        </div>
-        <div class="value-item">
-          <div class="value-icon">💎</div>
-          <div>
-            <div class="value-title">Hand-Vetted 5%</div>
-            <div class="value-desc">Every portfolio audited for commercial quality</div>
-          </div>
-        </div>
-        <div class="value-item">
-          <div class="value-icon">🎥</div>
-          <div>
-            <div class="value-title">4K Master Reels</div>
-            <div class="value-desc">Full-fidelity video direct from Cloudflare R2</div>
-          </div>
-        </div>
-      </div>
+    <!-- Interactive Price Hotspot Pin (from reference) -->
+    <div class="hotspot-price-tag" title="Specialized S-Works Carbon Edition">
+      <div class="price-bubble">$2,999</div>
     </div>
 
-    <!-- CREATIVE DISCIPLINES -->
-    <section class="container" id="disciplines">
-      <div class="section-title-wrap">
-        <h2 class="section-title">Explore by Creative Medium</h2>
-        <p class="section-subtitle">Discover specialists across the commercial production pipeline.</p>
-      </div>
+    <!-- Interactive Chassis Hotspot Pin -->
+    <div class="hotspot-radar-pin">
+      <div class="radar-pulse"></div>
+      <div class="radar-tooltip">FACT 11m Carbon Chassis</div>
+    </div>
 
-      <div class="disciplines-grid">
-        <div class="discipline-card" onclick="filterCategory('Cinematography')">
-          <div class="discipline-avatar discipline-avatar-art">
-            <img src="assets/character_filmmaker.jpg" alt="Commercial Cinematography — Maya Lin">
-          </div>
-          <h3 class="discipline-card-title">Cinematography</h3>
-          <p class="discipline-card-desc">Commercial DPs, camera operators & gaffers for TVCs and campaigns.</p>
-        </div>
-
-        <div class="discipline-card" onclick="filterCategory('Photography')">
-          <div class="discipline-avatar discipline-avatar-art">
-            <img src="assets/character_designer.jpg" alt="Brand & Visual Design — Sophie Zhang">
-          </div>
-          <h3 class="discipline-card-title">Brand & Design</h3>
-          <p class="discipline-card-desc">Brand systems, visual identities, UI, and commercial campaigns.</p>
-        </div>
-
-        <div class="discipline-card" onclick="filterCategory('3D & CGI')">
-          <div class="discipline-avatar discipline-avatar-art">
-            <img src="assets/bento_energy_authentic_clean.jpg" alt="3D Motion & CGI — Elena Rostova">
-          </div>
-          <h3 class="discipline-card-title">3D Motion & CGI</h3>
-          <p class="discipline-card-desc">Houdini, Cinema 4D, and Unreal Engine product visualizers.</p>
-        </div>
-
-        <div class="discipline-card" onclick="filterCategory('Drone & Aerial')">
-          <div class="discipline-avatar discipline-avatar-art">
-            <img src="assets/character_drone_pilot.jpg" alt="Drone Pilot — Kai Sorensen">
-          </div>
-          <h3 class="discipline-card-title">Drone Cinema</h3>
-          <p class="discipline-card-desc">Part 107 heavy-lift and high-speed aerial cinematography.</p>
-        </div>
-
-        <div class="discipline-card" onclick="filterCategory('Drone & Aerial')">
-          <div class="discipline-avatar discipline-avatar-art">
-            <img src="assets/bento_skater_authentic.jpg" alt="Action & FPV Chase — Liam Vance">
-          </div>
-          <h3 class="discipline-card-title">Action & FPV</h3>
-          <p class="discipline-card-desc">Precision high-speed chase camera for sports and automotive.</p>
-        </div>
+    <!-- Center Stacked Kinetic Typography & CTA -->
+    <section class="hero-center-editorial">
+      <h1 class="hero-headline-stacked">
+        <span class="headline-row">RIDE BEYOND</span>
+        <span class="headline-row">BOUNDARIES</span>
+      </h1>
+      <p class="hero-subtitle">Pursue the summit... triumph over any route.</p>
+      
+      <div class="hero-cta-wrap">
+        <a href="#shop" class="btn-shop-now">SHOP NOW</a>
       </div>
     </section>
 
-    <!-- TALENT EXPLORER & FILTER CONSOLE -->
-    <section class="container" id="explore">
-      <div class="section-title-wrap" style="text-align:left; margin:0 0 24px 0;">
-        <h2 class="section-title">Directory of Vetted Talent</h2>
-        <p class="section-subtitle">Real-time filtering by discipline, verified day-rates, and direct booking.</p>
+    <!-- Bottom Controls & Spec Dock -->
+    <footer class="hero-bottom-controls-bar">
+      <!-- Carousel Arrows (<) (>) -->
+      <div class="carousel-nav-arrows">
+        <button class="carousel-btn" aria-label="Previous Slide">‹</button>
+        <button class="carousel-btn" aria-label="Next Slide">›</button>
+        <span class="carousel-indicator">01 / 03</span>
       </div>
 
-      <!-- Explorer Console -->
-      <div class="explorer-console">
-        <div class="category-pills-bar" id="categoryPillBar">
-          <button class="category-pill active" onclick="setCategoryFilter('all', this)">All Disciplines (142)</button>
-          <button class="category-pill" onclick="setCategoryFilter('Cinematography', this)">Cinematography (48)</button>
-          <button class="category-pill" onclick="setCategoryFilter('Photography', this)">Photography (36)</button>
-          <button class="category-pill" onclick="setCategoryFilter('3D & CGI', this)">3D & Motion CGI (29)</button>
-          <button class="category-pill" onclick="setCategoryFilter('Drone & Aerial', this)">Drone & Aerial (19)</button>
-          <button class="category-pill" onclick="setCategoryFilter('Creative Direction', this)">Creative Direction (10)</button>
+      <!-- Right Spec Line -->
+      <div class="hero-right-specs">
+        <div class="spec-item">
+          <span class="spec-dot"></span>
+          <span>Carbon S-Works</span>
         </div>
-
-        <div class="filter-controls-row">
-          <div class="search-input-wrap">
-            <span class="search-input-icon">🔍</span>
-            <input type="text" id="talentSearchInput" placeholder="Search by name, camera gear (RED, ARRI), location..." oninput="filterTalentCards()">
-          </div>
-
-          <div>
-            <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:800; color:var(--text-muted); margin-bottom:6px;">
-              <span>Max Day Rate</span>
-              <span id="priceDisplay" style="color:var(--purple-primary); font-weight:800;">$3,500/day</span>
-            </div>
-            <input type="range" class="price-slider" id="priceSlider" min="500" max="4000" step="100" value="3500" oninput="updatePriceFilter(this.value)">
-          </div>
-
-          <select class="filter-select" id="sortSelect" onchange="filterTalentCards()">
-            <option value="featured">Pinned: Founding Members</option>
-            <option value="rating">Highest Rated (★ 4.9+)</option>
-            <option value="rate-asc">Price: Low to High</option>
-            <option value="rate-desc">Price: High to Low</option>
-          </select>
-
-          <button class="btn-primary" style="justify-content:center;" onclick="openLeadModal()">
-            <span>Inquire Directly</span>
-          </button>
+        <div class="spec-item">
+          <span>Fox Factory 38</span>
+        </div>
+        <div class="spec-item">
+          <span>14.2 kg</span>
         </div>
       </div>
+    </footer>
 
-      <!-- Talent Grid -->
-      <div class="talent-grid" id="talentGrid">
-        <!-- Creator 1 -->
-        <div class="talent-card" data-category="Cinematography" data-rate="1800" data-gear="ARRI Mini LF, Cooke Anamorphic" data-name="Marcus Vance">
-          <div class="talent-media-wrap">
-            <img src="assets/videographer_showreel_1793527102724.jpg" alt="Marcus Vance">
-            <div class="talent-badge-strip">
-              <span class="founding-badge">★ Founding Member #04</span>
-              <button class="favorite-btn" onclick="toggleFav(this)">♥</button>
-            </div>
-          </div>
-          <div class="talent-info">
-            <div class="talent-name">Marcus Vance</div>
-            <div class="talent-discipline">Director & DP • Los Angeles, CA</div>
-            <div class="talent-tags">
-              <span class="tag-chip">ARRI Alexa</span>
-              <span class="tag-chip">TV Commercials</span>
-              <span class="tag-chip">&lt; 15m reply</span>
-            </div>
-            <div class="talent-footer-row">
-              <div class="rate-amount">$1,800/day</div>
-              <button class="btn-book-direct" onclick="openDirectBooking('Marcus Vance', '$1,800/day')">Book Direct</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Creator 2 -->
-        <div class="talent-card" data-category="Photography" data-rate="1400" data-gear="Hasselblad H6D, Profoto Pro-11" data-name="Elena Rostova">
-          <div class="talent-media-wrap">
-            <img src="assets/brand_photography_reel_1793527129619.jpg" alt="Elena Rostova">
-            <div class="talent-badge-strip">
-              <span class="founding-badge">★ Founding Member #11</span>
-              <button class="favorite-btn" onclick="toggleFav(this)">♥</button>
-            </div>
-          </div>
-          <div class="talent-info">
-            <div class="talent-name">Elena Rostova</div>
-            <div class="talent-discipline">Fashion Photographer • New York, NY</div>
-            <div class="talent-tags">
-              <span class="tag-chip">Hasselblad</span>
-              <span class="tag-chip">Luxury Editorial</span>
-              <span class="tag-chip">Vogue / GQ</span>
-            </div>
-            <div class="talent-footer-row">
-              <div class="rate-amount">$1,400/day</div>
-              <button class="btn-book-direct" onclick="openDirectBooking('Elena Rostova', '$1,400/day')">Book Direct</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Creator 3 -->
-        <div class="talent-card" data-category="3D & CGI" data-rate="2200" data-gear="Houdini, Octane, Redshift" data-name="Kaelen O'Connor">
-          <div class="talent-media-wrap">
-            <img src="assets/motion_design_reel_1793527441085.jpg" alt="Kaelen O'Connor">
-            <div class="talent-badge-strip">
-              <span class="founding-badge">★ Founding Member #19</span>
-              <button class="favorite-btn" onclick="toggleFav(this)">♥</button>
-            </div>
-          </div>
-          <div class="talent-info">
-            <div class="talent-name">Kaelen O'Connor</div>
-            <div class="talent-discipline">3D Motion Director • London / Remote</div>
-            <div class="talent-tags">
-              <span class="tag-chip">Product CGI</span>
-              <span class="tag-chip">Liquid Dynamics</span>
-              <span class="tag-chip">Houdini FX</span>
-            </div>
-            <div class="talent-footer-row">
-              <div class="rate-amount">$2,200/day</div>
-              <button class="btn-book-direct" onclick="openDirectBooking('Kaelen O\'Connor', '$2,200/day')">Book Direct</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Creator 4 -->
-        <div class="talent-card" data-category="Drone & Aerial" data-rate="1650" data-gear="DJI Inspire 3, RED Komodo FPV" data-name="Kai Sorenson">
-          <div class="talent-media-wrap">
-            <img src="assets/drone_cinematography_coastal.jpg" alt="Kai Sorenson">
-            <div class="talent-badge-strip">
-              <span class="founding-badge">★ Founding Member #28</span>
-              <button class="favorite-btn" onclick="toggleFav(this)">♥</button>
-            </div>
-          </div>
-          <div class="talent-info">
-            <div class="talent-name">Kai Sorenson</div>
-            <div class="talent-discipline">Heavy-Lift Aerial • Miami, FL</div>
-            <div class="talent-tags">
-              <span class="tag-chip">DJI Inspire 3</span>
-              <span class="tag-chip">Part 107</span>
-              <span class="tag-chip">Coastal Cinema</span>
-            </div>
-            <div class="talent-footer-row">
-              <div class="rate-amount">$1,650/day</div>
-              <button class="btn-book-direct" onclick="openDirectBooking('Kai Sorenson', '$1,650/day')">Book Direct</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SAVINGS CALCULATOR -->
-    <section class="container" id="calculator">
-      <div class="calculator-section">
-        <div class="calc-grid">
-          <div>
-            <span style="color:var(--purple-primary); font-size:13px; font-weight:800; text-transform:uppercase;">The Economics of Zero Escrow</span>
-            <h2 class="section-title" style="margin: 8px 0 12px 0;">Calculate your annual savings.</h2>
-            <p class="section-subtitle">See how much revenue you protect by avoiding 20% platform take-rates.</p>
-            
-            <div style="margin-top:24px;">
-              <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-weight:800;">
-                <span>Annual Client Invoicing:</span>
-                <span id="calcVolumeDisplay" style="color:var(--purple-primary); font-size:18px;">$60,000 / year</span>
-              </div>
-              <input type="range" class="price-slider" id="calcSlider" min="10000" max="250000" step="5000" value="60000" oninput="calculateSavings(this.value)">
-            </div>
-          </div>
-
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
-            <div class="calc-card-legacy">
-              <div style="font-size:12px; font-weight:800; color:var(--text-muted); text-transform:uppercase;">Legacy Escrow Platforms</div>
-              <div class="calc-card-fee" id="legacyFeeDisplay" style="color:#EF4444;">-$12,000</div>
-              <div style="font-size:12.5px; color:var(--text-muted);">20% cut + 14-day escrow hold</div>
-            </div>
-
-            <div class="calc-card-nexus">
-              <div class="calc-badge-win">You Keep 100%</div>
-              <div style="font-size:12px; font-weight:800; color:var(--purple-primary); text-transform:uppercase;">NEXUS Storefront</div>
-              <div class="calc-card-fee" style="color:#10B981;">$0 Cuts</div>
-              <div style="font-size:12.5px; color:var(--text-muted);">Flat $49/mo listing subscription.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOUNDING MEMBER PASS BANNER -->
-    <section class="container" id="founding-pass">
-      <div class="founding-banner">
-        <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.15); padding:4px 14px; border-radius:9999px; font-size:12px; font-weight:800; margin-bottom:16px;">
-          <span>★ Limited Cohort (100 Verified Creators)</span>
-        </div>
-
-        <h2 style="font-family:var(--font-display); font-size:38px; font-weight:900; line-height:1.15; margin-bottom:16px;">Claim your 90-day free storefront trial.</h2>
-        <p style="color:#CBD5E1; font-size:16px; line-height:1.6; max-width:680px;">
-          Approved founding members receive 90 days of full verified visibility on the marketplace, zero platform fees, and a permanent Golden Founding Member badge on their storefront.
-        </p>
-
-        <div class="founding-quota-wrap">
-          <div class="founding-quota-fill"></div>
-        </div>
-        <div style="display:flex; justify-content:space-between; max-width:440px; font-size:12px; color:#CBD5E1; margin-top:-20px; margin-bottom:28px; font-weight:700;">
-          <span>84 Claimed</span>
-          <span>16 Passes Remaining</span>
-        </div>
-
-        <button class="btn-primary" style="padding:14px 32px; font-size:15px;" onclick="openFoundingModal()">
-          <span>Apply for Founding Pass</span>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-    </section>
   </main>
 
-  <!-- GUIDED INQUIRY MODAL -->
-  <div class="modal-backdrop" id="leadModal" onclick="closeModalOnBackdrop(event)">
-    <div class="modal-box">
-      <div class="modal-header">
-        <div>
-          <h3 style="font-family:var(--font-display); font-size:20px; font-weight:800;">30-Second Creator Inquiry</h3>
-          <p style="font-size:12.5px; color:var(--text-muted);">Direct message to creator. Zero platform markups.</p>
-        </div>
-        <button class="modal-close-btn" onclick="closeLeadModal()">✕</button>
-      </div>
-      <div class="modal-body">
-        <form onsubmit="handleLeadSubmit(event)">
-          <div class="modal-field">
-            <label>Selected Creator / Service</label>
-            <input type="text" id="modalTargetCreator" value="Marcus Vance • Commercial Cinematography" readonly style="background:#F1F5F9; font-weight:700;">
-          </div>
-          <div class="modal-field">
-            <label>Project Scope / Medium</label>
-            <select required>
-              <option value="commercial">Commercial Video / Brand Campaign</option>
-              <option value="photo">Fashion / Editorial Photography</option>
-              <option value="cgi">3D Product Render / Motion Graphics</option>
-              <option value="aerial">FPV / Drone Aerial Footage</option>
-            </select>
-          </div>
-          <div class="modal-field">
-            <label>Estimated Project Budget</label>
-            <select required>
-              <option value="2-5k">$2,000 – $5,000</option>
-              <option value="5-15k" selected>$5,000 – $15,000</option>
-              <option value="15-50k">$15,000 – $50,000</option>
-              <option value="50k+">$50,000+</option>
-            </select>
-          </div>
-          <div class="modal-field">
-            <label>Your Email / Company</label>
-            <input type="email" placeholder="producer@agency.com" required>
-          </div>
-          <div class="modal-field">
-            <label>Project Brief (Optional)</label>
-            <textarea rows="3" placeholder="Brief project summary, shoot dates, location requirements..."></textarea>
-          </div>
-          <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:13px;">
-            <span>Send Direct Lead to Creator</span>
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOUNDING CREATOR APPLICATION MODAL -->
-  <div class="modal-backdrop" id="foundingModal" onclick="closeModalOnBackdrop(event)">
-    <div class="modal-box">
-      <div class="modal-header">
-        <div>
-          <h3 style="font-family:var(--font-display); font-size:20px; font-weight:800;">Creator Founding Member Application</h3>
-          <p style="font-size:12.5px; color:var(--text-muted);">90-day free trial • Flat $49/mo thereafter • $0 escrow cuts</p>
-        </div>
-        <button class="modal-close-btn" onclick="closeFoundingModal()">✕</button>
-      </div>
-      <div class="modal-body">
-        <form onsubmit="handleFoundingSubmit(event)">
-          <div class="modal-field">
-            <label>Full Legal Name / Business Name</label>
-            <input type="text" placeholder="e.g. Marcus Vance Productions" required>
-          </div>
-          <div class="modal-field">
-            <label>Primary Discipline</label>
-            <select required>
-              <option value="director">Cinematographer / Director</option>
-              <option value="photographer">Brand / Editorial Photographer</option>
-              <option value="motion">3D CGI / Motion Designer</option>
-              <option value="drone">Licensed Drone Pilot</option>
-            </select>
-          </div>
-          <div class="modal-field">
-            <label>Portfolio / Showreel URL (Vimeo, YouTube, Website)</label>
-            <input type="url" placeholder="https://vimeo.com/..." required>
-          </div>
-          <div class="modal-field">
-            <label>Email Address for Vetting Notification</label>
-            <input type="email" placeholder="contact@creator.com" required>
-          </div>
-          <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:13px;">
-            <span>Submit for Admin Vetting (24hr Review)</span>
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- Live Toast Notification -->
-  <div class="activity-toast" id="liveToast">
-    <div class="toast-avatar">⚡</div>
-    <div>
-      <span style="font-weight:800;">Marcus V.</span> received a $4,800 commercial inquiry
-      <span style="color:var(--text-light); margin-left:4px;">• 2m ago</span>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="container">
-    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;">
-      <div style="display:flex; align-items:center; gap:8px;">
-        <span class="brand-badge">N</span>
-        <span style="font-family:var(--font-display); font-weight:900; color:var(--text-dark);">NEXUS</span>
-        <span style="color:var(--text-light); font-size:13px; margin-left:12px;">© 2026 NEXUS Platforms LLC. Built for Tyrone Strickland Jr.</span>
-      </div>
-      <div style="display:flex; gap:20px; font-size:13px; font-weight:700;">
-        <a href="#explore" style="color:var(--text-muted); text-decoration:none;">Talent Directory</a>
-        <a href="#calculator" style="color:var(--text-muted); text-decoration:none;">Pricing & Terms</a>
-        <a href="#founding-pass" style="color:var(--text-muted); text-decoration:none;">Founding Pass</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Hero Search & Direct Creator Filter
-    function executeHeroSearch() {
-      const q = document.getElementById('heroSearchInput').value;
-      const target = document.getElementById('talentSearchInput');
-      if (target) {
-        target.value = q;
-        filterTalentCards();
-        document.getElementById('explore').scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-
-    // Category Filter Logic
-    let currentCategory = 'all';
-
-    function setCategoryFilter(category, buttonEl) {
-      currentCategory = category;
-      document.querySelectorAll('.category-pill').forEach(btn => btn.classList.remove('active'));
-      if (buttonEl) buttonEl.classList.add('active');
-      filterTalentCards();
-    }
-
-    function filterCategory(categoryName) {
-      const pills = document.querySelectorAll('.category-pill');
-      pills.forEach(p => {
-        if (p.textContent.includes(categoryName)) {
-          setCategoryFilter(categoryName, p);
-        }
-      });
-      document.getElementById('explore').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Interactive Bento Click with Directory Highlight
-    function handleBentoClick(categoryName, event) {
-      if (event && event.target.closest('#bentoSoundToggle')) return;
-      filterCategory(categoryName);
-      setTimeout(() => {
-        const matchingCards = document.querySelectorAll(`.talent-card[data-category="${categoryName}"]`);
-        matchingCards.forEach((c, idx) => {
-          if (idx < 4) {
-            c.classList.add('bento-highlight');
-            setTimeout(() => c.classList.remove('bento-highlight'), 2400);
-          }
-        });
-      }, 400);
-    }
-
-    // Interactive Audio Equalizer & Synthesizer Chime
-    let audioCtx = null;
-    function toggleReelAudio(event) {
-      if (event) event.stopPropagation();
-      try {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-
-        const now = audioCtx.currentTime;
-        const chords = [
-          { time: 0, freqs: [138.59, 207.65, 277.18, 329.63, 415.30] },
-          { time: 0.9, freqs: [164.81, 246.94, 329.63, 392.00, 493.88] }
-        ];
-
-        chords.forEach(chord => {
-          chord.freqs.forEach(freq => {
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(freq, now + chord.time);
-
-            gain.gain.setValueAtTime(0, now + chord.time);
-            gain.gain.linearRampToValueAtTime(0.04, now + chord.time + 0.12);
-            gain.gain.exponentialRampToValueAtTime(0.0001, now + chord.time + 1.6);
-
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            osc.start(now + chord.time);
-            osc.stop(now + chord.time + 1.65);
-          });
-        });
-
-        // Dynamic Equalizer Animation
-        const eqBars = document.querySelectorAll('.bento-sound-indicator .eq-bar');
-        const origHeights = ['4px', '10px', '7px', '11px'];
-        let cycle = 0;
-        const interval = setInterval(() => {
-          eqBars.forEach(b => {
-            b.style.height = `${Math.floor(Math.random() * 10 + 3)}px`;
-          });
-          cycle++;
-          if (cycle > 22) {
-            clearInterval(interval);
-            eqBars.forEach((b, i) => b.style.height = origHeights[i]);
-          }
-        }, 110);
-
-        const toastEl = document.getElementById('liveToast');
-        if (toastEl) {
-          toastEl.innerHTML = `<div class="toast-avatar">🎬</div><div><span style="font-weight:800;">Maya Lin Studio</span> • Commercial Directing Reel Audio Active</div>`;
-        }
-      } catch (err) {
-        console.log('Audio init notice:', err);
-      }
-    }
-
-    // =========================================================================
-    // 3D REVOLVING ORBITAL TALENT STAGE ENGINE (HARDWARE ACCELERATED)
-    // =========================================================================
-    let orbitAngle = 0;
-    let targetOrbitAngle = 0;
-    let isOrbitPaused = false;
-    let isOrbitDragging = false;
-    let orbitDragStartX = 0;
-    let orbitDragStartAngle = 0;
-    let activeOrbitCardIndex = 0;
-
-    function initOrbitCarousel() {
-      const stage = document.getElementById('heroOrbitStage');
-      const cylinder = document.getElementById('orbitCylinder');
-      const cards = Array.from(document.querySelectorAll('.orbit-card'));
-      const dots = Array.from(document.querySelectorAll('.orbit-dot'));
-      if (!stage || !cylinder || cards.length === 0) return;
-
-      const numCards = cards.length; // 5 cards
-      const stepAngle = (2 * Math.PI) / numCards; // 72 deg
-
-      function getResponsiveRadii() {
-        const w = window.innerWidth;
-        if (w < 680) {
-          return { rx: Math.min(w * 0.44, 155), rz: 100 };
-        } else if (w < 1140) {
-          return { rx: Math.min(w * 0.42, 360), rz: 150 };
-        }
-        return { rx: Math.min(w * 0.38, 460), rz: 200 };
-      }
-
-      function updateOrbit() {
-        const { rx, rz } = getResponsiveRadii();
-        let closestIndex = 0;
-        let maxCos = -2;
-
-        cards.forEach((card, idx) => {
-          const theta = orbitAngle + idx * stepAngle;
-          const cosVal = Math.cos(theta);
-          const sinVal = Math.sin(theta);
-
-          if (cosVal > maxCos) {
-            maxCos = cosVal;
-            closestIndex = idx;
-          }
-
-          const x = sinVal * rx;
-          const z = (cosVal - 1) * rz;
-          const rotY = -sinVal * 30; // degrees
-          const normDepth = (cosVal + 1) / 2; // 0 to 1
-          const scale = 0.80 + 0.22 * normDepth;
-          const opacity = 0.48 + 0.52 * normDepth;
-          const zIndex = Math.round(normDepth * 100);
-
-          card.style.zIndex = zIndex;
-          card.style.opacity = opacity.toFixed(2);
-          card.style.transform = `translate3d(${x.toFixed(1)}px, 0, ${z.toFixed(1)}px) rotateY(${rotY.toFixed(1)}deg) scale(${scale.toFixed(3)})`;
-
-          if (normDepth > 0.88) {
-            card.classList.add('is-center');
-          } else {
-            card.classList.remove('is-center');
-          }
-        });
-
-        activeOrbitCardIndex = closestIndex;
-        dots.forEach((dot, dIdx) => {
-          if (dIdx === closestIndex) {
-            dot.classList.add('is-active');
-          } else {
-            dot.classList.remove('is-active');
-          }
-        });
-      }
-
-      function renderLoop() {
-        if (!isOrbitPaused && !isOrbitDragging) {
-          targetOrbitAngle += 0.0035;
-        }
-        orbitAngle += (targetOrbitAngle - orbitAngle) * 0.1;
-        updateOrbit();
-        requestAnimationFrame(renderLoop);
-      }
-      requestAnimationFrame(renderLoop);
-
-      cards.forEach((card, idx) => {
-        card.addEventListener('mouseenter', () => { isOrbitPaused = true; });
-        card.addEventListener('mouseleave', () => { isOrbitPaused = false; });
-      });
-
-      stage.addEventListener('mousedown', (e) => {
-        if (e.target.closest('.orbit-nav-btn') || e.target.closest('.bento-sound-indicator')) return;
-        isOrbitDragging = true;
-        isOrbitPaused = true;
-        orbitDragStartX = e.clientX;
-        orbitDragStartAngle = targetOrbitAngle;
-      });
-
-      window.addEventListener('mousemove', (e) => {
-        if (!isOrbitDragging) return;
-        const deltaX = e.clientX - orbitDragStartX;
-        targetOrbitAngle = orbitDragStartAngle + (deltaX * 0.0045);
-      });
-
-      window.addEventListener('mouseup', () => {
-        if (isOrbitDragging) {
-          isOrbitDragging = false;
-          isOrbitPaused = false;
-        }
-      });
-
-      stage.addEventListener('touchstart', (e) => {
-        if (e.target.closest('.orbit-nav-btn') || e.target.closest('.bento-sound-indicator')) return;
-        isOrbitDragging = true;
-        isOrbitPaused = true;
-        orbitDragStartX = e.touches[0].clientX;
-        orbitDragStartAngle = targetOrbitAngle;
-      }, { passive: true });
-
-      window.addEventListener('touchmove', (e) => {
-        if (!isOrbitDragging) return;
-        const deltaX = e.touches[0].clientX - orbitDragStartX;
-        targetOrbitAngle = orbitDragStartAngle + (deltaX * 0.0055);
-      }, { passive: true });
-
-      window.addEventListener('touchend', () => {
-        if (isOrbitDragging) {
-          isOrbitDragging = false;
-          isOrbitPaused = false;
-        }
-      });
-
-      stage.addEventListener('mousemove', (e) => {
-        if (isOrbitDragging) return;
-        const rect = stage.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        const rotX = (y / (rect.height / 2)) * -4;
-        const rotY = (x / (rect.width / 2)) * 4;
-        cylinder.style.transform = `perspective(1400px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
-      });
-
-      stage.addEventListener('mouseleave', () => {
-        cylinder.style.transform = `perspective(1400px) rotateX(0deg) rotateY(0deg)`;
-      });
-    }
-
-    function rotateOrbit(direction) {
-      const stepAngle = (2 * Math.PI) / 5;
-      targetOrbitAngle -= direction * stepAngle;
-    }
-
-    function jumpToOrbitCard(cardIndex) {
-      const stepAngle = (2 * Math.PI) / 5;
-      const target = -cardIndex * stepAngle;
-      const diff = (target - targetOrbitAngle) % (2 * Math.PI);
-      const normalizedDiff = Math.atan2(Math.sin(diff), Math.cos(diff));
-      targetOrbitAngle += normalizedDiff;
-    }
-
-    function handleOrbitCardClick(cardIndex, categoryName, event) {
-      if (event) event.stopPropagation();
-      if (activeOrbitCardIndex === cardIndex) {
-        handleBentoClick(categoryName, event);
-      } else {
-        jumpToOrbitCard(cardIndex);
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      initOrbitCarousel();
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-          e.preventDefault();
-          const heroInput = document.getElementById('heroSearchInput');
-          if (heroInput) {
-            heroInput.focus();
-            heroInput.select();
-          }
-        }
-      });
-    });
-
-    function updatePriceFilter(val) {
-      document.getElementById('priceDisplay').textContent = `$${parseInt(val).toLocaleString()}/day`;
-      filterTalentCards();
-    }
-
-    function filterTalentCards() {
-      const searchQuery = (document.getElementById('talentSearchInput').value || '').toLowerCase();
-      const maxPrice = parseInt(document.getElementById('priceSlider').value, 10);
-      const sortBy = document.getElementById('sortSelect').value;
-      const cards = Array.from(document.querySelectorAll('.talent-card'));
-
-      cards.forEach(card => {
-        const cat = card.getAttribute('data-category');
-        const rate = parseInt(card.getAttribute('data-rate'), 10);
-        const name = (card.getAttribute('data-name') || '').toLowerCase();
-        const gear = (card.getAttribute('data-gear') || '').toLowerCase();
-
-        const matchCat = (currentCategory === 'all' || cat === currentCategory);
-        const matchPrice = (rate <= maxPrice);
-        const matchSearch = (!searchQuery || name.includes(searchQuery) || gear.includes(searchQuery) || cat.toLowerCase().includes(searchQuery));
-
-        if (matchCat && matchPrice && matchSearch) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      const grid = document.getElementById('talentGrid');
-      const visibleCards = cards.filter(c => c.style.display !== 'none');
-
-      visibleCards.sort((a, b) => {
-        const rateA = parseInt(a.getAttribute('data-rate'), 10);
-        const rateB = parseInt(b.getAttribute('data-rate'), 10);
-        if (sortBy === 'rate-asc') return rateA - rateB;
-        if (sortBy === 'rate-desc') return rateB - rateA;
-        return 0;
-      });
-
-      visibleCards.forEach(c => grid.appendChild(c));
-    }
-
-    // Calculator Logic
-    function calculateSavings(val) {
-      const annualBilling = parseInt(val, 10);
-      document.getElementById('calcVolumeDisplay').textContent = `$${annualBilling.toLocaleString()} / year`;
-      const legacy20PercentCut = Math.round(annualBilling * 0.20);
-      document.getElementById('legacyFeeDisplay').textContent = `-$${legacy20PercentCut.toLocaleString()}`;
-    }
-
-    // Modal Handlers
-    function openLeadModal() {
-      document.getElementById('leadModal').classList.add('active');
-    }
-
-    function closeLeadModal() {
-      document.getElementById('leadModal').classList.remove('active');
-    }
-
-    function openDirectBooking(creatorName, rateStr) {
-      document.getElementById('modalTargetCreator').value = `${creatorName} (${rateStr})`;
-      openLeadModal();
-    }
-
-    function openFoundingModal() {
-      document.getElementById('foundingModal').classList.add('active');
-    }
-
-    function closeFoundingModal() {
-      document.getElementById('foundingModal').classList.remove('active');
-    }
-
-    function closeModalOnBackdrop(e) {
-      if (e.target.classList.contains('modal-backdrop')) {
-        closeLeadModal();
-        closeFoundingModal();
-      }
-    }
-
-    function handleLeadSubmit(e) {
-      e.preventDefault();
-      alert('✓ Lead Brief Dispatched Directly to Creator!\n\nYour inquiry has been sent to the creator\'s private dashboard. You will receive an instant SMS & email confirmation with their direct calendar.');
-      closeLeadModal();
-    }
-
-    function handleFoundingSubmit(e) {
-      e.preventDefault();
-      alert('✓ Founding Application Submitted!\n\nTyrone Strickland Jr. and the curation team will review your reel within 24 hours. Your 90-day free storefront trial token has been reserved.');
-      closeFoundingModal();
-    }
-
-    function toggleFav(btn) {
-      if (btn.style.color === 'rgb(239, 68, 68)' || btn.style.color === '#EF4444') {
-        btn.style.color = 'var(--text-muted)';
-      } else {
-        btn.style.color = '#EF4444';
-      }
-    }
-
-    // Toast Cycle
-    const toastMessages = [
-      { name: "Marcus V.", text: "received a $4,800 commercial inquiry • 2m ago" },
-      { name: "Elena R.", text: "booked for $3,200 Fashion Campaign • 9m ago" },
-      { name: "Kai S.", text: "received aerial booking for Miami TVC • 14m ago" },
-      { name: "Kaelen O.", text: "approved for Founding Creator Pass #85 • 22m ago" }
-    ];
-    let toastIndex = 0;
-
-    setInterval(() => {
-      toastIndex = (toastIndex + 1) % toastMessages.length;
-      const t = toastMessages[toastIndex];
-      const toastEl = document.getElementById('liveToast');
-      if (toastEl) {
-        toastEl.innerHTML = `<div class="toast-avatar">⚡</div><div><span style="font-weight:800;">${t.name}</span> ${t.text}</div>`;
-      }
-    }, 8000);
-  </script>
 </body>
 </html>
