@@ -145,21 +145,33 @@
       color: var(--text-dark);
     }
 
+    /* ── EDITORIAL CONVERSION GROUP ── */
+    .hero-editorial-chunk {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 4px;
+    }
+
     .hero-subtitle {
-      font-size: clamp(16px, 1.25vw, 19px);
-      font-weight: 500;
-      color: rgba(20, 10, 42, 0.82);
-      line-height: 1.55;
-      margin-bottom: 34px;
-      max-width: 520px;
-      letter-spacing: -0.012em;
+      font-family: 'Times New Roman', Times, 'Apple Symbols', Georgia, serif;
+      font-size: clamp(19.5px, 1.45vw, 23px);
+      font-weight: 400;
+      color: rgba(16, 9, 36, 0.9);
+      line-height: 1.52;
+      margin-bottom: 22px;
+      max-width: 505px;
+      letter-spacing: -0.005em;
+      text-wrap: pretty;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .action-row {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 36px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
     }
 
@@ -226,22 +238,22 @@
       display: inline-flex;
       align-items: center;
       gap: 0;
-      padding: 6px 8px;
-      background: rgba(255, 255, 255, 0.52);
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.62);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.85);
       border-radius: 999px;
       box-shadow: 
-        0 14px 32px -6px rgba(17, 11, 41, 0.12),
-        inset 0 1px 1px rgba(255, 255, 255, 0.9);
+        0 10px 24px -4px rgba(17, 11, 41, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 0.95);
     }
 
     .spec-item {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      padding: 8px 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 12px;
       border-radius: 999px;
       transition: background 0.18s ease;
     }
@@ -250,26 +262,26 @@
       background: rgba(255, 255, 255, 0.45);
     }
 
-    .spec-label {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color: rgba(17, 11, 41, 0.52);
+    .spec-icon {
+      width: 15px;
+      height: 15px;
+      color: #110B29;
+      flex-shrink: 0;
     }
 
     .spec-value {
-      font-size: 14px;
-      font-weight: 800;
+      font-size: 13px;
+      font-weight: 600;
       color: #110B29;
-      letter-spacing: -0.02em;
-      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.015em;
+      white-space: nowrap;
     }
 
     .spec-divider {
       width: 1px;
-      height: 22px;
-      background: linear-gradient(180deg, transparent, rgba(17, 11, 41, 0.12) 20%, rgba(17, 11, 41, 0.12) 80%, transparent);
+      height: 16px;
+      background: rgba(17, 11, 41, 0.15);
+      margin: 0 2px;
     }
 
     /* ── RIGHT IMAGE VIEWPORT ── */
@@ -383,104 +395,148 @@
         min-height: 100dvh;
         width: 100%;
         overflow-x: hidden;
-        padding: 24px 16px 88px;
+        padding: 24px 20px 96px;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        align-items: center;
       }
 
       .hero-grid {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 28px;
-        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         width: 100%;
+        max-width: 440px;
+        margin: 0 auto;
+        gap: 0;
       }
 
+      /* Flatten left container so children interleave with character stage */
       .hero-left-content {
-        max-width: 100%;
-        width: 100%;
-        min-width: 0;
-        overflow: hidden;
+        display: contents;
+      }
+
+      .brand-eyebrow {
+        order: 1;
+        align-self: flex-start;
+        margin-bottom: 12px;
       }
 
       .headline-stack {
-        font-size: clamp(2.4rem, 10.5vw, 4.2rem);
-        margin-bottom: 18px;
+        order: 2;
+        align-self: flex-start;
+        font-size: clamp(2.4rem, 10.5vw, 3.8rem);
+        margin-bottom: 6px;
+        text-align: left;
       }
 
-      .hero-subtitle {
-        font-size: 15px;
-        margin-bottom: 24px;
-        max-width: 100%;
-      }
-
-      .action-row {
-        width: 100%;
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 24px;
-      }
-
-      .btn-discover, .btn-join {
-        width: 100%;
-        justify-content: center;
-        text-align: center;
-        padding: 16px 20px;
-      }
-
-      .apple-spec-bar {
-        width: 100%;
-        max-width: 100%;
-        display: flex;
-        justify-content: space-between;
-        padding: 6px 4px;
-        border-radius: 999px;
-      }
-
-      .spec-item {
-        padding: 4px;
-        align-items: center;
-        text-align: center;
-        flex: 1;
-        min-width: 0;
-      }
-
-      .spec-label {
-        font-size: 8px;
-        letter-spacing: 0.04em;
-        white-space: nowrap;
-      }
-
-      .spec-value {
-        font-size: 11px;
-        white-space: nowrap;
-      }
-
+      /* Drone pilot character placed directly below headline */
       .hero-right-stage {
-        height: auto;
+        order: 3;
         width: 100%;
+        height: auto;
+        margin: 4px 0 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .image-container-slot {
-        height: clamp(340px, 48vh, 460px);
+        height: clamp(250px, 36vh, 320px);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         transform: translateY(0);
       }
 
       #heroCharacterSlot {
         max-height: 100%;
         width: auto;
+        object-fit: contain;
+      }
+
+      /* Editorial conversion chunk is centered below the character */
+      .hero-editorial-chunk {
+        order: 4;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 0;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+        line-height: 1.48;
+        text-align: center;
+        margin: 0 auto 18px;
+        max-width: 325px;
+      }
+
+      .action-row {
+        width: 100%;
+        max-width: 340px;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 16px;
+        align-items: center;
+      }
+
+      .btn-discover, .btn-join {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        padding: 15px 20px;
+        font-size: 14.5px;
+      }
+
+      .apple-spec-bar {
+        width: 100%;
+        max-width: 340px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 7px 10px;
+        border-radius: 999px;
+        margin: 0 auto;
+      }
+
+      .spec-item {
+        gap: 5px;
+        padding: 4px 4px;
+        flex: 1;
+        justify-content: center;
+      }
+
+      .spec-icon {
+        width: 13.5px;
+        height: 13.5px;
+      }
+
+      .spec-value {
+        font-size: 11px;
+        letter-spacing: -0.01em;
+        white-space: nowrap;
+      }
+
+      .spec-divider {
+        height: 14px;
+        margin: 0;
       }
 
       .preview-layout-switcher {
         top: auto;
-        bottom: 16px;
+        bottom: 14px;
         left: 50%;
         right: auto;
         transform: translateX(-50%);
         width: calc(100% - 24px);
-        max-width: 360px;
+        max-width: 340px;
         justify-content: center;
         padding: 4px;
+        z-index: 100;
       }
 
       .switcher-title {
@@ -543,34 +599,47 @@
           <span class="title-row text-dark">EDGE</span>
         </h1>
 
-        <p class="hero-subtitle">
-          Direct access to vetted directors, 3D artists, and cinematographers shaping modern visual culture.
-        </p>
+        <!-- ── EDITORIAL CONVERSION GROUP (TIMES NEW ROMAN + APPLE BADGES) ── -->
+        <div class="hero-editorial-chunk">
+          <p class="hero-subtitle">
+            Direct access to vetted directors, 3D artists, and cinematographers shaping modern visual culture.
+          </p>
 
-        <div class="action-row">
-          <a href="#" class="btn-discover" onclick="handleAction('discover', event)">
-            <span>Discover Talent</span>
-            <span>&rarr;</span>
-          </a>
-          <a href="#" class="btn-join" onclick="handleAction('join', event)">
-            <span>Join as Creator</span>
-          </a>
-        </div>
+          <div class="action-row">
+            <a href="#" class="btn-discover" onclick="handleAction('discover', event)">
+              <span>Discover Talent</span>
+              <span>&rarr;</span>
+            </a>
+            <a href="#" class="btn-join" onclick="handleAction('join', event)">
+              <span>Join as Creator</span>
+            </a>
+          </div>
 
-        <div class="apple-spec-bar">
-          <div class="spec-item">
-            <span class="spec-label">Network</span>
-            <span class="spec-value">Top 1% Creators</span>
-          </div>
-          <div class="spec-divider"></div>
-          <div class="spec-item">
-            <span class="spec-label">Review</span>
-            <span class="spec-value">Verified Proof</span>
-          </div>
-          <div class="spec-divider"></div>
-          <div class="spec-item">
-            <span class="spec-label">Booking</span>
-            <span class="spec-value">Direct Terms</span>
+          <div class="apple-spec-bar" role="region" aria-label="Key Proof Badges">
+            <div class="spec-item">
+              <svg class="spec-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="8" cy="6" r="3.75"/>
+                <path d="M5.5 9.5L4 14.5L8 12.5L12 14.5L10.5 9.5"/>
+              </svg>
+              <span class="spec-value">Top 1% Creators</span>
+            </div>
+            <div class="spec-divider" aria-hidden="true"></div>
+            <div class="spec-item">
+              <svg class="spec-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 1.75L2.75 4v4c0 3.3 2.2 5.5 5.25 6.25 3.05-.75 5.25-2.95 5.25-6.25V4L8 1.75z"/>
+                <path d="M5.75 7.75L7.25 9.25L10.25 6.25"/>
+              </svg>
+              <span class="spec-value">Verified Proof</span>
+            </div>
+            <div class="spec-divider" aria-hidden="true"></div>
+            <div class="spec-item">
+              <svg class="spec-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2.5" y="3.5" width="11" height="10" rx="2"/>
+                <path d="M5.5 2v3M10.5 2v3M2.5 7h11"/>
+                <path d="M5.75 9.75h4.5M5.75 11.5h2.5"/>
+              </svg>
+              <span class="spec-value">Direct Terms</span>
+            </div>
           </div>
         </div>
 
