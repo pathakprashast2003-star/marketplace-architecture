@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXUS // NINJAX — Creative Edge</title>
+  <title>NEXUS // NINJAX — Commercial Directors & Aerial Cinema</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -18,29 +18,22 @@
     }
 
     :root {
-      /* Craftwork Design System Tokens */
-      --bg-void: #080C14;
-      --bg-base: #0B0F19;
-      --bg-surface: #111827;
-      --bg-glass-card: rgba(10, 22, 45, 0.65);
-      
-      --split-white-bg: #FCFCFD;
-      --split-blue-bg: #0F3E99;
-      --split-blue-radial: radial-gradient(circle at 68% 32%, #1E5CD4 0%, #0F3E99 55%, #082156 100%);
+      /* Craftwork Clean Palette (Zero AI Slop) */
+      --bg-void: #060911;
+      --bg-card-white: #FFFFFF;
+      --bg-sapphire: #0C3888;
+      --bg-sapphire-gradient: radial-gradient(circle at 65% 35%, #1A54C2 0%, #0E3B8F 55%, #072254 100%);
       
       --accent-blue: #2563EB;
       --accent-blue-hover: #1D4ED8;
-      --accent-glow: rgba(37, 99, 235, 0.25);
       
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-card-split: rgba(255, 255, 255, 0.14);
-      
-      --text-dark: #0A1424;
-      --text-dark-muted: #53647E;
+      --text-dark: #0A121F;
+      --text-dark-sub: #4A586E;
       --text-white: #FFFFFF;
-      --text-white-muted: rgba(255, 255, 255, 0.72);
+      --text-white-sub: rgba(255, 255, 255, 0.75);
       
       --status-emerald: #10B981;
+      --border-subtle: rgba(255, 255, 255, 0.1);
       
       --font-display: 'Cabinet Grotesk', -apple-system, sans-serif;
       --font-serif: 'Instrument Serif', Georgia, serif;
@@ -49,7 +42,7 @@
     }
 
     html, body {
-      width: 100vw;
+      width: 100%;
       height: 100vh;
       overflow: hidden;
       margin: 0;
@@ -61,13 +54,13 @@
       justify-content: center;
     }
 
-    /* ── 3-WAY LAYOUT SWITCHER (CRAFTWORK PILL) ── */
+    /* ── 3-WAY LAYOUT SWITCHER (INTEGRATED) ── */
     .preview-layout-switcher {
       position: fixed;
       top: 14px;
       right: 20px;
       z-index: 1000;
-      background: rgba(8, 12, 20, 0.88);
+      background: rgba(6, 9, 17, 0.88);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--border-subtle);
@@ -76,7 +69,7 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     }
 
     .switcher-title {
@@ -84,7 +77,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(255, 255, 255, 0.45);
       padding: 0 8px 0 10px;
     }
 
@@ -113,23 +106,23 @@
       box-shadow: 0 2px 10px rgba(37, 99, 235, 0.45);
     }
 
-    /* ── MAIN STRUCTURED SHOWCASE CARD (CONCENTRIC RADII 36px) ── */
-    .craftwork-split-stage {
-      width: min(1520px, calc(100vw - 48px));
-      height: calc(100vh - 48px);
-      border-radius: 36px;
+    /* ── MAIN SHOWCASE CARD (APPLE CONCENTRIC RADII 32px) ── */
+    .unslop-showcase-card {
+      width: min(1500px, calc(100vw - 52px));
+      height: calc(100vh - 52px);
+      border-radius: 32px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       position: relative;
-      background: var(--split-white-bg);
+      background: var(--bg-card-white);
       box-shadow: 
         0 36px 90px -20px rgba(0, 0, 0, 0.65),
         0 0 0 1px var(--border-subtle);
     }
 
-    /* ── UNIFIED GLASS HEADER (ACROSS ENTIRE CANVAS) ── */
-    .unified-glass-header {
+    /* ── UNIFIED GLASS HEADER (PRECISE & ZERO SLOP) ── */
+    .glass-header-bar {
       width: 100%;
       height: 64px;
       display: flex;
@@ -140,7 +133,7 @@
       top: 0;
       left: 0;
       z-index: 40;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(0, 0, 0, 0.06);
@@ -149,7 +142,7 @@
     .brand-mark {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       text-decoration: none;
     }
 
@@ -165,14 +158,14 @@
       color: var(--accent-blue);
     }
 
-    /* Center Directory Navigation */
-    .center-nav-links {
+    /* Clean Directory Links */
+    .header-nav-group {
       display: flex;
       align-items: center;
       gap: 32px;
     }
 
-    .nav-item-link {
+    .header-nav-link {
       font-size: 13px;
       font-weight: 700;
       color: #374151;
@@ -182,11 +175,11 @@
       position: relative;
     }
 
-    .nav-item-link:hover, .nav-item-link.active {
+    .header-nav-link:hover, .header-nav-link.active {
       color: var(--accent-blue);
     }
 
-    .nav-item-link.active::after {
+    .header-nav-link.active::after {
       content: '';
       position: absolute;
       bottom: -6px;
@@ -197,15 +190,15 @@
       border-radius: 2px;
     }
 
-    /* Right Header Tools */
-    .header-right-actions {
+    /* Right Action Button */
+    .header-right-tools {
       display: flex;
       align-items: center;
-      gap: 16px;
-      margin-right: 320px; /* leaves breathing room for the layout switcher */
+      gap: 20px;
+      margin-right: 300px; /* leaves room for switcher */
     }
 
-    .header-btn-secondary {
+    .header-sub-link {
       font-size: 13px;
       font-weight: 700;
       color: #4B5563;
@@ -213,11 +206,11 @@
       transition: color 0.2s ease;
     }
 
-    .header-btn-secondary:hover {
+    .header-sub-link:hover {
       color: var(--text-dark);
     }
 
-    .header-btn-primary {
+    .header-cta-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -233,86 +226,40 @@
       transition: background 0.2s ease;
     }
 
-    .header-btn-primary:active {
+    .header-cta-pill:active {
       transform: scale(0.97);
     }
 
-    .header-btn-primary:hover {
+    .header-cta-pill:hover {
       background: var(--accent-blue);
     }
 
-    /* ── ASYMMETRIC DUAL CANVAS (60% / 40%) ── */
-    .asymmetric-canvas-body {
+    /* ── DUAL CANVAS SPLIT (58% / 42%) ── */
+    .split-canvas-body {
       width: 100%;
       height: 100%;
       display: grid;
       grid-template-columns: 58% 42%;
       position: relative;
-      padding-top: 64px; /* matches header height */
+      padding-top: 64px; /* offset for header */
     }
 
-    /* Edge Navigation Arrows (< on left, > on right) */
-    .edge-nav-arrow {
-      position: absolute;
-      top: 54%;
-      transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: #FFFFFF;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      color: var(--text-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      cursor: pointer;
-      z-index: 35;
-      transition: transform 0.2s ease, background 0.2s ease;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    }
-
-    .edge-nav-arrow:active {
-      transform: translateY(-50%) scale(0.95);
-    }
-
-    .edge-nav-arrow:hover {
-      background: #F3F4F6;
-    }
-
-    .edge-nav-arrow.left {
-      left: 18px;
-    }
-
-    .edge-nav-arrow.right {
-      right: 18px;
-      background: rgba(10, 22, 45, 0.85);
-      border-color: rgba(255, 255, 255, 0.2);
-      color: #FFFFFF;
-    }
-
-    .edge-nav-arrow.right:hover {
-      background: rgba(10, 22, 45, 1);
-    }
-
-    /* ── LEFT PANE: 58% ARCHITECTURAL WHITE CANVAS ── */
-    .canvas-pane-left {
-      background: var(--split-white-bg);
-      padding: 44px 44px 36px 64px;
+    /* ── LEFT PANE: 58% WHITE CANVAS ── */
+    .canvas-left-white {
+      background: var(--bg-card-white);
+      padding: 48px 44px 44px 64px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
       position: relative;
       z-index: 2;
     }
 
-    .left-editorial-container {
-      margin-top: auto;
-      margin-bottom: auto;
-      max-width: 490px;
+    .left-editorial-content {
+      max-width: 480px;
     }
 
-    .spec-mono-badge {
+    .category-kicker {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
@@ -320,18 +267,16 @@
       letter-spacing: 0.12em;
       color: var(--accent-blue);
       margin-bottom: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      display: block;
     }
 
-    .headline-stack-hero {
-      margin-bottom: 16px;
+    .editorial-headline-stack {
+      margin-bottom: 18px;
     }
 
-    .headline-row-bold {
+    .headline-line-1 {
       font-family: var(--font-display);
-      font-size: clamp(60px, 6.2vw, 92px);
+      font-size: clamp(58px, 6vw, 88px);
       font-weight: 900;
       line-height: 0.92;
       letter-spacing: -0.04em;
@@ -339,39 +284,39 @@
       display: block;
     }
 
-    .headline-row-italic {
-      font-family: var(--font-serif);
-      font-size: clamp(62px, 6.4vw, 96px);
-      font-style: italic;
-      font-weight: 400;
-      line-height: 0.95;
+    .headline-line-2 {
+      font-family: var(--font-display);
+      font-size: clamp(58px, 6vw, 88px);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
       color: var(--accent-blue);
       display: block;
-      margin-top: -6px;
+      margin-top: 2px;
     }
 
-    /* Pricing & Availability Module (Concentric Radius 16px) */
-    .rate-card-module {
+    /* Rate & Status Pill (Concentric Radius 14px) */
+    .talent-rate-module {
       display: inline-flex;
       align-items: center;
       gap: 12px;
       background: #F3F4F6;
       border: 1px solid #E5E7EB;
       padding: 8px 16px;
-      border-radius: 16px;
-      margin-bottom: 20px;
+      border-radius: 14px;
+      margin-bottom: 22px;
     }
 
-    .rate-number-bold {
+    .rate-val {
       font-family: var(--font-display);
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 900;
       color: var(--text-dark);
       letter-spacing: -0.03em;
       font-variant-numeric: tabular-nums;
     }
 
-    .rate-period-label {
+    .rate-term {
       font-size: 12px;
       font-weight: 700;
       color: #6B7280;
@@ -379,7 +324,7 @@
       letter-spacing: 0.05em;
     }
 
-    .status-active-pill {
+    .status-badge-live {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -392,7 +337,7 @@
       border-radius: 999px;
     }
 
-    .status-dot-emerald {
+    .status-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
@@ -400,21 +345,21 @@
       box-shadow: 0 0 6px var(--status-emerald);
     }
 
-    .editorial-copy-body {
+    .editorial-subhead-prose {
       font-size: 14px;
-      line-height: 1.58;
-      color: var(--text-dark-muted);
+      line-height: 1.6;
+      color: var(--text-dark-sub);
       margin-bottom: 28px;
       max-width: 440px;
     }
 
-    .primary-action-cluster {
+    .editorial-action-row {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 20px;
     }
 
-    .btn-main-discover {
+    .btn-action-primary {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -429,19 +374,18 @@
       border-radius: 999px;
       text-decoration: none;
       box-shadow: 0 10px 25px rgba(10, 20, 36, 0.22);
-      transition: background 0.2s ease, transform 0.15s ease;
+      transition: background 0.2s ease;
     }
 
-    .btn-main-discover:active {
+    .btn-action-primary:active {
       transform: scale(0.97);
     }
 
-    .btn-main-discover:hover {
+    .btn-action-primary:hover {
       background: var(--accent-blue);
-      box-shadow: 0 14px 30px var(--accent-glow);
     }
 
-    .link-secondary-proof {
+    .link-secondary-action {
       font-size: 13px;
       font-weight: 700;
       color: var(--text-dark);
@@ -449,53 +393,16 @@
       transition: color 0.2s ease;
     }
 
-    .link-secondary-proof:hover {
+    .link-secondary-action:hover {
       color: var(--accent-blue);
       text-decoration: underline;
     }
 
-    .left-footer-mouse-indicator {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: #9CA3AF;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .mouse-scroll-capsule {
-      width: 14px;
-      height: 22px;
-      border: 1.5px solid #9CA3AF;
-      border-radius: 10px;
-      position: relative;
-    }
-
-    .mouse-scroll-capsule::after {
-      content: '';
-      position: absolute;
-      top: 4px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      height: 4px;
-      background: #9CA3AF;
-      border-radius: 2px;
-      animation: mouseTrack 1.8s infinite;
-    }
-
-    @keyframes mouseTrack {
-      0% { top: 4px; opacity: 1; }
-      100% { top: 12px; opacity: 0; }
-    }
-
     /* ── RIGHT PANE: 42% DEEP SAPPHIRE BLUE CANVAS ── */
-    .canvas-pane-right {
-      background: var(--split-blue-bg);
-      background-image: var(--split-blue-radial);
-      padding: 44px 48px 36px 48px;
+    .canvas-right-blue {
+      background: var(--bg-sapphire);
+      background-image: var(--bg-sapphire-gradient);
+      padding: 48px 48px 44px 48px;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -504,17 +411,16 @@
       z-index: 1;
     }
 
-    /* Right Editorial Structured Specs Box (Concentric Radii) */
-    .right-bento-dock {
+    .right-production-dock {
       max-width: 360px;
       margin-left: auto;
       text-align: right;
       position: relative;
       z-index: 5;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
-    .dock-caption-mono {
+    .dock-mono-kicker {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
@@ -525,7 +431,7 @@
       display: block;
     }
 
-    .dock-heading-white {
+    .dock-title-headline {
       font-family: var(--font-display);
       font-size: clamp(28px, 2.7vw, 40px);
       font-weight: 900;
@@ -536,8 +442,8 @@
       text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
     }
 
-    /* Modular Bento Spec Tiles (Concentric Radii) */
-    .bento-tiles-column {
+    /* Production Spec Cards */
+    .production-spec-stack {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
@@ -545,41 +451,37 @@
       margin-bottom: 24px;
     }
 
-    .bento-spec-card {
+    .spec-item-card {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      background: var(--bg-glass-card);
+      gap: 12px;
+      background: rgba(10, 22, 45, 0.65);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 8px 16px;
-      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 7px 18px;
+      border-radius: 999px;
       font-family: var(--font-mono);
       font-size: 11px;
-      font-weight: 600;
-      color: #FFFFFF;
       letter-spacing: 0.02em;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      transition: background 0.2s ease, border-color 0.2s ease;
     }
 
-    .bento-spec-card:hover {
-      background: rgba(10, 22, 45, 0.85);
-      border-color: rgba(255, 255, 255, 0.3);
+    .spec-item-card span {
+      color: rgba(255, 255, 255, 0.72);
+      font-weight: 500;
     }
 
-    .bento-spec-card strong {
+    .spec-item-card strong {
       font-weight: 800;
-      color: #93C5FD;
+      color: #FFFFFF;
       font-variant-numeric: tabular-nums;
     }
 
-    .btn-bento-explore {
+    .btn-secondary-explore {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       color: #FFFFFF;
       border: 1.5px solid rgba(255, 255, 255, 0.4);
       font-family: var(--font-display);
@@ -591,20 +493,20 @@
       border-radius: 999px;
       text-decoration: none;
       backdrop-filter: blur(10px);
-      transition: background 0.2s ease, transform 0.15s ease;
+      transition: background 0.2s ease;
     }
 
-    .btn-bento-explore:active {
+    .btn-secondary-explore:active {
       transform: scale(0.97);
     }
 
-    .btn-bento-explore:hover {
+    .btn-secondary-explore:hover {
       background: #FFFFFF;
       color: var(--text-dark);
       border-color: #FFFFFF;
     }
 
-    .right-footer-meta-row {
+    .right-bottom-trust {
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -620,7 +522,7 @@
     }
 
     /* ── CENTER SEAM HERO TALENT (UPWARD FLIGHT) ── */
-    .center-hero-anchor {
+    .center-seam-talent-box {
       position: absolute;
       bottom: 0;
       left: 54%;
@@ -634,7 +536,7 @@
       pointer-events: none;
     }
 
-    .talent-grounded-img {
+    .talent-clean-image {
       max-height: 92%;
       max-width: 100%;
       object-fit: contain;
@@ -648,8 +550,7 @@
       100% { transform: translateY(-7px); }
     }
 
-    /* Concentric Ground Pedestal Mist */
-    .concentric-ground-mist {
+    .soft-pedestal-mist {
       position: absolute;
       bottom: -30px;
       left: 54%;
@@ -663,105 +564,159 @@
       z-index: 8;
     }
 
-    /* ── RESPONSIVE MOBILE ADJUSTMENTS ── */
+    /* ── RESPONSIVE MOBILE ── */
     @media (max-width: 900px) {
       html, body {
+        width: 100%;
         height: auto;
         min-height: 100dvh;
         overflow-y: auto;
         overflow-x: hidden;
+        display: block;
       }
 
-      .craftwork-split-stage {
+      .unslop-showcase-card {
         height: auto;
-        width: calc(100vw - 20px);
-        margin: 12px 0 24px 0;
-        border-radius: 28px;
+        width: calc(100% - 20px);
+        max-width: 100%;
+        margin: 12px auto 60px auto;
+        border-radius: 24px;
+        overflow: hidden;
       }
 
-      .unified-glass-header {
+      .glass-header-bar {
         position: relative;
         padding: 0 20px;
       }
 
-      .center-nav-links, .header-right-actions {
+      .header-nav-group, .header-right-tools {
         display: none;
       }
 
-      .asymmetric-canvas-body {
-        grid-template-columns: 1fr;
+      .split-canvas-body {
+        grid-template-columns: minmax(0, 1fr);
         padding-top: 0;
       }
 
-      .edge-nav-arrow {
-        display: none;
+      .canvas-left-white, .canvas-right-blue {
+        min-width: 0;
+        width: 100%;
+        overflow: hidden;
       }
 
-      .canvas-pane-left {
-        padding: 30px 20px;
+      .canvas-left-white {
+        padding: 28px 18px;
       }
 
-      .left-editorial-container {
+      .left-editorial-content {
         max-width: 100%;
         text-align: center;
+        align-items: center;
       }
 
-      .headline-row-bold {
-        font-size: 46px;
+      .category-kicker {
+        font-size: 10px;
+        letter-spacing: 0.08em;
       }
 
-      .headline-row-italic {
-        font-size: 48px;
+      .headline-line-1, .headline-line-2 {
+        font-size: 38px;
       }
 
-      .rate-card-module {
+      .editorial-subhead-prose {
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .talent-rate-module {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 8px 14px;
+      }
+
+      .rate-val {
+        font-size: 22px;
+      }
+
+      .editorial-action-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+      }
+
+      .btn-action-primary {
+        width: 100%;
+        max-width: 260px;
         justify-content: center;
       }
 
-      .primary-action-cluster {
-        justify-content: center;
-      }
-
-      .left-footer-mouse-indicator {
-        justify-content: center;
-        margin-top: 24px;
-      }
-
-      .center-hero-anchor {
+      .center-seam-talent-box {
         position: relative;
         left: 0;
         transform: none;
         width: 100%;
-        height: 380px;
-        margin-top: -20px;
+        max-width: 100%;
+        height: 320px;
+        margin-top: 0;
       }
 
-      .canvas-pane-right {
-        padding: 30px 20px;
+      .soft-pedestal-mist {
+        width: 100%;
+        max-width: 340px;
+        left: 50%;
+        transform: translateX(-50%);
       }
 
-      .right-bento-dock {
+      .canvas-right-blue {
+        padding: 32px 16px 28px 16px;
+      }
+
+      .right-production-dock {
         text-align: center;
         margin-left: 0;
         max-width: 100%;
-      }
-
-      .bento-tiles-column {
+        display: flex;
+        flex-direction: column;
         align-items: center;
       }
 
-      .right-footer-meta-row {
+      .dock-title-headline {
+        font-size: 24px;
+        line-height: 1.15;
+      }
+
+      .production-spec-stack {
+        align-items: center;
+        width: 100%;
+      }
+
+      .spec-item-card {
+        font-size: 10px;
+        padding: 6px 12px;
+        width: 100%;
+        max-width: 290px;
+        justify-content: space-between;
+      }
+
+      .right-bottom-trust {
         justify-content: center;
+        font-size: 10px;
+        flex-wrap: wrap;
+        gap: 8px;
       }
 
       .preview-layout-switcher {
         top: auto;
         bottom: 12px;
-        right: 50%;
-        transform: translateX(50%);
-        width: calc(100vw - 32px);
-        max-width: 400px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: calc(100% - 24px);
+        max-width: 360px;
         justify-content: center;
+        padding: 4px;
       }
 
       .switcher-title {
@@ -769,10 +724,11 @@
       }
 
       .switcher-tab {
-        font-size: 11px;
-        padding: 6px 10px;
+        font-size: 10px;
+        padding: 5px 8px;
         flex: 1;
         justify-content: center;
+        white-space: nowrap;
       }
     }
   </style>
@@ -787,124 +743,114 @@
     <a href="/nike_cloud_style.html" class="switcher-tab">3. Nike Cloud</a>
   </aside>
 
-  <!-- MAIN CRAFTWORK SPLIT STAGE -->
-  <main class="craftwork-split-stage">
+  <!-- MAIN SHOWCASE CARD (UNSLOPPED & APPLE-GRADE) -->
+  <main class="unslop-showcase-card">
 
-    <!-- ── UNIFIED FULL-WIDTH GLASS HEADER BAR ── -->
-    <header class="unified-glass-header">
+    <!-- ── UNIFIED FULL-WIDTH GLASS HEADER ── -->
+    <header class="glass-header-bar">
       
       <a href="#" class="brand-mark">
         <span class="brand-logo-text">nexus<span class="brand-logo-dot">.</span></span>
       </a>
 
-      <!-- Center Directory Navigation -->
-      <nav class="center-nav-links" aria-label="Main Navigation">
-        <a href="#roster" class="nav-item-link active">Curated Roster</a>
-        <a href="#cinema" class="nav-item-link">Aerial Cinema</a>
-        <a href="#3d" class="nav-item-link">3D Worlds</a>
-        <a href="#terms" class="nav-item-link">Direct Terms</a>
+      <!-- Clean Directory Links -->
+      <nav class="header-nav-group" aria-label="Main Navigation">
+        <a href="#roster" class="header-nav-link active">Curated Roster</a>
+        <a href="#cinema" class="header-nav-link">Aerial Cinema</a>
+        <a href="#3d" class="header-nav-link">3D Directors</a>
+        <a href="#terms" class="header-nav-link">Direct Terms</a>
       </nav>
 
       <!-- Right Header Actions -->
-      <div class="header-right-actions">
-        <a href="#proof" class="header-btn-secondary">Client Proof</a>
-        <a href="#hire" class="header-btn-primary">Hire Director →</a>
+      <div class="header-right-tools">
+        <a href="#proof" class="header-sub-link">Client Proof</a>
+        <a href="#hire" class="header-cta-pill">Hire Director →</a>
       </div>
 
     </header>
 
-    <!-- ── ASYMMETRIC DUAL CANVAS (58% / 42%) ── -->
-    <div class="asymmetric-canvas-body">
+    <!-- ── DUAL CANVAS SPLIT (58% / 42%) ── -->
+    <div class="split-canvas-body">
 
-      <!-- Edge Carousel Navigation Arrows -->
-      <button class="edge-nav-arrow left" aria-label="Previous Feature">‹</button>
-      <button class="edge-nav-arrow right" aria-label="Next Feature">›</button>
-
-      <!-- ── LEFT PANE: 58% WHITE ARCHITECTURAL CANVAS ── -->
-      <section class="canvas-pane-left">
+      <!-- ── LEFT PANE: 58% WHITE CANVAS ── -->
+      <section class="canvas-left-white">
         
-        <div class="left-editorial-container">
+        <div class="left-editorial-content">
           
-          <span class="spec-mono-badge">✦ 2026 DIRECT BOOKING INDEX</span>
+          <span class="category-kicker">COMMERCIAL & AERIAL DIRECTORS</span>
 
-          <div class="headline-stack-hero">
-            <span class="headline-row-bold">CREATIVE</span>
-            <span class="headline-row-italic">Fusion.</span>
+          <div class="editorial-headline-stack">
+            <span class="headline-line-1">DIRECT</span>
+            <span class="headline-line-2">ROSTER.</span>
           </div>
 
-          <!-- Structured Rate & SLA Module (Concentric Radius 16px) -->
-          <div class="rate-card-module">
-            <span class="rate-number-bold">$2,400</span>
-            <span class="rate-period-label">/ Day Direct</span>
-            <span class="status-active-pill">
-              <span class="status-dot-emerald"></span>
+          <!-- Rate & Live SLA Module -->
+          <div class="talent-rate-module">
+            <span class="rate-val">$2,400</span>
+            <span class="rate-term">/ Day Direct</span>
+            <span class="status-badge-live">
+              <span class="status-dot"></span>
               <span>Available</span>
             </span>
           </div>
 
-          <p class="editorial-copy-body">
-            Direct access to vetted aerial cinematographers, CGI directors, and visual architects delivering next-generation digital cinema.
+          <p class="editorial-subhead-prose">
+            Book vetted commercial directors, FPV cinematographers, and 3D technical artists directly. Zero agency markups. Direct contracts for brand campaigns and music films.
           </p>
 
-          <div class="primary-action-cluster">
-            <a href="#book" class="btn-main-discover">Discover Talent →</a>
-            <a href="#proof" class="link-secondary-proof">View Verified Proof</a>
+          <div class="editorial-action-row">
+            <a href="#book" class="btn-action-primary">Discover Talent →</a>
+            <a href="#proof" class="link-secondary-action">View Verified Proof</a>
           </div>
 
         </div>
-
-        <!-- Left Footer Mouse Scroll -->
-        <footer class="left-footer-mouse-indicator">
-          <div class="mouse-scroll-capsule"></div>
-          <span>Scroll to Explore Roster</span>
-        </footer>
 
       </section>
 
       <!-- ── RIGHT PANE: 42% DEEP SAPPHIRE BLUE CANVAS ── -->
-      <section class="canvas-pane-right">
+      <section class="canvas-right-blue">
         
-        <!-- Right Editorial Bento Dock (Concentric Radii) -->
-        <div class="right-bento-dock">
+        <!-- Right Production Dock -->
+        <div class="right-production-dock">
           
-          <span class="dock-caption-mono">High-Performance Visuals</span>
-          <h2 class="dock-heading-white">The Best Directors And Cinematographers</h2>
+          <span class="dock-mono-kicker">PRODUCTION SPECIFICATIONS</span>
+          <h2 class="dock-title-headline">High-Velocity Cinema Units</h2>
           
-          <!-- Modular Bento Spec Tiles -->
-          <div class="bento-tiles-column">
-            <div class="bento-spec-card">
-              <span>8K RAW Full-Frame Sensor</span>
-              <strong>120 FPS</strong>
+          <!-- Concrete Technical Specs -->
+          <div class="production-spec-stack">
+            <div class="spec-item-card">
+              <span>Primary Camera Platforms</span>
+              <strong>ARRI / RED 8K</strong>
             </div>
-            <div class="bento-spec-card">
-              <span>FPV Cinema Transmission</span>
+            <div class="spec-item-card">
+              <span>FPV Transmission Latency</span>
               <strong>0.8 ms</strong>
             </div>
-            <div class="bento-spec-card">
-              <span>Verified Global Roster</span>
-              <strong>Top 1%</strong>
+            <div class="spec-item-card">
+              <span>Turnaround SLA</span>
+              <strong>48h Dailies</strong>
             </div>
           </div>
 
-          <a href="#explore" class="btn-bento-explore">Explore All Creators →</a>
+          <a href="#explore" class="btn-secondary-explore">View Reel Book →</a>
 
         </div>
 
-        <footer class="right-footer-meta-row">
-          <span class="status-dot-emerald"></span>
+        <footer class="right-bottom-trust">
+          <span class="status-dot"></span>
           <span>Verified Roster</span>
           <span>&bull;</span>
-          <span>Zero Agency Fee</span>
+          <span>Direct Terms · Zero Markup</span>
         </footer>
 
       </section>
 
-      <!-- Concentric Ground Mist Pedestal -->
-      <div class="concentric-ground-mist" aria-hidden="true"></div>
+      <!-- Pedestal Mist Ground -->
+      <div class="soft-pedestal-mist" aria-hidden="true"></div>
 
-      <!-- ── CENTER SEAM HERO TALENT ── -->
-      <div class="center-hero-anchor">
-        <img src="assets/upward_flight_pilot_drone.png" alt="Featured Aerial Cinematographer & Drone Director" class="talent-grounded-img">
+      <!-- ── CENTER SEAM HERO TALENT (UPWARD FLIGHT) ── -->
+      <div class="center-seam-talent-box">
+        <img src="assets/upward_flight_pilot_drone.png" alt="Featured Aerial Cinematographer & Drone Director" class="talent-clean-image">
       </div>
 
     </div>
