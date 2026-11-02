@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXUS // NINJAX — Creative Edge</title>
+  <title>NEXUS // NINJAX — Own The Edge</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -18,19 +18,17 @@
     }
 
     :root {
-      /* Ninjax Signature Palette: Solar Ember / Obsidian Carbon */
-      --solar-orange-core: #FF5500;
-      --solar-orange-bright: #FF6A00;
-      --solar-orange-deep: #D03B00;
-      --solar-orange-dark: #1F0700;
+      /* Ninjax Blue Aesthetic (Vibrant Electric Sapphire & Clean White) */
+      --blue-zenith: #1D4ED8;
+      --blue-vibrant: #2563EB;
+      --blue-electric: #3B82F6;
+      --blue-soft: #60A5FA;
+      --blue-glow: rgba(37, 99, 235, 0.35);
       
-      --outer-shell-bg: #EAE6DF;
-      --card-border: rgba(255, 255, 255, 0.45);
-      
+      --outer-canvas-bg: #FFFFFF;
+      --text-dark: #0A0D14;
+      --text-soft-dark: #374151;
       --text-white: #FFFFFF;
-      --text-soft: rgba(255, 255, 255, 0.90);
-      --text-muted: rgba(255, 255, 255, 0.65);
-      --text-dark: #0D0F14;
       
       --font-display: 'Cabinet Grotesk', -apple-system, sans-serif;
       --font-body: 'Inter', -apple-system, sans-serif;
@@ -44,7 +42,7 @@
       margin: 0;
       padding: 0;
       font-family: var(--font-body);
-      background: var(--outer-shell-bg);
+      background: var(--outer-canvas-bg);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -66,7 +64,7 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
     }
 
     .switcher-title {
@@ -97,13 +95,13 @@
     }
 
     .switcher-tab.active {
-      background: #FF5500;
+      background: var(--blue-vibrant);
       color: #FFFFFF;
       font-weight: 700;
-      box-shadow: 0 2px 10px rgba(255, 85, 0, 0.45);
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.45);
     }
 
-    /* ── TOP UTILITY BRAND HEADER ── */
+    /* ── TOP NAV HEADER ── */
     .top-brand-header {
       width: min(1560px, calc(100vw - 48px));
       height: 60px;
@@ -130,39 +128,32 @@
     }
 
     .brand-logo-dot {
-      color: #FF5500;
+      color: var(--blue-vibrant);
     }
 
-    /* Nav center capsule */
-    .header-nav-pill {
+    .header-nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      border-radius: 999px;
-      padding: 6px 20px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      gap: 32px;
     }
 
     .header-nav-link {
       font-size: 13px;
-      font-weight: 600;
-      color: #2D3139;
+      font-weight: 700;
+      color: var(--text-dark);
       text-decoration: none;
       transition: color 0.2s ease;
+      letter-spacing: -0.01em;
     }
 
     .header-nav-link:hover, .header-nav-link.active {
-      color: #FF5500;
+      color: var(--blue-vibrant);
     }
 
     .header-right-tools {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       margin-right: 320px;
     }
 
@@ -174,419 +165,417 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      padding: 6px 14px;
+      background: #F3F4F6;
+      padding: 7px 14px;
       border-radius: 999px;
       font-weight: 600;
       transition: all 0.2s ease;
     }
 
     .tool-icon-btn:hover {
-      background: #FFFFFF;
-      transform: translateY(-1px);
+      background: #E5E7EB;
     }
 
-    .bag-badge {
-      font-size: 10px;
-      font-weight: 800;
-      background: #FF5500;
-      color: #FFFFFF;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .cart-pill {
+      background: #EFF6FF;
+      color: var(--blue-vibrant);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      font-size: 12px;
+      font-weight: 700;
     }
 
-    /* ── MAIN SOLAR ORANGE HERO CARD (MUSEUM MATTE FRAME) ── */
-    .ninjax-hero-canvas {
+    /* ── MAIN ASYMMETRIC STAGE ── */
+    .ninjax-stage-viewport {
       width: min(1560px, calc(100vw - 48px));
       height: calc(100vh - 84px);
       margin-bottom: 20px;
+      position: relative;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    /* ── LEFT EDITORIAL TYPOGRAPHY: OWN THE EDGE ── */
+    .left-typography-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 28px;
+      padding-left: 8px;
+      z-index: 5;
+    }
+
+    .editorial-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .editorial-small-prefix {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 2.3vw, 36px);
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .editorial-big-bold {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 5.2vw, 84px);
+      font-weight: 900;
+      color: var(--text-dark);
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Electric Blue artistic accent streak */
+    .editorial-big-bold.has-streak::after {
+      content: '';
+      position: absolute;
+      left: -8px;
+      right: -8px;
+      bottom: 6px;
+      height: 18px;
+      background: rgba(37, 99, 235, 0.16);
+      border-radius: 999px;
+      z-index: -1;
+      transform: rotate(-1.5deg);
+    }
+
+    /* ── RIGHT HERO BLUE CARD (THE MAIN SHOWCASE) ── */
+    .right-blue-hero-card {
+      width: 100%;
+      height: 100%;
       border-radius: 36px;
       position: relative;
       overflow: hidden;
-      background: radial-gradient(ellipse 90% 75% at 50% 32%, #FF6600 0%, #FF4D00 40%, #D43800 75%, #180600 100%);
+      background: radial-gradient(ellipse 90% 80% at 70% 30%, #3B82F6 0%, #2563EB 50%, #1D4ED8 100%);
       box-shadow: 
-        0 28px 70px -12px rgba(255, 77, 0, 0.35),
-        0 12px 35px -8px rgba(13, 15, 20, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4),
-        inset 0 0 120px rgba(0, 0, 0, 0.25);
-      border: 1.5px solid var(--card-border);
+        0 24px 60px -12px rgba(37, 99, 235, 0.35),
+        0 10px 30px -8px rgba(0, 0, 0, 0.08);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      align-items: center;
+      padding: 36px 44px;
     }
 
-    /* Subtle ambient lighting vignette */
-    .vignette-layer {
+    /* Stylized wavy organic shapes in the blue background */
+    .card-organic-wave-1 {
       position: absolute;
-      inset: 0;
+      top: -100px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.32) 0%, transparent 70%);
+      filter: blur(40px);
       pointer-events: none;
-      background: radial-gradient(circle at 50% 40%, transparent 40%, rgba(20, 4, 0, 0.45) 90%);
-      z-index: 1;
     }
 
-    /* Atmospheric Low Ground Mist */
-    .ground-mist-layer {
+    .card-organic-wave-2 {
       position: absolute;
-      bottom: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 900px;
-      height: 280px;
-      background: radial-gradient(ellipse at 50% 100%, rgba(255, 255, 255, 0.38) 0%, rgba(255, 180, 120, 0.18) 50%, transparent 75%);
-      filter: blur(36px);
+      bottom: -80px;
+      left: 15%;
+      width: 500px;
+      height: 350px;
       border-radius: 50%;
+      background: radial-gradient(circle, rgba(29, 78, 216, 0.6) 0%, transparent 75%);
+      filter: blur(50px);
       pointer-events: none;
-      z-index: 3;
     }
 
-    /* ── GIANT BACKGROUND TYPOGRAPHY: CREATIVE EDGE ── */
-    .hero-bg-text-layer {
-      position: absolute;
-      top: 15%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      text-align: center;
-      z-index: 2;
-      pointer-events: none;
+    /* Top Features Row */
+    .card-top-features {
+      position: relative;
+      z-index: 4;
       display: flex;
-      flex-direction: column;
       align-items: center;
+      gap: 28px;
     }
 
-    .hero-big-title {
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: 0.01em;
+      text-shadow: 0 2px 8px rgba(10, 30, 80, 0.25);
+    }
+
+    .feature-icon-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    /* ── FLOATING FEATURED CREATOR MINI CARD (TOP RIGHT) ── */
+    .featured-talent-mini-card {
+      position: absolute;
+      top: 36px;
+      right: 44px;
+      z-index: 6;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid #FFFFFF;
+      border-radius: 22px;
+      padding: 16px;
+      width: 240px;
+      box-shadow: 0 20px 45px rgba(10, 30, 80, 0.22);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .featured-talent-mini-card:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    .mini-card-header {
       font-family: var(--font-display);
-      font-size: clamp(80px, 12.5vw, 190px);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--blue-vibrant);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mini-live-tag {
+      background: #DCFCE7;
+      color: #15803D;
+      font-size: 9px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .mini-card-thumb-wrap {
+      width: 100%;
+      height: 120px;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      background: #E5E7EB;
+    }
+
+    .mini-card-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .mini-card-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -0.01em;
+      margin-bottom: 2px;
+    }
+
+    .mini-card-role {
+      font-size: 11px;
+      color: #6B7280;
+      margin-bottom: 8px;
+    }
+
+    .mini-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #F3F4F6;
+      padding-top: 8px;
+    }
+
+    .mini-card-rate {
+      font-family: var(--font-display);
+      font-size: 13px;
       font-weight: 900;
-      line-height: 0.84;
-      letter-spacing: -0.04em;
+      color: var(--blue-vibrant);
+    }
+
+    .mini-book-btn {
+      font-size: 11px;
+      font-weight: 700;
       color: #FFFFFF;
-      text-shadow: 0 10px 40px rgba(15, 3, 0, 0.4);
-      user-select: none;
+      background: var(--text-dark);
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 0.2s ease;
     }
 
-    .hero-big-title span {
-      display: block;
+    .mini-book-btn:hover {
+      background: var(--blue-vibrant);
     }
 
-    /* ── HERO TALENT (PERSON WITH DRONE) ── */
-    .hero-talent-stage {
+    /* ── OVERLAPPING HERO TALENT CUTOUT ── */
+    /* Positioned so it sits at the left edge of the blue card and overlaps outward onto the white canvas! */
+    .overlapping-talent-stage {
       position: absolute;
       bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 94%;
+      left: -80px;
+      height: 98%;
+      width: 600px;
       display: flex;
       align-items: flex-end;
-      justify-content: center;
-      z-index: 4;
-      pointer-events: none;
-    }
-
-    .hero-talent-cutout {
-      max-height: 88vh;
-      max-width: 100%;
-      object-fit: contain;
-      object-position: bottom center;
-      user-select: none;
-      filter: drop-shadow(0 25px 50px rgba(15, 3, 0, 0.45));
-      animation: floatSmooth 6s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatSmooth {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-8px); }
-    }
-
-    /* ── INTERACTIVE HOTSPOT PIN 1: PRICE / RATE SPEECH BUBBLE ($2,400/day) ── */
-    .hotspot-price-tag {
-      position: absolute;
-      top: 26%;
-      right: 32%;
-      z-index: 6;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      cursor: pointer;
-      animation: floatBadge 3.5s ease-in-out infinite;
-      pointer-events: auto;
-    }
-
-    @keyframes floatBadge {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-
-    .price-bubble {
-      background: #FFFFFF;
-      color: #0D0F14;
-      font-family: var(--font-display);
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      padding: 6px 14px;
-      border-radius: 999px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28), 0 2px 6px rgba(0, 0, 0, 0.12);
-      position: relative;
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .price-bubble::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 35%;
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 6px solid #FFFFFF;
-    }
-
-    .price-bubble:hover {
-      background: #0D0F14;
-      color: #FFFFFF;
-      transform: scale(1.05);
-    }
-
-    .price-bubble:hover::after {
-      border-top-color: #0D0F14;
-    }
-
-    /* Hotspot 2 on Drone (Radar Beacon) */
-    .hotspot-radar-pin {
-      position: absolute;
-      top: 18%;
-      left: 64%;
-      z-index: 6;
-      cursor: pointer;
-      pointer-events: auto;
-    }
-
-    .radar-pulse {
-      width: 14px;
-      height: 14px;
-      background: #FFFFFF;
-      border-radius: 50%;
-      position: relative;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
-      transition: transform 0.2s ease;
-    }
-
-    .radar-pulse::before {
-      content: '';
-      position: absolute;
-      inset: -8px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(255, 255, 255, 0.8);
-      animation: radarRings 2s infinite ease-out;
-    }
-
-    @keyframes radarRings {
-      0% { transform: scale(0.6); opacity: 1; }
-      100% { transform: scale(1.8); opacity: 0; }
-    }
-
-    .radar-tooltip {
-      position: absolute;
-      bottom: 22px;
-      left: 50%;
-      transform: translateX(-50%) translateY(6px);
-      background: rgba(13, 15, 20, 0.92);
-      backdrop-filter: blur(12px);
-      color: #FFFFFF;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      padding: 6px 12px;
-      border-radius: 8px;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.2s ease;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .hotspot-radar-pin:hover .radar-tooltip {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* ── BOTTOM EDITORIAL STAGE DOCK ── */
-    .stage-horizon-dock {
-      position: absolute;
-      bottom: 34px;
-      left: 0;
-      width: 100%;
-      padding: 0 54px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
+      justify-content: flex-start;
       z-index: 10;
       pointer-events: none;
     }
 
-    /* Left Editorial Column */
-    .dock-headline-col {
-      max-width: 480px;
+    .overlapping-talent-img {
+      max-height: 94%;
+      max-width: 100%;
+      object-fit: contain;
+      object-position: bottom left;
+      filter: drop-shadow(0 20px 40px rgba(10, 25, 70, 0.45));
+      animation: gentleFloat 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes gentleFloat {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-7px); }
+    }
+
+    /* ── BOTTOM EDITORIAL & SOCIAL PROOF IN BLUE CARD ── */
+    .card-bottom-content-row {
+      position: relative;
+      z-index: 5;
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      pointer-events: auto;
-    }
-
-    .dock-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.1rem, 2.7vw, 3.4rem);
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -0.04em;
-      color: #FFFFFF;
-      margin: 0 0 10px 0;
-      text-shadow: 0 6px 24px rgba(15, 3, 0, 0.5);
-    }
-
-    .dock-sub {
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.92);
-      line-height: 1.48;
-      margin: 0 0 20px 0;
-      max-width: 420px;
-      text-shadow: 0 2px 12px rgba(15, 3, 0, 0.4);
-    }
-
-    /* Circular arrow buttons (<) (>) */
-    .carousel-nav-arrows {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .carousel-btn {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: rgba(13, 15, 20, 0.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 15px;
-      transition: all 0.2s ease;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-    }
-
-    .carousel-btn:hover {
-      background: #FFFFFF;
-      color: #0D0F14;
-      transform: scale(1.08);
-    }
-
-    .carousel-indicator {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.85);
-      letter-spacing: 0.08em;
-      padding-left: 6px;
-    }
-
-    /* Right Action Column */
-    .dock-actions-col {
-      display: flex;
-      flex-direction: column;
       align-items: flex-end;
-      gap: 16px;
-      pointer-events: auto;
+      justify-content: space-between;
+      width: 100%;
+      padding-left: 360px; /* leaves room for the overlapping character */
     }
 
-    .action-buttons-wrap {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .card-editorial-wrap {
+      max-width: 480px;
     }
 
-    .btn-discover {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: #0B0E14;
-      color: #FFFFFF;
-      font-family: var(--font-display);
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      padding: 15px 28px;
-      border-radius: 999px;
-      text-decoration: none;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-    .btn-discover:hover {
-      background: #FFFFFF;
-      color: #0B0E14;
-      transform: translateY(-2px);
-      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 85, 0, 0.3);
-    }
-
-    .btn-join {
-      display: inline-flex;
-      align-items: center;
-      background: #FFFFFF;
-      color: #0B0E14;
-      font-family: var(--font-display);
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      padding: 15px 26px;
-      border-radius: 999px;
-      text-decoration: none;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .btn-join:hover {
-      background: rgba(255, 255, 255, 0.9);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-    }
-
-    .quiet-specs-line {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .card-editorial-badge {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
-      color: rgba(255, 255, 255, 0.92);
-      letter-spacing: 0.02em;
-      text-shadow: 0 2px 10px rgba(15, 3, 0, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 8px;
+      display: block;
     }
 
-    .spec-dot-green {
-      width: 6px;
-      height: 6px;
+    .card-editorial-headline {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 3.4vw, 52px);
+      font-weight: 900;
+      color: #FFFFFF;
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+      margin-bottom: 12px;
+      text-shadow: 0 4px 20px rgba(10, 30, 80, 0.35);
+    }
+
+    .card-editorial-subtext {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.45;
+      margin-bottom: 22px;
+      text-shadow: 0 2px 10px rgba(10, 30, 80, 0.3);
+    }
+
+    .btn-new-drops {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #FFFFFF;
+      color: var(--text-dark);
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      padding: 15px 30px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-new-drops:hover {
+      background: var(--text-dark);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Social Proof Pill */
+    .card-social-proof-pill {
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+      box-shadow: 0 8px 24px rgba(10, 30, 80, 0.2);
+    }
+
+    .avatar-stack-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .avatar-circle {
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      background: #10B981;
-      box-shadow: 0 0 8px #10B981;
-      display: inline-block;
+      border: 2px solid #FFFFFF;
+      background: #E0E7FF;
+      margin-left: -8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
     }
 
-    .spec-sep {
-      color: rgba(255, 255, 255, 0.45);
+    .avatar-circle:first-child {
+      margin-left: 0;
+    }
+
+    .social-proof-desc {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .star-row {
+      color: #FBBF24;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .proof-label-text {
+      font-size: 11px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.02em;
     }
 
     /* ── RESPONSIVE MOBILE ADJUSTMENTS ── */
@@ -603,7 +592,7 @@
         height: 56px;
       }
 
-      .header-nav-pill {
+      .header-nav-links {
         display: none;
       }
 
@@ -611,92 +600,82 @@
         margin-right: 0;
       }
 
-      .ninjax-hero-canvas {
-        width: calc(100vw - 20px);
+      .ninjax-stage-viewport {
+        grid-template-columns: 1fr;
         height: auto;
-        min-height: 820px;
-        border-radius: 28px;
-        margin-bottom: 16px;
-        justify-content: flex-start;
-      }
-
-      .hero-bg-text-layer {
-        top: 6%;
-      }
-
-      .hero-big-title {
-        font-size: 54px;
-        line-height: 0.88;
-      }
-
-      .hero-talent-stage {
-        height: 48%;
-        bottom: 340px;
-      }
-
-      .hero-talent-cutout {
-        max-height: 44vh;
-      }
-
-      .hotspot-price-tag {
-        top: 18%;
-        right: 18%;
-      }
-
-      .hotspot-radar-pin {
-        top: 12%;
-        left: 72%;
-      }
-
-      .stage-horizon-dock {
-        position: relative;
-        bottom: 0;
-        padding: 0 20px 80px 20px;
-        flex-direction: column;
-        align-items: center;
         gap: 16px;
-        margin-top: auto;
+        width: calc(100vw - 20px);
+        margin-bottom: 16px;
       }
 
-      .dock-headline-col {
-        align-items: center;
+      .left-typography-col {
+        padding: 12px 6px 0 6px;
+        gap: 16px;
         text-align: center;
-        max-width: 100%;
-      }
-
-      .dock-title {
-        font-size: 24px;
-        margin-bottom: 6px;
-      }
-
-      .dock-sub {
-        font-size: 13px;
-        margin-bottom: 12px;
-      }
-
-      .dock-actions-col {
         align-items: center;
+      }
+
+      .editorial-big-bold {
+        font-size: 42px;
+      }
+
+      .editorial-small-prefix {
+        font-size: 22px;
+      }
+
+      .right-blue-hero-card {
+        padding: 24px 20px 80px 20px;
+        border-radius: 28px;
+        min-height: 700px;
+      }
+
+      .featured-talent-mini-card {
+        position: relative;
+        top: auto;
+        right: auto;
         width: 100%;
+        margin-top: 20px;
+      }
+
+      .card-top-features {
+        flex-wrap: wrap;
         gap: 12px;
       }
 
-      .action-buttons-wrap {
+      .overlapping-talent-stage {
+        position: relative;
+        left: 0;
         width: 100%;
+        height: 380px;
+        justify-content: center;
+        margin: 20px 0;
+      }
+
+      .overlapping-talent-img {
+        max-height: 360px;
+        object-position: bottom center;
+      }
+
+      .card-bottom-content-row {
+        padding-left: 0;
         flex-direction: column;
-        gap: 8px;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
       }
 
-      .btn-discover, .btn-join {
+      .card-editorial-headline {
+        font-size: 28px;
+      }
+
+      .btn-new-drops {
         width: 100%;
         justify-content: center;
-        text-align: center;
-        padding: 14px 20px;
       }
 
-      .quiet-specs-line {
-        font-size: 10px;
+      .card-social-proof-pill {
+        width: 100%;
         justify-content: center;
-        flex-wrap: wrap;
       }
 
       .preview-layout-switcher {
@@ -732,15 +711,14 @@
     <a href="/nike_cloud_style.html" class="switcher-tab">3. Nike Cloud</a>
   </aside>
 
-  <!-- TOP BRAND HEADER -->
+  <!-- TOP HEADER -->
   <header class="top-brand-header">
     <a href="#" class="brand-mark">
       <span class="brand-logo-text">nexus<span class="brand-logo-dot">.</span></span>
     </a>
 
-    <!-- Center Navigation Pill -->
-    <nav class="header-nav-pill" aria-label="Primary Navigation">
-      <a href="#new" class="header-nav-link active">Featured</a>
+    <nav class="header-nav-links" aria-label="Main Navigation">
+      <a href="#featured" class="header-nav-link active">Featured</a>
       <a href="#directors" class="header-nav-link">Directors</a>
       <a href="#cinematographers" class="header-nav-link">Cinematography</a>
       <a href="#3d" class="header-nav-link">3D Artists</a>
@@ -750,76 +728,100 @@
       <a href="#search" class="tool-icon-btn" aria-label="Search">
         <span>🔍</span>
       </a>
-      <a href="#profile" class="tool-icon-btn" aria-label="Profile">
+      <a href="#roster" class="tool-icon-btn cart-pill" aria-label="Selected Talent">
         <span>👤</span>
+        <span>1 Talent</span>
       </a>
     </div>
   </header>
 
-  <!-- MAIN SOLAR ORANGE HERO CARD -->
-  <main class="ninjax-hero-canvas">
+  <!-- MAIN ASYMMETRIC STAGE VIEWPORT -->
+  <main class="ninjax-stage-viewport">
 
-    <div class="vignette-layer" aria-hidden="true"></div>
-    <div class="ground-mist-layer" aria-hidden="true"></div>
-
-    <!-- Giant Background Typography: CREATIVE EDGE -->
-    <div class="hero-bg-text-layer" aria-hidden="true">
-      <h2 class="hero-big-title">
-        <span>CREATIVE</span>
-        <span>EDGE</span>
-      </h2>
-    </div>
-
-    <!-- Hero Visual Talent (Person Holding Drone Remote + Drone in Flight) -->
-    <div class="hero-talent-stage">
-      <img src="assets/character_drone_operator_final.png" alt="Featured Aerial Cinematographer & Drone Director" class="hero-talent-cutout">
-    </div>
-
-    <!-- Interactive Price / Rate Hotspot Pin ($2,400 / day) -->
-    <div class="hotspot-price-tag" title="Book Director Direct">
-      <div class="price-bubble">$2,400 / day</div>
-    </div>
-
-    <!-- Interactive Drone Rig Hotspot Pin -->
-    <div class="hotspot-radar-pin">
-      <div class="radar-pulse"></div>
-      <div class="radar-tooltip">8K RAW Drone Rig</div>
-    </div>
-
-    <!-- Bottom Editorial Horizon Dock -->
-    <footer class="stage-horizon-dock">
-      
-      <!-- Left Column: Editorial Headline + Subhead + Carousel Arrows -->
-      <div class="dock-headline-col">
-        <h1 class="dock-title">Direct access to<br>world-class visual talent.</h1>
-        <p class="dock-sub">Vetted directors, 3D artists, and cinematographers shaping modern visual culture.</p>
-        
-        <!-- Carousel Navigation Arrows -->
-        <div class="carousel-nav-arrows">
-          <button class="carousel-btn" aria-label="Previous Creator">‹</button>
-          <button class="carousel-btn" aria-label="Next Creator">›</button>
-          <span class="carousel-indicator">01 / 04</span>
-        </div>
+    <!-- LEFT EDITORIAL COLUMN: OWN THE EDGE / KEEP THE VIBE -->
+    <section class="left-typography-col">
+      <div class="editorial-block">
+        <span class="editorial-small-prefix">Own the</span>
+        <span class="editorial-big-bold has-streak">EDGE</span>
       </div>
 
-      <!-- Right Column: Tactile Buttons + Quiet Specs -->
-      <div class="dock-actions-col">
-        <div class="action-buttons-wrap">
-          <a href="#discover" class="btn-discover">Discover Talent →</a>
-          <a href="#join" class="btn-join">Join as Creator</a>
-        </div>
+      <div class="editorial-block">
+        <span class="editorial-small-prefix">Direct the</span>
+        <span class="editorial-big-bold">VISION</span>
+      </div>
+    </section>
 
-        <div class="quiet-specs-line">
-          <span class="spec-dot-green"></span>
-          <span>Top 1% Creators</span>
-          <span class="spec-sep">/</span>
+    <!-- RIGHT HERO BLUE CARD (THE MAIN SHOWCASE) -->
+    <section class="right-blue-hero-card">
+
+      <div class="card-organic-wave-1" aria-hidden="true"></div>
+      <div class="card-organic-wave-2" aria-hidden="true"></div>
+
+      <!-- Top Features Row -->
+      <div class="card-top-features">
+        <div class="feature-item">
+          <span class="feature-icon-badge">✨</span>
+          <span>Curated Roster</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon-badge">⚡</span>
+          <span>Instant Direct Terms</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon-badge">🛡️</span>
           <span>Verified Proof</span>
-          <span class="spec-sep">/</span>
-          <span>Direct Terms</span>
         </div>
       </div>
 
-    </footer>
+      <!-- Floating Mini Card: Featured Creator (Top Right) -->
+      <aside class="featured-talent-mini-card">
+        <div class="mini-card-header">
+          <span>Featured Creator</span>
+          <span class="mini-live-tag">● AVAILABLE</span>
+        </div>
+        <div class="mini-card-thumb-wrap">
+          <img src="assets/character_designer.jpg" alt="Maya Lin - Lead Virtual Worlds Director" class="mini-card-thumb">
+        </div>
+        <div class="mini-card-name">Maya Lin</div>
+        <div class="mini-card-role">3D & Virtual Worlds</div>
+        <div class="mini-card-footer">
+          <span class="mini-card-rate">$2,400 / day</span>
+          <a href="#book" class="mini-book-btn">Book Direct</a>
+        </div>
+      </aside>
+
+      <!-- OVERLAPPING TALENT CUTOUT (Person Breaking Out of Blue Card) -->
+      <div class="overlapping-talent-stage">
+        <img src="assets/character_drone_operator_final.png" alt="Featured Aerial Cinematographer & Drone Director" class="overlapping-talent-img">
+      </div>
+
+      <!-- Bottom Content Row: Editorial Heading + CTA + Social Proof -->
+      <div class="card-bottom-content-row">
+        
+        <div class="card-editorial-wrap">
+          <span class="card-editorial-badge">Direct Access • 2026 Index</span>
+          <h1 class="card-editorial-headline">Where Vision Meets Execution</h1>
+          <p class="card-editorial-subtext">Direct access to vetted directors, 3D artists, and cinematographers shaping modern visual culture.</p>
+          <a href="#discover" class="btn-new-drops">Discover Talent →</a>
+        </div>
+
+        <!-- Social Proof Pill -->
+        <div class="card-social-proof-pill">
+          <div class="avatar-stack-group">
+            <span class="avatar-circle">🎬</span>
+            <span class="avatar-circle">🎥</span>
+            <span class="avatar-circle">⚡</span>
+            <span class="avatar-circle">✨</span>
+          </div>
+          <div class="social-proof-desc">
+            <span class="star-row">★★★★★</span>
+            <span class="proof-label-text">Rated 5.0 by 180+ Studios</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
 
   </main>
 
