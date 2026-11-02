@@ -289,106 +289,207 @@
       transform: rotate(8deg);
     }
 
-    .hero-panoramic-stage {
+    /* ==========================================================================
+       HERO BENTO GRID STAGE (HOMAGE TO USER SPEC: 1 WIDE TOP + 2 PORTRAIT BOTTOM)
+       ========================================================================== */
+    .hero-split-stage {
       width: 100%;
-      max-width: 1780px;
+      max-width: 1540px;
       margin: 0 auto;
-      height: 100%;
       min-height: calc(100vh - 72px);
-      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 28px;
+      padding: 32px 36px;
+      gap: 48px;
       box-sizing: border-box;
-      gap: 20px;
+      position: relative;
       z-index: 5;
     }
 
-    /* Full-Height Majestic Creative Pillars */
-    .hero-wing-pillar {
-      position: relative;
-      flex: 0 0 clamp(380px, 29vw, 480px);
-      height: calc(100vh - 80px);
-      max-height: 860px;
-      min-height: 640px;
-      border-radius: 36px;
-      overflow: hidden;
-      background: #FFFFFF;
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: pointer;
+    /* Left Column: Headline, Search & Discovery Controls */
+    .hero-info-column {
+      flex: 0 0 45%;
+      max-width: 600px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      align-items: flex-start;
+      text-align: left;
     }
 
-    .hero-wing-pillar img {
+    .hero-info-column .hero-eyebrow {
+      margin-bottom: 14px;
+    }
+
+    .hero-info-column .hero-headline {
+      align-items: flex-start;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .hero-info-column .hero-subtext {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #475569;
+      margin-bottom: 26px;
+      font-weight: 500;
+      max-width: 520px;
+    }
+
+    .hero-info-column .hero-cta-group {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero-info-column .hero-search-bar {
+      width: 100%;
+      max-width: 540px;
+      margin-bottom: 22px;
+    }
+
+    .hero-chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .hero-chip {
+      background: #FFFFFF;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      padding: 7px 15px;
+      border-radius: var(--radius-pill);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+    }
+
+    .hero-chip:hover {
+      background: var(--purple-light);
+      border-color: var(--purple-primary);
+      color: var(--purple-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(124, 58, 237, 0.15);
+    }
+
+    .hero-trust-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12.5px;
+      color: #64748B;
+      font-weight: 600;
+    }
+
+    .hero-trust-row .badge-check {
+      color: #10B981;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Right Column: The 3-Card Bento Stage Cluster */
+    .bento-stage-cluster {
+      flex: 0 0 53%;
+      max-width: 720px;
+      background: linear-gradient(145deg, #7A67B6 0%, #6855A3 100%);
+      padding: 18px;
+      border-radius: 36px;
+      box-shadow: 0 32px 85px -15px rgba(104, 85, 163, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 16px;
+      position: relative;
+    }
+
+    /* Top Wide Card */
+    .bento-card-top {
+      grid-column: 1 / 3;
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #FFFFFF;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.15);
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .bento-card-top img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-      image-rendering: -webkit-optimize-contrast;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .pillar-left {
-      transform: rotate(-1.5deg);
-      box-shadow: 0 32px 85px -15px rgba(124, 58, 237, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
-      animation: floatGentleLeft 7s ease-in-out infinite alternate;
+    /* Bottom Two Cards */
+    .bento-card-bottom-left,
+    .bento-card-bottom-right {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #FFFFFF;
+      box-shadow: 0 16px 36px rgba(15, 23, 42, 0.15);
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .pillar-right {
-      transform: rotate(1.5deg);
-      box-shadow: 0 32px 85px -15px rgba(245, 158, 11, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
-      animation: floatGentleRight 7s ease-in-out infinite alternate 1.5s;
+    .bento-card-bottom-left img,
+    .bento-card-bottom-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .pillar-left:hover {
-      transform: rotate(0deg) translateY(-8px) scale(1.02) !important;
-      box-shadow: 0 45px 100px -15px rgba(124, 58, 237, 0.42), 0 0 0 2px var(--purple-primary);
+    .bento-card-top:hover,
+    .bento-card-bottom-left:hover,
+    .bento-card-bottom-right:hover {
+      transform: translateY(-4px) scale(1.015);
+      box-shadow: 0 24px 50px rgba(15, 23, 42, 0.28);
     }
 
-    .pillar-right:hover {
-      transform: rotate(0deg) translateY(-8px) scale(1.02) !important;
-      box-shadow: 0 45px 100px -15px rgba(245, 158, 11, 0.42), 0 0 0 2px #F59E0B;
+    .bento-card-top:hover img,
+    .bento-card-bottom-left:hover img,
+    .bento-card-bottom-right:hover img {
+      transform: scale(1.03);
     }
 
-    .hero-wing-pillar:hover img {
-      transform: scale(1.04);
-    }
-
-    @keyframes floatGentleLeft {
-      0% { transform: rotate(-1.5deg) translateY(0px); }
-      100% { transform: rotate(-0.5deg) translateY(-10px); }
-    }
-
-    @keyframes floatGentleRight {
-      0% { transform: rotate(1.5deg) translateY(0px); }
-      100% { transform: rotate(0.5deg) translateY(-10px); }
-    }
-
-    /* Glass Badges on Pillars */
-    .pillar-glass-pill {
+    /* Glass Overlay Pills on Bento Cards */
+    .bento-glass-pill {
       position: absolute;
-      top: 20px;
-      left: 20px;
-      background: rgba(15, 23, 42, 0.78);
+      top: 14px;
+      left: 14px;
+      background: rgba(15, 23, 42, 0.80);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       color: #FFFFFF;
-      padding: 7px 16px;
+      padding: 6px 14px;
       border-radius: var(--radius-pill);
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.5px;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       border: 1px solid rgba(255, 255, 255, 0.25);
       z-index: 5;
     }
 
-    .pillar-glass-pill .pill-dot {
+    .bento-glass-pill .pill-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
@@ -396,106 +497,62 @@
       box-shadow: 0 0 8px #22C55E;
     }
 
-    .pillar-glass-footer {
+    .bento-glass-footer {
       position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
       background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: 22px;
-      padding: 14px 18px;
+      border-radius: 18px;
+      padding: 10px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.1);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
       z-index: 5;
     }
 
-    .pillar-meta .name {
+    .bento-glass-footer .bento-meta-name {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 14px;
+      font-size: 13px;
       color: #0F172A;
       display: block;
       line-height: 1.2;
     }
 
-    .pillar-meta .role {
-      font-size: 11px;
+    .bento-glass-footer .bento-meta-sub {
+      font-size: 10.5px;
       font-weight: 600;
       color: #64748B;
       display: block;
-      margin-top: 2px;
     }
 
-    .pillar-meta-right {
+    .bento-glass-footer .bento-meta-right {
       text-align: right;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 3px;
+      gap: 2px;
     }
 
-    .pillar-meta-right .stars {
-      font-size: 12px;
+    .bento-glass-footer .bento-stars {
+      font-size: 11px;
       font-weight: 800;
       color: #F59E0B;
     }
 
-    .pillar-meta-right .badge {
+    .bento-glass-footer .bento-avail-badge {
       background: #DCFCE7;
       color: #15803D;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 800;
-      padding: 3px 8px;
+      padding: 2px 7px;
       border-radius: var(--radius-pill);
       text-transform: uppercase;
-    }
-
-    /* Spatial Floating Capability Tags on Pillars */
-    .pillar-floating-tag {
-      position: absolute;
-      background: rgba(15, 23, 42, 0.78);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      color: #FFFFFF;
-      padding: 6px 14px;
-      border-radius: var(--radius-pill);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
-      z-index: 6;
-      pointer-events: none;
-      transition: transform 0.3s ease;
-    }
-
-    .pillar-left .tag-drone {
-      top: 38%;
-      right: 18px;
-    }
-
-    .pillar-left .tag-camera {
-      bottom: 23%;
-      left: 18px;
-    }
-
-    .pillar-right .tag-design {
-      top: 34%;
-      left: 18px;
-    }
-
-    .pillar-right .tag-motion {
-      bottom: 25%;
-      right: 18px;
-    }
-
-    .hero-wing-pillar:hover .pillar-floating-tag {
-      transform: translateY(-3px);
     }
 
     /* Center Stage: Hero Typography & Actions */
@@ -1330,14 +1387,18 @@
     }
 
     /* Responsive */
-    @media (max-width: 1400px) and (min-width: 1101px) {
-      .hero-center-stage {
-        max-width: 520px;
+    @media (max-width: 1280px) and (min-width: 1101px) {
+      .hero-split-stage {
+        padding: 24px 20px;
+        gap: 32px;
       }
-      .hero-wing-pillar {
-        flex: 0 0 clamp(320px, 26vw, 400px);
-        height: calc(100vh - 90px);
-        max-height: 760px;
+      .hero-info-column {
+        flex: 0 0 46%;
+      }
+      .bento-stage-cluster {
+        flex: 0 0 52%;
+        padding: 14px;
+        gap: 12px;
       }
     }
 
@@ -1345,11 +1406,12 @@
       .hero-wrapper {
         min-height: auto;
         height: auto;
-        padding: 50px 0 30px 0;
+        padding: 40px 0 20px 0;
       }
-      .hero-panoramic-stage {
+      .hero-split-stage {
         flex-direction: column;
-        gap: 36px;
+        text-align: center;
+        gap: 40px;
         height: auto;
         min-height: auto;
         padding: 20px 16px;
@@ -1360,23 +1422,30 @@
       .hero-watermark-right {
         display: none;
       }
-      .hero-wing-pillar {
+      .hero-info-column {
+        flex: 0 0 100%;
+        max-width: 680px;
+        align-items: center;
+        text-align: center;
+      }
+      .hero-info-column .hero-headline {
+        align-items: center;
+        text-align: center;
+      }
+      .hero-info-column .hero-subtext {
+        text-align: center;
+      }
+      .hero-info-column .hero-cta-group {
+        justify-content: center;
+      }
+      .hero-chips-row {
+        justify-content: center;
+      }
+      .bento-stage-cluster {
+        flex: 0 0 100%;
         width: 100%;
-        max-width: 380px;
-        height: 600px;
-        min-height: 520px;
+        max-width: 600px;
         margin: 0 auto;
-        transform: none !important;
-      }
-      .hero-wing-pillar.pillar-left {
-        order: 2;
-      }
-      .hero-wing-pillar.pillar-right {
-        order: 3;
-      }
-      .hero-center-stage {
-        order: 1;
-        padding: 10px 16px;
       }
       .disciplines-grid {
         grid-template-columns: 1fr 1fr;
@@ -1410,36 +1479,9 @@
       <div class="hero-watermark-left">FILM<br>VISION</div>
       <div class="hero-watermark-right">DESIGN<br>MOTION</div>
 
-      <div class="hero-panoramic-stage">
-        <!-- LEFT WING: MAJESTIC FULL-HEIGHT CREATIVE PILLAR (DRONE PILOT + COMMERCIAL FILMMAKER) -->
-        <div class="hero-wing-pillar pillar-left" onclick="filterCategory('Cinematography')" title="Explore Commercial Filmmakers & Drone Pilots">
-          <img src="assets/hero_poster_left_duo_8k.jpg" alt="Commercial Filmmakers & Drone Pilots Roster">
-          
-          <!-- Top Glass Status Pill -->
-          <div class="pillar-glass-pill">
-            <span class="pill-dot"></span>
-            <span>DIRECTING & AERIAL CREW</span>
-          </div>
-
-          <!-- Spatial Floating Badges -->
-          <div class="pillar-floating-tag tag-drone">🛸 Part 107 Commercial Drone</div>
-          <div class="pillar-floating-tag tag-camera">🎥 ARRI Alexa Mini LF • RED</div>
-
-          <!-- Bottom Glass Booking Footer -->
-          <div class="pillar-glass-footer">
-            <div class="pillar-meta">
-              <span class="name">Kai S. & Marcus Chen</span>
-              <span class="role">Commercial DP & Aerial FPV • 160+ Shoots</span>
-            </div>
-            <div class="pillar-meta-right">
-              <span class="stars">★ 4.98</span>
-              <span class="badge">AVAILABLE</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- CENTER STAGE: HERO HEADLINE, SEARCH & CTAs -->
-        <div class="hero-center-stage">
+      <div class="hero-split-stage">
+        <!-- LEFT COLUMN: EDITORIAL HEADLINE, OMNI-SEARCH & DISCOVERY CONTROLS -->
+        <div class="hero-info-column">
           <div class="hero-eyebrow">A CREATIVE TALENT NETWORK</div>
 
           <h1 class="hero-headline">
@@ -1451,9 +1493,21 @@
             </div>
           </h1>
 
+          <p class="hero-subtext">
+            Direct commercial booking with verified commercial directors, FPV drone pilots, and 3D motion designers. Zero platform escrow cuts, verified camera gear, transparent rates.
+          </p>
+
+          <!-- Fast Omni-Search Bar -->
+          <div class="hero-search-bar">
+            <span style="font-size:16px; color:#94A3B8;">🔍</span>
+            <input type="text" id="heroSearchInput" placeholder="Search creators by gear (ARRI, RED, Sony FX6) or medium..." onkeydown="if(event.key==='Enter') executeHeroSearch()">
+            <button class="hero-search-btn" onclick="executeHeroSearch()">Search</button>
+          </div>
+
+          <!-- CTAs -->
           <div class="hero-cta-group">
             <a href="#explore" class="btn-primary">
-              <span>Explore Creators</span>
+              <span>Explore 500+ Creators</span>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
             <button class="btn-secondary" onclick="openLeadModal()">
@@ -1461,37 +1515,86 @@
             </button>
           </div>
 
-          <!-- Fast Omni-Search Bar in Hero -->
-          <div class="hero-search-bar">
-            <span style="font-size:16px; color:#94A3B8;">🔍</span>
-            <input type="text" id="heroSearchInput" placeholder="Search creators by gear (ARRI, RED, Sony FX6) or medium..." onkeydown="if(event.key==='Enter') executeHeroSearch()">
-            <button class="hero-search-btn" onclick="executeHeroSearch()">Search</button>
+          <!-- Fast Discipline Filter Chips -->
+          <div class="hero-chips-row">
+            <span class="hero-chip" onclick="filterCategory('Cinematography')">🎥 Cinematography</span>
+            <span class="hero-chip" onclick="filterCategory('Drone & Aerial')">🛸 FPV Drone</span>
+            <span class="hero-chip" onclick="filterCategory('3D & CGI')">🪐 3D Motion</span>
+            <span class="hero-chip" onclick="filterCategory('Creative Direction')">🪄 Direction</span>
+          </div>
+
+          <!-- Trust Proof -->
+          <div class="hero-trust-row">
+            <span class="badge-check">✓ Direct Booking</span>
+            <span>•</span>
+            <span>0% Platform Traps</span>
+            <span>•</span>
+            <span>Global Production Insurance</span>
           </div>
         </div>
 
-        <!-- RIGHT WING: MAJESTIC FULL-HEIGHT CREATIVE PILLAR (TECH, 3D & DESIGN TRIO) -->
-        <div class="hero-wing-pillar pillar-right" onclick="filterCategory('3D & CGI')" title="Explore 3D Motion Artists & Brand Designers">
-          <img src="assets/hero_poster_right_trio_8k.jpg" alt="3D Motion, Brand Designers & Creative Directors">
-          
-          <!-- Top Glass Status Pill -->
-          <div class="pillar-glass-pill">
-            <span class="pill-dot" style="background:#F59E0B; box-shadow:0 0 8px #F59E0B;"></span>
-            <span>3D MOTION & CREATIVE TECH</span>
+        <!-- RIGHT COLUMN: THE 3-CARD BENTO GRID STAGE (HOMAGE TO USER SPEC) -->
+        <div class="bento-stage-cluster">
+          <!-- TOP WIDE CARD (16:9): DIRECTING & VISION ("YOU DID IT! The Story") -->
+          <div class="bento-card-top" onclick="filterCategory('Cinematography')" title="View Commercial Directors">
+            <img src="assets/bento_top_wide.jpg" alt="Commercial Directing & Film Production">
+            
+            <div class="bento-glass-pill">
+              <span class="pill-dot"></span>
+              <span>DIRECTING & CREATIVE VISION</span>
+            </div>
+
+            <div class="bento-glass-footer">
+              <div class="bento-meta">
+                <span class="bento-meta-name">Maya Lin & Studio</span>
+                <span class="bento-meta-sub">Commercial Director • ARRI Alexa Mini LF</span>
+              </div>
+              <div class="bento-meta-right">
+                <span class="bento-stars">★ 4.99</span>
+                <span class="bento-avail-badge">AVAILABLE</span>
+              </div>
+            </div>
           </div>
 
-          <!-- Spatial Floating Badges -->
-          <div class="pillar-floating-tag tag-design">⚡ Octane • C4D • Figma</div>
-          <div class="pillar-floating-tag tag-motion">🪐 Direct Hire • 0% Cut</div>
-
-          <!-- Bottom Glass Booking Footer -->
-          <div class="pillar-glass-footer">
-            <div class="pillar-meta">
-              <span class="name">Elena Rostova & Studio</span>
-              <span class="role">3D Motion • Brand Design • Direction</span>
+          <!-- BOTTOM LEFT CARD (3:4): FPV DRONE & SKATER ("POWER WITHIN!") -->
+          <div class="bento-card-bottom-left" onclick="filterCategory('Drone & Aerial')" title="View Commercial Drone Pilots">
+            <img src="assets/bento_bottom_left.jpg" alt="FPV Drone Pilot & Aerial Cinematographer">
+            
+            <div class="bento-glass-pill">
+              <span class="pill-dot" style="background:#0284C7; box-shadow:0 0 8px #0284C7;"></span>
+              <span>FPV DRONE & AERIAL</span>
             </div>
-            <div class="pillar-meta-right">
-              <span class="stars">★ 5.0</span>
-              <span class="badge" style="background:#FEF3C7; color:#B45309;">TOP 1% ROSTER</span>
+
+            <div class="bento-glass-footer">
+              <div class="bento-meta">
+                <span class="bento-meta-name">Kai Sorensen</span>
+                <span class="bento-meta-sub">Part 107 Pilot • Skater</span>
+              </div>
+              <div class="bento-meta-right">
+                <span class="bento-stars">★ 4.95</span>
+                <span class="bento-avail-badge">BOOKED 12×</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BOTTOM RIGHT CARD (3:4): 3D MOTION & DESIGN ("Creative ENERGY! JUST DID IT!") -->
+          <div class="bento-card-bottom-right" onclick="filterCategory('3D & CGI')" title="View 3D Motion Artists">
+            <img src="assets/character_designer.jpg" alt="3D Motion Designer & Brand Director">
+            
+            <div class="bento-glass-pill">
+              <span class="pill-dot" style="background:#F59E0B; box-shadow:0 0 8px #F59E0B;"></span>
+              <span>3D MOTION & DESIGN</span>
+            </div>
+
+            <div class="bento-glass-footer">
+              <div class="bento-meta">
+                <span class="bento-meta-name">Elena Rostova</span>
+                <span class="bento-meta-sub">3D Motion • Octane / C4D</span>
+              </div>
+              <div class="bento-meta-right">
+                <span class="bento-stars">★ 5.0</span>
+                <span class="bento-avail-badge" style="background:#FEF3C7; color:#B45309;">TOP 1%</span>
+              </div>
             </div>
           </div>
         </div>
