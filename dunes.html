@@ -98,25 +98,13 @@
       max-width: 720px;
     }
 
-    .brand-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--text-dark);
-      margin-bottom: 24px;
-      opacity: 0.85;
-    }
-
-    .brand-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--text-dark);
-      display: inline-block;
+    /* ── LEFT EDITORIAL CONTENT ── */
+    .hero-left-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      max-width: 720px;
     }
 
     .headline-stack {
@@ -128,7 +116,7 @@
       font-weight: 900;
       font-size: clamp(4.8rem, 9.4vw, 9.6rem);
       text-transform: uppercase;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
       user-select: none;
     }
 
@@ -145,49 +133,41 @@
       color: var(--text-dark);
     }
 
-    /* ── EDITORIAL CONVERSION GROUP ── */
+    /* Hidden on desktop; sculpted for mobile 3D depth */
+    .mobile-backdrop-headline {
+      display: none;
+    }
+
+    /* ── EDITORIAL CONVERSION GROUP (APPLE TACTILE BUTTONS + BADGING CAPSULE) ── */
     .hero-editorial-chunk {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      gap: 18px;
       margin-top: 4px;
-    }
-
-    .hero-subtitle {
-      font-family: 'Times New Roman', Times, 'Apple Symbols', Georgia, serif;
-      font-size: clamp(19.5px, 1.45vw, 23px);
-      font-weight: 400;
-      color: rgba(16, 9, 36, 0.9);
-      line-height: 1.52;
-      margin-bottom: 22px;
-      max-width: 505px;
-      letter-spacing: -0.005em;
-      text-wrap: pretty;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     .action-row {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 20px;
+      margin: 0;
       flex-wrap: wrap;
     }
 
     .btn-discover {
-      background: #110B29;
+      background: #0D0A1C;
       color: #FFFFFF;
       font-size: 15px;
       font-weight: 600;
-      padding: 16px 32px;
+      padding: 15px 32px;
       border-radius: 999px;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       box-shadow: 
-        0 12px 28px -4px rgba(17, 11, 41, 0.32),
+        0 10px 24px -4px rgba(13, 10, 28, 0.28),
         inset 0 1px 0 rgba(255, 255, 255, 0.22);
       transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -197,27 +177,27 @@
     }
 
     .btn-discover:hover {
-      background: #090417;
+      background: #000000;
       transform: translateY(-2px);
       box-shadow: 
-        0 16px 36px -4px rgba(17, 11, 41, 0.42),
+        0 14px 30px -4px rgba(13, 10, 28, 0.38),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
 
     .btn-join {
-      background: rgba(255, 255, 255, 0.62);
+      background: rgba(255, 255, 255, 0.65);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
-      color: #110B29;
+      color: #0D0A1C;
       font-size: 15px;
       font-weight: 600;
-      padding: 16px 32px;
+      padding: 15px 30px;
       border-radius: 999px;
       text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.9);
       box-shadow: 
-        0 8px 24px -4px rgba(15, 23, 42, 0.08),
-        inset 0 1px 1px rgba(255, 255, 255, 0.9);
+        0 6px 20px -4px rgba(15, 23, 42, 0.06),
+        inset 0 1px 1px rgba(255, 255, 255, 0.95);
       transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -229,7 +209,7 @@
       background: rgba(255, 255, 255, 0.92);
       transform: translateY(-2px);
       box-shadow: 
-        0 12px 28px -4px rgba(15, 23, 42, 0.12),
+        0 10px 24px -4px rgba(15, 23, 42, 0.1),
         inset 0 1px 1px #FFFFFF;
     }
 
@@ -238,14 +218,14 @@
       display: inline-flex;
       align-items: center;
       gap: 0;
-      padding: 6px 12px;
-      background: rgba(255, 255, 255, 0.62);
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.68);
       backdrop-filter: blur(24px) saturate(180%);
       -webkit-backdrop-filter: blur(24px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.92);
       border-radius: 999px;
       box-shadow: 
-        0 10px 24px -4px rgba(17, 11, 41, 0.08),
+        0 8px 24px -4px rgba(17, 11, 41, 0.08),
         inset 0 1px 1px rgba(255, 255, 255, 0.95);
     }
 
@@ -263,16 +243,16 @@
     }
 
     .spec-icon {
-      width: 15px;
-      height: 15px;
-      color: #110B29;
+      width: 14.5px;
+      height: 14.5px;
+      color: #0D0A1C;
       flex-shrink: 0;
     }
 
     .spec-value {
       font-size: 13px;
       font-weight: 600;
-      color: #110B29;
+      color: #0D0A1C;
       letter-spacing: -0.015em;
       white-space: nowrap;
     }
@@ -280,7 +260,7 @@
     .spec-divider {
       width: 1px;
       height: 16px;
-      background: rgba(17, 11, 41, 0.15);
+      background: rgba(17, 11, 41, 0.14);
       margin: 0 2px;
     }
 
@@ -380,69 +360,155 @@
     }
 
     /* ── MOBILE OPTIMIZATIONS ── */
+    /* ── MOBILE OPTIMIZATIONS (100DVH NO-SCROLL ARCHITECTURE) ── */
     @media (max-width: 900px) {
       html, body {
         width: 100%;
-        height: auto;
-        min-height: 100dvh;
-        overflow-y: auto;
-        overflow-x: hidden;
-        display: block;
+        height: 100dvh;
+        max-height: 100dvh;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
       }
 
       .hero-viewport {
-        height: auto;
-        min-height: 100dvh;
         width: 100%;
-        overflow-x: hidden;
-        padding: 24px 20px 96px;
+        height: 100dvh;
+        max-height: 100dvh;
+        overflow: hidden;
+        padding: 42px 16px 14px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+      }
+
+      /* Compact top pill dock for layout switcher */
+      .preview-layout-switcher {
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: calc(100% - 32px);
+        max-width: 320px;
+        padding: 3px 4px;
+        z-index: 100;
+        background: rgba(13, 10, 28, 0.65);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+      }
+
+      .switcher-title {
+        display: none;
+      }
+
+      .switcher-tab {
+        font-size: 9.5px;
+        padding: 5px 8px;
+        flex: 1;
+        justify-content: center;
+        text-align: center;
+        white-space: nowrap;
       }
 
       .hero-grid {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-between;
         width: 100%;
-        max-width: 440px;
+        height: 100%;
+        max-width: 420px;
         margin: 0 auto;
         gap: 0;
       }
 
-      /* Flatten left container so children interleave with character stage */
+      /* Flatten left container so headline prefix sits at top, actions sit at bottom */
       .hero-left-content {
         display: contents;
       }
 
-      .brand-eyebrow {
-        order: 1;
-        align-self: flex-start;
-        margin-bottom: 12px;
-      }
-
+      /* Centralized headline prefix */
       .headline-stack {
-        order: 2;
-        align-self: flex-start;
-        font-size: clamp(2.4rem, 10.5vw, 3.8rem);
-        margin-bottom: 6px;
-        text-align: left;
+        order: 1;
+        width: 100%;
+        margin: 0 0 2px;
+        text-align: center;
+        display: block;
+        line-height: 1;
       }
 
-      /* Drone pilot character placed directly below headline */
+      .title-wefind, .title-the {
+        display: inline;
+        font-size: clamp(1.4rem, 6.2vw, 2.05rem);
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        color: #FFFFFF;
+        text-shadow: 0 4px 18px rgba(37, 99, 235, 0.35);
+      }
+
+      .title-creative, .title-edge {
+        display: none; /* Rendered in 3D monumental backdrop behind child */
+      }
+
+      /* ── 3D CENTER HERO STAGE (CHARACTER + BACKDROP "CREATIVE EDGE") ── */
       .hero-right-stage {
-        order: 3;
+        order: 2;
+        position: relative;
         width: 100%;
-        height: auto;
-        margin: 4px 0 18px;
+        flex: 1;
+        min-height: 0;
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        margin: 0;
+      }
+
+      .mobile-backdrop-headline {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 36%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        pointer-events: none;
+        z-index: 1;
+        user-select: none;
+        white-space: nowrap;
+      }
+
+      .mb-word {
+        font-family: var(--font-display);
+        font-weight: 900;
+        line-height: 0.82;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        filter: drop-shadow(0 10px 28px rgba(25, 80, 200, 0.32));
+      }
+
+      .mb-creative {
+        font-size: clamp(3.4rem, 16vw, 5.2rem);
+        letter-spacing: 0.02em;
+      }
+
+      .mb-edge {
+        font-size: clamp(4.2rem, 19.5vw, 6.6rem);
+        letter-spacing: 0.04em;
+        margin-top: -0.06em;
       }
 
       .image-container-slot {
-        height: clamp(250px, 36vh, 320px);
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        max-height: clamp(230px, 46vh, 350px);
         width: 100%;
         display: flex;
         align-items: center;
@@ -456,100 +522,75 @@
         object-fit: contain;
       }
 
-      /* Editorial conversion chunk is centered below the character */
+      /* ── EDITORIAL CONVERSION GROUP (ACTIONS + BADGES DOCKED AT BOTTOM) ── */
       .hero-editorial-chunk {
-        order: 4;
+        order: 3;
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        text-align: center;
-        margin-top: 0;
-      }
-
-      .hero-subtitle {
-        font-size: 16px;
-        line-height: 1.48;
-        text-align: center;
-        margin: 0 auto 18px;
-        max-width: 325px;
+        gap: 8px;
+        margin: 0;
+        padding-top: 4px;
       }
 
       .action-row {
-        width: 100%;
-        max-width: 340px;
-        flex-direction: column;
-        gap: 10px;
-        margin-bottom: 16px;
+        display: flex;
+        flex-direction: row;
         align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 345px;
+        margin: 0;
       }
 
       .btn-discover, .btn-join {
-        width: 100%;
+        flex: 1;
         justify-content: center;
         text-align: center;
-        padding: 15px 20px;
-        font-size: 14.5px;
+        padding: 12px 14px;
+        font-size: 13.5px;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+
+      .btn-discover {
+        padding: 12px 16px;
       }
 
       .apple-spec-bar {
         width: 100%;
-        max-width: 340px;
+        max-width: 345px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 7px 10px;
+        padding: 6px 8px;
         border-radius: 999px;
-        margin: 0 auto;
+        margin: 0;
       }
 
       .spec-item {
-        gap: 5px;
-        padding: 4px 4px;
+        gap: 4px;
+        padding: 3px 4px;
         flex: 1;
         justify-content: center;
       }
 
       .spec-icon {
-        width: 13.5px;
-        height: 13.5px;
+        width: 12.5px;
+        height: 12.5px;
       }
 
       .spec-value {
-        font-size: 11px;
+        font-size: 10.5px;
         letter-spacing: -0.01em;
         white-space: nowrap;
       }
 
       .spec-divider {
-        height: 14px;
+        height: 13px;
         margin: 0;
-      }
-
-      .preview-layout-switcher {
-        top: auto;
-        bottom: 14px;
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        width: calc(100% - 24px);
-        max-width: 340px;
-        justify-content: center;
-        padding: 4px;
-        z-index: 100;
-      }
-
-      .switcher-title {
-        display: none;
-      }
-
-      .switcher-tab {
-        font-size: 10px;
-        padding: 6px 8px;
-        flex: 1;
-        justify-content: center;
-        text-align: center;
-        white-space: nowrap;
       }
     }
   </style>
@@ -581,30 +622,20 @@
       </svg>
     </div>
 
-    <!-- ── TWO-COLUMN HERO GRID ── -->
+    <!-- ── TWO-COLUMN HERO GRID (DESKTOP) / LAYERED COMPOSITION (MOBILE) ── -->
     <div class="hero-grid">
 
       <!-- LEFT: TWO-TONE HEADLINE & ACTIONS -->
       <section class="hero-left-content">
-        
-        <div class="brand-eyebrow">
-          <span class="brand-dot"></span>
-          <span>Talent Architecture &bull; 2026 Index</span>
-        </div>
 
         <h1 class="headline-stack">
-          <span class="title-row text-white">WE FIND</span>
-          <span class="title-row text-white">THE</span>
-          <span class="title-row text-dark">CREATIVE</span>
-          <span class="title-row text-dark">EDGE</span>
+          <span class="title-row title-wefind text-white">WE FIND</span> <span class="title-row title-the text-white">THE</span>
+          <span class="title-row title-creative text-dark">CREATIVE</span>
+          <span class="title-row title-edge text-dark">EDGE</span>
         </h1>
 
-        <!-- ── EDITORIAL CONVERSION GROUP (TIMES NEW ROMAN + APPLE BADGES) ── -->
+        <!-- ── EDITORIAL CONVERSION GROUP (APPLE TACTILE BUTTONS + BADGING CAPSULE) ── -->
         <div class="hero-editorial-chunk">
-          <p class="hero-subtitle">
-            Direct access to vetted directors, 3D artists, and cinematographers shaping modern visual culture.
-          </p>
-
           <div class="action-row">
             <a href="#" class="btn-discover" onclick="handleAction('discover', event)">
               <span>Discover Talent</span>
@@ -645,8 +676,14 @@
 
       </section>
 
-      <!-- RIGHT: CHARACTER IMAGE VIEWPORT -->
+      <!-- RIGHT: CHARACTER IMAGE VIEWPORT / MOBILE 3D BACKPLANE STAGE -->
       <section class="hero-right-stage">
+        <!-- Monumental sculpted backdrop display headline for mobile 3D layering (Image 4 reference) -->
+        <div class="mobile-backdrop-headline" aria-hidden="true">
+          <span class="mb-word mb-creative">CREATIVE</span>
+          <span class="mb-word mb-edge">EDGE</span>
+        </div>
+
         <div class="image-container-slot">
           <!-- 3D Drone Pilot Subject: Upward Flight -->
           <img id="heroCharacterSlot" src="assets/upward_flight_pilot_drone.png" alt="Upward Flight: Pilot and Drone">
