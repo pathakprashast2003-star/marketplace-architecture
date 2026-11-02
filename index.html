@@ -224,99 +224,294 @@
       padding: 0;
       overflow: hidden;
       min-height: 100vh;
-      height: 100vh;
       display: flex;
-      align-items: stretch;
+      align-items: center;
       justify-content: center;
       width: 100%;
     }
 
-    .hero-glow-ambient {
+    /* Ambient Atmosphere: Left Lavender Glow & Right Golden Amber Glow */
+    .hero-ambient-left {
       position: absolute;
+      left: -120px;
       top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 1000px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, rgba(79, 70, 229, 0.04) 50%, transparent 70%);
+      transform: translateY(-50%);
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, rgba(167, 139, 250, 0.35) 0%, rgba(124, 58, 237, 0.12) 45%, transparent 70%);
+      filter: blur(60px);
       pointer-events: none;
       z-index: 1;
     }
 
+    .hero-ambient-right {
+      position: absolute;
+      right: -120px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, rgba(251, 146, 60, 0.32) 0%, rgba(245, 158, 11, 0.12) 45%, transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Background Atmospheric Watermark Typography */
+    .hero-watermark-left,
+    .hero-watermark-right {
+      position: absolute;
+      font-family: var(--font-display);
+      font-size: clamp(80px, 8.5vw, 130px);
+      font-weight: 900;
+      letter-spacing: -3px;
+      line-height: 0.85;
+      text-transform: uppercase;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.04;
+      color: #0F172A;
+      user-select: none;
+    }
+
+    .hero-watermark-left {
+      left: 2%;
+      top: 20%;
+      transform: rotate(-8deg);
+    }
+
+    .hero-watermark-right {
+      right: 2%;
+      top: 20%;
+      transform: rotate(8deg);
+    }
+
     .hero-panoramic-stage {
       width: 100%;
+      max-width: 1480px;
+      margin: 0 auto;
       height: 100%;
-      min-height: 100%;
+      min-height: 86vh;
       position: relative;
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      padding: 30px 40px;
+      box-sizing: border-box;
+      z-index: 5;
+    }
+
+    /* Immersive Hero Card Stacks */
+    .hero-stack-left {
+      position: relative;
+      width: 320px;
+      height: 480px;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      padding: 0;
+      flex-shrink: 0;
+      z-index: 10;
     }
 
-    /* Left Wing: Drone Pilot & Filmmaker Duo (2 on Left, New Character Style, 8K Ultra-Sharp) */
-    .hero-wing-left {
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: -30px;
-      width: auto;
-      max-width: 48vw;
+    .hero-stack-right {
+      position: relative;
+      width: 320px;
+      height: 480px;
       display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
-      z-index: 5;
-      pointer-events: none;
-      transform: translateY(24px);
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      z-index: 10;
     }
 
-    .hero-wing-left img {
-      height: 96%;
-      width: auto;
-      max-width: none;
-      max-height: none;
-      object-fit: contain;
-      object-position: left bottom;
-      display: block;
-      image-rendering: -webkit-optimize-contrast;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      animation: floatGentle 6s ease-in-out infinite alternate;
-    }
-
-    /* Right Wing: Creative Tech Trio (3 on Right, New Character Style, 8K Ultra-Sharp) */
-    .hero-wing-right {
+    /* The Poster Cards */
+    .poster-card {
       position: absolute;
-      right: -115px;
-      top: 0;
-      bottom: -30px;
-      width: auto;
-      max-width: 52vw;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      z-index: 5;
-      pointer-events: none;
-      transform: translateY(28px);
+      width: 290px;
+      height: 400px;
+      border-radius: 26px;
+      overflow: hidden;
+      background: #FFFFFF;
+      box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.85) inset;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
     }
 
-    .hero-wing-right img {
-      height: 96%;
-      width: auto;
-      max-width: none;
-      max-height: none;
-      object-fit: contain;
-      object-position: right bottom;
+    .poster-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       image-rendering: -webkit-optimize-contrast;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      animation: floatGentle 6s ease-in-out infinite alternate 1.5s;
     }
 
-    @keyframes floatGentle {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-8px); }
+    /* Left Stack: Background Drone Card + Foreground Filmmaker Card */
+    .card-drone-bg {
+      top: -20px;
+      left: -18px;
+      transform: rotate(-9deg) scale(0.9);
+      opacity: 0.82;
+      z-index: 1;
+      filter: saturate(0.9);
+    }
+
+    .card-filmmaker-fg {
+      top: 24px;
+      left: 10px;
+      transform: rotate(-2deg);
+      z-index: 3;
+    }
+
+    .hero-stack-left:hover .card-drone-bg {
+      transform: rotate(-14deg) translate(-22px, -15px) scale(0.96);
+      opacity: 1;
+      filter: saturate(1);
+      box-shadow: 0 30px 70px -15px rgba(2, 132, 199, 0.35);
+    }
+
+    .hero-stack-left:hover .card-filmmaker-fg {
+      transform: rotate(0deg) translate(8px, -4px) scale(1.03);
+      box-shadow: 0 35px 80px -15px rgba(124, 58, 237, 0.32);
+    }
+
+    /* Right Stack: Background Accent Card + Foreground Designer Card */
+    .card-accent-bg {
+      top: -20px;
+      right: -18px;
+      transform: rotate(9deg) scale(0.9);
+      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 60%, #06B6D4 100%);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #FFFFFF;
+      opacity: 0.85;
+      z-index: 1;
+    }
+
+    .card-accent-bg .accent-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+
+    .card-accent-bg .accent-tag {
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      align-self: flex-start;
+      backdrop-filter: blur(8px);
+    }
+
+    .card-designer-fg {
+      top: 24px;
+      right: 10px;
+      transform: rotate(2deg);
+      z-index: 3;
+    }
+
+    .hero-stack-right:hover .card-accent-bg {
+      transform: rotate(14deg) translate(22px, -15px) scale(0.96);
+      opacity: 1;
+      box-shadow: 0 30px 70px -15px rgba(79, 70, 229, 0.35);
+    }
+
+    .hero-stack-right:hover .card-designer-fg {
+      transform: rotate(0deg) translate(-8px, -4px) scale(1.03);
+      box-shadow: 0 35px 80px -15px rgba(245, 158, 11, 0.32);
+    }
+
+    /* Glass Overlays on Cards */
+    .poster-glass-pill {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #FFFFFF;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      z-index: 5;
+    }
+
+    .poster-glass-pill .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22C55E;
+      box-shadow: 0 0 6px #22C55E;
+    }
+
+    .poster-glass-footer {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      right: 12px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 18px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+      z-index: 5;
+    }
+
+    .poster-meta .name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 13px;
+      color: #0F172A;
+      display: block;
+      line-height: 1.2;
+    }
+
+    .poster-meta .role {
+      font-size: 10px;
+      font-weight: 600;
+      color: #64748B;
+      display: block;
+      margin-top: 1px;
+    }
+
+    .poster-meta-right {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+
+    .poster-meta-right .stars {
+      font-size: 11px;
+      font-weight: 800;
+      color: #F59E0B;
+    }
+
+    .poster-meta-right .badge {
+      background: #DCFCE7;
+      color: #15803D;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
     }
 
     /* Center Stage: Hero Typography & Actions */
@@ -1155,12 +1350,14 @@
       .hero-center-stage {
         max-width: 480px;
       }
-      .hero-wing-left,
-      .hero-wing-right {
-        max-width: 44vw;
+      .hero-stack-left,
+      .hero-stack-right {
+        width: 270px;
+        height: 420px;
       }
-      .hero-wing-right {
-        right: -110px;
+      .poster-card {
+        width: 250px;
+        height: 350px;
       }
     }
 
@@ -1168,42 +1365,38 @@
       .hero-wrapper {
         min-height: auto;
         height: auto;
-        padding: 40px 0 20px 0;
+        padding: 50px 0 30px 0;
       }
       .hero-panoramic-stage {
         flex-direction: column;
-        gap: 24px;
+        gap: 36px;
         height: auto;
         min-height: auto;
+        padding: 20px 16px;
       }
-      .hero-wing-left,
-      .hero-wing-right {
+      .hero-ambient-left,
+      .hero-ambient-right,
+      .hero-watermark-left,
+      .hero-watermark-right {
+        display: none;
+      }
+      .hero-stack-left,
+      .hero-stack-right {
         position: relative;
         width: 100%;
-        max-width: 420px;
-        height: auto;
-        justify-content: center;
-        transform: none;
-        right: auto;
-        left: auto;
-        top: auto;
-        bottom: auto;
+        max-width: 320px;
+        height: 420px;
+        margin: 0 auto;
       }
-      .hero-wing-left img,
-      .hero-wing-right img {
-        width: 100%;
-        height: auto;
-        max-height: 460px;
-      }
-      .hero-wing-left {
+      .hero-stack-left {
         order: 2;
       }
-      .hero-wing-right {
+      .hero-stack-right {
         order: 3;
       }
       .hero-center-stage {
         order: 1;
-        padding: 20px 16px;
+        padding: 10px 16px;
       }
       .disciplines-grid {
         grid-template-columns: 1fr 1fr;
@@ -1226,13 +1419,57 @@
 <body>
   <main>
     <!-- FULL-SCREEN PANORAMIC HERO SECTION (EXPANDED TO FULL SCREEN) -->
+    <!-- FULL-SCREEN PANORAMIC HERO SECTION WITH IMMERSED POSTER STACKS -->
     <section class="hero-wrapper">
+      <!-- Ambient Atmospheric Lighting Bleeds -->
+      <div class="hero-ambient-left"></div>
+      <div class="hero-ambient-right"></div>
       <div class="hero-glow-ambient"></div>
 
+      <!-- Watermark Atmosphere Typography -->
+      <div class="hero-watermark-left">FILM<br>VISION</div>
+      <div class="hero-watermark-right">DESIGN<br>MOTION</div>
+
       <div class="hero-panoramic-stage">
-        <!-- LEFT WING: 2 CREATORS (DRONE PILOT + FILMMAKER, NEW CHARACTER STYLE) -->
-        <div class="hero-wing-left">
-          <img src="assets/duo_creators_left_wing_clean_8k.png" alt="Commercial drone pilot and filmmaker duo" width="2304" height="4128">
+        <!-- LEFT WING: LAYERED CREATOR POSTER STACK (DRONE + FILMMAKER) -->
+        <div class="hero-stack-left">
+          <!-- Background Peeking Card: Drone Pilot -->
+          <div class="poster-card card-drone-bg" onclick="filterCategory('Drone & Aerial')" title="Click to view Drone & Aerial Pilots">
+            <img src="assets/character_drone_pilot.jpg" alt="Commercial Drone Pilot">
+            <div class="poster-glass-pill">
+              <span class="pill-dot" style="background:#0284C7; box-shadow:0 0 6px #0284C7;"></span>
+              <span>AERIAL FPV</span>
+            </div>
+            <div class="poster-glass-footer">
+              <div class="poster-meta">
+                <span class="name">Kai Sorensen</span>
+                <span class="role">Part 107 Pilot • FPV</span>
+              </div>
+              <div class="poster-meta-right">
+                <span class="stars">★ 4.95</span>
+                <span class="badge">45 Pilots</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Foreground Hero Card: Commercial Filmmaker -->
+          <div class="poster-card card-filmmaker-fg" onclick="filterCategory('Cinematography')" title="Click to view Commercial Directors">
+            <img src="assets/character_filmmaker.jpg" alt="Commercial Filmmaker and Director">
+            <div class="poster-glass-pill">
+              <span class="pill-dot"></span>
+              <span>DIRECTING & VIDEO</span>
+            </div>
+            <div class="poster-glass-footer">
+              <div class="poster-meta">
+                <span class="name">Marcus Chen</span>
+                <span class="role">DP • ARRI / RED</span>
+              </div>
+              <div class="poster-meta-right">
+                <span class="stars">★ 4.98</span>
+                <span class="badge">Available</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- CENTER STAGE: HERO HEADLINE, SEARCH & CTAs -->
@@ -1266,9 +1503,33 @@
           </div>
         </div>
 
-        <!-- RIGHT WING: 3 CREATORS (CREATIVE TECH TRIO, NEW CHARACTER STYLE) -->
-        <div class="hero-wing-right">
-          <img src="assets/trio_creators_right_wing_clean_8k.png" alt="Creative Tech Trio: digital illustrator, video producer, and 3D designer" width="2304" height="4128">
+        <!-- RIGHT WING: LAYERED CREATOR POSTER STACK (DESIGN & 3D) -->
+        <div class="hero-stack-right">
+          <!-- Background Peeking Card: Creative Roster -->
+          <div class="poster-card card-accent-bg" onclick="filterCategory('3D & CGI')" title="Click to view 3D Motion Artists">
+            <span class="accent-tag">🪐 VETTED TALENT</span>
+            <div class="accent-title">500+ Top Commercial Creators</div>
+            <div style="font-size:11px; opacity:0.9; font-weight:700;">Zero Escrow Traps • Direct Booking</div>
+          </div>
+
+          <!-- Foreground Hero Card: 3D & Brand Designer -->
+          <div class="poster-card card-designer-fg" onclick="filterCategory('3D & CGI')" title="Click to view 3D Artists & Brand Designers">
+            <img src="assets/character_designer.jpg" alt="3D Artist and Brand Designer">
+            <div class="poster-glass-pill">
+              <span class="pill-dot"></span>
+              <span>3D & BRAND DESIGN</span>
+            </div>
+            <div class="poster-glass-footer">
+              <div class="poster-meta">
+                <span class="name">Elena Rostova</span>
+                <span class="role">3D Motion • Octane / C4D</span>
+              </div>
+              <div class="poster-meta-right">
+                <span class="stars">★ 5.0</span>
+                <span class="badge">Available</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
