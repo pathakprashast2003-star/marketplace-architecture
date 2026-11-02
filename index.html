@@ -18,12 +18,12 @@
     }
 
     :root {
-      /* Deep Royal Sapphire & Clean White (Starbucks Split Aesthetic) */
+      /* Refined Split-Screen Palette */
       --outer-frame-bg: #071938;
       
       --split-left-bg: #FFFFFF;
-      --split-right-bg: #1046A0;
-      --split-right-gradient: radial-gradient(circle at 65% 35%, #1D5FD4 0%, #0F3C8C 60%, #082459 100%);
+      --split-right-bg: #1545A8;
+      --split-right-gradient: radial-gradient(circle at 65% 35%, #2264E5 0%, #1547A8 55%, #0B2B6E 100%);
       
       --text-dark: #0A1424;
       --text-muted: #53647E;
@@ -101,10 +101,10 @@
       box-shadow: 0 2px 10px rgba(37, 99, 235, 0.5);
     }
 
-    /* ── MAIN FLOATING CARD (STARBUCKS SPLIT HERO CANVAS) ── */
+    /* ── MAIN FLOATING CARD (SPLIT-SCREEN CANVAS) ── */
     .starbucks-split-card {
-      width: min(1480px, calc(100vw - 56px));
-      height: calc(100vh - 56px);
+      width: min(1500px, calc(100vw - 52px));
+      height: calc(100vh - 52px);
       border-radius: 36px;
       overflow: hidden;
       display: grid;
@@ -116,7 +116,7 @@
       border: 1.5px solid rgba(255, 255, 255, 0.18);
     }
 
-    /* Edge Carousel Navigation Arrows (< on left, > on right) */
+    /* Edge Navigation Arrows (< on left, > on right) */
     .edge-nav-arrow {
       position: absolute;
       top: 50%;
@@ -124,7 +124,7 @@
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(0, 0, 0, 0.08);
       color: var(--text-dark);
@@ -149,8 +149,8 @@
 
     .edge-nav-arrow.right {
       right: 20px;
-      background: rgba(10, 25, 60, 0.7);
-      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(10, 25, 60, 0.75);
+      border-color: rgba(255, 255, 255, 0.25);
       color: #FFFFFF;
     }
 
@@ -158,7 +158,7 @@
       background: rgba(10, 25, 60, 0.95);
     }
 
-    /* ── LEFT HALF: CRISP WHITE BRAND CANVAS ── */
+    /* ── LEFT HALF: CRISP WHITE CANVAS ── */
     .split-col-left {
       background: var(--split-left-bg);
       padding: 44px 54px;
@@ -194,11 +194,11 @@
       color: var(--blue-accent);
     }
 
-    /* Vertical Navigation list on the far left (Starbucks Lookbook style) */
+    /* Side vertical category links */
     .side-nav-links {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
       position: absolute;
       top: 130px;
       left: 54px;
@@ -229,11 +229,11 @@
       border-radius: 2px;
     }
 
-    /* Left Editorial Content */
+    /* Left Editorial Core Content */
     .left-editorial-main {
       margin-top: auto;
       margin-bottom: auto;
-      padding-left: 80px; /* leaves breathing room for vertical nav */
+      padding-left: 90px;
       max-width: 480px;
     }
 
@@ -365,7 +365,7 @@
       align-items: center;
       justify-content: flex-end;
       gap: 24px;
-      margin-right: 280px; /* leaves room for layout switcher */
+      margin-right: 260px;
       position: relative;
       z-index: 5;
     }
@@ -465,8 +465,22 @@
       box-shadow: 0 0 8px #10B981;
     }
 
+    /* ── ATMOSPHERIC CLOUD FLOOR BRIDGING THE SEAM ── */
+    .seam-cloud-floor {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 720px;
+      height: 220px;
+      background: radial-gradient(ellipse at 50% 100%, rgba(255, 255, 255, 0.4) 0%, rgba(147, 197, 253, 0.2) 45%, transparent 75%);
+      filter: blur(32px);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 8;
+    }
+
     /* ── GIANT SPLIT WATERMARK TYPOGRAPHY (STARBUCKS DNA) ── */
-    /* Spans right across the bottom seam! Black on white side, translucent white on blue side */
     .giant-split-watermark {
       position: absolute;
       bottom: 24px;
@@ -486,7 +500,7 @@
       font-size: clamp(80px, 9.5vw, 150px);
       font-weight: 900;
       letter-spacing: -0.04em;
-      color: rgba(10, 20, 36, 0.08);
+      color: rgba(10, 20, 36, 0.06);
       line-height: 0.8;
     }
 
@@ -500,7 +514,8 @@
       text-align: right;
     }
 
-    /* ── THE CENTER SPLIT STRADDLING TALENT ── */
+    /* ── THE CENTER SPLIT STRADDLING HERO TALENT (UPWARD FLIGHT ASSET) ── */
+    /* Exact same beloved asset from Dunes and Nike Cloud! */
     .center-hero-talent-stage {
       position: absolute;
       bottom: 0;
@@ -520,13 +535,13 @@
       max-width: 100%;
       object-fit: contain;
       object-position: bottom center;
-      filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.45));
+      filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.38));
       animation: floatSmooth 6s ease-in-out infinite alternate;
     }
 
     @keyframes floatSmooth {
-      0% { transform: translateY(0px) rotate(0deg); }
-      100% { transform: translateY(-7px) rotate(-0.5deg); }
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-7px); }
     }
 
     /* ── RESPONSIVE MOBILE ADJUSTMENTS ── */
@@ -663,8 +678,8 @@
         </a>
       </header>
 
-      <!-- Vertical Lookbook Navigation Links (from reference) -->
-      <nav class="side-nav-links" aria-label="Secondary Navigation">
+      <!-- Vertical Category Links -->
+      <nav class="side-nav-links" aria-label="Categories">
         <a href="#featured" class="side-nav-item active">Featured</a>
         <a href="#directors" class="side-nav-item">Directors</a>
         <a href="#cinema" class="side-nav-item">Cinema</a>
@@ -677,7 +692,7 @@
         
         <div class="headline-duo">
           <span class="headline-line-bold">CREATIVE</span>
-          <span class="headline-line-italic">Fusion</span>
+          <span class="headline-line-italic">Fusion.</span>
         </div>
 
         <div class="price-rate-callout">
@@ -700,7 +715,7 @@
     <!-- ── RIGHT HALF: DEEP SAPPHIRE BLUE CANVAS ── -->
     <section class="split-col-right">
       
-      <nav class="right-header-tools" aria-label="Primary Navigation">
+      <nav class="right-header-tools" aria-label="Navigation">
         <a href="#menu" class="right-nav-item">Roster</a>
         <a href="#orders" class="right-nav-item">Productions</a>
         <a href="#trending" class="right-nav-item">Trending</a>
@@ -729,9 +744,12 @@
       <span class="watermark-right-word">US.</span>
     </div>
 
-    <!-- ── THE CENTER SPLIT STRADDLING HERO TALENT ── -->
+    <!-- Soft Atmospheric Seam Cloud Mist -->
+    <div class="seam-cloud-floor" aria-hidden="true"></div>
+
+    <!-- ── THE HERO TALENT (UPWARD FLIGHT ASSET STRADDLING THE SEAM) ── -->
     <div class="center-hero-talent-stage">
-      <img src="assets/character_drone_operator_final.png" alt="Featured Aerial Cinematographer & Drone Director" class="talent-seam-image">
+      <img src="assets/upward_flight_pilot_drone.png" alt="Featured Aerial Cinematographer & Drone Director" class="talent-seam-image">
     </div>
 
   </main>
