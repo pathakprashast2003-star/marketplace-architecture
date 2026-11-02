@@ -245,78 +245,255 @@
 
     .hero-panoramic-stage {
       width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
       height: 100%;
       min-height: 100%;
       position: relative;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 0;
+      justify-content: space-between;
+      padding: 24px 32px;
+      box-sizing: border-box;
+      gap: 20px;
     }
 
-    /* Left Wing: Drone Pilot & Photographer Pinned to Left Edge (One size smaller, balanced framing) */
+    /* Floating Talent Cards (Hero Wings in Modern Character Style) */
     .hero-wing-left {
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: -30px;
-      width: auto;
-      max-width: 48vw;
       display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
-      z-index: 5;
-      pointer-events: none;
-      transform: translateY(24px);
+      flex-direction: column;
+      align-items: flex-start;
+      z-index: 10;
+      flex: 0 0 320px;
+      position: relative;
+      pointer-events: auto;
     }
 
-    .hero-wing-left img {
-      height: 96%;
-      width: auto;
-      max-width: none;
-      max-height: none;
-      object-fit: contain;
-      object-position: left bottom;
-      display: block;
-      image-rendering: -webkit-optimize-contrast;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      animation: floatGentle 6s ease-in-out infinite alternate;
-    }
-
-    /* Right Wing: Creative Tech Trio Pinned to Right Edge (One size smaller, shifted right) */
     .hero-wing-right {
-      position: absolute;
-      right: -115px;
-      top: 0;
-      bottom: -30px;
-      width: auto;
-      max-width: 52vw;
       display: flex;
+      flex-direction: column;
       align-items: flex-end;
-      justify-content: flex-end;
-      z-index: 5;
-      pointer-events: none;
-      transform: translateY(28px);
+      z-index: 10;
+      flex: 0 0 320px;
+      position: relative;
+      pointer-events: auto;
     }
 
-    .hero-wing-right img {
-      height: 96%;
-      width: auto;
-      max-width: none;
-      max-height: none;
-      object-fit: contain;
-      object-position: right bottom;
+    .hero-talent-card {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 28px;
+      background: #FFFFFF;
+      box-shadow: 0 24px 50px -12px rgba(15, 23, 42, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.9) inset, 0 2px 6px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-talent-card .card-inner {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      border-radius: 28px;
+    }
+
+    .hero-talent-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       image-rendering: -webkit-optimize-contrast;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      animation: floatGentle 6s ease-in-out infinite alternate 1.5s;
     }
 
-    @keyframes floatGentle {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-8px); }
+    .card-filmmaker {
+      transform: rotate(-2.5deg);
+      animation: floatCardLeft 7s ease-in-out infinite alternate;
+    }
+
+    .card-designer {
+      transform: rotate(2.5deg);
+      animation: floatCardRight 7s ease-in-out infinite alternate 1.5s;
+    }
+
+    .card-filmmaker:hover {
+      transform: rotate(0deg) translateY(-8px) scale(1.03) !important;
+      box-shadow: 0 32px 65px -12px rgba(124, 58, 237, 0.28), 0 0 0 2px rgba(124, 58, 237, 0.6);
+    }
+
+    .card-designer:hover {
+      transform: rotate(0deg) translateY(-8px) scale(1.03) !important;
+      box-shadow: 0 32px 65px -12px rgba(245, 158, 11, 0.28), 0 0 0 2px rgba(245, 158, 11, 0.6);
+    }
+
+    .hero-talent-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-glass-pill {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(15, 23, 42, 0.76);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: #FFFFFF;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 2;
+    }
+
+    .card-glass-pill .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22C55E;
+      box-shadow: 0 0 8px #22C55E;
+    }
+
+    .card-glass-footer {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
+      z-index: 2;
+    }
+
+    .creator-mini-meta .creator-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 14px;
+      color: #0F172A;
+      display: block;
+      line-height: 1.2;
+    }
+
+    .creator-mini-meta .creator-role {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748B;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .creator-mini-rating {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+    }
+
+    .creator-mini-rating .stars {
+      font-size: 12px;
+      font-weight: 800;
+      color: #F59E0B;
+    }
+
+    .creator-mini-rating .avail-badge {
+      background: #DCFCE7;
+      color: #15803D;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+    }
+
+    /* Satellite Badge for Aerial / Drone */
+    .hero-satellite-card {
+      margin-top: 14px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-soft);
+      border-radius: 18px;
+      padding: 8px 14px 8px 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      cursor: pointer;
+      pointer-events: auto;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: floatCardLeft 7s ease-in-out infinite alternate 0.8s;
+    }
+
+    .hero-satellite-card:hover {
+      transform: translateY(-4px) scale(1.04) !important;
+      box-shadow: 0 18px 36px rgba(14, 165, 233, 0.22);
+      border-color: #38BDF8;
+    }
+
+    .hero-satellite-card .sat-thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .hero-satellite-card .sat-info {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .hero-satellite-card .sat-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.2;
+    }
+
+    .hero-satellite-card .sat-status {
+      font-size: 11px;
+      color: #0284C7;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 2px;
+    }
+
+    .sat-status .live-dot-cyan {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #0284C7;
+      box-shadow: 0 0 6px #0284C7;
+    }
+
+    @keyframes floatCardLeft {
+      0% { transform: rotate(-2.5deg) translateY(0px); }
+      100% { transform: rotate(-1.5deg) translateY(-12px); }
+    }
+
+    @keyframes floatCardRight {
+      0% { transform: rotate(2.5deg) translateY(0px); }
+      100% { transform: rotate(1.5deg) translateY(-12px); }
     }
 
     /* Center Stage: Hero Typography & Actions */
@@ -619,9 +796,9 @@
     }
 
     .discipline-avatar {
-      width: 72px;
-      height: 72px;
-      border-radius: 20px;
+      width: 76px;
+      height: 76px;
+      border-radius: 22px;
       margin: 0 auto 16px auto;
       display: flex;
       align-items: center;
@@ -630,10 +807,19 @@
       background: var(--purple-light);
       border: 1px solid rgba(124, 58, 237, 0.15);
       transition: transform 0.3s ease;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+    .discipline-avatar-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .discipline-card:hover .discipline-avatar {
-      transform: scale(1.1) rotate(4deg);
+      transform: scale(1.08) rotate(3deg);
     }
 
     .discipline-card-title {
@@ -1144,14 +1330,14 @@
     /* Responsive */
     @media (max-width: 1320px) and (min-width: 1101px) {
       .hero-center-stage {
-        max-width: 480px;
+        max-width: 520px;
       }
       .hero-wing-left,
       .hero-wing-right {
-        max-width: 44vw;
+        flex: 0 0 280px;
       }
-      .hero-wing-right {
-        right: -110px;
+      .hero-talent-card {
+        max-width: 280px;
       }
     }
 
@@ -1163,28 +1349,28 @@
       }
       .hero-panoramic-stage {
         flex-direction: column;
-        gap: 24px;
+        gap: 32px;
         height: auto;
         min-height: auto;
+        padding: 20px 16px;
       }
       .hero-wing-left,
       .hero-wing-right {
         position: relative;
         width: 100%;
-        max-width: 420px;
+        max-width: 320px;
         height: auto;
+        align-items: center;
         justify-content: center;
         transform: none;
-        right: auto;
-        left: auto;
-        top: auto;
-        bottom: auto;
       }
-      .hero-wing-left img,
-      .hero-wing-right img {
-        width: 100%;
-        height: auto;
-        max-height: 460px;
+      .card-filmmaker,
+      .card-designer {
+        transform: none !important;
+        animation: none;
+      }
+      .hero-satellite-card {
+        animation: none;
       }
       .hero-wing-left {
         order: 2;
@@ -1221,9 +1407,35 @@
       <div class="hero-glow-ambient"></div>
 
       <div class="hero-panoramic-stage">
-        <!-- LEFT WING: PINNED TO FAR LEFT EDGE OF SCREEN (8K ULTRA-SHARP) -->
+        <!-- LEFT WING: FLOATING TALENT CARD (COMMERCIAL FILMMAKER) -->
         <div class="hero-wing-left">
-          <img src="assets/aa_8k.png" alt="Commercial drone pilot and photographer" width="990" height="1589">
+          <div class="hero-talent-card card-filmmaker" onclick="filterCategory('Cinematography')" role="button" tabindex="0" title="Click to view Commercial Directors">
+            <div class="card-inner">
+              <img src="assets/character_filmmaker.jpg" alt="Commercial Filmmaker and Director">
+              <div class="card-glass-pill">
+                <span class="live-dot"></span>
+                <span>DIRECTING & VIDEO</span>
+              </div>
+              <div class="card-glass-footer">
+                <div class="creator-mini-meta">
+                  <span class="creator-name">Marcus Chen</span>
+                  <span class="creator-role">Commercial DP • ARRI / RED</span>
+                </div>
+                <div class="creator-mini-rating">
+                  <span class="stars">★ 4.98</span>
+                  <span class="avail-badge">Available</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- SATELLITE BADGE: DRONE PILOT -->
+          <div class="hero-satellite-card sat-drone" onclick="filterCategory('Drone & Aerial')" role="button" tabindex="0" title="Click to view Aerial & FPV Pilots">
+            <img src="assets/character_drone_pilot.jpg" alt="Aerial Drone Pilot thumbnail" class="sat-thumb">
+            <div class="sat-info">
+              <span class="sat-title">🚁 Drone & FPV Pilots</span>
+              <span class="sat-status"><span class="live-dot-cyan"></span> 45 Verified Operators</span>
+            </div>
+          </div>
         </div>
 
         <!-- CENTER STAGE: HERO HEADLINE, SEARCH & CTAs -->
@@ -1257,9 +1469,27 @@
           </div>
         </div>
 
-        <!-- RIGHT WING: PINNED TO FAR RIGHT EDGE OF SCREEN (8K ULTRA-SHARP) -->
+        <!-- RIGHT WING: FLOATING TALENT CARD (3D & BRAND DESIGNER) -->
         <div class="hero-wing-right">
-          <img src="assets/creative_tech_trio_illustration_8k.png" alt="Creative Tech Trio with tablets and laptop" width="1024" height="1536">
+          <div class="hero-talent-card card-designer" onclick="filterCategory('3D & CGI')" role="button" tabindex="0" title="Click to view 3D Artists & Brand Designers">
+            <div class="card-inner">
+              <img src="assets/character_designer.jpg" alt="3D Artist and Brand Designer">
+              <div class="card-glass-pill">
+                <span class="live-dot"></span>
+                <span>3D & BRAND DESIGN</span>
+              </div>
+              <div class="card-glass-footer">
+                <div class="creator-mini-meta">
+                  <span class="creator-name">Elena Rostova</span>
+                  <span class="creator-role">3D Motion Lead • Octane / C4D</span>
+                </div>
+                <div class="creator-mini-rating">
+                  <span class="stars">★ 5.0</span>
+                  <span class="avail-badge">Available</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1314,7 +1544,9 @@
 
       <div class="disciplines-grid">
         <div class="discipline-card" onclick="filterCategory('Cinematography')">
-          <div class="discipline-avatar">🎬</div>
+          <div class="discipline-avatar discipline-avatar-art">
+            <img src="assets/character_filmmaker.jpg" alt="Commercial Cinematography Character">
+          </div>
           <h3 class="discipline-card-title">Cinematography</h3>
           <p class="discipline-card-desc">Commercial DPs, camera operators & gaffers for TVCs and campaigns.</p>
         </div>
@@ -1326,13 +1558,17 @@
         </div>
 
         <div class="discipline-card" onclick="filterCategory('3D & CGI')">
-          <div class="discipline-avatar">🪐</div>
+          <div class="discipline-avatar discipline-avatar-art">
+            <img src="assets/character_designer.jpg" alt="3D & Brand Design Character">
+          </div>
           <h3 class="discipline-card-title">3D Motion & CGI</h3>
           <p class="discipline-card-desc">Houdini, Cinema 4D, and Unreal Engine product launch visualizers.</p>
         </div>
 
         <div class="discipline-card" onclick="filterCategory('Drone & Aerial')">
-          <div class="discipline-avatar">🛸</div>
+          <div class="discipline-avatar discipline-avatar-art">
+            <img src="assets/character_drone_pilot.jpg" alt="Drone Pilot Character">
+          </div>
           <h3 class="discipline-card-title">Drone & FPV Cinema</h3>
           <p class="discipline-card-desc">Part 107 heavy-lift and high-speed FPV aerial cinematography.</p>
         </div>
