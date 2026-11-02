@@ -245,255 +245,78 @@
 
     .hero-panoramic-stage {
       width: 100%;
-      max-width: 1440px;
-      margin: 0 auto;
       height: 100%;
       min-height: 100%;
       position: relative;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 24px 32px;
-      box-sizing: border-box;
-      gap: 20px;
+      justify-content: center;
+      padding: 0;
     }
 
-    /* Floating Talent Cards (Hero Wings in Modern Character Style) */
+    /* Left Wing: Drone Pilot & Filmmaker Duo (2 on Left, New Character Style, 8K Ultra-Sharp) */
     .hero-wing-left {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: -30px;
+      width: auto;
+      max-width: 48vw;
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      z-index: 10;
-      flex: 0 0 320px;
-      position: relative;
-      pointer-events: auto;
-    }
-
-    .hero-wing-right {
-      display: flex;
-      flex-direction: column;
       align-items: flex-end;
-      z-index: 10;
-      flex: 0 0 320px;
-      position: relative;
-      pointer-events: auto;
+      justify-content: flex-start;
+      z-index: 5;
+      pointer-events: none;
+      transform: translateY(24px);
     }
 
-    .hero-talent-card {
-      width: 100%;
-      max-width: 320px;
-      border-radius: 28px;
-      background: #FFFFFF;
-      box-shadow: 0 24px 50px -12px rgba(15, 23, 42, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.9) inset, 0 2px 6px rgba(0, 0, 0, 0.04);
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      pointer-events: auto;
-      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .hero-talent-card .card-inner {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      overflow: hidden;
-      border-radius: 28px;
-    }
-
-    .hero-talent-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .hero-wing-left img {
+      height: 96%;
+      width: auto;
+      max-width: none;
+      max-height: none;
+      object-fit: contain;
+      object-position: left bottom;
       display: block;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       image-rendering: -webkit-optimize-contrast;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      animation: floatGentle 6s ease-in-out infinite alternate;
     }
 
-    .card-filmmaker {
-      transform: rotate(-2.5deg);
-      animation: floatCardLeft 7s ease-in-out infinite alternate;
-    }
-
-    .card-designer {
-      transform: rotate(2.5deg);
-      animation: floatCardRight 7s ease-in-out infinite alternate 1.5s;
-    }
-
-    .card-filmmaker:hover {
-      transform: rotate(0deg) translateY(-8px) scale(1.03) !important;
-      box-shadow: 0 32px 65px -12px rgba(124, 58, 237, 0.28), 0 0 0 2px rgba(124, 58, 237, 0.6);
-    }
-
-    .card-designer:hover {
-      transform: rotate(0deg) translateY(-8px) scale(1.03) !important;
-      box-shadow: 0 32px 65px -12px rgba(245, 158, 11, 0.28), 0 0 0 2px rgba(245, 158, 11, 0.6);
-    }
-
-    .hero-talent-card:hover img {
-      transform: scale(1.05);
-    }
-
-    .card-glass-pill {
+    /* Right Wing: Creative Tech Trio (3 on Right, New Character Style, 8K Ultra-Sharp) */
+    .hero-wing-right {
       position: absolute;
-      top: 16px;
-      left: 16px;
-      background: rgba(15, 23, 42, 0.76);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      color: #FFFFFF;
-      padding: 6px 14px;
-      border-radius: var(--radius-pill);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      z-index: 2;
-    }
-
-    .card-glass-pill .live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #22C55E;
-      box-shadow: 0 0 8px #22C55E;
-    }
-
-    .card-glass-footer {
-      position: absolute;
-      bottom: 14px;
-      left: 14px;
-      right: 14px;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
-      padding: 12px 16px;
+      right: -115px;
+      top: 0;
+      bottom: -30px;
+      width: auto;
+      max-width: 52vw;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
-      z-index: 2;
-    }
-
-    .creator-mini-meta .creator-name {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 14px;
-      color: #0F172A;
-      display: block;
-      line-height: 1.2;
-    }
-
-    .creator-mini-meta .creator-role {
-      font-size: 11px;
-      font-weight: 600;
-      color: #64748B;
-      display: block;
-      margin-top: 2px;
-    }
-
-    .creator-mini-rating {
-      text-align: right;
-      display: flex;
-      flex-direction: column;
       align-items: flex-end;
-      gap: 3px;
+      justify-content: flex-end;
+      z-index: 5;
+      pointer-events: none;
+      transform: translateY(28px);
     }
 
-    .creator-mini-rating .stars {
-      font-size: 12px;
-      font-weight: 800;
-      color: #F59E0B;
+    .hero-wing-right img {
+      height: 96%;
+      width: auto;
+      max-width: none;
+      max-height: none;
+      object-fit: contain;
+      object-position: right bottom;
+      display: block;
+      image-rendering: -webkit-optimize-contrast;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      animation: floatGentle 6s ease-in-out infinite alternate 1.5s;
     }
 
-    .creator-mini-rating .avail-badge {
-      background: #DCFCE7;
-      color: #15803D;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 0.4px;
-      padding: 2px 7px;
-      border-radius: var(--radius-pill);
-      text-transform: uppercase;
-    }
-
-    /* Satellite Badge for Aerial / Drone */
-    .hero-satellite-card {
-      margin-top: 14px;
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border-soft);
-      border-radius: 18px;
-      padding: 8px 14px 8px 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
-      cursor: pointer;
-      pointer-events: auto;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      animation: floatCardLeft 7s ease-in-out infinite alternate 0.8s;
-    }
-
-    .hero-satellite-card:hover {
-      transform: translateY(-4px) scale(1.04) !important;
-      box-shadow: 0 18px 36px rgba(14, 165, 233, 0.22);
-      border-color: #38BDF8;
-    }
-
-    .hero-satellite-card .sat-thumb {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-
-    .hero-satellite-card .sat-info {
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-    }
-
-    .hero-satellite-card .sat-title {
-      font-size: 12px;
-      font-weight: 800;
-      color: #0F172A;
-      line-height: 1.2;
-    }
-
-    .hero-satellite-card .sat-status {
-      font-size: 11px;
-      color: #0284C7;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 2px;
-    }
-
-    .sat-status .live-dot-cyan {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #0284C7;
-      box-shadow: 0 0 6px #0284C7;
-    }
-
-    @keyframes floatCardLeft {
-      0% { transform: rotate(-2.5deg) translateY(0px); }
-      100% { transform: rotate(-1.5deg) translateY(-12px); }
-    }
-
-    @keyframes floatCardRight {
-      0% { transform: rotate(2.5deg) translateY(0px); }
-      100% { transform: rotate(1.5deg) translateY(-12px); }
+    @keyframes floatGentle {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-8px); }
     }
 
     /* Center Stage: Hero Typography & Actions */
@@ -1330,14 +1153,14 @@
     /* Responsive */
     @media (max-width: 1320px) and (min-width: 1101px) {
       .hero-center-stage {
-        max-width: 520px;
+        max-width: 480px;
       }
       .hero-wing-left,
       .hero-wing-right {
-        flex: 0 0 280px;
+        max-width: 44vw;
       }
-      .hero-talent-card {
-        max-width: 280px;
+      .hero-wing-right {
+        right: -110px;
       }
     }
 
@@ -1349,28 +1172,28 @@
       }
       .hero-panoramic-stage {
         flex-direction: column;
-        gap: 32px;
+        gap: 24px;
         height: auto;
         min-height: auto;
-        padding: 20px 16px;
       }
       .hero-wing-left,
       .hero-wing-right {
         position: relative;
         width: 100%;
-        max-width: 320px;
+        max-width: 420px;
         height: auto;
-        align-items: center;
         justify-content: center;
         transform: none;
+        right: auto;
+        left: auto;
+        top: auto;
+        bottom: auto;
       }
-      .card-filmmaker,
-      .card-designer {
-        transform: none !important;
-        animation: none;
-      }
-      .hero-satellite-card {
-        animation: none;
+      .hero-wing-left img,
+      .hero-wing-right img {
+        width: 100%;
+        height: auto;
+        max-height: 460px;
       }
       .hero-wing-left {
         order: 2;
@@ -1407,35 +1230,9 @@
       <div class="hero-glow-ambient"></div>
 
       <div class="hero-panoramic-stage">
-        <!-- LEFT WING: FLOATING TALENT CARD (COMMERCIAL FILMMAKER) -->
+        <!-- LEFT WING: 2 CREATORS (DRONE PILOT + FILMMAKER, NEW CHARACTER STYLE) -->
         <div class="hero-wing-left">
-          <div class="hero-talent-card card-filmmaker" onclick="filterCategory('Cinematography')" role="button" tabindex="0" title="Click to view Commercial Directors">
-            <div class="card-inner">
-              <img src="assets/character_filmmaker.jpg" alt="Commercial Filmmaker and Director">
-              <div class="card-glass-pill">
-                <span class="live-dot"></span>
-                <span>DIRECTING & VIDEO</span>
-              </div>
-              <div class="card-glass-footer">
-                <div class="creator-mini-meta">
-                  <span class="creator-name">Marcus Chen</span>
-                  <span class="creator-role">Commercial DP • ARRI / RED</span>
-                </div>
-                <div class="creator-mini-rating">
-                  <span class="stars">★ 4.98</span>
-                  <span class="avail-badge">Available</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- SATELLITE BADGE: DRONE PILOT -->
-          <div class="hero-satellite-card sat-drone" onclick="filterCategory('Drone & Aerial')" role="button" tabindex="0" title="Click to view Aerial & FPV Pilots">
-            <img src="assets/character_drone_pilot.jpg" alt="Aerial Drone Pilot thumbnail" class="sat-thumb">
-            <div class="sat-info">
-              <span class="sat-title">🚁 Drone & FPV Pilots</span>
-              <span class="sat-status"><span class="live-dot-cyan"></span> 45 Verified Operators</span>
-            </div>
-          </div>
+          <img src="assets/duo_creators_left_wing_clean_8k.png" alt="Commercial drone pilot and filmmaker duo" width="2304" height="4128">
         </div>
 
         <!-- CENTER STAGE: HERO HEADLINE, SEARCH & CTAs -->
@@ -1469,27 +1266,9 @@
           </div>
         </div>
 
-        <!-- RIGHT WING: FLOATING TALENT CARD (3D & BRAND DESIGNER) -->
+        <!-- RIGHT WING: 3 CREATORS (CREATIVE TECH TRIO, NEW CHARACTER STYLE) -->
         <div class="hero-wing-right">
-          <div class="hero-talent-card card-designer" onclick="filterCategory('3D & CGI')" role="button" tabindex="0" title="Click to view 3D Artists & Brand Designers">
-            <div class="card-inner">
-              <img src="assets/character_designer.jpg" alt="3D Artist and Brand Designer">
-              <div class="card-glass-pill">
-                <span class="live-dot"></span>
-                <span>3D & BRAND DESIGN</span>
-              </div>
-              <div class="card-glass-footer">
-                <div class="creator-mini-meta">
-                  <span class="creator-name">Elena Rostova</span>
-                  <span class="creator-role">3D Motion Lead • Octane / C4D</span>
-                </div>
-                <div class="creator-mini-rating">
-                  <span class="stars">★ 5.0</span>
-                  <span class="avail-badge">Available</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <img src="assets/trio_creators_right_wing_clean_8k.png" alt="Creative Tech Trio: digital illustrator, video producer, and 3D designer" width="2304" height="4128">
         </div>
       </div>
     </section>
