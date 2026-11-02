@@ -18,15 +18,15 @@
     }
 
     :root {
-      /* Refined Split-Screen Palette */
+      /* Royal Sapphire & Clean White (Matcha Fusion Asymmetric Split) */
       --outer-frame-bg: #071938;
       
       --split-left-bg: #FFFFFF;
-      --split-right-bg: #1545A8;
-      --split-right-gradient: radial-gradient(circle at 65% 35%, #2264E5 0%, #1547A8 55%, #0B2B6E 100%);
+      --split-right-bg: #1145A3;
+      --split-right-gradient: radial-gradient(circle at 70% 30%, #2062E0 0%, #1145A3 55%, #08255E 100%);
       
       --text-dark: #0A1424;
-      --text-muted: #53647E;
+      --text-muted: #4B5A70;
       --text-white: #FFFFFF;
       --blue-accent: #2563EB;
       
@@ -101,14 +101,14 @@
       box-shadow: 0 2px 10px rgba(37, 99, 235, 0.5);
     }
 
-    /* ── MAIN FLOATING CARD (SPLIT-SCREEN CANVAS) ── */
-    .starbucks-split-card {
+    /* ── MAIN STRUCTURED SPLIT CARD (62% / 38% ASYMMETRIC CANVAS) ── */
+    .structured-split-card {
       width: min(1500px, calc(100vw - 52px));
       height: calc(100vh - 52px);
       border-radius: 36px;
       overflow: hidden;
       display: grid;
-      grid-template-columns: 50% 50%;
+      grid-template-columns: 60% 40%;
       position: relative;
       box-shadow: 
         0 30px 80px rgba(0, 0, 0, 0.55),
@@ -158,10 +158,10 @@
       background: rgba(10, 25, 60, 0.95);
     }
 
-    /* ── LEFT HALF: CRISP WHITE CANVAS ── */
-    .split-col-left {
+    /* ── LEFT HALF: 60% CRISP WHITE CANVAS ── */
+    .split-pane-left {
       background: var(--split-left-bg);
-      padding: 44px 54px;
+      padding: 38px 52px 38px 60px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -169,10 +169,12 @@
       z-index: 2;
     }
 
-    .left-brand-top {
+    /* Unified Brand & Main Navigation */
+    .left-header-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      width: 100%;
     }
 
     .brand-mark {
@@ -184,7 +186,7 @@
 
     .brand-logo-text {
       font-family: var(--font-display);
-      font-size: 24px;
+      font-size: 25px;
       font-weight: 900;
       letter-spacing: -0.04em;
       color: var(--text-dark);
@@ -194,67 +196,40 @@
       color: var(--blue-accent);
     }
 
-    /* Side vertical category links */
-    .side-nav-links {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      position: absolute;
-      top: 130px;
-      left: 54px;
-    }
-
-    .side-nav-item {
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #8A99AD;
-      text-decoration: none;
-      transition: color 0.2s ease;
+    .top-nav-capsule {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 28px;
     }
 
-    .side-nav-item:hover, .side-nav-item.active {
+    .top-nav-link {
+      font-size: 13px;
+      font-weight: 700;
+      color: #374151;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      letter-spacing: -0.01em;
+    }
+
+    .top-nav-link:hover, .top-nav-link.active {
       color: var(--blue-accent);
     }
 
-    .side-nav-item.active::before {
-      content: '';
-      width: 14px;
-      height: 2px;
-      background: var(--blue-accent);
-      border-radius: 2px;
-    }
-
-    /* Left Editorial Core Content */
-    .left-editorial-main {
+    /* Left Editorial Core Content (Structured Breathing Room) */
+    .editorial-hero-block {
+      max-width: 480px;
       margin-top: auto;
       margin-bottom: auto;
-      padding-left: 90px;
-      max-width: 480px;
+      padding-top: 10px;
     }
 
-    .editorial-badge {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--blue-accent);
-      margin-bottom: 8px;
-      display: block;
+    .headline-stack {
+      margin-bottom: 14px;
     }
 
-    .headline-duo {
-      margin-bottom: 12px;
-    }
-
-    .headline-line-bold {
+    .headline-main-bold {
       font-family: var(--font-display);
-      font-size: clamp(52px, 5.2vw, 84px);
+      font-size: clamp(62px, 6.2vw, 92px);
       font-weight: 900;
       line-height: 0.92;
       letter-spacing: -0.04em;
@@ -262,55 +237,66 @@
       display: block;
     }
 
-    .headline-line-italic {
+    .headline-main-italic {
       font-family: var(--font-serif);
-      font-size: clamp(54px, 5.4vw, 88px);
+      font-size: clamp(64px, 6.4vw, 96px);
       font-style: italic;
       font-weight: 400;
       line-height: 0.95;
       color: var(--blue-accent);
       display: block;
-      margin-top: -4px;
+      margin-top: -6px;
     }
 
-    .price-rate-callout {
+    .rate-price-tag {
       display: flex;
       align-items: baseline;
-      gap: 6px;
-      margin-bottom: 16px;
+      gap: 8px;
+      margin-bottom: 18px;
     }
 
-    .rate-number {
+    .rate-amount {
       font-family: var(--font-display);
-      font-size: 32px;
+      font-size: 34px;
       font-weight: 900;
       color: var(--text-dark);
       letter-spacing: -0.03em;
     }
 
-    .rate-unit {
+    .rate-suffix {
       font-size: 13px;
-      font-weight: 600;
-      color: var(--text-muted);
+      font-weight: 700;
+      color: #6B7280;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
     }
 
-    .editorial-desc {
-      font-size: 13px;
-      line-height: 1.55;
+    .rate-live-pill {
+      background: #EFF6FF;
+      color: var(--blue-accent);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 999px;
+      margin-left: 6px;
+    }
+
+    .editorial-description {
+      font-size: 14px;
+      line-height: 1.58;
       color: var(--text-muted);
-      margin-bottom: 24px;
-      max-width: 380px;
+      margin-bottom: 28px;
+      max-width: 420px;
     }
 
-    .actions-row {
+    .actions-group {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
     }
 
-    .btn-book-talent {
+    .btn-primary-action {
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -321,20 +307,20 @@
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      padding: 14px 30px;
+      padding: 15px 32px;
       border-radius: 999px;
       text-decoration: none;
-      box-shadow: 0 10px 25px rgba(10, 20, 36, 0.25);
+      box-shadow: 0 10px 25px rgba(10, 20, 36, 0.22);
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .btn-book-talent:hover {
+    .btn-primary-action:hover {
       background: var(--blue-accent);
       transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4);
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.4);
     }
 
-    .link-view-proof {
+    .btn-secondary-link {
       font-size: 13px;
       font-weight: 700;
       color: var(--text-dark);
@@ -342,16 +328,54 @@
       transition: color 0.2s ease;
     }
 
-    .link-view-proof:hover {
+    .btn-secondary-link:hover {
       color: var(--blue-accent);
       text-decoration: underline;
     }
 
-    /* ── RIGHT HALF: DEEP SAPPHIRE BLUE CANVAS ── */
-    .split-col-right {
+    /* Left Footer (Mouse Scroll) */
+    .left-footer-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #9CA3AF;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .mouse-pill-icon {
+      width: 14px;
+      height: 22px;
+      border: 1.5px solid #9CA3AF;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .mouse-pill-icon::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 4px;
+      background: #9CA3AF;
+      border-radius: 2px;
+      animation: mouseScroll 1.8s infinite;
+    }
+
+    @keyframes mouseScroll {
+      0% { top: 4px; opacity: 1; }
+      100% { top: 12px; opacity: 0; }
+    }
+
+    /* ── RIGHT HALF: 40% DEEP SAPPHIRE BLUE CANVAS ── */
+    .split-pane-right {
       background: var(--split-right-bg);
       background-image: var(--split-right-gradient);
-      padding: 44px 54px;
+      padding: 38px 48px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -364,89 +388,123 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 24px;
-      margin-right: 260px;
+      gap: 20px;
+      margin-right: 250px;
       position: relative;
       z-index: 5;
     }
 
-    .right-nav-item {
+    .tool-link {
       color: rgba(255, 255, 255, 0.85);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-decoration: none;
       transition: color 0.2s ease;
     }
 
-    .right-nav-item:hover {
+    .tool-link:hover {
       color: #FFFFFF;
     }
 
+    /* Right Editorial Structured Specs Callout */
     .right-editorial-dock {
       margin-top: auto;
       margin-bottom: auto;
       margin-left: auto;
-      max-width: 380px;
+      max-width: 360px;
       text-align: right;
       position: relative;
       z-index: 5;
     }
 
-    .right-dock-sub {
+    .right-dock-label {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: rgba(255, 255, 255, 0.65);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       display: block;
     }
 
-    .right-dock-heading {
+    .right-dock-title {
       font-family: var(--font-display);
-      font-size: clamp(28px, 2.7vw, 42px);
+      font-size: clamp(28px, 2.8vw, 42px);
       font-weight: 900;
       color: #FFFFFF;
       line-height: 1.08;
       letter-spacing: -0.03em;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
     }
 
-    .btn-outline-explore {
+    /* Structured Micro-Specs Cards */
+    .micro-specs-list {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .spec-row-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: #FFFFFF;
+      letter-spacing: 0.02em;
+    }
+
+    .spec-icon-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #60A5FA;
+    }
+
+    .btn-explore-roster {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       background: transparent;
       color: #FFFFFF;
-      border: 1.5px solid rgba(255, 255, 255, 0.45);
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
       font-family: var(--font-display);
       font-size: 12px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      padding: 12px 26px;
+      padding: 12px 28px;
       border-radius: 999px;
       text-decoration: none;
       transition: all 0.25s ease;
       backdrop-filter: blur(8px);
     }
 
-    .btn-outline-explore:hover {
+    .btn-explore-roster:hover {
       background: #FFFFFF;
       color: var(--text-dark);
       border-color: #FFFFFF;
       transform: translateY(-2px);
     }
 
-    .right-footer-spec {
+    .right-footer-info {
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 14px;
+      gap: 12px;
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
@@ -457,7 +515,7 @@
       z-index: 5;
     }
 
-    .spec-live-dot {
+    .live-status-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
@@ -465,61 +523,11 @@
       box-shadow: 0 0 8px #10B981;
     }
 
-    /* ── ATMOSPHERIC CLOUD FLOOR BRIDGING THE SEAM ── */
-    .seam-cloud-floor {
-      position: absolute;
-      bottom: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 720px;
-      height: 220px;
-      background: radial-gradient(ellipse at 50% 100%, rgba(255, 255, 255, 0.4) 0%, rgba(147, 197, 253, 0.2) 45%, transparent 75%);
-      filter: blur(32px);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 8;
-    }
-
-    /* ── GIANT SPLIT WATERMARK TYPOGRAPHY (STARBUCKS DNA) ── */
-    .giant-split-watermark {
-      position: absolute;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 44px;
-      z-index: 2;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .watermark-left-word {
-      font-family: var(--font-display);
-      font-size: clamp(80px, 9.5vw, 150px);
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      color: rgba(10, 20, 36, 0.06);
-      line-height: 0.8;
-    }
-
-    .watermark-right-word {
-      font-family: var(--font-display);
-      font-size: clamp(80px, 9.5vw, 150px);
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      color: rgba(255, 255, 255, 0.12);
-      line-height: 0.8;
-      text-align: right;
-    }
-
-    /* ── THE CENTER SPLIT STRADDLING HERO TALENT (UPWARD FLIGHT ASSET) ── */
-    /* Exact same beloved asset from Dunes and Nike Cloud! */
-    .center-hero-talent-stage {
+    /* ── CENTER SEAM HERO TALENT (UPWARD FLIGHT) ── */
+    .center-talent-stage {
       position: absolute;
       bottom: 0;
-      left: 50%;
+      left: 54%;
       transform: translateX(-50%);
       height: 94%;
       width: 660px;
@@ -530,7 +538,7 @@
       pointer-events: none;
     }
 
-    .talent-seam-image {
+    .talent-hero-image {
       max-height: 92%;
       max-width: 100%;
       object-fit: contain;
@@ -544,6 +552,55 @@
       100% { transform: translateY(-7px); }
     }
 
+    /* Atmospheric mist ground under his sneakers */
+    .seam-mist-ground {
+      position: absolute;
+      bottom: -40px;
+      left: 54%;
+      transform: translateX(-50%);
+      width: 680px;
+      height: 200px;
+      background: radial-gradient(ellipse at 50% 100%, rgba(255, 255, 255, 0.38) 0%, rgba(147, 197, 253, 0.2) 45%, transparent 75%);
+      filter: blur(32px);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 8;
+    }
+
+    /* ── GIANT SPLIT WATERMARK TYPOGRAPHY ── */
+    .giant-watermark-row {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 44px;
+      z-index: 2;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .watermark-left {
+      font-family: var(--font-display);
+      font-size: clamp(80px, 9.5vw, 150px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: rgba(10, 20, 36, 0.05);
+      line-height: 0.8;
+    }
+
+    .watermark-right {
+      font-family: var(--font-display);
+      font-size: clamp(80px, 9.5vw, 150px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: rgba(255, 255, 255, 0.10);
+      line-height: 0.8;
+      text-align: right;
+    }
+
     /* ── RESPONSIVE MOBILE ADJUSTMENTS ── */
     @media (max-width: 900px) {
       html, body {
@@ -553,7 +610,7 @@
         overflow-x: hidden;
       }
 
-      .starbucks-split-card {
+      .structured-split-card {
         grid-template-columns: 1fr;
         height: auto;
         width: calc(100vw - 20px);
@@ -565,37 +622,41 @@
         display: none;
       }
 
-      .split-col-left {
+      .split-pane-left {
         padding: 30px 20px;
       }
 
-      .side-nav-links {
+      .top-nav-capsule {
         display: none;
       }
 
-      .left-editorial-main {
-        padding-left: 0;
+      .editorial-hero-block {
         max-width: 100%;
         text-align: center;
       }
 
-      .headline-line-bold {
+      .headline-main-bold {
         font-size: 46px;
       }
 
-      .headline-line-italic {
+      .headline-main-italic {
         font-size: 48px;
       }
 
-      .price-rate-callout {
+      .rate-price-tag {
         justify-content: center;
       }
 
-      .actions-row {
+      .actions-group {
         justify-content: center;
       }
 
-      .center-hero-talent-stage {
+      .left-footer-row {
+        justify-content: center;
+        margin-top: 24px;
+      }
+
+      .center-talent-stage {
         position: relative;
         left: 0;
         transform: none;
@@ -604,7 +665,7 @@
         margin-top: -20px;
       }
 
-      .split-col-right {
+      .split-pane-right {
         padding: 30px 20px;
       }
 
@@ -621,11 +682,15 @@
         max-width: 100%;
       }
 
-      .giant-split-watermark {
+      .micro-specs-list {
+        align-items: center;
+      }
+
+      .giant-watermark-row {
         display: none;
       }
 
-      .right-footer-spec {
+      .right-footer-info {
         justify-content: center;
       }
 
@@ -662,75 +727,96 @@
     <a href="/nike_cloud_style.html" class="switcher-tab">3. Nike Cloud</a>
   </aside>
 
-  <!-- MAIN STARBUCKS SPLIT-SCREEN CARD -->
-  <main class="starbucks-split-card">
+  <!-- MAIN STRUCTURED SPLIT CARD (60% / 40% ASYMMETRIC CANVAS) -->
+  <main class="structured-split-card">
 
-    <!-- Edge Carousel Navigation Arrows (< on left, > on right) -->
+    <!-- Edge Carousel Navigation Arrows -->
     <button class="edge-nav-arrow left" aria-label="Previous Feature">‹</button>
     <button class="edge-nav-arrow right" aria-label="Next Feature">›</button>
 
-    <!-- ── LEFT HALF: CRISP WHITE BRAND CANVAS ── -->
-    <section class="split-col-left">
+    <!-- ── LEFT HALF: 60% CRISP WHITE CANVAS ── -->
+    <section class="split-pane-left">
       
-      <header class="left-brand-top">
+      <!-- Unified Header Navigation -->
+      <header class="left-header-row">
         <a href="#" class="brand-mark">
           <span class="brand-logo-text">nexus<span class="brand-logo-dot">.</span></span>
         </a>
+
+        <nav class="top-nav-capsule" aria-label="Main Navigation">
+          <a href="#roster" class="top-nav-link active">Curated Roster</a>
+          <a href="#cinema" class="top-nav-link">Aerial Cinema</a>
+          <a href="#3d" class="top-nav-link">3D Worlds</a>
+          <a href="#terms" class="top-nav-link">Direct Terms</a>
+        </nav>
       </header>
 
-      <!-- Vertical Category Links -->
-      <nav class="side-nav-links" aria-label="Categories">
-        <a href="#featured" class="side-nav-item active">Featured</a>
-        <a href="#directors" class="side-nav-item">Directors</a>
-        <a href="#cinema" class="side-nav-item">Cinema</a>
-        <a href="#3d" class="side-nav-item">3D Worlds</a>
-      </nav>
-
-      <!-- Left Editorial Core -->
-      <div class="left-editorial-main">
-        <span class="editorial-badge">● 2026 Curated Index</span>
+      <!-- Left Editorial Core Content (Structured Breathing Room) -->
+      <div class="editorial-hero-block">
         
-        <div class="headline-duo">
-          <span class="headline-line-bold">CREATIVE</span>
-          <span class="headline-line-italic">Fusion.</span>
+        <div class="headline-stack">
+          <span class="headline-main-bold">CREATIVE</span>
+          <span class="headline-main-italic">Fusion.</span>
         </div>
 
-        <div class="price-rate-callout">
-          <span class="rate-number">$2,400</span>
-          <span class="rate-unit">/ Day Direct</span>
+        <div class="rate-price-tag">
+          <span class="rate-amount">$2,400</span>
+          <span class="rate-suffix">/ Day Direct</span>
+          <span class="rate-live-pill">● Available</span>
         </div>
 
-        <p class="editorial-desc">
-          Vetted aerial cinematographers, CGI directors, and visual architects delivering next-generation digital cinema.
+        <p class="editorial-description">
+          Direct access to vetted aerial cinematographers, CGI directors, and visual architects delivering next-generation digital cinema.
         </p>
 
-        <div class="actions-row">
-          <a href="#book" class="btn-book-talent">Book Talent →</a>
-          <a href="#proof" class="link-view-proof">View Verified Proof</a>
+        <div class="actions-group">
+          <a href="#book" class="btn-primary-action">Book Talent →</a>
+          <a href="#proof" class="btn-secondary-link">View Verified Proof</a>
         </div>
+
       </div>
+
+      <!-- Left Footer Mouse Scroll -->
+      <footer class="left-footer-row">
+        <div class="mouse-pill-icon"></div>
+        <span>Scroll to Explore Roster</span>
+      </footer>
 
     </section>
 
-    <!-- ── RIGHT HALF: DEEP SAPPHIRE BLUE CANVAS ── -->
-    <section class="split-col-right">
+    <!-- ── RIGHT HALF: 40% DEEP SAPPHIRE BLUE CANVAS ── -->
+    <section class="split-pane-right">
       
-      <nav class="right-header-tools" aria-label="Navigation">
-        <a href="#menu" class="right-nav-item">Roster</a>
-        <a href="#orders" class="right-nav-item">Productions</a>
-        <a href="#trending" class="right-nav-item">Trending</a>
-        <a href="#about" class="right-nav-item">About</a>
-      </nav>
-
-      <!-- Right Editorial Callout -->
-      <div class="right-editorial-dock">
-        <span class="right-dock-sub">High-Performance Visuals</span>
-        <h2 class="right-dock-heading">The Best Directors And Cinematographers</h2>
-        <a href="#explore" class="btn-outline-explore">Explore All Creators</a>
+      <div class="right-header-tools">
+        <a href="#about" class="tool-link">About</a>
+        <a href="#contact" class="tool-link">Contact</a>
       </div>
 
-      <footer class="right-footer-spec">
-        <span class="spec-live-dot"></span>
+      <!-- Right Editorial Structured Specs Callout -->
+      <div class="right-editorial-dock">
+        <span class="right-dock-label">High-Performance Visuals</span>
+        <h2 class="right-dock-title">The Best Directors And Cinematographers</h2>
+        
+        <div class="micro-specs-list">
+          <div class="spec-row-item">
+            <span class="spec-icon-dot"></span>
+            <span>8K RAW Full-Frame Sensor</span>
+          </div>
+          <div class="spec-row-item">
+            <span class="spec-icon-dot"></span>
+            <span>Sub-1ms FPV Cinema Latency</span>
+          </div>
+          <div class="spec-row-item">
+            <span class="spec-icon-dot"></span>
+            <span>Top 1% Vetted Global Talent</span>
+          </div>
+        </div>
+
+        <a href="#explore" class="btn-explore-roster">Explore All Creators →</a>
+      </div>
+
+      <footer class="right-footer-info">
+        <span class="live-status-dot"></span>
         <span>Top 1% Creators</span>
         <span>&bull;</span>
         <span>Direct Terms</span>
@@ -739,17 +825,17 @@
     </section>
 
     <!-- ── GIANT SPLIT WATERMARK TYPOGRAPHY ── -->
-    <div class="giant-split-watermark" aria-hidden="true">
-      <span class="watermark-left-word">NEX</span>
-      <span class="watermark-right-word">US.</span>
+    <div class="giant-watermark-row" aria-hidden="true">
+      <span class="watermark-left">NEX</span>
+      <span class="watermark-right">US.</span>
     </div>
 
-    <!-- Soft Atmospheric Seam Cloud Mist -->
-    <div class="seam-cloud-floor" aria-hidden="true"></div>
+    <!-- Soft Seam Mist Ground -->
+    <div class="seam-mist-ground" aria-hidden="true"></div>
 
-    <!-- ── THE HERO TALENT (UPWARD FLIGHT ASSET STRADDLING THE SEAM) ── -->
-    <div class="center-hero-talent-stage">
-      <img src="assets/upward_flight_pilot_drone.png" alt="Featured Aerial Cinematographer & Drone Director" class="talent-seam-image">
+    <!-- ── CENTER SEAM HERO TALENT (UPWARD FLIGHT) ── -->
+    <div class="center-talent-stage">
+      <img src="assets/upward_flight_pilot_drone.png" alt="Featured Aerial Cinematographer & Drone Director" class="talent-hero-image">
     </div>
 
   </main>
