@@ -220,10 +220,13 @@
        ========================================================================== */
     .hero-wrapper {
       position: relative;
-      background: radial-gradient(ellipse 90% 70% at 50% 45%, #FFFFFF 0%, #FAF5FF 60%, #F5EEFD 100%);
+      background: 
+        radial-gradient(ellipse 55% 70% at 0% 50%, rgba(124, 58, 237, 0.16) 0%, transparent 65%),
+        radial-gradient(ellipse 55% 70% at 100% 50%, rgba(245, 158, 11, 0.16) 0%, transparent 65%),
+        radial-gradient(ellipse 90% 70% at 50% 45%, #FFFFFF 0%, #FAF5FF 60%, #F5EEFD 100%);
       padding: 0;
       overflow: hidden;
-      min-height: 100vh;
+      min-height: calc(100vh - 40px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -288,230 +291,211 @@
 
     .hero-panoramic-stage {
       width: 100%;
-      max-width: 1480px;
+      max-width: 1780px;
       margin: 0 auto;
       height: 100%;
-      min-height: 86vh;
+      min-height: calc(100vh - 72px);
       position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 30px 40px;
+      padding: 16px 28px;
       box-sizing: border-box;
+      gap: 20px;
       z-index: 5;
     }
 
-    /* Immersive Hero Card Stacks */
-    .hero-stack-left {
+    /* Full-Height Majestic Creative Pillars */
+    .hero-wing-pillar {
       position: relative;
-      width: 320px;
-      height: 480px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      z-index: 10;
-    }
-
-    .hero-stack-right {
-      position: relative;
-      width: 320px;
-      height: 480px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      z-index: 10;
-    }
-
-    /* The Poster Cards */
-    .poster-card {
-      position: absolute;
-      width: 290px;
-      height: 400px;
-      border-radius: 26px;
+      flex: 0 0 clamp(380px, 29vw, 480px);
+      height: calc(100vh - 80px);
+      max-height: 860px;
+      min-height: 640px;
+      border-radius: 36px;
       overflow: hidden;
       background: #FFFFFF;
-      box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.85) inset;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .poster-card img {
+    .hero-wing-pillar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
       image-rendering: -webkit-optimize-contrast;
     }
 
-    /* Left Stack: Background Drone Card + Foreground Filmmaker Card */
-    .card-drone-bg {
-      top: -20px;
-      left: -18px;
-      transform: rotate(-9deg) scale(0.9);
-      opacity: 0.82;
-      z-index: 1;
-      filter: saturate(0.9);
+    .pillar-left {
+      transform: rotate(-1.5deg);
+      box-shadow: 0 32px 85px -15px rgba(124, 58, 237, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+      animation: floatGentleLeft 7s ease-in-out infinite alternate;
     }
 
-    .card-filmmaker-fg {
-      top: 24px;
-      left: 10px;
-      transform: rotate(-2deg);
-      z-index: 3;
+    .pillar-right {
+      transform: rotate(1.5deg);
+      box-shadow: 0 32px 85px -15px rgba(245, 158, 11, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+      animation: floatGentleRight 7s ease-in-out infinite alternate 1.5s;
     }
 
-    .hero-stack-left:hover .card-drone-bg {
-      transform: rotate(-14deg) translate(-22px, -15px) scale(0.96);
-      opacity: 1;
-      filter: saturate(1);
-      box-shadow: 0 30px 70px -15px rgba(2, 132, 199, 0.35);
+    .pillar-left:hover {
+      transform: rotate(0deg) translateY(-8px) scale(1.02) !important;
+      box-shadow: 0 45px 100px -15px rgba(124, 58, 237, 0.42), 0 0 0 2px var(--purple-primary);
     }
 
-    .hero-stack-left:hover .card-filmmaker-fg {
-      transform: rotate(0deg) translate(8px, -4px) scale(1.03);
-      box-shadow: 0 35px 80px -15px rgba(124, 58, 237, 0.32);
+    .pillar-right:hover {
+      transform: rotate(0deg) translateY(-8px) scale(1.02) !important;
+      box-shadow: 0 45px 100px -15px rgba(245, 158, 11, 0.42), 0 0 0 2px #F59E0B;
     }
 
-    /* Right Stack: Background Accent Card + Foreground Designer Card */
-    .card-accent-bg {
-      top: -20px;
-      right: -18px;
-      transform: rotate(9deg) scale(0.9);
-      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 60%, #06B6D4 100%);
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      color: #FFFFFF;
-      opacity: 0.85;
-      z-index: 1;
+    .hero-wing-pillar:hover img {
+      transform: scale(1.04);
     }
 
-    .card-accent-bg .accent-title {
-      font-family: var(--font-display);
-      font-size: 26px;
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -0.5px;
+    @keyframes floatGentleLeft {
+      0% { transform: rotate(-1.5deg) translateY(0px); }
+      100% { transform: rotate(-0.5deg) translateY(-10px); }
     }
 
-    .card-accent-bg .accent-tag {
-      font-size: 11px;
-      font-weight: 800;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 4px 10px;
-      border-radius: var(--radius-pill);
-      align-self: flex-start;
-      backdrop-filter: blur(8px);
+    @keyframes floatGentleRight {
+      0% { transform: rotate(1.5deg) translateY(0px); }
+      100% { transform: rotate(0.5deg) translateY(-10px); }
     }
 
-    .card-designer-fg {
-      top: 24px;
-      right: 10px;
-      transform: rotate(2deg);
-      z-index: 3;
-    }
-
-    .hero-stack-right:hover .card-accent-bg {
-      transform: rotate(14deg) translate(22px, -15px) scale(0.96);
-      opacity: 1;
-      box-shadow: 0 30px 70px -15px rgba(79, 70, 229, 0.35);
-    }
-
-    .hero-stack-right:hover .card-designer-fg {
-      transform: rotate(0deg) translate(-8px, -4px) scale(1.03);
-      box-shadow: 0 35px 80px -15px rgba(245, 158, 11, 0.32);
-    }
-
-    /* Glass Overlays on Cards */
-    .poster-glass-pill {
+    /* Glass Badges on Pillars */
+    .pillar-glass-pill {
       position: absolute;
-      top: 14px;
-      left: 14px;
+      top: 20px;
+      left: 20px;
       background: rgba(15, 23, 42, 0.78);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       color: #FFFFFF;
-      padding: 5px 12px;
+      padding: 7px 16px;
       border-radius: var(--radius-pill);
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 800;
       letter-spacing: 0.6px;
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
       z-index: 5;
     }
 
-    .poster-glass-pill .pill-dot {
-      width: 6px;
-      height: 6px;
+    .pillar-glass-pill .pill-dot {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: #22C55E;
-      box-shadow: 0 0 6px #22C55E;
+      box-shadow: 0 0 8px #22C55E;
     }
 
-    .poster-glass-footer {
+    .pillar-glass-footer {
       position: absolute;
-      bottom: 12px;
-      left: 12px;
-      right: 12px;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.9);
-      border-radius: 18px;
-      padding: 10px 14px;
+      border-radius: 22px;
+      padding: 14px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.1);
       z-index: 5;
     }
 
-    .poster-meta .name {
+    .pillar-meta .name {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 13px;
+      font-size: 14px;
       color: #0F172A;
       display: block;
       line-height: 1.2;
     }
 
-    .poster-meta .role {
-      font-size: 10px;
+    .pillar-meta .role {
+      font-size: 11px;
       font-weight: 600;
       color: #64748B;
       display: block;
-      margin-top: 1px;
+      margin-top: 2px;
     }
 
-    .poster-meta-right {
+    .pillar-meta-right {
       text-align: right;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 2px;
+      gap: 3px;
     }
 
-    .poster-meta-right .stars {
-      font-size: 11px;
+    .pillar-meta-right .stars {
+      font-size: 12px;
       font-weight: 800;
       color: #F59E0B;
     }
 
-    .poster-meta-right .badge {
+    .pillar-meta-right .badge {
       background: #DCFCE7;
       color: #15803D;
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 800;
-      padding: 2px 6px;
+      padding: 3px 8px;
       border-radius: var(--radius-pill);
       text-transform: uppercase;
+    }
+
+    /* Spatial Floating Capability Tags on Pillars */
+    .pillar-floating-tag {
+      position: absolute;
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: #FFFFFF;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+      z-index: 6;
+      pointer-events: none;
+      transition: transform 0.3s ease;
+    }
+
+    .pillar-left .tag-drone {
+      top: 38%;
+      right: 18px;
+    }
+
+    .pillar-left .tag-camera {
+      bottom: 23%;
+      left: 18px;
+    }
+
+    .pillar-right .tag-design {
+      top: 34%;
+      left: 18px;
+    }
+
+    .pillar-right .tag-motion {
+      bottom: 25%;
+      right: 18px;
+    }
+
+    .hero-wing-pillar:hover .pillar-floating-tag {
+      transform: translateY(-3px);
     }
 
     /* Center Stage: Hero Typography & Actions */
@@ -1346,18 +1330,14 @@
     }
 
     /* Responsive */
-    @media (max-width: 1320px) and (min-width: 1101px) {
+    @media (max-width: 1400px) and (min-width: 1101px) {
       .hero-center-stage {
-        max-width: 480px;
+        max-width: 520px;
       }
-      .hero-stack-left,
-      .hero-stack-right {
-        width: 270px;
-        height: 420px;
-      }
-      .poster-card {
-        width: 250px;
-        height: 350px;
+      .hero-wing-pillar {
+        flex: 0 0 clamp(320px, 26vw, 400px);
+        height: calc(100vh - 90px);
+        max-height: 760px;
       }
     }
 
@@ -1380,18 +1360,18 @@
       .hero-watermark-right {
         display: none;
       }
-      .hero-stack-left,
-      .hero-stack-right {
-        position: relative;
+      .hero-wing-pillar {
         width: 100%;
-        max-width: 320px;
-        height: 420px;
+        max-width: 380px;
+        height: 600px;
+        min-height: 520px;
         margin: 0 auto;
+        transform: none !important;
       }
-      .hero-stack-left {
+      .hero-wing-pillar.pillar-left {
         order: 2;
       }
-      .hero-stack-right {
+      .hero-wing-pillar.pillar-right {
         order: 3;
       }
       .hero-center-stage {
@@ -1431,43 +1411,29 @@
       <div class="hero-watermark-right">DESIGN<br>MOTION</div>
 
       <div class="hero-panoramic-stage">
-        <!-- LEFT WING: LAYERED CREATOR POSTER STACK (DRONE + FILMMAKER) -->
-        <div class="hero-stack-left">
-          <!-- Background Peeking Card: Drone Pilot -->
-          <div class="poster-card card-drone-bg" onclick="filterCategory('Drone & Aerial')" title="Click to view Drone & Aerial Pilots">
-            <img src="assets/character_drone_pilot.jpg" alt="Commercial Drone Pilot">
-            <div class="poster-glass-pill">
-              <span class="pill-dot" style="background:#0284C7; box-shadow:0 0 6px #0284C7;"></span>
-              <span>AERIAL FPV</span>
-            </div>
-            <div class="poster-glass-footer">
-              <div class="poster-meta">
-                <span class="name">Kai Sorensen</span>
-                <span class="role">Part 107 Pilot • FPV</span>
-              </div>
-              <div class="poster-meta-right">
-                <span class="stars">★ 4.95</span>
-                <span class="badge">45 Pilots</span>
-              </div>
-            </div>
+        <!-- LEFT WING: MAJESTIC FULL-HEIGHT CREATIVE PILLAR (DRONE PILOT + COMMERCIAL FILMMAKER) -->
+        <div class="hero-wing-pillar pillar-left" onclick="filterCategory('Cinematography')" title="Explore Commercial Filmmakers & Drone Pilots">
+          <img src="assets/hero_poster_left_duo_8k.jpg" alt="Commercial Filmmakers & Drone Pilots Roster">
+          
+          <!-- Top Glass Status Pill -->
+          <div class="pillar-glass-pill">
+            <span class="pill-dot"></span>
+            <span>DIRECTING & AERIAL CREW</span>
           </div>
 
-          <!-- Foreground Hero Card: Commercial Filmmaker -->
-          <div class="poster-card card-filmmaker-fg" onclick="filterCategory('Cinematography')" title="Click to view Commercial Directors">
-            <img src="assets/character_filmmaker.jpg" alt="Commercial Filmmaker and Director">
-            <div class="poster-glass-pill">
-              <span class="pill-dot"></span>
-              <span>DIRECTING & VIDEO</span>
+          <!-- Spatial Floating Badges -->
+          <div class="pillar-floating-tag tag-drone">🛸 Part 107 Commercial Drone</div>
+          <div class="pillar-floating-tag tag-camera">🎥 ARRI Alexa Mini LF • RED</div>
+
+          <!-- Bottom Glass Booking Footer -->
+          <div class="pillar-glass-footer">
+            <div class="pillar-meta">
+              <span class="name">Kai S. & Marcus Chen</span>
+              <span class="role">Commercial DP & Aerial FPV • 160+ Shoots</span>
             </div>
-            <div class="poster-glass-footer">
-              <div class="poster-meta">
-                <span class="name">Marcus Chen</span>
-                <span class="role">DP • ARRI / RED</span>
-              </div>
-              <div class="poster-meta-right">
-                <span class="stars">★ 4.98</span>
-                <span class="badge">Available</span>
-              </div>
+            <div class="pillar-meta-right">
+              <span class="stars">★ 4.98</span>
+              <span class="badge">AVAILABLE</span>
             </div>
           </div>
         </div>
@@ -1503,31 +1469,29 @@
           </div>
         </div>
 
-        <!-- RIGHT WING: LAYERED CREATOR POSTER STACK (DESIGN & 3D) -->
-        <div class="hero-stack-right">
-          <!-- Background Peeking Card: Creative Roster -->
-          <div class="poster-card card-accent-bg" onclick="filterCategory('3D & CGI')" title="Click to view 3D Motion Artists">
-            <span class="accent-tag">🪐 VETTED TALENT</span>
-            <div class="accent-title">500+ Top Commercial Creators</div>
-            <div style="font-size:11px; opacity:0.9; font-weight:700;">Zero Escrow Traps • Direct Booking</div>
+        <!-- RIGHT WING: MAJESTIC FULL-HEIGHT CREATIVE PILLAR (TECH, 3D & DESIGN TRIO) -->
+        <div class="hero-wing-pillar pillar-right" onclick="filterCategory('3D & CGI')" title="Explore 3D Motion Artists & Brand Designers">
+          <img src="assets/hero_poster_right_trio_8k.jpg" alt="3D Motion, Brand Designers & Creative Directors">
+          
+          <!-- Top Glass Status Pill -->
+          <div class="pillar-glass-pill">
+            <span class="pill-dot" style="background:#F59E0B; box-shadow:0 0 8px #F59E0B;"></span>
+            <span>3D MOTION & CREATIVE TECH</span>
           </div>
 
-          <!-- Foreground Hero Card: 3D & Brand Designer -->
-          <div class="poster-card card-designer-fg" onclick="filterCategory('3D & CGI')" title="Click to view 3D Artists & Brand Designers">
-            <img src="assets/character_designer.jpg" alt="3D Artist and Brand Designer">
-            <div class="poster-glass-pill">
-              <span class="pill-dot"></span>
-              <span>3D & BRAND DESIGN</span>
+          <!-- Spatial Floating Badges -->
+          <div class="pillar-floating-tag tag-design">⚡ Octane • C4D • Figma</div>
+          <div class="pillar-floating-tag tag-motion">🪐 Direct Hire • 0% Cut</div>
+
+          <!-- Bottom Glass Booking Footer -->
+          <div class="pillar-glass-footer">
+            <div class="pillar-meta">
+              <span class="name">Elena Rostova & Studio</span>
+              <span class="role">3D Motion • Brand Design • Direction</span>
             </div>
-            <div class="poster-glass-footer">
-              <div class="poster-meta">
-                <span class="name">Elena Rostova</span>
-                <span class="role">3D Motion • Octane / C4D</span>
-              </div>
-              <div class="poster-meta-right">
-                <span class="stars">★ 5.0</span>
-                <span class="badge">Available</span>
-              </div>
+            <div class="pillar-meta-right">
+              <span class="stars">★ 5.0</span>
+              <span class="badge" style="background:#FEF3C7; color:#B45309;">TOP 1% ROSTER</span>
             </div>
           </div>
         </div>
