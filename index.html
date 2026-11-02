@@ -495,85 +495,127 @@
     }
 
     /* ==========================================================================
-       PANORAMIC BENTO GRID STAGE (1000PX WIDE CENTERPIECE)
+       REVOLVING 3D ORBITAL TALENT STAGE (CONTINUOUS DYNAMIC MOTION)
        ========================================================================== */
-    .bento-stage-cluster {
+    .hero-orbit-stage {
       width: 100%;
-      max-width: 1000px;
-      margin: 0 auto 12px auto;
-      background: linear-gradient(145deg, #7A67B6 0%, #6855A3 100%);
-      padding: 10px;
-      border-radius: 24px;
-      box-shadow: 
-        0 24px 60px -12px rgba(104, 85, 163, 0.42),
-        0 0 0 1px rgba(255, 255, 255, 0.25) inset;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 175px 210px;
-      gap: 10px;
-      height: 405px;
+      max-width: 1360px;
+      height: 380px;
+      margin: 0 auto 8px auto;
       position: relative;
-      box-sizing: border-box;
-      perspective: 1200px;
-      transform-style: preserve-3d;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      perspective: 1400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      touch-action: pan-y;
+      overflow: visible;
     }
 
-    /* Common Card Rules */
-    .bento-card {
+    .orbit-3d-cylinder {
+      width: 100%;
+      height: 100%;
       position: relative;
-      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Individual 3D Orbiting Creator Card */
+    .orbit-card {
+      position: absolute;
+      width: 250px;
+      height: 350px;
+      border-radius: 20px;
       overflow: hidden;
       background: #0F172A;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
+      box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.18) inset;
       cursor: pointer;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      transform: translateZ(0);
+      transform-style: preserve-3d;
+      will-change: transform, opacity;
+      transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
     }
 
-    .bento-card img {
+    .orbit-card:hover {
+      box-shadow: 0 24px 60px -8px rgba(124, 58, 237, 0.45), 0 0 0 2px rgba(255, 255, 255, 0.6) inset;
+    }
+
+    .orbit-card.is-center {
+      box-shadow: 0 24px 65px -8px rgba(124, 58, 237, 0.5), 0 0 0 2px rgba(255, 255, 255, 0.7) inset;
+    }
+
+    .orbit-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center 20%;
       display: block;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
     }
 
-    .bento-card:hover {
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.32);
-      transform: translateY(-2px) translateZ(12px);
+    .orbit-card:hover img {
+      transform: scale(1.04);
     }
 
-    .bento-card:hover img {
-      transform: scale(1.03);
+    /* Orbit Controls (Arrows & Indicators) */
+    .orbit-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 120;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Top Wide Card (Director & Film) */
-    .bento-card-top {
-      grid-column: 1 / 3;
-      height: 175px;
+    .orbit-nav-btn:hover {
+      background: #FFFFFF;
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 12px 30px rgba(124, 58, 237, 0.25);
+      color: var(--purple-primary);
     }
 
-    .bento-card-top img {
-      object-position: center 32%;
+    .orbit-nav-prev { left: 16px; }
+    .orbit-nav-next { right: 16px; }
+
+    .orbit-dots-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 4px;
+      margin-bottom: 8px;
+      z-index: 20;
+      position: relative;
     }
 
-    /* Bottom Left Card (Authentic Skater) */
-    .bento-card-bottom-left {
-      height: 210px;
+    .orbit-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(148, 163, 184, 0.4);
+      cursor: pointer;
+      transition: all 0.25s ease;
     }
 
-    .bento-card-bottom-left img {
-      object-position: center bottom;
-    }
-
-    /* Bottom Right Card (Authentic Energy Creator) */
-    .bento-card-bottom-right {
-      height: 210px;
-    }
-
-    .bento-card-bottom-right img {
-      object-position: center center;
+    .orbit-dot.is-active {
+      width: 24px;
+      background: var(--purple-primary);
+      box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
     }
 
     /* Feather-Light Card Tag in Top-Left (Anti-Slop: No Heavy Nested Cards) */
@@ -851,8 +893,8 @@
 
     .disciplines-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
       margin-bottom: 72px;
     }
 
@@ -1517,23 +1559,20 @@
         font-size: 10.5px;
         padding: 4px 9px;
       }
-      .bento-stage-cluster {
-        grid-template-columns: 1fr;
-        grid-template-rows: 165px 195px 195px;
-        height: auto;
-        max-width: 100%;
-        padding: 8px;
-        gap: 8px;
-        border-radius: 18px;
-        margin-bottom: 12px;
+      .hero-orbit-stage {
+        height: 330px;
+        margin-bottom: 6px;
       }
-      .bento-card-top {
-        grid-column: 1;
-        height: 165px;
+      .orbit-card {
+        width: 195px;
+        height: 285px;
+        border-radius: 16px;
       }
-      .bento-card-bottom-left,
-      .bento-card-bottom-right {
-        height: 195px;
+      .orbit-nav-prev { left: 4px; }
+      .orbit-nav-next { right: 4px; }
+      .orbit-nav-btn {
+        width: 32px;
+        height: 32px;
       }
       .hero-trust-row {
         font-size: 11px;
@@ -1613,93 +1652,148 @@
           <a href="#explore" class="hero-chip" style="background: rgba(124, 58, 237, 0.08); color: var(--purple-primary); border-color: rgba(124, 58, 237, 0.3); font-weight: 800;">Explore 500+ →</a>
         </div>
 
-        <!-- PANORAMIC 3D BENTO STAGE CLUSTER (1040PX WIDE CENTERPIECE) -->
-        <div class="bento-stage-cluster" id="bentoCluster">
-          <!-- TOP WIDE CARD (16:9): DIRECTING & VISION ("YOU DID IT! The Story") -->
-          <div class="bento-card bento-card-top" onclick="handleBentoClick('Cinematography', event)" title="View Commercial Directors">
-            <img src="assets/bento_top_wide.jpg" alt="Commercial Directing & Film Production">
-            
-            <div class="bento-card-tag">
-              <span class="bento-tag-beacon"></span>
-              <span>DIRECTING & CREATIVE VISION</span>
+        <!-- REVOLVING 3D ORBITAL TALENT SHOWCASE (FULL SCREEN DYNAMIC MOTION) -->
+        <div class="hero-orbit-stage" id="heroOrbitStage" aria-label="Revolving 3D Commercial Talent Showcase">
+          <!-- Left / Right Interactive Scrub Arrows -->
+          <button class="orbit-nav-btn orbit-nav-prev" onclick="rotateOrbit(-1)" aria-label="Previous creator">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="orbit-nav-btn orbit-nav-next" onclick="rotateOrbit(1)" aria-label="Next creator">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+
+          <!-- The 3D Orbital Cylinder Container -->
+          <div class="orbit-3d-cylinder" id="orbitCylinder">
+
+            <!-- CARD 0: COMMERCIAL DIRECTOR & FILM ("CREATING! The Story") -->
+            <div class="orbit-card" data-index="0" onclick="handleOrbitCardClick(0, 'Cinematography', event)" title="View Commercial Directors">
+              <img src="assets/character_filmmaker.jpg" alt="Commercial Director & Cinematographer — Maya Lin">
+              <div class="bento-card-tag">
+                <span class="bento-tag-beacon"></span>
+                <span>DIRECTING & FILM</span>
+              </div>
+              <div class="bento-sound-indicator" id="bentoSoundToggle" onclick="toggleReelAudio(event)" title="Click to play commercial reel soundscape">
+                <div class="eq-bars">
+                  <span class="eq-bar bar-1"></span>
+                  <span class="eq-bar bar-2"></span>
+                  <span class="eq-bar bar-3"></span>
+                  <span class="eq-bar bar-4"></span>
+                </div>
+                <span>AUDIO PREVIEW</span>
+              </div>
+              <div class="bento-hover-credit">
+                <span>🏆 Cannes Lions Gold • Nike "Unstoppable"</span>
+              </div>
+              <div class="bento-scrim-footer">
+                <div>
+                  <span class="bento-scrim-name">Maya Lin & Studio</span>
+                  <span class="bento-scrim-sub">Commercial Director • ARRI Alexa LF</span>
+                </div>
+                <div class="bento-scrim-badge">
+                  <span>★ 4.99</span>
+                  <span class="bento-tag-green">AVAILABLE NOW</span>
+                </div>
+              </div>
             </div>
 
-            <!-- Interactive Audio Equalizer Waveform & Reel Preview -->
-            <div class="bento-sound-indicator" id="bentoSoundToggle" onclick="toggleReelAudio(event)" title="Click to play commercial reel soundscape">
-              <div class="eq-bars">
-                <span class="eq-bar bar-1"></span>
-                <span class="eq-bar bar-2"></span>
-                <span class="eq-bar bar-3"></span>
-                <span class="eq-bar bar-4"></span>
+            <!-- CARD 1: COMMERCIAL DRONE PILOT ("TAKING FLIGHT! / PILOT MODE ACTIVATED") -->
+            <div class="orbit-card" data-index="1" onclick="handleOrbitCardClick(1, 'Drone & Aerial', event)" title="View Commercial Drone Pilots">
+              <img src="assets/character_drone_pilot.jpg" alt="Commercial Drone Pilot — Kai Sorensen">
+              <div class="bento-card-tag">
+                <span class="bento-tag-beacon" style="background:#0284C7; box-shadow:0 0 6px #0284C7;"></span>
+                <span>FPV DRONE & AERIAL</span>
               </div>
-              <span>AUDIO PREVIEW</span>
+              <div class="bento-hover-credit">
+                <span>⚡ Red Bull FPV Drift • 140mph Chase Cam</span>
+              </div>
+              <div class="bento-scrim-footer">
+                <div>
+                  <span class="bento-scrim-name">Kai Sorensen</span>
+                  <span class="bento-scrim-sub">Part 107 Pilot • Extreme Sports</span>
+                </div>
+                <div class="bento-scrim-badge">
+                  <span>★ 4.95</span>
+                  <span class="bento-tag-blue">14× BOOKED</span>
+                </div>
+              </div>
             </div>
 
-            <div class="bento-hover-credit">
-              <span>🏆 Cannes Lions Gold • Directed Nike "Unstoppable"</span>
+            <!-- CARD 2: DIGITAL DESIGNER ("Creative Energy / JUST DID IT!") -->
+            <div class="orbit-card" data-index="2" onclick="handleOrbitCardClick(2, 'Photography', event)" title="View Digital & Brand Designers">
+              <img src="assets/character_designer.jpg" alt="Lead Visual Designer — Sophie Zhang">
+              <div class="bento-card-tag">
+                <span class="bento-tag-beacon" style="background:#F59E0B; box-shadow:0 0 6px #F59E0B;"></span>
+                <span>DIGITAL DESIGN & BRAND</span>
+              </div>
+              <div class="bento-hover-credit">
+                <span>✨ Apple Design Award • Brand Systems</span>
+              </div>
+              <div class="bento-scrim-footer">
+                <div>
+                  <span class="bento-scrim-name">Sophie Zhang</span>
+                  <span class="bento-scrim-sub">Brand Systems • Motion & UI</span>
+                </div>
+                <div class="bento-scrim-badge">
+                  <span>★ 5.0</span>
+                  <span class="bento-tag-gold">TOP 1%</span>
+                </div>
+              </div>
             </div>
 
-            <div class="bento-scrim-footer">
-              <div>
-                <span class="bento-scrim-name">Maya Lin & Studio</span>
-                <span class="bento-scrim-sub">Commercial Director • ARRI Alexa Mini LF</span>
+            <!-- CARD 3: FPV DRIFT PILOT & ACTION ("Power within!") -->
+            <div class="orbit-card" data-index="3" onclick="handleOrbitCardClick(3, 'Drone & Aerial', event)" title="View High-Speed Action Cinematographers">
+              <img src="assets/bento_skater_authentic.jpg" alt="FPV Action Cinematographer — Liam Vance">
+              <div class="bento-card-tag">
+                <span class="bento-tag-beacon" style="background:#8B5CF6; box-shadow:0 0 6px #8B5CF6;"></span>
+                <span>ACTION & FPV CHASE</span>
               </div>
-              <div class="bento-scrim-badge">
-                <span>★ 4.99</span>
-                <span class="bento-tag-green">AVAILABLE NOW</span>
+              <div class="bento-hover-credit">
+                <span>⚡ X Games Gold • Cinema Chase Cam</span>
+              </div>
+              <div class="bento-scrim-footer">
+                <div>
+                  <span class="bento-scrim-name">Liam Vance</span>
+                  <span class="bento-scrim-sub">Cinematic Drone • High-Speed FPV</span>
+                </div>
+                <div class="bento-scrim-badge">
+                  <span>★ 4.97</span>
+                  <span class="bento-tag-blue">VERIFIED PRO</span>
+                </div>
               </div>
             </div>
+
+            <!-- CARD 4: 3D MOTION & CGI ("HIGH ENERGY MODE") -->
+            <div class="orbit-card" data-index="4" onclick="handleOrbitCardClick(4, '3D & CGI', event)" title="View 3D Motion Artists">
+              <img src="assets/bento_energy_authentic_clean.jpg" alt="3D Motion Designer — Elena Rostova">
+              <div class="bento-card-tag">
+                <span class="bento-tag-beacon" style="background:#EC4899; box-shadow:0 0 6px #EC4899;"></span>
+                <span>3D MOTION & CGI</span>
+              </div>
+              <div class="bento-hover-credit">
+                <span>🪐 Vogue Digital • Unreal Engine 5.5</span>
+              </div>
+              <div class="bento-scrim-footer">
+                <div>
+                  <span class="bento-scrim-name">Elena Rostova</span>
+                  <span class="bento-scrim-sub">3D Motion • Octane / C4D / UE5</span>
+                </div>
+                <div class="bento-scrim-badge">
+                  <span>★ 5.0</span>
+                  <span class="bento-tag-gold">TOP 1%</span>
+                </div>
+              </div>
+            </div>
+
           </div>
+        </div>
 
-          <!-- BOTTOM LEFT CARD: FPV DRONE & SKATER ("POWER WITHIN!" AUTHENTIC REF) -->
-          <div class="bento-card bento-card-bottom-left" onclick="handleBentoClick('Drone & Aerial', event)" title="View Commercial Drone Pilots">
-            <img src="assets/bento_skater_authentic.jpg" alt="FPV Drone Pilot & Skater — Power Within">
-            
-            <div class="bento-card-tag">
-              <span class="bento-tag-beacon" style="background:#0284C7; box-shadow:0 0 6px #0284C7;"></span>
-              <span>FPV DRONE & AERIAL</span>
-            </div>
-
-            <div class="bento-hover-credit">
-              <span>⚡ Red Bull FPV Drift • 140mph Chase Cam</span>
-            </div>
-
-            <div class="bento-scrim-footer">
-              <div>
-                <span class="bento-scrim-name">Kai Sorensen</span>
-                <span class="bento-scrim-sub">Part 107 Pilot • Extreme Sports</span>
-              </div>
-              <div class="bento-scrim-badge">
-                <span>★ 4.95</span>
-                <span class="bento-tag-blue">12× BOOKED</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- BOTTOM RIGHT CARD: 3D MOTION & DESIGN ("HIGH ENERGY MODE" AUTHENTIC REF) -->
-          <div class="bento-card bento-card-bottom-right" onclick="handleBentoClick('3D & CGI', event)" title="View 3D Motion Artists">
-            <img src="assets/bento_energy_authentic_clean.jpg" alt="3D Motion Designer — High Energy Mode">
-            
-            <div class="bento-card-tag">
-              <span class="bento-tag-beacon" style="background:#F59E0B; box-shadow:0 0 6px #F59E0B;"></span>
-              <span>3D MOTION & DESIGN</span>
-            </div>
-
-            <div class="bento-hover-credit">
-              <span>🪐 Vogue Digital • Unreal Engine 5.5</span>
-            </div>
-
-            <div class="bento-scrim-footer">
-              <div>
-                <span class="bento-scrim-name">Elena Rostova</span>
-                <span class="bento-scrim-sub">3D Motion • Octane / C4D</span>
-              </div>
-              <div class="bento-scrim-badge">
-                <span>★ 5.0</span>
-                <span class="bento-tag-gold">TOP 1%</span>
-              </div>
-            </div>
-          </div>
+        <!-- ORBITAL DOT INDICATORS -->
+        <div class="orbit-dots-row" id="orbitDotsRow">
+          <span class="orbit-dot is-active" onclick="jumpToOrbitCard(0)"></span>
+          <span class="orbit-dot" onclick="jumpToOrbitCard(1)"></span>
+          <span class="orbit-dot" onclick="jumpToOrbitCard(2)"></span>
+          <span class="orbit-dot" onclick="jumpToOrbitCard(3)"></span>
+          <span class="orbit-dot" onclick="jumpToOrbitCard(4)"></span>
         </div>
 
         <!-- BALANCED SYMMETRICAL TRUST PROOF ROW -->
@@ -1766,32 +1860,42 @@
       <div class="disciplines-grid">
         <div class="discipline-card" onclick="filterCategory('Cinematography')">
           <div class="discipline-avatar discipline-avatar-art">
-            <img src="assets/character_filmmaker.jpg" alt="Commercial Cinematography Character">
+            <img src="assets/character_filmmaker.jpg" alt="Commercial Cinematography — Maya Lin">
           </div>
           <h3 class="discipline-card-title">Cinematography</h3>
           <p class="discipline-card-desc">Commercial DPs, camera operators & gaffers for TVCs and campaigns.</p>
         </div>
 
         <div class="discipline-card" onclick="filterCategory('Photography')">
-          <div class="discipline-avatar">📸</div>
-          <h3 class="discipline-card-title">Brand Photography</h3>
-          <p class="discipline-card-desc">Editorial lookbooks, studio product shoots, and luxury fashion.</p>
+          <div class="discipline-avatar discipline-avatar-art">
+            <img src="assets/character_designer.jpg" alt="Brand & Visual Design — Sophie Zhang">
+          </div>
+          <h3 class="discipline-card-title">Brand & Design</h3>
+          <p class="discipline-card-desc">Brand systems, visual identities, UI, and commercial campaigns.</p>
         </div>
 
         <div class="discipline-card" onclick="filterCategory('3D & CGI')">
           <div class="discipline-avatar discipline-avatar-art">
-            <img src="assets/character_designer.jpg" alt="3D & Brand Design Character">
+            <img src="assets/bento_energy_authentic_clean.jpg" alt="3D Motion & CGI — Elena Rostova">
           </div>
           <h3 class="discipline-card-title">3D Motion & CGI</h3>
-          <p class="discipline-card-desc">Houdini, Cinema 4D, and Unreal Engine product launch visualizers.</p>
+          <p class="discipline-card-desc">Houdini, Cinema 4D, and Unreal Engine product visualizers.</p>
         </div>
 
         <div class="discipline-card" onclick="filterCategory('Drone & Aerial')">
           <div class="discipline-avatar discipline-avatar-art">
-            <img src="assets/character_drone_pilot.jpg" alt="Drone Pilot Character">
+            <img src="assets/character_drone_pilot.jpg" alt="Drone Pilot — Kai Sorensen">
           </div>
-          <h3 class="discipline-card-title">Drone & FPV Cinema</h3>
-          <p class="discipline-card-desc">Part 107 heavy-lift and high-speed FPV aerial cinematography.</p>
+          <h3 class="discipline-card-title">Drone Cinema</h3>
+          <p class="discipline-card-desc">Part 107 heavy-lift and high-speed aerial cinematography.</p>
+        </div>
+
+        <div class="discipline-card" onclick="filterCategory('Drone & Aerial')">
+          <div class="discipline-avatar discipline-avatar-art">
+            <img src="assets/bento_skater_authentic.jpg" alt="Action & FPV Chase — Liam Vance">
+          </div>
+          <h3 class="discipline-card-title">Action & FPV</h3>
+          <p class="discipline-card-desc">Precision high-speed chase camera for sports and automotive.</p>
         </div>
       </div>
     </section>
@@ -2229,24 +2333,177 @@
       }
     }
 
-    // 3D Perspective Tilt on Bento Cluster & Keyboard '/' Shortcut
-    document.addEventListener('DOMContentLoaded', () => {
-      const cluster = document.getElementById('bentoCluster');
-      if (cluster) {
-        cluster.addEventListener('mousemove', (e) => {
-          const rect = cluster.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          const rotX = ((y - centerY) / centerY) * -5;
-          const rotY = ((x - centerX) / centerX) * 5;
-          cluster.style.transform = `perspective(1200px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+    // =========================================================================
+    // 3D REVOLVING ORBITAL TALENT STAGE ENGINE (HARDWARE ACCELERATED)
+    // =========================================================================
+    let orbitAngle = 0;
+    let targetOrbitAngle = 0;
+    let isOrbitPaused = false;
+    let isOrbitDragging = false;
+    let orbitDragStartX = 0;
+    let orbitDragStartAngle = 0;
+    let activeOrbitCardIndex = 0;
+
+    function initOrbitCarousel() {
+      const stage = document.getElementById('heroOrbitStage');
+      const cylinder = document.getElementById('orbitCylinder');
+      const cards = Array.from(document.querySelectorAll('.orbit-card'));
+      const dots = Array.from(document.querySelectorAll('.orbit-dot'));
+      if (!stage || !cylinder || cards.length === 0) return;
+
+      const numCards = cards.length; // 5 cards
+      const stepAngle = (2 * Math.PI) / numCards; // 72 deg
+
+      function getResponsiveRadii() {
+        const w = window.innerWidth;
+        if (w < 680) {
+          return { rx: Math.min(w * 0.44, 155), rz: 100 };
+        } else if (w < 1140) {
+          return { rx: Math.min(w * 0.42, 360), rz: 150 };
+        }
+        return { rx: Math.min(w * 0.38, 460), rz: 200 };
+      }
+
+      function updateOrbit() {
+        const { rx, rz } = getResponsiveRadii();
+        let closestIndex = 0;
+        let maxCos = -2;
+
+        cards.forEach((card, idx) => {
+          const theta = orbitAngle + idx * stepAngle;
+          const cosVal = Math.cos(theta);
+          const sinVal = Math.sin(theta);
+
+          if (cosVal > maxCos) {
+            maxCos = cosVal;
+            closestIndex = idx;
+          }
+
+          const x = sinVal * rx;
+          const z = (cosVal - 1) * rz;
+          const rotY = -sinVal * 30; // degrees
+          const normDepth = (cosVal + 1) / 2; // 0 to 1
+          const scale = 0.80 + 0.22 * normDepth;
+          const opacity = 0.48 + 0.52 * normDepth;
+          const zIndex = Math.round(normDepth * 100);
+
+          card.style.zIndex = zIndex;
+          card.style.opacity = opacity.toFixed(2);
+          card.style.transform = `translate3d(${x.toFixed(1)}px, 0, ${z.toFixed(1)}px) rotateY(${rotY.toFixed(1)}deg) scale(${scale.toFixed(3)})`;
+
+          if (normDepth > 0.88) {
+            card.classList.add('is-center');
+          } else {
+            card.classList.remove('is-center');
+          }
         });
-        cluster.addEventListener('mouseleave', () => {
-          cluster.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
+
+        activeOrbitCardIndex = closestIndex;
+        dots.forEach((dot, dIdx) => {
+          if (dIdx === closestIndex) {
+            dot.classList.add('is-active');
+          } else {
+            dot.classList.remove('is-active');
+          }
         });
       }
+
+      function renderLoop() {
+        if (!isOrbitPaused && !isOrbitDragging) {
+          targetOrbitAngle += 0.0035;
+        }
+        orbitAngle += (targetOrbitAngle - orbitAngle) * 0.1;
+        updateOrbit();
+        requestAnimationFrame(renderLoop);
+      }
+      requestAnimationFrame(renderLoop);
+
+      cards.forEach((card, idx) => {
+        card.addEventListener('mouseenter', () => { isOrbitPaused = true; });
+        card.addEventListener('mouseleave', () => { isOrbitPaused = false; });
+      });
+
+      stage.addEventListener('mousedown', (e) => {
+        if (e.target.closest('.orbit-nav-btn') || e.target.closest('.bento-sound-indicator')) return;
+        isOrbitDragging = true;
+        isOrbitPaused = true;
+        orbitDragStartX = e.clientX;
+        orbitDragStartAngle = targetOrbitAngle;
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isOrbitDragging) return;
+        const deltaX = e.clientX - orbitDragStartX;
+        targetOrbitAngle = orbitDragStartAngle + (deltaX * 0.0045);
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (isOrbitDragging) {
+          isOrbitDragging = false;
+          isOrbitPaused = false;
+        }
+      });
+
+      stage.addEventListener('touchstart', (e) => {
+        if (e.target.closest('.orbit-nav-btn') || e.target.closest('.bento-sound-indicator')) return;
+        isOrbitDragging = true;
+        isOrbitPaused = true;
+        orbitDragStartX = e.touches[0].clientX;
+        orbitDragStartAngle = targetOrbitAngle;
+      }, { passive: true });
+
+      window.addEventListener('touchmove', (e) => {
+        if (!isOrbitDragging) return;
+        const deltaX = e.touches[0].clientX - orbitDragStartX;
+        targetOrbitAngle = orbitDragStartAngle + (deltaX * 0.0055);
+      }, { passive: true });
+
+      window.addEventListener('touchend', () => {
+        if (isOrbitDragging) {
+          isOrbitDragging = false;
+          isOrbitPaused = false;
+        }
+      });
+
+      stage.addEventListener('mousemove', (e) => {
+        if (isOrbitDragging) return;
+        const rect = stage.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const rotX = (y / (rect.height / 2)) * -4;
+        const rotY = (x / (rect.width / 2)) * 4;
+        cylinder.style.transform = `perspective(1400px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+      });
+
+      stage.addEventListener('mouseleave', () => {
+        cylinder.style.transform = `perspective(1400px) rotateX(0deg) rotateY(0deg)`;
+      });
+    }
+
+    function rotateOrbit(direction) {
+      const stepAngle = (2 * Math.PI) / 5;
+      targetOrbitAngle -= direction * stepAngle;
+    }
+
+    function jumpToOrbitCard(cardIndex) {
+      const stepAngle = (2 * Math.PI) / 5;
+      const target = -cardIndex * stepAngle;
+      const diff = (target - targetOrbitAngle) % (2 * Math.PI);
+      const normalizedDiff = Math.atan2(Math.sin(diff), Math.cos(diff));
+      targetOrbitAngle += normalizedDiff;
+    }
+
+    function handleOrbitCardClick(cardIndex, categoryName, event) {
+      if (event) event.stopPropagation();
+      if (activeOrbitCardIndex === cardIndex) {
+        handleBentoClick(categoryName, event);
+      } else {
+        jumpToOrbitCard(cardIndex);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initOrbitCarousel();
 
       document.addEventListener('keydown', (e) => {
         if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
