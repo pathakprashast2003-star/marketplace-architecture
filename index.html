@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXUS // NINJAX — Ride Beyond Boundaries</title>
+  <title>NEXUS // NINJAX — Creative Edge</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -28,8 +28,8 @@
       --card-border: rgba(255, 255, 255, 0.45);
       
       --text-white: #FFFFFF;
-      --text-soft: rgba(255, 255, 255, 0.85);
-      --text-muted: rgba(255, 255, 255, 0.60);
+      --text-soft: rgba(255, 255, 255, 0.90);
+      --text-muted: rgba(255, 255, 255, 0.65);
       --text-dark: #0D0F14;
       
       --font-display: 'Cabinet Grotesk', -apple-system, sans-serif;
@@ -230,40 +230,92 @@
       z-index: 1;
     }
 
-    /* ── PRODUCT HERO BIKE IMAGE LAYER ── */
-    .hero-bike-container {
+    /* Atmospheric Low Ground Mist */
+    .ground-mist-layer {
       position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 280px;
+      background: radial-gradient(ellipse at 50% 100%, rgba(255, 255, 255, 0.38) 0%, rgba(255, 180, 120, 0.18) 50%, transparent 75%);
+      filter: blur(36px);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 3;
     }
 
-    .hero-bike-img {
+    /* ── GIANT BACKGROUND TYPOGRAPHY: CREATIVE EDGE ── */
+    .hero-bg-text-layer {
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
-      filter: contrast(1.04) brightness(1.02);
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: center;
+      z-index: 2;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .ninjax-hero-canvas:hover .hero-bike-img {
-      transform: scale(1.015);
+    .hero-big-title {
+      font-family: var(--font-display);
+      font-size: clamp(80px, 12.5vw, 190px);
+      font-weight: 900;
+      line-height: 0.84;
+      letter-spacing: -0.04em;
+      color: #FFFFFF;
+      text-shadow: 0 10px 40px rgba(15, 3, 0, 0.4);
+      user-select: none;
     }
 
-    /* ── INTERACTIVE HOTSPOT PIN 1: PRICE SPEECH BUBBLE ($2,999) ── */
+    .hero-big-title span {
+      display: block;
+    }
+
+    /* ── HERO TALENT (PERSON WITH DRONE) ── */
+    .hero-talent-stage {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 94%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .hero-talent-cutout {
+      max-height: 88vh;
+      max-width: 100%;
+      object-fit: contain;
+      object-position: bottom center;
+      user-select: none;
+      filter: drop-shadow(0 25px 50px rgba(15, 3, 0, 0.45));
+      animation: floatSmooth 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatSmooth {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-8px); }
+    }
+
+    /* ── INTERACTIVE HOTSPOT PIN 1: PRICE / RATE SPEECH BUBBLE ($2,400/day) ── */
     .hotspot-price-tag {
       position: absolute;
-      top: 24%;
-      right: 34%;
-      z-index: 5;
+      top: 26%;
+      right: 32%;
+      z-index: 6;
       display: flex;
       flex-direction: column;
       align-items: center;
       cursor: pointer;
       animation: floatBadge 3.5s ease-in-out infinite;
+      pointer-events: auto;
     }
 
     @keyframes floatBadge {
@@ -308,13 +360,14 @@
       border-top-color: #0D0F14;
     }
 
-    /* Second interactive hotspot pin on rear shock */
+    /* Hotspot 2 on Drone (Radar Beacon) */
     .hotspot-radar-pin {
       position: absolute;
-      top: 40%;
-      left: 48%;
-      z-index: 5;
+      top: 18%;
+      left: 64%;
+      z-index: 6;
       cursor: pointer;
+      pointer-events: auto;
     }
 
     .radar-pulse {
@@ -366,107 +419,59 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    /* ── CENTER STACKED KINETIC TYPOGRAPHY & CALL TO ACTION ── */
-    .hero-center-editorial {
+    /* ── BOTTOM EDITORIAL STAGE DOCK ── */
+    .stage-horizon-dock {
       position: absolute;
-      bottom: 90px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 4;
+      bottom: 34px;
+      left: 0;
+      width: 100%;
+      padding: 0 54px;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      width: 90%;
-      max-width: 900px;
+      align-items: flex-end;
+      justify-content: space-between;
+      z-index: 10;
       pointer-events: none;
     }
 
-    .hero-headline-stacked {
-      font-family: var(--font-display);
-      font-size: clamp(48px, 6.2vw, 84px);
-      font-weight: 900;
-      line-height: 0.92;
-      text-transform: uppercase;
-      letter-spacing: -0.035em;
-      color: #FFFFFF;
-      text-shadow: 0 4px 20px rgba(20, 5, 0, 0.55), 0 2px 4px rgba(0, 0, 0, 0.3);
+    /* Left Editorial Column */
+    .dock-headline-col {
+      max-width: 480px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-
-    .headline-row {
-      display: block;
-      white-space: nowrap;
-    }
-
-    .hero-subtitle {
-      font-size: clamp(14px, 1.3vw, 17px);
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      color: rgba(255, 255, 255, 0.92);
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-      margin-bottom: 24px;
-      font-style: italic;
-    }
-
-    .hero-cta-wrap {
+      align-items: flex-start;
       pointer-events: auto;
     }
 
-    .btn-shop-now {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: #0B0E14;
-      color: #FFFFFF;
+    .dock-title {
       font-family: var(--font-display);
-      font-size: 13px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 14px 34px;
-      border-radius: 999px;
-      text-decoration: none;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: clamp(2.1rem, 2.7vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      color: #FFFFFF;
+      margin: 0 0 10px 0;
+      text-shadow: 0 6px 24px rgba(15, 3, 0, 0.5);
     }
 
-    .btn-shop-now:hover {
-      background: #FFFFFF;
-      color: #0B0E14;
-      transform: translateY(-2px);
-      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 85, 0, 0.3);
-    }
-
-    /* ── BOTTOM CONTROLS & SPECIFICATION DOCK ── */
-    .hero-bottom-controls-bar {
-      position: absolute;
-      bottom: 28px;
-      left: 36px;
-      right: 36px;
-      z-index: 5;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      pointer-events: none;
+    .dock-sub {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.48;
+      margin: 0 0 20px 0;
+      max-width: 420px;
+      text-shadow: 0 2px 12px rgba(15, 3, 0, 0.4);
     }
 
     /* Circular arrow buttons (<) (>) */
     .carousel-nav-arrows {
       display: flex;
       align-items: center;
-      gap: 12px;
-      pointer-events: auto;
+      gap: 10px;
     }
 
     .carousel-btn {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: rgba(13, 15, 20, 0.65);
       backdrop-filter: blur(12px);
@@ -492,38 +497,96 @@
       font-family: var(--font-mono);
       font-size: 12px;
       font-weight: 700;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.85);
       letter-spacing: 0.08em;
       padding-left: 6px;
     }
 
-    /* Right specs line */
-    .hero-right-specs {
+    /* Right Action Column */
+    .dock-actions-col {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-end;
       gap: 16px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: rgba(255, 255, 255, 0.85);
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
       pointer-events: auto;
     }
 
-    .spec-item {
+    .action-buttons-wrap {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 12px;
     }
 
-    .spec-dot {
+    .btn-discover {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #0B0E14;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      padding: 15px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-discover:hover {
+      background: #FFFFFF;
+      color: #0B0E14;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 85, 0, 0.3);
+    }
+
+    .btn-join {
+      display: inline-flex;
+      align-items: center;
+      background: #FFFFFF;
+      color: #0B0E14;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      padding: 15px 26px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-join:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .quiet-specs-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+      letter-spacing: 0.02em;
+      text-shadow: 0 2px 10px rgba(15, 3, 0, 0.5);
+    }
+
+    .spec-dot-green {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #FF5500;
-      box-shadow: 0 0 8px #FF5500;
+      background: #10B981;
+      box-shadow: 0 0 8px #10B981;
+      display: inline-block;
+    }
+
+    .spec-sep {
+      color: rgba(255, 255, 255, 0.45);
     }
 
     /* ── RESPONSIVE MOBILE ADJUSTMENTS ── */
@@ -550,60 +613,90 @@
 
       .ninjax-hero-canvas {
         width: calc(100vw - 20px);
-        height: 84vh;
+        height: auto;
+        min-height: 820px;
         border-radius: 28px;
         margin-bottom: 16px;
-        background: radial-gradient(ellipse at 50% 30%, #E25B02 0%, #A53401 50%, #200E08 100%);
+        justify-content: flex-start;
       }
 
-      .hero-bike-container {
-        height: 52%;
-        top: 2%;
-        bottom: auto;
+      .hero-bg-text-layer {
+        top: 6%;
       }
 
-      .hero-bike-img {
-        object-fit: cover;
-        object-position: 50% 50%;
-        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+      .hero-big-title {
+        font-size: 54px;
+        line-height: 0.88;
       }
 
-      .hero-center-editorial {
-        bottom: 85px;
-        width: 94%;
+      .hero-talent-stage {
+        height: 48%;
+        bottom: 340px;
       }
 
-      .hero-headline-stacked {
-        font-size: 32px;
-        line-height: 0.95;
-        margin-bottom: 10px;
-      }
-
-      .hero-subtitle {
-        font-size: 13px;
-        margin-bottom: 18px;
+      .hero-talent-cutout {
+        max-height: 44vh;
       }
 
       .hotspot-price-tag {
-        top: 15%;
-        left: 62%;
-        right: auto;
+        top: 18%;
+        right: 18%;
       }
 
       .hotspot-radar-pin {
-        top: 27%;
-        left: 48%;
+        top: 12%;
+        left: 72%;
       }
 
-      .hero-bottom-controls-bar {
-        bottom: 22px;
-        left: 20px;
-        right: 20px;
+      .stage-horizon-dock {
+        position: relative;
+        bottom: 0;
+        padding: 0 20px 80px 20px;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        margin-top: auto;
       }
 
-      .hero-right-specs {
-        display: none;
+      .dock-headline-col {
+        align-items: center;
+        text-align: center;
+        max-width: 100%;
+      }
+
+      .dock-title {
+        font-size: 24px;
+        margin-bottom: 6px;
+      }
+
+      .dock-sub {
+        font-size: 13px;
+        margin-bottom: 12px;
+      }
+
+      .dock-actions-col {
+        align-items: center;
+        width: 100%;
+        gap: 12px;
+      }
+
+      .action-buttons-wrap {
+        width: 100%;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .btn-discover, .btn-join {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        padding: 14px 20px;
+      }
+
+      .quiet-specs-line {
+        font-size: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
       .preview-layout-switcher {
@@ -647,19 +740,18 @@
 
     <!-- Center Navigation Pill -->
     <nav class="header-nav-pill" aria-label="Primary Navigation">
-      <a href="#bikes" class="header-nav-link active">Mountain</a>
-      <a href="#performance" class="header-nav-link">Performance</a>
-      <a href="#lab" class="header-nav-link">Custom Lab</a>
-      <a href="#athletes" class="header-nav-link">Athletes</a>
+      <a href="#new" class="header-nav-link active">Featured</a>
+      <a href="#directors" class="header-nav-link">Directors</a>
+      <a href="#cinematographers" class="header-nav-link">Cinematography</a>
+      <a href="#3d" class="header-nav-link">3D Artists</a>
     </nav>
 
     <div class="header-right-tools">
-      <a href="#search" class="tool-icon-btn" aria-label="Search Gear">
+      <a href="#search" class="tool-icon-btn" aria-label="Search">
         <span>🔍</span>
       </a>
-      <a href="#cart" class="tool-icon-btn" aria-label="Cart">
-        <span>🛒</span>
-        <span class="bag-badge">0</span>
+      <a href="#profile" class="tool-icon-btn" aria-label="Profile">
+        <span>👤</span>
       </a>
     </div>
   </header>
@@ -668,58 +760,65 @@
   <main class="ninjax-hero-canvas">
 
     <div class="vignette-layer" aria-hidden="true"></div>
+    <div class="ground-mist-layer" aria-hidden="true"></div>
 
-    <!-- Product Bike Image Layer -->
-    <div class="hero-bike-container">
-      <img src="assets/ninjax_bike_hero.jpg" alt="NEXUS Ninjax S-Works Mountain Bike" class="hero-bike-img">
+    <!-- Giant Background Typography: CREATIVE EDGE -->
+    <div class="hero-bg-text-layer" aria-hidden="true">
+      <h2 class="hero-big-title">
+        <span>CREATIVE</span>
+        <span>EDGE</span>
+      </h2>
     </div>
 
-    <!-- Interactive Price Hotspot Pin (from reference) -->
-    <div class="hotspot-price-tag" title="Specialized S-Works Carbon Edition">
-      <div class="price-bubble">$2,999</div>
+    <!-- Hero Visual Talent (Person Holding Drone Remote + Drone in Flight) -->
+    <div class="hero-talent-stage">
+      <img src="assets/character_drone_operator_final.png" alt="Featured Aerial Cinematographer & Drone Director" class="hero-talent-cutout">
     </div>
 
-    <!-- Interactive Chassis Hotspot Pin -->
+    <!-- Interactive Price / Rate Hotspot Pin ($2,400 / day) -->
+    <div class="hotspot-price-tag" title="Book Director Direct">
+      <div class="price-bubble">$2,400 / day</div>
+    </div>
+
+    <!-- Interactive Drone Rig Hotspot Pin -->
     <div class="hotspot-radar-pin">
       <div class="radar-pulse"></div>
-      <div class="radar-tooltip">FACT 11m Carbon Chassis</div>
+      <div class="radar-tooltip">8K RAW Drone Rig</div>
     </div>
 
-    <!-- Center Stacked Kinetic Typography & CTA -->
-    <section class="hero-center-editorial">
-      <h1 class="hero-headline-stacked">
-        <span class="headline-row">RIDE BEYOND</span>
-        <span class="headline-row">BOUNDARIES</span>
-      </h1>
-      <p class="hero-subtitle">Pursue the summit... triumph over any route.</p>
+    <!-- Bottom Editorial Horizon Dock -->
+    <footer class="stage-horizon-dock">
       
-      <div class="hero-cta-wrap">
-        <a href="#shop" class="btn-shop-now">SHOP NOW</a>
+      <!-- Left Column: Editorial Headline + Subhead + Carousel Arrows -->
+      <div class="dock-headline-col">
+        <h1 class="dock-title">Direct access to<br>world-class visual talent.</h1>
+        <p class="dock-sub">Vetted directors, 3D artists, and cinematographers shaping modern visual culture.</p>
+        
+        <!-- Carousel Navigation Arrows -->
+        <div class="carousel-nav-arrows">
+          <button class="carousel-btn" aria-label="Previous Creator">‹</button>
+          <button class="carousel-btn" aria-label="Next Creator">›</button>
+          <span class="carousel-indicator">01 / 04</span>
+        </div>
       </div>
-    </section>
 
-    <!-- Bottom Controls & Spec Dock -->
-    <footer class="hero-bottom-controls-bar">
-      <!-- Carousel Arrows (<) (>) -->
-      <div class="carousel-nav-arrows">
-        <button class="carousel-btn" aria-label="Previous Slide">‹</button>
-        <button class="carousel-btn" aria-label="Next Slide">›</button>
-        <span class="carousel-indicator">01 / 03</span>
+      <!-- Right Column: Tactile Buttons + Quiet Specs -->
+      <div class="dock-actions-col">
+        <div class="action-buttons-wrap">
+          <a href="#discover" class="btn-discover">Discover Talent →</a>
+          <a href="#join" class="btn-join">Join as Creator</a>
+        </div>
+
+        <div class="quiet-specs-line">
+          <span class="spec-dot-green"></span>
+          <span>Top 1% Creators</span>
+          <span class="spec-sep">/</span>
+          <span>Verified Proof</span>
+          <span class="spec-sep">/</span>
+          <span>Direct Terms</span>
+        </div>
       </div>
 
-      <!-- Right Spec Line -->
-      <div class="hero-right-specs">
-        <div class="spec-item">
-          <span class="spec-dot"></span>
-          <span>Carbon S-Works</span>
-        </div>
-        <div class="spec-item">
-          <span>Fox Factory 38</span>
-        </div>
-        <div class="spec-item">
-          <span>14.2 kg</span>
-        </div>
-      </div>
     </footer>
 
   </main>
