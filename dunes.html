@@ -124,7 +124,9 @@
       display: block;
     }
 
-    .text-white {
+    .text-white,
+    .title-wefind,
+    .title-the {
       color: var(--text-white);
       text-shadow: 0 4px 20px rgba(37, 99, 235, 0.18);
     }
@@ -447,11 +449,11 @@
 
       .title-wefind, .title-the {
         display: inline;
-        font-size: clamp(1.6rem, 7vw, 2.25rem);
+        font-size: clamp(1.5rem, 6.5vw, 2.1rem);
         font-weight: 900;
-        letter-spacing: 0.04em;
-        color: #FFFFFF;
-        text-shadow: 0 4px 20px rgba(37, 99, 235, 0.38);
+        letter-spacing: -0.01em;
+        color: #0F172A;
+        text-shadow: none;
       }
 
       .title-creative, .title-edge {
@@ -532,15 +534,16 @@
       #heroCharacterSlot {
         position: relative;
         z-index: 2;
-        /* Fill from the top — head is ~25% from top of PNG so it lands mid-screen */
-        height: 100%;
+        /* Scaled down 1 step (~8%) for breathing room around head and bottom dock */
+        height: 92%;
+        max-height: 92%;
         width: auto;
-        max-width: 100%;
+        max-width: 92%;
         object-fit: contain;
         object-position: top center;
       }
 
-      /* ── EDITORIAL CONVERSION GROUP (ACTIONS + BADGES DOCKED AT BOTTOM) ── */
+      /* ── EDITORIAL CONVERSION GROUP (ACTIONS + BADGES ELEVATED UPWARDS) ── */
       .hero-editorial-chunk {
         order: 3;
         width: 100%;
@@ -548,8 +551,8 @@
         flex-direction: column;
         align-items: center;
         gap: 8px;
-        margin: 0;
-        padding: 2px 16px 0;
+        margin: 0 0 18px;
+        padding: 0 16px 6px;
       }
 
       .action-row {
@@ -647,15 +650,15 @@
     }
     @media (max-width: 900px) {
       .editor-toggle-btn {
-        top: auto;
-        bottom: 12px;
-        right: 12px;
+        top: 48px;
+        right: 14px;
+        bottom: auto;
         left: auto;
         font-size: 11px;
-        padding: 6px 12px;
+        padding: 5px 12px;
       }
       .editor-hud {
-        bottom: 60px;
+        bottom: 16px;
         width: calc(100% - 20px);
         padding: 8px 10px;
       }
@@ -809,7 +812,10 @@
       <button class="hud-chip" type="button" data-hud-select="headline-stack">Main Headline</button>
     </div>
     <div class="hud-actions">
-      <div style="display: flex; gap: 4px;">
+      <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+        <button class="hud-btn" type="button" id="hudColorCycle" title="Cycle Color between Dark, Blue, and White">Color</button>
+        <button class="hud-btn" type="button" id="hudImgMinus" title="Reduce Pilot Size by 5%">Img -</button>
+        <button class="hud-btn" type="button" id="hudImgPlus" title="Increase Pilot Size by 5%">Img +</button>
         <button class="hud-btn" type="button" id="hudFontMinus" title="Decrease Font Size">A-</button>
         <button class="hud-btn" type="button" id="hudFontPlus" title="Increase Font Size">A+</button>
         <button class="hud-btn" type="button" id="hudZToggle" title="Toggle Layer Behind/In Front">Layer: Behind</button>
@@ -860,7 +866,7 @@
       <section class="hero-left-content">
 
         <h1 class="headline-stack">
-          <span class="title-row title-wefind text-white">WE FIND</span> <span class="title-row title-the text-white">THE</span>
+          <span class="title-row title-wefind">WE FIND</span> <span class="title-row title-the">THE</span>
           <span class="title-row title-creative text-dark">CREATIVE</span>
           <span class="title-row title-edge text-dark">EDGE</span>
         </h1>
@@ -956,6 +962,9 @@
       const hudFontMinus = document.getElementById('hudFontMinus');
       const hudFontPlus = document.getElementById('hudFontPlus');
       const hudZToggle = document.getElementById('hudZToggle');
+      const hudColorCycle = document.getElementById('hudColorCycle');
+      const hudImgMinus = document.getElementById('hudImgMinus');
+      const hudImgPlus = document.getElementById('hudImgPlus');
 
       let isEditing = false;
       let activeTarget = null;
@@ -1151,6 +1160,36 @@
         });
       }
 
+      // Color cycle toggle
+      if (hudColorCycle) {
+        hudColorCycle.addEventListener('click', () => {
+          if (!activeTarget) return;
+          const colors = ['#0F172A', '#1D4ED8', '#FFFFFF', '#0B132B'];
+          const cur = activeTarget.style.color || window.getComputedStyle(activeTarget).color;
+          const next = colors[(colors.indexOf(cur) + 1) % colors.length] || colors[0];
+          activeTarget.style.color = next;
+          activeTarget.querySelectorAll('*').forEach(n => n.style.color = next);
+          hudColorCycle.textContent = next === '#0F172A' ? 'Color: Dark' : (next === '#FFFFFF' ? 'Color: White' : 'Color: Blue');
+          saveEdits();
+        });
+      }
+
+      // Pilot image scaling
+      if (hudImgMinus || hudImgPlus) {
+        const slot = document.getElementById('heroCharacterSlot');
+        function adjustImgScale(factor) {
+          if (!slot) return;
+          const curH = parseFloat(slot.style.maxHeight) || 92;
+          const nextH = Math.min(100, Math.max(50, Math.round(curH * factor)));
+          slot.style.maxHeight = nextH + '%';
+          slot.style.height = nextH + '%';
+          slot.style.maxWidth = nextH + '%';
+          saveEdits();
+        }
+        if (hudImgMinus) hudImgMinus.addEventListener('click', () => adjustImgScale(0.95));
+        if (hudImgPlus) hudImgPlus.addEventListener('click', () => adjustImgScale(1.05));
+      }
+
       // Copy CSS
       if (hudCopyCss) {
         hudCopyCss.addEventListener('click', () => {
@@ -1163,9 +1202,11 @@
           const left = activeTarget.style.left || 'auto';
           const font = activeTarget.style.fontSize || '';
           const z = activeTarget.style.zIndex || '';
+          const col = activeTarget.style.color || '';
 
           let css = `${sel} {\n  top: ${top};\n  left: ${left};\n`;
           if (font) css += `  font-size: ${font};\n`;
+          if (col) css += `  color: ${col};\n`;
           if (z) css += `  z-index: ${z};\n`;
           css += `}`;
 
@@ -1214,6 +1255,8 @@
               top: el.style.top,
               fontSize: el.style.fontSize,
               zIndex: el.style.zIndex,
+              color: el.style.color,
+              maxHeight: el.style.maxHeight,
               text: el.classList.contains('mb-word') ? el.innerText : null
             };
           }
@@ -1234,6 +1277,15 @@
               if (d.top) el.style.top = d.top;
               if (d.fontSize) el.style.fontSize = d.fontSize;
               if (d.zIndex) el.style.zIndex = d.zIndex;
+              if (d.color) {
+                el.style.color = d.color;
+                el.querySelectorAll('*').forEach(n => n.style.color = d.color);
+              }
+              if (d.maxHeight) {
+                el.style.maxHeight = d.maxHeight;
+                el.style.height = d.maxHeight;
+                el.style.maxWidth = d.maxHeight;
+              }
               if (d.left || d.top) {
                 const pos = window.getComputedStyle(el).position;
                 if (pos === 'static') el.style.position = 'relative';
