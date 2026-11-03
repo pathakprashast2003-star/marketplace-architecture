@@ -10,3 +10,4 @@ node_modules/
 *.current_*
 *.dunes
 *.ninjax_master
+.taste-skill/
