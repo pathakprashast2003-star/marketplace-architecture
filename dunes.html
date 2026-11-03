@@ -376,12 +376,13 @@
         height: 100dvh;
         max-height: 100dvh;
         overflow: hidden;
-        padding: 42px 16px 14px;
+        padding: 44px 0 14px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         box-sizing: border-box;
+        overflow: hidden;
       }
 
       /* Compact top pill dock for layout switcher */
@@ -419,12 +420,13 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         width: 100%;
         height: 100%;
-        max-width: 420px;
+        max-width: 410px;
         margin: 0 auto;
-        gap: 0;
+        gap: 6px;
+        overflow: visible;
       }
 
       /* Flatten left container so headline prefix sits at top, actions sit at bottom */
@@ -440,15 +442,16 @@
         text-align: center;
         display: block;
         line-height: 1;
+        padding: 0 16px;
       }
 
       .title-wefind, .title-the {
         display: inline;
-        font-size: clamp(1.4rem, 6.2vw, 2.05rem);
+        font-size: clamp(1.6rem, 7vw, 2.25rem);
         font-weight: 900;
         letter-spacing: 0.04em;
         color: #FFFFFF;
-        text-shadow: 0 4px 18px rgba(37, 99, 235, 0.35);
+        text-shadow: 0 4px 20px rgba(37, 99, 235, 0.38);
       }
 
       .title-creative, .title-edge {
@@ -463,21 +466,40 @@
         flex: 1;
         min-height: 0;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         margin: 0;
+        overflow: visible;
+      }
+
+      /*
+       * KEY FIX: image-container-slot is now full-height and the image
+       * is anchored TOP so the boy's head/drone appear in the upper third.
+       * The CREATIVE EDGE backdrop is positioned absolutely at top:0
+       * so it falls exactly behind the hair and face.
+       */
+      .image-container-slot {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        transform: none;
+        overflow: visible;
       }
 
       .mobile-backdrop-headline {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-start;
+        justify-content: flex-start;
         position: absolute;
-        top: 36%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
+        /* Left-edge anchor, deliberate right bleed (magazine-style) */
+        top: 8%;
+        left: 0;
+        width: auto;
+        transform: none;
         pointer-events: none;
         z-index: 1;
         user-select: none;
@@ -487,39 +509,35 @@
       .mb-word {
         font-family: var(--font-display);
         font-weight: 900;
-        line-height: 0.82;
+        line-height: 0.85;
         color: #FFFFFF;
         text-transform: uppercase;
-        filter: drop-shadow(0 10px 28px rgba(25, 80, 200, 0.32));
+        /* Strong text fill, no shadow clutter */
+        text-shadow: none;
       }
 
+      /* CREATIVE: fills full viewport width behind drone + hair */
       .mb-creative {
-        font-size: clamp(3.4rem, 16vw, 5.2rem);
-        letter-spacing: 0.02em;
+        font-size: clamp(3.2rem, 17.5vw, 5.2rem);
+        letter-spacing: -0.02em;
       }
 
+      /* EDGE: bigger, fills behind face + chest */
       .mb-edge {
-        font-size: clamp(4.2rem, 19.5vw, 6.6rem);
-        letter-spacing: 0.04em;
-        margin-top: -0.06em;
-      }
-
-      .image-container-slot {
-        position: relative;
-        z-index: 2;
-        height: 100%;
-        max-height: clamp(230px, 46vh, 350px);
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transform: translateY(0);
+        font-size: clamp(3.6rem, 21vw, 6.2rem);
+        letter-spacing: -0.02em;
+        margin-top: -0.07em;
       }
 
       #heroCharacterSlot {
-        max-height: 100%;
+        position: relative;
+        z-index: 2;
+        /* Fill from the top — head is ~25% from top of PNG so it lands mid-screen */
+        height: 100%;
         width: auto;
+        max-width: 100%;
         object-fit: contain;
+        object-position: top center;
       }
 
       /* ── EDITORIAL CONVERSION GROUP (ACTIONS + BADGES DOCKED AT BOTTOM) ── */
@@ -531,7 +549,7 @@
         align-items: center;
         gap: 8px;
         margin: 0;
-        padding-top: 4px;
+        padding: 2px 16px 0;
       }
 
       .action-row {
@@ -678,13 +696,13 @@
 
       <!-- RIGHT: CHARACTER IMAGE VIEWPORT / MOBILE 3D BACKPLANE STAGE -->
       <section class="hero-right-stage">
-        <!-- Monumental sculpted backdrop display headline for mobile 3D layering (Image 4 reference) -->
-        <div class="mobile-backdrop-headline" aria-hidden="true">
-          <span class="mb-word mb-creative">CREATIVE</span>
-          <span class="mb-word mb-edge">EDGE</span>
-        </div>
-
         <div class="image-container-slot">
+          <!-- Monumental sculpted backdrop display headline for mobile 3D layering (Image 2 reference) -->
+          <div class="mobile-backdrop-headline" aria-hidden="true">
+            <span class="mb-word mb-creative">CREATIVE</span>
+            <span class="mb-word mb-edge">EDGE</span>
+          </div>
+
           <!-- 3D Drone Pilot Subject: Upward Flight -->
           <img id="heroCharacterSlot" src="assets/upward_flight_pilot_drone.png" alt="Upward Flight: Pilot and Drone">
         </div>
