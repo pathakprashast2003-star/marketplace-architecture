@@ -89,10 +89,10 @@
       --wave-azure: #C084FC;
       --wave-cobalt: #7E22CE;
       --wave-soft: #D8B4FE;
-      --text-white: #FFFFFF;
+      --text-white: #7E22CE;
       --text-dark: #2A0E44;
       --text-secondary: #4D2377;
-      --text-shadow-hero: 0 4px 20px rgba(126, 34, 206, 0.16);
+      --text-shadow-hero: none;
       --btn-primary: #2A0E44;
       --btn-primary-hover: #1A072E;
       --btn-secondary-bg: #FFFFFF;
@@ -835,14 +835,22 @@
       }
     }
 
-    body.is-editing .mobile-backdrop-headline,
-    body.is-editing .mb-word,
-    body.is-editing #heroCharacterSlot,
-    body.is-editing .headline-stack,
-    body.is-editing .hero-editorial-chunk {
-      pointer-events: auto !important;
-      cursor: grab !important;
-      touch-action: none !important;
+    body.is-editing .hero-viewport *,
+    body.is-editing .nike-hero-canvas * {
+      cursor: grab;
+    }
+    body.is-editing [contenteditable="true"] {
+      cursor: text !important;
+    }
+    body.is-editing .editor-hud,
+    body.is-editing .editor-hud *,
+    body.is-editing .editor-toggle-btn,
+    body.is-editing .editor-toggle-btn *,
+    body.is-editing .character-theme-capsules,
+    body.is-editing .character-theme-capsules *,
+    body.is-editing .preview-layout-switcher,
+    body.is-editing .preview-layout-switcher * {
+      cursor: default !important;
     }
     body.is-editing .drag-selected {
       outline: 2px dashed #3B82F6 !important;
@@ -850,9 +858,32 @@
     }
     body.is-editing [contenteditable="true"]:focus {
       outline: 2px solid #60A5FA !important;
-      background: rgba(37, 99, 235, 0.2) !important;
+      background: rgba(37, 99, 235, 0.15) !important;
       cursor: text !important;
       border-radius: 4px;
+    }
+
+    body.preview-as-mobile .desktop-only { display: none !important; }
+    body.preview-as-mobile .mobile-only { display: block !important; }
+    body.preview-as-mobile .mobile-backdrop-headline { display: flex !important; }
+    body.preview-as-mobile .hero-grid { display: flex !important; flex-direction: column !important; justify-content: space-between !important; height: 100% !important; }
+    body.preview-as-mobile .hero-left-content { align-items: center !important; text-align: center !important; }
+    body.preview-as-mobile .headline-stack { align-items: center !important; }
+    body.preview-as-mobile .hero-editorial-chunk { align-items: center !important; }
+
+    .hud-save-toast {
+      background: #10B981;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+    .hud-save-toast.show {
+      opacity: 1;
     }
 
     .hud-viewport-switch {
@@ -1143,6 +1174,7 @@
           <button type="button" id="hudViewMobile" class="hud-view-btn" title="Switch to Mobile View">📱 Mobile</button>
         </div>
         <span>Target: <span id="hudTargetName" class="hud-target-name">CREATIVE EDGE</span></span>
+        <span id="hudSaveToast" class="hud-save-toast">✓ Saved</span>
       </div>
       <span id="hudCoords" class="hud-coords">Drag on screen to reposition</span>
     </div>
@@ -1220,6 +1252,9 @@
 
         <!-- ── EDITORIAL CONVERSION GROUP (APPLE TACTILE BUTTONS + BADGING CAPSULE) ── -->
         <div class="hero-editorial-chunk theme-fader">
+          <p class="hero-subheadline theme-fader" data-edit-key="hero-subheadline" style="font-size: 1.05rem; line-height: 1.5; color: var(--text-secondary); margin: 0 0 1.25rem 0; max-width: 440px; font-weight: 500;">
+            A curated network of 3D artists, digital craftspeople, and visual visionaries.
+          </p>
           <div class="action-row">
             <a href="#" class="btn-discover" onclick="handleAction('discover', event)">
               <span>Discover Talent</span>
@@ -1433,7 +1468,8 @@
       setTimeout(() => {
         body.setAttribute('data-theme', themeKey);
         if (img) {
-          const customImg = localStorage.getItem('custom_image_' + themeKey);
+          const mode = window.innerWidth <= 900 ? 'mobile' : 'desktop';
+          const customImg = localStorage.getItem('custom_img_' + themeKey + '_' + mode) || localStorage.getItem('custom_image_' + themeKey);
           img.src = customImg || data.imgSrc;
           img.alt = data.imgAlt;
         }
@@ -1529,6 +1565,7 @@
       const hudImgPlus = document.getElementById('hudImgPlus');
       const hudDockUp = document.getElementById('hudDockUp');
       const hudDockDown = document.getElementById('hudDockDown');
+      const hudSaveToast = document.getElementById('hudSaveToast');
 
       let isEditing = false;
       let activeTarget = null;
@@ -1537,8 +1574,8 @@
       let initialLeft = 0, initialTop = 0;
       let hasMoved = false;
 
-      // Responsive viewport isolation
-      const STORAGE_PREFIX = 'dunes_custom_edits_v7_';
+      // Responsive viewport isolation (v8)
+      const STORAGE_PREFIX = 'dunes_custom_edits_v8_';
       let manualViewportMode = null;
       function getActiveViewport() {
         if (manualViewportMode) return manualViewportMode;
@@ -1548,10 +1585,12 @@
         return STORAGE_PREFIX + getActiveViewport();
       }
 
-      // Purge legacy non-isolated cache keys
-      try {
-        ['dunes_custom_edits', 'dunes_custom_edits_v2', 'dunes_custom_edits_v3', 'dunes_custom_edits_v4', 'dunes_custom_edits_v5', 'dunes_custom_edits_v6'].forEach(k => localStorage.removeItem(k));
-      } catch(e) {}
+      function showSavedToast() {
+        if (!hudSaveToast) return;
+        hudSaveToast.classList.add('show');
+        clearTimeout(hudSaveToast._timer);
+        hudSaveToast._timer = setTimeout(() => hudSaveToast.classList.remove('show'), 1200);
+      }
 
       function getCharacterDisplayName() {
         if (currentThemeKey === 'sage') return 'Creator Image (Sage)';
@@ -1562,7 +1601,7 @@
         return 'Character Image';
       }
 
-      // Target elements per viewport
+      // Base predefined target map
       const targetMap = {
         // Mobile-specific targets
         'mobile-backdrop-headline': { el: () => document.querySelector('.mobile-backdrop-headline'), name: 'CREATIVE EDGE (Backdrop)', viewport: 'mobile' },
@@ -1576,10 +1615,14 @@
         'title-the': { el: () => document.querySelector('.title-the'), name: 'Word: THE (Desktop)', viewport: 'desktop' },
         'title-creative': { el: () => document.querySelector('.title-creative'), name: 'Word: CREATIVE (Desktop)', viewport: 'desktop' },
         'title-edge': { el: () => document.querySelector('.title-edge'), name: 'Word: EDGE (Desktop)', viewport: 'desktop' },
+        'hero-subheadline': { el: () => document.querySelector('.hero-subheadline'), name: 'Subtitle Copy', viewport: 'desktop' },
 
-        // Shared targets with independent per-viewport positions
+        // Shared action & image targets
         'heroCharacterSlot': { el: () => document.getElementById('heroCharacterSlot'), name: 'Character Image', getDisplayName: getCharacterDisplayName, viewport: 'both' },
-        'hero-editorial-chunk': { el: () => document.querySelector('.hero-editorial-chunk'), name: 'Action Dock', viewport: 'both' }
+        'hero-editorial-chunk': { el: () => document.querySelector('.hero-editorial-chunk'), name: 'Action Dock', viewport: 'both' },
+        'btn-discover': { el: () => document.querySelector('.btn-discover'), name: 'Discover Talent Button', viewport: 'both' },
+        'btn-join': { el: () => document.querySelector('.btn-join'), name: 'Join as Creator Button', viewport: 'both' },
+        'apple-spec-bar': { el: () => document.querySelector('.apple-spec-bar'), name: 'Proof Specs Bar', viewport: 'both' }
       };
 
       const defaultTexts = {
@@ -1625,8 +1668,25 @@
       }
 
       function clearAllInlineStyles() {
+        document.querySelectorAll('[data-dragged="true"]').forEach(el => {
+          el.style.left = '';
+          el.style.top = '';
+          el.style.position = '';
+          el.style.fontSize = '';
+          el.style.zIndex = '';
+          el.style.color = '';
+          el.style.maxHeight = '';
+          el.style.height = '';
+          el.style.maxWidth = '';
+          el.style.marginBottom = '';
+          el.style.marginTop = '';
+          el.style.right = '';
+          el.style.bottom = '';
+          el.removeAttribute('data-dragged');
+        });
+
         Object.keys(targetMap).forEach(key => {
-          const el = targetMap[key].el();
+          const el = targetMap[key].el ? targetMap[key].el() : null;
           if (!el) return;
           el.style.left = '';
           el.style.top = '';
@@ -1647,7 +1707,7 @@
         });
 
         Object.keys(defaultTexts).forEach(k => {
-          const el = targetMap[k] ? targetMap[k].el() : null;
+          const el = targetMap[k] && targetMap[k].el ? targetMap[k].el() : null;
           if (el) el.innerText = defaultTexts[k];
         });
       }
@@ -1655,28 +1715,38 @@
       function getTargetKey(el) {
         if (!el) return null;
         if (el.id === 'heroCharacterSlot') return 'heroCharacterSlot';
-        if (el.classList.contains('mb-creative')) return 'mb-creative';
-        if (el.classList.contains('mb-edge')) return 'mb-edge';
-        if (el.classList.contains('mobile-backdrop-headline')) return 'mobile-backdrop-headline';
-        if (el.classList.contains('title-wefind-mobile')) return 'title-wefind-mobile';
-        if (el.classList.contains('title-wefind')) return 'title-wefind';
-        if (el.classList.contains('title-the')) return 'title-the';
-        if (el.classList.contains('title-creative')) return 'title-creative';
-        if (el.classList.contains('title-edge')) return 'title-edge';
-        if (el.classList.contains('hero-editorial-chunk')) return 'hero-editorial-chunk';
-        if (el.classList.contains('headline-stack')) return 'headline-stack';
-        return null;
+        if (el.dataset.editKey) return el.dataset.editKey;
+        for (const k of Object.keys(targetMap)) {
+          if (targetMap[k].el && targetMap[k].el() === el) return k;
+        }
+        if (el.id) return el.id;
+        const cls = Array.from(el.classList || []).filter(c => !['drag-selected', 'is-switching', 'theme-fader'].includes(c))[0];
+        if (cls) return cls;
+        return el.tagName.toLowerCase();
+      }
+
+      function getReadableName(el, key) {
+        if (targetMap[key]) {
+          return typeof targetMap[key].getDisplayName === 'function' ? targetMap[key].getDisplayName() : targetMap[key].name;
+        }
+        if (el.id === 'heroCharacterSlot') return getCharacterDisplayName();
+        if (el.classList.contains('btn-discover')) return 'Button: Discover Talent';
+        if (el.classList.contains('btn-join')) return 'Button: Join as Creator';
+        if (el.classList.contains('hero-subheadline')) return 'Subtitle Copy';
+        if (el.classList.contains('apple-spec-bar')) return 'Proof Badges Bar';
+        if (el.classList.contains('spec-item') || el.classList.contains('spec-value')) return 'Proof Badge Item';
+        return el.tagName.toLowerCase() + (key ? ` (${key})` : '');
       }
 
       function selectTarget(keyOrEl) {
-        const el = typeof keyOrEl === 'string' ? (targetMap[keyOrEl] ? targetMap[keyOrEl].el() : null) : keyOrEl;
+        const el = typeof keyOrEl === 'string' ? (targetMap[keyOrEl] ? targetMap[keyOrEl].el() : document.getElementById(keyOrEl) || document.querySelector(`.${keyOrEl}`)) : keyOrEl;
         if (!el) return;
         document.querySelectorAll('.drag-selected').forEach(n => n.classList.remove('drag-selected'));
         activeTarget = el;
         activeTarget.classList.add('drag-selected');
 
-        const item = key && targetMap[key];
-        const displayName = item ? (typeof item.getDisplayName === 'function' ? item.getDisplayName() : item.name) : el.tagName;
+        const key = getTargetKey(el);
+        const displayName = getReadableName(el, key);
         if (hudTargetName) hudTargetName.textContent = displayName;
         
         // Update active chip
@@ -1701,6 +1771,17 @@
         hudCoords.textContent = `X: ${left} | Y: ${top}${font}`;
       }
 
+      function updateContentEditable(enabled) {
+        const textElements = document.querySelectorAll(
+          '.hero-viewport h1, .hero-viewport h2, .hero-viewport p, .hero-viewport span, .hero-viewport a, .hero-viewport button, .spec-value, .spec-item, .title-row, .mb-word, .hero-subheadline'
+        );
+        textElements.forEach(el => {
+          if (el.closest('#editorHud, #editorToggle, .character-theme-capsules, .preview-layout-switcher')) return;
+          el.contentEditable = enabled ? 'true' : 'false';
+          el.spellcheck = false;
+        });
+      }
+
       function setEditMode(state) {
         isEditing = state;
         document.body.classList.toggle('is-editing', isEditing);
@@ -1710,12 +1791,7 @@
           if (lbl) lbl.textContent = isEditing ? 'Editing ON' : 'Drag & Edit';
         }
 
-        // Enable contenteditable on text elements
-        const textNodes = document.querySelectorAll('.mb-word, .title-row, .title-wefind-mobile');
-        textNodes.forEach(node => {
-          node.contentEditable = isEditing ? 'true' : 'false';
-          node.spellcheck = false;
-        });
+        updateContentEditable(isEditing);
 
         if (isEditing) {
           stopAutoRotation();
@@ -1741,33 +1817,17 @@
         hudClose.addEventListener('click', () => setEditMode(false));
       }
 
-      // Pointer drag handling with mode-aware hit testing
+      // Universal click & pointer drag handling
       document.addEventListener('pointerdown', (e) => {
         if (!isEditing) return;
-        if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher')) return;
+        if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher, .character-theme-capsules')) return;
 
-        const mode = getActiveViewport();
-        let clickedTarget = null;
+        // Choose appropriate target element: either closest interactive or clicked
+        const clickedTarget = e.target.closest(
+          '#heroCharacterSlot, .title-row, .mb-word, .title-wefind-mobile, .mobile-backdrop-headline, .headline-stack, .hero-subheadline, .btn-discover, .btn-join, .action-row, .apple-spec-bar, .spec-item, .hero-editorial-chunk'
+        ) || e.target;
 
-        if (mode === 'mobile') {
-          if (e.target.closest('.mb-creative')) clickedTarget = document.querySelector('.mb-creative');
-          else if (e.target.closest('.mb-edge')) clickedTarget = document.querySelector('.mb-edge');
-          else if (e.target.closest('.mobile-backdrop-headline')) clickedTarget = document.querySelector('.mobile-backdrop-headline');
-          else if (e.target.closest('.title-wefind-mobile')) clickedTarget = document.querySelector('.title-wefind-mobile');
-          else if (e.target.closest('#heroCharacterSlot')) clickedTarget = document.getElementById('heroCharacterSlot');
-          else if (e.target.closest('.hero-editorial-chunk')) clickedTarget = document.querySelector('.hero-editorial-chunk');
-        } else {
-          // Desktop / Laptop
-          if (e.target.closest('.title-wefind')) clickedTarget = document.querySelector('.title-wefind');
-          else if (e.target.closest('.title-the')) clickedTarget = document.querySelector('.title-the');
-          else if (e.target.closest('.title-creative')) clickedTarget = document.querySelector('.title-creative');
-          else if (e.target.closest('.title-edge')) clickedTarget = document.querySelector('.title-edge');
-          else if (e.target.closest('#heroCharacterSlot')) clickedTarget = document.getElementById('heroCharacterSlot');
-          else if (e.target.closest('.hero-editorial-chunk')) clickedTarget = document.querySelector('.hero-editorial-chunk');
-          else if (e.target.closest('.headline-stack')) clickedTarget = document.querySelector('.headline-stack');
-        }
-
-        if (!clickedTarget) return;
+        if (!clickedTarget || clickedTarget === document.body || clickedTarget === document.documentElement) return;
 
         selectTarget(clickedTarget);
         startX = e.clientX;
@@ -1792,7 +1852,7 @@
         function onPointerMove(pe) {
           const dx = pe.clientX - startX;
           const dy = pe.clientY - startY;
-          if (!hasMoved && Math.hypot(dx, dy) > 3) {
+          if (!hasMoved && Math.hypot(dx, dy) > 4) {
             hasMoved = true;
             isDragging = true;
             try { clickedTarget.setPointerCapture(pe.pointerId); } catch(err) {}
@@ -1805,6 +1865,7 @@
             clickedTarget.style.top = Math.round(initialTop + dy) + 'px';
             clickedTarget.style.right = 'auto';
             clickedTarget.style.bottom = 'auto';
+            clickedTarget.setAttribute('data-dragged', 'true');
             updateCoordsDisplay();
           }
         }
@@ -1829,26 +1890,28 @@
         const cur = parseFloat(window.getComputedStyle(activeTarget).fontSize);
         const next = Math.round(cur * factor);
         activeTarget.style.fontSize = next + 'px';
+        activeTarget.setAttribute('data-dragged', 'true');
         updateCoordsDisplay();
         saveEdits();
       }
 
       function adjustImgScale(factor) {
-        const slot = document.getElementById('heroCharacterSlot');
+        const slot = (activeTarget && activeTarget.tagName === 'IMG') ? activeTarget : document.getElementById('heroCharacterSlot');
         if (!slot) return;
         const mode = getActiveViewport();
         if (mode === 'mobile') {
           const curH = parseFloat(slot.style.maxHeight) || 86;
-          const nextH = Math.min(100, Math.max(40, Math.round(curH * factor)));
+          const nextH = Math.min(100, Math.max(30, Math.round(curH * factor)));
           slot.style.maxHeight = nextH + '%';
           slot.style.height = nextH + '%';
           slot.style.maxWidth = nextH + '%';
         } else {
           const curH = parseFloat(slot.style.maxHeight) || 93;
-          const nextH = Math.min(100, Math.max(50, Math.round(curH * factor)));
+          const nextH = Math.min(100, Math.max(40, Math.round(curH * factor)));
           slot.style.maxHeight = nextH + 'vh';
           slot.style.maxWidth = (nextH + 11) + '%';
         }
+        slot.setAttribute('data-dragged', 'true');
         saveEdits();
       }
 
@@ -1865,6 +1928,7 @@
           const next = curMargin - deltaPx;
           dock.style.marginTop = next + 'px';
         }
+        dock.setAttribute('data-dragged', 'true');
         saveEdits();
       }
 
@@ -1880,11 +1944,14 @@
           const reader = new FileReader();
           reader.onload = (evt) => {
             const dataUrl = evt.target.result;
-            const slot = document.getElementById('heroCharacterSlot');
+            const slot = (activeTarget && activeTarget.tagName === 'IMG') ? activeTarget : document.getElementById('heroCharacterSlot');
             if (slot) slot.src = dataUrl;
+            const mode = getActiveViewport();
             try {
+              localStorage.setItem('custom_img_' + currentThemeKey + '_' + mode, dataUrl);
               localStorage.setItem('custom_image_' + currentThemeKey, dataUrl);
             } catch(e) {}
+            showSavedToast();
           };
           reader.readAsDataURL(file);
         });
@@ -1903,6 +1970,7 @@
           const curZ = parseInt(window.getComputedStyle(activeTarget).zIndex, 10) || 1;
           const nextZ = curZ >= 2 ? 1 : 3;
           activeTarget.style.zIndex = nextZ;
+          activeTarget.setAttribute('data-dragged', 'true');
           hudZToggle.textContent = nextZ >= 2 ? 'Layer: In Front' : 'Layer: Behind';
           saveEdits();
         });
@@ -1911,12 +1979,13 @@
       if (hudColorCycle) {
         hudColorCycle.addEventListener('click', () => {
           if (!activeTarget) return;
-          const colors = ['#0F172A', '#1D4ED8', '#FFFFFF', '#0B132B'];
+          const colors = ['#0F172A', '#1D4ED8', '#FF384D', '#FFFFFF', '#0B132B'];
           const cur = activeTarget.style.color || window.getComputedStyle(activeTarget).color;
           const next = colors[(colors.indexOf(cur) + 1) % colors.length] || colors[0];
           activeTarget.style.color = next;
           activeTarget.querySelectorAll('*').forEach(n => n.style.color = next);
-          hudColorCycle.textContent = next === '#0F172A' ? 'Color: Dark' : (next === '#FFFFFF' ? 'Color: White' : 'Color: Blue');
+          activeTarget.setAttribute('data-dragged', 'true');
+          hudColorCycle.textContent = next === '#0F172A' ? 'Color: Dark' : (next === '#FFFFFF' ? 'Color: White' : 'Color: Accent');
           saveEdits();
         });
       }
@@ -1978,14 +2047,16 @@
         }, 1500);
       }
 
-      // Reset active viewport adjustments only
+      // Reset active viewport adjustments
       if (hudReset) {
         hudReset.addEventListener('click', () => {
           const mode = getActiveViewport();
           const modeName = mode === 'mobile' ? 'Mobile (<900px)' : 'Laptop / Desktop (>900px)';
-          if (confirm(`Reset custom adjustments for ${modeName} back to original?`)) {
+          if (confirm(`Reset custom adjustments for ${modeName} on this character?`)) {
             try {
-              localStorage.removeItem(getStorageKey());
+              localStorage.removeItem(getStorageKey() + '_' + currentThemeKey);
+              localStorage.removeItem(getStorageKey() + '_' + currentThemeKey + '_texts');
+              localStorage.removeItem('custom_img_' + currentThemeKey + '_' + mode);
               localStorage.removeItem('custom_image_' + currentThemeKey);
             } catch(e) {}
             const slot = document.getElementById('heroCharacterSlot');
@@ -1995,148 +2066,154 @@
             clearAllInlineStyles();
             restoreEdits();
             updateCoordsDisplay();
+            showSavedToast();
           }
         });
       }
 
-      function restoreCharacterImageEdits(themeKey) {
-        const el = document.getElementById('heroCharacterSlot');
-        if (!el) return;
-        const tKey = themeKey || currentThemeKey;
-        const key = 'character_' + tKey;
+      function saveTextEdits(el) {
+        const mode = getActiveViewport();
+        const tKey = currentThemeKey;
+        const key = getTargetKey(el);
+        if (!key) return;
+        let texts = {};
         try {
-          const raw = localStorage.getItem(getStorageKey());
-          const data = raw ? JSON.parse(raw) : {};
-          const d = data[key];
-          if (d) {
-            el.style.left = d.left || '';
-            el.style.top = d.top || '';
-            el.style.bottom = d.bottom || '';
-            el.style.maxHeight = d.maxHeight || '';
-            el.style.maxWidth = d.maxWidth || '';
-            el.style.zIndex = d.zIndex || '';
-            if (d.left || d.top) {
-              const pos = window.getComputedStyle(el).position;
-              if (pos === 'static') el.style.position = 'relative';
+          const raw = localStorage.getItem(getStorageKey() + '_' + tKey + '_texts');
+          if (raw) texts = JSON.parse(raw);
+        } catch(e) {}
+        texts[key] = el.innerHTML;
+        try {
+          localStorage.setItem(getStorageKey() + '_' + tKey + '_texts', JSON.stringify(texts));
+        } catch(e) {}
+        showSavedToast();
+      }
+
+      function restoreTextEdits() {
+        const mode = getActiveViewport();
+        const tKey = currentThemeKey;
+        try {
+          const raw = localStorage.getItem(getStorageKey() + '_' + tKey + '_texts');
+          if (!raw) return;
+          const texts = JSON.parse(raw);
+          Object.keys(texts).forEach(key => {
+            let el = null;
+            if (targetMap[key] && targetMap[key].el) el = targetMap[key].el();
+            if (!el && document.getElementById(key)) el = document.getElementById(key);
+            if (!el) el = document.querySelector(`[data-edit-key="${key}"], .${key}`);
+            if (el && texts[key]) {
+              el.innerHTML = texts[key];
             }
-          } else {
-            el.style.left = '';
-            el.style.top = '';
-            el.style.bottom = '';
-            el.style.maxHeight = '';
-            el.style.maxWidth = '';
-            el.style.zIndex = '';
-          }
+          });
         } catch(e) {}
       }
-      window.restoreCharacterImageEdits = restoreCharacterImageEdits;
 
-      // Isolated Persistence
+      // Universal Persistence per Viewport and Character
       function saveEdits() {
         const mode = getActiveViewport();
+        const tKey = currentThemeKey;
         let data = {};
         try {
-          const raw = localStorage.getItem(getStorageKey());
+          const raw = localStorage.getItem(getStorageKey() + '_' + tKey);
           if (raw) data = JSON.parse(raw);
         } catch(e) {}
 
-        Object.keys(targetMap).forEach(key => {
-          const item = targetMap[key];
-          if (item.viewport === 'both' || item.viewport === mode) {
-            const el = item.el();
-            if (el) {
-              if (key === 'heroCharacterSlot') {
-                data['character_' + currentThemeKey] = {
-                  left: el.style.left || '',
-                  top: el.style.top || '',
-                  bottom: el.style.bottom || '',
-                  maxHeight: el.style.maxHeight || '',
-                  maxWidth: el.style.maxWidth || '',
-                  zIndex: el.style.zIndex || ''
-                };
-              } else {
-                const isText = el.classList.contains('mb-word') || el.classList.contains('title-row') || el.classList.contains('title-wefind-mobile');
-                data[key] = {
-                  left: el.style.left || '',
-                  top: el.style.top || '',
-                  fontSize: el.style.fontSize || '',
-                  zIndex: el.style.zIndex || '',
-                  color: el.style.color || '',
-                  maxHeight: el.style.maxHeight || '',
-                  maxWidth: el.style.maxWidth || '',
-                  marginBottom: el.style.marginBottom || '',
-                  marginTop: el.style.marginTop || '',
-                  text: isText ? el.innerText : null
-                };
-              }
-            }
+        document.querySelectorAll('[data-dragged="true"]').forEach(el => {
+          const key = getTargetKey(el);
+          if (key) {
+            data[key] = {
+              left: el.style.left || '',
+              top: el.style.top || '',
+              fontSize: el.style.fontSize || '',
+              zIndex: el.style.zIndex || '',
+              color: el.style.color || '',
+              maxHeight: el.style.maxHeight || '',
+              maxWidth: el.style.maxWidth || '',
+              marginBottom: el.style.marginBottom || '',
+              marginTop: el.style.marginTop || ''
+            };
           }
         });
+
+        // Always save character image adjustments
+        const charSlot = document.getElementById('heroCharacterSlot');
+        if (charSlot) {
+          data['heroCharacterSlot'] = {
+            left: charSlot.style.left || '',
+            top: charSlot.style.top || '',
+            bottom: charSlot.style.bottom || '',
+            maxHeight: charSlot.style.maxHeight || '',
+            maxWidth: charSlot.style.maxWidth || '',
+            zIndex: charSlot.style.zIndex || ''
+          };
+        }
+
         try {
-          localStorage.setItem(getStorageKey(), JSON.stringify(data));
+          localStorage.setItem(getStorageKey() + '_' + tKey, JSON.stringify(data));
         } catch(e) {}
+        showSavedToast();
       }
 
       function restoreEdits() {
         clearAllInlineStyles();
         const mode = getActiveViewport();
+        const tKey = currentThemeKey;
         try {
-          const raw = localStorage.getItem(getStorageKey());
-          if (!raw) {
-            restoreCharacterImageEdits(currentThemeKey);
-            return;
+          // Restore custom image for this character & viewport
+          const customImg = localStorage.getItem('custom_img_' + tKey + '_' + mode) || localStorage.getItem('custom_image_' + tKey);
+          const charSlot = document.getElementById('heroCharacterSlot');
+          if (charSlot) {
+            charSlot.src = customImg || (THEME_PRESETS[tKey] ? THEME_PRESETS[tKey].imgSrc : charSlot.src);
           }
-          const data = JSON.parse(raw);
-          Object.keys(data).forEach(key => {
-            if (key.startsWith('character_')) return;
-            const item = targetMap[key];
-            if (!item) return;
-            if (item.viewport !== 'both' && item.viewport !== mode) return;
 
-            const el = item.el();
-            if (el && data[key]) {
-              const d = data[key];
-              if (d.left) el.style.left = d.left;
-              if (d.top) el.style.top = d.top;
-              if (d.fontSize) el.style.fontSize = d.fontSize;
-              if (d.zIndex) el.style.zIndex = d.zIndex;
-              if (d.color) {
-                el.style.color = d.color;
-                el.querySelectorAll('*').forEach(n => n.style.color = d.color);
+          // Restore text edits
+          restoreTextEdits();
+
+          // Restore positions & styles
+          const raw = localStorage.getItem(getStorageKey() + '_' + tKey);
+          if (raw) {
+            const data = JSON.parse(raw);
+            Object.keys(data).forEach(key => {
+              let el = null;
+              if (targetMap[key] && targetMap[key].el) el = targetMap[key].el();
+              if (!el && document.getElementById(key)) el = document.getElementById(key);
+              if (!el) el = document.querySelector(`[data-edit-key="${key}"], .${key}`);
+              if (el && data[key]) {
+                const d = data[key];
+                if (d.left) el.style.left = d.left;
+                if (d.top) el.style.top = d.top;
+                if (d.bottom) el.style.bottom = d.bottom;
+                if (d.fontSize) el.style.fontSize = d.fontSize;
+                if (d.zIndex) el.style.zIndex = d.zIndex;
+                if (d.color) {
+                  el.style.color = d.color;
+                  el.querySelectorAll('*').forEach(n => n.style.color = d.color);
+                }
+                if (d.maxHeight) {
+                  el.style.maxHeight = d.maxHeight;
+                  el.style.height = d.maxHeight;
+                }
+                if (d.maxWidth) el.style.maxWidth = d.maxWidth;
+                if (d.marginBottom) el.style.marginBottom = d.marginBottom;
+                if (d.marginTop) el.style.marginTop = d.marginTop;
+                if (d.left || d.top) {
+                  const pos = window.getComputedStyle(el).position;
+                  if (pos === 'static') el.style.position = 'relative';
+                  el.setAttribute('data-dragged', 'true');
+                }
               }
-              if (d.maxHeight) {
-                el.style.maxHeight = d.maxHeight;
-                el.style.height = d.maxHeight;
-              }
-              if (d.maxWidth) {
-                el.style.maxWidth = d.maxWidth;
-              }
-              if (d.marginBottom) {
-                el.style.marginBottom = d.marginBottom;
-              }
-              if (d.marginTop) {
-                el.style.marginTop = d.marginTop;
-              }
-              if (d.left || d.top) {
-                const pos = window.getComputedStyle(el).position;
-                if (pos === 'static') el.style.position = 'relative';
-              }
-              if (d.text) {
-                el.innerText = d.text;
-              }
-            }
-          });
-          restoreCharacterImageEdits(currentThemeKey);
+            });
+          }
         } catch(err) {
           console.warn('Failed restoring edits', err);
         }
       }
+      window.restoreCharacterImageEdits = restoreEdits;
 
-      // Live text edits
+      // Live universal text editing listener
       document.addEventListener('input', (e) => {
-        if (isEditing && (e.target.classList.contains('mb-word') || e.target.classList.contains('title-row') || e.target.classList.contains('title-wefind-mobile'))) {
-          saveEdits();
-        }
+        if (!isEditing) return;
+        if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher, .character-theme-capsules')) return;
+        saveTextEdits(e.target);
       });
 
       const btnDesk = document.getElementById('hudViewDesktop');
@@ -2145,6 +2222,7 @@
         btnDesk.addEventListener('click', (e) => {
           e.stopPropagation();
           manualViewportMode = 'desktop';
+          document.body.classList.remove('preview-as-mobile');
           updateHudModeBadge();
           updateHudChipsForMode();
           restoreEdits();
@@ -2155,6 +2233,7 @@
         btnMob.addEventListener('click', (e) => {
           e.stopPropagation();
           manualViewportMode = 'mobile';
+          document.body.classList.add('preview-as-mobile');
           updateHudModeBadge();
           updateHudChipsForMode();
           restoreEdits();
@@ -2166,6 +2245,7 @@
       let lastViewport = getActiveViewport();
       window.addEventListener('resize', () => {
         manualViewportMode = null;
+        document.body.classList.remove('preview-as-mobile');
         const currentViewport = getActiveViewport();
         if (currentViewport !== lastViewport) {
           lastViewport = currentViewport;
