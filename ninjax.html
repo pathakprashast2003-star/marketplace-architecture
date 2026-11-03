@@ -41,58 +41,133 @@
       --font-mono: 'JetBrains Mono', monospace;
     }
 
+    /* THEME 1: SAGE SCENE (Lush Botanical Emerald & Pine) */
     body[data-theme="sage"] {
-      --bg-sapphire: #103B1F;
-      --bg-sapphire-gradient: linear-gradient(180deg, #F3FBE8 0%, #E2F5D1 32%, #C2E8A6 66%, #89C775 100%);
-      --accent-blue: #0E3B1F;
-      --accent-blue-hover: #072613;
-      --text-white: #0E3B1F;
-      --text-white-sub: #1F4D2B;
-      --status-emerald: #16A34A;
+      --theme-accent: #15803D;
+      --theme-accent-hover: #166534;
+      --kicker-color: #15803D;
+      --roster-color: #14532D;
+      --rate-pill-bg: rgba(21, 128, 61, 0.05);
+      --rate-pill-border: rgba(21, 128, 61, 0.16);
+      --rate-pill-dot: #16A34A;
+      
+      /* Right Pane */
+      --bg-sapphire: #0D3017;
+      --bg-sapphire-gradient: radial-gradient(ellipse at 75% 35%, #F4FCE8 0%, #D8F5BA 38%, #86D268 78%, #499E2E 100%);
+      --text-white: #0B2B14;
+      --text-white-sub: #1F4D28;
+      --pill-bg: rgba(14, 45, 23, 0.88);
+      --pill-border: rgba(134, 210, 104, 0.35);
+      --pill-label: rgba(255, 255, 255, 0.72);
+      --pill-val: #4ADE80;
+      --btn-cta-bg: #0B2B14;
+      --btn-cta-text: #F4FCE8;
+      --btn-cta-hover: #15803D;
+      --status-beacon: #22C55E;
       --border-subtle: rgba(14, 59, 31, 0.15);
     }
 
+    /* THEME 2: AERO CLOUD (High-Altitude Electric Sapphire) */
     body[data-theme="cobalt"] {
-      --bg-sapphire: #0C3888;
+      --theme-accent: #0284C7;
+      --theme-accent-hover: #0369A1;
+      --kicker-color: #0284C7;
+      --roster-color: #1D4ED8;
+      --rate-pill-bg: rgba(2, 132, 199, 0.05);
+      --rate-pill-border: rgba(2, 132, 199, 0.18);
+      --rate-pill-dot: #0284C7;
+      
+      /* Right Pane */
+      --bg-sapphire: #072254;
       --bg-sapphire-gradient: radial-gradient(circle at 65% 35%, #1A54C2 0%, #0E3B8F 55%, #072254 100%);
-      --accent-blue: #2563EB;
-      --accent-blue-hover: #1D4ED8;
       --text-white: #FFFFFF;
       --text-white-sub: rgba(255, 255, 255, 0.75);
-      --status-emerald: #10B981;
+      --pill-bg: rgba(7, 24, 61, 0.88);
+      --pill-border: rgba(56, 189, 248, 0.35);
+      --pill-label: rgba(255, 255, 255, 0.72);
+      --pill-val: #38BDF8;
+      --btn-cta-bg: rgba(255, 255, 255, 0.22);
+      --btn-cta-text: #FFFFFF;
+      --btn-cta-hover: #FFFFFF;
+      --status-beacon: #38BDF8;
       --border-subtle: rgba(255, 255, 255, 0.1);
     }
 
+    /* THEME 3: PURPLE ILLUSTRATOR (Royal Velvet Amethyst & Lilac) */
     body[data-theme="lilac"] {
-      --bg-sapphire: #2A0E44;
-      --bg-sapphire-gradient: linear-gradient(180deg, #F5EEFD 0%, #E8D5F8 32%, #C49DEB 66%, #8A4EC9 100%);
-      --accent-blue: #2A0E44;
-      --accent-blue-hover: #1A072E;
-      --text-white: #2A0E44;
-      --text-white-sub: #4D2377;
-      --status-emerald: #A855F7;
+      --theme-accent: #9333EA;
+      --theme-accent-hover: #7E22CE;
+      --kicker-color: #9333EA;
+      --roster-color: #3D0A2E;
+      --rate-pill-bg: rgba(147, 51, 234, 0.05);
+      --rate-pill-border: rgba(147, 51, 234, 0.18);
+      --rate-pill-dot: #9333EA;
+      
+      /* Right Pane */
+      --bg-sapphire: #25073E;
+      --bg-sapphire-gradient: radial-gradient(ellipse at 75% 35%, #FBF5FF 0%, #EBD5FD 38%, #B478EE 78%, #7C3AED 100%);
+      --text-white: #25073E;
+      --text-white-sub: #4C1D78;
+      --pill-bg: rgba(36, 8, 59, 0.88);
+      --pill-border: rgba(192, 132, 252, 0.35);
+      --pill-label: rgba(255, 255, 255, 0.72);
+      --pill-val: #C084FC;
+      --btn-cta-bg: #25073E;
+      --btn-cta-text: #FAF5FF;
+      --btn-cta-hover: #6B21A8;
+      --status-beacon: #C084FC;
       --border-subtle: rgba(42, 14, 68, 0.15);
     }
 
+    /* THEME 4: CINEMA CAMERA (Sunset Terracotta & Amber Bronze) */
     body[data-theme="amber"] {
-      --bg-sapphire: #3A1904;
-      --bg-sapphire-gradient: linear-gradient(180deg, #FFF8F0 0%, #FED7AA 32%, #FB923C 68%, #EA580C 100%);
-      --accent-blue: #3A1904;
-      --accent-blue-hover: #1F0D02;
-      --text-white: #3A1904;
-      --text-white-sub: #5C2605;
-      --status-emerald: #F97316;
+      --theme-accent: #EA580C;
+      --theme-accent-hover: #C2410C;
+      --kicker-color: #EA580C;
+      --roster-color: #7C2D12;
+      --rate-pill-bg: rgba(234, 88, 12, 0.05);
+      --rate-pill-border: rgba(234, 88, 12, 0.18);
+      --rate-pill-dot: #F97316;
+      
+      /* Right Pane */
+      --bg-sapphire: #301104;
+      --bg-sapphire-gradient: radial-gradient(ellipse at 75% 35%, #FFFBF5 0%, #FEDBB8 38%, #FB923C 78%, #D44405 100%);
+      --text-white: #301104;
+      --text-white-sub: #572209;
+      --pill-bg: rgba(48, 17, 4, 0.88);
+      --pill-border: rgba(251, 146, 60, 0.35);
+      --pill-label: rgba(255, 255, 255, 0.72);
+      --pill-val: #FDBA74;
+      --btn-cta-bg: #301104;
+      --btn-cta-text: #FFFBF5;
+      --btn-cta-hover: #C2410C;
+      --status-beacon: #FB923C;
       --border-subtle: rgba(58, 25, 4, 0.15);
     }
 
+    /* THEME 5: SPATIAL 3D (Hot Rose & Neon Crimson) */
     body[data-theme="coral"] {
-      --bg-sapphire: #350526;
-      --bg-sapphire-gradient: linear-gradient(180deg, #FFF1F3 0%, #FDE2E6 32%, #F472B6 68%, #FF384D 100%);
-      --accent-blue: #350526;
-      --accent-blue-hover: #1F0216;
-      --text-white: #350526;
-      --text-white-sub: #5A1838;
-      --status-emerald: #FF384D;
+      --theme-accent: #E11D48;
+      --theme-accent-hover: #BE123C;
+      --kicker-color: #E11D48;
+      --roster-color: #881337;
+      --rate-pill-bg: rgba(225, 29, 72, 0.05);
+      --rate-pill-border: rgba(225, 29, 72, 0.18);
+      --rate-pill-dot: #F43F5E;
+      
+      /* Right Pane */
+      --bg-sapphire: #2E0513;
+      --bg-sapphire-gradient: radial-gradient(ellipse at 75% 35%, #FFF5F7 0%, #FDCFD9 38%, #FB7185 78%, #E11D48 100%);
+      --text-white: #330514;
+      --text-white-sub: #630D2A;
+      --pill-bg: rgba(46, 5, 19, 0.88);
+      --pill-border: rgba(251, 113, 133, 0.35);
+      --pill-label: rgba(255, 255, 255, 0.72);
+      --pill-val: #FDA4AF;
+      --btn-cta-bg: #330514;
+      --btn-cta-text: #FFF5F7;
+      --btn-cta-hover: #BE123C;
+      --status-beacon: #FB7185;
       --border-subtle: rgba(53, 5, 38, 0.15);
     }
 
@@ -320,9 +395,10 @@
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      color: #3D0A2E !important;
+      color: var(--kicker-color, #15803D) !important;
       margin-bottom: 14px;
       display: block;
+      transition: color 0.4s ease;
     }
 
     .editorial-headline-stack {
@@ -348,10 +424,11 @@
       font-weight: 900;
       line-height: 0.88;
       letter-spacing: -0.03em;
-      color: #3D0A2E;
+      color: var(--roster-color, #14532D);
       display: block;
       margin-top: 4px;
       text-transform: uppercase;
+      transition: color 0.4s ease;
     }
 
     /* Rate & Status Pill (Concentric Radius 14px, Apple Frosted) */
@@ -359,14 +436,15 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: rgba(15, 23, 42, 0.035);
-      border: 1px solid rgba(15, 23, 42, 0.09);
+      background: var(--rate-pill-bg, rgba(15, 23, 42, 0.035));
+      border: 1px solid var(--rate-pill-border, rgba(15, 23, 42, 0.09));
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       padding: 8px 18px;
       border-radius: 14px;
       margin-bottom: 22px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      transition: all 0.4s ease;
     }
 
     .rate-val {
@@ -393,20 +471,22 @@
       gap: 6px;
       background: #ECFDF5;
       border: 1px solid #A7F3D0;
-      color: #047857;
+      color: var(--kicker-color, #047857);
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
       padding: 3px 10px;
       border-radius: 999px;
+      transition: color 0.4s ease;
     }
 
     .status-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #10B981;
-      box-shadow: 0 0 6px #10B981;
+      background: var(--rate-pill-dot, #16A34A);
+      box-shadow: 0 0 6px var(--rate-pill-dot, #16A34A);
+      transition: all 0.4s ease;
     }
 
     .editorial-subhead-prose {
@@ -478,22 +558,23 @@
       background: var(--bg-sapphire);
       background-image: var(--bg-sapphire-gradient);
       transition: background 0.7s cubic-bezier(0.16, 1, 0.3, 1), background-image 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-      padding: 48px 48px 44px 48px;
+      padding: 44px 48px 36px 48px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: space-between;
       position: relative;
       overflow: hidden;
       z-index: 1;
     }
 
     .right-production-dock {
-      max-width: 360px;
+      max-width: 380px;
       margin-left: auto;
       text-align: right;
       position: relative;
       z-index: 5;
-      margin-bottom: 80px;
+      margin-top: 16px;
+      margin-bottom: 0;
     }
 
     .dock-mono-kicker {
@@ -505,17 +586,20 @@
       color: var(--text-white-sub);
       margin-bottom: 8px;
       display: block;
+      transition: color 0.4s ease;
     }
 
     .dock-title-headline {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 2.7vw, 40px);
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(28px, 2.7vw, 42px);
       font-weight: 900;
       color: var(--text-white);
-      line-height: 1.08;
-      letter-spacing: -0.03em;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
       margin-bottom: 22px;
       text-shadow: none;
+      transition: color 0.4s ease;
     }
 
     /* Production Spec Cards */
@@ -531,34 +615,38 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: rgba(10, 22, 45, 0.65);
+      background: var(--pill-bg, rgba(10, 22, 45, 0.65));
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      border: 1px solid var(--pill-border, rgba(255, 255, 255, 0.16));
       padding: 7px 18px;
       border-radius: 999px;
       font-family: var(--font-mono);
       font-size: 11px;
       letter-spacing: 0.02em;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      transition: all 0.4s ease;
     }
 
     .spec-item-card span {
-      color: rgba(255, 255, 255, 0.72);
+      color: var(--pill-label, rgba(255, 255, 255, 0.72));
       font-weight: 500;
+      transition: color 0.4s ease;
     }
 
     .spec-item-card strong {
       font-weight: 800;
-      color: #FFFFFF;
+      color: var(--pill-val, #FFFFFF);
       font-variant-numeric: tabular-nums;
+      transition: color 0.4s ease;
     }
 
     .btn-secondary-explore {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.22);
-      color: var(--text-white);
+      background: var(--btn-cta-bg, rgba(255, 255, 255, 0.22));
+      color: var(--btn-cta-text, var(--text-white));
       border: 1.5px solid var(--border-subtle);
       font-family: var(--font-display);
       font-size: 12px;
@@ -569,7 +657,7 @@
       border-radius: 999px;
       text-decoration: none;
       backdrop-filter: blur(10px);
-      transition: background 0.2s ease;
+      transition: all 0.25s ease;
     }
 
     .btn-secondary-explore:active {
@@ -577,9 +665,9 @@
     }
 
     .btn-secondary-explore:hover {
-      background: #FFFFFF;
-      color: var(--text-dark);
-      border-color: #FFFFFF;
+      background: var(--btn-cta-hover, #FFFFFF);
+      color: #FFFFFF;
+      border-color: var(--btn-cta-hover, #FFFFFF);
     }
 
     .right-bottom-trust {
@@ -592,9 +680,16 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: rgba(255, 255, 255, 0.7);
+      color: var(--text-white-sub);
       position: relative;
       z-index: 5;
+      transition: color 0.4s ease;
+    }
+
+    .right-bottom-trust .status-dot {
+      background: var(--status-beacon, var(--rate-pill-dot, #16A34A));
+      box-shadow: 0 0 6px var(--status-beacon, var(--rate-pill-dot, #16A34A));
+      transition: all 0.4s ease;
     }
 
     /* ── CENTER SEAM HERO TALENT (UPWARD FLIGHT) ── */
@@ -1300,70 +1395,90 @@
         name: 'Sage Scene',
         imgSrc: 'assets/creator_desk_designer.png',
         imgAlt: 'Digital Creator at Modern Workstation',
-        title: 'Empowering top-tier<br>digital creators.',
-        sub: 'Curated 3D artists, digital craftspeople, and visual visionaries shaping modern visual culture.',
-        specs: [
-          '<span class="status-dot" style="background:#5DB60C; box-shadow:0 0 6px #5DB60C;"></span>',
-          '<span>Curated Portfolios</span>',
-          '<span>&bull;</span>',
-          '<span>Direct Terms · Zero Markup</span>'
-        ].join(' ')
+        categoryKicker: 'COMMERCIAL & AERIAL DIRECTORS',
+        rateVal: '$25–400',
+        prose: 'Book vetted commercial directors, FPV cinematographers, and 3D technical artists directly. Zero agency markups. Direct contracts for brand campaigns and music films.',
+        dockKicker: 'PRODUCTION SPECIFICATIONS',
+        dockHeadline: 'High-Velocity Cinema Units',
+        cards: [
+          { label: 'Primary Camera Platforms', val: 'ARRI / RED 8K' },
+          { label: 'FPV Transmission Latency', val: '0.8 ms' },
+          { label: 'Turnaround SLA', val: '48h Dailies' }
+        ],
+        ctaText: 'View Reel Book →',
+        trust: '<span class="status-dot"></span><span>Curated Portfolios</span><span>&bull;</span><span>Direct Terms · Zero Markup</span>'
       },
       cobalt: {
         themeKey: 'cobalt',
         name: 'Aero Cloud',
         imgSrc: 'assets/upward_flight_pilot_drone.png',
         imgAlt: 'Featured Aerial Cinematographer & Drone Director',
-        title: 'World-Class Aerial Cinema & Direction.',
-        sub: 'Elite drone cinematographers, directors, and spatial artists available for global production.',
-        specs: [
-          '<span class="status-dot" style="background:#38BDF8; box-shadow:0 0 6px #38BDF8;"></span>',
-          '<span>Verified Roster</span>',
-          '<span>&bull;</span>',
-          '<span>Direct Terms · Zero Markup</span>'
-        ].join(' ')
+        categoryKicker: 'COMMERCIAL & AERIAL DIRECTORS',
+        rateVal: '$45–600',
+        prose: 'Elite drone cinematographers and aerial directors executing precision high-G sequences worldwide. Direct contracts with FAA-certified flight captains.',
+        dockKicker: 'PRODUCTION SPECIFICATIONS',
+        dockHeadline: 'High-Velocity Cinema Units',
+        cards: [
+          { label: 'Primary Camera Platforms', val: 'ARRI / RED Monstro 8K' },
+          { label: 'FPV Transmission Latency', val: '0.8 ms Ultra-Low' },
+          { label: 'Turnaround SLA', val: '48h Master Dailies' }
+        ],
+        ctaText: 'View Aerial Reel Book →',
+        trust: '<span class="status-dot"></span><span>FAA Part 107 Certified</span><span>&bull;</span><span>Global In-Transit Insurance</span>'
       },
       lilac: {
         themeKey: 'lilac',
         name: 'Purple Illustrator',
         imgSrc: 'assets/purple_haired_illustrator.png',
         imgAlt: 'Purple-Haired Illustrator Drawing on a Pouf',
-        title: 'Meet Exceptional Illustrators & Visionaries.',
-        sub: 'World-class illustrators turning ideas into unforgettable visual worlds.',
-        specs: [
-          '<span class="status-dot" style="background:#A855F7; box-shadow:0 0 6px #A855F7;"></span>',
-          '<span>Verified Portfolios</span>',
-          '<span>&bull;</span>',
-          '<span>Direct Collaboration</span>'
-        ].join(' ')
+        categoryKicker: 'VISUAL ARTS & CHARACTER WORLDS',
+        rateVal: '$30–350',
+        prose: 'Access award-winning illustrators, concept artists, and visual storytellers. Direct rights ownership with zero licensing friction.',
+        dockKicker: 'STUDIO SPECIFICATIONS',
+        dockHeadline: 'Bespoke Visual Worlds',
+        cards: [
+          { label: 'Core Mediums', val: '2D / 3D Mixed Media' },
+          { label: 'Color Pipeline', val: 'DCI-P3 Wide Gamut' },
+          { label: 'Delivery Assets', val: 'Layered Vector & PSD' }
+        ],
+        ctaText: 'View Artist Folios →',
+        trust: '<span class="status-dot"></span><span>Verified Portfolios</span><span>&bull;</span><span>Direct Collaboration · Full IP Buyout</span>'
       },
       amber: {
         themeKey: 'amber',
         name: 'Cinema Camera',
         imgSrc: 'assets/smiling_videographer_cinema.png',
         imgAlt: 'Smiling Videographer with Cinema Camera',
-        title: 'Commercial Cinema & Film Direction.',
-        sub: 'Direct access to commercial directors, cinema camera operators, and visual storytellers.',
-        specs: [
-          '<span class="status-dot" style="background:#E9520D; box-shadow:0 0 6px #E9520D;"></span>',
-          '<span>Cinema 4K Optics</span>',
-          '<span>&bull;</span>',
-          '<span>Commercial Film · Direct Pitch</span>'
-        ].join(' ')
+        categoryKicker: 'COMMERCIAL CINEMA & NARRATIVE',
+        rateVal: '$50–750',
+        prose: 'Direct engagement with commercial filmmakers, DPs, and creative directors for broadcast commercials and high-impact digital campaigns.',
+        dockKicker: 'OPTICAL SPECIFICATIONS',
+        dockHeadline: 'Cinema-Grade Optics',
+        cards: [
+          { label: 'Sensor Coverage', val: 'Large Format Full Frame' },
+          { label: 'Anamorphic Glass', val: 'Cooke / Atlas 2x' },
+          { label: 'Delivery Standards', val: 'ProRes 4444 XQ / RAW' }
+        ],
+        ctaText: 'View Directors Reel →',
+        trust: '<span class="status-dot"></span><span>Cinema 4K Optics</span><span>&bull;</span><span>Commercial Film · Direct Pitch</span>'
       },
       coral: {
         themeKey: 'coral',
         name: 'Spatial 3D',
         imgSrc: 'assets/cheerful_gamer_vr.png',
         imgAlt: 'Cheerful Gamer with VR Headset',
-        title: 'Meet Exceptional 3D Artists & Spatial Creators.',
-        sub: 'Exceptional 3D artists and motion designers creating stunning CGI, immersive visual experiences and next-generation brand content.',
-        specs: [
-          '<span class="status-dot" style="background:#FF384D; box-shadow:0 0 6px #FF384D;"></span>',
-          '<span>3D CGI Render</span>',
-          '<span>&bull;</span>',
-          '<span>Cinematic VFX · Spatial Motion</span>'
-        ].join(' ')
+        categoryKicker: 'REALTIME 3D & IMMERSIVE ENVIRONMENTS',
+        rateVal: '$40–550',
+        prose: 'Exceptional 3D artists, spatial designers, and motion engineers creating stunning CGI, immersive visual experiences, and next-generation brand worlds.',
+        dockKicker: 'ENGINE SPECIFICATIONS',
+        dockHeadline: 'Realtime Spatial Design',
+        cards: [
+          { label: 'Realtime Engines', val: 'Unreal Engine 5.4 / Unity' },
+          { label: 'Render Pipeline', val: 'Octane / Cinema 4D 2026' },
+          { label: 'Spatial Standards', val: 'Apple Vision Pro / OpenXR' }
+        ],
+        ctaText: 'Explore 3D Worlds →',
+        trust: '<span class="status-dot"></span><span>3D CGI Render</span><span>&bull;</span><span>Cinematic VFX · Spatial Motion</span>'
       }
     };
 
@@ -1397,7 +1512,13 @@
       const body = document.body;
       const faders = document.querySelectorAll('.theme-fader');
       const img = document.querySelector('.talent-clean-image');
-      const title = document.querySelector('.right-editorial-quote');
+      const categoryKicker = document.querySelector('.category-kicker');
+      const rateVal = document.querySelector('.rate-val');
+      const prose = document.querySelector('.editorial-subhead-prose');
+      const dockKicker = document.querySelector('.dock-mono-kicker');
+      const dockHeadline = document.querySelector('.dock-title-headline');
+      const specStack = document.querySelector('.production-spec-stack');
+      const ctaBtn = document.querySelector('.btn-secondary-explore');
       const trust = document.querySelector('.right-bottom-trust');
       const buttons = document.querySelectorAll('.theme-capsule-btn');
 
@@ -1420,8 +1541,21 @@
           img.classList.add('is-landing');
           img.addEventListener('animationend', () => img.classList.remove('is-landing'), { once: true });
         }
-        if (title) title.innerHTML = data.title;
-        if (trust) trust.innerHTML = data.specs;
+        if (categoryKicker && data.categoryKicker) categoryKicker.textContent = data.categoryKicker;
+        if (rateVal && data.rateVal) rateVal.textContent = data.rateVal;
+        if (prose && data.prose) prose.textContent = data.prose;
+        if (dockKicker && data.dockKicker) dockKicker.textContent = data.dockKicker;
+        if (dockHeadline && data.dockHeadline) dockHeadline.textContent = data.dockHeadline;
+        if (ctaBtn && data.ctaText) ctaBtn.textContent = data.ctaText;
+        if (trust && data.trust) trust.innerHTML = data.trust;
+        if (specStack && data.cards) {
+          specStack.innerHTML = data.cards.map(c => `
+            <div class="spec-item-card">
+              <span>${c.label}</span>
+              <strong>${c.val}</strong>
+            </div>
+          `).join('');
+        }
 
         const aura = document.querySelector('.shockwave-aura');
         if (aura) {
@@ -1476,8 +1610,14 @@
       });
     }
 
-    startAutoRotation();
-    resetProgressBar();
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialTheme = urlParams.get('theme');
+    if (initialTheme && THEME_PRESETS[initialTheme]) {
+      switchTheme(initialTheme, true);
+    } else {
+      startAutoRotation();
+      resetProgressBar();
+    }
   </script>
 
   <script>
