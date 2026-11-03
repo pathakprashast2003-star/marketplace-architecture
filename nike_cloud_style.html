@@ -644,21 +644,59 @@
       border-color: #60A5FA;
       box-shadow: 0 0 16px rgba(37, 99, 235, 0.6);
     }
-    body.is-editing .giant-headline-backplane,
-    body.is-editing .backplane-word-top,
-    body.is-editing .backplane-word-bottom,
-    body.is-editing .subject-pilot-image,
-    body.is-editing .dock-headline-col,
-    body.is-editing .dock-actions-col,
-    body.is-editing .stage-horizon-dock {
-      cursor: move !important;
+    body.is-editing .nike-hero-canvas * {
+      cursor: grab;
+    }
+    body.is-editing [contenteditable="true"] {
+      cursor: text !important;
+    }
+    body.is-editing .subject-pilot-image {
+      animation: none !important;
+      touch-action: none !important;
+      user-select: none !important;
+      -webkit-user-drag: none !important;
       pointer-events: auto !important;
+      cursor: grab !important;
+    }
+    body.is-editing .editor-hud,
+    body.is-editing .editor-hud *,
+    body.is-editing .editor-toggle-btn,
+    body.is-editing .editor-toggle-btn *,
+    body.is-editing .character-theme-capsules,
+    body.is-editing .character-theme-capsules *,
+    body.is-editing .preview-layout-switcher,
+    body.is-editing .preview-layout-switcher * {
+      cursor: default !important;
     }
     body.is-editing .drag-selected {
       outline: 2px dashed #3B82F6 !important;
       outline-offset: 4px;
       box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25) !important;
       border-radius: 4px;
+    }
+    body.is-editing [contenteditable="true"]:focus {
+      outline: 2px solid #60A5FA !important;
+      background: rgba(37, 99, 235, 0.15) !important;
+      cursor: text !important;
+      border-radius: 4px;
+    }
+
+    body.preview-as-mobile .desktop-only { display: none !important; }
+    body.preview-as-mobile .mobile-only { display: block !important; }
+
+    .hud-save-toast {
+      background: #10B981;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+    .hud-save-toast.show {
+      opacity: 1;
     }
     .editor-hud {
       position: fixed;
@@ -1198,6 +1236,7 @@
           <button type="button" id="hudViewMobile" class="hud-view-btn" title="Switch to Mobile View">📱 Mobile</button>
         </div>
         <span>Target: <span id="hudTargetName" class="hud-target-name">CREATIVE EDGE</span></span>
+        <span id="hudSaveToast" class="hud-save-toast">✓ Saved</span>
       </div>
       <span id="hudCoords" class="hud-coords">Drag on screen to reposition</span>
     </div>
@@ -1312,7 +1351,7 @@
 
     <!-- 2. CENTER 3D PILOT & HOVERING DRONE -->
     <div class="subject-center-stage">
-      <img class="subject-pilot-image theme-fader" src="assets/creator_desk_designer.png" alt="Digital Creator at Modern Workstation">
+      <img class="subject-pilot-image theme-fader" id="subjectPilotImage" draggable="false" src="assets/creator_desk_designer.png" alt="Digital Creator at Modern Workstation">
     </div>
 
     <!-- 3. BOTTOM HORIZON EDITORIAL DOCK (PURE EDITORIAL STANDARD) -->
@@ -1509,7 +1548,8 @@
       setTimeout(() => {
         if (canvas) canvas.setAttribute('data-theme', themeKey);
         if (img) {
-          const customImg = localStorage.getItem('custom_image_' + themeKey);
+          const mode = window.innerWidth <= 900 ? 'mobile' : 'desktop';
+          const customImg = localStorage.getItem('custom_img_' + themeKey + '_' + mode) || localStorage.getItem('custom_image_' + themeKey);
           img.src = customImg || data.imgSrc;
           img.alt = data.imgAlt;
         }
@@ -1607,6 +1647,7 @@
       const hudImgPlus = document.getElementById('hudImgPlus');
       const hudDockUp = document.getElementById('hudDockUp');
       const hudDockDown = document.getElementById('hudDockDown');
+      const hudSaveToast = document.getElementById('hudSaveToast');
 
       let isEditing = false;
       let activeTarget = null;
@@ -1615,23 +1656,8 @@
       let initialLeft = 0, initialTop = 0;
       let hasMoved = false;
 
-      // Responsive viewport isolation (v7 clean storage)
-      const STORAGE_PREFIX = 'nike_cloud_custom_edits_v7_';
-      try {
-        localStorage.removeItem('nike_cloud_custom_edits_v1_mobile');
-        localStorage.removeItem('nike_cloud_custom_edits_v1_desktop');
-        localStorage.removeItem('nike_cloud_custom_edits_v2_mobile');
-        localStorage.removeItem('nike_cloud_custom_edits_v2_desktop');
-        localStorage.removeItem('nike_cloud_custom_edits_v3_mobile');
-        localStorage.removeItem('nike_cloud_custom_edits_v3_desktop');
-        localStorage.removeItem('nike_cloud_custom_edits_v4_mobile');
-        localStorage.removeItem('nike_cloud_custom_edits_v4_desktop');
-        localStorage.removeItem('nike_cloud_custom_edits_v5_mobile');
-        localStorage.removeItem('nike_cloud_custom_edits_v5_desktop');
-        localStorage.removeItem('nike_cloud_custom_edits_v6_mobile');
-        localStorage.removeItem('nike_cloud_custom_edits_v6_desktop');
-      } catch(e) {}
-
+      // Responsive viewport isolation (v8 clean storage)
+      const STORAGE_PREFIX = 'nike_cloud_custom_edits_v8_';
       let manualViewportMode = null;
       function getActiveViewport() {
         if (manualViewportMode) return manualViewportMode;
@@ -1641,7 +1667,13 @@
         return STORAGE_PREFIX + getActiveViewport();
       }
 
-      // Target elements per viewport
+      function showSavedToast() {
+        if (!hudSaveToast) return;
+        hudSaveToast.classList.add('show');
+        clearTimeout(hudSaveToast._timer);
+        hudSaveToast._timer = setTimeout(() => hudSaveToast.classList.remove('show'), 1200);
+      }
+
       function getCharacterDisplayName() {
         if (currentThemeKey === 'sage') return 'Creator Image (Sage)';
         if (currentThemeKey === 'cobalt') return 'Pilot Image (Cobalt)';
@@ -1652,10 +1684,10 @@
       }
 
       const targetMap = {
-        'giant-headline-backplane': { el: () => document.querySelector('.giant-headline-backplane'), name: 'CREATIVE EDGE (Display)', viewport: 'both' },
+        'subject-pilot-image': { el: () => document.querySelector('.subject-pilot-image'), name: 'Character Image', getDisplayName: getCharacterDisplayName, viewport: 'both' },
+        'giant-headline-backplane': { el: () => document.querySelector('.giant-headline-backplane'), name: 'Display Headline Box', viewport: 'both' },
         'backplane-word-top': { el: () => document.querySelector('.backplane-word-top'), name: 'Word: CREATIVE', viewport: 'both' },
         'backplane-word-bottom': { el: () => document.querySelector('.backplane-word-bottom'), name: 'Word: EDGE', viewport: 'both' },
-        'subject-pilot-image': { el: () => document.querySelector('.subject-pilot-image'), name: 'Character Image', getDisplayName: getCharacterDisplayName, viewport: 'both' },
         
         // Distinct Desktop Content
         'dock-title': { el: () => document.querySelector('.dock-title.desktop-only') || document.querySelector('.dock-title'), name: 'Desktop Title', viewport: 'desktop' },
@@ -1667,6 +1699,9 @@
         'dock-title-mobile': { el: () => document.querySelector('.dock-title-mobile.mobile-only') || document.querySelector('.dock-title-mobile'), name: 'Mobile Title', viewport: 'mobile' },
         'dock-sub-mobile': { el: () => document.querySelector('.dock-sub-mobile.mobile-only') || document.querySelector('.dock-sub-mobile'), name: 'Mobile Subtitle', viewport: 'mobile' },
         
+        'btn-discover': { el: () => document.querySelector('.btn-discover'), name: 'Discover Talent Button', viewport: 'both' },
+        'btn-join': { el: () => document.querySelector('.btn-join'), name: 'Join as Creator Button', viewport: 'both' },
+        'dock-specs-row': { el: () => document.querySelector('.dock-specs-row'), name: 'Proof Specs Row', viewport: 'both' },
         'stage-horizon-dock': { el: () => document.querySelector('.stage-horizon-dock'), name: 'Bottom Action Dock', viewport: 'both' }
       };
 
@@ -1712,8 +1747,24 @@
       }
 
       function clearAllInlineStyles() {
+        document.querySelectorAll('[data-dragged="true"]').forEach(el => {
+          el.style.left = '';
+          el.style.top = '';
+          el.style.position = '';
+          el.style.fontSize = '';
+          el.style.zIndex = '';
+          el.style.color = '';
+          el.style.maxHeight = '';
+          el.style.height = '';
+          el.style.maxWidth = '';
+          el.style.marginBottom = '';
+          el.style.bottom = '';
+          el.style.right = '';
+          el.removeAttribute('data-dragged');
+        });
+
         Object.keys(targetMap).forEach(key => {
-          const el = targetMap[key].el();
+          const el = targetMap[key].el ? targetMap[key].el() : null;
           if (!el) return;
           el.style.left = '';
           el.style.top = '';
@@ -1733,34 +1784,46 @@
         });
 
         Object.keys(defaultTexts).forEach(k => {
-          const el = targetMap[k] ? targetMap[k].el() : null;
+          const el = targetMap[k] && targetMap[k].el ? targetMap[k].el() : null;
           if (el) el.innerHTML = defaultTexts[k];
         });
       }
 
       function getTargetKey(el) {
         if (!el) return null;
-        if (el.classList.contains('subject-pilot-image')) return 'subject-pilot-image';
-        if (el.classList.contains('dock-title')) return 'dock-title';
-        if (el.classList.contains('dock-sub')) return 'dock-sub';
-        if (el.classList.contains('backplane-word-top')) return 'backplane-word-top';
-        if (el.classList.contains('backplane-word-bottom')) return 'backplane-word-bottom';
-        if (el.classList.contains('giant-headline-backplane')) return 'giant-headline-backplane';
-        if (el.classList.contains('dock-headline-col')) return 'dock-headline-col';
-        if (el.classList.contains('dock-actions-col')) return 'dock-actions-col';
-        if (el.classList.contains('stage-horizon-dock')) return 'stage-horizon-dock';
-        return null;
+        if (el.classList.contains('subject-pilot-image') || el.id === 'subjectPilotImage') return 'subject-pilot-image';
+        if (el.dataset.editKey) return el.dataset.editKey;
+        for (const k of Object.keys(targetMap)) {
+          if (targetMap[k].el && targetMap[k].el() === el) return k;
+        }
+        if (el.id) return el.id;
+        const cls = Array.from(el.classList || []).filter(c => !['drag-selected', 'is-switching', 'theme-fader'].includes(c))[0];
+        if (cls) return cls;
+        return el.tagName.toLowerCase();
+      }
+
+      function getReadableName(el, key) {
+        if (targetMap[key]) {
+          return typeof targetMap[key].getDisplayName === 'function' ? targetMap[key].getDisplayName() : targetMap[key].name;
+        }
+        if (el.classList.contains('subject-pilot-image') || el.id === 'subjectPilotImage') return getCharacterDisplayName();
+        if (el.classList.contains('btn-discover')) return 'Button: Discover Talent';
+        if (el.classList.contains('btn-join')) return 'Button: Join as Creator';
+        if (el.classList.contains('dock-title')) return 'Headline Title';
+        if (el.classList.contains('dock-sub')) return 'Subtitle Copy';
+        if (el.classList.contains('dock-specs-row')) return 'Proof Specs Row';
+        return el.tagName.toLowerCase() + (key ? ` (${key})` : '');
       }
 
       function selectTarget(keyOrEl) {
-        const el = typeof keyOrEl === 'string' ? (targetMap[keyOrEl] ? targetMap[keyOrEl].el() : null) : keyOrEl;
+        const el = typeof keyOrEl === 'string' ? (targetMap[keyOrEl] ? targetMap[keyOrEl].el() : document.getElementById(keyOrEl) || document.querySelector(`.${keyOrEl}`)) : keyOrEl;
         if (!el) return;
         document.querySelectorAll('.drag-selected').forEach(n => n.classList.remove('drag-selected'));
         activeTarget = el;
         activeTarget.classList.add('drag-selected');
 
-        const item = key && targetMap[key];
-        const displayName = item ? (typeof item.getDisplayName === 'function' ? item.getDisplayName() : item.name) : el.tagName;
+        const key = getTargetKey(el);
+        const displayName = getReadableName(el, key);
         if (hudTargetName) hudTargetName.textContent = displayName;
         
         document.querySelectorAll('.hud-chip').forEach(c => {
@@ -1783,6 +1846,17 @@
         hudCoords.textContent = `X: ${left} | Y: ${top}${font}`;
       }
 
+      function updateContentEditable(enabled) {
+        const textElements = document.querySelectorAll(
+          '.nike-hero-canvas h1, .nike-hero-canvas h2, .nike-hero-canvas p, .nike-hero-canvas span, .nike-hero-canvas a, .nike-hero-canvas button, .dock-title, .dock-sub, .dock-title-mobile, .dock-sub-mobile, .backplane-word-top, .backplane-word-bottom'
+        );
+        textElements.forEach(el => {
+          if (el.closest('#editorHud, #editorToggle, .character-theme-capsules, .preview-layout-switcher')) return;
+          el.contentEditable = enabled ? 'true' : 'false';
+          el.spellcheck = false;
+        });
+      }
+
       function setEditMode(state) {
         isEditing = state;
         document.body.classList.toggle('is-editing', isEditing);
@@ -1792,11 +1866,7 @@
           if (lbl) lbl.textContent = isEditing ? 'Editing ON' : 'Drag & Edit';
         }
 
-        const textNodes = document.querySelectorAll('.backplane-word-top, .backplane-word-bottom, .dock-title, .dock-sub');
-        textNodes.forEach(node => {
-          node.contentEditable = isEditing ? 'true' : 'false';
-          node.spellcheck = false;
-        });
+        updateContentEditable(isEditing);
 
         if (isEditing) {
           stopAutoRotation();
@@ -1821,45 +1891,35 @@
         hudClose.addEventListener('click', () => setEditMode(false));
       }
 
-      // Pointer drag handling
+      // Universal Pointer drag handling with native image-drag suppression
       document.addEventListener('pointerdown', (e) => {
         if (!isEditing) return;
-        if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher')) return;
+        if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher, .character-theme-capsules')) return;
 
-        // Allow direct clicking and keyboard editing inside contenteditable text fields
-        const editableText = e.target.closest('.dock-title, .dock-sub, .backplane-word-top, .backplane-word-bottom');
-        if (editableText) {
-          selectTarget(editableText);
-          return; // Let user focus, select text, and type natively
-        }
+        let clickedTarget = e.target.closest(
+          '.subject-pilot-image, #subjectPilotImage, .backplane-word-top, .backplane-word-bottom, .giant-headline-backplane, .dock-title, .dock-sub, .dock-title-mobile, .dock-sub-mobile, .btn-discover, .btn-join, .dock-specs-row, .dock-headline-col, .dock-actions-col, .stage-horizon-dock'
+        ) || e.target;
 
-        let clickedTarget = null;
-        if (e.target.closest('.subject-pilot-image')) clickedTarget = document.querySelector('.subject-pilot-image');
-        else if (e.target.closest('.giant-headline-backplane')) clickedTarget = document.querySelector('.giant-headline-backplane');
-        else if (e.target.closest('.dock-headline-col')) clickedTarget = document.querySelector('.dock-headline-col');
-        else if (e.target.closest('.dock-actions-col')) clickedTarget = document.querySelector('.dock-actions-col');
-        else if (e.target.closest('.stage-horizon-dock')) clickedTarget = document.querySelector('.stage-horizon-dock');
-
-        if (!clickedTarget) return;
+        if (!clickedTarget || clickedTarget === document.body || clickedTarget === document.documentElement) return;
 
         selectTarget(clickedTarget);
+
+        // Suppress browser native ghost drag on images
+        if (clickedTarget.tagName === 'IMG' || clickedTarget.classList.contains('subject-pilot-image') || !clickedTarget.isContentEditable) {
+          e.preventDefault();
+        }
+
         startX = e.clientX;
         startY = e.clientY;
         hasMoved = false;
-
-        const parent = clickedTarget.offsetParent || document.body;
-        const pRect = parent.getBoundingClientRect();
-        const tRect = clickedTarget.getBoundingClientRect();
 
         const curPos = window.getComputedStyle(clickedTarget).position;
         if (curPos === 'static' || curPos === 'relative') {
           initialLeft = parseFloat(clickedTarget.style.left) || 0;
           initialTop = parseFloat(clickedTarget.style.top) || 0;
         } else {
-          initialLeft = parseFloat(clickedTarget.style.left);
-          initialTop = parseFloat(clickedTarget.style.top);
-          if (isNaN(initialLeft)) initialLeft = tRect.left - pRect.left;
-          if (isNaN(initialTop)) initialTop = tRect.top - pRect.top;
+          initialLeft = parseFloat(clickedTarget.style.left) || 0;
+          initialTop = parseFloat(clickedTarget.style.top) || 0;
         }
 
         function onPointerMove(pe) {
@@ -1876,8 +1936,7 @@
             if (pos === 'static') clickedTarget.style.position = 'relative';
             clickedTarget.style.left = Math.round(initialLeft + dx) + 'px';
             clickedTarget.style.top = Math.round(initialTop + dy) + 'px';
-            clickedTarget.style.right = 'auto';
-            clickedTarget.style.bottom = 'auto';
+            clickedTarget.setAttribute('data-dragged', 'true');
             updateCoordsDisplay();
           }
         }
@@ -1901,12 +1960,13 @@
         const cur = parseFloat(window.getComputedStyle(activeTarget).fontSize);
         const next = Math.round(cur * factor);
         activeTarget.style.fontSize = next + 'px';
+        activeTarget.setAttribute('data-dragged', 'true');
         updateCoordsDisplay();
         saveEdits();
       }
 
       function adjustImgScale(factor) {
-        const slot = document.querySelector('.subject-pilot-image');
+        const slot = (activeTarget && activeTarget.tagName === 'IMG') ? activeTarget : document.querySelector('.subject-pilot-image');
         if (!slot) return;
         const mode = getActiveViewport();
         if (mode === 'mobile') {
@@ -1917,9 +1977,10 @@
           slot.style.maxWidth = (nextH + 8) + '%';
         } else {
           const curH = parseFloat(slot.style.maxHeight) || 88;
-          const nextH = Math.min(100, Math.max(50, Math.round(curH * factor)));
+          const nextH = Math.min(100, Math.max(40, Math.round(curH * factor)));
           slot.style.maxHeight = nextH + 'vh';
         }
+        slot.setAttribute('data-dragged', 'true');
         saveEdits();
       }
 
@@ -1929,6 +1990,7 @@
         const curBottom = parseFloat(dock.style.bottom) || (getActiveViewport() === 'mobile' ? 114 : 44);
         const next = Math.max(0, curBottom + deltaPx);
         dock.style.bottom = next + 'px';
+        dock.setAttribute('data-dragged', 'true');
         saveEdits();
       }
 
@@ -1944,11 +2006,14 @@
           const reader = new FileReader();
           reader.onload = (evt) => {
             const dataUrl = evt.target.result;
-            const slot = document.querySelector('.subject-pilot-image');
+            const slot = (activeTarget && activeTarget.tagName === 'IMG') ? activeTarget : document.querySelector('.subject-pilot-image');
             if (slot) slot.src = dataUrl;
+            const mode = getActiveViewport();
             try {
+              localStorage.setItem('custom_img_' + currentThemeKey + '_' + mode, dataUrl);
               localStorage.setItem('custom_image_' + currentThemeKey, dataUrl);
             } catch(e) {}
+            showSavedToast();
           };
           reader.readAsDataURL(file);
         });
@@ -1967,6 +2032,7 @@
           const curZ = parseInt(window.getComputedStyle(activeTarget).zIndex, 10) || 5;
           const nextZ = curZ >= 15 ? 4 : 16;
           activeTarget.style.zIndex = nextZ;
+          activeTarget.setAttribute('data-dragged', 'true');
           hudZToggle.textContent = nextZ >= 15 ? 'Layer: In Front' : 'Layer: Behind';
           saveEdits();
         });
@@ -1975,12 +2041,13 @@
       if (hudColorCycle) {
         hudColorCycle.addEventListener('click', () => {
           if (!activeTarget) return;
-          const colors = ['#FFFFFF', '#080C14', '#2563EB', '#E0F2FE'];
+          const colors = ['#FFFFFF', '#080C14', '#2563EB', '#E0F2FE', '#FF384D'];
           const cur = activeTarget.style.color || window.getComputedStyle(activeTarget).color;
           const next = colors[(colors.indexOf(cur) + 1) % colors.length] || colors[0];
           activeTarget.style.color = next;
           activeTarget.querySelectorAll('*').forEach(n => n.style.color = next);
-          hudColorCycle.textContent = next === '#FFFFFF' ? 'Color: White' : (next === '#080C14' ? 'Color: Dark' : 'Color: Blue');
+          activeTarget.setAttribute('data-dragged', 'true');
+          hudColorCycle.textContent = next === '#FFFFFF' ? 'Color: White' : (next === '#080C14' ? 'Color: Dark' : 'Color: Accent');
           saveEdits();
         });
       }
@@ -2001,19 +2068,45 @@
           const bottom = activeTarget.style.bottom || '';
           const maxH = activeTarget.style.maxHeight || '';
 
-          let rules = `  top: ${top};\n  left: ${left};\n`;
-          if (font) rules += `  font-size: ${font};\n`;
-          if (col) rules += `  color: ${col};\n`;
-          if (bottom) rules += `  bottom: ${bottom};\n`;
-          if (maxH) rules += `  max-height: ${maxH};\n`;
-          if (z) rules += `  z-index: ${z};\n`;
+          let rules = `  top: ${top};
+  left: ${left};
+`;
+          if (font) rules += `  font-size: ${font};
+`;
+          if (col) rules += `  color: ${col};
+`;
+          if (bottom) rules += `  bottom: ${bottom};
+`;
+          if (maxH) rules += `  max-height: ${maxH};
+`;
+          if (z) rules += `  z-index: ${z};
+`;
 
-          let css = mode === 'mobile'
-            ? `/* Mobile (<900px) Overrides */\n@media (max-width: 900px) {\n  ${sel} {\n${rules}  }\n}`
-            : `/* Laptop / Desktop (>900px) Overrides */\n@media (min-width: 901px) {\n  ${sel} {\n${rules}  }\n}`;
+          let css = '';
+          if (mode === 'mobile') {
+            css = `/* Mobile (<900px) Overrides */
+@media (max-width: 900px) {
+  ${sel} {
+${rules}  }
+}`;
+          } else {
+            css = `/* Laptop / Desktop (>900px) Overrides */
+@media (min-width: 901px) {
+  ${sel} {
+${rules}  }
+}`;
+          }
 
           if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(css).then(showCopiedNotice);
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = css;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showCopiedNotice();
           }
         });
       }
@@ -2032,9 +2125,11 @@
         hudReset.addEventListener('click', () => {
           const mode = getActiveViewport();
           const modeName = mode === 'mobile' ? 'Mobile (<900px)' : 'Laptop / Desktop (>900px)';
-          if (confirm(`Reset custom adjustments for ${modeName} back to original?`)) {
+          if (confirm(`Reset custom adjustments for ${modeName} on this character?`)) {
             try {
-              localStorage.removeItem(getStorageKey());
+              localStorage.removeItem(getStorageKey() + '_' + currentThemeKey);
+              localStorage.removeItem(getStorageKey() + '_' + currentThemeKey + '_texts');
+              localStorage.removeItem('custom_img_' + currentThemeKey + '_' + mode);
               localStorage.removeItem('custom_image_' + currentThemeKey);
             } catch(e) {}
             const slot = document.querySelector('.subject-pilot-image');
@@ -2044,144 +2139,151 @@
             clearAllInlineStyles();
             restoreEdits();
             updateCoordsDisplay();
+            showSavedToast();
           }
         });
       }
 
-      function restoreCharacterImageEdits(themeKey) {
-        const el = document.querySelector('.subject-pilot-image');
-        if (!el) return;
-        const tKey = themeKey || currentThemeKey;
-        const key = 'character_' + tKey;
+      function saveTextEdits(el) {
+        const mode = getActiveViewport();
+        const tKey = currentThemeKey;
+        const key = getTargetKey(el);
+        if (!key) return;
+        let texts = {};
         try {
-          const raw = localStorage.getItem(getStorageKey());
-          const data = raw ? JSON.parse(raw) : {};
-          const d = data[key];
-          if (d) {
-            el.style.left = d.left || '';
-            el.style.top = d.top || '';
-            el.style.bottom = d.bottom || '';
-            el.style.maxHeight = d.maxHeight || '';
-            el.style.height = d.maxHeight || '';
-            el.style.maxWidth = d.maxWidth || '';
-            el.style.zIndex = d.zIndex || '';
-            if (d.left || d.top) {
-              const pos = window.getComputedStyle(el).position;
-              if (pos === 'static') el.style.position = 'relative';
+          const raw = localStorage.getItem(getStorageKey() + '_' + tKey + '_texts');
+          if (raw) texts = JSON.parse(raw);
+        } catch(e) {}
+        texts[key] = el.innerHTML;
+        try {
+          localStorage.setItem(getStorageKey() + '_' + tKey + '_texts', JSON.stringify(texts));
+        } catch(e) {}
+        showSavedToast();
+      }
+
+      function restoreTextEdits() {
+        const mode = getActiveViewport();
+        const tKey = currentThemeKey;
+        try {
+          const raw = localStorage.getItem(getStorageKey() + '_' + tKey + '_texts');
+          if (!raw) return;
+          const texts = JSON.parse(raw);
+          Object.keys(texts).forEach(key => {
+            let el = null;
+            if (targetMap[key] && targetMap[key].el) el = targetMap[key].el();
+            if (!el && document.getElementById(key)) el = document.getElementById(key);
+            if (!el) el = document.querySelector(`[data-edit-key="${key}"], .${key}`);
+            if (el && texts[key]) {
+              el.innerHTML = texts[key];
             }
-          } else {
-            el.style.left = '';
-            el.style.top = '';
-            el.style.bottom = '';
-            el.style.maxHeight = '';
-            el.style.height = '';
-            el.style.maxWidth = '';
-            el.style.zIndex = '';
-          }
+          });
         } catch(e) {}
       }
-      window.restoreCharacterImageEdits = restoreCharacterImageEdits;
 
       function saveEdits() {
         const mode = getActiveViewport();
+        const tKey = currentThemeKey;
         let data = {};
         try {
-          const raw = localStorage.getItem(getStorageKey());
+          const raw = localStorage.getItem(getStorageKey() + '_' + tKey);
           if (raw) data = JSON.parse(raw);
         } catch(e) {}
 
-        Object.keys(targetMap).forEach(key => {
-          const item = targetMap[key];
-          if (item.viewport === 'both' || item.viewport === mode) {
-            const el = item.el();
-            if (el) {
-              if (key === 'subject-pilot-image') {
-                data['character_' + currentThemeKey] = {
-                  left: el.style.left || '',
-                  top: el.style.top || '',
-                  maxHeight: el.style.maxHeight || '',
-                  maxWidth: el.style.maxWidth || '',
-                  bottom: el.style.bottom || '',
-                  zIndex: el.style.zIndex || ''
-                };
-              } else {
-                const isText = el.classList.contains('backplane-word-top') || el.classList.contains('backplane-word-bottom') || el.classList.contains('dock-title') || el.classList.contains('dock-sub') || el.classList.contains('dock-title-mobile') || el.classList.contains('dock-sub-mobile');
-                data[key] = {
-                  left: el.style.left || '',
-                  top: el.style.top || '',
-                  fontSize: el.style.fontSize || '',
-                  zIndex: el.style.zIndex || '',
-                  color: el.style.color || '',
-                  maxHeight: el.style.maxHeight || '',
-                  maxWidth: el.style.maxWidth || '',
-                  bottom: el.style.bottom || '',
-                  html: isText ? el.innerHTML : null
-                };
-              }
-            }
+        document.querySelectorAll('[data-dragged="true"]').forEach(el => {
+          const key = getTargetKey(el);
+          if (key) {
+            data[key] = {
+              left: el.style.left || '',
+              top: el.style.top || '',
+              fontSize: el.style.fontSize || '',
+              zIndex: el.style.zIndex || '',
+              color: el.style.color || '',
+              maxHeight: el.style.maxHeight || '',
+              maxWidth: el.style.maxWidth || '',
+              bottom: el.style.bottom || ''
+            };
           }
         });
+
+        // Always save character image adjustments
+        const charSlot = document.querySelector('.subject-pilot-image');
+        if (charSlot) {
+          data['subject-pilot-image'] = {
+            left: charSlot.style.left || '',
+            top: charSlot.style.top || '',
+            maxHeight: charSlot.style.maxHeight || '',
+            maxWidth: charSlot.style.maxWidth || '',
+            bottom: charSlot.style.bottom || '',
+            zIndex: charSlot.style.zIndex || ''
+          };
+        }
+
         try {
-          localStorage.setItem(getStorageKey(), JSON.stringify(data));
+          localStorage.setItem(getStorageKey() + '_' + tKey, JSON.stringify(data));
         } catch(e) {}
+        showSavedToast();
       }
 
       function restoreEdits() {
         clearAllInlineStyles();
         const mode = getActiveViewport();
+        const tKey = currentThemeKey;
         try {
-          const raw = localStorage.getItem(getStorageKey());
-          if (!raw) {
-            restoreCharacterImageEdits(currentThemeKey);
-            return;
+          // Restore custom image for this character & viewport
+          const customImg = localStorage.getItem('custom_img_' + tKey + '_' + mode) || localStorage.getItem('custom_image_' + tKey);
+          const charSlot = document.querySelector('.subject-pilot-image');
+          if (charSlot) {
+            charSlot.src = customImg || (THEME_PRESETS[tKey] ? THEME_PRESETS[tKey].imgSrc : charSlot.src);
           }
-          const data = JSON.parse(raw);
-          Object.keys(data).forEach(key => {
-            if (key.startsWith('character_')) return;
-            const item = targetMap[key];
-            if (!item) return;
-            if (item.viewport !== 'both' && item.viewport !== mode) return;
 
-            const el = item.el();
-            if (el && data[key]) {
-              const d = data[key];
-              if (d.left) el.style.left = d.left;
-              if (d.top) el.style.top = d.top;
-              if (d.fontSize) el.style.fontSize = d.fontSize;
-              if (d.zIndex) el.style.zIndex = d.zIndex;
-              if (d.color) {
-                el.style.color = d.color;
-                el.querySelectorAll('*').forEach(n => n.style.color = d.color);
+          restoreTextEdits();
+
+          const raw = localStorage.getItem(getStorageKey() + '_' + tKey);
+          if (raw) {
+            const data = JSON.parse(raw);
+            Object.keys(data).forEach(key => {
+              let el = null;
+              if (targetMap[key] && targetMap[key].el) el = targetMap[key].el();
+              if (!el && document.getElementById(key)) el = document.getElementById(key);
+              if (!el) el = document.querySelector(`[data-edit-key="${key}"], .${key}`);
+              if (el && data[key]) {
+                const d = data[key];
+                if (d.left) el.style.left = d.left;
+                if (d.top) el.style.top = d.top;
+                if (d.fontSize) el.style.fontSize = d.fontSize;
+                if (d.zIndex) el.style.zIndex = d.zIndex;
+                if (d.color) {
+                  el.style.color = d.color;
+                  el.querySelectorAll('*').forEach(n => n.style.color = d.color);
+                }
+                if (d.maxHeight) {
+                  el.style.maxHeight = d.maxHeight;
+                  el.style.height = d.maxHeight;
+                }
+                if (d.maxWidth) {
+                  el.style.maxWidth = d.maxWidth;
+                }
+                if (d.bottom) {
+                  el.style.bottom = d.bottom;
+                }
+                if (d.left || d.top) {
+                  const pos = window.getComputedStyle(el).position;
+                  if (pos === 'static') el.style.position = 'relative';
+                  el.setAttribute('data-dragged', 'true');
+                }
               }
-              if (d.maxHeight) {
-                el.style.maxHeight = d.maxHeight;
-                el.style.height = d.maxHeight;
-              }
-              if (d.maxWidth) {
-                el.style.maxWidth = d.maxWidth;
-              }
-              if (d.bottom) {
-                el.style.bottom = d.bottom;
-              }
-              if (d.left || d.top) {
-                const pos = window.getComputedStyle(el).position;
-                if (pos === 'static') el.style.position = 'relative';
-              }
-              if (d.html) {
-                el.innerHTML = d.html;
-              }
-            }
-          });
-          restoreCharacterImageEdits(currentThemeKey);
+            });
+          }
         } catch(err) {
           console.warn('Failed restoring edits', err);
         }
       }
+      window.restoreCharacterImageEdits = restoreEdits;
 
       document.addEventListener('input', (e) => {
-        if (isEditing && (e.target.classList.contains('backplane-word-top') || e.target.classList.contains('backplane-word-bottom') || e.target.classList.contains('dock-title') || e.target.classList.contains('dock-sub') || e.target.classList.contains('dock-title-mobile') || e.target.classList.contains('dock-sub-mobile'))) {
-          saveEdits();
-        }
+        if (!isEditing) return;
+        if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher, .character-theme-capsules')) return;
+        saveTextEdits(e.target);
       });
 
       const btnDesk = document.getElementById('hudViewDesktop');
@@ -2190,6 +2292,7 @@
         btnDesk.addEventListener('click', (e) => {
           e.stopPropagation();
           manualViewportMode = 'desktop';
+          document.body.classList.remove('preview-as-mobile');
           updateHudModeBadge();
           updateHudChipsForMode();
           restoreEdits();
@@ -2200,6 +2303,7 @@
         btnMob.addEventListener('click', (e) => {
           e.stopPropagation();
           manualViewportMode = 'mobile';
+          document.body.classList.add('preview-as-mobile');
           updateHudModeBadge();
           updateHudChipsForMode();
           restoreEdits();
@@ -2210,6 +2314,7 @@
       let lastViewport = getActiveViewport();
       window.addEventListener('resize', () => {
         manualViewportMode = null;
+        document.body.classList.remove('preview-as-mobile');
         const currentViewport = getActiveViewport();
         if (currentViewport !== lastViewport) {
           lastViewport = currentViewport;
