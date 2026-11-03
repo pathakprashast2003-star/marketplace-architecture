@@ -260,12 +260,12 @@
     }
 
     .category-kicker {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-size: 11.5px;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent-blue);
+      letter-spacing: 0.14em;
+      color: #2563EB !important;
       margin-bottom: 12px;
       display: block;
     }
@@ -275,26 +275,28 @@
     }
 
     .headline-line-1 {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: clamp(58px, 6vw, 92px);
+      font-family: var(--font-display);
+      font-style: normal;
+      font-size: clamp(54px, 5.8vw, 88px);
       font-weight: 900;
-      line-height: 0.9;
-      letter-spacing: -0.02em;
+      line-height: 0.88;
+      letter-spacing: -0.04em;
       color: #0A121F;
       display: block;
+      text-transform: uppercase;
     }
 
     .headline-line-2 {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: clamp(58px, 6vw, 92px);
+      font-family: var(--font-display);
+      font-style: normal;
+      font-size: clamp(54px, 5.8vw, 88px);
       font-weight: 900;
-      line-height: 0.9;
-      letter-spacing: -0.02em;
+      line-height: 0.88;
+      letter-spacing: -0.04em;
       color: #3D0A2E;
       display: block;
       margin-top: 4px;
+      text-transform: uppercase;
     }
 
     /* Rate & Status Pill (Concentric Radius 14px) */
@@ -348,8 +350,9 @@
     }
 
     .editorial-subhead-prose {
-      font-size: 14px;
-      line-height: 1.6;
+      font-family: 'Times New Roman', Times, Georgia, serif;
+      font-size: 16px;
+      line-height: 1.62;
       color: var(--text-dark-sub);
       margin-bottom: 28px;
       max-width: 440px;
@@ -428,7 +431,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: rgba(255, 255, 255, 0.65);
+      color: var(--text-white-sub);
       margin-bottom: 8px;
       display: block;
     }
@@ -437,11 +440,11 @@
       font-family: var(--font-display);
       font-size: clamp(28px, 2.7vw, 40px);
       font-weight: 900;
-      color: #FFFFFF;
+      color: var(--text-white);
       line-height: 1.08;
       letter-spacing: -0.03em;
       margin-bottom: 22px;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      text-shadow: none;
     }
 
     /* Production Spec Cards */
@@ -483,9 +486,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255, 255, 255, 0.12);
-      color: #FFFFFF;
-      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.22);
+      color: var(--text-white);
+      border: 1.5px solid var(--border-subtle);
       font-family: var(--font-display);
       font-size: 12px;
       font-weight: 800;
