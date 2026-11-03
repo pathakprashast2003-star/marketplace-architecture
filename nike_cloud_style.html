@@ -728,13 +728,19 @@
         color: #FFFFFF;
       }
 
+      .cloud-floor-dreamy {
+        bottom: -55px;
+        height: 160px;
+        opacity: 0.8;
+      }
+
       /* Center Subject Stage: Pilot & Drone layered in front */
       .subject-center-stage {
         position: absolute;
         top: 36px;
         left: 50%;
         transform: translateX(-50%);
-        height: calc(100% - 215px);
+        height: calc(100% - 245px);
         width: 100%;
         display: flex;
         align-items: flex-start;
@@ -744,8 +750,8 @@
       }
 
       .subject-pilot-image {
-        height: 77%;
-        max-height: 77%;
+        height: 74%;
+        max-height: 74%;
         width: auto;
         max-width: 86%;
         object-fit: contain;
@@ -757,7 +763,7 @@
       /* Bottom Horizon Dock: Elevated Apple-grade tactile dock */
       .stage-horizon-dock {
         position: absolute;
-        bottom: 78px;
+        bottom: 114px;
         left: 0;
         width: 100%;
         padding: 0 16px;
@@ -786,7 +792,7 @@
         text-align: center;
         margin: 0 0 2px 0;
         color: #FFFFFF;
-        text-shadow: 0 2px 12px rgba(8, 24, 70, 0.45);
+        text-shadow: 0 4px 18px rgba(8, 24, 70, 0.65), 0 1px 3px rgba(8, 24, 70, 0.4);
         outline: none;
         transition: outline 0.15s ease, background 0.15s ease;
       }
@@ -845,10 +851,10 @@
       }
 
       .btn-join {
-        background: rgba(255, 255, 255, 0.88);
+        background: rgba(255, 255, 255, 0.94);
         color: #080C14;
-        border: 1px solid rgba(255, 255, 255, 0.95);
-        box-shadow: 0 6px 18px rgba(10, 30, 80, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.98);
+        box-shadow: 0 6px 18px rgba(10, 30, 80, 0.15);
       }
 
       .dock-specs-row {
@@ -857,9 +863,11 @@
         align-items: center;
         gap: 8px;
         font-size: 11px;
+        font-weight: 600;
         white-space: nowrap;
         width: 100%;
-        color: rgba(255, 255, 255, 0.9);
+        color: #FFFFFF;
+        text-shadow: 0 2px 8px rgba(8, 24, 70, 0.6);
       }
     }
   </style>
@@ -1024,8 +1032,8 @@
       let initialLeft = 0, initialTop = 0;
       let hasMoved = false;
 
-      // Responsive viewport isolation (v4 clean storage)
-      const STORAGE_PREFIX = 'nike_cloud_custom_edits_v4_';
+      // Responsive viewport isolation (v5 clean storage)
+      const STORAGE_PREFIX = 'nike_cloud_custom_edits_v5_';
       try {
         localStorage.removeItem('nike_cloud_custom_edits_v1_mobile');
         localStorage.removeItem('nike_cloud_custom_edits_v1_desktop');
@@ -1033,6 +1041,8 @@
         localStorage.removeItem('nike_cloud_custom_edits_v2_desktop');
         localStorage.removeItem('nike_cloud_custom_edits_v3_mobile');
         localStorage.removeItem('nike_cloud_custom_edits_v3_desktop');
+        localStorage.removeItem('nike_cloud_custom_edits_v4_mobile');
+        localStorage.removeItem('nike_cloud_custom_edits_v4_desktop');
       } catch(e) {}
 
       function getActiveViewport() {
@@ -1303,7 +1313,7 @@
       function nudgeDock(deltaPx) {
         const dock = document.querySelector('.stage-horizon-dock');
         if (!dock) return;
-        const curBottom = parseFloat(dock.style.bottom) || (getActiveViewport() === 'mobile' ? 78 : 44);
+        const curBottom = parseFloat(dock.style.bottom) || (getActiveViewport() === 'mobile' ? 114 : 44);
         const next = Math.max(0, curBottom + deltaPx);
         dock.style.bottom = next + 'px';
         saveEdits();
