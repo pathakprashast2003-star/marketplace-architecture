@@ -135,26 +135,26 @@
       --btn-join-border: rgba(58, 25, 4, 0.18);
     }
 
-    /* THEME 5: Coral Street (Skater Girl & Street Culture) */
+    /* THEME 5: Spatial 3D (Cheerful Gamer with VR Headset) */
     .nike-hero-canvas[data-theme="coral"] {
-      --card-bg-gradient: linear-gradient(180deg, #FFF1F2 0%, #FECDD3 32%, #FB7185 68%, #E11D48 100%);
-      --card-shadow: 0 40px 90px -20px rgba(130, 20, 50, 0.32);
-      --card-shadow-mobile: 0 16px 42px -10px rgba(130, 20, 50, 0.25);
-      --halo-color: radial-gradient(ellipse at center, rgba(76, 5, 25, 0.28) 0%, rgba(76, 5, 25, 0.08) 48%, transparent 72%);
+      --card-bg-gradient: linear-gradient(180deg, #FFF1F3 0%, #FDE2E6 32%, #F472B6 68%, #FF384D 100%);
+      --card-shadow: 0 40px 90px -20px rgba(107, 17, 53, 0.32);
+      --card-shadow-mobile: 0 16px 42px -10px rgba(107, 17, 53, 0.25);
+      --halo-color: radial-gradient(ellipse at center, rgba(53, 5, 38, 0.28) 0%, rgba(53, 5, 38, 0.08) 48%, transparent 72%);
       --cloud-top-l: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 70%);
       --cloud-top-r: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0) 70%);
-      --cloud-floor: radial-gradient(ellipse at 50% 80%, rgba(225, 29, 72, 0.85) 0%, rgba(251, 113, 133, 0.50) 45%, rgba(255, 241, 242, 0) 75%);
-      --backplane-color: #4C0519;
-      --backplane-shadow: 0 14px 32px rgba(76, 5, 25, 0.18);
-      --dock-title-color: #4C0519;
+      --cloud-floor: radial-gradient(ellipse at 50% 80%, rgba(255, 56, 77, 0.85) 0%, rgba(244, 114, 182, 0.50) 45%, rgba(255, 241, 243, 0) 75%);
+      --backplane-color: #350526;
+      --backplane-shadow: 0 14px 32px rgba(53, 5, 38, 0.18);
+      --dock-title-color: #350526;
       --dock-title-shadow: none;
-      --dock-sub-color: #701A2C;
-      --dock-specs-color: #580B1F;
-      --btn-discover-bg: #4C0519;
+      --dock-sub-color: #5A1838;
+      --dock-specs-color: #350526;
+      --btn-discover-bg: #350526;
       --btn-discover-text: #FFFFFF;
       --btn-join-bg: #FFFFFF;
-      --btn-join-text: #4C0519;
-      --btn-join-border: rgba(76, 5, 25, 0.18);
+      --btn-join-text: #350526;
+      --btn-join-border: rgba(53, 5, 38, 0.18);
     }
 
     html, body {
@@ -1164,6 +1164,11 @@
       box-shadow: 0 0 6px #E9520D;
     }
 
+    .theme-capsule-btn[data-theme="coral"] .theme-pill-dot {
+      background: #FF384D;
+      box-shadow: 0 0 6px #FF384D;
+    }
+
     .theme-fader {
       transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -1284,6 +1289,11 @@
         <span>Cinema Camera</span>
         <span class="theme-timer-progress"></span>
       </button>
+      <button class="theme-capsule-btn" data-theme="coral" role="tab" aria-selected="false">
+        <span class="theme-pill-dot"></span>
+        <span>Spatial 3D</span>
+        <span class="theme-timer-progress"></span>
+      </button>
     </div>
 
     <!-- Atmospheric Clouds Layer -->
@@ -1345,7 +1355,7 @@
   <script>
     
     /* ── DYNAMIC MULTI-CHARACTER & THEME ENGINE (WITH AUTO-ROTATION) ── */
-    const THEME_KEYS = ['sage', 'cobalt', 'lilac', 'amber'];
+    const THEME_KEYS = ['sage', 'cobalt', 'lilac', 'amber', 'coral'];
     const THEME_PRESETS = {
       sage: {
         themeKey: 'sage',
@@ -1425,6 +1435,26 @@
           '<span>Commercial Film</span>',
           '<span class="spec-sep">/</span>',
           '<span>Direct Pitch</span>'
+        ].join(' ')
+      },
+      coral: {
+        themeKey: 'coral',
+        name: 'Spatial 3D',
+        imgSrc: 'assets/cheerful_gamer_vr.png',
+        imgAlt: 'Cheerful Gamer with VR Headset',
+        wordTop: 'CREATIVE',
+        wordBottom: 'EDGE',
+        dockTitle: 'Direct access to<br>spatial 3D talent.',
+        dockTitleMobile: 'Direct access to spatial 3D talent.',
+        dockSub: 'Meet exceptional 3D artists and motion designers creating stunning CGI, immersive visual experiences and next-generation brand content.',
+        dockSubMobile: 'Exceptional 3D artists and motion designers.',
+        specs: [
+          '<span class="live-dot-green" style="background:#FF384D; box-shadow:0 0 8px #FF384D;"></span>',
+          '<span>3D CGI Render</span>',
+          '<span class="spec-sep">/</span>',
+          '<span>Cinematic VFX</span>',
+          '<span class="spec-sep">/</span>',
+          '<span>Spatial Motion</span>'
         ].join(' ')
       }
     };
@@ -1617,6 +1647,7 @@
         if (currentThemeKey === 'cobalt') return 'Pilot Image (Cobalt)';
         if (currentThemeKey === 'lilac') return 'Purple Illustrator';
         if (currentThemeKey === 'amber') return 'Cinema Videographer';
+        if (currentThemeKey === 'coral') return 'Spatial 3D Gamer';
         return 'Character Image';
       }
 

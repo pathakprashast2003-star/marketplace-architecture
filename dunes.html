@@ -121,24 +121,24 @@
       --pill-specs-text: #261005;
     }
 
-    /* THEME 5: Coral Street (Skater Girl & Street Culture) */
+    /* THEME 5: Spatial 3D (Cheerful Gamer with VR Headset) */
     body[data-theme="coral"] {
-      --sky-top: #FFF1F2;
-      --sky-mid: #FFE4E6;
-      --sky-deep: #FECDD3;
-      --wave-azure: #FB7185;
-      --wave-cobalt: #BE123C;
-      --wave-soft: #FDA4AF;
-      --text-white: #BE123C;
-      --text-dark: #4C0519;
-      --text-secondary: #701A2C;
+      --sky-top: #FFF1F3;
+      --sky-mid: #FDE2E6;
+      --sky-deep: #FCE5DF;
+      --wave-azure: #FF384D;
+      --wave-cobalt: #6B1135;
+      --wave-soft: #F472B6;
+      --text-white: #350526;
+      --text-dark: #FF384D;
+      --text-secondary: #4A152C;
       --text-shadow-hero: none;
-      --btn-primary: #4C0519;
-      --btn-primary-hover: #29020C;
+      --btn-primary: #350526;
+      --btn-primary-hover: #1F0216;
       --btn-secondary-bg: #FFFFFF;
-      --btn-secondary-text: #4C0519;
-      --pill-specs-bg: rgba(255, 255, 255, 0.90);
-      --pill-specs-text: #4C0519;
+      --btn-secondary-text: #350526;
+      --pill-specs-bg: rgba(255, 255, 255, 0.92);
+      --pill-specs-text: #350526;
     }
 
     html, body {
@@ -1071,6 +1071,10 @@
       background: #E9520D;
       box-shadow: 0 0 6px #E9520D;
     }
+    .theme-capsule-btn[data-theme="coral"] .theme-pill-dot {
+      background: #FF384D;
+      box-shadow: 0 0 6px #FF384D;
+    }
     .theme-timer-progress {
       position: absolute;
       bottom: 0;
@@ -1113,6 +1117,11 @@
     <button class="theme-capsule-btn" data-theme="amber" role="tab" aria-selected="false">
       <span class="theme-pill-dot"></span>
       <span>Cinema Camera</span>
+      <span class="theme-timer-progress"></span>
+    </button>
+    <button class="theme-capsule-btn" data-theme="coral" role="tab" aria-selected="false">
+      <span class="theme-pill-dot"></span>
+      <span>Spatial 3D</span>
       <span class="theme-timer-progress"></span>
     </button>
   </div>
@@ -1290,7 +1299,7 @@
 
     
     /* ── DYNAMIC MULTI-CHARACTER & THEME ENGINE (SLIDESHOW) ── */
-    const THEME_KEYS = ['sage', 'cobalt', 'lilac', 'amber'];
+    const THEME_KEYS = ['sage', 'cobalt', 'lilac', 'amber', 'coral'];
     const THEME_PRESETS = {
       sage: {
         themeKey: 'sage',
@@ -1356,6 +1365,23 @@
           '<div class="spec-item"><span class="spec-value">🎞 COMMERCIAL FILM</span></div>',
           '<div class="spec-divider" aria-hidden="true"></div>',
           '<div class="spec-item"><span class="spec-value">🚀 DIRECT PITCH</span></div>'
+        ].join('')
+      },
+      coral: {
+        themeKey: 'coral',
+        name: 'Spatial 3D',
+        imgSrc: 'assets/cheerful_gamer_vr.png',
+        imgAlt: 'Cheerful Gamer with VR Headset',
+        creativeWord: 'CREATIVE',
+        edgeWord: 'EDGE',
+        leadDesktop: 'WE FIND THE',
+        subText: 'Meet exceptional 3D artists and motion designers creating stunning CGI, immersive visual experiences and next-generation brand content.',
+        specs: [
+          '<div class="spec-item"><span class="spec-value">💎 3D CGI RENDER</span></div>',
+          '<div class="spec-divider" aria-hidden="true"></div>',
+          '<div class="spec-item"><span class="spec-value">🎬 CINEMATIC VFX</span></div>',
+          '<div class="spec-divider" aria-hidden="true"></div>',
+          '<div class="spec-item"><span class="spec-value">🪐 SPATIAL MOTION</span></div>'
         ].join('')
       }
     };
@@ -1532,6 +1558,7 @@
         if (currentThemeKey === 'cobalt') return 'Pilot Image (Cobalt)';
         if (currentThemeKey === 'lilac') return 'Purple Illustrator';
         if (currentThemeKey === 'amber') return 'Cinema Videographer';
+        if (currentThemeKey === 'coral') return 'Spatial 3D Gamer';
         return 'Character Image';
       }
 

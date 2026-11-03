@@ -86,14 +86,14 @@
     }
 
     body[data-theme="coral"] {
-      --bg-sapphire: #4C0519;
-      --bg-sapphire-gradient: linear-gradient(180deg, #FFF1F2 0%, #FECDD3 32%, #FB7185 68%, #E11D48 100%);
-      --accent-blue: #4C0519;
-      --accent-blue-hover: #29020C;
-      --text-white: #4C0519;
-      --text-white-sub: #701A2C;
-      --status-emerald: #FB7185;
-      --border-subtle: rgba(76, 5, 25, 0.15);
+      --bg-sapphire: #350526;
+      --bg-sapphire-gradient: linear-gradient(180deg, #FFF1F3 0%, #FDE2E6 32%, #F472B6 68%, #FF384D 100%);
+      --accent-blue: #350526;
+      --accent-blue-hover: #1F0216;
+      --text-white: #350526;
+      --text-white-sub: #5A1838;
+      --status-emerald: #FF384D;
+      --border-subtle: rgba(53, 5, 38, 0.15);
     }
 
     html, body {
@@ -857,6 +857,10 @@
       background: #E9520D;
       box-shadow: 0 0 6px #E9520D;
     }
+    .theme-capsule-btn[data-theme="coral"] .theme-pill-dot {
+      background: #FF384D;
+      box-shadow: 0 0 6px #FF384D;
+    }
     .theme-timer-progress {
       position: absolute;
       bottom: 0;
@@ -899,6 +903,11 @@
     <button class="theme-capsule-btn" data-theme="amber" role="tab" aria-selected="false">
       <span class="theme-pill-dot"></span>
       <span>Cinema Camera</span>
+      <span class="theme-timer-progress"></span>
+    </button>
+    <button class="theme-capsule-btn" data-theme="coral" role="tab" aria-selected="false">
+      <span class="theme-pill-dot"></span>
+      <span>Spatial 3D</span>
       <span class="theme-timer-progress"></span>
     </button>
   </div>
@@ -1028,7 +1037,7 @@
 
   <script>
     /* ── DYNAMIC MULTI-CHARACTER & THEME ENGINE (SLIDESHOW) ── */
-    const THEME_KEYS = ['sage', 'cobalt', 'lilac', 'amber'];
+    const THEME_KEYS = ['sage', 'cobalt', 'lilac', 'amber', 'coral'];
     const THEME_PRESETS = {
       sage: {
         themeKey: 'sage',
@@ -1084,6 +1093,20 @@
           '<span>Cinema 4K Optics</span>',
           '<span>&bull;</span>',
           '<span>Commercial Film · Direct Pitch</span>'
+        ].join(' ')
+      },
+      coral: {
+        themeKey: 'coral',
+        name: 'Spatial 3D',
+        imgSrc: 'assets/cheerful_gamer_vr.png',
+        imgAlt: 'Cheerful Gamer with VR Headset',
+        title: 'Meet Exceptional 3D Artists & Spatial Creators.',
+        sub: 'Exceptional 3D artists and motion designers creating stunning CGI, immersive visual experiences and next-generation brand content.',
+        specs: [
+          '<span class="status-dot" style="background:#FF384D; box-shadow:0 0 6px #FF384D;"></span>',
+          '<span>3D CGI Render</span>',
+          '<span>&bull;</span>',
+          '<span>Cinematic VFX · Spatial Motion</span>'
         ].join(' ')
       }
     };
