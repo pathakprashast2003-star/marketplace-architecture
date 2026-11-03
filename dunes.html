@@ -101,24 +101,24 @@
       --pill-specs-text: #2A0E44;
     }
 
-    /* THEME 4: Solar Amber (Athletic Motion & Action Sports) */
+    /* THEME 4: Cinema Camera & Commercial Film (Smiling Videographer) */
     body[data-theme="amber"] {
-      --sky-top: #FFFBEB;
-      --sky-mid: #FEF3C7;
-      --sky-deep: #FDE68A;
-      --wave-azure: #F59E0B;
-      --wave-cobalt: #B45309;
-      --wave-soft: #FBBF24;
-      --text-white: #C2410C;
-      --text-dark: #3A1904;
-      --text-secondary: #5C2605;
+      --sky-top: #FFF6EE;
+      --sky-mid: #FDE6D2;
+      --sky-deep: #FBCB9D;
+      --wave-azure: #E9520D;
+      --wave-cobalt: #8C2F0E;
+      --wave-soft: #F5934C;
+      --text-white: #261005;
+      --text-dark: #E9520D;
+      --text-secondary: #4A220E;
       --text-shadow-hero: none;
-      --btn-primary: #3A1904;
-      --btn-primary-hover: #1F0D02;
+      --btn-primary: #261005;
+      --btn-primary-hover: #120702;
       --btn-secondary-bg: #FFFFFF;
-      --btn-secondary-text: #3A1904;
+      --btn-secondary-text: #261005;
       --pill-specs-bg: rgba(255, 255, 255, 0.90);
-      --pill-specs-text: #3A1904;
+      --pill-specs-text: #261005;
     }
 
     /* THEME 5: Coral Street (Skater Girl & Street Culture) */
@@ -1068,12 +1068,8 @@
       box-shadow: 0 0 6px #A855F7;
     }
     .theme-capsule-btn[data-theme="amber"] .theme-pill-dot {
-      background: #F97316;
-      box-shadow: 0 0 6px #F97316;
-    }
-    .theme-capsule-btn[data-theme="coral"] .theme-pill-dot {
-      background: #FB7185;
-      box-shadow: 0 0 6px #FB7185;
+      background: #E9520D;
+      box-shadow: 0 0 6px #E9520D;
     }
     .theme-timer-progress {
       position: absolute;
@@ -1112,6 +1108,11 @@
     <button class="theme-capsule-btn" data-theme="lilac" role="tab" aria-selected="false">
       <span class="theme-pill-dot"></span>
       <span>Purple Illustrator</span>
+      <span class="theme-timer-progress"></span>
+    </button>
+    <button class="theme-capsule-btn" data-theme="amber" role="tab" aria-selected="false">
+      <span class="theme-pill-dot"></span>
+      <span>Cinema Camera</span>
       <span class="theme-timer-progress"></span>
     </button>
   </div>
@@ -1289,7 +1290,7 @@
 
     
     /* ── DYNAMIC MULTI-CHARACTER & THEME ENGINE (SLIDESHOW) ── */
-    const THEME_KEYS = ['sage', 'cobalt', 'lilac'];
+    const THEME_KEYS = ['sage', 'cobalt', 'lilac', 'amber'];
     const THEME_PRESETS = {
       sage: {
         themeKey: 'sage',
@@ -1338,6 +1339,23 @@
           '<div class="spec-item"><span class="spec-value">✓ Verified Portfolios</span></div>',
           '<div class="spec-divider" aria-hidden="true"></div>',
           '<div class="spec-item"><span class="spec-value">Direct Collaboration</span></div>'
+        ].join('')
+      },
+      amber: {
+        themeKey: 'amber',
+        name: 'Cinema Camera',
+        imgSrc: 'assets/smiling_videographer_cinema.png',
+        imgAlt: 'Smiling Videographer with Cinema Camera',
+        creativeWord: 'CREATIVE',
+        edgeWord: 'EDGE',
+        leadDesktop: 'WE FIND THE',
+        subText: 'Direct access to commercial directors, cinema camera operators, and visual storytellers.',
+        specs: [
+          '<div class="spec-item"><span class="spec-value">🎥 CINEMA 4K OPTICS</span></div>',
+          '<div class="spec-divider" aria-hidden="true"></div>',
+          '<div class="spec-item"><span class="spec-value">🎞 COMMERCIAL FILM</span></div>',
+          '<div class="spec-divider" aria-hidden="true"></div>',
+          '<div class="spec-item"><span class="spec-value">🚀 DIRECT PITCH</span></div>'
         ].join('')
       }
     };
@@ -1513,6 +1531,7 @@
         if (currentThemeKey === 'sage') return 'Creator Image (Sage)';
         if (currentThemeKey === 'cobalt') return 'Pilot Image (Cobalt)';
         if (currentThemeKey === 'lilac') return 'Purple Illustrator';
+        if (currentThemeKey === 'amber') return 'Cinema Videographer';
         return 'Character Image';
       }
 

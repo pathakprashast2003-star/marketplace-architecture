@@ -854,12 +854,8 @@
       box-shadow: 0 0 6px #A855F7;
     }
     .theme-capsule-btn[data-theme="amber"] .theme-pill-dot {
-      background: #F97316;
-      box-shadow: 0 0 6px #F97316;
-    }
-    .theme-capsule-btn[data-theme="coral"] .theme-pill-dot {
-      background: #FB7185;
-      box-shadow: 0 0 6px #FB7185;
+      background: #E9520D;
+      box-shadow: 0 0 6px #E9520D;
     }
     .theme-timer-progress {
       position: absolute;
@@ -898,6 +894,11 @@
     <button class="theme-capsule-btn" data-theme="lilac" role="tab" aria-selected="false">
       <span class="theme-pill-dot"></span>
       <span>Purple Illustrator</span>
+      <span class="theme-timer-progress"></span>
+    </button>
+    <button class="theme-capsule-btn" data-theme="amber" role="tab" aria-selected="false">
+      <span class="theme-pill-dot"></span>
+      <span>Cinema Camera</span>
       <span class="theme-timer-progress"></span>
     </button>
   </div>
@@ -1027,7 +1028,7 @@
 
   <script>
     /* ── DYNAMIC MULTI-CHARACTER & THEME ENGINE (SLIDESHOW) ── */
-    const THEME_KEYS = ['sage', 'cobalt', 'lilac'];
+    const THEME_KEYS = ['sage', 'cobalt', 'lilac', 'amber'];
     const THEME_PRESETS = {
       sage: {
         themeKey: 'sage',
@@ -1069,6 +1070,20 @@
           '<span>Verified Portfolios</span>',
           '<span>&bull;</span>',
           '<span>Direct Collaboration</span>'
+        ].join(' ')
+      },
+      amber: {
+        themeKey: 'amber',
+        name: 'Cinema Camera',
+        imgSrc: 'assets/smiling_videographer_cinema.png',
+        imgAlt: 'Smiling Videographer with Cinema Camera',
+        title: 'Commercial Cinema & Film Direction.',
+        sub: 'Direct access to commercial directors, cinema camera operators, and visual storytellers.',
+        specs: [
+          '<span class="status-dot" style="background:#E9520D; box-shadow:0 0 6px #E9520D;"></span>',
+          '<span>Cinema 4K Optics</span>',
+          '<span>&bull;</span>',
+          '<span>Commercial Film · Direct Pitch</span>'
         ].join(' ')
       }
     };

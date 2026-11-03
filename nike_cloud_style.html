@@ -1160,13 +1160,8 @@
     }
 
     .theme-capsule-btn[data-theme="amber"] .theme-pill-dot {
-      background: #F97316;
-      box-shadow: 0 0 6px #F97316;
-    }
-
-    .theme-capsule-btn[data-theme="coral"] .theme-pill-dot {
-      background: #FB7185;
-      box-shadow: 0 0 6px #FB7185;
+      background: #E9520D;
+      box-shadow: 0 0 6px #E9520D;
     }
 
     .theme-fader {
@@ -1284,6 +1279,11 @@
         <span>Purple Illustrator</span>
         <span class="theme-timer-progress"></span>
       </button>
+      <button class="theme-capsule-btn" data-theme="amber" role="tab" aria-selected="false">
+        <span class="theme-pill-dot"></span>
+        <span>Cinema Camera</span>
+        <span class="theme-timer-progress"></span>
+      </button>
     </div>
 
     <!-- Atmospheric Clouds Layer -->
@@ -1345,7 +1345,7 @@
   <script>
     
     /* ── DYNAMIC MULTI-CHARACTER & THEME ENGINE (WITH AUTO-ROTATION) ── */
-    const THEME_KEYS = ['sage', 'cobalt', 'lilac'];
+    const THEME_KEYS = ['sage', 'cobalt', 'lilac', 'amber'];
     const THEME_PRESETS = {
       sage: {
         themeKey: 'sage',
@@ -1405,6 +1405,26 @@
           '<span>Direct Collaboration</span>',
           '<span class="spec-sep">/</span>',
           '<span>Top 1% Illustrators</span>'
+        ].join(' ')
+      },
+      amber: {
+        themeKey: 'amber',
+        name: 'Cinema Camera',
+        imgSrc: 'assets/smiling_videographer_cinema.png',
+        imgAlt: 'Smiling Videographer with Cinema Camera',
+        wordTop: 'CREATIVE',
+        wordBottom: 'EDGE',
+        dockTitle: 'Direct access to<br>commercial cinema talent.',
+        dockTitleMobile: 'Direct access to cinema talent.',
+        dockSub: 'Direct access to commercial directors, cinema camera operators, and visual storytellers.',
+        dockSubMobile: 'Commercial directors and cinema camera operators.',
+        specs: [
+          '<span class="live-dot-green" style="background:#E9520D; box-shadow:0 0 8px #E9520D;"></span>',
+          '<span>Cinema 4K Optics</span>',
+          '<span class="spec-sep">/</span>',
+          '<span>Commercial Film</span>',
+          '<span class="spec-sep">/</span>',
+          '<span>Direct Pitch</span>'
         ].join(' ')
       }
     };
@@ -1596,6 +1616,7 @@
         if (currentThemeKey === 'sage') return 'Creator Image (Sage)';
         if (currentThemeKey === 'cobalt') return 'Pilot Image (Cobalt)';
         if (currentThemeKey === 'lilac') return 'Purple Illustrator';
+        if (currentThemeKey === 'amber') return 'Cinema Videographer';
         return 'Character Image';
       }
 
