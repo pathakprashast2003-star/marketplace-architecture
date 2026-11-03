@@ -1292,27 +1292,41 @@
         if (dockSub) dockSub.textContent = data.dockSub;
         if (dockSpecs) dockSpecs.innerHTML = data.specs;
 
+        if (document.body.classList.contains('is-editing')) {
+          try {
+            updateHudChipsForMode();
+            if (activeTarget) selectTarget(activeTarget);
+          } catch(e) {}
+        }
+
         setTimeout(() => {
           faders.forEach(el => el.classList.remove('is-switching'));
         }, 50);
       }, 240);
 
-      // Reset auto-rotate timer so it rotates to the next one
-      startAutoRotation();
+      // Reset auto-rotate timer only if not in edit mode
+      if (!document.body.classList.contains('is-editing')) {
+        startAutoRotation();
+      }
     }
 
     function rotateToNextTheme() {
+      if (document.body.classList.contains('is-editing')) return;
       const nextIdx = (THEME_KEYS.indexOf(currentThemeKey) + 1) % THEME_KEYS.length;
       switchTheme(THEME_KEYS[nextIdx], false);
     }
 
     function startAutoRotation() {
+      if (document.body.classList.contains('is-editing')) return;
       if (autoRotateTimer) clearInterval(autoRotateTimer);
       autoRotateTimer = setInterval(rotateToNextTheme, ROTATION_INTERVAL_MS);
     }
 
     function stopAutoRotation() {
-      if (autoRotateTimer) clearInterval(autoRotateTimer);
+      if (autoRotateTimer) {
+        clearInterval(autoRotateTimer);
+        autoRotateTimer = null;
+      }
     }
 
     // Attach click listeners to capsule buttons
@@ -1391,11 +1405,17 @@
       }
 
       // Target elements per viewport
+      function getCharacterDisplayName() {
+        if (currentThemeKey === 'sage') return 'Creator Image';
+        if (currentThemeKey === 'cobalt') return 'Pilot Image';
+        return 'Character Image';
+      }
+
       const targetMap = {
         'giant-headline-backplane': { el: () => document.querySelector('.giant-headline-backplane'), name: 'CREATIVE EDGE (Display)', viewport: 'both' },
         'backplane-word-top': { el: () => document.querySelector('.backplane-word-top'), name: 'Word: CREATIVE', viewport: 'both' },
         'backplane-word-bottom': { el: () => document.querySelector('.backplane-word-bottom'), name: 'Word: EDGE', viewport: 'both' },
-        'subject-pilot-image': { el: () => document.querySelector('.subject-pilot-image'), name: 'Pilot Image', viewport: 'both' },
+        'subject-pilot-image': { el: () => document.querySelector('.subject-pilot-image'), name: 'Character Image', getDisplayName: getCharacterDisplayName, viewport: 'both' },
         'dock-title': { el: () => document.querySelector('.dock-title'), name: 'Title: Direct Access', viewport: 'both' },
         'dock-sub': { el: () => document.querySelector('.dock-sub'), name: 'Subtitle Copy', viewport: 'desktop' },
         'dock-headline-col': { el: () => document.querySelector('.dock-headline-col'), name: 'Proposition Box', viewport: 'both' },
@@ -1437,7 +1457,7 @@
             btn.className = 'hud-chip' + (isActive ? ' active' : '');
             btn.type = 'button';
             btn.setAttribute('data-hud-select', key);
-            btn.textContent = item.name;
+            btn.textContent = typeof item.getDisplayName === 'function' ? item.getDisplayName() : item.name;
             btn.addEventListener('click', (e) => {
               e.stopPropagation();
               selectTarget(key);
@@ -1495,8 +1515,9 @@
         activeTarget = el;
         activeTarget.classList.add('drag-selected');
 
-        const key = getTargetKey(el);
-        if (hudTargetName) hudTargetName.textContent = key && targetMap[key] ? targetMap[key].name : el.tagName;
+        const item = key && targetMap[key];
+        const displayName = item ? (typeof item.getDisplayName === 'function' ? item.getDisplayName() : item.name) : el.tagName;
+        if (hudTargetName) hudTargetName.textContent = displayName;
         
         document.querySelectorAll('.hud-chip').forEach(c => {
           c.classList.toggle('active', c.getAttribute('data-hud-select') === key);
@@ -1534,10 +1555,14 @@
         });
 
         if (isEditing) {
-          selectTarget('dock-title');
+          stopAutoRotation();
+          updateHudChipsForMode();
+          selectTarget('subject-pilot-image');
         } else {
           document.querySelectorAll('.drag-selected').forEach(n => n.classList.remove('drag-selected'));
           activeTarget = null;
+          startAutoRotation();
+          resetProgressBar();
         }
       }
 
@@ -1582,10 +1607,16 @@
         const pRect = parent.getBoundingClientRect();
         const tRect = clickedTarget.getBoundingClientRect();
 
-        initialLeft = parseFloat(clickedTarget.style.left);
-        initialTop = parseFloat(clickedTarget.style.top);
-        if (isNaN(initialLeft)) initialLeft = tRect.left - pRect.left;
-        if (isNaN(initialTop)) initialTop = tRect.top - pRect.top;
+        const curPos = window.getComputedStyle(clickedTarget).position;
+        if (curPos === 'static' || curPos === 'relative') {
+          initialLeft = parseFloat(clickedTarget.style.left) || 0;
+          initialTop = parseFloat(clickedTarget.style.top) || 0;
+        } else {
+          initialLeft = parseFloat(clickedTarget.style.left);
+          initialTop = parseFloat(clickedTarget.style.top);
+          if (isNaN(initialLeft)) initialLeft = tRect.left - pRect.left;
+          if (isNaN(initialTop)) initialTop = tRect.top - pRect.top;
+        }
 
         function onPointerMove(pe) {
           const dx = pe.clientX - startX;
