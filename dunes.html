@@ -18,46 +18,48 @@
     }
 
     :root {
-      /* Theme 1 (Default): Exact Pastel Sage Meadow */
-      --sky-top: #9EF4C9;
-      --sky-mid: #72E6B0;
-      --sky-deep: #4DDC99;
+      /* Theme 1 (Default): Soft Pastel Sage Meadow */
+      --sky-top: #F3FBE8;
+      --sky-mid: #E2F5D1;
+      --sky-deep: #C2E8A6;
       
-      --wave-azure: #22C55E;
-      --wave-cobalt: #15803D;
-      --wave-soft: #4ADE80;
+      --wave-azure: #76B762;
+      --wave-cobalt: #367226;
+      --wave-soft: #9FD98B;
       
-      --text-white: #FFFFFF;
-      --text-dark: #07381A;
-      --text-secondary: #0A4A24;
+      --text-white: #103B1F;
+      --text-dark: #06230F;
+      --text-secondary: #1F4D2B;
+      --text-shadow-hero: none;
       
-      --btn-primary: #07381A;
-      --btn-primary-hover: #031F0E;
+      --btn-primary: #0A3219;
+      --btn-primary-hover: #041B0C;
       --btn-secondary-bg: #FFFFFF;
-      --btn-secondary-text: #07381A;
-      --pill-specs-bg: rgba(255, 255, 255, 0.65);
-      --pill-specs-text: #07381A;
+      --btn-secondary-text: #0A3219;
+      --pill-specs-bg: rgba(255, 255, 255, 0.85);
+      --pill-specs-text: #0A3219;
       
       --font-display: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     body[data-theme="sage"] {
-      --sky-top: #9EF4C9;
-      --sky-mid: #72E6B0;
-      --sky-deep: #4DDC99;
-      --wave-azure: #22C55E;
-      --wave-cobalt: #15803D;
-      --wave-soft: #4ADE80;
-      --text-white: #FFFFFF;
-      --text-dark: #07381A;
-      --text-secondary: #0A4A24;
-      --btn-primary: #07381A;
-      --btn-primary-hover: #031F0E;
+      --sky-top: #F3FBE8;
+      --sky-mid: #E2F5D1;
+      --sky-deep: #C2E8A6;
+      --wave-azure: #76B762;
+      --wave-cobalt: #367226;
+      --wave-soft: #9FD98B;
+      --text-white: #103B1F;
+      --text-dark: #06230F;
+      --text-secondary: #1F4D2B;
+      --text-shadow-hero: none;
+      --btn-primary: #0A3219;
+      --btn-primary-hover: #041B0C;
       --btn-secondary-bg: #FFFFFF;
-      --btn-secondary-text: #07381A;
-      --pill-specs-bg: rgba(255, 255, 255, 0.65);
-      --pill-specs-text: #07381A;
+      --btn-secondary-text: #0A3219;
+      --pill-specs-bg: rgba(255, 255, 255, 0.85);
+      --pill-specs-text: #0A3219;
     }
 
     body[data-theme="cobalt"] {
@@ -76,6 +78,7 @@
       --btn-secondary-text: #1E0E38;
       --pill-specs-bg: rgba(255, 255, 255, 0.45);
       --pill-specs-text: #1E0E38;
+      --text-shadow-hero: 0 4px 20px rgba(37, 99, 235, 0.18);
     }
 
     html, body {
@@ -171,7 +174,7 @@
     .title-the,
     .title-wefind-mobile {
       color: var(--text-white);
-      text-shadow: 0 4px 20px rgba(37, 99, 235, 0.18);
+      text-shadow: var(--text-shadow-hero);
     }
 
     .text-dark {
@@ -968,8 +971,8 @@
       flex-shrink: 0;
     }
     .theme-capsule-btn[data-theme="sage"] .theme-pill-dot {
-      background: #22C55E;
-      box-shadow: 0 0 6px #22C55E;
+      background: #5DB60C;
+      box-shadow: 0 0 6px #5DB60C;
     }
     .theme-capsule-btn[data-theme="cobalt"] .theme-pill-dot {
       background: #38BDF8;
