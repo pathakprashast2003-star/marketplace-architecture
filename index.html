@@ -6,7 +6,7 @@
   <title>NEXUS // NINJAX — Commercial Directors & Aerial Cinema</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Bebas+Neue&family=Cabinet+Grotesk:wght@700;800;900&family=Playfair+Display:ital,wght@1,700;1,900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Playfair+Display:ital,wght@1,700;1,900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   
   <style>
     *, *::before, *::after {
@@ -21,146 +21,78 @@
       /* Craftwork Clean Palette */
       --bg-void: #060911;
       --bg-card-white: #FFFFFF;
+      --bg-sapphire: #103B1F;
+      --bg-sapphire-gradient: linear-gradient(180deg, #F3FBE8 0%, #E2F5D1 32%, #C2E8A6 66%, #89C775 100%);
+      
+      --accent-blue: #0E3B1F;
+      --accent-blue-hover: #072613;
+      
+      --text-dark: #0A121F;
+      --text-dark-sub: #4A586E;
+      --text-white: #0E3B1F;
+      --text-white-sub: #1F4D2B;
+      
+      --status-emerald: #16A34A;
+      --border-subtle: rgba(14, 59, 31, 0.15);
       
       --font-display: 'Cabinet Grotesk', -apple-system, sans-serif;
-      --font-condensed: 'Antonio', 'Bebas Neue', 'Cabinet Grotesk', sans-serif;
       --font-serif: 'Playfair Display', Georgia, serif;
       --font-body: 'Inter', -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
-
-      --text-dark: #0A121F;
-      --text-dark-sub: #4A586E;
-      --status-emerald: #16A34A;
-      --border-subtle: rgba(255, 255, 255, 0.15);
     }
 
-    /* THEME 1: SAGE SCENE (Lush Botanical Emerald & Pine) */
     body[data-theme="sage"] {
-      --theme-accent: #15803D;
-      --theme-accent-hover: #166534;
-      --kicker-color: #15803D;
-      --roster-color: #14532D;
-      --rate-pill-bg: #F0FDF4;
-      --rate-pill-border: #BBF7D0;
-      --rate-pill-dot: #16A34A;
-      
-      /* Right Pane */
-      --bg-sapphire: #0D3017;
-      --bg-sapphire-gradient: radial-gradient(ellipse at 75% 35%, #F4FCE8 0%, #D8F5BA 38%, #86D268 78%, #499E2E 100%);
-      --text-white: #0B2B14;
-      --text-white-sub: #1F4D28;
-      --pill-bg: rgba(14, 45, 23, 0.88);
-      --pill-border: rgba(134, 210, 104, 0.35);
-      --pill-label: rgba(255, 255, 255, 0.72);
-      --pill-val: #4ADE80;
-      --btn-cta-bg: #0B2B14;
-      --btn-cta-text: #F4FCE8;
-      --btn-cta-hover: #15803D;
-      --status-beacon: #22C55E;
+      --bg-sapphire: #103B1F;
+      --bg-sapphire-gradient: linear-gradient(180deg, #F3FBE8 0%, #E2F5D1 32%, #C2E8A6 66%, #89C775 100%);
+      --accent-blue: #0E3B1F;
+      --accent-blue-hover: #072613;
+      --text-white: #0E3B1F;
+      --text-white-sub: #1F4D2B;
+      --status-emerald: #16A34A;
       --border-subtle: rgba(14, 59, 31, 0.15);
     }
 
-    /* THEME 2: AERO CLOUD (High-Altitude Electric Sapphire) */
     body[data-theme="cobalt"] {
-      --theme-accent: #0284C7;
-      --theme-accent-hover: #0369A1;
-      --kicker-color: #0284C7;
-      --roster-color: #0C4A6E;
-      --rate-pill-bg: #F0F9FF;
-      --rate-pill-border: #BAE6FD;
-      --rate-pill-dot: #0284C7;
-      
-      /* Right Pane */
-      --bg-sapphire: #071F48;
-      --bg-sapphire-gradient: radial-gradient(circle at 65% 35%, #1E5CD4 0%, #0F3E99 52%, #061A45 100%);
+      --bg-sapphire: #0C3888;
+      --bg-sapphire-gradient: radial-gradient(circle at 65% 35%, #1A54C2 0%, #0E3B8F 55%, #072254 100%);
+      --accent-blue: #2563EB;
+      --accent-blue-hover: #1D4ED8;
       --text-white: #FFFFFF;
-      --text-white-sub: rgba(224, 242, 254, 0.85);
-      --pill-bg: rgba(7, 26, 68, 0.88);
-      --pill-border: rgba(56, 189, 248, 0.35);
-      --pill-label: rgba(255, 255, 255, 0.72);
-      --pill-val: #38BDF8;
-      --btn-cta-bg: #38BDF8;
-      --btn-cta-text: #05193B;
-      --btn-cta-hover: #FFFFFF;
-      --status-beacon: #38BDF8;
+      --text-white-sub: rgba(255, 255, 255, 0.75);
+      --status-emerald: #10B981;
       --border-subtle: rgba(255, 255, 255, 0.1);
     }
 
-    /* THEME 3: PURPLE ILLUSTRATOR (Royal Velvet Amethyst & Lilac) */
     body[data-theme="lilac"] {
-      --theme-accent: #9333EA;
-      --theme-accent-hover: #7E22CE;
-      --kicker-color: #9333EA;
-      --roster-color: #3B0764;
-      --rate-pill-bg: #FAF5FF;
-      --rate-pill-border: #E9D5FF;
-      --rate-pill-dot: #A855F7;
-      
-      /* Right Pane */
-      --bg-sapphire: #24083B;
-      --bg-sapphire-gradient: radial-gradient(ellipse at 75% 35%, #FBF5FF 0%, #EBD5FD 38%, #B478EE 78%, #7C3AED 100%);
-      --text-white: #25073E;
-      --text-white-sub: #4C1D78;
-      --pill-bg: rgba(36, 8, 59, 0.88);
-      --pill-border: rgba(192, 132, 252, 0.35);
-      --pill-label: rgba(255, 255, 255, 0.72);
-      --pill-val: #C084FC;
-      --btn-cta-bg: #25073E;
-      --btn-cta-text: #FAF5FF;
-      --btn-cta-hover: #6B21A8;
-      --status-beacon: #C084FC;
+      --bg-sapphire: #2A0E44;
+      --bg-sapphire-gradient: linear-gradient(180deg, #F5EEFD 0%, #E8D5F8 32%, #C49DEB 66%, #8A4EC9 100%);
+      --accent-blue: #2A0E44;
+      --accent-blue-hover: #1A072E;
+      --text-white: #2A0E44;
+      --text-white-sub: #4D2377;
+      --status-emerald: #A855F7;
       --border-subtle: rgba(42, 14, 68, 0.15);
     }
 
-    /* THEME 4: CINEMA CAMERA (High-Speed Sunset Amber & Terracotta) */
     body[data-theme="amber"] {
-      --theme-accent: #EA580C;
-      --theme-accent-hover: #C2410C;
-      --kicker-color: #EA580C;
-      --roster-color: #431407;
-      --rate-pill-bg: #FFF7ED;
-      --rate-pill-border: #FFEDD5;
-      --rate-pill-dot: #F97316;
-      
-      /* Right Pane */
-      --bg-sapphire: #301104;
-      --bg-sapphire-gradient: radial-gradient(ellipse at 75% 35%, #FFFBF5 0%, #FEDBB8 38%, #FB923C 78%, #D44405 100%);
-      --text-white: #301104;
-      --text-white-sub: #572209;
-      --pill-bg: rgba(48, 17, 4, 0.88);
-      --pill-border: rgba(251, 146, 60, 0.35);
-      --pill-label: rgba(255, 255, 255, 0.72);
-      --pill-val: #FDBA74;
-      --btn-cta-bg: #301104;
-      --btn-cta-text: #FFFBF5;
-      --btn-cta-hover: #C2410C;
-      --status-beacon: #FB923C;
+      --bg-sapphire: #3A1904;
+      --bg-sapphire-gradient: linear-gradient(180deg, #FFF8F0 0%, #FED7AA 32%, #FB923C 68%, #EA580C 100%);
+      --accent-blue: #3A1904;
+      --accent-blue-hover: #1F0D02;
+      --text-white: #3A1904;
+      --text-white-sub: #5C2605;
+      --status-emerald: #F97316;
       --border-subtle: rgba(58, 25, 4, 0.15);
     }
 
-    /* THEME 5: SPATIAL 3D (Cyberpunk Hot Rose & Neon Coral) */
     body[data-theme="coral"] {
-      --theme-accent: #E11D48;
-      --theme-accent-hover: #BE123C;
-      --kicker-color: #E11D48;
-      --roster-color: #4C0519;
-      --rate-pill-bg: #FFF1F2;
-      --rate-pill-border: #FFE4E6;
-      --rate-pill-dot: #F43F5E;
-      
-      /* Right Pane */
-      --bg-sapphire: #2E0513;
-      --bg-sapphire-gradient: radial-gradient(ellipse at 75% 35%, #FFF5F7 0%, #FDCFD9 38%, #FB7185 78%, #E11D48 100%);
-      --text-white: #330514;
-      --text-white-sub: #630D2A;
-      --pill-bg: rgba(46, 5, 19, 0.88);
-      --pill-border: rgba(251, 113, 133, 0.35);
-      --pill-label: rgba(255, 255, 255, 0.72);
-      --pill-val: #FDA4AF;
-      --btn-cta-bg: #330514;
-      --btn-cta-text: #FFF5F7;
-      --btn-cta-hover: #BE123C;
-      --status-beacon: #FB7185;
+      --bg-sapphire: #350526;
+      --bg-sapphire-gradient: linear-gradient(180deg, #FFF1F3 0%, #FDE2E6 32%, #F472B6 68%, #FF384D 100%);
+      --accent-blue: #350526;
+      --accent-blue-hover: #1F0216;
+      --text-white: #350526;
+      --text-white-sub: #5A1838;
+      --status-emerald: #FF384D;
       --border-subtle: rgba(53, 5, 38, 0.15);
     }
 
@@ -171,8 +103,10 @@
       margin: 0;
       padding: 0;
       font-family: var(--font-body);
-      background: var(--bg-card-white);
-      display: block;
+      background: var(--bg-void);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* ── 3-WAY LAYOUT SWITCHER (INTEGRATED) ── */
@@ -227,18 +161,19 @@
       box-shadow: 0 2px 10px rgba(37, 99, 235, 0.45);
     }
 
-    /* ── MAIN SHOWCASE CARD (FULL-BLEED EDGE-TO-EDGE) ── */
+    /* ── MAIN SHOWCASE CARD (APPLE CONCENTRIC RADII 32px) ── */
     .unslop-showcase-card {
-      width: 100vw;
-      height: 100vh;
-      border-radius: 0;
-      border: none;
-      box-shadow: none;
+      width: min(1500px, calc(100vw - 52px));
+      height: calc(100vh - 52px);
+      border-radius: 32px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       position: relative;
       background: var(--bg-card-white);
+      box-shadow: 
+        0 36px 90px -20px rgba(0, 0, 0, 0.65),
+        0 0 0 1px var(--border-subtle);
     }
 
     /* ── UNIFIED GLASS HEADER (PRECISE & ZERO SLOP) ── */
@@ -380,15 +315,14 @@
     }
 
     .category-kicker {
-      font-family: var(--font-mono);
-      font-size: 11px;
+      font-family: var(--font-display);
+      font-size: 11.5px;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--kicker-color, #15803D) !important;
+      letter-spacing: 0.14em;
+      color: #2563EB !important;
       margin-bottom: 12px;
       display: block;
-      transition: color 0.4s ease;
     }
 
     .editorial-headline-stack {
@@ -414,11 +348,10 @@
       font-weight: 900;
       line-height: 0.88;
       letter-spacing: -0.04em;
-      color: var(--roster-color, #14532D) !important;
+      color: #3D0A2E;
       display: block;
       margin-top: 4px;
       text-transform: uppercase;
-      transition: color 0.4s ease;
     }
 
     /* Rate & Status Pill (Concentric Radius 14px) */
@@ -426,12 +359,11 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: var(--rate-pill-bg, #F0FDF4);
-      border: 1px solid var(--rate-pill-border, #BBF7D0);
+      background: #F3F4F6;
+      border: 1px solid #E5E7EB;
       padding: 8px 16px;
       border-radius: 14px;
       margin-bottom: 22px;
-      transition: background 0.4s ease, border-color 0.4s ease;
     }
 
     .rate-val {
@@ -455,24 +387,21 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #FFFFFF;
-      color: var(--theme-accent, #15803D);
+      background: #ECFDF5;
+      color: #065F46;
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
-      padding: 3px 10px;
+      padding: 3px 8px;
       border-radius: 999px;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-      border: 1px solid var(--rate-pill-border, #BBF7D0);
     }
 
     .status-dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: var(--rate-pill-dot, #16A34A);
-      box-shadow: 0 0 8px var(--rate-pill-dot, #16A34A);
-      transition: background 0.4s ease, box-shadow 0.4s ease;
+      background: var(--status-emerald);
+      box-shadow: 0 0 6px var(--status-emerald);
     }
 
     .editorial-subhead-prose {
@@ -544,52 +473,34 @@
     }
 
     .right-production-dock {
-      max-width: 440px;
+      max-width: 360px;
       margin-left: auto;
       text-align: right;
       position: relative;
       z-index: 5;
-      margin-bottom: 74px;
+      margin-bottom: 80px;
     }
 
     .dock-mono-kicker {
       font-family: var(--font-mono);
-      font-size: 10.5px;
-      font-weight: 800;
+      font-size: 11px;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.12em;
       color: var(--text-white-sub);
       margin-bottom: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.4s ease;
+      display: block;
     }
 
     .dock-title-headline {
-      font-family: var(--font-condensed);
-      font-size: clamp(34px, 3.4vw, 50px);
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-size: clamp(28px, 2.7vw, 40px);
+      font-weight: 900;
       color: var(--text-white);
-      line-height: 0.94;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      text-shadow: none;
-      transition: color 0.4s ease;
-    }
-
-    .dock-editorial-sub {
-      font-family: 'Times New Roman', Times, Georgia, serif;
-      font-style: italic;
-      font-size: 15px;
-      line-height: 1.52;
-      color: var(--text-white-sub);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
       margin-bottom: 22px;
-      max-width: 390px;
-      margin-left: auto;
-      text-align: right;
-      transition: color 0.4s ease;
+      text-shadow: none;
     }
 
     /* Production Spec Cards */
@@ -604,54 +515,46 @@
     .spec-item-card {
       display: inline-flex;
       align-items: center;
-      gap: 14px;
-      background: var(--pill-bg, rgba(10, 22, 45, 0.75));
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--pill-border, rgba(255, 255, 255, 0.16));
-      padding: 8px 18px;
+      gap: 12px;
+      background: rgba(10, 22, 45, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 7px 18px;
       border-radius: 999px;
       font-family: var(--font-mono);
       font-size: 11px;
       letter-spacing: 0.02em;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
-      transition: background 0.35s ease, border-color 0.35s ease, transform 0.2s ease;
-    }
-    .spec-item-card:hover {
-      transform: translate3d(-3px, 0, 0);
     }
 
     .spec-item-card span {
-      color: var(--pill-label, rgba(255, 255, 255, 0.72));
+      color: rgba(255, 255, 255, 0.72);
       font-weight: 500;
-      transition: color 0.35s ease;
     }
 
     .spec-item-card strong {
       font-weight: 800;
-      color: var(--pill-val, #FFFFFF);
+      color: #FFFFFF;
       font-variant-numeric: tabular-nums;
-      transition: color 0.35s ease;
     }
 
     .btn-secondary-explore {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--btn-cta-bg, rgba(255, 255, 255, 0.22));
-      color: var(--btn-cta-text, var(--text-white));
-      border: 1px solid var(--pill-border, var(--border-subtle));
+      background: rgba(255, 255, 255, 0.22);
+      color: var(--text-white);
+      border: 1.5px solid var(--border-subtle);
       font-family: var(--font-display);
       font-size: 12px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      padding: 13px 28px;
+      padding: 12px 26px;
       border-radius: 999px;
       text-decoration: none;
       backdrop-filter: blur(10px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
-      transition: background 0.25s ease, transform 0.2s ease, color 0.2s ease, box-shadow 0.25s ease;
+      transition: background 0.2s ease;
     }
 
     .btn-secondary-explore:active {
@@ -659,9 +562,9 @@
     }
 
     .btn-secondary-explore:hover {
-      background: var(--btn-cta-hover, #FFFFFF);
-      color: #FFFFFF;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
+      background: #FFFFFF;
+      color: var(--text-dark);
+      border-color: #FFFFFF;
     }
 
     .right-bottom-trust {
@@ -674,15 +577,6 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--text-white-sub);
-      position: relative;
-      z-index: 5;
-      transition: color 0.4s ease;
-    }
-    .right-bottom-trust .status-dot {
-      background: var(--status-beacon, var(--status-emerald));
-      box-shadow: 0 0 10px var(--status-beacon, var(--status-emerald));
-    }
       color: rgba(255, 255, 255, 0.7);
       position: relative;
       z-index: 5;
@@ -748,11 +642,10 @@
 
       .unslop-showcase-card {
         height: auto;
-        min-height: 100dvh;
-        width: 100%;
+        width: calc(100% - 20px);
         max-width: 100%;
-        margin: 0;
-        border-radius: 0;
+        margin: 12px auto 60px auto;
+        border-radius: 24px;
         overflow: hidden;
       }
 
@@ -1125,8 +1018,6 @@
     body.is-editing .drag-selected { outline: 2px dashed #3B82F6 !important; outline-offset: 4px; border-radius: 4px; }
     body.is-editing [contenteditable="true"]:focus { outline: 2px solid #60A5FA !important; background: rgba(37,99,235,0.12) !important; border-radius: 4px; }
     body.is-editing .preview-layout-switcher *, body.is-editing .editor-toggle-btn, body.is-editing .character-theme-capsules * { cursor: default !important; }
-    body.is-editing .center-seam-talent-box { pointer-events: auto !important; overflow: visible !important; }
-    body.is-editing .talent-clean-image { pointer-events: auto !important; cursor: grab !important; }
     .editor-hud {
       display: none; position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%);
       z-index: 2000; background: rgba(11,15,29,0.96); backdrop-filter: blur(20px);
@@ -1151,9 +1042,9 @@
       0%   { opacity: 0; transform: translate3d(0, 24px, 0); }
       100% { opacity: 1; transform: translate3d(0, 0, 0); }
     }
-    @keyframes nxFadeIn {
-      0%   { opacity: 0; }
-      100% { opacity: 1; }
+    @keyframes nxHeroLevitate {
+      0%   { opacity: 0; transform: translate3d(0, 28px, 0) scale(0.96); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
     }
 
     .site-top-bar, .character-theme-capsules, .preview-layout-switcher {
@@ -1175,7 +1066,7 @@
     .right-bottom-trust        { animation: nxSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.38s; }
 
     .center-seam-talent-box {
-      animation: nxFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation: nxHeroLevitate 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
       animation-delay: 0.08s;
     }
 
@@ -1224,11 +1115,9 @@
       <span id="hudCoords" class="hud-coords">Drag to reposition</span>
     </div>
     <div class="hud-row">
-      <button class="hud-btn" id="hudFontMinus" title="Decrease font or image scale">A-</button>
-      <button class="hud-btn" id="hudFontPlus" title="Increase font or image scale">A+</button>
-      <button class="hud-btn" id="hudScaleMinus" title="Scale element down by 5%">Scale -</button>
-      <button class="hud-btn" id="hudScalePlus" title="Scale element up by 5%">Scale +</button>
-      <button class="hud-btn" id="hudColorCycle" title="Cycle color">Color</button>
+      <button class="hud-btn" id="hudFontMinus">A-</button>
+      <button class="hud-btn" id="hudFontPlus">A+</button>
+      <button class="hud-btn" id="hudColorCycle">Color</button>
       <button class="hud-btn" id="hudReset" style="border-color:rgba(239,68,68,0.5);">↺ Reset</button>
       <button class="hud-btn" id="hudClose" style="margin-left:auto;">✕</button>
     </div>
@@ -1338,36 +1227,37 @@
       <!-- ── RIGHT PANE: 42% DEEP SAPPHIRE BLUE CANVAS ── -->
       <section class="canvas-right-blue">
         
-        <!-- Right Production Dock (Tactile, Floating Above Plane) -->
-        <div class="right-production-dock theme-fader">
+        <!-- Right Production Dock -->
+        <div class="right-production-dock">
           
-          <span class="dock-mono-kicker">STUDIO SPECIFICATIONS</span>
-          <h2 class="dock-title-headline">DIGITAL CRAFT &amp; 3D ATELIER</h2>
-          <p class="dock-editorial-sub">Curated digital artisans and spatial modelers crafting award-winning brand universes.</p>
+          <span class="dock-mono-kicker">PRODUCTION SPECIFICATIONS</span>
+          <h2 class="dock-title-headline">High-Velocity Cinema Units</h2>
           
           <!-- Concrete Technical Specs -->
           <div class="production-spec-stack">
             <div class="spec-item-card">
-              <span>Render Pipeline Engine</span>
-              <strong>Octane / C4D 2026</strong>
+              <span>Primary Camera Platforms</span>
+              <strong>ARRI / RED 8K</strong>
             </div>
             <div class="spec-item-card">
-              <span>Spatial Geometry Precision</span>
-              <strong>Sub-D Hard Surface 8K</strong>
+              <span>FPV Transmission Latency</span>
+              <strong>0.8 ms</strong>
             </div>
             <div class="spec-item-card">
-              <span>Production Turnaround</span>
-              <strong>24h Rapid Dailies</strong>
+              <span>Turnaround SLA</span>
+              <strong>48h Dailies</strong>
             </div>
           </div>
 
-          <a href="#explore" class="btn-secondary-explore">Explore 3D Roster →</a>
+          <a href="#explore" class="btn-secondary-explore">View Reel Book →</a>
 
         </div>
 
         <footer class="right-bottom-trust">
           <span class="status-dot"></span>
-          <span class="trust-text">Curated Portfolios &bull; Direct Terms &bull; Zero Markup</span>
+          <span>Verified Roster</span>
+          <span>&bull;</span>
+          <span>Direct Terms · Zero Markup</span>
         </footer>
 
       </section>
@@ -1395,85 +1285,70 @@
         name: 'Sage Scene',
         imgSrc: 'assets/creator_desk_designer.png',
         imgAlt: 'Digital Creator at Modern Workstation',
-        categoryKicker: 'DIGITAL CRAFTSPEOPLE & 3D ARTISTS',
-        kicker: 'STUDIO SPECIFICATIONS',
-        title: 'DIGITAL CRAFT &amp; 3D ATELIER',
-        sub: 'Curated digital artisans and spatial modelers crafting award-winning brand universes.',
-        cards: [
-          { label: 'Render Pipeline Engine', val: 'Octane / C4D 2026' },
-          { label: 'Spatial Geometry Precision', val: 'Sub-D Hard Surface 8K' },
-          { label: 'Production Turnaround', val: '24h Rapid Dailies' }
-        ],
-        ctaText: 'Explore 3D Roster →',
-        trust: 'Curated Portfolios &bull; Direct Terms &bull; Zero Markup'
+        title: 'Empowering top-tier<br>digital creators.',
+        sub: 'Curated 3D artists, digital craftspeople, and visual visionaries shaping modern visual culture.',
+        specs: [
+          '<span class="status-dot" style="background:#5DB60C; box-shadow:0 0 6px #5DB60C;"></span>',
+          '<span>Curated Portfolios</span>',
+          '<span>&bull;</span>',
+          '<span>Direct Terms · Zero Markup</span>'
+        ].join(' ')
       },
       cobalt: {
         themeKey: 'cobalt',
         name: 'Aero Cloud',
         imgSrc: 'assets/upward_flight_pilot_drone.png',
         imgAlt: 'Featured Aerial Cinematographer & Drone Director',
-        categoryKicker: 'COMMERCIAL & AERIAL DIRECTORS',
-        kicker: 'PRODUCTION SPECIFICATIONS',
-        title: 'HIGH-VELOCITY CINEMA UNITS',
-        sub: 'Elite drone cinematographers and aerial directors executing precision high-G sequences worldwide.',
-        cards: [
-          { label: 'Primary Camera Platforms', val: 'ARRI / RED Monstro 8K' },
-          { label: 'FPV Transmission Latency', val: '0.8 ms Ultra-Low' },
-          { label: 'Turnaround SLA', val: '48h Master Dailies' }
-        ],
-        ctaText: 'View Aerial Reel Book →',
-        trust: 'FAA Part 107 Certified &bull; Global In-Transit Insurance'
+        title: 'World-Class Aerial Cinema & Direction.',
+        sub: 'Elite drone cinematographers, directors, and spatial artists available for global production.',
+        specs: [
+          '<span class="status-dot" style="background:#38BDF8; box-shadow:0 0 6px #38BDF8;"></span>',
+          '<span>Verified Roster</span>',
+          '<span>&bull;</span>',
+          '<span>Direct Terms · Zero Markup</span>'
+        ].join(' ')
       },
       lilac: {
         themeKey: 'lilac',
         name: 'Purple Illustrator',
         imgSrc: 'assets/purple_haired_illustrator.png',
         imgAlt: 'Purple-Haired Illustrator Drawing on a Pouf',
-        categoryKicker: 'VISUAL ARTISTS & CONCEPT ILLUSTRATORS',
-        kicker: 'CREATIVE SPECIFICATIONS',
-        title: 'EDITORIAL VISUAL WORLDS',
-        sub: 'Renowned concept illustrators and visual stylists translating raw identity into iconic cultural artifacts.',
-        cards: [
-          { label: 'Master Canvas Format', val: 'Vector SVG / 16K PSD' },
-          { label: 'Color Profiling Rig', val: 'Display P3 / CMYK Press' },
-          { label: 'Storyboard Package', val: '72h Turnaround' }
-        ],
-        ctaText: 'Open Illustrator Folio →',
-        trust: 'Worldwide Rights Included &bull; Direct Artist Contracts'
+        title: 'Meet Exceptional Illustrators & Visionaries.',
+        sub: 'World-class illustrators turning ideas into unforgettable visual worlds.',
+        specs: [
+          '<span class="status-dot" style="background:#A855F7; box-shadow:0 0 6px #A855F7;"></span>',
+          '<span>Verified Portfolios</span>',
+          '<span>&bull;</span>',
+          '<span>Direct Collaboration</span>'
+        ].join(' ')
       },
       amber: {
         themeKey: 'amber',
         name: 'Cinema Camera',
         imgSrc: 'assets/smiling_videographer_cinema.png',
         imgAlt: 'Smiling Videographer with Cinema Camera',
-        categoryKicker: 'COMMERCIAL CINEMATOGRAPHERS & FILM DIRECTORS',
-        kicker: 'DIRECTOR SPECIFICATIONS',
-        title: 'COMMERCIAL FILM DIRECTION',
-        sub: 'A-list commercial directors and RED/ARRI camera masters packaging high-stakes global brand campaigns.',
-        cards: [
-          { label: 'Cinema Optics Suite', val: 'Cooke Anamorphic / Primes' },
-          { label: 'High-Speed Sensor Rate', val: 'Phantom 4K 1000 FPS' },
-          { label: 'Master Delivery Format', val: 'ProRes 4444 XQ / ACES' }
-        ],
-        ctaText: 'Screen Director Reels →',
-        trust: 'Directors Guild Vetted &bull; Escrow-Secured Production'
+        title: 'Commercial Cinema & Film Direction.',
+        sub: 'Direct access to commercial directors, cinema camera operators, and visual storytellers.',
+        specs: [
+          '<span class="status-dot" style="background:#E9520D; box-shadow:0 0 6px #E9520D;"></span>',
+          '<span>Cinema 4K Optics</span>',
+          '<span>&bull;</span>',
+          '<span>Commercial Film · Direct Pitch</span>'
+        ].join(' ')
       },
       coral: {
         themeKey: 'coral',
         name: 'Spatial 3D',
         imgSrc: 'assets/cheerful_gamer_vr.png',
         imgAlt: 'Cheerful Gamer with VR Headset',
-        categoryKicker: 'SPATIAL COMPUTING & REAL-TIME VFX ARTISTS',
-        kicker: 'SPATIAL SPECIFICATIONS',
-        title: 'NEXT-GEN IMMERSIVE VFX',
-        sub: 'Unreal Engine 5 artists and spatial motion designers building real-time holographic and VR environments.',
-        cards: [
-          { label: 'Real-Time Runtime Engine', val: 'Unreal Engine 5.5 Lumen' },
-          { label: 'Interactive Frame Rate', val: '120 FPS Zero Stutter' },
-          { label: 'Hardware Target Output', val: 'Apple Vision Pro / OpenXR' }
-        ],
-        ctaText: 'Launch Spatial Lab →',
-        trust: 'Real-Time Shipped Titles &bull; Interactive Spatial NDA'
+        title: 'Meet Exceptional 3D Artists & Spatial Creators.',
+        sub: 'Exceptional 3D artists and motion designers creating stunning CGI, immersive visual experiences and next-generation brand content.',
+        specs: [
+          '<span class="status-dot" style="background:#FF384D; box-shadow:0 0 6px #FF384D;"></span>',
+          '<span>3D CGI Render</span>',
+          '<span>&bull;</span>',
+          '<span>Cinematic VFX · Spatial Motion</span>'
+        ].join(' ')
       }
     };
 
@@ -1507,6 +1382,8 @@
       const body = document.body;
       const faders = document.querySelectorAll('.theme-fader');
       const img = document.querySelector('.talent-clean-image');
+      const title = document.querySelector('.right-editorial-quote');
+      const trust = document.querySelector('.right-bottom-trust');
       const buttons = document.querySelectorAll('.theme-capsule-btn');
 
       buttons.forEach(btn => {
@@ -1528,34 +1405,8 @@
           img.classList.add('is-landing');
           img.addEventListener('animationend', () => img.classList.remove('is-landing'), { once: true });
         }
-
-        const catKicker = document.querySelector('.category-kicker');
-        if (catKicker && data.categoryKicker) catKicker.textContent = data.categoryKicker;
-
-        const dockKicker = document.querySelector('.dock-mono-kicker');
-        if (dockKicker && data.kicker) dockKicker.textContent = data.kicker;
-
-        const dockHeadline = document.querySelector('.dock-title-headline');
-        if (dockHeadline && data.title) dockHeadline.innerHTML = data.title;
-
-        const dockSub = document.querySelector('.dock-editorial-sub');
-        if (dockSub && data.sub) dockSub.innerHTML = data.sub;
-
-        const specStack = document.querySelector('.production-spec-stack');
-        if (specStack && data.cards) {
-          specStack.innerHTML = data.cards.map(c => `
-            <div class="spec-item-card is-updating">
-              <span>${c.label}</span>
-              <strong>${c.val}</strong>
-            </div>
-          `).join('');
-        }
-
-        const ctaBtn = document.querySelector('.btn-secondary-explore');
-        if (ctaBtn && data.ctaText) ctaBtn.textContent = data.ctaText;
-
-        const trustEl = document.querySelector('.right-bottom-trust .trust-text');
-        if (trustEl && data.trust) trustEl.innerHTML = data.trust;
+        if (title) title.innerHTML = data.title;
+        if (trust) trust.innerHTML = data.specs;
 
         const aura = document.querySelector('.shockwave-aura');
         if (aura) {
@@ -1563,6 +1414,12 @@
           void aura.offsetWidth;
           aura.classList.add('pulse');
         }
+
+        document.querySelectorAll('.spec-item-card').forEach(card => {
+          card.classList.remove('is-updating');
+          void card.offsetWidth;
+          card.classList.add('is-updating');
+        });
 
         setTimeout(() => {
           faders.forEach(el => el.classList.remove('is-switching'));
@@ -1631,36 +1488,15 @@
       }
 
       function getName(el) {
-        if (!el) return '—';
-        if (el.tagName === 'IMG' || el.classList.contains('talent-clean-image')) return 'Character Image';
-        if (el.classList.contains('center-seam-talent-box')) return 'Center Seam Talent Box';
-        if (el.classList.contains('headline-line-1')) return 'DIRECT (Headline)';
-        if (el.classList.contains('headline-line-2')) return 'ROSTER. (Headline)';
-        if (el.classList.contains('category-kicker')) return 'Kicker (Directors)';
-        if (el.classList.contains('rate-val')) return 'Rate ($25–400)';
-        if (el.classList.contains('rate-term')) return 'Rate Term (/DAY)';
-        if (el.classList.contains('talent-rate-module')) return 'Rate Pill Module';
-        if (el.classList.contains('editorial-subhead-prose')) return 'Prose Subtitle';
-        if (el.classList.contains('btn-action-primary')) return 'Discover Button';
-        if (el.classList.contains('link-secondary-action')) return 'Verified Proof Link';
-        if (el.classList.contains('editorial-action-row')) return 'Actions Row';
-        if (el.classList.contains('dock-mono-kicker')) return 'Right Kicker';
+        if (el.classList.contains('headline-line-1')) return 'DIRECT';
+        if (el.classList.contains('headline-line-2')) return 'ROSTER.';
+        if (el.classList.contains('rate-val')) return 'Rate Value';
+        if (el.classList.contains('rate-term')) return 'Rate Term';
         if (el.classList.contains('dock-title-headline')) return 'Right Headline';
-        if (el.classList.contains('spec-item-card')) return 'Spec Card';
-        if (el.classList.contains('production-spec-stack')) return 'Specs Stack';
-        if (el.classList.contains('btn-secondary-explore')) return 'View Reel Button';
-        if (el.classList.contains('right-bottom-trust')) return 'Trust Badges';
-        if (el.classList.contains('right-production-dock')) return 'Right Dock';
-        return el.className.split(' ').filter(c => !['drag-selected', 'theme-fader'].includes(c))[0] || el.tagName.toLowerCase();
-      }
-
-      function updateCoordsDisplay() {
-        if (!hudCoords || !activeTarget) return;
-        const left = activeTarget.style.left || 'default';
-        const top = activeTarget.style.top || 'default';
-        const scaleVal = activeTarget.style.scale ? ` • Scale: ${Math.round(parseFloat(activeTarget.style.scale) * 100)}%` : '';
-        const fontVal = activeTarget.style.fontSize ? ` • ${activeTarget.style.fontSize}` : '';
-        hudCoords.textContent = `X: ${left} | Y: ${top}${scaleVal}${fontVal}`;
+        if (el.classList.contains('editorial-subhead-prose')) return 'Subtitle';
+        if (el.classList.contains('category-kicker')) return 'Kicker';
+        if (el.tagName === 'IMG') return 'Character Image';
+        return el.className.split(' ')[0] || el.tagName.toLowerCase();
       }
 
       function selectTarget(el) {
@@ -1668,7 +1504,7 @@
         activeTarget = el;
         el.classList.add('drag-selected');
         hudTargetName.textContent = getName(el);
-        updateCoordsDisplay();
+        hudCoords.textContent = `X: ${el.style.left || 'default'} | Y: ${el.style.top || 'default'}`;
       }
 
       function setContentEditable(on) {
@@ -1684,22 +1520,12 @@
       function saveEdits() {
         let data = {};
         document.querySelectorAll('[data-dragged="true"]').forEach(el => {
-          const key = el.dataset.editKey || el.className.split(' ').filter(c => !['drag-selected', 'theme-fader', 'is-landing'].includes(c))[0] || el.tagName;
-          data[key] = {
-            left: el.style.left,
-            top: el.style.top,
-            fontSize: el.style.fontSize,
-            color: el.style.color,
-            position: el.style.position,
-            scale: el.style.scale,
-            transformOrigin: el.style.transformOrigin,
-            width: el.style.width,
-            height: el.style.height
-          };
+          const key = el.className.split(' ').filter(c => c !== 'drag-selected')[0] || el.tagName;
+          data[key] = { left: el.style.left, top: el.style.top, fontSize: el.style.fontSize, color: el.style.color, position: el.style.position };
         });
         document.querySelectorAll('[contenteditable="true"]').forEach(el => {
           if (el.closest('#editorHud, #editorToggle')) return;
-          const key = (el.dataset.editKey || el.className.split(' ').filter(c => !['drag-selected', 'theme-fader'].includes(c))[0]) + '_text';
+          const key = el.className.split(' ').filter(c => c !== 'drag-selected')[0] + '_text';
           data[key] = el.innerHTML;
         });
         try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch(e) {}
@@ -1713,11 +1539,11 @@
           const data = JSON.parse(raw);
           Object.keys(data).forEach(key => {
             if (key.endsWith('_text')) {
-              const el = document.querySelector('.' + key.replace('_text', '')) || document.querySelector(`[data-edit-key="${key.replace('_text', '')}"]`);
+              const el = document.querySelector('.' + key.replace('_text', ''));
               if (el && data[key]) el.innerHTML = data[key];
               return;
             }
-            const el = document.querySelector('.' + key) || document.querySelector(`[data-edit-key="${key}"]`);
+            const el = document.querySelector('.' + key);
             if (el && data[key]) {
               const d = data[key];
               if (d.left) el.style.left = d.left;
@@ -1725,14 +1551,7 @@
               if (d.fontSize) el.style.fontSize = d.fontSize;
               if (d.color) el.style.color = d.color;
               if (d.position) el.style.position = d.position;
-              if (d.scale) {
-                el.style.scale = d.scale;
-                el.dataset.scale = d.scale;
-              }
-              if (d.transformOrigin) el.style.transformOrigin = d.transformOrigin;
-              if (d.width) el.style.width = d.width;
-              if (d.height) el.style.height = d.height;
-              if (d.left || d.top || d.scale || d.fontSize) el.setAttribute('data-dragged', 'true');
+              if (d.left || d.top) el.setAttribute('data-dragged', 'true');
             }
           });
         } catch(e) {}
@@ -1760,12 +1579,12 @@
         if (!isEditing) return;
         if (e.target.closest('#editorToggle, #editorHud, .character-theme-capsules, .preview-layout-switcher')) return;
         const el = e.target.closest(
-          '.headline-line-1, .headline-line-2, .category-kicker, .rate-val, .rate-term, .talent-rate-module, .editorial-subhead-prose, .dock-title-headline, .dock-mono-kicker, .right-production-dock, .production-spec-stack, .spec-item-card, .editorial-action-row, .btn-action-primary, .link-secondary-action, .btn-secondary-explore, .right-bottom-trust, .center-seam-talent-box, .talent-clean-image'
+          '.headline-line-1, .headline-line-2, .category-kicker, .rate-val, .rate-term, .talent-rate-module, .editorial-subhead-prose, .dock-title-headline, .right-production-dock, .production-spec-stack, .spec-item-card, .editorial-action-row, .right-bottom-trust, .center-seam-talent-box, .talent-clean-image'
         ) || e.target;
         if (!el || el === document.body || el === document.documentElement) return;
 
         selectTarget(el);
-        if (el.tagName === 'IMG' || el.classList.contains('center-seam-talent-box')) e.preventDefault();
+        if (el.tagName === 'IMG') e.preventDefault();
         startX = e.clientX; startY = e.clientY; hasMoved = false;
         initialLeft = parseFloat(el.style.left) || 0;
         initialTop = parseFloat(el.style.top) || 0;
@@ -1782,7 +1601,7 @@
             el.style.left = Math.round(initialLeft + dx) + 'px';
             el.style.top = Math.round(initialTop + dy) + 'px';
             el.setAttribute('data-dragged', 'true');
-            updateCoordsDisplay();
+            hudCoords.textContent = `X: ${el.style.left} | Y: ${el.style.top}`;
           }
         }
         function onUp(pe) {
@@ -1796,45 +1615,8 @@
         window.addEventListener('pointerup', onUp);
       });
 
-      function adjustScale(factor) {
-        const target = (activeTarget && (activeTarget.tagName === 'IMG' || activeTarget.classList.contains('center-seam-talent-box') || activeTarget.classList.contains('spec-item-card') || activeTarget.classList.contains('talent-rate-module') || activeTarget.classList.contains('production-spec-stack')))
-          ? activeTarget
-          : (activeTarget || document.querySelector('.talent-clean-image'));
-        if (!target) return;
-        const curScale = parseFloat(target.dataset.scale) || parseFloat(target.style.scale) || 1.0;
-        const nextScale = +(Math.max(0.25, Math.min(3.5, curScale * factor))).toFixed(3);
-        target.dataset.scale = nextScale;
-        target.style.scale = nextScale;
-        target.style.transformOrigin = (target.tagName === 'IMG' || target.classList.contains('center-seam-talent-box'))
-          ? 'bottom center'
-          : 'center center';
-        target.setAttribute('data-dragged', 'true');
-        updateCoordsDisplay();
-        saveEdits();
-      }
-
-      function handleSizeAdjust(factor) {
-        if (!activeTarget) return;
-        if (activeTarget.tagName === 'IMG' || activeTarget.classList.contains('center-seam-talent-box') || activeTarget.classList.contains('spec-item-card') || activeTarget.classList.contains('talent-rate-module') || activeTarget.classList.contains('production-spec-stack') || activeTarget.classList.contains('editorial-action-row')) {
-          adjustScale(factor);
-        } else {
-          const curFont = parseFloat(window.getComputedStyle(activeTarget).fontSize) || 16;
-          const nextFont = Math.round(curFont * factor);
-          activeTarget.style.fontSize = nextFont + 'px';
-          activeTarget.setAttribute('data-dragged', 'true');
-          updateCoordsDisplay();
-          saveEdits();
-        }
-      }
-
-      hudFontPlus.addEventListener('click', () => handleSizeAdjust(1.08));
-      hudFontMinus.addEventListener('click', () => handleSizeAdjust(0.92));
-
-      const hudScalePlus = document.getElementById('hudScalePlus');
-      const hudScaleMinus = document.getElementById('hudScaleMinus');
-      if (hudScalePlus) hudScalePlus.addEventListener('click', () => adjustScale(1.06));
-      if (hudScaleMinus) hudScaleMinus.addEventListener('click', () => adjustScale(0.94));
-
+      hudFontPlus.addEventListener('click', () => { if (!activeTarget) return; activeTarget.style.fontSize = Math.round(parseFloat(window.getComputedStyle(activeTarget).fontSize) * 1.08) + 'px'; activeTarget.setAttribute('data-dragged','true'); saveEdits(); });
+      hudFontMinus.addEventListener('click', () => { if (!activeTarget) return; activeTarget.style.fontSize = Math.round(parseFloat(window.getComputedStyle(activeTarget).fontSize) * 0.92) + 'px'; activeTarget.setAttribute('data-dragged','true'); saveEdits(); });
       hudColorCycle.addEventListener('click', () => {
         if (!activeTarget) return;
         const colors = ['#FFFFFF','#0A121F','#2563EB','#10B981','#FF384D'];
@@ -1845,11 +1627,9 @@
         if (!confirm('Reset all Ninjax edits?')) return;
         try { localStorage.removeItem(STORE_KEY); } catch(e) {}
         document.querySelectorAll('[data-dragged="true"]').forEach(el => {
-          el.style.left = el.style.top = el.style.fontSize = el.style.color = el.style.position = el.style.scale = el.style.transformOrigin = el.style.width = el.style.height = '';
-          delete el.dataset.scale;
+          el.style.left = el.style.top = el.style.fontSize = el.style.color = el.style.position = '';
           el.removeAttribute('data-dragged');
         });
-        showToast();
       });
       document.addEventListener('input', e => {
         if (!isEditing || e.target.closest('#editorHud,#editorToggle')) return;
