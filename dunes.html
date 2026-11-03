@@ -18,22 +18,64 @@
     }
 
     :root {
-      --sky-top: #8EE0FE;
-      --sky-mid: #68CBFD;
-      --sky-deep: #47B9FD;
+      /* Theme 1 (Default): Exact Pastel Sage Meadow */
+      --sky-top: #F3FBE8;
+      --sky-mid: #E2F5D1;
+      --sky-deep: #C2E8A6;
       
-      --wave-azure: #4E93F5;
-      --wave-cobalt: #2956D4;
+      --wave-azure: #89C775;
+      --wave-cobalt: #5DA156;
+      --wave-soft: #A3D890;
       
-      --text-white: #FFFFFF;
-      --text-dark: #1E0E38;
-      --text-secondary: rgba(30, 14, 56, 0.78);
+      --text-white: #0E3B1F;
+      --text-dark: #0E3B1F;
+      --text-secondary: #1F4D2B;
       
-      --btn-primary: #1E0E38;
-      --btn-primary-hover: #120624;
+      --btn-primary: #0E3B1F;
+      --btn-primary-hover: #072613;
+      --btn-secondary-bg: #FFFFFF;
+      --btn-secondary-text: #0E3B1F;
+      --pill-specs-bg: rgba(255, 255, 255, 0.75);
+      --pill-specs-text: #164323;
       
       --font-display: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body[data-theme="sage"] {
+      --sky-top: #F3FBE8;
+      --sky-mid: #E2F5D1;
+      --sky-deep: #C2E8A6;
+      --wave-azure: #89C775;
+      --wave-cobalt: #5DA156;
+      --wave-soft: #A3D890;
+      --text-white: #0E3B1F;
+      --text-dark: #0E3B1F;
+      --text-secondary: #1F4D2B;
+      --btn-primary: #0E3B1F;
+      --btn-primary-hover: #072613;
+      --btn-secondary-bg: #FFFFFF;
+      --btn-secondary-text: #0E3B1F;
+      --pill-specs-bg: rgba(255, 255, 255, 0.75);
+      --pill-specs-text: #164323;
+    }
+
+    body[data-theme="cobalt"] {
+      --sky-top: #8EE0FE;
+      --sky-mid: #68CBFD;
+      --sky-deep: #47B9FD;
+      --wave-azure: #4E93F5;
+      --wave-cobalt: #2956D4;
+      --wave-soft: #3B82F6;
+      --text-white: #FFFFFF;
+      --text-dark: #1E0E38;
+      --text-secondary: rgba(30, 14, 56, 0.78);
+      --btn-primary: #1E0E38;
+      --btn-primary-hover: #120624;
+      --btn-secondary-bg: rgba(255, 255, 255, 0.95);
+      --btn-secondary-text: #1E0E38;
+      --pill-specs-bg: rgba(255, 255, 255, 0.45);
+      --pill-specs-text: #1E0E38;
     }
 
     html, body {
@@ -54,7 +96,7 @@
       overflow: hidden;
       display: flex;
       align-items: center;
-      background: linear-gradient(145deg, var(--sky-top) 0%, var(--sky-mid) 50%, var(--sky-deep) 100%);
+      background: linear-gradient(145deg, var(--sky-top) 0%, var(--sky-mid) 50%, var(--sky-deep) 100%); transition: background 0.7s cubic-bezier(0.16, 1, 0.3, 1);
       padding: 0 clamp(32px, 6vw, 96px);
     }
 
@@ -871,9 +913,103 @@
     .hud-btn-primary:hover {
       background: #1D4ED8;
     }
-  </style>
+  
+    /* ── DYNAMIC THEME & SLIDESHOW CAPSULES ── */
+    .character-theme-capsules {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 90;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 7px;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 980px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    }
+    .theme-capsule-btn {
+      position: relative;
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: rgba(255, 255, 255, 0.85);
+      padding: 6px 14px;
+      border-radius: 980px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      overflow: hidden;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .theme-capsule-btn:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .theme-capsule-btn.is-active {
+      color: #0F172A;
+      background: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    }
+    .theme-pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .theme-capsule-btn[data-theme="sage"] .theme-pill-dot {
+      background: #5DB60C;
+      box-shadow: 0 0 6px #5DB60C;
+    }
+    .theme-capsule-btn[data-theme="cobalt"] .theme-pill-dot {
+      background: #38BDF8;
+      box-shadow: 0 0 6px #38BDF8;
+    }
+    .theme-timer-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    .theme-fader {
+      transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .theme-fader.is-switching {
+      opacity: 0 !important;
+      transform: scale(0.97) translateY(8px) !important;
+    }
+
+</style>
 </head>
-<body>
+<body data-theme="sage">
+
+  <!-- Character & Theme Navigation Capsules (Slideshow) -->
+  <div class="character-theme-capsules" role="tablist" aria-label="Slideshow Showcase">
+    <button class="theme-capsule-btn is-active" data-theme="sage" role="tab" aria-selected="true">
+      <span class="theme-pill-dot"></span>
+      <span>Sage Scene</span>
+      <span class="theme-timer-progress"></span>
+    </button>
+    <button class="theme-capsule-btn" data-theme="cobalt" role="tab" aria-selected="false">
+      <span class="theme-pill-dot"></span>
+      <span>Aero Cloud</span>
+      <span class="theme-timer-progress"></span>
+    </button>
+  </div>
 
   <!-- ── DRAG & EDIT STUDIO ── -->
   <button id="editorToggle" class="editor-toggle-btn" type="button" aria-label="Toggle Drag and Edit Mode">
@@ -935,13 +1071,13 @@
       <svg class="bg-wave-svg" viewBox="0 0 1440 900" fill="none" preserveAspectRatio="none">
         
         <!-- Left Soft Ground Wave (Under Pill Dock) -->
-        <path d="M0 760 C160 745 280 810 380 900 L0 900 Z" fill="#3B82F6" fill-opacity="0.2"/>
+        <path d="M0 760 C160 745 280 810 380 900 L0 900 Z" fill="var(--wave-soft)" fill-opacity="0.3" style="transition: fill 0.7s ease;"/>
 
-        <!-- Upper Sweeping Azure Wave (Brought Down / Sleek Dune) -->
-        <path d="M520 900 C740 780 900 580 1200 530 C1320 510 1390 540 1440 560 L1440 900 Z" fill="#4E93F5"/>
+        <!-- Upper Sweeping Wave (Sleek Dune) -->
+        <path d="M520 900 C740 780 900 580 1200 530 C1320 510 1390 540 1440 560 L1440 900 Z" fill="var(--wave-azure)" style="transition: fill 0.7s ease;"/>
 
-        <!-- Lower Deep Cobalt Wave (Brought Down / Subtle Ground) -->
-        <path d="M720 900 C900 850 1080 730 1280 710 C1360 700 1410 730 1440 750 L1440 900 Z" fill="#2956D4"/>
+        <!-- Lower Deep Wave (Subtle Ground) -->
+        <path d="M720 900 C900 850 1080 730 1280 710 C1360 700 1410 730 1440 750 L1440 900 Z" fill="var(--wave-cobalt)" style="transition: fill 0.7s ease;"/>
       </svg>
     </div>
 
@@ -951,7 +1087,7 @@
       <!-- LEFT: TWO-TONE HEADLINE & ACTIONS -->
       <section class="hero-left-content">
 
-        <h1 class="headline-stack">
+        <h1 class="headline-stack theme-fader">
           <!-- Desktop Two-Row White Prefix -->
           <span class="desktop-only title-row title-wefind text-white">WE FIND</span>
           <span class="desktop-only title-row title-the text-white">THE</span>
@@ -963,7 +1099,7 @@
         </h1>
 
         <!-- ── EDITORIAL CONVERSION GROUP (APPLE TACTILE BUTTONS + BADGING CAPSULE) ── -->
-        <div class="hero-editorial-chunk">
+        <div class="hero-editorial-chunk theme-fader">
           <div class="action-row">
             <a href="#" class="btn-discover" onclick="handleAction('discover', event)">
               <span>Discover Talent</span>
@@ -1014,7 +1150,7 @@
           </div>
 
           <!-- 3D Drone Pilot Subject: Upward Flight -->
-          <img id="heroCharacterSlot" src="assets/upward_flight_pilot_drone.png" alt="Upward Flight: Pilot and Drone">
+          <img id="heroCharacterSlot" class="theme-fader" src="assets/creator_desk_designer.png" alt="Upward Flight: Pilot and Drone">
         </div>
       </section>
 
@@ -1040,6 +1176,141 @@
         slot.style.display = 'block';
       }
     }
+
+    
+    /* ── DYNAMIC MULTI-CHARACTER & THEME ENGINE (SLIDESHOW) ── */
+    const THEME_KEYS = ['sage', 'cobalt'];
+    const THEME_PRESETS = {
+      sage: {
+        themeKey: 'sage',
+        imgSrc: 'assets/creator_desk_designer.png',
+        imgAlt: 'Digital Creator at Modern Workstation',
+        creativeWord: 'CREATIVE',
+        edgeWord: 'CRAFT',
+        subText: 'A curated network of illustrators, 3D visionaries, and digital craftspeople.',
+        specs: [
+          '<span class="spec-item"><span class="spec-dot" style="background:#5DB60C; box-shadow:0 0 6px #5DB60C;"></span>Curated Portfolios</span>',
+          '<span class="spec-sep">/</span>',
+          '<span class="spec-item">Verified Proof</span>',
+          '<span class="spec-sep">/</span>',
+          '<span class="spec-item">Direct Terms</span>'
+        ].join(' ')
+      },
+      cobalt: {
+        themeKey: 'cobalt',
+        imgSrc: 'assets/upward_flight_pilot_drone.png',
+        imgAlt: 'Upward Flight: Pilot and Drone',
+        creativeWord: 'CREATIVE',
+        edgeWord: 'EDGE',
+        subText: 'A curated network of videographers, photographers, 3D artists and makers.',
+        specs: [
+          '<span class="spec-item"><span class="spec-dot"></span>Top 1% Creators</span>',
+          '<span class="spec-sep">/</span>',
+          '<span class="spec-item">Verified Proof</span>',
+          '<span class="spec-sep">/</span>',
+          '<span class="spec-item">Direct Terms</span>'
+        ].join(' ')
+      }
+    };
+
+    let currentThemeKey = 'sage';
+    let autoRotateTimer = null;
+    const ROTATION_INTERVAL_MS = 5000;
+
+    function resetProgressBar() {
+      document.querySelectorAll('.theme-timer-progress').forEach(p => {
+        p.style.transition = 'none';
+        p.style.width = '0%';
+      });
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const activeBtn = document.querySelector(`.theme-capsule-btn[data-theme="${currentThemeKey}"]`);
+          if (activeBtn) {
+            const p = activeBtn.querySelector('.theme-timer-progress');
+            if (p) {
+              p.style.transition = `width ${ROTATION_INTERVAL_MS}ms linear`;
+              p.style.width = '100%';
+            }
+          }
+        });
+      });
+    }
+
+    function switchTheme(themeKey, isManual = false) {
+      if (!THEME_PRESETS[themeKey]) return;
+      currentThemeKey = themeKey;
+      const data = THEME_PRESETS[themeKey];
+      const body = document.body;
+      const faders = document.querySelectorAll('.theme-fader');
+      const img = document.getElementById('heroCharacterSlot');
+      const edgeDesktop = document.querySelector('.title-edge');
+      const edgeMobile = document.querySelector('.mb-edge');
+      const subText = document.querySelector('.hero-subheadline');
+      const buttons = document.querySelectorAll('.theme-capsule-btn');
+
+      buttons.forEach(btn => {
+        const isActive = btn.getAttribute('data-theme') === themeKey;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      resetProgressBar();
+      faders.forEach(el => el.classList.add('is-switching'));
+
+      setTimeout(() => {
+        body.setAttribute('data-theme', themeKey);
+        if (img) {
+          img.src = data.imgSrc;
+          img.alt = data.imgAlt;
+        }
+        if (edgeDesktop) edgeDesktop.textContent = data.edgeWord;
+        if (edgeMobile) edgeMobile.textContent = data.edgeWord;
+        if (subText) subText.textContent = data.subText;
+
+        setTimeout(() => {
+          faders.forEach(el => el.classList.remove('is-switching'));
+        }, 50);
+      }, 240);
+
+      startAutoRotation();
+    }
+
+    function rotateToNextTheme() {
+      const nextIdx = (THEME_KEYS.indexOf(currentThemeKey) + 1) % THEME_KEYS.length;
+      switchTheme(THEME_KEYS[nextIdx], false);
+    }
+
+    function startAutoRotation() {
+      if (autoRotateTimer) clearInterval(autoRotateTimer);
+      autoRotateTimer = setInterval(rotateToNextTheme, ROTATION_INTERVAL_MS);
+    }
+
+    function stopAutoRotation() {
+      if (autoRotateTimer) clearInterval(autoRotateTimer);
+    }
+
+    document.querySelectorAll('.theme-capsule-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetTheme = btn.getAttribute('data-theme');
+        if (targetTheme && targetTheme !== currentThemeKey) {
+          switchTheme(targetTheme, true);
+        }
+      });
+    });
+
+    const heroViewport = document.querySelector('.hero-viewport');
+    if (heroViewport) {
+      heroViewport.addEventListener('mouseenter', stopAutoRotation);
+      heroViewport.addEventListener('mouseleave', () => {
+        if (!document.body.classList.contains('is-editing')) {
+          startAutoRotation();
+          resetProgressBar();
+        }
+      });
+    }
+
+    startAutoRotation();
+    resetProgressBar();
 
     /* ── DRAG & EDIT STUDIO ENGINE (VIEWPORT ISOLATED: MOBILE vs LAPTOP) ── */
     (function initDragAndEdit() {
