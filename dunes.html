@@ -786,6 +786,25 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       font-size: 11px;
     }
+    .hud-mode-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      background: rgba(37, 99, 235, 0.28);
+      border: 1px solid rgba(96, 165, 250, 0.45);
+      color: #93C5FD;
+      cursor: default;
+    }
+    .hud-mode-badge.is-desktop {
+      background: rgba(16, 185, 129, 0.28);
+      border-color: rgba(52, 211, 153, 0.45);
+      color: #6EE7B7;
+    }
     .hud-target-name {
       color: #60A5FA;
       font-weight: 700;
@@ -867,16 +886,14 @@
 
   <aside id="editorHud" class="editor-hud" aria-label="Editor Controls">
     <div class="hud-header">
-      <span>Target: <span id="hudTargetName" class="hud-target-name">CREATIVE EDGE</span></span>
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <span id="hudModeBadge" class="hud-mode-badge" title="Active responsive mode">📱 Mobile</span>
+        <span>Target: <span id="hudTargetName" class="hud-target-name">CREATIVE EDGE</span></span>
+      </div>
       <span id="hudCoords" class="hud-coords">Drag on screen to reposition</span>
     </div>
     <div class="hud-chips">
-      <button class="hud-chip active" type="button" data-hud-select="mobile-backdrop-headline">CREATIVE EDGE</button>
-      <button class="hud-chip" type="button" data-hud-select="mb-creative">Word: CREATIVE</button>
-      <button class="hud-chip" type="button" data-hud-select="mb-edge">Word: EDGE</button>
-      <button class="hud-chip" type="button" data-hud-select="heroCharacterSlot">Pilot Image</button>
-      <button class="hud-chip" type="button" data-hud-select="headline-stack">Main Headline</button>
-      <button class="hud-chip" type="button" data-hud-select="hero-editorial-chunk">Action Dock</button>
+      <!-- Dynamically generated based on active viewport (mobile vs laptop) -->
     </div>
     <div class="hud-actions">
       <div style="display: flex; gap: 4px; flex-wrap: wrap;">
@@ -1024,7 +1041,7 @@
       }
     }
 
-    /* ── DRAG & EDIT STUDIO ENGINE ── */
+    /* ── DRAG & EDIT STUDIO ENGINE (VIEWPORT ISOLATED: MOBILE vs LAPTOP) ── */
     (function initDragAndEdit() {
       const toggleBtn = document.getElementById('editorToggle');
       const hud = document.getElementById('editorHud');
@@ -1049,15 +1066,115 @@
       let initialLeft = 0, initialTop = 0;
       let hasMoved = false;
 
-      // Available editable targets
+      // Responsive viewport isolation
+      const STORAGE_PREFIX = 'dunes_custom_edits_v6_';
+      function getActiveViewport() {
+        return window.innerWidth <= 900 ? 'mobile' : 'desktop';
+      }
+      function getStorageKey() {
+        return STORAGE_PREFIX + getActiveViewport();
+      }
+
+      // Purge legacy non-isolated cache keys
+      try {
+        ['dunes_custom_edits', 'dunes_custom_edits_v2', 'dunes_custom_edits_v3', 'dunes_custom_edits_v4', 'dunes_custom_edits_v5'].forEach(k => localStorage.removeItem(k));
+      } catch(e) {}
+
+      // Target elements per viewport
       const targetMap = {
-        'mobile-backdrop-headline': { el: () => document.querySelector('.mobile-backdrop-headline'), name: 'CREATIVE EDGE (Group)' },
-        'mb-creative': { el: () => document.querySelector('.mb-creative'), name: 'Word: CREATIVE' },
-        'mb-edge': { el: () => document.querySelector('.mb-edge'), name: 'Word: EDGE' },
-        'heroCharacterSlot': { el: () => document.getElementById('heroCharacterSlot'), name: 'Pilot Image' },
-        'headline-stack': { el: () => document.querySelector('.headline-stack'), name: 'Main Headline' },
-        'hero-editorial-chunk': { el: () => document.querySelector('.hero-editorial-chunk'), name: 'Action Dock' }
+        // Mobile-specific targets
+        'mobile-backdrop-headline': { el: () => document.querySelector('.mobile-backdrop-headline'), name: 'CREATIVE EDGE (Backdrop)', viewport: 'mobile' },
+        'mb-creative': { el: () => document.querySelector('.mb-creative'), name: 'Word: CREATIVE (Mobile)', viewport: 'mobile' },
+        'mb-edge': { el: () => document.querySelector('.mb-edge'), name: 'Word: EDGE (Mobile)', viewport: 'mobile' },
+        'title-wefind-mobile': { el: () => document.querySelector('.title-wefind-mobile'), name: 'Prefix: WE FIND THE', viewport: 'mobile' },
+
+        // Desktop / Laptop targets
+        'headline-stack': { el: () => document.querySelector('.headline-stack'), name: 'Main Headline Stack', viewport: 'both' },
+        'title-wefind': { el: () => document.querySelector('.title-wefind'), name: 'Word: WE FIND (Desktop)', viewport: 'desktop' },
+        'title-the': { el: () => document.querySelector('.title-the'), name: 'Word: THE (Desktop)', viewport: 'desktop' },
+        'title-creative': { el: () => document.querySelector('.title-creative'), name: 'Word: CREATIVE (Desktop)', viewport: 'desktop' },
+        'title-edge': { el: () => document.querySelector('.title-edge'), name: 'Word: EDGE (Desktop)', viewport: 'desktop' },
+
+        // Shared targets with independent per-viewport positions
+        'heroCharacterSlot': { el: () => document.getElementById('heroCharacterSlot'), name: 'Pilot Image', viewport: 'both' },
+        'hero-editorial-chunk': { el: () => document.querySelector('.hero-editorial-chunk'), name: 'Action Dock', viewport: 'both' }
       };
+
+      const defaultTexts = {
+        'title-wefind-mobile': 'WE FIND THE',
+        'mb-creative': 'CREATIVE',
+        'mb-edge': 'EDGE',
+        'title-wefind': 'WE FIND',
+        'title-the': 'THE',
+        'title-creative': 'CREATIVE',
+        'title-edge': 'EDGE'
+      };
+
+      function updateHudModeBadge() {
+        const badge = document.getElementById('hudModeBadge');
+        const mode = getActiveViewport();
+        if (badge) {
+          if (mode === 'mobile') {
+            badge.textContent = '📱 Mobile (<900px)';
+            badge.classList.remove('is-desktop');
+          } else {
+            badge.textContent = '💻 Laptop (>900px)';
+            badge.classList.add('is-desktop');
+          }
+        }
+      }
+
+      function updateHudChipsForMode() {
+        const mode = getActiveViewport();
+        const chipsContainer = document.querySelector('.hud-chips');
+        if (!chipsContainer) return;
+        chipsContainer.innerHTML = '';
+
+        Object.keys(targetMap).forEach(key => {
+          const item = targetMap[key];
+          if (item.viewport === 'both' || item.viewport === mode) {
+            const btn = document.createElement('button');
+            const isActive = activeTarget && getTargetKey(activeTarget) === key;
+            btn.className = 'hud-chip' + (isActive ? ' active' : '');
+            btn.type = 'button';
+            btn.setAttribute('data-hud-select', key);
+            btn.textContent = item.name;
+            btn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              selectTarget(key);
+            });
+            chipsContainer.appendChild(btn);
+          }
+        });
+      }
+
+      function clearAllInlineStyles() {
+        Object.keys(targetMap).forEach(key => {
+          const el = targetMap[key].el();
+          if (!el) return;
+          el.style.left = '';
+          el.style.top = '';
+          el.style.position = '';
+          el.style.fontSize = '';
+          el.style.zIndex = '';
+          el.style.color = '';
+          el.style.maxHeight = '';
+          el.style.height = '';
+          el.style.maxWidth = '';
+          el.style.marginBottom = '';
+          el.style.marginTop = '';
+          el.style.right = '';
+          el.style.bottom = '';
+          el.querySelectorAll('*').forEach(child => {
+            child.style.color = '';
+          });
+        });
+
+        Object.keys(defaultTexts).forEach(k => {
+          const el = targetMap[k] ? targetMap[k].el() : null;
+          if (el) el.innerText = defaultTexts[k];
+        });
+      }
 
       function getTargetKey(el) {
         if (!el) return null;
@@ -1065,8 +1182,13 @@
         if (el.classList.contains('mb-creative')) return 'mb-creative';
         if (el.classList.contains('mb-edge')) return 'mb-edge';
         if (el.classList.contains('mobile-backdrop-headline')) return 'mobile-backdrop-headline';
-        if (el.classList.contains('headline-stack')) return 'headline-stack';
+        if (el.classList.contains('title-wefind-mobile')) return 'title-wefind-mobile';
+        if (el.classList.contains('title-wefind')) return 'title-wefind';
+        if (el.classList.contains('title-the')) return 'title-the';
+        if (el.classList.contains('title-creative')) return 'title-creative';
+        if (el.classList.contains('title-edge')) return 'title-edge';
         if (el.classList.contains('hero-editorial-chunk')) return 'hero-editorial-chunk';
+        if (el.classList.contains('headline-stack')) return 'headline-stack';
         return null;
       }
 
@@ -1112,16 +1234,18 @@
         }
 
         // Enable contenteditable on text elements
-        const textNodes = document.querySelectorAll('.mb-word, .title-row');
+        const textNodes = document.querySelectorAll('.mb-word, .title-row, .title-wefind-mobile');
         textNodes.forEach(node => {
           node.contentEditable = isEditing ? 'true' : 'false';
           node.spellcheck = false;
         });
 
         if (isEditing) {
-          selectTarget('mobile-backdrop-headline');
+          const mode = getActiveViewport();
+          selectTarget(mode === 'mobile' ? 'mobile-backdrop-headline' : 'headline-stack');
         } else {
           document.querySelectorAll('.drag-selected').forEach(n => n.classList.remove('drag-selected'));
+          activeTarget = null;
         }
       }
 
@@ -1136,29 +1260,31 @@
         hudClose.addEventListener('click', () => setEditMode(false));
       }
 
-      // Chip buttons
-      document.querySelectorAll('.hud-chip').forEach(chip => {
-        chip.addEventListener('click', (e) => {
-          e.stopPropagation();
-          const key = chip.getAttribute('data-hud-select');
-          selectTarget(key);
-        });
-      });
-
-      // Pointer drag handling
+      // Pointer drag handling with mode-aware hit testing
       document.addEventListener('pointerdown', (e) => {
         if (!isEditing) return;
-        // Don't drag when touching HUD controls or switcher
         if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher')) return;
 
-        // Check if target is one of our elements
+        const mode = getActiveViewport();
         let clickedTarget = null;
-        if (e.target.closest('.mb-creative')) clickedTarget = document.querySelector('.mb-creative');
-        else if (e.target.closest('.mb-edge')) clickedTarget = document.querySelector('.mb-edge');
-        else if (e.target.closest('.mobile-backdrop-headline')) clickedTarget = document.querySelector('.mobile-backdrop-headline');
-        else if (e.target.closest('#heroCharacterSlot')) clickedTarget = document.getElementById('heroCharacterSlot');
-        else if (e.target.closest('.headline-stack')) clickedTarget = document.querySelector('.headline-stack');
-        else if (e.target.closest('.hero-editorial-chunk')) clickedTarget = document.querySelector('.hero-editorial-chunk');
+
+        if (mode === 'mobile') {
+          if (e.target.closest('.mb-creative')) clickedTarget = document.querySelector('.mb-creative');
+          else if (e.target.closest('.mb-edge')) clickedTarget = document.querySelector('.mb-edge');
+          else if (e.target.closest('.mobile-backdrop-headline')) clickedTarget = document.querySelector('.mobile-backdrop-headline');
+          else if (e.target.closest('.title-wefind-mobile')) clickedTarget = document.querySelector('.title-wefind-mobile');
+          else if (e.target.closest('#heroCharacterSlot')) clickedTarget = document.getElementById('heroCharacterSlot');
+          else if (e.target.closest('.hero-editorial-chunk')) clickedTarget = document.querySelector('.hero-editorial-chunk');
+        } else {
+          // Desktop / Laptop
+          if (e.target.closest('.title-wefind')) clickedTarget = document.querySelector('.title-wefind');
+          else if (e.target.closest('.title-the')) clickedTarget = document.querySelector('.title-the');
+          else if (e.target.closest('.title-creative')) clickedTarget = document.querySelector('.title-creative');
+          else if (e.target.closest('.title-edge')) clickedTarget = document.querySelector('.title-edge');
+          else if (e.target.closest('#heroCharacterSlot')) clickedTarget = document.getElementById('heroCharacterSlot');
+          else if (e.target.closest('.hero-editorial-chunk')) clickedTarget = document.querySelector('.hero-editorial-chunk');
+          else if (e.target.closest('.headline-stack')) clickedTarget = document.querySelector('.headline-stack');
+        }
 
         if (!clickedTarget) return;
 
@@ -1210,14 +1336,7 @@
         window.addEventListener('pointerup', onPointerUp);
       });
 
-      // Text font-size adjustments
-      if (hudFontPlus) {
-        hudFontPlus.addEventListener('click', () => adjustFontSize(1.08));
-      }
-      if (hudFontMinus) {
-        hudFontMinus.addEventListener('click', () => adjustFontSize(0.92));
-      }
-
+      // Adjustments (Font, Scale, Dock, Color, Layer)
       function adjustFontSize(factor) {
         if (!activeTarget) return;
         const cur = parseFloat(window.getComputedStyle(activeTarget).fontSize);
@@ -1227,7 +1346,48 @@
         saveEdits();
       }
 
-      // Z-index layer toggle
+      function adjustImgScale(factor) {
+        const slot = document.getElementById('heroCharacterSlot');
+        if (!slot) return;
+        const mode = getActiveViewport();
+        if (mode === 'mobile') {
+          const curH = parseFloat(slot.style.maxHeight) || 86;
+          const nextH = Math.min(100, Math.max(40, Math.round(curH * factor)));
+          slot.style.maxHeight = nextH + '%';
+          slot.style.height = nextH + '%';
+          slot.style.maxWidth = nextH + '%';
+        } else {
+          const curH = parseFloat(slot.style.maxHeight) || 93;
+          const nextH = Math.min(100, Math.max(50, Math.round(curH * factor)));
+          slot.style.maxHeight = nextH + 'vh';
+          slot.style.maxWidth = (nextH + 11) + '%';
+        }
+        saveEdits();
+      }
+
+      function nudgeDock(deltaPx) {
+        const dock = document.querySelector('.hero-editorial-chunk');
+        if (!dock) return;
+        const mode = getActiveViewport();
+        if (mode === 'mobile') {
+          const curMargin = parseFloat(dock.style.marginBottom) || 62;
+          const next = Math.max(0, curMargin + deltaPx);
+          dock.style.marginBottom = next + 'px';
+        } else {
+          const curMargin = parseFloat(dock.style.marginTop) || 4;
+          const next = curMargin - deltaPx;
+          dock.style.marginTop = next + 'px';
+        }
+        saveEdits();
+      }
+
+      if (hudFontPlus) hudFontPlus.addEventListener('click', () => adjustFontSize(1.08));
+      if (hudFontMinus) hudFontMinus.addEventListener('click', () => adjustFontSize(0.92));
+      if (hudImgMinus) hudImgMinus.addEventListener('click', () => adjustImgScale(0.95));
+      if (hudImgPlus) hudImgPlus.addEventListener('click', () => adjustImgScale(1.05));
+      if (hudDockUp) hudDockUp.addEventListener('click', () => nudgeDock(6));
+      if (hudDockDown) hudDockDown.addEventListener('click', () => nudgeDock(-6));
+
       if (hudZToggle) {
         hudZToggle.addEventListener('click', () => {
           if (!activeTarget) return;
@@ -1239,7 +1399,6 @@
         });
       }
 
-      // Color cycle toggle
       if (hudColorCycle) {
         hudColorCycle.addEventListener('click', () => {
           if (!activeTarget) return;
@@ -1253,40 +1412,11 @@
         });
       }
 
-      // Pilot image scaling
-      if (hudImgMinus || hudImgPlus) {
-        const slot = document.getElementById('heroCharacterSlot');
-        function adjustImgScale(factor) {
-          if (!slot) return;
-          const curH = parseFloat(slot.style.maxHeight) || 92;
-          const nextH = Math.min(100, Math.max(50, Math.round(curH * factor)));
-          slot.style.maxHeight = nextH + '%';
-          slot.style.height = nextH + '%';
-          slot.style.maxWidth = nextH + '%';
-          saveEdits();
-        }
-        if (hudImgMinus) hudImgMinus.addEventListener('click', () => adjustImgScale(0.95));
-        if (hudImgPlus) hudImgPlus.addEventListener('click', () => adjustImgScale(1.05));
-      }
-
-      // Action dock nudge up/down
-      if (hudDockUp || hudDockDown) {
-        const dock = document.querySelector('.hero-editorial-chunk');
-        function nudgeDock(deltaPx) {
-          if (!dock) return;
-          const curMargin = parseFloat(dock.style.marginBottom) || 42;
-          const next = Math.max(0, curMargin + deltaPx);
-          dock.style.marginBottom = next + 'px';
-          saveEdits();
-        }
-        if (hudDockUp) hudDockUp.addEventListener('click', () => nudgeDock(6));
-        if (hudDockDown) hudDockDown.addEventListener('click', () => nudgeDock(-6));
-      }
-
-      // Copy CSS
+      // Responsive Copy CSS
       if (hudCopyCss) {
         hudCopyCss.addEventListener('click', () => {
           if (!activeTarget) return;
+          const mode = getActiveViewport();
           const key = getTargetKey(activeTarget);
           let sel = '.' + key;
           if (activeTarget.id) sel = '#' + activeTarget.id;
@@ -1297,13 +1427,23 @@
           const z = activeTarget.style.zIndex || '';
           const col = activeTarget.style.color || '';
           const mb = activeTarget.style.marginBottom || '';
+          const mt = activeTarget.style.marginTop || '';
+          const maxH = activeTarget.style.maxHeight || '';
 
-          let css = `${sel} {\n  top: ${top};\n  left: ${left};\n`;
-          if (font) css += `  font-size: ${font};\n`;
-          if (col) css += `  color: ${col};\n`;
-          if (mb) css += `  margin-bottom: ${mb};\n`;
-          if (z) css += `  z-index: ${z};\n`;
-          css += `}`;
+          let rules = `  top: ${top};\n  left: ${left};\n`;
+          if (font) rules += `  font-size: ${font};\n`;
+          if (col) rules += `  color: ${col};\n`;
+          if (mb) rules += `  margin-bottom: ${mb};\n`;
+          if (mt) rules += `  margin-top: ${mt};\n`;
+          if (maxH) rules += `  max-height: ${maxH};\n`;
+          if (z) rules += `  z-index: ${z};\n`;
+
+          let css = '';
+          if (mode === 'mobile') {
+            css = `/* Mobile (<900px) Overrides */\n@media (max-width: 900px) {\n  ${sel} {\n${rules}  }\n}`;
+          } else {
+            css = `/* Laptop / Desktop (>900px) Overrides */\n@media (min-width: 901px) {\n  ${sel} {\n${rules}  }\n}`;
+          }
 
           if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(css).then(showCopiedNotice);
@@ -1329,53 +1469,65 @@
         }, 1500);
       }
 
-      // Reset
+      // Reset active viewport adjustments only
       if (hudReset) {
         hudReset.addEventListener('click', () => {
-          if (confirm('Reset custom dragged positions and text back to original?')) {
-            localStorage.removeItem('dunes_custom_edits_v5');
-            localStorage.removeItem('dunes_custom_edits');
-            location.reload();
+          const mode = getActiveViewport();
+          const modeName = mode === 'mobile' ? 'Mobile (<900px)' : 'Laptop / Desktop (>900px)';
+          if (confirm(`Reset custom adjustments for ${modeName} back to original?`)) {
+            try {
+              localStorage.removeItem(getStorageKey());
+            } catch(e) {}
+            clearAllInlineStyles();
+            restoreEdits();
+            updateCoordsDisplay();
           }
         });
       }
 
-      // Persistence with cache isolation
-      const STORAGE_KEY = 'dunes_custom_edits_v5';
-      try {
-        localStorage.removeItem('dunes_custom_edits');
-        localStorage.removeItem('dunes_custom_edits_v2');
-        localStorage.removeItem('dunes_custom_edits_v3');
-        localStorage.removeItem('dunes_custom_edits_v4');
-      } catch(e) {}
-
+      // Isolated Persistence
       function saveEdits() {
+        const mode = getActiveViewport();
         const data = {};
         Object.keys(targetMap).forEach(key => {
-          const el = targetMap[key].el();
-          if (el) {
-            data[key] = {
-              left: el.style.left,
-              top: el.style.top,
-              fontSize: el.style.fontSize,
-              zIndex: el.style.zIndex,
-              color: el.style.color,
-              maxHeight: el.style.maxHeight,
-              marginBottom: el.style.marginBottom,
-              text: el.classList.contains('mb-word') ? el.innerText : null
-            };
+          const item = targetMap[key];
+          if (item.viewport === 'both' || item.viewport === mode) {
+            const el = item.el();
+            if (el) {
+              const isText = el.classList.contains('mb-word') || el.classList.contains('title-row') || el.classList.contains('title-wefind-mobile');
+              data[key] = {
+                left: el.style.left || '',
+                top: el.style.top || '',
+                fontSize: el.style.fontSize || '',
+                zIndex: el.style.zIndex || '',
+                color: el.style.color || '',
+                maxHeight: el.style.maxHeight || '',
+                maxWidth: el.style.maxWidth || '',
+                marginBottom: el.style.marginBottom || '',
+                marginTop: el.style.marginTop || '',
+                text: isText ? el.innerText : null
+              };
+            }
           }
         });
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        try {
+          localStorage.setItem(getStorageKey(), JSON.stringify(data));
+        } catch(e) {}
       }
 
       function restoreEdits() {
+        clearAllInlineStyles();
+        const mode = getActiveViewport();
         try {
-          const raw = localStorage.getItem(STORAGE_KEY);
+          const raw = localStorage.getItem(getStorageKey());
           if (!raw) return;
           const data = JSON.parse(raw);
           Object.keys(data).forEach(key => {
-            const el = targetMap[key] ? targetMap[key].el() : null;
+            const item = targetMap[key];
+            if (!item) return;
+            if (item.viewport !== 'both' && item.viewport !== mode) return;
+
+            const el = item.el();
             if (el && data[key]) {
               const d = data[key];
               if (d.left) el.style.left = d.left;
@@ -1384,20 +1536,26 @@
               if (d.zIndex) el.style.zIndex = d.zIndex;
               if (d.color) {
                 el.style.color = d.color;
+                el.querySelectorAll('*').forEach(n => n.style.color = d.color);
               }
               if (d.maxHeight) {
                 el.style.maxHeight = d.maxHeight;
                 el.style.height = d.maxHeight;
-                el.style.maxWidth = d.maxHeight;
+              }
+              if (d.maxWidth) {
+                el.style.maxWidth = d.maxWidth;
               }
               if (d.marginBottom) {
                 el.style.marginBottom = d.marginBottom;
+              }
+              if (d.marginTop) {
+                el.style.marginTop = d.marginTop;
               }
               if (d.left || d.top) {
                 const pos = window.getComputedStyle(el).position;
                 if (pos === 'static') el.style.position = 'relative';
               }
-              if (d.text && el.classList.contains('mb-word')) {
+              if (d.text) {
                 el.innerText = d.text;
               }
             }
@@ -1407,13 +1565,32 @@
         }
       }
 
-      // Listen for text edits to save
+      // Live text edits
       document.addEventListener('input', (e) => {
-        if (isEditing && e.target.classList.contains('mb-word')) {
+        if (isEditing && (e.target.classList.contains('mb-word') || e.target.classList.contains('title-row') || e.target.classList.contains('title-wefind-mobile'))) {
           saveEdits();
         }
       });
 
+      // Viewport crossover / resize watcher
+      let lastViewport = getActiveViewport();
+      window.addEventListener('resize', () => {
+        const currentViewport = getActiveViewport();
+        if (currentViewport !== lastViewport) {
+          lastViewport = currentViewport;
+          clearAllInlineStyles();
+          restoreEdits();
+          updateHudChipsForMode();
+          updateHudModeBadge();
+          if (isEditing) {
+            selectTarget(currentViewport === 'mobile' ? 'mobile-backdrop-headline' : 'headline-stack');
+          }
+        }
+      });
+
+      // Initial boot
+      updateHudModeBadge();
+      updateHudChipsForMode();
       restoreEdits();
     })();
   </script>
