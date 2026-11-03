@@ -407,16 +407,16 @@
       filter: none;
       user-select: none;
       pointer-events: none;
-      animation: floatSubtle 6s ease-in-out infinite alternate;
+      animation: floatSubtle 6.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+      translate: var(--parallax-x, 0px) var(--parallax-y, 0px);
+      transition: translate 0.15s ease-out;
+      will-change: transform, translate;
     }
 
     @keyframes floatSubtle {
-      0% {
-        transform: translateY(0px);
-      }
-      100% {
-        transform: translateY(-8px);
-      }
+      0%   { transform: translate3d(0, 0px, 0) rotate(0deg); }
+      50%  { transform: translate3d(0, -9px, 0) rotate(-0.5deg); }
+      100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
     }
 
     /* ── 3-WAY LAYOUT SWITCHER ── */
@@ -1131,6 +1131,59 @@
       opacity: 0 !important;
       transform: scale(0.97) translateY(8px) !important;
     }
+
+    /* ── BUTTERY ENTRANCE & MOTION ENGINE (GPU-ACCELERATED) ── */
+    @keyframes dnSlideDown {
+      0%   { opacity: 0; transform: translate3d(0, -16px, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+    @keyframes dnSlideUp {
+      0%   { opacity: 0; transform: translate3d(0, 24px, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+    @keyframes dnHeroLevitate {
+      0%   { opacity: 0; transform: translate3d(0, 28px, 0) scale(0.96); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+    }
+
+    .character-theme-capsules, .preview-layout-switcher {
+      animation: dnSlideDown 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .preview-layout-switcher { animation-delay: 0.06s; }
+    .character-theme-capsules { animation-delay: 0.12s; }
+
+    .headline-stack        { animation: dnSlideUp 0.90s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.08s; }
+    .hero-editorial-chunk  { animation: dnSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.18s; }
+    .image-container-slot  { animation: dnHeroLevitate 1.1s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.10s; }
+
+    /* Tactile button lift on hover */
+    .btn-discover, .btn-join {
+      transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, box-shadow 0.26s ease !important;
+    }
+    .btn-discover:hover, .btn-join:hover {
+      transform: translate3d(0, -2px, 0);
+    }
+    .theme-capsule-btn {
+      transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, border 0.2s ease !important;
+    }
+    .theme-capsule-btn:hover {
+      transform: translate3d(0, -1px, 0);
+    }
+
+    /* Disable animations while editing */
+    body.is-editing *,
+    body.is-editing #heroCharacterSlot,
+    body.is-editing .image-container-slot {
+      animation: none !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    /* ─────────────────────────────────────────────────────────────── */
 
 </style>
 </head>
@@ -2271,6 +2324,51 @@
       updateHudModeBadge();
       updateHudChipsForMode();
       restoreEdits();
+    })();
+  </script>
+
+  <!-- Buttery Mouse Parallax (Damped Physics) -->
+  <script>
+    (function initSmoothParallax() {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+      let targetX = 0, targetY = 0;
+      let curX = 0, curY = 0;
+      let isRunning = false;
+
+      window.addEventListener('pointermove', e => {
+        if (document.body.classList.contains('is-editing')) return;
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        targetX = Math.max(-1, Math.min(1, (e.clientX - cx) / cx));
+        targetY = Math.max(-1, Math.min(1, (e.clientY - cy) / cy));
+        if (!isRunning) {
+          isRunning = true;
+          requestAnimationFrame(loop);
+        }
+      }, { passive: true });
+
+      function loop() {
+        if (document.body.classList.contains('is-editing')) {
+          isRunning = false;
+          return;
+        }
+        curX += (targetX - curX) * 0.045;
+        curY += (targetY - curY) * 0.045;
+
+        const charImg = document.querySelector('.talent-clean-image, .subject-pilot-image, #heroCharacterSlot');
+        if (charImg && !charImg.classList.contains('drag-selected')) {
+          charImg.style.setProperty('--parallax-x', (curX * 14).toFixed(2) + 'px');
+          charImg.style.setProperty('--parallax-y', (curY * 10).toFixed(2) + 'px');
+        }
+
+        if (Math.abs(targetX - curX) > 0.001 || Math.abs(targetY - curY) > 0.001) {
+          requestAnimationFrame(loop);
+        } else {
+          isRunning = false;
+        }
+      }
     })();
   </script>
 
