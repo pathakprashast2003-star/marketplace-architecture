@@ -1140,11 +1140,127 @@
       pointer-events: none;
     }
     .theme-fader {
-      transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
     }
+    /* Dynamic kinetic exit when switching */
     .theme-fader.is-switching {
       opacity: 0 !important;
-      transform: scale(0.97) translateY(8px) !important;
+      transform: translate3d(0, -28px, 0) scale(0.92) rotate(-2.5deg) !important;
+      filter: blur(4px) !important;
+      transition: opacity 0.2s ease-in, transform 0.22s cubic-bezier(0.4, 0, 1, 1), filter 0.18s ease !important;
+    }
+
+    /* Kinetic 3D landing bounce when new character renders */
+    #heroCharacterSlot.is-landing {
+      animation: kineticHeroLand 0.65s cubic-bezier(0.34, 1.4, 0.64, 1) forwards !important;
+    }
+
+    @keyframes kineticHeroLand {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 42px, 0) scale(1.08) rotate(2.5deg);
+        filter: blur(5px);
+      }
+      65% {
+        opacity: 1;
+        transform: translate3d(0, -5px, 0) scale(0.985) rotate(-0.5deg);
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+        filter: blur(0px);
+      }
+    }
+
+    /* Shockwave aura ring underneath hero on structure change */
+    .shockwave-aura {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.4);
+      width: 320px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, var(--accent-pill, #10B981) 0%, transparent 70%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .shockwave-aura.pulse {
+      animation: shockwavePulse 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes shockwavePulse {
+      0% {
+        opacity: 0.9;
+        transform: translateX(-50%) scale(0.35);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-50%) scale(2.4);
+      }
+    }
+
+    /* Kinetic cascade for the specs / list changing */
+    .spec-item.is-updating {
+      animation: specCascade 0.5s cubic-bezier(0.34, 1.3, 0.64, 1) both;
+    }
+    .spec-item:nth-of-type(1) { animation-delay: 0.02s; }
+    .spec-item:nth-of-type(2) { animation-delay: 0.08s; }
+    .spec-item:nth-of-type(3) { animation-delay: 0.14s; }
+
+    @keyframes specCascade {
+      0% {
+        opacity: 0;
+        transform: translate3d(24px, 0, 0) scale(0.92);
+      }
+      70% {
+        transform: translate3d(-3px, 0, 0) scale(1.02);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    /* Active capsule spring pop */
+    .theme-capsule-btn.is-active .theme-pill-dot {
+      animation: dotPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes dotPop {
+      0%   { transform: scale(0.7); }
+      50%  { transform: scale(1.6); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+      .theme-fader.is-switching {
+        filter: none !important;
+        transform: translate3d(0, -18px, 0) scale(0.95) !important;
+      }
+      @keyframes kineticHeroLand {
+        0% {
+          opacity: 0;
+          transform: translate3d(0, 28px, 0) scale(1.04);
+          filter: none;
+        }
+        100% {
+          opacity: 1;
+          transform: translate3d(0, 0, 0) scale(1);
+          filter: none;
+        }
+      }
+      @keyframes specCascade {
+        0% {
+          opacity: 0;
+          transform: translate3d(0, 14px, 0);
+        }
+        100% {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
     }
 
     /* ── BUTTERY ENTRANCE & MOTION ENGINE (GPU-ACCELERATED) ── */
@@ -1374,6 +1490,7 @@
       <!-- RIGHT: CHARACTER IMAGE VIEWPORT / MOBILE 3D BACKPLANE STAGE -->
       <section class="hero-right-stage">
         <div class="image-container-slot">
+          <div class="shockwave-aura" aria-hidden="true"></div>
           <!-- Monumental sculpted backdrop display headline for mobile 3D layering (Image 2 reference) -->
           <div class="mobile-backdrop-headline" aria-hidden="true">
             <span class="mb-word mb-creative">CREATIVE</span>
@@ -1548,6 +1665,10 @@
           const customImg = localStorage.getItem('custom_img_' + themeKey + '_' + mode) || localStorage.getItem('custom_image_' + themeKey);
           img.src = customImg || data.imgSrc;
           img.alt = data.imgAlt;
+          img.classList.remove('is-landing');
+          void img.offsetWidth;
+          img.classList.add('is-landing');
+          img.addEventListener('animationend', () => img.classList.remove('is-landing'), { once: true });
         }
         const titleCreative = document.querySelector('.title-creative');
         if (titleCreative) titleCreative.textContent = data.creativeWord;
@@ -1559,7 +1680,21 @@
         
         if (subText) subText.textContent = data.subText;
         const specBar = document.querySelector('.apple-spec-bar');
-        if (specBar && data.specs) specBar.innerHTML = data.specs;
+        if (specBar && data.specs) {
+          specBar.innerHTML = data.specs;
+          specBar.querySelectorAll('.spec-item').forEach(item => {
+            item.classList.remove('is-updating');
+            void item.offsetWidth;
+            item.classList.add('is-updating');
+          });
+        }
+
+        const aura = document.querySelector('.shockwave-aura');
+        if (aura) {
+          aura.classList.remove('pulse');
+          void aura.offsetWidth;
+          aura.classList.add('pulse');
+        }
 
         if (window.restoreCharacterImageEdits) {
           window.restoreCharacterImageEdits(themeKey);

@@ -881,11 +881,127 @@
       pointer-events: none;
     }
     .theme-fader {
-      transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
     }
+    /* Dynamic kinetic exit when switching */
     .theme-fader.is-switching {
       opacity: 0 !important;
-      transform: scale(0.97) translateY(8px) !important;
+      transform: translate3d(0, -28px, 0) scale(0.92) rotate(-2.5deg) !important;
+      filter: blur(4px) !important;
+      transition: opacity 0.2s ease-in, transform 0.22s cubic-bezier(0.4, 0, 1, 1), filter 0.18s ease !important;
+    }
+
+    /* Kinetic 3D landing bounce when new character renders */
+    .talent-clean-image.is-landing {
+      animation: kineticHeroLand 0.65s cubic-bezier(0.34, 1.4, 0.64, 1) forwards !important;
+    }
+
+    @keyframes kineticHeroLand {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 42px, 0) scale(1.08) rotate(2.5deg);
+        filter: blur(5px);
+      }
+      65% {
+        opacity: 1;
+        transform: translate3d(0, -5px, 0) scale(0.985) rotate(-0.5deg);
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+        filter: blur(0px);
+      }
+    }
+
+    /* Shockwave aura ring underneath hero on structure change */
+    .shockwave-aura {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.4);
+      width: 320px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, var(--accent-blue, #2563EB) 0%, transparent 70%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .shockwave-aura.pulse {
+      animation: shockwavePulse 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes shockwavePulse {
+      0% {
+        opacity: 0.9;
+        transform: translateX(-50%) scale(0.35);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-50%) scale(2.4);
+      }
+    }
+
+    /* Kinetic cascade for the specs / list changing */
+    .spec-item-card.is-updating {
+      animation: specCascade 0.5s cubic-bezier(0.34, 1.3, 0.64, 1) both;
+    }
+    .spec-item-card:nth-child(1) { animation-delay: 0.02s; }
+    .spec-item-card:nth-child(2) { animation-delay: 0.08s; }
+    .spec-item-card:nth-child(3) { animation-delay: 0.14s; }
+
+    @keyframes specCascade {
+      0% {
+        opacity: 0;
+        transform: translate3d(24px, 0, 0) scale(0.92);
+      }
+      70% {
+        transform: translate3d(-3px, 0, 0) scale(1.02);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    /* Active capsule spring pop */
+    .theme-capsule-btn.is-active .theme-pill-dot {
+      animation: dotPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes dotPop {
+      0%   { transform: scale(0.7); }
+      50%  { transform: scale(1.6); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+      .theme-fader.is-switching {
+        filter: none !important;
+        transform: translate3d(0, -18px, 0) scale(0.95) !important;
+      }
+      @keyframes kineticHeroLand {
+        0% {
+          opacity: 0;
+          transform: translate3d(0, 28px, 0) scale(1.04);
+          filter: none;
+        }
+        100% {
+          opacity: 1;
+          transform: translate3d(0, 0, 0) scale(1);
+          filter: none;
+        }
+      }
+      @keyframes specCascade {
+        0% {
+          opacity: 0;
+          transform: translate3d(0, 14px, 0);
+        }
+        100% {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
     }
 
     /* ── DRAG & EDIT ENGINE ── */
@@ -1151,6 +1267,7 @@
 
       <!-- ── CENTER SEAM HERO TALENT (UPWARD FLIGHT) ── -->
       <div class="center-seam-talent-box">
+        <div class="shockwave-aura" aria-hidden="true"></div>
         <img src="assets/creator_desk_designer.png" alt="Digital Creator at Modern Workstation" class="talent-clean-image theme-fader">
       </div>
 
@@ -1283,14 +1400,31 @@
         if (img) {
           img.src = data.imgSrc;
           img.alt = data.imgAlt;
+          img.classList.remove('is-landing');
+          void img.offsetWidth;
+          img.classList.add('is-landing');
+          img.addEventListener('animationend', () => img.classList.remove('is-landing'), { once: true });
         }
         if (title) title.innerHTML = data.title;
         if (trust) trust.innerHTML = data.specs;
 
+        const aura = document.querySelector('.shockwave-aura');
+        if (aura) {
+          aura.classList.remove('pulse');
+          void aura.offsetWidth;
+          aura.classList.add('pulse');
+        }
+
+        document.querySelectorAll('.spec-item-card').forEach(card => {
+          card.classList.remove('is-updating');
+          void card.offsetWidth;
+          card.classList.add('is-updating');
+        });
+
         setTimeout(() => {
           faders.forEach(el => el.classList.remove('is-switching'));
         }, 50);
-      }, 240);
+      }, 220);
 
       startAutoRotation();
     }
