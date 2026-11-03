@@ -838,9 +838,17 @@
     body.is-editing .hero-viewport *,
     body.is-editing .nike-hero-canvas * {
       cursor: grab;
+      pointer-events: auto !important;
     }
     body.is-editing [contenteditable="true"] {
       cursor: text !important;
+      user-select: text !important;
+      -webkit-user-select: text !important;
+    }
+    body.is-editing #heroCharacterSlot {
+      animation: none !important;
+      touch-action: none !important;
+      -webkit-user-drag: none !important;
     }
     body.is-editing .editor-hud,
     body.is-editing .editor-hud *,

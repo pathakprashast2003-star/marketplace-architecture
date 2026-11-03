@@ -646,14 +646,25 @@
     }
     body.is-editing .nike-hero-canvas * {
       cursor: grab;
+      pointer-events: auto !important;
     }
     body.is-editing [contenteditable="true"] {
       cursor: text !important;
+      user-select: text !important;
+      -webkit-user-select: text !important;
+    }
+    body.is-editing .giant-headline-backplane,
+    body.is-editing .giant-headline-backplane * {
+      pointer-events: auto !important;
+      user-select: text !important;
+      -webkit-user-select: text !important;
+    }
+    body.is-editing .subject-center-stage {
+      pointer-events: auto !important;
     }
     body.is-editing .subject-pilot-image {
       animation: none !important;
       touch-action: none !important;
-      user-select: none !important;
       -webkit-user-drag: none !important;
       pointer-events: auto !important;
       cursor: grab !important;
@@ -1904,8 +1915,8 @@
 
         selectTarget(clickedTarget);
 
-        // Suppress browser native ghost drag on images
-        if (clickedTarget.tagName === 'IMG' || clickedTarget.classList.contains('subject-pilot-image') || !clickedTarget.isContentEditable) {
+        // Only suppress native drag on images; allow text elements to focus normally
+        if (clickedTarget.tagName === 'IMG' || clickedTarget.classList.contains('subject-pilot-image')) {
           e.preventDefault();
         }
 
