@@ -266,7 +266,7 @@
     /* ── 3D DEPTH CENTERPIECE: MONUMENTAL SCULPTED BACKPLANE (NIKE CLOUD) ── */
     .giant-headline-backplane {
       position: absolute;
-      top: 19.5%;
+      top: 22.5%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-family: var(--font-display);
@@ -289,14 +289,14 @@
     }
 
     .backplane-word-top {
-      font-size: clamp(3.8rem, 8.4vw, 9.2rem);
+      font-size: clamp(3.1rem, 6.8vw, 7.5rem);
       letter-spacing: 0.02em;
       display: block;
       color: inherit;
     }
 
     .backplane-word-bottom {
-      font-size: clamp(4.6rem, 10.6vw, 11.6rem);
+      font-size: clamp(3.7rem, 8.5vw, 9.4rem);
       letter-spacing: 0.04em;
       display: block;
       color: inherit;
@@ -793,18 +793,18 @@
       }
 
       .backplane-word-top {
-        font-size: clamp(2.6rem, 14vw, 3.8rem);
+        font-size: clamp(2.2rem, 11.5vw, 3.2rem);
         letter-spacing: 0.02em;
         line-height: 0.88;
-        color: #FFFFFF;
+        color: inherit;
       }
 
       .backplane-word-bottom {
-        font-size: clamp(3.2rem, 17vw, 4.6rem);
+        font-size: clamp(2.7rem, 14vw, 3.9rem);
         letter-spacing: 0.03em;
         line-height: 0.88;
         margin-top: -0.04em;
-        color: #FFFFFF;
+        color: inherit;
       }
 
       .cloud-floor-dreamy {
@@ -1366,8 +1366,8 @@
       let initialLeft = 0, initialTop = 0;
       let hasMoved = false;
 
-      // Responsive viewport isolation (v5 clean storage)
-      const STORAGE_PREFIX = 'nike_cloud_custom_edits_v6_';
+      // Responsive viewport isolation (v7 clean storage)
+      const STORAGE_PREFIX = 'nike_cloud_custom_edits_v7_';
       try {
         localStorage.removeItem('nike_cloud_custom_edits_v1_mobile');
         localStorage.removeItem('nike_cloud_custom_edits_v1_desktop');
@@ -1379,6 +1379,8 @@
         localStorage.removeItem('nike_cloud_custom_edits_v4_desktop');
         localStorage.removeItem('nike_cloud_custom_edits_v5_mobile');
         localStorage.removeItem('nike_cloud_custom_edits_v5_desktop');
+        localStorage.removeItem('nike_cloud_custom_edits_v6_mobile');
+        localStorage.removeItem('nike_cloud_custom_edits_v6_desktop');
       } catch(e) {}
 
       function getActiveViewport() {
