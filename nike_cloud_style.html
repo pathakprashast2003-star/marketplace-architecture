@@ -450,139 +450,224 @@
       box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
     }
 
-    /* ── MOBILE OPTIMIZATIONS (NIKE CLOUD LAYOUT) ── */
+    /* ── DRAG & EDIT STUDIO ENGINE STYLES ── */
+    .editor-toggle-btn {
+      position: fixed;
+      top: 16px;
+      left: 20px;
+      z-index: 10001;
+      background: #000000;
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 9999px;
+      padding: 7px 14px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+    }
+    .editor-toggle-btn:hover {
+      background: #1E293B;
+      transform: translateY(-1px);
+    }
+    .editor-toggle-btn.active {
+      background: #2563EB;
+      border-color: #60A5FA;
+      box-shadow: 0 0 16px rgba(37, 99, 235, 0.6);
+    }
+    body.is-editing .giant-headline-backplane,
+    body.is-editing .backplane-word-top,
+    body.is-editing .backplane-word-bottom,
+    body.is-editing .subject-pilot-image,
+    body.is-editing .dock-headline-col,
+    body.is-editing .dock-actions-col,
+    body.is-editing .stage-horizon-dock {
+      cursor: move !important;
+      pointer-events: auto !important;
+    }
+    body.is-editing .drag-selected {
+      outline: 2px dashed #3B82F6 !important;
+      outline-offset: 4px;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25) !important;
+      border-radius: 4px;
+    }
+    .editor-hud {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10002;
+      background: rgba(11, 15, 29, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      padding: 8px 12px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+      width: calc(100% - 24px);
+      max-width: 520px;
+      color: #FFFFFF;
+      font-family: inherit;
+      user-select: none;
+    }
+    body.is-editing .editor-hud {
+      display: flex;
+    }
+    .hud-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 11px;
+    }
+    .hud-mode-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      background: rgba(37, 99, 235, 0.28);
+      border: 1px solid rgba(96, 165, 250, 0.45);
+      color: #93C5FD;
+      cursor: default;
+    }
+    .hud-mode-badge.is-desktop {
+      background: rgba(16, 185, 129, 0.28);
+      border-color: rgba(52, 211, 153, 0.45);
+      color: #6EE7B7;
+    }
+    .hud-target-name {
+      color: #60A5FA;
+      font-weight: 700;
+    }
+    .hud-coords {
+      color: #94A3B8;
+      font-variant-numeric: tabular-nums;
+      font-size: 10.5px;
+    }
+    .hud-chips {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      width: 100%;
+      padding: 2px 0;
+    }
+    .hud-chip {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.85);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 10.5px;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .hud-chip.active {
+      background: #2563EB;
+      border-color: #60A5FA;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+    .hud-actions {
+      display: flex;
+      gap: 6px;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .hud-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+      border-radius: 8px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .hud-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .hud-btn-primary {
+      background: #2563EB;
+      border-color: #3B82F6;
+    }
+    .hud-btn-primary:hover {
+      background: #1D4ED8;
+    }
+
+    /* ── MOBILE OPTIMIZATIONS (CARD PRESERVED 100DVH ARCHITECTURE) ── */
     @media (max-width: 900px) {
       html, body {
-        height: auto;
-        min-height: 100dvh;
-        overflow-y: auto;
-        overflow-x: hidden;
+        width: 100%;
+        height: 100dvh;
+        max-height: 100dvh;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        background: #080C14;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
       }
 
       .top-brand-header {
-        padding: 0 16px;
-        height: 56px;
+        display: none !important;
       }
 
-      .header-nav-links {
-        display: none;
-      }
-
-      .header-right-tools {
-        margin-right: 0 !important;
-        gap: 14px;
-      }
-
+      /* Floating Hero Card on Mobile */
       .nike-hero-canvas {
-        width: 100%;
-        min-height: calc(100dvh - 56px);
-        height: auto;
-        border-radius: 0;
-        padding: 24px 16px 88px;
-        box-shadow: none;
+        width: calc(100% - 16px);
+        height: calc(100dvh - 16px);
+        margin: 8px auto;
+        border-radius: 28px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 1.5px rgba(255, 255, 255, 0.4);
+        overflow: hidden;
+        position: relative;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        gap: 28px;
-      }
-
-      .stage-overlay-grid {
-        padding: 0;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 24px;
-        height: auto;
-      }
-
-      .flank-left {
-        max-width: 100%;
-        width: 100%;
-        transform: none;
-      }
-
-      .headline-stack {
-        font-size: clamp(2.4rem, 10vw, 4.2rem);
-        margin-bottom: 16px;
-      }
-
-      .hero-subtitle {
-        font-size: 15px;
-        margin-bottom: 22px;
-        max-width: 100%;
-      }
-
-      .action-row {
-        width: 100%;
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 24px;
-      }
-
-      .btn-discover, .btn-join {
-        width: 100%;
-        justify-content: center;
-        text-align: center;
-        padding: 16px 20px;
-      }
-
-      .apple-spec-bar {
-        width: 100%;
         justify-content: space-between;
-        gap: 8px;
       }
 
-      .subject-center-stage {
-        position: relative;
-        left: auto;
-        bottom: auto;
-        transform: none;
-        width: 100%;
-        height: clamp(340px, 48vh, 460px);
-        order: 2;
-        margin-top: 12px;
-      }
-
-      .subject-pilot-image {
-        max-height: 100%;
-        width: auto;
-        object-fit: contain;
-      }
-
-      .flank-right {
-        align-items: center;
-        text-align: center;
-        width: 100%;
-        transform: none;
-        order: 3;
-      }
-
-      .btn-explore-now {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .bottom-reel-dock {
-        position: relative;
-        bottom: auto;
-        left: auto;
-        transform: none;
-        margin-top: 12px;
-        order: 4;
-      }
-
-      .orbit-guide-ring {
-        display: none;
-      }
-
+      /* Compact top pill dock for layout switcher */
       .preview-layout-switcher {
-        top: auto;
-        bottom: 16px;
-        right: 50%;
-        transform: translateX(50%);
-        width: calc(100vw - 32px);
-        max-width: 380px;
-        justify-content: center;
-        padding: 4px;
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: calc(100% - 32px);
+        max-width: 310px;
+        padding: 3px 4px;
+        z-index: 100;
+        background: rgba(13, 10, 28, 0.65);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
       }
 
       .switcher-title {
@@ -590,17 +675,221 @@
       }
 
       .switcher-tab {
-        font-size: 11px;
-        padding: 8px 10px;
+        font-size: 9.5px;
+        padding: 5px 8px;
         flex: 1;
         justify-content: center;
         text-align: center;
         white-space: nowrap;
       }
+
+      .editor-toggle-btn {
+        top: 48px;
+        right: 14px;
+        left: auto;
+        bottom: auto;
+        font-size: 11px;
+        padding: 5px 12px;
+      }
+
+      .editor-hud {
+        bottom: 16px;
+        width: calc(100% - 20px);
+        padding: 8px 10px;
+      }
+
+      /* Mobile 3D Backplane Headline: CREATIVE EDGE */
+      .giant-headline-backplane {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 5;
+        text-align: center;
+        width: auto;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .backplane-word-top {
+        font-size: clamp(3.2rem, 16vw, 4.8rem);
+        letter-spacing: 0.02em;
+        line-height: 0.88;
+        color: #FFFFFF;
+      }
+
+      .backplane-word-bottom {
+        font-size: clamp(3.8rem, 19vw, 5.6rem);
+        letter-spacing: 0.03em;
+        line-height: 0.88;
+        margin-top: -0.06em;
+        color: #FFFFFF;
+      }
+
+      /* Center Subject Stage: Pilot & Drone layered in front */
+      .subject-center-stage {
+        position: absolute;
+        top: 48px;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: calc(100% - 138px);
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      .subject-pilot-image {
+        height: 100%;
+        max-height: 100%;
+        width: auto;
+        max-width: 88%;
+        object-fit: contain;
+        object-position: top center;
+      }
+
+      /* Bottom Horizon Dock: Elevated Apple-grade tactile dock */
+      .stage-horizon-dock {
+        position: absolute;
+        bottom: 16px;
+        left: 0;
+        width: 100%;
+        padding: 0 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        z-index: 25;
+        pointer-events: auto;
+      }
+
+      .dock-headline-col {
+        text-align: center;
+        align-items: center;
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .dock-title {
+        font-size: clamp(0.92rem, 3.8vw, 1.1rem);
+        font-weight: 800;
+        line-height: 1.15;
+        margin: 0;
+        color: #FFFFFF;
+        text-shadow: 0 2px 10px rgba(8, 24, 70, 0.4);
+      }
+
+      .dock-sub {
+        display: none;
+      }
+
+      .dock-actions-col {
+        align-items: center;
+        width: 100%;
+        gap: 8px;
+      }
+
+      .action-buttons-wrap {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        max-width: 340px;
+        margin: 0;
+      }
+
+      .btn-discover, .btn-join {
+        flex: 1;
+        justify-content: center;
+        text-align: center;
+        padding: 12px 14px;
+        font-size: 13.5px;
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        border-radius: 9999px;
+        white-space: nowrap;
+      }
+
+      .btn-discover {
+        background: #000000;
+        color: #FFFFFF;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      }
+
+      .btn-join {
+        background: rgba(255, 255, 255, 0.88);
+        color: #080C14;
+        border: 1px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 6px 18px rgba(10, 30, 80, 0.12);
+      }
+
+      .dock-specs-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        white-space: nowrap;
+        width: 100%;
+        color: rgba(255, 255, 255, 0.9);
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- ── DRAG & EDIT STUDIO ── -->
+  <button id="editorToggle" class="editor-toggle-btn" type="button" aria-label="Toggle Drag and Edit Mode">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 20h9"/>
+      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+    </svg>
+    <span class="edit-label">Drag &amp; Edit</span>
+  </button>
+
+  <aside id="editorHud" class="editor-hud" aria-label="Editor Controls">
+    <div class="hud-header">
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <span id="hudModeBadge" class="hud-mode-badge" title="Active responsive mode">📱 Mobile</span>
+        <span>Target: <span id="hudTargetName" class="hud-target-name">CREATIVE EDGE</span></span>
+      </div>
+      <span id="hudCoords" class="hud-coords">Drag on screen to reposition</span>
+    </div>
+    <div class="hud-chips">
+      <!-- Dynamically generated based on active viewport -->
+    </div>
+    <div class="hud-actions">
+      <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+        <button class="hud-btn" type="button" id="hudDockUp" title="Nudge Dock Up">Dock ↑</button>
+        <button class="hud-btn" type="button" id="hudDockDown" title="Nudge Dock Down">Dock ↓</button>
+        <button class="hud-btn" type="button" id="hudColorCycle" title="Cycle Color">Color</button>
+        <button class="hud-btn" type="button" id="hudImgMinus" title="Reduce Pilot Size by 5%">Img -</button>
+        <button class="hud-btn" type="button" id="hudImgPlus" title="Increase Pilot Size by 5%">Img +</button>
+        <button class="hud-btn" type="button" id="hudFontMinus" title="Decrease Font Size">A-</button>
+        <button class="hud-btn" type="button" id="hudFontPlus" title="Increase Font Size">A+</button>
+        <button class="hud-btn" type="button" id="hudZToggle" title="Toggle Layer Behind/In Front">Layer: Behind</button>
+      </div>
+      <div style="display: flex; gap: 4px;">
+        <button class="hud-btn hud-btn-primary" type="button" id="hudCopyCss">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy CSS</span>
+        </button>
+        <button class="hud-btn" type="button" id="hudReset">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          <span>Reset</span>
+        </button>
+        <button class="hud-btn" type="button" id="hudClose" style="color: #F87171;">✕</button>
+      </div>
+    </div>
+  </aside>
 
   <!-- ── 3-WAY LAYOUT SWITCHER ── -->
   <aside class="preview-layout-switcher" aria-label="Layout Switcher">
@@ -626,16 +915,16 @@
 
     <div class="header-right-tools">
       <a href="#profile" class="tool-icon-btn" aria-label="Profile">
-        <span>👤</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       </a>
       <a href="#bag" class="tool-icon-btn" aria-label="Bag">
-        <span>🛍️</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <span class="bag-counter">1</span>
       </a>
     </div>
   </header>
 
-  <!-- MAIN FLOATING NIKE CLOUD CANVAS -->
+  <!-- MAIN FLOATING NIKE CLOUD CANVAS (HERO CARD) -->
   <main class="nike-hero-canvas">
 
     <!-- Atmospheric Clouds Layer -->
@@ -689,5 +978,487 @@
 
   </main>
 
+  <script>
+    /* ── DRAG & EDIT STUDIO ENGINE (VIEWPORT ISOLATED: MOBILE vs LAPTOP) ── */
+    (function initDragAndEdit() {
+      const toggleBtn = document.getElementById('editorToggle');
+      const hud = document.getElementById('editorHud');
+      const hudTargetName = document.getElementById('hudTargetName');
+      const hudCoords = document.getElementById('hudCoords');
+      const hudClose = document.getElementById('hudClose');
+      const hudReset = document.getElementById('hudReset');
+      const hudCopyCss = document.getElementById('hudCopyCss');
+      const hudFontMinus = document.getElementById('hudFontMinus');
+      const hudFontPlus = document.getElementById('hudFontPlus');
+      const hudZToggle = document.getElementById('hudZToggle');
+      const hudColorCycle = document.getElementById('hudColorCycle');
+      const hudImgMinus = document.getElementById('hudImgMinus');
+      const hudImgPlus = document.getElementById('hudImgPlus');
+      const hudDockUp = document.getElementById('hudDockUp');
+      const hudDockDown = document.getElementById('hudDockDown');
+
+      let isEditing = false;
+      let activeTarget = null;
+      let isDragging = false;
+      let startX = 0, startY = 0;
+      let initialLeft = 0, initialTop = 0;
+      let hasMoved = false;
+
+      // Responsive viewport isolation
+      const STORAGE_PREFIX = 'nike_cloud_custom_edits_v1_';
+      function getActiveViewport() {
+        return window.innerWidth <= 900 ? 'mobile' : 'desktop';
+      }
+      function getStorageKey() {
+        return STORAGE_PREFIX + getActiveViewport();
+      }
+
+      // Target elements per viewport
+      const targetMap = {
+        'giant-headline-backplane': { el: () => document.querySelector('.giant-headline-backplane'), name: 'CREATIVE EDGE (Display)', viewport: 'both' },
+        'backplane-word-top': { el: () => document.querySelector('.backplane-word-top'), name: 'Word: CREATIVE', viewport: 'both' },
+        'backplane-word-bottom': { el: () => document.querySelector('.backplane-word-bottom'), name: 'Word: EDGE', viewport: 'both' },
+        'subject-pilot-image': { el: () => document.querySelector('.subject-pilot-image'), name: 'Pilot Image', viewport: 'both' },
+        'dock-headline-col': { el: () => document.querySelector('.dock-headline-col'), name: 'Left Proposition', viewport: 'both' },
+        'dock-actions-col': { el: () => document.querySelector('.dock-actions-col'), name: 'Right Actions', viewport: 'desktop' },
+        'stage-horizon-dock': { el: () => document.querySelector('.stage-horizon-dock'), name: 'Bottom Action Dock', viewport: 'both' }
+      };
+
+      const defaultTexts = {
+        'backplane-word-top': 'CREATIVE',
+        'backplane-word-bottom': 'EDGE'
+      };
+
+      function updateHudModeBadge() {
+        const badge = document.getElementById('hudModeBadge');
+        const mode = getActiveViewport();
+        if (badge) {
+          if (mode === 'mobile') {
+            badge.textContent = '📱 Mobile (<900px)';
+            badge.classList.remove('is-desktop');
+          } else {
+            badge.textContent = '💻 Laptop (>900px)';
+            badge.classList.add('is-desktop');
+          }
+        }
+      }
+
+      function updateHudChipsForMode() {
+        const mode = getActiveViewport();
+        const chipsContainer = document.querySelector('.hud-chips');
+        if (!chipsContainer) return;
+        chipsContainer.innerHTML = '';
+
+        Object.keys(targetMap).forEach(key => {
+          const item = targetMap[key];
+          if (item.viewport === 'both' || item.viewport === mode) {
+            const btn = document.createElement('button');
+            const isActive = activeTarget && getTargetKey(activeTarget) === key;
+            btn.className = 'hud-chip' + (isActive ? ' active' : '');
+            btn.type = 'button';
+            btn.setAttribute('data-hud-select', key);
+            btn.textContent = item.name;
+            btn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              selectTarget(key);
+            });
+            chipsContainer.appendChild(btn);
+          }
+        });
+      }
+
+      function clearAllInlineStyles() {
+        Object.keys(targetMap).forEach(key => {
+          const el = targetMap[key].el();
+          if (!el) return;
+          el.style.left = '';
+          el.style.top = '';
+          el.style.position = '';
+          el.style.fontSize = '';
+          el.style.zIndex = '';
+          el.style.color = '';
+          el.style.maxHeight = '';
+          el.style.height = '';
+          el.style.maxWidth = '';
+          el.style.marginBottom = '';
+          el.style.bottom = '';
+          el.style.right = '';
+          el.querySelectorAll('*').forEach(child => {
+            child.style.color = '';
+          });
+        });
+
+        Object.keys(defaultTexts).forEach(k => {
+          const el = targetMap[k] ? targetMap[k].el() : null;
+          if (el) el.innerText = defaultTexts[k];
+        });
+      }
+
+      function getTargetKey(el) {
+        if (!el) return null;
+        if (el.classList.contains('subject-pilot-image')) return 'subject-pilot-image';
+        if (el.classList.contains('backplane-word-top')) return 'backplane-word-top';
+        if (el.classList.contains('backplane-word-bottom')) return 'backplane-word-bottom';
+        if (el.classList.contains('giant-headline-backplane')) return 'giant-headline-backplane';
+        if (el.classList.contains('dock-headline-col')) return 'dock-headline-col';
+        if (el.classList.contains('dock-actions-col')) return 'dock-actions-col';
+        if (el.classList.contains('stage-horizon-dock')) return 'stage-horizon-dock';
+        return null;
+      }
+
+      function selectTarget(keyOrEl) {
+        const el = typeof keyOrEl === 'string' ? (targetMap[keyOrEl] ? targetMap[keyOrEl].el() : null) : keyOrEl;
+        if (!el) return;
+        document.querySelectorAll('.drag-selected').forEach(n => n.classList.remove('drag-selected'));
+        activeTarget = el;
+        activeTarget.classList.add('drag-selected');
+
+        const key = getTargetKey(el);
+        if (hudTargetName) hudTargetName.textContent = key && targetMap[key] ? targetMap[key].name : el.tagName;
+        
+        document.querySelectorAll('.hud-chip').forEach(c => {
+          c.classList.toggle('active', c.getAttribute('data-hud-select') === key);
+        });
+
+        if (hudZToggle) {
+          const z = parseInt(window.getComputedStyle(el).zIndex, 10) || 5;
+          hudZToggle.textContent = z >= 15 ? 'Layer: In Front' : 'Layer: Behind';
+        }
+
+        updateCoordsDisplay();
+      }
+
+      function updateCoordsDisplay() {
+        if (!hudCoords || !activeTarget) return;
+        const left = activeTarget.style.left || 'default';
+        const top = activeTarget.style.top || 'default';
+        const font = activeTarget.style.fontSize ? ` • ${activeTarget.style.fontSize}` : '';
+        hudCoords.textContent = `X: ${left} | Y: ${top}${font}`;
+      }
+
+      function setEditMode(state) {
+        isEditing = state;
+        document.body.classList.toggle('is-editing', isEditing);
+        if (toggleBtn) {
+          toggleBtn.classList.toggle('active', isEditing);
+          const lbl = toggleBtn.querySelector('.edit-label');
+          if (lbl) lbl.textContent = isEditing ? 'Editing ON' : 'Drag & Edit';
+        }
+
+        const textNodes = document.querySelectorAll('.backplane-word-top, .backplane-word-bottom, .dock-title');
+        textNodes.forEach(node => {
+          node.contentEditable = isEditing ? 'true' : 'false';
+          node.spellcheck = false;
+        });
+
+        if (isEditing) {
+          selectTarget('giant-headline-backplane');
+        } else {
+          document.querySelectorAll('.drag-selected').forEach(n => n.classList.remove('drag-selected'));
+          activeTarget = null;
+        }
+      }
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setEditMode(!isEditing);
+        });
+      }
+
+      if (hudClose) {
+        hudClose.addEventListener('click', () => setEditMode(false));
+      }
+
+      // Pointer drag handling
+      document.addEventListener('pointerdown', (e) => {
+        if (!isEditing) return;
+        if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher')) return;
+
+        let clickedTarget = null;
+        if (e.target.closest('.backplane-word-top')) clickedTarget = document.querySelector('.backplane-word-top');
+        else if (e.target.closest('.backplane-word-bottom')) clickedTarget = document.querySelector('.backplane-word-bottom');
+        else if (e.target.closest('.giant-headline-backplane')) clickedTarget = document.querySelector('.giant-headline-backplane');
+        else if (e.target.closest('.subject-pilot-image')) clickedTarget = document.querySelector('.subject-pilot-image');
+        else if (e.target.closest('.dock-headline-col')) clickedTarget = document.querySelector('.dock-headline-col');
+        else if (e.target.closest('.dock-actions-col')) clickedTarget = document.querySelector('.dock-actions-col');
+        else if (e.target.closest('.stage-horizon-dock')) clickedTarget = document.querySelector('.stage-horizon-dock');
+
+        if (!clickedTarget) return;
+
+        selectTarget(clickedTarget);
+        startX = e.clientX;
+        startY = e.clientY;
+        hasMoved = false;
+
+        const parent = clickedTarget.offsetParent || document.body;
+        const pRect = parent.getBoundingClientRect();
+        const tRect = clickedTarget.getBoundingClientRect();
+
+        initialLeft = parseFloat(clickedTarget.style.left);
+        initialTop = parseFloat(clickedTarget.style.top);
+        if (isNaN(initialLeft)) initialLeft = tRect.left - pRect.left;
+        if (isNaN(initialTop)) initialTop = tRect.top - pRect.top;
+
+        function onPointerMove(pe) {
+          const dx = pe.clientX - startX;
+          const dy = pe.clientY - startY;
+          if (!hasMoved && Math.hypot(dx, dy) > 3) {
+            hasMoved = true;
+            isDragging = true;
+            try { clickedTarget.setPointerCapture(pe.pointerId); } catch(err) {}
+          }
+          if (hasMoved) {
+            pe.preventDefault();
+            const pos = window.getComputedStyle(clickedTarget).position;
+            if (pos === 'static') clickedTarget.style.position = 'relative';
+            clickedTarget.style.left = Math.round(initialLeft + dx) + 'px';
+            clickedTarget.style.top = Math.round(initialTop + dy) + 'px';
+            clickedTarget.style.right = 'auto';
+            clickedTarget.style.bottom = 'auto';
+            updateCoordsDisplay();
+          }
+        }
+
+        function onPointerUp(pe) {
+          window.removeEventListener('pointermove', onPointerMove);
+          window.removeEventListener('pointerup', onPointerUp);
+          try { clickedTarget.releasePointerCapture(pe.pointerId); } catch(err) {}
+          if (hasMoved) {
+            saveEdits();
+          }
+          setTimeout(() => { isDragging = false; }, 50);
+        }
+
+        window.addEventListener('pointermove', onPointerMove, { passive: false });
+        window.addEventListener('pointerup', onPointerUp);
+      });
+
+      function adjustFontSize(factor) {
+        if (!activeTarget) return;
+        const cur = parseFloat(window.getComputedStyle(activeTarget).fontSize);
+        const next = Math.round(cur * factor);
+        activeTarget.style.fontSize = next + 'px';
+        updateCoordsDisplay();
+        saveEdits();
+      }
+
+      function adjustImgScale(factor) {
+        const slot = document.querySelector('.subject-pilot-image');
+        if (!slot) return;
+        const mode = getActiveViewport();
+        if (mode === 'mobile') {
+          const curH = parseFloat(slot.style.maxHeight) || 84;
+          const nextH = Math.min(100, Math.max(40, Math.round(curH * factor)));
+          slot.style.maxHeight = nextH + '%';
+          slot.style.height = nextH + '%';
+          slot.style.maxWidth = (nextH + 8) + '%';
+        } else {
+          const curH = parseFloat(slot.style.maxHeight) || 88;
+          const nextH = Math.min(100, Math.max(50, Math.round(curH * factor)));
+          slot.style.maxHeight = nextH + 'vh';
+        }
+        saveEdits();
+      }
+
+      function nudgeDock(deltaPx) {
+        const dock = document.querySelector('.stage-horizon-dock');
+        if (!dock) return;
+        const curBottom = parseFloat(dock.style.bottom) || (getActiveViewport() === 'mobile' ? 18 : 44);
+        const next = Math.max(0, curBottom + deltaPx);
+        dock.style.bottom = next + 'px';
+        saveEdits();
+      }
+
+      if (hudFontPlus) hudFontPlus.addEventListener('click', () => adjustFontSize(1.08));
+      if (hudFontMinus) hudFontMinus.addEventListener('click', () => adjustFontSize(0.92));
+      if (hudImgMinus) hudImgMinus.addEventListener('click', () => adjustImgScale(0.95));
+      if (hudImgPlus) hudImgPlus.addEventListener('click', () => adjustImgScale(1.05));
+      if (hudDockUp) hudDockUp.addEventListener('click', () => nudgeDock(6));
+      if (hudDockDown) hudDockDown.addEventListener('click', () => nudgeDock(-6));
+
+      if (hudZToggle) {
+        hudZToggle.addEventListener('click', () => {
+          if (!activeTarget) return;
+          const curZ = parseInt(window.getComputedStyle(activeTarget).zIndex, 10) || 5;
+          const nextZ = curZ >= 15 ? 4 : 16;
+          activeTarget.style.zIndex = nextZ;
+          hudZToggle.textContent = nextZ >= 15 ? 'Layer: In Front' : 'Layer: Behind';
+          saveEdits();
+        });
+      }
+
+      if (hudColorCycle) {
+        hudColorCycle.addEventListener('click', () => {
+          if (!activeTarget) return;
+          const colors = ['#FFFFFF', '#080C14', '#2563EB', '#E0F2FE'];
+          const cur = activeTarget.style.color || window.getComputedStyle(activeTarget).color;
+          const next = colors[(colors.indexOf(cur) + 1) % colors.length] || colors[0];
+          activeTarget.style.color = next;
+          activeTarget.querySelectorAll('*').forEach(n => n.style.color = next);
+          hudColorCycle.textContent = next === '#FFFFFF' ? 'Color: White' : (next === '#080C14' ? 'Color: Dark' : 'Color: Blue');
+          saveEdits();
+        });
+      }
+
+      if (hudCopyCss) {
+        hudCopyCss.addEventListener('click', () => {
+          if (!activeTarget) return;
+          const mode = getActiveViewport();
+          const key = getTargetKey(activeTarget);
+          let sel = '.' + key;
+          if (activeTarget.id) sel = '#' + activeTarget.id;
+
+          const top = activeTarget.style.top || 'auto';
+          const left = activeTarget.style.left || 'auto';
+          const font = activeTarget.style.fontSize || '';
+          const z = activeTarget.style.zIndex || '';
+          const col = activeTarget.style.color || '';
+          const bottom = activeTarget.style.bottom || '';
+          const maxH = activeTarget.style.maxHeight || '';
+
+          let rules = `  top: ${top};\n  left: ${left};\n`;
+          if (font) rules += `  font-size: ${font};\n`;
+          if (col) rules += `  color: ${col};\n`;
+          if (bottom) rules += `  bottom: ${bottom};\n`;
+          if (maxH) rules += `  max-height: ${maxH};\n`;
+          if (z) rules += `  z-index: ${z};\n`;
+
+          let css = mode === 'mobile'
+            ? `/* Mobile (<900px) Overrides */\n@media (max-width: 900px) {\n  ${sel} {\n${rules}  }\n}`
+            : `/* Laptop / Desktop (>900px) Overrides */\n@media (min-width: 901px) {\n  ${sel} {\n${rules}  }\n}`;
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(css).then(showCopiedNotice);
+          }
+        });
+      }
+
+      function showCopiedNotice() {
+        const orig = hudCopyCss.textContent;
+        hudCopyCss.textContent = '✓ Copied!';
+        hudCopyCss.style.background = '#059669';
+        setTimeout(() => {
+          hudCopyCss.textContent = orig;
+          hudCopyCss.style.background = '';
+        }, 1500);
+      }
+
+      if (hudReset) {
+        hudReset.addEventListener('click', () => {
+          const mode = getActiveViewport();
+          const modeName = mode === 'mobile' ? 'Mobile (<900px)' : 'Laptop / Desktop (>900px)';
+          if (confirm(`Reset custom adjustments for ${modeName} back to original?`)) {
+            try {
+              localStorage.removeItem(getStorageKey());
+            } catch(e) {}
+            clearAllInlineStyles();
+            restoreEdits();
+            updateCoordsDisplay();
+          }
+        });
+      }
+
+      function saveEdits() {
+        const mode = getActiveViewport();
+        const data = {};
+        Object.keys(targetMap).forEach(key => {
+          const item = targetMap[key];
+          if (item.viewport === 'both' || item.viewport === mode) {
+            const el = item.el();
+            if (el) {
+              const isText = el.classList.contains('backplane-word-top') || el.classList.contains('backplane-word-bottom') || el.classList.contains('dock-title');
+              data[key] = {
+                left: el.style.left || '',
+                top: el.style.top || '',
+                fontSize: el.style.fontSize || '',
+                zIndex: el.style.zIndex || '',
+                color: el.style.color || '',
+                maxHeight: el.style.maxHeight || '',
+                maxWidth: el.style.maxWidth || '',
+                bottom: el.style.bottom || '',
+                text: isText ? el.innerText : null
+              };
+            }
+          }
+        });
+        try {
+          localStorage.setItem(getStorageKey(), JSON.stringify(data));
+        } catch(e) {}
+      }
+
+      function restoreEdits() {
+        clearAllInlineStyles();
+        const mode = getActiveViewport();
+        try {
+          const raw = localStorage.getItem(getStorageKey());
+          if (!raw) return;
+          const data = JSON.parse(raw);
+          Object.keys(data).forEach(key => {
+            const item = targetMap[key];
+            if (!item) return;
+            if (item.viewport !== 'both' && item.viewport !== mode) return;
+
+            const el = item.el();
+            if (el && data[key]) {
+              const d = data[key];
+              if (d.left) el.style.left = d.left;
+              if (d.top) el.style.top = d.top;
+              if (d.fontSize) el.style.fontSize = d.fontSize;
+              if (d.zIndex) el.style.zIndex = d.zIndex;
+              if (d.color) {
+                el.style.color = d.color;
+                el.querySelectorAll('*').forEach(n => n.style.color = d.color);
+              }
+              if (d.maxHeight) {
+                el.style.maxHeight = d.maxHeight;
+                el.style.height = d.maxHeight;
+              }
+              if (d.maxWidth) {
+                el.style.maxWidth = d.maxWidth;
+              }
+              if (d.bottom) {
+                el.style.bottom = d.bottom;
+              }
+              if (d.left || d.top) {
+                const pos = window.getComputedStyle(el).position;
+                if (pos === 'static') el.style.position = 'relative';
+              }
+              if (d.text) {
+                el.innerText = d.text;
+              }
+            }
+          });
+        } catch(err) {
+          console.warn('Failed restoring edits', err);
+        }
+      }
+
+      document.addEventListener('input', (e) => {
+        if (isEditing && (e.target.classList.contains('backplane-word-top') || e.target.classList.contains('backplane-word-bottom') || e.target.classList.contains('dock-title'))) {
+          saveEdits();
+        }
+      });
+
+      let lastViewport = getActiveViewport();
+      window.addEventListener('resize', () => {
+        const currentViewport = getActiveViewport();
+        if (currentViewport !== lastViewport) {
+          lastViewport = currentViewport;
+          clearAllInlineStyles();
+          restoreEdits();
+          updateHudChipsForMode();
+          updateHudModeBadge();
+          if (isEditing) {
+            selectTarget('giant-headline-backplane');
+          }
+        }
+      });
+
+      updateHudModeBadge();
+      updateHudChipsForMode();
+      restoreEdits();
+    })();
+  </script>
 </body>
 </html>
