@@ -126,13 +126,18 @@
 
     .text-white,
     .title-wefind,
-    .title-the {
+    .title-the,
+    .title-wefind-mobile {
       color: var(--text-white);
       text-shadow: 0 4px 20px rgba(37, 99, 235, 0.18);
     }
 
     .text-dark {
       color: var(--text-dark);
+    }
+
+    .mobile-only {
+      display: none !important;
     }
 
     /* Hidden on desktop; sculpted for mobile 3D depth */
@@ -436,24 +441,33 @@
         display: contents;
       }
 
-      /* Centralized headline prefix */
+      .desktop-only {
+        display: none !important;
+      }
+
+      .mobile-only {
+        display: inline-block !important;
+      }
+
+      /* Centralized headline prefix: elevated a bit above */
       .headline-stack {
         order: 1;
         width: 100%;
-        margin: 0 0 2px;
+        margin: -8px 0 2px;
         text-align: center;
         display: block;
         line-height: 1;
         padding: 0 16px;
       }
 
-      .title-wefind, .title-the {
-        display: inline;
-        font-size: clamp(1.5rem, 6.5vw, 2.1rem);
+      /* Bolder, bigger, pure white prefix with atmospheric blue shadow */
+      .title-wefind-mobile {
+        font-size: clamp(1.85rem, 8.2vw, 2.65rem);
         font-weight: 900;
-        letter-spacing: -0.01em;
-        color: #0F172A;
-        text-shadow: none;
+        letter-spacing: -0.015em;
+        color: #FFFFFF !important;
+        text-shadow: 0 4px 18px rgba(37, 99, 235, 0.38);
+        white-space: nowrap;
       }
 
       .title-creative, .title-edge {
@@ -512,7 +526,7 @@
         font-family: var(--font-display);
         font-weight: 900;
         line-height: 0.85;
-        color: #FFFFFF;
+        color: #0F172A; /* Sculpted in Black / Deep Obsidian per user instruction */
         text-transform: uppercase;
         /* Strong text fill, no shadow clutter */
         text-shadow: none;
@@ -534,11 +548,11 @@
       #heroCharacterSlot {
         position: relative;
         z-index: 2;
-        /* Scaled down 1 step (~8%) for breathing room around head and bottom dock */
-        height: 92%;
-        max-height: 92%;
+        /* Scaled down to balance with the elevated dock */
+        height: 86%;
+        max-height: 86%;
         width: auto;
-        max-width: 92%;
+        max-width: 88%;
         object-fit: contain;
         object-position: top center;
       }
@@ -551,8 +565,8 @@
         flex-direction: column;
         align-items: center;
         gap: 9px;
-        /* Lift dock upwards into comfortable lower-third thumb zone */
-        margin: 0 0 42px;
+        /* Lift dock upwards further into comfortable lower-third thumb zone */
+        margin: 0 0 62px;
         padding: 0 16px;
         position: relative;
         z-index: 10;
@@ -921,7 +935,12 @@
       <section class="hero-left-content">
 
         <h1 class="headline-stack">
-          <span class="title-row title-wefind">WE FIND</span> <span class="title-row title-the">THE</span>
+          <!-- Desktop Two-Row White Prefix -->
+          <span class="desktop-only title-row title-wefind text-white">WE FIND</span>
+          <span class="desktop-only title-row title-the text-white">THE</span>
+          <!-- Mobile Unified Single-String White Prefix (no gap, bigger, elevated) -->
+          <span class="mobile-only title-wefind-mobile text-white">WE FIND THE</span>
+
           <span class="title-row title-creative text-dark">CREATIVE</span>
           <span class="title-row title-edge text-dark">EDGE</span>
         </h1>
@@ -1314,13 +1333,22 @@
       if (hudReset) {
         hudReset.addEventListener('click', () => {
           if (confirm('Reset custom dragged positions and text back to original?')) {
+            localStorage.removeItem('dunes_custom_edits_v5');
             localStorage.removeItem('dunes_custom_edits');
             location.reload();
           }
         });
       }
 
-      // Persistence
+      // Persistence with cache isolation
+      const STORAGE_KEY = 'dunes_custom_edits_v5';
+      try {
+        localStorage.removeItem('dunes_custom_edits');
+        localStorage.removeItem('dunes_custom_edits_v2');
+        localStorage.removeItem('dunes_custom_edits_v3');
+        localStorage.removeItem('dunes_custom_edits_v4');
+      } catch(e) {}
+
       function saveEdits() {
         const data = {};
         Object.keys(targetMap).forEach(key => {
@@ -1338,12 +1366,12 @@
             };
           }
         });
-        localStorage.setItem('dunes_custom_edits', JSON.stringify(data));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       }
 
       function restoreEdits() {
         try {
-          const raw = localStorage.getItem('dunes_custom_edits');
+          const raw = localStorage.getItem(STORAGE_KEY);
           if (!raw) return;
           const data = JSON.parse(raw);
           Object.keys(data).forEach(key => {
@@ -1356,7 +1384,6 @@
               if (d.zIndex) el.style.zIndex = d.zIndex;
               if (d.color) {
                 el.style.color = d.color;
-                el.querySelectorAll('*').forEach(n => n.style.color = d.color);
               }
               if (d.maxHeight) {
                 el.style.maxHeight = d.maxHeight;
