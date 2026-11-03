@@ -81,6 +81,66 @@
       --text-shadow-hero: 0 4px 20px rgba(37, 99, 235, 0.18);
     }
 
+    /* THEME 3: Lilac Studio (Purple-Haired Illustrator) */
+    body[data-theme="lilac"] {
+      --sky-top: #FAF5FF;
+      --sky-mid: #F3E8FF;
+      --sky-deep: #E9D5FF;
+      --wave-azure: #C084FC;
+      --wave-cobalt: #7E22CE;
+      --wave-soft: #D8B4FE;
+      --text-white: #FFFFFF;
+      --text-dark: #2A0E44;
+      --text-secondary: #4D2377;
+      --text-shadow-hero: 0 4px 20px rgba(126, 34, 206, 0.16);
+      --btn-primary: #2A0E44;
+      --btn-primary-hover: #1A072E;
+      --btn-secondary-bg: #FFFFFF;
+      --btn-secondary-text: #2A0E44;
+      --pill-specs-bg: rgba(255, 255, 255, 0.90);
+      --pill-specs-text: #2A0E44;
+    }
+
+    /* THEME 4: Solar Amber (Athletic Motion & Action Sports) */
+    body[data-theme="amber"] {
+      --sky-top: #FFFBEB;
+      --sky-mid: #FEF3C7;
+      --sky-deep: #FDE68A;
+      --wave-azure: #F59E0B;
+      --wave-cobalt: #B45309;
+      --wave-soft: #FBBF24;
+      --text-white: #C2410C;
+      --text-dark: #3A1904;
+      --text-secondary: #5C2605;
+      --text-shadow-hero: none;
+      --btn-primary: #3A1904;
+      --btn-primary-hover: #1F0D02;
+      --btn-secondary-bg: #FFFFFF;
+      --btn-secondary-text: #3A1904;
+      --pill-specs-bg: rgba(255, 255, 255, 0.90);
+      --pill-specs-text: #3A1904;
+    }
+
+    /* THEME 5: Coral Street (Skater Girl & Street Culture) */
+    body[data-theme="coral"] {
+      --sky-top: #FFF1F2;
+      --sky-mid: #FFE4E6;
+      --sky-deep: #FECDD3;
+      --wave-azure: #FB7185;
+      --wave-cobalt: #BE123C;
+      --wave-soft: #FDA4AF;
+      --text-white: #BE123C;
+      --text-dark: #4C0519;
+      --text-secondary: #701A2C;
+      --text-shadow-hero: none;
+      --btn-primary: #4C0519;
+      --btn-primary-hover: #29020C;
+      --btn-secondary-bg: #FFFFFF;
+      --btn-secondary-text: #4C0519;
+      --pill-specs-bg: rgba(255, 255, 255, 0.90);
+      --pill-specs-text: #4C0519;
+    }
+
     html, body {
       width: 100%;
       height: 100vh;
@@ -1003,6 +1063,18 @@
       background: #38BDF8;
       box-shadow: 0 0 6px #38BDF8;
     }
+    .theme-capsule-btn[data-theme="lilac"] .theme-pill-dot {
+      background: #A855F7;
+      box-shadow: 0 0 6px #A855F7;
+    }
+    .theme-capsule-btn[data-theme="amber"] .theme-pill-dot {
+      background: #F97316;
+      box-shadow: 0 0 6px #F97316;
+    }
+    .theme-capsule-btn[data-theme="coral"] .theme-pill-dot {
+      background: #FB7185;
+      box-shadow: 0 0 6px #FB7185;
+    }
     .theme-timer-progress {
       position: absolute;
       bottom: 0;
@@ -1037,6 +1109,11 @@
       <span>Aero Cloud</span>
       <span class="theme-timer-progress"></span>
     </button>
+    <button class="theme-capsule-btn" data-theme="lilac" role="tab" aria-selected="false">
+      <span class="theme-pill-dot"></span>
+      <span>Purple Illustrator</span>
+      <span class="theme-timer-progress"></span>
+    </button>
   </div>
 
   <!-- ── DRAG & EDIT STUDIO ── -->
@@ -1067,8 +1144,10 @@
         <button class="hud-btn" type="button" id="hudDockUp" title="Nudge Action Dock Up">Dock ↑</button>
         <button class="hud-btn" type="button" id="hudDockDown" title="Nudge Action Dock Down">Dock ↓</button>
         <button class="hud-btn" type="button" id="hudColorCycle" title="Cycle Color between Dark, Blue, and White">Color</button>
-        <button class="hud-btn" type="button" id="hudImgMinus" title="Reduce Pilot Size by 5%">Img -</button>
-        <button class="hud-btn" type="button" id="hudImgPlus" title="Increase Pilot Size by 5%">Img +</button>
+        <button class="hud-btn" type="button" id="hudImgMinus" title="Reduce Character Size by 5%">Img -</button>
+        <button class="hud-btn" type="button" id="hudImgPlus" title="Increase Character Size by 5%">Img +</button>
+        <button class="hud-btn" type="button" id="hudPickImage" title="Upload or choose image for this character">🖼️ Pick Img</button>
+        <input type="file" id="hudFileInput" accept="image/*" style="display:none;" />
         <button class="hud-btn" type="button" id="hudFontMinus" title="Decrease Font Size">A-</button>
         <button class="hud-btn" type="button" id="hudFontPlus" title="Increase Font Size">A+</button>
         <button class="hud-btn" type="button" id="hudZToggle" title="Toggle Layer Behind/In Front">Layer: Behind</button>
@@ -1210,37 +1289,56 @@
 
     
     /* ── DYNAMIC MULTI-CHARACTER & THEME ENGINE (SLIDESHOW) ── */
-    const THEME_KEYS = ['sage', 'cobalt'];
+    const THEME_KEYS = ['sage', 'cobalt', 'lilac'];
     const THEME_PRESETS = {
       sage: {
         themeKey: 'sage',
+        name: 'Sage Scene',
         imgSrc: 'assets/creator_desk_designer.png',
         imgAlt: 'Digital Creator at Modern Workstation',
         creativeWord: 'CREATIVE',
         edgeWord: 'EDGE',
-        subText: 'A curated network of videographers, photographers, 3D artists and makers.',
+        leadDesktop: 'WE FIND THE',
+        subText: 'A curated network of 3D artists, digital craftspeople, and visual visionaries.',
         specs: [
-          '<span class="spec-item"><span class="spec-dot" style="background:#5DB60C; box-shadow:0 0 6px #5DB60C;"></span>Top 1% Creators</span>',
-          '<span class="spec-sep">/</span>',
-          '<span class="spec-item">Verified Proof</span>',
-          '<span class="spec-sep">/</span>',
-          '<span class="spec-item">Direct Terms</span>'
-        ].join(' ')
+          '<div class="spec-item"><span class="spec-value">Top 1% Creators</span></div>',
+          '<div class="spec-divider" aria-hidden="true"></div>',
+          '<div class="spec-item"><span class="spec-value">Verified Proof</span></div>',
+          '<div class="spec-divider" aria-hidden="true"></div>',
+          '<div class="spec-item"><span class="spec-value">Direct Terms</span></div>'
+        ].join('')
       },
       cobalt: {
         themeKey: 'cobalt',
+        name: 'Aero Cloud',
         imgSrc: 'assets/upward_flight_pilot_drone.png',
         imgAlt: 'Upward Flight: Pilot and Drone',
         creativeWord: 'CREATIVE',
         edgeWord: 'EDGE',
-        subText: 'A curated network of videographers, photographers, 3D artists and makers.',
+        leadDesktop: 'WE FIND THE',
+        subText: 'Vetted aerial directors, FPV cinematographers, and camera technicians.',
         specs: [
-          '<span class="spec-item"><span class="spec-dot"></span>Top 1% Creators</span>',
-          '<span class="spec-sep">/</span>',
-          '<span class="spec-item">Verified Proof</span>',
-          '<span class="spec-sep">/</span>',
-          '<span class="spec-item">Direct Terms</span>'
-        ].join(' ')
+          '<div class="spec-item"><span class="spec-value">Top 1% Drone Operators</span></div>',
+          '<div class="spec-divider" aria-hidden="true"></div>',
+          '<div class="spec-item"><span class="spec-value">Cinema 8K Proof</span></div>',
+          '<div class="spec-divider" aria-hidden="true"></div>',
+          '<div class="spec-item"><span class="spec-value">Direct Terms</span></div>'
+        ].join('')
+      },
+      lilac: {
+        themeKey: 'lilac',
+        name: 'Purple Illustrator',
+        imgSrc: 'assets/purple_haired_illustrator.png',
+        imgAlt: 'Purple-Haired Illustrator Drawing on a Pouf',
+        creativeWord: 'CREATIVE',
+        edgeWord: 'EDGE',
+        leadDesktop: 'WE FIND THE',
+        subText: 'Meet exceptional illustrators and visual artists turning ideas into unforgettable visual worlds.',
+        specs: [
+          '<div class="spec-item"><span class="spec-value">✓ Verified Portfolios</span></div>',
+          '<div class="spec-divider" aria-hidden="true"></div>',
+          '<div class="spec-item"><span class="spec-value">Direct Collaboration</span></div>'
+        ].join('')
       }
     };
 
@@ -1291,12 +1389,21 @@
       setTimeout(() => {
         body.setAttribute('data-theme', themeKey);
         if (img) {
-          img.src = data.imgSrc;
+          const customImg = localStorage.getItem('custom_image_' + themeKey);
+          img.src = customImg || data.imgSrc;
           img.alt = data.imgAlt;
         }
+        const titleCreative = document.querySelector('.title-creative');
+        if (titleCreative) titleCreative.textContent = data.creativeWord;
         if (edgeDesktop) edgeDesktop.textContent = data.edgeWord;
+        
+        const mbCreative = document.querySelector('.mb-creative');
+        if (mbCreative) mbCreative.textContent = data.creativeWord;
         if (edgeMobile) edgeMobile.textContent = data.edgeWord;
+        
         if (subText) subText.textContent = data.subText;
+        const specBar = document.querySelector('.apple-spec-bar');
+        if (specBar && data.specs) specBar.innerHTML = data.specs;
 
         if (window.restoreCharacterImageEdits) {
           window.restoreCharacterImageEdits(themeKey);
@@ -1403,8 +1510,9 @@
       } catch(e) {}
 
       function getCharacterDisplayName() {
-        if (currentThemeKey === 'sage') return 'Creator Image';
-        if (currentThemeKey === 'cobalt') return 'Pilot Image';
+        if (currentThemeKey === 'sage') return 'Creator Image (Sage)';
+        if (currentThemeKey === 'cobalt') return 'Pilot Image (Cobalt)';
+        if (currentThemeKey === 'lilac') return 'Purple Illustrator';
         return 'Character Image';
       }
 
@@ -1714,6 +1822,28 @@
         saveEdits();
       }
 
+      const hudPickImage = document.getElementById('hudPickImage');
+      const hudFileInput = document.getElementById('hudFileInput');
+      if (hudPickImage && hudFileInput) {
+        hudPickImage.addEventListener('click', () => {
+          hudFileInput.click();
+        });
+        hudFileInput.addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = (evt) => {
+            const dataUrl = evt.target.result;
+            const slot = document.getElementById('heroCharacterSlot');
+            if (slot) slot.src = dataUrl;
+            try {
+              localStorage.setItem('custom_image_' + currentThemeKey, dataUrl);
+            } catch(e) {}
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
       if (hudFontPlus) hudFontPlus.addEventListener('click', () => adjustFontSize(1.08));
       if (hudFontMinus) hudFontMinus.addEventListener('click', () => adjustFontSize(0.92));
       if (hudImgMinus) hudImgMinus.addEventListener('click', () => adjustImgScale(0.95));
@@ -1810,7 +1940,12 @@
           if (confirm(`Reset custom adjustments for ${modeName} back to original?`)) {
             try {
               localStorage.removeItem(getStorageKey());
+              localStorage.removeItem('custom_image_' + currentThemeKey);
             } catch(e) {}
+            const slot = document.getElementById('heroCharacterSlot');
+            if (slot && THEME_PRESETS[currentThemeKey]) {
+              slot.src = THEME_PRESETS[currentThemeKey].imgSrc;
+            }
             clearAllInlineStyles();
             restoreEdits();
             updateCoordsDisplay();

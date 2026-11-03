@@ -63,6 +63,39 @@
       --border-subtle: rgba(255, 255, 255, 0.1);
     }
 
+    body[data-theme="lilac"] {
+      --bg-sapphire: #2A0E44;
+      --bg-sapphire-gradient: linear-gradient(180deg, #F5EEFD 0%, #E8D5F8 32%, #C49DEB 66%, #8A4EC9 100%);
+      --accent-blue: #2A0E44;
+      --accent-blue-hover: #1A072E;
+      --text-white: #2A0E44;
+      --text-white-sub: #4D2377;
+      --status-emerald: #A855F7;
+      --border-subtle: rgba(42, 14, 68, 0.15);
+    }
+
+    body[data-theme="amber"] {
+      --bg-sapphire: #3A1904;
+      --bg-sapphire-gradient: linear-gradient(180deg, #FFF8F0 0%, #FED7AA 32%, #FB923C 68%, #EA580C 100%);
+      --accent-blue: #3A1904;
+      --accent-blue-hover: #1F0D02;
+      --text-white: #3A1904;
+      --text-white-sub: #5C2605;
+      --status-emerald: #F97316;
+      --border-subtle: rgba(58, 25, 4, 0.15);
+    }
+
+    body[data-theme="coral"] {
+      --bg-sapphire: #4C0519;
+      --bg-sapphire-gradient: linear-gradient(180deg, #FFF1F2 0%, #FECDD3 32%, #FB7185 68%, #E11D48 100%);
+      --accent-blue: #4C0519;
+      --accent-blue-hover: #29020C;
+      --text-white: #4C0519;
+      --text-white-sub: #701A2C;
+      --status-emerald: #FB7185;
+      --border-subtle: rgba(76, 5, 25, 0.15);
+    }
+
     html, body {
       width: 100%;
       height: 100vh;
@@ -816,6 +849,18 @@
       background: #38BDF8;
       box-shadow: 0 0 6px #38BDF8;
     }
+    .theme-capsule-btn[data-theme="lilac"] .theme-pill-dot {
+      background: #A855F7;
+      box-shadow: 0 0 6px #A855F7;
+    }
+    .theme-capsule-btn[data-theme="amber"] .theme-pill-dot {
+      background: #F97316;
+      box-shadow: 0 0 6px #F97316;
+    }
+    .theme-capsule-btn[data-theme="coral"] .theme-pill-dot {
+      background: #FB7185;
+      box-shadow: 0 0 6px #FB7185;
+    }
     .theme-timer-progress {
       position: absolute;
       bottom: 0;
@@ -848,6 +893,11 @@
     <button class="theme-capsule-btn" data-theme="cobalt" role="tab" aria-selected="false">
       <span class="theme-pill-dot"></span>
       <span>Aero Cloud</span>
+      <span class="theme-timer-progress"></span>
+    </button>
+    <button class="theme-capsule-btn" data-theme="lilac" role="tab" aria-selected="false">
+      <span class="theme-pill-dot"></span>
+      <span>Purple Illustrator</span>
       <span class="theme-timer-progress"></span>
     </button>
   </div>
@@ -977,14 +1027,15 @@
 
   <script>
     /* ── DYNAMIC MULTI-CHARACTER & THEME ENGINE (SLIDESHOW) ── */
-    const THEME_KEYS = ['sage', 'cobalt'];
+    const THEME_KEYS = ['sage', 'cobalt', 'lilac'];
     const THEME_PRESETS = {
       sage: {
         themeKey: 'sage',
+        name: 'Sage Scene',
         imgSrc: 'assets/creator_desk_designer.png',
         imgAlt: 'Digital Creator at Modern Workstation',
         title: 'Empowering top-tier<br>digital creators.',
-        sub: 'Curated illustrators, 3D visionaries, and digital craftspeople shaping modern visual culture.',
+        sub: 'Curated 3D artists, digital craftspeople, and visual visionaries shaping modern visual culture.',
         specs: [
           '<span class="status-dot" style="background:#5DB60C; box-shadow:0 0 6px #5DB60C;"></span>',
           '<span>Curated Portfolios</span>',
@@ -994,15 +1045,30 @@
       },
       cobalt: {
         themeKey: 'cobalt',
+        name: 'Aero Cloud',
         imgSrc: 'assets/upward_flight_pilot_drone.png',
         imgAlt: 'Featured Aerial Cinematographer & Drone Director',
         title: 'World-Class Aerial Cinema & Direction.',
         sub: 'Elite drone cinematographers, directors, and spatial artists available for global production.',
         specs: [
-          '<span class="status-dot"></span>',
+          '<span class="status-dot" style="background:#38BDF8; box-shadow:0 0 6px #38BDF8;"></span>',
           '<span>Verified Roster</span>',
           '<span>&bull;</span>',
           '<span>Direct Terms · Zero Markup</span>'
+        ].join(' ')
+      },
+      lilac: {
+        themeKey: 'lilac',
+        name: 'Purple Illustrator',
+        imgSrc: 'assets/purple_haired_illustrator.png',
+        imgAlt: 'Purple-Haired Illustrator Drawing on a Pouf',
+        title: 'Meet Exceptional Illustrators & Visionaries.',
+        sub: 'World-class illustrators turning ideas into unforgettable visual worlds.',
+        specs: [
+          '<span class="status-dot" style="background:#A855F7; box-shadow:0 0 6px #A855F7;"></span>',
+          '<span>Verified Portfolios</span>',
+          '<span>&bull;</span>',
+          '<span>Direct Collaboration</span>'
         ].join(' ')
       }
     };
