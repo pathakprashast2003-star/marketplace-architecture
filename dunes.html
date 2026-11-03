@@ -795,6 +795,31 @@
       border-radius: 4px;
     }
 
+    .hud-viewport-switch {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 2px;
+      gap: 2px;
+    }
+    .hud-view-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .hud-view-btn.is-active {
+      background: #2563EB;
+      color: #FFFFFF;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    }
+
     /* Floating HUD */
     .editor-hud {
       position: fixed;
@@ -1026,7 +1051,10 @@
   <aside id="editorHud" class="editor-hud" aria-label="Editor Controls">
     <div class="hud-header">
       <div style="display: flex; align-items: center; gap: 7px;">
-        <span id="hudModeBadge" class="hud-mode-badge" title="Active responsive mode">📱 Mobile</span>
+        <div class="hud-viewport-switch" role="group" aria-label="Viewport Switcher">
+          <button type="button" id="hudViewDesktop" class="hud-view-btn is-active" title="Switch to Laptop / Desktop View">💻 Laptop</button>
+          <button type="button" id="hudViewMobile" class="hud-view-btn" title="Switch to Mobile View">📱 Mobile</button>
+        </div>
         <span>Target: <span id="hudTargetName" class="hud-target-name">CREATIVE EDGE</span></span>
       </div>
       <span id="hudCoords" class="hud-coords">Drag on screen to reposition</span>
@@ -1270,6 +1298,10 @@
         if (edgeMobile) edgeMobile.textContent = data.edgeWord;
         if (subText) subText.textContent = data.subText;
 
+        if (window.restoreCharacterImageEdits) {
+          window.restoreCharacterImageEdits(themeKey);
+        }
+
         if (document.body.classList.contains('is-editing')) {
           try {
             updateHudChipsForMode();
@@ -1356,7 +1388,9 @@
 
       // Responsive viewport isolation
       const STORAGE_PREFIX = 'dunes_custom_edits_v7_';
+      let manualViewportMode = null;
       function getActiveViewport() {
+        if (manualViewportMode) return manualViewportMode;
         return window.innerWidth <= 900 ? 'mobile' : 'desktop';
       }
       function getStorageKey() {
@@ -1380,10 +1414,10 @@
         'mobile-backdrop-headline': { el: () => document.querySelector('.mobile-backdrop-headline'), name: 'CREATIVE EDGE (Backdrop)', viewport: 'mobile' },
         'mb-creative': { el: () => document.querySelector('.mb-creative'), name: 'Word: CREATIVE (Mobile)', viewport: 'mobile' },
         'mb-edge': { el: () => document.querySelector('.mb-edge'), name: 'Word: EDGE (Mobile)', viewport: 'mobile' },
-        'title-wefind-mobile': { el: () => document.querySelector('.title-wefind-mobile'), name: 'Prefix: WE FIND THE', viewport: 'mobile' },
+        'title-wefind-mobile': { el: () => document.querySelector('.title-wefind-mobile'), name: 'Prefix: WE FIND THE (Mobile)', viewport: 'mobile' },
 
         // Desktop / Laptop targets
-        'headline-stack': { el: () => document.querySelector('.headline-stack'), name: 'Main Headline Stack', viewport: 'both' },
+        'headline-stack': { el: () => document.querySelector('.headline-stack'), name: 'Main Headline Stack (Desktop)', viewport: 'desktop' },
         'title-wefind': { el: () => document.querySelector('.title-wefind'), name: 'Word: WE FIND (Desktop)', viewport: 'desktop' },
         'title-the': { el: () => document.querySelector('.title-the'), name: 'Word: THE (Desktop)', viewport: 'desktop' },
         'title-creative': { el: () => document.querySelector('.title-creative'), name: 'Word: CREATIVE (Desktop)', viewport: 'desktop' },
@@ -1405,17 +1439,11 @@
       };
 
       function updateHudModeBadge() {
-        const badge = document.getElementById('hudModeBadge');
         const mode = getActiveViewport();
-        if (badge) {
-          if (mode === 'mobile') {
-            badge.textContent = '📱 Mobile (<900px)';
-            badge.classList.remove('is-desktop');
-          } else {
-            badge.textContent = '💻 Laptop (>900px)';
-            badge.classList.add('is-desktop');
-          }
-        }
+        const btnDesk = document.getElementById('hudViewDesktop');
+        const btnMob = document.getElementById('hudViewMobile');
+        if (btnDesk) btnDesk.classList.toggle('is-active', mode === 'desktop');
+        if (btnMob) btnMob.classList.toggle('is-active', mode === 'mobile');
       }
 
       function updateHudChipsForMode() {
@@ -1790,28 +1818,76 @@
         });
       }
 
+      function restoreCharacterImageEdits(themeKey) {
+        const el = document.getElementById('heroCharacterSlot');
+        if (!el) return;
+        const tKey = themeKey || currentThemeKey;
+        const key = 'character_' + tKey;
+        try {
+          const raw = localStorage.getItem(getStorageKey());
+          const data = raw ? JSON.parse(raw) : {};
+          const d = data[key];
+          if (d) {
+            el.style.left = d.left || '';
+            el.style.top = d.top || '';
+            el.style.bottom = d.bottom || '';
+            el.style.maxHeight = d.maxHeight || '';
+            el.style.maxWidth = d.maxWidth || '';
+            el.style.zIndex = d.zIndex || '';
+            if (d.left || d.top) {
+              const pos = window.getComputedStyle(el).position;
+              if (pos === 'static') el.style.position = 'relative';
+            }
+          } else {
+            el.style.left = '';
+            el.style.top = '';
+            el.style.bottom = '';
+            el.style.maxHeight = '';
+            el.style.maxWidth = '';
+            el.style.zIndex = '';
+          }
+        } catch(e) {}
+      }
+      window.restoreCharacterImageEdits = restoreCharacterImageEdits;
+
       // Isolated Persistence
       function saveEdits() {
         const mode = getActiveViewport();
-        const data = {};
+        let data = {};
+        try {
+          const raw = localStorage.getItem(getStorageKey());
+          if (raw) data = JSON.parse(raw);
+        } catch(e) {}
+
         Object.keys(targetMap).forEach(key => {
           const item = targetMap[key];
           if (item.viewport === 'both' || item.viewport === mode) {
             const el = item.el();
             if (el) {
-              const isText = el.classList.contains('mb-word') || el.classList.contains('title-row') || el.classList.contains('title-wefind-mobile');
-              data[key] = {
-                left: el.style.left || '',
-                top: el.style.top || '',
-                fontSize: el.style.fontSize || '',
-                zIndex: el.style.zIndex || '',
-                color: el.style.color || '',
-                maxHeight: el.style.maxHeight || '',
-                maxWidth: el.style.maxWidth || '',
-                marginBottom: el.style.marginBottom || '',
-                marginTop: el.style.marginTop || '',
-                text: isText ? el.innerText : null
-              };
+              if (key === 'heroCharacterSlot') {
+                data['character_' + currentThemeKey] = {
+                  left: el.style.left || '',
+                  top: el.style.top || '',
+                  bottom: el.style.bottom || '',
+                  maxHeight: el.style.maxHeight || '',
+                  maxWidth: el.style.maxWidth || '',
+                  zIndex: el.style.zIndex || ''
+                };
+              } else {
+                const isText = el.classList.contains('mb-word') || el.classList.contains('title-row') || el.classList.contains('title-wefind-mobile');
+                data[key] = {
+                  left: el.style.left || '',
+                  top: el.style.top || '',
+                  fontSize: el.style.fontSize || '',
+                  zIndex: el.style.zIndex || '',
+                  color: el.style.color || '',
+                  maxHeight: el.style.maxHeight || '',
+                  maxWidth: el.style.maxWidth || '',
+                  marginBottom: el.style.marginBottom || '',
+                  marginTop: el.style.marginTop || '',
+                  text: isText ? el.innerText : null
+                };
+              }
             }
           }
         });
@@ -1825,9 +1901,13 @@
         const mode = getActiveViewport();
         try {
           const raw = localStorage.getItem(getStorageKey());
-          if (!raw) return;
+          if (!raw) {
+            restoreCharacterImageEdits(currentThemeKey);
+            return;
+          }
           const data = JSON.parse(raw);
           Object.keys(data).forEach(key => {
+            if (key.startsWith('character_')) return;
             const item = targetMap[key];
             if (!item) return;
             if (item.viewport !== 'both' && item.viewport !== mode) return;
@@ -1865,6 +1945,7 @@
               }
             }
           });
+          restoreCharacterImageEdits(currentThemeKey);
         } catch(err) {
           console.warn('Failed restoring edits', err);
         }
@@ -1877,9 +1958,33 @@
         }
       });
 
+      const btnDesk = document.getElementById('hudViewDesktop');
+      const btnMob = document.getElementById('hudViewMobile');
+      if (btnDesk) {
+        btnDesk.addEventListener('click', (e) => {
+          e.stopPropagation();
+          manualViewportMode = 'desktop';
+          updateHudModeBadge();
+          updateHudChipsForMode();
+          restoreEdits();
+          selectTarget('heroCharacterSlot');
+        });
+      }
+      if (btnMob) {
+        btnMob.addEventListener('click', (e) => {
+          e.stopPropagation();
+          manualViewportMode = 'mobile';
+          updateHudModeBadge();
+          updateHudChipsForMode();
+          restoreEdits();
+          selectTarget('heroCharacterSlot');
+        });
+      }
+
       // Viewport crossover / resize watcher
       let lastViewport = getActiveViewport();
       window.addEventListener('resize', () => {
+        manualViewportMode = null;
         const currentViewport = getActiveViewport();
         if (currentViewport !== lastViewport) {
           lastViewport = currentViewport;
@@ -1888,7 +1993,7 @@
           updateHudChipsForMode();
           updateHudModeBadge();
           if (isEditing) {
-            selectTarget(currentViewport === 'mobile' ? 'mobile-backdrop-headline' : 'headline-stack');
+            selectTarget('heroCharacterSlot');
           }
         }
       });

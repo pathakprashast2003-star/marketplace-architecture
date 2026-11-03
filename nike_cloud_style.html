@@ -355,6 +355,38 @@
       pointer-events: auto;
     }
 
+    .mobile-only {
+      display: none !important;
+    }
+    .desktop-only {
+      display: block !important;
+    }
+
+    .hud-viewport-switch {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 2px;
+      gap: 2px;
+    }
+    .hud-view-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .hud-view-btn.is-active {
+      background: #2563EB;
+      color: #FFFFFF;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    }
+
     .dock-title {
       font-family: var(--font-display);
       font-size: clamp(2.1rem, 2.7vw, 3.4rem);
@@ -854,6 +886,13 @@
         pointer-events: auto;
       }
 
+      .desktop-only {
+        display: none !important;
+      }
+      .mobile-only {
+        display: block !important;
+      }
+
       .dock-headline-col {
         text-align: center;
         align-items: center;
@@ -862,7 +901,8 @@
         margin: 0 auto;
       }
 
-      .dock-title {
+      .dock-title,
+      .dock-title-mobile {
         font-family: var(--font-display);
         font-size: clamp(1.15rem, 4.5vw, 1.4rem);
         font-weight: 800;
@@ -874,10 +914,22 @@
         text-shadow: var(--dock-title-shadow);
         transition: color 0.5s ease, text-shadow 0.5s ease;
         outline: none;
-        transition: outline 0.15s ease, background 0.15s ease;
       }
 
-      body.is-editing .dock-title {
+      .dock-sub-mobile {
+        font-family: var(--font-body);
+        font-size: 11.5px;
+        line-height: 1.4;
+        color: var(--dock-sub-color);
+        text-align: center;
+        margin: 0;
+        opacity: 0.9;
+        outline: none;
+      }
+
+      body.is-editing .dock-title,
+      body.is-editing .dock-title-mobile,
+      body.is-editing .dock-sub-mobile {
         cursor: text;
         outline: 1.5px dashed rgba(255, 255, 255, 0.6);
         outline-offset: 4px;
@@ -885,13 +937,15 @@
         padding: 2px 6px;
       }
 
-      body.is-editing .dock-title:focus {
+      body.is-editing .dock-title:focus,
+      body.is-editing .dock-title-mobile:focus,
+      body.is-editing .dock-sub-mobile:focus {
         outline: 2px solid #38BDF8;
         background: rgba(255, 255, 255, 0.14);
       }
 
       .dock-sub {
-        display: none;
+        display: none !important;
       }
 
       .dock-actions-col {
@@ -1058,7 +1112,10 @@
   <aside id="editorHud" class="editor-hud" aria-label="Editor Controls">
     <div class="hud-header">
       <div style="display: flex; align-items: center; gap: 7px;">
-        <span id="hudModeBadge" class="hud-mode-badge" title="Active responsive mode">📱 Mobile</span>
+        <div class="hud-viewport-switch" role="group" aria-label="Viewport Switcher">
+          <button type="button" id="hudViewDesktop" class="hud-view-btn is-active" title="Switch to Laptop / Desktop View">💻 Laptop</button>
+          <button type="button" id="hudViewMobile" class="hud-view-btn" title="Switch to Mobile View">📱 Mobile</button>
+        </div>
         <span>Target: <span id="hudTargetName" class="hud-target-name">CREATIVE EDGE</span></span>
       </div>
       <span id="hudCoords" class="hud-coords">Drag on screen to reposition</span>
@@ -1163,10 +1220,15 @@
     <!-- 3. BOTTOM HORIZON EDITORIAL DOCK (PURE EDITORIAL STANDARD) -->
     <footer class="stage-horizon-dock">
 
-      <!-- Left Column: Pure Editorial Proposition -->
+      <!-- Left Column: Pure Editorial Proposition (Distinct Desktop & Mobile Content) -->
       <div class="dock-headline-col theme-fader">
-        <h2 class="dock-title">Empowering top-tier<br>digital creators.</h2>
-        <p class="dock-sub">Curated illustrators, 3D visionaries, and digital craftspeople shaping modern visual culture.</p>
+        <!-- Desktop Distinct Content -->
+        <h2 class="dock-title desktop-only">Empowering top-tier<br>digital creators.</h2>
+        <p class="dock-sub desktop-only">Curated illustrators, 3D visionaries, and digital craftspeople shaping modern visual culture.</p>
+
+        <!-- Mobile Distinct Content -->
+        <h2 class="dock-title-mobile mobile-only">Empowering top-tier creators.</h2>
+        <p class="dock-sub-mobile mobile-only">Curated illustrators, 3D visionaries, and craftspeople.</p>
       </div>
 
       <!-- Right Column: Tactile Primary Actions & Quiet Spec Line -->
@@ -1289,8 +1351,16 @@
         if (wordTop) wordTop.textContent = data.wordTop;
         if (wordBottom) wordBottom.textContent = data.wordBottom;
         if (dockTitle) dockTitle.innerHTML = data.dockTitle;
+        const dockTitleMobile = document.querySelector('.dock-title-mobile');
+        if (dockTitleMobile) dockTitleMobile.innerHTML = data.dockTitleMobile || data.dockTitle;
         if (dockSub) dockSub.textContent = data.dockSub;
+        const dockSubMobile = document.querySelector('.dock-sub-mobile');
+        if (dockSubMobile) dockSubMobile.textContent = data.dockSubMobile || data.dockSub;
         if (dockSpecs) dockSpecs.innerHTML = data.specs;
+
+        if (window.restoreCharacterImageEdits) {
+          window.restoreCharacterImageEdits(themeKey);
+        }
 
         if (document.body.classList.contains('is-editing')) {
           try {
@@ -1397,7 +1467,9 @@
         localStorage.removeItem('nike_cloud_custom_edits_v6_desktop');
       } catch(e) {}
 
+      let manualViewportMode = null;
       function getActiveViewport() {
+        if (manualViewportMode) return manualViewportMode;
         return window.innerWidth <= 900 ? 'mobile' : 'desktop';
       }
       function getStorageKey() {
@@ -1416,31 +1488,35 @@
         'backplane-word-top': { el: () => document.querySelector('.backplane-word-top'), name: 'Word: CREATIVE', viewport: 'both' },
         'backplane-word-bottom': { el: () => document.querySelector('.backplane-word-bottom'), name: 'Word: EDGE', viewport: 'both' },
         'subject-pilot-image': { el: () => document.querySelector('.subject-pilot-image'), name: 'Character Image', getDisplayName: getCharacterDisplayName, viewport: 'both' },
-        'dock-title': { el: () => document.querySelector('.dock-title'), name: 'Title: Direct Access', viewport: 'both' },
-        'dock-sub': { el: () => document.querySelector('.dock-sub'), name: 'Subtitle Copy', viewport: 'desktop' },
-        'dock-headline-col': { el: () => document.querySelector('.dock-headline-col'), name: 'Proposition Box', viewport: 'both' },
-        'dock-actions-col': { el: () => document.querySelector('.dock-actions-col'), name: 'Right Actions', viewport: 'desktop' },
+        
+        // Distinct Desktop Content
+        'dock-title': { el: () => document.querySelector('.dock-title.desktop-only') || document.querySelector('.dock-title'), name: 'Desktop Title', viewport: 'desktop' },
+        'dock-sub': { el: () => document.querySelector('.dock-sub.desktop-only') || document.querySelector('.dock-sub'), name: 'Desktop Subtitle', viewport: 'desktop' },
+        'dock-headline-col': { el: () => document.querySelector('.dock-headline-col'), name: 'Proposition Box (Desktop)', viewport: 'desktop' },
+        'dock-actions-col': { el: () => document.querySelector('.dock-actions-col'), name: 'Right Actions (Desktop)', viewport: 'desktop' },
+        
+        // Distinct Mobile Content
+        'dock-title-mobile': { el: () => document.querySelector('.dock-title-mobile.mobile-only') || document.querySelector('.dock-title-mobile'), name: 'Mobile Title', viewport: 'mobile' },
+        'dock-sub-mobile': { el: () => document.querySelector('.dock-sub-mobile.mobile-only') || document.querySelector('.dock-sub-mobile'), name: 'Mobile Subtitle', viewport: 'mobile' },
+        
         'stage-horizon-dock': { el: () => document.querySelector('.stage-horizon-dock'), name: 'Bottom Action Dock', viewport: 'both' }
       };
 
       const defaultTexts = {
         'backplane-word-top': 'CREATIVE',
         'backplane-word-bottom': 'EDGE',
-        'dock-title': 'Direct access to<br>world-class visual talent.'
+        'dock-title': 'Direct access to<br>world-class visual talent.',
+        'dock-title-mobile': 'Direct access to world-class talent.',
+        'dock-sub': 'Vetted directors, 3D artists, and cinematographers shaping modern visual culture.',
+        'dock-sub-mobile': 'Vetted directors, 3D artists & makers.'
       };
 
       function updateHudModeBadge() {
-        const badge = document.getElementById('hudModeBadge');
         const mode = getActiveViewport();
-        if (badge) {
-          if (mode === 'mobile') {
-            badge.textContent = '📱 Mobile (<900px)';
-            badge.classList.remove('is-desktop');
-          } else {
-            badge.textContent = '💻 Laptop (>900px)';
-            badge.classList.add('is-desktop');
-          }
-        }
+        const btnDesk = document.getElementById('hudViewDesktop');
+        const btnMob = document.getElementById('hudViewMobile');
+        if (btnDesk) btnDesk.classList.toggle('is-active', mode === 'desktop');
+        if (btnMob) btnMob.classList.toggle('is-active', mode === 'mobile');
       }
 
       function updateHudChipsForMode() {
@@ -1777,26 +1853,76 @@
         });
       }
 
+      function restoreCharacterImageEdits(themeKey) {
+        const el = document.querySelector('.subject-pilot-image');
+        if (!el) return;
+        const tKey = themeKey || currentThemeKey;
+        const key = 'character_' + tKey;
+        try {
+          const raw = localStorage.getItem(getStorageKey());
+          const data = raw ? JSON.parse(raw) : {};
+          const d = data[key];
+          if (d) {
+            el.style.left = d.left || '';
+            el.style.top = d.top || '';
+            el.style.bottom = d.bottom || '';
+            el.style.maxHeight = d.maxHeight || '';
+            el.style.height = d.maxHeight || '';
+            el.style.maxWidth = d.maxWidth || '';
+            el.style.zIndex = d.zIndex || '';
+            if (d.left || d.top) {
+              const pos = window.getComputedStyle(el).position;
+              if (pos === 'static') el.style.position = 'relative';
+            }
+          } else {
+            el.style.left = '';
+            el.style.top = '';
+            el.style.bottom = '';
+            el.style.maxHeight = '';
+            el.style.height = '';
+            el.style.maxWidth = '';
+            el.style.zIndex = '';
+          }
+        } catch(e) {}
+      }
+      window.restoreCharacterImageEdits = restoreCharacterImageEdits;
+
       function saveEdits() {
         const mode = getActiveViewport();
-        const data = {};
+        let data = {};
+        try {
+          const raw = localStorage.getItem(getStorageKey());
+          if (raw) data = JSON.parse(raw);
+        } catch(e) {}
+
         Object.keys(targetMap).forEach(key => {
           const item = targetMap[key];
           if (item.viewport === 'both' || item.viewport === mode) {
             const el = item.el();
             if (el) {
-              const isText = el.classList.contains('backplane-word-top') || el.classList.contains('backplane-word-bottom') || el.classList.contains('dock-title') || el.classList.contains('dock-sub');
-              data[key] = {
-                left: el.style.left || '',
-                top: el.style.top || '',
-                fontSize: el.style.fontSize || '',
-                zIndex: el.style.zIndex || '',
-                color: el.style.color || '',
-                maxHeight: el.style.maxHeight || '',
-                maxWidth: el.style.maxWidth || '',
-                bottom: el.style.bottom || '',
-                html: isText ? el.innerHTML : null
-              };
+              if (key === 'subject-pilot-image') {
+                data['character_' + currentThemeKey] = {
+                  left: el.style.left || '',
+                  top: el.style.top || '',
+                  maxHeight: el.style.maxHeight || '',
+                  maxWidth: el.style.maxWidth || '',
+                  bottom: el.style.bottom || '',
+                  zIndex: el.style.zIndex || ''
+                };
+              } else {
+                const isText = el.classList.contains('backplane-word-top') || el.classList.contains('backplane-word-bottom') || el.classList.contains('dock-title') || el.classList.contains('dock-sub') || el.classList.contains('dock-title-mobile') || el.classList.contains('dock-sub-mobile');
+                data[key] = {
+                  left: el.style.left || '',
+                  top: el.style.top || '',
+                  fontSize: el.style.fontSize || '',
+                  zIndex: el.style.zIndex || '',
+                  color: el.style.color || '',
+                  maxHeight: el.style.maxHeight || '',
+                  maxWidth: el.style.maxWidth || '',
+                  bottom: el.style.bottom || '',
+                  html: isText ? el.innerHTML : null
+                };
+              }
             }
           }
         });
@@ -1810,9 +1936,13 @@
         const mode = getActiveViewport();
         try {
           const raw = localStorage.getItem(getStorageKey());
-          if (!raw) return;
+          if (!raw) {
+            restoreCharacterImageEdits(currentThemeKey);
+            return;
+          }
           const data = JSON.parse(raw);
           Object.keys(data).forEach(key => {
+            if (key.startsWith('character_')) return;
             const item = targetMap[key];
             if (!item) return;
             if (item.viewport !== 'both' && item.viewport !== mode) return;
@@ -1847,19 +1977,44 @@
               }
             }
           });
+          restoreCharacterImageEdits(currentThemeKey);
         } catch(err) {
           console.warn('Failed restoring edits', err);
         }
       }
 
       document.addEventListener('input', (e) => {
-        if (isEditing && (e.target.classList.contains('backplane-word-top') || e.target.classList.contains('backplane-word-bottom') || e.target.classList.contains('dock-title') || e.target.classList.contains('dock-sub'))) {
+        if (isEditing && (e.target.classList.contains('backplane-word-top') || e.target.classList.contains('backplane-word-bottom') || e.target.classList.contains('dock-title') || e.target.classList.contains('dock-sub') || e.target.classList.contains('dock-title-mobile') || e.target.classList.contains('dock-sub-mobile'))) {
           saveEdits();
         }
       });
 
+      const btnDesk = document.getElementById('hudViewDesktop');
+      const btnMob = document.getElementById('hudViewMobile');
+      if (btnDesk) {
+        btnDesk.addEventListener('click', (e) => {
+          e.stopPropagation();
+          manualViewportMode = 'desktop';
+          updateHudModeBadge();
+          updateHudChipsForMode();
+          restoreEdits();
+          selectTarget('subject-pilot-image');
+        });
+      }
+      if (btnMob) {
+        btnMob.addEventListener('click', (e) => {
+          e.stopPropagation();
+          manualViewportMode = 'mobile';
+          updateHudModeBadge();
+          updateHudChipsForMode();
+          restoreEdits();
+          selectTarget('subject-pilot-image');
+        });
+      }
+
       let lastViewport = getActiveViewport();
       window.addEventListener('resize', () => {
+        manualViewportMode = null;
         const currentViewport = getActiveViewport();
         if (currentViewport !== lastViewport) {
           lastViewport = currentViewport;
@@ -1868,7 +2023,7 @@
           updateHudChipsForMode();
           updateHudModeBadge();
           if (isEditing) {
-            selectTarget('dock-title');
+            selectTarget('subject-pilot-image');
           }
         }
       });
