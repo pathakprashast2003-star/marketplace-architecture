@@ -27,9 +27,8 @@
       --wave-cobalt: #367226;
       --wave-soft: #9FD98B;
       
-      --text-white: #FFFFFF;
+      --text-white: #459612;
       --text-dark: #0A3219;
-      --text-shadow-hero: 0 4px 18px rgba(10, 50, 25, 0.22);
       --text-secondary: #1F4D2B;
       --text-shadow-hero: none;
       
@@ -51,9 +50,8 @@
       --wave-azure: #76B762;
       --wave-cobalt: #367226;
       --wave-soft: #9FD98B;
-      --text-white: #FFFFFF;
+      --text-white: #459612;
       --text-dark: #0A3219;
-      --text-shadow-hero: 0 4px 18px rgba(10, 50, 25, 0.22);
       --text-secondary: #1F4D2B;
       --text-shadow-hero: none;
       --btn-primary: #0A3219;
@@ -512,8 +510,8 @@
         font-size: clamp(1.85rem, 8.2vw, 2.65rem);
         font-weight: 900;
         letter-spacing: -0.015em;
-        color: #FFFFFF !important;
-        text-shadow: 0 4px 18px rgba(37, 99, 235, 0.38);
+        color: var(--text-white) !important;
+        text-shadow: var(--text-shadow-hero);
         white-space: nowrap;
       }
 
@@ -573,7 +571,7 @@
         font-family: var(--font-display);
         font-weight: 900;
         line-height: 0.85;
-        color: #0F172A; /* Sculpted in Black / Deep Obsidian per user instruction */
+        color: var(--text-dark, #0A3219);
         text-transform: uppercase;
         /* Strong text fill, no shadow clutter */
         text-shadow: none;
@@ -706,7 +704,7 @@
       .spec-icon {
         width: 13px;
         height: 13px;
-        color: #0F172A;
+        color: var(--pill-specs-text, #0A3219);
         opacity: 0.9;
         flex-shrink: 0;
       }
@@ -714,7 +712,7 @@
       .spec-value {
         font-size: 11px;
         font-weight: 600;
-        color: #0F172A;
+        color: var(--pill-specs-text, #0A3219);
         letter-spacing: -0.015em;
         white-space: nowrap;
       }
@@ -1343,7 +1341,7 @@
       let hasMoved = false;
 
       // Responsive viewport isolation
-      const STORAGE_PREFIX = 'dunes_custom_edits_v6_';
+      const STORAGE_PREFIX = 'dunes_custom_edits_v7_';
       function getActiveViewport() {
         return window.innerWidth <= 900 ? 'mobile' : 'desktop';
       }
@@ -1353,7 +1351,7 @@
 
       // Purge legacy non-isolated cache keys
       try {
-        ['dunes_custom_edits', 'dunes_custom_edits_v2', 'dunes_custom_edits_v3', 'dunes_custom_edits_v4', 'dunes_custom_edits_v5'].forEach(k => localStorage.removeItem(k));
+        ['dunes_custom_edits', 'dunes_custom_edits_v2', 'dunes_custom_edits_v3', 'dunes_custom_edits_v4', 'dunes_custom_edits_v5', 'dunes_custom_edits_v6'].forEach(k => localStorage.removeItem(k));
       } catch(e) {}
 
       // Target elements per viewport
