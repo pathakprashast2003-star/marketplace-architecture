@@ -19,10 +19,14 @@
 
     :root {
       --bg-outer: #F8FAFC;
-      --card-sky-top: #1E40AF;
-      --card-sky-mid: #2563EB;
-      --card-sky-cyan: #38BDF8;
-      --card-sky-floor: #E0F2FE;
+      --card-bg-gradient: linear-gradient(180deg, #134E4A 0%, #0D9488 34%, #5EEAD4 68%, #0F766E 100%);
+      --card-shadow: 0 40px 90px -20px rgba(13, 78, 74, 0.45);
+      --card-shadow-mobile: 0 16px 42px -10px rgba(13, 78, 74, 0.38);
+      --halo-color: radial-gradient(ellipse at center, rgba(15, 118, 110, 0.45) 0%, rgba(15, 118, 110, 0.12) 48%, transparent 72%);
+      --cloud-top-l: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 70%);
+      --cloud-top-r: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0) 70%);
+      --cloud-floor: radial-gradient(ellipse at 50% 80%, rgba(255, 255, 255, 0.95) 0%, rgba(204, 251, 241, 0.65) 45%, rgba(94, 234, 212, 0) 75%);
+      --text-shadow-dock: 0 6px 24px rgba(10, 50, 48, 0.50);
       
       --text-dark: #0F172A;
       --text-muted: #64748B;
@@ -30,6 +34,30 @@
       --font-display: 'Cabinet Grotesk', -apple-system, sans-serif;
       --font-body: 'Inter', -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    /* THEME 1: Sage Marine (Exact match to Blue structure: Deep Teal & Luminous Seafoam) */
+    .nike-hero-canvas[data-theme="sage"] {
+      --card-bg-gradient: linear-gradient(180deg, #134E4A 0%, #0D9488 34%, #5EEAD4 68%, #0F766E 100%);
+      --card-shadow: 0 40px 90px -20px rgba(13, 78, 74, 0.45);
+      --card-shadow-mobile: 0 16px 42px -10px rgba(13, 78, 74, 0.38);
+      --halo-color: radial-gradient(ellipse at center, rgba(15, 118, 110, 0.45) 0%, rgba(15, 118, 110, 0.12) 48%, transparent 72%);
+      --cloud-top-l: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 70%);
+      --cloud-top-r: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0) 70%);
+      --cloud-floor: radial-gradient(ellipse at 50% 80%, rgba(255, 255, 255, 0.95) 0%, rgba(204, 251, 241, 0.65) 45%, rgba(94, 234, 212, 0) 75%);
+      --text-shadow-dock: 0 6px 24px rgba(10, 50, 48, 0.50);
+    }
+
+    /* THEME 2: Cobalt Aero Cloud (Classic Stratosphere Blue) */
+    .nike-hero-canvas[data-theme="cobalt"] {
+      --card-bg-gradient: linear-gradient(180deg, #1E40AF 0%, #2563EB 34%, #38BDF8 68%, #1D4ED8 100%);
+      --card-shadow: 0 40px 90px -20px rgba(16, 52, 138, 0.42);
+      --card-shadow-mobile: 0 16px 42px -10px rgba(16, 52, 138, 0.35);
+      --halo-color: radial-gradient(ellipse at center, rgba(12, 36, 88, 0.45) 0%, rgba(12, 36, 88, 0.12) 48%, transparent 72%);
+      --cloud-top-l: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 70%);
+      --cloud-top-r: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0) 70%);
+      --cloud-floor: radial-gradient(ellipse at 50% 80%, rgba(255, 255, 255, 0.95) 0%, rgba(224, 242, 254, 0.65) 45%, rgba(56, 189, 248, 0) 75%);
+      --text-shadow-dock: 0 6px 24px rgba(8, 24, 70, 0.45);
     }
 
     html, body {
@@ -139,11 +167,12 @@
       border-radius: 36px;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(180deg, #1E40AF 0%, #2563EB 34%, #38BDF8 68%, #1D4ED8 100%);
+      background: var(--card-bg-gradient);
       box-shadow: 
-        0 40px 90px -20px rgba(16, 52, 138, 0.42),
+        var(--card-shadow),
         0 0 0 1px rgba(255, 255, 255, 0.45) inset,
         0 1px 2px rgba(255, 255, 255, 0.8) inset;
+      transition: background 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.7s ease;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -163,7 +192,7 @@
       left: -60px;
       width: 480px;
       height: 320px;
-      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 70%);
+      background: var(--cloud-top-l); transition: background 0.7s ease;
       filter: blur(40px);
     }
 
@@ -173,7 +202,7 @@
       right: -80px;
       width: 520px;
       height: 360px;
-      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0) 70%);
+      background: var(--cloud-top-r); transition: background 0.7s ease;
       filter: blur(45px);
     }
 
@@ -184,7 +213,7 @@
       transform: translateX(-50%);
       width: 760px;
       height: 220px;
-      background: radial-gradient(ellipse at 50% 80%, rgba(255, 255, 255, 0.95) 0%, rgba(224, 242, 254, 0.65) 45%, rgba(56, 189, 248, 0) 75%);
+      background: var(--cloud-floor); transition: background 0.7s ease;
       filter: blur(28px);
       z-index: 2;
     }
@@ -197,7 +226,7 @@
       width: 380px;
       height: 38px;
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(12, 36, 88, 0.45) 0%, rgba(12, 36, 88, 0.12) 48%, transparent 72%);
+      background: var(--halo-color); transition: background 0.7s ease;
       filter: blur(10px);
       z-index: 8;
       pointer-events: none;
@@ -644,7 +673,9 @@
         height: calc(100dvh - 16px);
         margin: 8px auto;
         border-radius: 28px;
-        box-shadow: 0 16px 42px -10px rgba(16, 52, 138, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.05), inset 0 1px 1.5px rgba(255, 255, 255, 0.5);
+        background: var(--card-bg-gradient);
+        box-shadow: var(--card-shadow-mobile), 0 0 0 1px rgba(0, 0, 0, 0.05), inset 0 1px 1.5px rgba(255, 255, 255, 0.5);
+        transition: background 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.7s ease;
         overflow: hidden;
         position: relative;
         display: flex;
@@ -698,10 +729,22 @@
         padding: 8px 10px;
       }
 
-      /* Mobile 3D Backplane Headline: CREATIVE EDGE */
+      
+      .character-theme-capsules {
+        top: 44px;
+        padding: 3px 5px;
+        gap: 3px;
+        z-index: 90;
+      }
+      .theme-capsule-btn {
+        font-size: 11px;
+        padding: 5px 11px;
+      }
+
+      /* Mobile 3D Backplane Headline: CREATIVE CRAFT / EDGE */
       .giant-headline-backplane {
         position: absolute;
-        top: 10%;
+        top: 88px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 5;
@@ -714,17 +757,17 @@
       }
 
       .backplane-word-top {
-        font-size: clamp(3.2rem, 16vw, 4.8rem);
+        font-size: clamp(2.6rem, 14vw, 3.8rem);
         letter-spacing: 0.02em;
         line-height: 0.88;
         color: #FFFFFF;
       }
 
       .backplane-word-bottom {
-        font-size: clamp(3.8rem, 19vw, 5.6rem);
+        font-size: clamp(3.2rem, 17vw, 4.6rem);
         letter-spacing: 0.03em;
         line-height: 0.88;
-        margin-top: -0.06em;
+        margin-top: -0.04em;
         color: #FFFFFF;
       }
 
@@ -734,43 +777,43 @@
         opacity: 0.8;
       }
 
-      /* Center Subject Stage: Pilot & Drone layered in front */
+      /* Center Subject Stage: Layered 3D Subject */
       .subject-center-stage {
         position: absolute;
-        top: 36px;
+        bottom: 200px;
         left: 50%;
         transform: translateX(-50%);
-        height: calc(100% - 245px);
+        height: 44%;
         width: 100%;
         display: flex;
-        align-items: flex-start;
+        align-items: flex-end;
         justify-content: center;
         z-index: 10;
         pointer-events: none;
       }
 
       .subject-pilot-image {
-        height: 74%;
-        max-height: 74%;
+        height: 100%;
+        max-height: 100%;
         width: auto;
-        max-width: 86%;
+        max-width: 90%;
         object-fit: contain;
-        object-position: top center;
+        object-position: bottom center;
         pointer-events: auto;
-        filter: drop-shadow(0 20px 36px rgba(10, 40, 110, 0.28));
+        filter: drop-shadow(0 20px 36px rgba(10, 40, 30, 0.28));
       }
 
       /* Bottom Horizon Dock: Elevated Apple-grade tactile dock */
       .stage-horizon-dock {
         position: absolute;
-        bottom: 114px;
+        bottom: 54px;
         left: 0;
         width: 100%;
         padding: 0 16px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 8px;
+        gap: 12px;
         z-index: 25;
         pointer-events: auto;
       }
@@ -870,7 +913,99 @@
         text-shadow: 0 2px 8px rgba(8, 24, 70, 0.6);
       }
     }
-  </style>
+  
+    /* ── DYNAMIC THEME & SCENE SWITCHER CAPSULES ── */
+    .character-theme-capsules {
+      position: absolute;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 40;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 7px;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 980px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .theme-capsule-btn {
+      position: relative;
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: rgba(255, 255, 255, 0.75);
+      padding: 6px 14px;
+      border-radius: 980px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      overflow: hidden;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .theme-timer-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    .theme-capsule-btn.is-active .theme-timer-progress {
+      width: 100%;
+      transition: width 5s linear;
+    }
+
+    .theme-capsule-btn:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .theme-capsule-btn.is-active {
+      color: #0F172A;
+      background: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .theme-pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .theme-capsule-btn[data-theme="sage"] .theme-pill-dot {
+      background: #2DD4BF;
+      box-shadow: 0 0 6px #2DD4BF;
+    }
+
+    .theme-capsule-btn[data-theme="cobalt"] .theme-pill-dot {
+      background: #38BDF8;
+      box-shadow: 0 0 6px #38BDF8;
+    }
+
+    .theme-fader {
+      transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .theme-fader.is-switching {
+      opacity: 0 !important;
+      transform: scale(0.97) translateY(8px) !important;
+    }
+
+</style>
 </head>
 <body>
 
@@ -953,7 +1088,21 @@
   </header>
 
   <!-- MAIN FLOATING NIKE CLOUD CANVAS (HERO CARD) -->
-  <main class="nike-hero-canvas">
+  <main class="nike-hero-canvas" data-theme="sage">
+
+    <!-- Character & Theme Navigation Capsules -->
+    <div class="character-theme-capsules" role="tablist" aria-label="Scene Showcase">
+      <button class="theme-capsule-btn is-active" data-theme="sage" role="tab" aria-selected="true">
+        <span class="theme-pill-dot"></span>
+        <span>Sage Scene</span>
+        <span class="theme-timer-progress"></span>
+      </button>
+      <button class="theme-capsule-btn" data-theme="cobalt" role="tab" aria-selected="false">
+        <span class="theme-pill-dot"></span>
+        <span>Aero Cloud</span>
+        <span class="theme-timer-progress"></span>
+      </button>
+    </div>
 
     <!-- Atmospheric Clouds Layer -->
     <div class="cloud-layer-bg" aria-hidden="true">
@@ -964,23 +1113,23 @@
     </div>
 
     <!-- 1. BACKDROP SCULPTED 3D DISPLAY HEADLINE: "CREATIVE EDGE" (Nike Cloud Aesthetic) -->
-    <div class="giant-headline-backplane" aria-hidden="true">
+    <div class="giant-headline-backplane theme-fader" aria-hidden="true">
       <span class="backplane-word-top">CREATIVE</span>
-      <span class="backplane-word-bottom">EDGE</span>
+      <span class="backplane-word-bottom">CRAFT</span>
     </div>
 
     <!-- 2. CENTER 3D PILOT & HOVERING DRONE -->
     <div class="subject-center-stage">
-      <img class="subject-pilot-image" src="assets/upward_flight_pilot_drone.png" alt="Drone Cinematographer with Upward Flight Drone">
+      <img class="subject-pilot-image theme-fader" src="assets/creator_desk_designer.png" alt="Digital Creator at Modern Workstation">
     </div>
 
     <!-- 3. BOTTOM HORIZON EDITORIAL DOCK (PURE EDITORIAL STANDARD) -->
     <footer class="stage-horizon-dock">
 
       <!-- Left Column: Pure Editorial Proposition -->
-      <div class="dock-headline-col">
-        <h2 class="dock-title">Direct access to<br>world-class visual talent.</h2>
-        <p class="dock-sub">Vetted directors, 3D artists, and cinematographers shaping modern visual culture.</p>
+      <div class="dock-headline-col theme-fader">
+        <h2 class="dock-title">Empowering top-tier<br>digital creators.</h2>
+        <p class="dock-sub">Curated illustrators, 3D visionaries, and digital craftspeople shaping modern visual culture.</p>
       </div>
 
       <!-- Right Column: Tactile Primary Actions & Quiet Spec Line -->
@@ -1007,6 +1156,154 @@
   </main>
 
   <script>
+    
+    /* ── DYNAMIC MULTI-CHARACTER & THEME ENGINE (WITH AUTO-ROTATION) ── */
+    const THEME_KEYS = ['sage', 'cobalt'];
+    const THEME_PRESETS = {
+      sage: {
+        themeKey: 'sage',
+        imgSrc: 'assets/creator_desk_designer.png',
+        imgAlt: 'Digital Creator at Modern Workstation',
+        wordTop: 'CREATIVE',
+        wordBottom: 'CRAFT',
+        dockTitle: 'Empowering top-tier<br>digital creators.',
+        dockSub: 'Curated illustrators, 3D visionaries, and digital craftspeople shaping modern visual culture.',
+        specs: [
+          '<span class="live-dot-green" style="background:#2DD4BF; box-shadow:0 0 8px #2DD4BF;"></span>',
+          '<span>Curated Portfolios</span>',
+          '<span class="spec-sep">/</span>',
+          '<span>Verified Proof</span>',
+          '<span class="spec-sep">/</span>',
+          '<span>Direct Terms</span>'
+        ].join(' ')
+      },
+      cobalt: {
+        themeKey: 'cobalt',
+        imgSrc: 'assets/upward_flight_pilot_drone.png',
+        imgAlt: 'Drone Cinematographer with Upward Flight Drone',
+        wordTop: 'CREATIVE',
+        wordBottom: 'EDGE',
+        dockTitle: 'Direct access to<br>world-class visual talent.',
+        dockSub: 'Vetted directors, 3D artists, and cinematographers shaping modern visual culture.',
+        specs: [
+          '<span class="live-dot-green"></span>',
+          '<span>Top 1% Creators</span>',
+          '<span class="spec-sep">/</span>',
+          '<span>Verified Proof</span>',
+          '<span class="spec-sep">/</span>',
+          '<span>Direct Terms</span>'
+        ].join(' ')
+      }
+    };
+
+    let currentThemeKey = 'sage';
+    let autoRotateTimer = null;
+    const ROTATION_INTERVAL_MS = 5000;
+
+    function resetProgressBar() {
+      document.querySelectorAll('.theme-timer-progress').forEach(p => {
+        p.style.transition = 'none';
+        p.style.width = '0%';
+      });
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const activeBtn = document.querySelector(`.theme-capsule-btn[data-theme="${currentThemeKey}"]`);
+          if (activeBtn) {
+            const p = activeBtn.querySelector('.theme-timer-progress');
+            if (p) {
+              p.style.transition = `width ${ROTATION_INTERVAL_MS}ms linear`;
+              p.style.width = '100%';
+            }
+          }
+        });
+      });
+    }
+
+    function switchTheme(themeKey, isManual = false) {
+      if (!THEME_PRESETS[themeKey]) return;
+      currentThemeKey = themeKey;
+      const data = THEME_PRESETS[themeKey];
+      const canvas = document.querySelector('.nike-hero-canvas');
+      const faders = document.querySelectorAll('.theme-fader');
+      const img = document.querySelector('.subject-pilot-image');
+      const wordTop = document.querySelector('.backplane-word-top');
+      const wordBottom = document.querySelector('.backplane-word-bottom');
+      const dockTitle = document.querySelector('.dock-title');
+      const dockSub = document.querySelector('.dock-sub');
+      const dockSpecs = document.querySelector('.dock-specs-row');
+      const buttons = document.querySelectorAll('.theme-capsule-btn');
+
+      buttons.forEach(btn => {
+        const isActive = btn.getAttribute('data-theme') === themeKey;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      resetProgressBar();
+
+      faders.forEach(el => el.classList.add('is-switching'));
+
+      setTimeout(() => {
+        if (canvas) canvas.setAttribute('data-theme', themeKey);
+        if (img) {
+          img.src = data.imgSrc;
+          img.alt = data.imgAlt;
+        }
+        if (wordTop) wordTop.textContent = data.wordTop;
+        if (wordBottom) wordBottom.textContent = data.wordBottom;
+        if (dockTitle) dockTitle.innerHTML = data.dockTitle;
+        if (dockSub) dockSub.textContent = data.dockSub;
+        if (dockSpecs) dockSpecs.innerHTML = data.specs;
+
+        setTimeout(() => {
+          faders.forEach(el => el.classList.remove('is-switching'));
+        }, 50);
+      }, 240);
+
+      // Reset auto-rotate timer so it rotates to the next one
+      startAutoRotation();
+    }
+
+    function rotateToNextTheme() {
+      const nextIdx = (THEME_KEYS.indexOf(currentThemeKey) + 1) % THEME_KEYS.length;
+      switchTheme(THEME_KEYS[nextIdx], false);
+    }
+
+    function startAutoRotation() {
+      if (autoRotateTimer) clearInterval(autoRotateTimer);
+      autoRotateTimer = setInterval(rotateToNextTheme, ROTATION_INTERVAL_MS);
+    }
+
+    function stopAutoRotation() {
+      if (autoRotateTimer) clearInterval(autoRotateTimer);
+    }
+
+    // Attach click listeners to capsule buttons
+    document.querySelectorAll('.theme-capsule-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetTheme = btn.getAttribute('data-theme');
+        if (targetTheme && targetTheme !== currentThemeKey) {
+          switchTheme(targetTheme, true);
+        }
+      });
+    });
+
+    // Pause auto-rotation on mouseenter or during edit mode, resume on mouseleave
+    const heroCanvas = document.querySelector('.nike-hero-canvas');
+    if (heroCanvas) {
+      heroCanvas.addEventListener('mouseenter', stopAutoRotation);
+      heroCanvas.addEventListener('mouseleave', () => {
+        if (!document.body.classList.contains('is-editing')) {
+          startAutoRotation();
+          resetProgressBar();
+        }
+      });
+    }
+
+    // Start auto-rotation on load
+    startAutoRotation();
+    resetProgressBar();
+
     /* ── DRAG & EDIT STUDIO ENGINE (VIEWPORT ISOLATED: MOBILE vs LAPTOP) ── */
     (function initDragAndEdit() {
       const toggleBtn = document.getElementById('editorToggle');
@@ -1033,7 +1330,7 @@
       let hasMoved = false;
 
       // Responsive viewport isolation (v5 clean storage)
-      const STORAGE_PREFIX = 'nike_cloud_custom_edits_v5_';
+      const STORAGE_PREFIX = 'nike_cloud_custom_edits_v6_';
       try {
         localStorage.removeItem('nike_cloud_custom_edits_v1_mobile');
         localStorage.removeItem('nike_cloud_custom_edits_v1_desktop');
@@ -1043,6 +1340,8 @@
         localStorage.removeItem('nike_cloud_custom_edits_v3_desktop');
         localStorage.removeItem('nike_cloud_custom_edits_v4_mobile');
         localStorage.removeItem('nike_cloud_custom_edits_v4_desktop');
+        localStorage.removeItem('nike_cloud_custom_edits_v5_mobile');
+        localStorage.removeItem('nike_cloud_custom_edits_v5_desktop');
       } catch(e) {}
 
       function getActiveViewport() {

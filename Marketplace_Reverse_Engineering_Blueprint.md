@@ -1,9 +1,9 @@
 # Forensic Reverse-Engineering Blueprint: Contra.com & The Knot / StyleSeat
-**Target Architecture:** Bespoke Creator & Business Marketplace Web Platform ($7,200 Scope)  
-**Engineering Stack:** Next.js (App Router), Tailwind CSS, PostgreSQL / Supabase, Stripe Billing, Cloudflare R2  
-**Analyzed Benchmark Platforms:**  
-1. **Contra.com** *(Visual Engine, Creator Storefronts, Portfolio UX, Direct Chat)*  
-2. **The Knot / StyleSeat / Booksy** *(Directory Subscription Model, Vendor Vetting, Search Architecture)*  
+
+**Target Architecture:** Bespoke Creator & Business Marketplace Web Platform ($7,200 Scope)**Engineering Stack:** Next.js (App Router), Tailwind CSS, PostgreSQL / Supabase, Stripe Billing, Cloudflare R2**Analyzed Benchmark Platforms:**
+
+1. **Contra.com** *(Visual Engine, Creator Storefronts, Portfolio UX, Direct Chat)*
+2. **The Knot / StyleSeat / Booksy** *(Directory Subscription Model, Vendor Vetting, Search Architecture)*
 
 ---
 
@@ -36,7 +36,9 @@ Tyrone’s specification is a fusion of two proven marketplace architectures:
 Contra is the gold standard for independent creator discovery. Here is how their core frontend and profile subsystems are architected:
 
 ### 2.1 Design Tokens & Aesthetics
+
 Contra uses high-contrast dark surfaces to make visual portfolios pop:
+
 * **Background Primaries:** `#0B0F19` (Deep Obsidian / Midnight Navy) and `#111827` (Card Surface).
 * **Accent & Interactive:** `#FF6B00` / `#F97316` (High-Energy Vibrant Orange for CTAs, active badges, and focus rings).
 * **Borders & Dividers:** `1px solid rgba(255, 255, 255, 0.08)` — subtle glassmorphic separators that give depth without visual clutter.
@@ -45,6 +47,7 @@ Contra uses high-contrast dark surfaces to make visual portfolios pop:
   * Secondary Metadata: `text-sm text-slate-400 font-medium`
 
 ### 2.2 The Creator Storefront Anatomy (The `/[username]` Page)
+
 Contra’s storefront layout is divided into 4 stacked modules:
 
 ```
@@ -69,7 +72,9 @@ Contra’s storefront layout is divided into 4 stacked modules:
 ```
 
 ### 2.3 Discovery & Search Flow
+
 Contra treats discoverability as a dynamic filter funnel:
+
 1. **Category Pills Carousel:** Horizontal sticky bar (`Videography`, `Barbers`, `Web Design`, `Tattoo Artists`, `Fitness`). Clicking immediately sets URL params (`?cat=videography`).
 2. **Omni-Search Input:** Real-time debounced search filtering by name, service keywords, or city.
 3. **Storefront Card Grid:** Cards feature a **media thumbnail preview**, avatar badge, hourly/service starting price, and an instant "Message" modal trigger.
@@ -81,6 +86,7 @@ Contra treats discoverability as a dynamic filter funnel:
 The Knot and StyleSeat proved that **creators hate 20% platform commissions** (Upwork/Fiverr model). Instead, they built multi-hundred-million-dollar businesses on **Flat Monthly Subscriptions**.
 
 ### 3.1 The Business & Monetization Architecture
+
 * **Why Sellers Pay:** A wedding photographer charges $3,000 per wedding. On Upwork, Upwork takes $600. On The Knot, the photographer pays a flat $150/month fee to be listed in the directory and keeps 100% of the client's money.
 * **The "Zero Escrow" Simplicity:** Because the platform does not process payments between buyer and seller, you do **not** need multi-vendor Stripe Connect split payouts, escrow holding accounts, or chargeback dispute liability.
 * **Tyrone's Stripe Hook:**
@@ -89,7 +95,9 @@ The Knot and StyleSeat proved that **creators hate 20% platform commissions** (U
   * On Day 91 (or 31), Stripe automatically charges the recurring monthly card on file. If payment fails, the seller's profile is automatically unpublished from the public directory.
 
 ### 3.2 The Gatekeeper Funnel (Admin Approval Queue)
+
 Open directories get overwhelmed with spam. StyleSeat and Product Hunt maintain quality through an approval queue:
+
 1. **Seller Signs Up:** Submits portfolio link, sample photos, service menu, and social handles.
 2. **Status Set to `PENDING_REVIEW`:** Seller can edit their preview profile, but their storefront is hidden from public search (`is_published = false`).
 3. **Admin Command Center:** Tyrone receives notification, inspects profile, and clicks **[Approve]** or **[Reject]**.
