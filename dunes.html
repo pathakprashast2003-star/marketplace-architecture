@@ -611,9 +611,222 @@
         margin: 0;
       }
     }
+
+    /* ── DRAG & EDIT STUDIO ── */
+    .editor-toggle-btn {
+      position: fixed;
+      top: 16px;
+      left: 20px;
+      z-index: 10001;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      padding: 6px 14px;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .editor-toggle-btn:hover {
+      background: rgba(30, 41, 59, 0.95);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    .editor-toggle-btn.active {
+      background: #2563EB;
+      border-color: #60A5FA;
+      box-shadow: 0 0 20px rgba(37, 99, 235, 0.55);
+    }
+    @media (max-width: 900px) {
+      .editor-toggle-btn {
+        top: auto;
+        bottom: 12px;
+        right: 12px;
+        left: auto;
+        font-size: 11px;
+        padding: 6px 12px;
+      }
+      .editor-hud {
+        bottom: 60px;
+        width: calc(100% - 20px);
+        padding: 8px 10px;
+      }
+    }
+
+    body.is-editing .mobile-backdrop-headline,
+    body.is-editing .mb-word,
+    body.is-editing #heroCharacterSlot,
+    body.is-editing .headline-stack,
+    body.is-editing .hero-editorial-chunk {
+      pointer-events: auto !important;
+      cursor: grab !important;
+      touch-action: none !important;
+    }
+    body.is-editing .drag-selected {
+      outline: 2px dashed #3B82F6 !important;
+      outline-offset: 4px;
+    }
+    body.is-editing [contenteditable="true"]:focus {
+      outline: 2px solid #60A5FA !important;
+      background: rgba(37, 99, 235, 0.2) !important;
+      cursor: text !important;
+      border-radius: 4px;
+    }
+
+    /* Floating HUD */
+    .editor-hud {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10002;
+      background: rgba(11, 15, 29, 0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      padding: 8px 12px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+      width: calc(100% - 24px);
+      max-width: 520px;
+      color: #FFFFFF;
+      font-family: inherit;
+      user-select: none;
+    }
+    body.is-editing .editor-hud {
+      display: flex;
+    }
+    .hud-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 11px;
+    }
+    .hud-target-name {
+      color: #60A5FA;
+      font-weight: 700;
+    }
+    .hud-coords {
+      color: #94A3B8;
+      font-variant-numeric: tabular-nums;
+      font-size: 10.5px;
+    }
+    .hud-chips {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      width: 100%;
+      padding: 2px 0;
+    }
+    .hud-chip {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.85);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 10.5px;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .hud-chip.active {
+      background: #2563EB;
+      border-color: #60A5FA;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+    .hud-actions {
+      display: flex;
+      gap: 6px;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .hud-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+      border-radius: 8px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    .hud-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .hud-btn-primary {
+      background: #2563EB;
+      border-color: #3B82F6;
+    }
+    .hud-btn-primary:hover {
+      background: #1D4ED8;
+    }
   </style>
 </head>
 <body>
+
+  <!-- ── DRAG & EDIT STUDIO ── -->
+  <button id="editorToggle" class="editor-toggle-btn" type="button" aria-label="Toggle Drag and Edit Mode">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 20h9"/>
+      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+    </svg>
+    <span class="edit-label">Drag &amp; Edit</span>
+  </button>
+
+  <aside id="editorHud" class="editor-hud" aria-label="Editor Controls">
+    <div class="hud-header">
+      <span>Target: <span id="hudTargetName" class="hud-target-name">CREATIVE EDGE</span></span>
+      <span id="hudCoords" class="hud-coords">Drag on screen to reposition</span>
+    </div>
+    <div class="hud-chips">
+      <button class="hud-chip active" type="button" data-hud-select="mobile-backdrop-headline">CREATIVE EDGE</button>
+      <button class="hud-chip" type="button" data-hud-select="mb-creative">Word: CREATIVE</button>
+      <button class="hud-chip" type="button" data-hud-select="mb-edge">Word: EDGE</button>
+      <button class="hud-chip" type="button" data-hud-select="heroCharacterSlot">Pilot Image</button>
+      <button class="hud-chip" type="button" data-hud-select="headline-stack">Main Headline</button>
+    </div>
+    <div class="hud-actions">
+      <div style="display: flex; gap: 4px;">
+        <button class="hud-btn" type="button" id="hudFontMinus" title="Decrease Font Size">A-</button>
+        <button class="hud-btn" type="button" id="hudFontPlus" title="Increase Font Size">A+</button>
+        <button class="hud-btn" type="button" id="hudZToggle" title="Toggle Layer Behind/In Front">Layer: Behind</button>
+      </div>
+      <div style="display: flex; gap: 4px;">
+        <button class="hud-btn hud-btn-primary" type="button" id="hudCopyCss">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy CSS</span>
+        </button>
+        <button class="hud-btn" type="button" id="hudReset">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          <span>Reset</span>
+        </button>
+        <button class="hud-btn" type="button" id="hudClose" style="color: #F87171;">✕</button>
+      </div>
+    </div>
+  </aside>
 
   <!-- ── 3-WAY LAYOUT SWITCHER ── -->
   <aside class="preview-layout-switcher" aria-label="Layout Switcher">
@@ -730,6 +943,320 @@
         slot.style.display = 'block';
       }
     }
+
+    /* ── DRAG & EDIT STUDIO ENGINE ── */
+    (function initDragAndEdit() {
+      const toggleBtn = document.getElementById('editorToggle');
+      const hud = document.getElementById('editorHud');
+      const hudTargetName = document.getElementById('hudTargetName');
+      const hudCoords = document.getElementById('hudCoords');
+      const hudClose = document.getElementById('hudClose');
+      const hudReset = document.getElementById('hudReset');
+      const hudCopyCss = document.getElementById('hudCopyCss');
+      const hudFontMinus = document.getElementById('hudFontMinus');
+      const hudFontPlus = document.getElementById('hudFontPlus');
+      const hudZToggle = document.getElementById('hudZToggle');
+
+      let isEditing = false;
+      let activeTarget = null;
+      let isDragging = false;
+      let startX = 0, startY = 0;
+      let initialLeft = 0, initialTop = 0;
+      let hasMoved = false;
+
+      // Available editable targets
+      const targetMap = {
+        'mobile-backdrop-headline': { el: () => document.querySelector('.mobile-backdrop-headline'), name: 'CREATIVE EDGE (Group)' },
+        'mb-creative': { el: () => document.querySelector('.mb-creative'), name: 'Word: CREATIVE' },
+        'mb-edge': { el: () => document.querySelector('.mb-edge'), name: 'Word: EDGE' },
+        'heroCharacterSlot': { el: () => document.getElementById('heroCharacterSlot'), name: 'Pilot Image' },
+        'headline-stack': { el: () => document.querySelector('.headline-stack'), name: 'Main Headline' }
+      };
+
+      function getTargetKey(el) {
+        if (!el) return null;
+        if (el.id === 'heroCharacterSlot') return 'heroCharacterSlot';
+        if (el.classList.contains('mb-creative')) return 'mb-creative';
+        if (el.classList.contains('mb-edge')) return 'mb-edge';
+        if (el.classList.contains('mobile-backdrop-headline')) return 'mobile-backdrop-headline';
+        if (el.classList.contains('headline-stack')) return 'headline-stack';
+        return null;
+      }
+
+      function selectTarget(keyOrEl) {
+        const el = typeof keyOrEl === 'string' ? (targetMap[keyOrEl] ? targetMap[keyOrEl].el() : null) : keyOrEl;
+        if (!el) return;
+        document.querySelectorAll('.drag-selected').forEach(n => n.classList.remove('drag-selected'));
+        activeTarget = el;
+        activeTarget.classList.add('drag-selected');
+
+        const key = getTargetKey(el);
+        if (hudTargetName) hudTargetName.textContent = key && targetMap[key] ? targetMap[key].name : el.tagName;
+        
+        // Update active chip
+        document.querySelectorAll('.hud-chip').forEach(c => {
+          c.classList.toggle('active', c.getAttribute('data-hud-select') === key);
+        });
+
+        // Update Layer button text
+        if (hudZToggle) {
+          const z = parseInt(window.getComputedStyle(el).zIndex, 10) || 1;
+          hudZToggle.textContent = z >= 2 ? 'Layer: In Front' : 'Layer: Behind';
+        }
+
+        updateCoordsDisplay();
+      }
+
+      function updateCoordsDisplay() {
+        if (!hudCoords || !activeTarget) return;
+        const left = activeTarget.style.left || 'default';
+        const top = activeTarget.style.top || 'default';
+        const font = activeTarget.style.fontSize ? ` • ${activeTarget.style.fontSize}` : '';
+        hudCoords.textContent = `X: ${left} | Y: ${top}${font}`;
+      }
+
+      function setEditMode(state) {
+        isEditing = state;
+        document.body.classList.toggle('is-editing', isEditing);
+        if (toggleBtn) {
+          toggleBtn.classList.toggle('active', isEditing);
+          const lbl = toggleBtn.querySelector('.edit-label');
+          if (lbl) lbl.textContent = isEditing ? 'Editing ON' : 'Drag & Edit';
+        }
+
+        // Enable contenteditable on text elements
+        const textNodes = document.querySelectorAll('.mb-word, .title-row');
+        textNodes.forEach(node => {
+          node.contentEditable = isEditing ? 'true' : 'false';
+          node.spellcheck = false;
+        });
+
+        if (isEditing) {
+          selectTarget('mobile-backdrop-headline');
+        } else {
+          document.querySelectorAll('.drag-selected').forEach(n => n.classList.remove('drag-selected'));
+        }
+      }
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setEditMode(!isEditing);
+        });
+      }
+
+      if (hudClose) {
+        hudClose.addEventListener('click', () => setEditMode(false));
+      }
+
+      // Chip buttons
+      document.querySelectorAll('.hud-chip').forEach(chip => {
+        chip.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const key = chip.getAttribute('data-hud-select');
+          selectTarget(key);
+        });
+      });
+
+      // Pointer drag handling
+      document.addEventListener('pointerdown', (e) => {
+        if (!isEditing) return;
+        // Don't drag when touching HUD controls or switcher
+        if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher')) return;
+
+        // Check if target is one of our elements
+        let clickedTarget = null;
+        if (e.target.closest('.mb-creative')) clickedTarget = document.querySelector('.mb-creative');
+        else if (e.target.closest('.mb-edge')) clickedTarget = document.querySelector('.mb-edge');
+        else if (e.target.closest('.mobile-backdrop-headline')) clickedTarget = document.querySelector('.mobile-backdrop-headline');
+        else if (e.target.closest('#heroCharacterSlot')) clickedTarget = document.getElementById('heroCharacterSlot');
+        else if (e.target.closest('.headline-stack')) clickedTarget = document.querySelector('.headline-stack');
+
+        if (!clickedTarget) return;
+
+        selectTarget(clickedTarget);
+        startX = e.clientX;
+        startY = e.clientY;
+        hasMoved = false;
+
+        const parent = clickedTarget.offsetParent || document.body;
+        const pRect = parent.getBoundingClientRect();
+        const tRect = clickedTarget.getBoundingClientRect();
+
+        initialLeft = parseFloat(clickedTarget.style.left);
+        initialTop = parseFloat(clickedTarget.style.top);
+        if (isNaN(initialLeft)) initialLeft = tRect.left - pRect.left;
+        if (isNaN(initialTop)) initialTop = tRect.top - pRect.top;
+
+        function onPointerMove(pe) {
+          const dx = pe.clientX - startX;
+          const dy = pe.clientY - startY;
+          if (!hasMoved && Math.hypot(dx, dy) > 3) {
+            hasMoved = true;
+            isDragging = true;
+            try { clickedTarget.setPointerCapture(pe.pointerId); } catch(err) {}
+          }
+          if (hasMoved) {
+            pe.preventDefault();
+            const pos = window.getComputedStyle(clickedTarget).position;
+            if (pos === 'static') clickedTarget.style.position = 'relative';
+            clickedTarget.style.left = Math.round(initialLeft + dx) + 'px';
+            clickedTarget.style.top = Math.round(initialTop + dy) + 'px';
+            clickedTarget.style.right = 'auto';
+            clickedTarget.style.bottom = 'auto';
+            updateCoordsDisplay();
+          }
+        }
+
+        function onPointerUp(pe) {
+          window.removeEventListener('pointermove', onPointerMove);
+          window.removeEventListener('pointerup', onPointerUp);
+          try { clickedTarget.releasePointerCapture(pe.pointerId); } catch(err) {}
+          if (hasMoved) {
+            saveEdits();
+          }
+          setTimeout(() => { isDragging = false; }, 50);
+        }
+
+        window.addEventListener('pointermove', onPointerMove, { passive: false });
+        window.addEventListener('pointerup', onPointerUp);
+      });
+
+      // Text font-size adjustments
+      if (hudFontPlus) {
+        hudFontPlus.addEventListener('click', () => adjustFontSize(1.08));
+      }
+      if (hudFontMinus) {
+        hudFontMinus.addEventListener('click', () => adjustFontSize(0.92));
+      }
+
+      function adjustFontSize(factor) {
+        if (!activeTarget) return;
+        const cur = parseFloat(window.getComputedStyle(activeTarget).fontSize);
+        const next = Math.round(cur * factor);
+        activeTarget.style.fontSize = next + 'px';
+        updateCoordsDisplay();
+        saveEdits();
+      }
+
+      // Z-index layer toggle
+      if (hudZToggle) {
+        hudZToggle.addEventListener('click', () => {
+          if (!activeTarget) return;
+          const curZ = parseInt(window.getComputedStyle(activeTarget).zIndex, 10) || 1;
+          const nextZ = curZ >= 2 ? 1 : 3;
+          activeTarget.style.zIndex = nextZ;
+          hudZToggle.textContent = nextZ >= 2 ? 'Layer: In Front' : 'Layer: Behind';
+          saveEdits();
+        });
+      }
+
+      // Copy CSS
+      if (hudCopyCss) {
+        hudCopyCss.addEventListener('click', () => {
+          if (!activeTarget) return;
+          const key = getTargetKey(activeTarget);
+          let sel = '.' + key;
+          if (activeTarget.id) sel = '#' + activeTarget.id;
+
+          const top = activeTarget.style.top || 'auto';
+          const left = activeTarget.style.left || 'auto';
+          const font = activeTarget.style.fontSize || '';
+          const z = activeTarget.style.zIndex || '';
+
+          let css = `${sel} {\n  top: ${top};\n  left: ${left};\n`;
+          if (font) css += `  font-size: ${font};\n`;
+          if (z) css += `  z-index: ${z};\n`;
+          css += `}`;
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(css).then(showCopiedNotice);
+          } else {
+            const ta = document.createElement('textarea');
+            ta.value = css;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showCopiedNotice();
+          }
+        });
+      }
+
+      function showCopiedNotice() {
+        const orig = hudCopyCss.textContent;
+        hudCopyCss.textContent = '✓ Copied!';
+        hudCopyCss.style.background = '#059669';
+        setTimeout(() => {
+          hudCopyCss.textContent = orig;
+          hudCopyCss.style.background = '';
+        }, 1500);
+      }
+
+      // Reset
+      if (hudReset) {
+        hudReset.addEventListener('click', () => {
+          if (confirm('Reset custom dragged positions and text back to original?')) {
+            localStorage.removeItem('dunes_custom_edits');
+            location.reload();
+          }
+        });
+      }
+
+      // Persistence
+      function saveEdits() {
+        const data = {};
+        Object.keys(targetMap).forEach(key => {
+          const el = targetMap[key].el();
+          if (el) {
+            data[key] = {
+              left: el.style.left,
+              top: el.style.top,
+              fontSize: el.style.fontSize,
+              zIndex: el.style.zIndex,
+              text: el.classList.contains('mb-word') ? el.innerText : null
+            };
+          }
+        });
+        localStorage.setItem('dunes_custom_edits', JSON.stringify(data));
+      }
+
+      function restoreEdits() {
+        try {
+          const raw = localStorage.getItem('dunes_custom_edits');
+          if (!raw) return;
+          const data = JSON.parse(raw);
+          Object.keys(data).forEach(key => {
+            const el = targetMap[key] ? targetMap[key].el() : null;
+            if (el && data[key]) {
+              const d = data[key];
+              if (d.left) el.style.left = d.left;
+              if (d.top) el.style.top = d.top;
+              if (d.fontSize) el.style.fontSize = d.fontSize;
+              if (d.zIndex) el.style.zIndex = d.zIndex;
+              if (d.left || d.top) {
+                const pos = window.getComputedStyle(el).position;
+                if (pos === 'static') el.style.position = 'relative';
+              }
+              if (d.text && el.classList.contains('mb-word')) {
+                el.innerText = d.text;
+              }
+            }
+          });
+        } catch(err) {
+          console.warn('Failed restoring edits', err);
+        }
+      }
+
+      // Listen for text edits to save
+      document.addEventListener('input', (e) => {
+        if (isEditing && e.target.classList.contains('mb-word')) {
+          saveEdits();
+        }
+      });
+
+      restoreEdits();
+    })();
   </script>
 
 </body>
