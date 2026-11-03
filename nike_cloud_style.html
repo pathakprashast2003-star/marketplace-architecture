@@ -627,7 +627,7 @@
         overflow: hidden;
         margin: 0;
         padding: 0;
-        background: #080C14;
+        background: #F8FAFC; /* Clean white framing layer outside card */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -644,7 +644,7 @@
         height: calc(100dvh - 16px);
         margin: 8px auto;
         border-radius: 28px;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 1.5px rgba(255, 255, 255, 0.4);
+        box-shadow: 0 16px 42px -10px rgba(16, 52, 138, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.05), inset 0 1px 1.5px rgba(255, 255, 255, 0.5);
         overflow: hidden;
         position: relative;
         display: flex;
@@ -731,11 +731,10 @@
       /* Center Subject Stage: Pilot & Drone layered in front */
       .subject-center-stage {
         position: absolute;
-        top: 48px;
-        bottom: 0;
+        top: 36px;
         left: 50%;
         transform: translateX(-50%);
-        height: calc(100% - 138px);
+        height: calc(100% - 152px);
         width: 100%;
         display: flex;
         align-items: flex-start;
@@ -745,12 +744,14 @@
       }
 
       .subject-pilot-image {
-        height: 100%;
-        max-height: 100%;
+        height: 82%;
+        max-height: 82%;
         width: auto;
-        max-width: 88%;
+        max-width: 86%;
         object-fit: contain;
         object-position: top center;
+        pointer-events: auto;
+        filter: drop-shadow(0 20px 36px rgba(10, 40, 110, 0.28));
       }
 
       /* Bottom Horizon Dock: Elevated Apple-grade tactile dock */
@@ -763,7 +764,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
         z-index: 25;
         pointer-events: auto;
       }
@@ -772,16 +773,35 @@
         text-align: center;
         align-items: center;
         width: 100%;
-        max-width: 320px;
+        max-width: 330px;
+        margin: 0 auto;
       }
 
       .dock-title {
-        font-size: clamp(0.92rem, 3.8vw, 1.1rem);
+        font-family: var(--font-display);
+        font-size: clamp(1.15rem, 4.5vw, 1.4rem);
         font-weight: 800;
         line-height: 1.15;
-        margin: 0;
+        letter-spacing: -0.025em;
+        text-align: center;
+        margin: 0 0 2px 0;
         color: #FFFFFF;
-        text-shadow: 0 2px 10px rgba(8, 24, 70, 0.4);
+        text-shadow: 0 2px 12px rgba(8, 24, 70, 0.45);
+        outline: none;
+        transition: outline 0.15s ease, background 0.15s ease;
+      }
+
+      body.is-editing .dock-title {
+        cursor: text;
+        outline: 1.5px dashed rgba(255, 255, 255, 0.6);
+        outline-offset: 4px;
+        border-radius: 6px;
+        padding: 2px 6px;
+      }
+
+      body.is-editing .dock-title:focus {
+        outline: 2px solid #38BDF8;
+        background: rgba(255, 255, 255, 0.14);
       }
 
       .dock-sub {
@@ -1004,8 +1024,13 @@
       let initialLeft = 0, initialTop = 0;
       let hasMoved = false;
 
-      // Responsive viewport isolation
-      const STORAGE_PREFIX = 'nike_cloud_custom_edits_v1_';
+      // Responsive viewport isolation (v2 clean storage)
+      const STORAGE_PREFIX = 'nike_cloud_custom_edits_v2_';
+      try {
+        localStorage.removeItem('nike_cloud_custom_edits_v1_mobile');
+        localStorage.removeItem('nike_cloud_custom_edits_v1_desktop');
+      } catch(e) {}
+
       function getActiveViewport() {
         return window.innerWidth <= 900 ? 'mobile' : 'desktop';
       }
@@ -1019,14 +1044,17 @@
         'backplane-word-top': { el: () => document.querySelector('.backplane-word-top'), name: 'Word: CREATIVE', viewport: 'both' },
         'backplane-word-bottom': { el: () => document.querySelector('.backplane-word-bottom'), name: 'Word: EDGE', viewport: 'both' },
         'subject-pilot-image': { el: () => document.querySelector('.subject-pilot-image'), name: 'Pilot Image', viewport: 'both' },
-        'dock-headline-col': { el: () => document.querySelector('.dock-headline-col'), name: 'Left Proposition', viewport: 'both' },
+        'dock-title': { el: () => document.querySelector('.dock-title'), name: 'Title: Direct Access', viewport: 'both' },
+        'dock-sub': { el: () => document.querySelector('.dock-sub'), name: 'Subtitle Copy', viewport: 'desktop' },
+        'dock-headline-col': { el: () => document.querySelector('.dock-headline-col'), name: 'Proposition Box', viewport: 'both' },
         'dock-actions-col': { el: () => document.querySelector('.dock-actions-col'), name: 'Right Actions', viewport: 'desktop' },
         'stage-horizon-dock': { el: () => document.querySelector('.stage-horizon-dock'), name: 'Bottom Action Dock', viewport: 'both' }
       };
 
       const defaultTexts = {
         'backplane-word-top': 'CREATIVE',
-        'backplane-word-bottom': 'EDGE'
+        'backplane-word-bottom': 'EDGE',
+        'dock-title': 'Direct access to<br>world-class visual talent.'
       };
 
       function updateHudModeBadge() {
@@ -1090,13 +1118,15 @@
 
         Object.keys(defaultTexts).forEach(k => {
           const el = targetMap[k] ? targetMap[k].el() : null;
-          if (el) el.innerText = defaultTexts[k];
+          if (el) el.innerHTML = defaultTexts[k];
         });
       }
 
       function getTargetKey(el) {
         if (!el) return null;
         if (el.classList.contains('subject-pilot-image')) return 'subject-pilot-image';
+        if (el.classList.contains('dock-title')) return 'dock-title';
+        if (el.classList.contains('dock-sub')) return 'dock-sub';
         if (el.classList.contains('backplane-word-top')) return 'backplane-word-top';
         if (el.classList.contains('backplane-word-bottom')) return 'backplane-word-bottom';
         if (el.classList.contains('giant-headline-backplane')) return 'giant-headline-backplane';
@@ -1145,14 +1175,14 @@
           if (lbl) lbl.textContent = isEditing ? 'Editing ON' : 'Drag & Edit';
         }
 
-        const textNodes = document.querySelectorAll('.backplane-word-top, .backplane-word-bottom, .dock-title');
+        const textNodes = document.querySelectorAll('.backplane-word-top, .backplane-word-bottom, .dock-title, .dock-sub');
         textNodes.forEach(node => {
           node.contentEditable = isEditing ? 'true' : 'false';
           node.spellcheck = false;
         });
 
         if (isEditing) {
-          selectTarget('giant-headline-backplane');
+          selectTarget('dock-title');
         } else {
           document.querySelectorAll('.drag-selected').forEach(n => n.classList.remove('drag-selected'));
           activeTarget = null;
@@ -1175,11 +1205,16 @@
         if (!isEditing) return;
         if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher')) return;
 
+        // Allow direct clicking and keyboard editing inside contenteditable text fields
+        const editableText = e.target.closest('.dock-title, .dock-sub, .backplane-word-top, .backplane-word-bottom');
+        if (editableText) {
+          selectTarget(editableText);
+          return; // Let user focus, select text, and type natively
+        }
+
         let clickedTarget = null;
-        if (e.target.closest('.backplane-word-top')) clickedTarget = document.querySelector('.backplane-word-top');
-        else if (e.target.closest('.backplane-word-bottom')) clickedTarget = document.querySelector('.backplane-word-bottom');
+        if (e.target.closest('.subject-pilot-image')) clickedTarget = document.querySelector('.subject-pilot-image');
         else if (e.target.closest('.giant-headline-backplane')) clickedTarget = document.querySelector('.giant-headline-backplane');
-        else if (e.target.closest('.subject-pilot-image')) clickedTarget = document.querySelector('.subject-pilot-image');
         else if (e.target.closest('.dock-headline-col')) clickedTarget = document.querySelector('.dock-headline-col');
         else if (e.target.closest('.dock-actions-col')) clickedTarget = document.querySelector('.dock-actions-col');
         else if (e.target.closest('.stage-horizon-dock')) clickedTarget = document.querySelector('.stage-horizon-dock');
@@ -1248,8 +1283,8 @@
         if (!slot) return;
         const mode = getActiveViewport();
         if (mode === 'mobile') {
-          const curH = parseFloat(slot.style.maxHeight) || 84;
-          const nextH = Math.min(100, Math.max(40, Math.round(curH * factor)));
+          const curH = parseFloat(slot.style.maxHeight) || 82;
+          const nextH = Math.min(100, Math.max(30, Math.round(curH * factor)));
           slot.style.maxHeight = nextH + '%';
           slot.style.height = nextH + '%';
           slot.style.maxWidth = (nextH + 8) + '%';
@@ -1264,7 +1299,7 @@
       function nudgeDock(deltaPx) {
         const dock = document.querySelector('.stage-horizon-dock');
         if (!dock) return;
-        const curBottom = parseFloat(dock.style.bottom) || (getActiveViewport() === 'mobile' ? 18 : 44);
+        const curBottom = parseFloat(dock.style.bottom) || (getActiveViewport() === 'mobile' ? 16 : 44);
         const next = Math.max(0, curBottom + deltaPx);
         dock.style.bottom = next + 'px';
         saveEdits();
@@ -1367,7 +1402,7 @@
           if (item.viewport === 'both' || item.viewport === mode) {
             const el = item.el();
             if (el) {
-              const isText = el.classList.contains('backplane-word-top') || el.classList.contains('backplane-word-bottom') || el.classList.contains('dock-title');
+              const isText = el.classList.contains('backplane-word-top') || el.classList.contains('backplane-word-bottom') || el.classList.contains('dock-title') || el.classList.contains('dock-sub');
               data[key] = {
                 left: el.style.left || '',
                 top: el.style.top || '',
@@ -1377,7 +1412,7 @@
                 maxHeight: el.style.maxHeight || '',
                 maxWidth: el.style.maxWidth || '',
                 bottom: el.style.bottom || '',
-                text: isText ? el.innerText : null
+                html: isText ? el.innerHTML : null
               };
             }
           }
@@ -1424,8 +1459,8 @@
                 const pos = window.getComputedStyle(el).position;
                 if (pos === 'static') el.style.position = 'relative';
               }
-              if (d.text) {
-                el.innerText = d.text;
+              if (d.html) {
+                el.innerHTML = d.html;
               }
             }
           });
@@ -1435,7 +1470,7 @@
       }
 
       document.addEventListener('input', (e) => {
-        if (isEditing && (e.target.classList.contains('backplane-word-top') || e.target.classList.contains('backplane-word-bottom') || e.target.classList.contains('dock-title'))) {
+        if (isEditing && (e.target.classList.contains('backplane-word-top') || e.target.classList.contains('backplane-word-bottom') || e.target.classList.contains('dock-title') || e.target.classList.contains('dock-sub'))) {
           saveEdits();
         }
       });
@@ -1450,7 +1485,7 @@
           updateHudChipsForMode();
           updateHudModeBadge();
           if (isEditing) {
-            selectTarget('giant-headline-backplane');
+            selectTarget('dock-title');
           }
         }
       });
