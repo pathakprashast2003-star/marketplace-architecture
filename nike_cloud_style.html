@@ -734,7 +734,7 @@
         top: 36px;
         left: 50%;
         transform: translateX(-50%);
-        height: calc(100% - 152px);
+        height: calc(100% - 188px);
         width: 100%;
         display: flex;
         align-items: flex-start;
@@ -744,8 +744,8 @@
       }
 
       .subject-pilot-image {
-        height: 82%;
-        max-height: 82%;
+        height: 80%;
+        max-height: 80%;
         width: auto;
         max-width: 86%;
         object-fit: contain;
@@ -757,7 +757,7 @@
       /* Bottom Horizon Dock: Elevated Apple-grade tactile dock */
       .stage-horizon-dock {
         position: absolute;
-        bottom: 16px;
+        bottom: 48px;
         left: 0;
         width: 100%;
         padding: 0 16px;
@@ -1024,11 +1024,13 @@
       let initialLeft = 0, initialTop = 0;
       let hasMoved = false;
 
-      // Responsive viewport isolation (v2 clean storage)
-      const STORAGE_PREFIX = 'nike_cloud_custom_edits_v2_';
+      // Responsive viewport isolation (v3 clean storage)
+      const STORAGE_PREFIX = 'nike_cloud_custom_edits_v3_';
       try {
         localStorage.removeItem('nike_cloud_custom_edits_v1_mobile');
         localStorage.removeItem('nike_cloud_custom_edits_v1_desktop');
+        localStorage.removeItem('nike_cloud_custom_edits_v2_mobile');
+        localStorage.removeItem('nike_cloud_custom_edits_v2_desktop');
       } catch(e) {}
 
       function getActiveViewport() {
@@ -1299,7 +1301,7 @@
       function nudgeDock(deltaPx) {
         const dock = document.querySelector('.stage-horizon-dock');
         if (!dock) return;
-        const curBottom = parseFloat(dock.style.bottom) || (getActiveViewport() === 'mobile' ? 16 : 44);
+        const curBottom = parseFloat(dock.style.bottom) || (getActiveViewport() === 'mobile' ? 48 : 44);
         const next = Math.max(0, curBottom + deltaPx);
         dock.style.bottom = next + 'px';
         saveEdits();
