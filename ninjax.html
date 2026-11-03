@@ -275,21 +275,23 @@
     }
 
     .headline-line-1 {
-      font-family: var(--font-display);
-      font-size: clamp(58px, 6vw, 88px);
-      font-weight: 900;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(58px, 6vw, 92px);
+      font-weight: 400;
       line-height: 0.92;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.01em;
       color: var(--text-dark);
       display: block;
     }
 
     .headline-line-2 {
-      font-family: var(--font-display);
-      font-size: clamp(58px, 6vw, 88px);
-      font-weight: 900;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(58px, 6vw, 92px);
+      font-weight: 400;
       line-height: 0.92;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.01em;
       color: var(--accent-blue);
       display: block;
       margin-top: 2px;
@@ -417,7 +419,7 @@
       text-align: right;
       position: relative;
       z-index: 5;
-      margin-bottom: 20px;
+      margin-bottom: 80px;
     }
 
     .dock-mono-kicker {
@@ -731,9 +733,87 @@
         white-space: nowrap;
       }
     }
+    /* ── DRAG & EDIT ENGINE ── */
+    .editor-toggle-btn {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 2000;
+      background: #1E293B;
+      color: #FFFFFF;
+      border: 1.5px solid rgba(255,255,255,0.15);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s ease;
+    }
+    .editor-toggle-btn.active { background: #2563EB; border-color: #60A5FA; box-shadow: 0 0 16px rgba(37,99,235,0.6); }
+    body.is-editing * { cursor: grab; pointer-events: auto !important; }
+    body.is-editing [contenteditable="true"] { cursor: text !important; user-select: text !important; -webkit-user-select: text !important; }
+    body.is-editing .drag-selected { outline: 2px dashed #3B82F6 !important; outline-offset: 4px; border-radius: 4px; }
+    body.is-editing [contenteditable="true"]:focus { outline: 2px solid #60A5FA !important; background: rgba(37,99,235,0.12) !important; border-radius: 4px; }
+    body.is-editing .preview-layout-switcher, body.is-editing .preview-layout-switcher *, body.is-editing .editor-toggle-btn, body.is-editing .editor-toggle-btn * { cursor: default !important; }
+    .editor-hud {
+      display: none;
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2000;
+      background: rgba(11,15,29,0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 10px 14px;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 480px;
+      max-width: 680px;
+      color: #FFFFFF;
+    }
+    body.is-editing .editor-hud { display: flex; }
+    .hud-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .hud-target-name { color: #60A5FA; font-weight: 700; font-size: 12px; }
+    .hud-coords { font-size: 10px; color: rgba(255,255,255,0.5); font-family: monospace; }
+    .hud-btn {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #FFFFFF;
+      border-radius: 8px; padding: 5px 10px; font-size: 11px; font-weight: 700; cursor: pointer;
+    }
+    .hud-btn:hover { background: rgba(255,255,255,0.16); }
+    .hud-btn.danger { border-color: rgba(239,68,68,0.5); }
+    .hud-save-toast { background:#10B981; color:#fff; font-size:10px; font-weight:700; padding:2px 7px; border-radius:10px; opacity:0; transition:opacity 0.2s; pointer-events:none; }
+    .hud-save-toast.show { opacity:1; }
   </style>
 </head>
 <body>
+
+  <!-- Editor Toggle -->
+  <button id="editorToggle" class="editor-toggle-btn" type="button">
+    <span>✏️</span><span class="edit-label">Drag &amp; Edit</span>
+  </button>
+
+  <!-- Editor HUD -->
+  <div id="editorHud" class="editor-hud" role="toolbar">
+    <div class="hud-row" style="font-size:11px;">
+      <span>Target: <span id="hudTargetName" class="hud-target-name">—</span></span>
+      <span id="hudSaveToast" class="hud-save-toast">✓ Saved</span>
+      <span id="hudCoords" class="hud-coords">Drag to reposition</span>
+    </div>
+    <div class="hud-row">
+      <button class="hud-btn" id="hudFontMinus">A-</button>
+      <button class="hud-btn" id="hudFontPlus">A+</button>
+      <button class="hud-btn" id="hudColorCycle">Color</button>
+      <button class="hud-btn danger" id="hudReset">↺ Reset</button>
+      <button class="hud-btn" id="hudClose" style="margin-left:auto;">✕</button>
+    </div>
+  </div>
 
   <!-- ── 3-WAY LAYOUT SWITCHER ── -->
   <aside class="preview-layout-switcher" aria-label="Layout Switcher">
@@ -786,7 +866,7 @@
 
           <!-- Rate & Live SLA Module -->
           <div class="talent-rate-module">
-            <span class="rate-val">$2,400</span>
+            <span class="rate-val">$25–400</span>
             <span class="rate-term">/ Day Direct</span>
             <span class="status-badge-live">
               <span class="status-dot"></span>
@@ -857,5 +937,190 @@
 
   </main>
 
+  <script>
+    (function() {
+      const STORE_KEY = 'ninjax_edits_v1';
+      const toggleBtn = document.getElementById('editorToggle');
+      const hudClose = document.getElementById('hudClose');
+      const hudTargetName = document.getElementById('hudTargetName');
+      const hudCoords = document.getElementById('hudCoords');
+      const hudSaveToast = document.getElementById('hudSaveToast');
+      const hudFontPlus = document.getElementById('hudFontPlus');
+      const hudFontMinus = document.getElementById('hudFontMinus');
+      const hudColorCycle = document.getElementById('hudColorCycle');
+      const hudReset = document.getElementById('hudReset');
+
+      let isEditing = false, activeTarget = null, isDragging = false;
+      let startX = 0, startY = 0, initialLeft = 0, initialTop = 0, hasMoved = false;
+
+      function showToast() {
+        if (!hudSaveToast) return;
+        hudSaveToast.classList.add('show');
+        clearTimeout(hudSaveToast._t);
+        hudSaveToast._t = setTimeout(() => hudSaveToast.classList.remove('show'), 1200);
+      }
+
+      function getReadableName(el) {
+        if (!el) return '—';
+        if (el.classList.contains('headline-line-1')) return 'DIRECT (headline)';
+        if (el.classList.contains('headline-line-2')) return 'ROSTER. (headline)';
+        if (el.classList.contains('rate-val')) return 'Rate Value';
+        if (el.classList.contains('rate-term')) return 'Rate Term';
+        if (el.classList.contains('dock-title-headline')) return 'Right Headline';
+        if (el.classList.contains('editorial-subhead-prose')) return 'Subtitle Copy';
+        if (el.classList.contains('category-kicker')) return 'Kicker Label';
+        if (el.tagName === 'IMG') return 'Character Image';
+        return el.className.split(' ').filter(c => !['drag-selected'].includes(c))[0] || el.tagName.toLowerCase();
+      }
+
+      function selectTarget(el) {
+        document.querySelectorAll('.drag-selected').forEach(n => n.classList.remove('drag-selected'));
+        activeTarget = el;
+        el.classList.add('drag-selected');
+        if (hudTargetName) hudTargetName.textContent = getReadableName(el);
+      }
+
+      function updateCoords() {
+        if (!activeTarget || !hudCoords) return;
+        hudCoords.textContent = `X: ${activeTarget.style.left || 'default'} | Y: ${activeTarget.style.top || 'default'}`;
+      }
+
+      function setContentEditable(enabled) {
+        document.querySelectorAll(
+          '.headline-line-1, .headline-line-2, .category-kicker, .rate-val, .rate-term, .editorial-subhead-prose, .dock-title-headline, .dock-mono-kicker, .spec-item-card span, .spec-item-card strong, .btn-action-primary, .link-secondary-action, .btn-secondary-explore, .right-bottom-trust span'
+        ).forEach(el => {
+          if (el.closest('#editorHud, #editorToggle, .preview-layout-switcher')) return;
+          el.contentEditable = enabled ? 'true' : 'false';
+          el.spellcheck = false;
+        });
+      }
+
+      function setEditMode(state) {
+        isEditing = state;
+        document.body.classList.toggle('is-editing', isEditing);
+        toggleBtn.classList.toggle('active', isEditing);
+        toggleBtn.querySelector('.edit-label').textContent = isEditing ? 'Editing ON' : 'Drag & Edit';
+        setContentEditable(isEditing);
+        if (isEditing) restoreEdits();
+        else { document.querySelectorAll('.drag-selected').forEach(n => n.classList.remove('drag-selected')); activeTarget = null; }
+      }
+
+      function saveEdits() {
+        let data = {};
+        document.querySelectorAll('[data-dragged="true"]').forEach(el => {
+          const key = el.dataset.editKey || el.className.split(' ')[0] || el.tagName;
+          data[key] = { left: el.style.left, top: el.style.top, fontSize: el.style.fontSize, color: el.style.color, position: el.style.position };
+        });
+        // Save text
+        document.querySelectorAll('[contenteditable="true"]').forEach(el => {
+          const key = (el.dataset.editKey || el.className.split(' ')[0]) + '_text';
+          data[key] = el.innerHTML;
+        });
+        try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch(e) {}
+        showToast();
+      }
+
+      function restoreEdits() {
+        try {
+          const raw = localStorage.getItem(STORE_KEY);
+          if (!raw) return;
+          const data = JSON.parse(raw);
+          Object.keys(data).forEach(key => {
+            if (key.endsWith('_text')) {
+              const cls = key.replace('_text', '');
+              const el = document.querySelector('.' + cls);
+              if (el && data[key]) el.innerHTML = data[key];
+              return;
+            }
+            const el = document.querySelector('.' + key) || document.querySelector('[data-edit-key="' + key + '"]');
+            if (el && data[key]) {
+              const d = data[key];
+              if (d.left) el.style.left = d.left;
+              if (d.top) el.style.top = d.top;
+              if (d.fontSize) el.style.fontSize = d.fontSize;
+              if (d.color) el.style.color = d.color;
+              if (d.position) el.style.position = d.position;
+              if (d.left || d.top) el.setAttribute('data-dragged', 'true');
+            }
+          });
+        } catch(e) {}
+      }
+
+      toggleBtn.addEventListener('click', e => { e.stopPropagation(); setEditMode(!isEditing); });
+      hudClose.addEventListener('click', () => setEditMode(false));
+
+      document.addEventListener('pointerdown', e => {
+        if (!isEditing) return;
+        if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher')) return;
+        const el = e.target.closest(
+          '.headline-line-1, .headline-line-2, .category-kicker, .rate-val, .rate-term, .talent-rate-module, .editorial-subhead-prose, .dock-title-headline, .right-production-dock, .production-spec-stack, .spec-item-card, .editorial-action-row, .right-bottom-trust, .center-seam-talent-box, .talent-clean-image'
+        ) || e.target;
+        if (!el || el === document.body || el === document.documentElement) return;
+        selectTarget(el);
+        if (el.tagName === 'IMG') e.preventDefault();
+        startX = e.clientX; startY = e.clientY; hasMoved = false;
+        initialLeft = parseFloat(el.style.left) || 0;
+        initialTop = parseFloat(el.style.top) || 0;
+
+        function onMove(pe) {
+          const dx = pe.clientX - startX, dy = pe.clientY - startY;
+          if (!hasMoved && Math.hypot(dx, dy) > 3) {
+            hasMoved = true; isDragging = true;
+            try { el.setPointerCapture(pe.pointerId); } catch(err) {}
+          }
+          if (hasMoved) {
+            pe.preventDefault();
+            if (window.getComputedStyle(el).position === 'static') el.style.position = 'relative';
+            el.style.left = Math.round(initialLeft + dx) + 'px';
+            el.style.top = Math.round(initialTop + dy) + 'px';
+            el.setAttribute('data-dragged', 'true');
+            updateCoords();
+          }
+        }
+        function onUp(pe) {
+          window.removeEventListener('pointermove', onMove);
+          window.removeEventListener('pointerup', onUp);
+          try { el.releasePointerCapture(pe.pointerId); } catch(e) {}
+          if (hasMoved) saveEdits();
+          setTimeout(() => { isDragging = false; }, 50);
+        }
+        window.addEventListener('pointermove', onMove, { passive: false });
+        window.addEventListener('pointerup', onUp);
+      });
+
+      hudFontPlus.addEventListener('click', () => {
+        if (!activeTarget) return;
+        activeTarget.style.fontSize = Math.round(parseFloat(window.getComputedStyle(activeTarget).fontSize) * 1.08) + 'px';
+        activeTarget.setAttribute('data-dragged', 'true'); saveEdits();
+      });
+      hudFontMinus.addEventListener('click', () => {
+        if (!activeTarget) return;
+        activeTarget.style.fontSize = Math.round(parseFloat(window.getComputedStyle(activeTarget).fontSize) * 0.92) + 'px';
+        activeTarget.setAttribute('data-dragged', 'true'); saveEdits();
+      });
+      hudColorCycle.addEventListener('click', () => {
+        if (!activeTarget) return;
+        const colors = ['#FFFFFF', '#0A121F', '#2563EB', '#10B981', '#FF384D'];
+        const cur = activeTarget.style.color;
+        activeTarget.style.color = colors[(colors.indexOf(cur) + 1) % colors.length] || colors[0];
+        activeTarget.setAttribute('data-dragged', 'true'); saveEdits();
+      });
+      hudReset.addEventListener('click', () => {
+        if (confirm('Reset all Ninjax edits?')) {
+          try { localStorage.removeItem(STORE_KEY); } catch(e) {}
+          document.querySelectorAll('[data-dragged="true"]').forEach(el => {
+            el.style.left = el.style.top = el.style.fontSize = el.style.color = el.style.position = '';
+            el.removeAttribute('data-dragged');
+          });
+        }
+      });
+      document.addEventListener('input', e => {
+        if (!isEditing || e.target.closest('#editorHud, #editorToggle')) return;
+        saveEdits();
+      });
+
+      restoreEdits();
+    })();
+  </script>
 </body>
 </html>
