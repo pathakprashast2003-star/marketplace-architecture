@@ -1272,9 +1272,9 @@
       0%   { opacity: 0; transform: translate3d(0, 24px, 0); }
       100% { opacity: 1; transform: translate3d(0, 0, 0); }
     }
-    @keyframes dnHeroLevitate {
-      0%   { opacity: 0; transform: translate3d(0, 28px, 0) scale(0.96); }
-      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+    @keyframes dnFadeIn {
+      0%   { opacity: 0; }
+      100% { opacity: 1; }
     }
 
     .character-theme-capsules, .preview-layout-switcher {
@@ -1285,7 +1285,7 @@
 
     .headline-stack        { animation: dnSlideUp 0.90s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.08s; }
     .hero-editorial-chunk  { animation: dnSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.18s; }
-    .image-container-slot  { animation: dnHeroLevitate 1.1s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.10s; }
+    .image-container-slot  { animation: dnFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.10s; }
 
     /* Tactile button lift on hover */
     .btn-discover, .btn-join {
