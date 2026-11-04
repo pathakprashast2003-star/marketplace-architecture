@@ -384,11 +384,13 @@
       flex-direction: column;
       justify-content: flex-start;
       position: relative;
-      z-index: 2;
+      z-index: auto;
     }
 
     .left-editorial-content {
       max-width: 500px;
+      position: relative;
+      z-index: 25;
     }
 
     .category-kicker {
@@ -506,6 +508,8 @@
       align-items: center;
       gap: 12px;
       padding: 8px 18px;
+      height: 42px;
+      box-sizing: border-box;
       background: var(--rate-pill-bg, rgba(248, 250, 252, 0.95));
       border: 1px solid var(--rate-pill-border, rgba(15, 23, 42, 0.12));
       border-radius: 9999px;
@@ -571,8 +575,11 @@
     .tag-pill {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
-      padding: 7px 12px;
+      padding: 0 14px;
+      height: 32px;
+      box-sizing: border-box;
       background: #FFFFFF;
       border: 1px solid rgba(15, 23, 42, 0.09);
       border-radius: 9999px;
@@ -732,6 +739,9 @@
     .spec-item-card {
       display: inline-flex;
       align-items: center;
+      justify-content: space-between;
+      width: 320px;
+      box-sizing: border-box;
       gap: 12px;
       background: var(--pill-bg, rgba(10, 22, 45, 0.65));
       backdrop-filter: blur(16px);
@@ -762,6 +772,10 @@
     .btn-secondary-explore {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+      min-width: 220px;
+      text-align: center;
+      box-sizing: border-box;
       gap: 8px;
       background: var(--btn-cta-bg, rgba(255, 255, 255, 0.22));
       color: var(--btn-cta-text, var(--text-white));
@@ -1858,7 +1872,7 @@
         <div class="right-production-dock theme-fader">
           
           <span class="dock-mono-kicker">STUDIO SPECIFICATIONS</span>
-          <h2 class="dock-title-headline">DIGITAL CRAFT &amp; 3D ATELIER</h2>
+          <h2 class="dock-title-headline">DIGITAL CRAFT &amp;<br>3D ATELIER</h2>
           <p class="dock-editorial-sub">Sub-D hard-surface modeling, procedural environments, and Octane render engines.</p>
           
           <!-- Concrete Technical Specs -->
@@ -1913,8 +1927,9 @@
         name: 'Sage Scene',
         imgSrc: 'assets/creator_desk_designer.png',
         imgAlt: 'Digital Creator at Modern Workstation',
-        scale: '1.05',
-        left: '42px',
+        scale: '1.02',
+        left: '65px',
+        bottom: '8px',
         transformOrigin: 'bottom center',
         categoryKicker: 'DIGITAL CRAFT & 3D ATELIER',
         rateVal: '$35–450',
@@ -1924,7 +1939,7 @@
           { icon: '🛡', text: 'Full IP Buyout' }
         ],
         dockKicker: 'STUDIO SPECIFICATIONS',
-        dockHeadline: 'DIGITAL CRAFT & 3D ATELIER',
+        dockHeadline: 'DIGITAL CRAFT &<br>3D ATELIER',
         dockSub: 'Sub-D hard-surface modeling, procedural environments, and Octane render engines.',
         cards: [
           { label: 'Render Pipeline Engine', val: 'Octane / C4D 2026' },
@@ -1941,6 +1956,7 @@
         imgAlt: 'Featured Aerial Cinematographer & Drone Director',
         scale: '1.0',
         left: '0px',
+        bottom: '0px',
         transformOrigin: 'bottom center',
         categoryKicker: 'COMMERCIAL & AERIAL DIRECTORS',
         rateVal: '$50–600',
@@ -1950,7 +1966,7 @@
           { icon: '🛡', text: 'Full IP Buyout' }
         ],
         dockKicker: 'PRODUCTION SPECIFICATIONS',
-        dockHeadline: 'HIGH-VELOCITY CINEMA UNITS',
+        dockHeadline: 'HIGH-VELOCITY<br>CINEMA UNITS',
         dockSub: 'Custom-engineered chase platforms, heavy-lift cinema gimbals, and ultra-low latency telemetry.',
         cards: [
           { label: 'Primary Camera Platforms', val: 'ARRI / RED Monstro 8K' },
@@ -1965,8 +1981,9 @@
         name: 'Purple Illustrator',
         imgSrc: 'assets/purple_haired_illustrator.png',
         imgAlt: 'Purple-Haired Illustrator Drawing on a Pouf',
-        scale: '1.05',
-        left: '25px',
+        scale: '1.08',
+        left: '45px',
+        bottom: '20px',
         transformOrigin: 'bottom center',
         categoryKicker: 'VISUAL ARTS & CHARACTER WORLDS',
         rateVal: '$30–350',
@@ -1976,7 +1993,7 @@
           { icon: '🛡', text: '100% IP Buyout' }
         ],
         dockKicker: 'STUDIO SPECIFICATIONS',
-        dockHeadline: 'BESPOKE VISUAL WORLDS',
+        dockHeadline: 'BESPOKE VISUAL<br>ART WORLDS',
         dockSub: 'Layered vector masters, DCI-P3 color precision, and production-ready visual narrative.',
         cards: [
           { label: 'Core Mediums', val: '2D / 3D Mixed Media' },
@@ -1992,7 +2009,8 @@
         imgSrc: 'assets/smiling_videographer_cinema.png',
         imgAlt: 'Smiling Videographer with Cinema Camera',
         scale: '1.0',
-        left: '0px',
+        left: '30px',
+        bottom: '0px',
         transformOrigin: 'bottom center',
         categoryKicker: 'COMMERCIAL CINEMA & NARRATIVE',
         rateVal: '$50–750',
@@ -2002,7 +2020,7 @@
           { icon: '🛡', text: 'Direct Pitch' }
         ],
         dockKicker: 'OPTICAL SPECIFICATIONS',
-        dockHeadline: 'CINEMA-GRADE OPTICS',
+        dockHeadline: 'CINEMA-GRADE<br>OPTICS & FILM',
         dockSub: 'Full-frame 8K VistaVision sensors, anamorphic T1.5 optics, and RAW commercial pipelines.',
         cards: [
           { label: 'Sensor Coverage', val: 'Large Format Full Frame' },
@@ -2018,7 +2036,8 @@
         imgSrc: 'assets/vr_adventure_flight_case.png',
         imgAlt: 'VR Adventure on a Flight Case',
         scale: '1.0',
-        left: '0px',
+        left: '35px',
+        bottom: '0px',
         transformOrigin: 'bottom center',
         categoryKicker: 'REALTIME 3D & IMMERSIVE ENVIRONMENTS',
         rateVal: '$40–550',
@@ -2028,7 +2047,7 @@
           { icon: '🛡', text: 'Spatial Rights' }
         ],
         dockKicker: 'ENGINE SPECIFICATIONS',
-        dockHeadline: 'REALTIME SPATIAL DESIGN',
+        dockHeadline: 'REALTIME 3D<br>SPATIAL DESIGN',
         dockSub: 'Real-time Unreal Engine 5.4 builds, OpenXR standards, and VisionOS spatial compute.',
         cards: [
           { label: 'Realtime Engines', val: 'Unreal Engine 5.4 / Unity' },
@@ -2099,6 +2118,7 @@
           img.alt = data.imgAlt;
           img.style.scale = data.scale || '1.0';
           img.style.left = data.left || '0px';
+          img.style.bottom = data.bottom || '0px';
           img.style.transformOrigin = data.transformOrigin || 'bottom center';
         }
         if (categoryKicker && data.categoryKicker) categoryKicker.textContent = data.categoryKicker;
@@ -2115,7 +2135,7 @@
           if (p3 && data.pills[2]) p3.innerHTML = `<span class="tag-icon">${data.pills[2].icon}</span> <span class="spec-txt-3">${data.pills[2].text}</span>`;
         }
         if (dockKicker && data.dockKicker) dockKicker.textContent = data.dockKicker;
-        if (dockHeadline && data.dockHeadline) dockHeadline.textContent = data.dockHeadline;
+        if (dockHeadline && data.dockHeadline) dockHeadline.innerHTML = data.dockHeadline;
         const dockSub = document.querySelector('.dock-editorial-sub');
         if (dockSub && data.dockSub) dockSub.textContent = data.dockSub;
         if (ctaBtn && data.ctaText) ctaBtn.textContent = data.ctaText;
@@ -2231,6 +2251,7 @@
       if (defaultImg && defaultData) {
         defaultImg.style.scale = defaultData.scale || '1.0';
         defaultImg.style.left = defaultData.left || '0px';
+        defaultImg.style.bottom = defaultData.bottom || '0px';
         defaultImg.style.transformOrigin = defaultData.transformOrigin || 'bottom center';
       }
       startAutoRotation();
@@ -2674,6 +2695,7 @@
         if (charImg && currentData) {
           charImg.style.scale = currentData.scale || '1.0';
           charImg.style.left = currentData.left || '0px';
+          charImg.style.bottom = currentData.bottom || '0px';
           charImg.style.transformOrigin = currentData.transformOrigin || 'bottom center';
         }
         const modeKey = getStorageKey() + '_' + currentThemeKey;
