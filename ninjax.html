@@ -2659,7 +2659,7 @@
         const edits = {};
         document.querySelectorAll('[data-dragged="true"]').forEach(el => {
           const key = getTargetKey(el);
-          if (!key) return;
+          if (!key || key === 'talent-clean-image') return;
           edits[key] = {
             left: el.style.left || '',
             top: el.style.top || '',
@@ -2675,30 +2675,35 @@
           };
         });
 
+        // 1. Save Shared Editorial Layout (all themes share identical layout & sizing)
+        try {
+          const sharedKey = getStorageKey() + '_shared';
+          localStorage.setItem(sharedKey, JSON.stringify(edits));
+        } catch(err) {
+          console.warn('Failed saving shared layout edits', err);
+        }
+
+        // 2. Save Character Image completely independently PER THEME
         const charImg = document.querySelector('.talent-clean-image');
-        const currentData = (typeof THEME_PRESETS !== 'undefined') ? THEME_PRESETS[currentThemeKey] : null;
-        if (charImg && currentData && (charImg.style.scale || charImg.style.left || charImg.style.top || charImg.style.zIndex)) {
-          const baseLeft = parseFloat(currentData.left) || 0;
-          const baseScale = parseFloat(currentData.scale) || 1.0;
-          const curLeft = parseFloat(charImg.style.left) || baseLeft;
-          const curScale = parseFloat(charImg.style.scale) || baseScale;
-          edits['talent-clean-image'] = {
-            deltaLeft: Math.round(curLeft - baseLeft),
+        if (charImg && charImg.getAttribute('data-dragged') === 'true') {
+          const charEdits = {
+            left: charImg.style.left || '',
             top: charImg.style.top || '',
-            scaleFactor: +(curScale / baseScale).toFixed(3),
+            bottom: charImg.style.bottom || '',
+            scale: charImg.style.scale || '',
             transformOrigin: charImg.style.transformOrigin || 'bottom center',
             zIndex: charImg.style.zIndex || '',
             position: charImg.style.position || ''
           };
+          try {
+            const charKey = getStorageKey() + '_char_' + currentThemeKey;
+            localStorage.setItem(charKey, JSON.stringify(charEdits));
+          } catch(err) {
+            console.warn('Failed saving character edits', err);
+          }
         }
 
-        try {
-          const sharedKey = getStorageKey() + '_shared';
-          localStorage.setItem(sharedKey, JSON.stringify(edits));
-          showSavedToast();
-        } catch(err) {
-          console.warn('Failed saving edits to localStorage', err);
-        }
+        showSavedToast();
       }
 
       function saveTextEdits(el) {
@@ -2723,30 +2728,15 @@
           charImg.style.bottom = currentData.bottom || '0px';
           charImg.style.transformOrigin = currentData.transformOrigin || 'bottom center';
         }
+
+        // 1. Restore Theme-Independent Shared Layout (Kicker, Headline, Rate Capsule, Pills, Dock)
         const sharedKey = getStorageKey() + '_shared';
         try {
           const raw = localStorage.getItem(sharedKey);
           if (raw) {
             const edits = JSON.parse(raw);
             Object.keys(edits).forEach(key => {
-              if (key === 'talent-clean-image') {
-                if (charImg && currentData && edits[key]) {
-                  const ce = edits[key];
-                  if (typeof ce.deltaLeft === 'number') {
-                    const baseLeft = parseFloat(currentData.left) || 0;
-                    charImg.style.left = (baseLeft + ce.deltaLeft) + 'px';
-                  }
-                  if (typeof ce.scaleFactor === 'number') {
-                    const baseScale = parseFloat(currentData.scale) || 1.0;
-                    charImg.style.scale = +(baseScale * ce.scaleFactor).toFixed(3);
-                  }
-                  if (ce.top) charImg.style.top = ce.top;
-                  if (ce.zIndex) charImg.style.zIndex = ce.zIndex;
-                  if (ce.position) charImg.style.position = ce.position;
-                  charImg.setAttribute('data-dragged', 'true');
-                }
-                return;
-              }
+              if (key === 'talent-clean-image') return;
               const el = targetMap[key] ? targetMap[key].el() : document.querySelector(`.${key}`) || document.getElementById(key);
               if (el && edits[key]) {
                 const s = edits[key];
@@ -2773,7 +2763,28 @@
             });
           }
         } catch(err) {
-          console.warn('Failed restoring edits', err);
+          console.warn('Failed restoring shared layout edits', err);
+        }
+
+        // 2. Restore Per-Theme Independent Character Edits (Image position & scale are 100% theme-isolated)
+        if (charImg) {
+          const charKey = getStorageKey() + '_char_' + currentThemeKey;
+          try {
+            const rawChar = localStorage.getItem(charKey);
+            if (rawChar) {
+              const ce = JSON.parse(rawChar);
+              if (ce.left) charImg.style.left = ce.left;
+              if (ce.top) charImg.style.top = ce.top;
+              if (ce.bottom) charImg.style.bottom = ce.bottom;
+              if (ce.scale) charImg.style.scale = ce.scale;
+              if (ce.transformOrigin) charImg.style.transformOrigin = ce.transformOrigin;
+              if (ce.zIndex) charImg.style.zIndex = ce.zIndex;
+              if (ce.position) charImg.style.position = ce.position;
+              charImg.setAttribute('data-dragged', 'true');
+            }
+          } catch(err) {
+            console.warn('Failed restoring character image edits', err);
+          }
         }
       }
       window.restoreCharacterImageEdits = restoreEdits;
@@ -2842,6 +2853,7 @@
           try {
             localStorage.removeItem(getStorageKey() + '_shared');
             THEME_KEYS.forEach(tk => {
+              localStorage.removeItem(getStorageKey() + '_char_' + tk);
               localStorage.removeItem(getStorageKey() + '_' + tk);
               localStorage.removeItem('custom_img_' + tk + '_' + getActiveViewport());
               localStorage.removeItem('custom_image_' + tk);
