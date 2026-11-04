@@ -2361,6 +2361,27 @@
       }
 
       function clearAllInlineStyles() {
+        Object.keys(targetMap).forEach(k => {
+          const el = targetMap[k] && targetMap[k].el ? targetMap[k].el() : document.querySelector(`.${k}`);
+          if (el) {
+            el.style.left = '';
+            el.style.top = '';
+            el.style.position = '';
+            el.style.fontSize = '';
+            el.style.zIndex = '';
+            el.style.color = '';
+            el.style.scale = '';
+            el.style.transformOrigin = '';
+            el.style.maxHeight = '';
+            el.style.height = '';
+            el.style.maxWidth = '';
+            el.style.marginBottom = '';
+            el.style.marginTop = '';
+            el.style.right = '';
+            el.style.bottom = '';
+            el.removeAttribute('data-dragged');
+          }
+        });
         document.querySelectorAll('[data-dragged="true"], .talent-clean-image').forEach(el => {
           el.style.left = '';
           el.style.top = '';
@@ -2635,7 +2656,6 @@
       }
 
       function saveEdits() {
-        const modeKey = getStorageKey() + '_' + currentThemeKey;
         const edits = {};
         document.querySelectorAll('[data-dragged="true"]').forEach(el => {
           const key = getTargetKey(el);
@@ -2656,11 +2676,16 @@
         });
 
         const charImg = document.querySelector('.talent-clean-image');
-        if (charImg && (charImg.style.scale || charImg.style.left || charImg.style.top || charImg.style.zIndex)) {
+        const currentData = (typeof THEME_PRESETS !== 'undefined') ? THEME_PRESETS[currentThemeKey] : null;
+        if (charImg && currentData && (charImg.style.scale || charImg.style.left || charImg.style.top || charImg.style.zIndex)) {
+          const baseLeft = parseFloat(currentData.left) || 0;
+          const baseScale = parseFloat(currentData.scale) || 1.0;
+          const curLeft = parseFloat(charImg.style.left) || baseLeft;
+          const curScale = parseFloat(charImg.style.scale) || baseScale;
           edits['talent-clean-image'] = {
-            left: charImg.style.left || '',
+            deltaLeft: Math.round(curLeft - baseLeft),
             top: charImg.style.top || '',
-            scale: charImg.style.scale || '',
+            scaleFactor: +(curScale / baseScale).toFixed(3),
             transformOrigin: charImg.style.transformOrigin || 'bottom center',
             zIndex: charImg.style.zIndex || '',
             position: charImg.style.position || ''
@@ -2668,7 +2693,8 @@
         }
 
         try {
-          localStorage.setItem(modeKey, JSON.stringify(edits));
+          const sharedKey = getStorageKey() + '_shared';
+          localStorage.setItem(sharedKey, JSON.stringify(edits));
           showSavedToast();
         } catch(err) {
           console.warn('Failed saving edits to localStorage', err);
@@ -2697,12 +2723,30 @@
           charImg.style.bottom = currentData.bottom || '0px';
           charImg.style.transformOrigin = currentData.transformOrigin || 'bottom center';
         }
-        const modeKey = getStorageKey() + '_' + currentThemeKey;
+        const sharedKey = getStorageKey() + '_shared';
         try {
-          const raw = localStorage.getItem(modeKey);
+          const raw = localStorage.getItem(sharedKey);
           if (raw) {
             const edits = JSON.parse(raw);
             Object.keys(edits).forEach(key => {
+              if (key === 'talent-clean-image') {
+                if (charImg && currentData && edits[key]) {
+                  const ce = edits[key];
+                  if (typeof ce.deltaLeft === 'number') {
+                    const baseLeft = parseFloat(currentData.left) || 0;
+                    charImg.style.left = (baseLeft + ce.deltaLeft) + 'px';
+                  }
+                  if (typeof ce.scaleFactor === 'number') {
+                    const baseScale = parseFloat(currentData.scale) || 1.0;
+                    charImg.style.scale = +(baseScale * ce.scaleFactor).toFixed(3);
+                  }
+                  if (ce.top) charImg.style.top = ce.top;
+                  if (ce.zIndex) charImg.style.zIndex = ce.zIndex;
+                  if (ce.position) charImg.style.position = ce.position;
+                  charImg.setAttribute('data-dragged', 'true');
+                }
+                return;
+              }
               const el = targetMap[key] ? targetMap[key].el() : document.querySelector(`.${key}`) || document.getElementById(key);
               if (el && edits[key]) {
                 const s = edits[key];
@@ -2721,6 +2765,8 @@
                 if (s.left || s.top || s.scale) {
                   const pos = window.getComputedStyle(el).position;
                   if (pos === 'static') el.style.position = 'relative';
+                }
+                if (s.left || s.top || s.scale || s.fontSize || s.color || s.marginBottom) {
                   el.setAttribute('data-dragged', 'true');
                 }
               }
@@ -2794,6 +2840,7 @@
         hudReset.addEventListener('click', () => {
           if (!confirm('Reset all layout edits for this view?')) return;
           try {
+            localStorage.removeItem(getStorageKey() + '_shared');
             THEME_KEYS.forEach(tk => {
               localStorage.removeItem(getStorageKey() + '_' + tk);
               localStorage.removeItem('custom_img_' + tk + '_' + getActiveViewport());
