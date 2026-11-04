@@ -1135,52 +1135,199 @@
       transition: opacity 0.18s ease-in, transform 0.18s ease-in, filter 0.18s ease-in !important;
     }
 
-    /* ── CRAZY HIGH-VELOCITY THEME TRANSITION SUITE ── */
+    /* ── CRAZY HIGH-VELOCITY THEME TRANSITION SUITE (3-MODE CRAFTWORK) ── */
     
-    /* 1. Heroic Character Warp Land */
+    /* ── MODE A: 3D Parabolic Hero Launch + Sonic Flare (Juice Co) ── */
+    body[data-anim-mode="parabolic"] .talent-clean-image.hero-anim-enter,
+    body:not([data-anim-mode]) .talent-clean-image.hero-anim-enter,
     .talent-clean-image.hero-warp-enter {
-      animation: heroWarpLand 0.72s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+      animation: heroParabolicLaunch 0.72s cubic-bezier(0.34, 1.56, 0.64, 1) both !important;
     }
-    @keyframes heroWarpLand {
+    @keyframes heroParabolicLaunch {
       0% {
-        opacity: 0.1;
-        transform: translate3d(0, 52px, 0) scale(1.14);
-        filter: blur(16px) brightness(1.28) drop-shadow(0 0 50px var(--theme-accent));
+        opacity: 0.08;
+        transform: translate3d(0, 70px, 0) scale(0.90) rotate(-1.5deg);
+        filter: blur(14px) brightness(1.24) drop-shadow(0 0 50px var(--theme-accent));
       }
-      50% {
+      58% {
         opacity: 1;
-        transform: translate3d(0, -7px, 0) scale(0.98);
+        transform: translate3d(0, -12px, 0) scale(1.045) rotate(0.6deg);
         filter: blur(0px) brightness(1.04) drop-shadow(0 20px 40px rgba(0,0,0,0.25));
       }
-      75% {
-        transform: translate3d(0, 2px, 0) scale(1.01);
+      82% {
+        transform: translate3d(0, 3px, 0) scale(0.992) rotate(-0.2deg);
       }
       100% {
         opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1);
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
         filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.22));
       }
     }
 
-    /* 2. Sonic Flare Shockwave Ring */
+    body[data-anim-mode="parabolic"] .shockwave-aura.sonic-flare,
+    body:not([data-anim-mode]) .shockwave-aura.sonic-flare,
     .shockwave-aura.sonic-flare {
       animation: sonicFlarePulse 0.75s cubic-bezier(0.16, 1, 0.3, 1) both !important;
     }
     @keyframes sonicFlarePulse {
       0% {
         opacity: 0.95;
-        transform: translate(-50%, -50%) scale(0.25);
-        background: radial-gradient(circle, var(--theme-accent) 0%, rgba(255,255,255,0.7) 40%, transparent 70%);
-        box-shadow: 0 0 80px 25px var(--theme-accent), inset 0 0 50px var(--theme-accent);
+        transform: translate(-50%, -50%) scale(0.2);
+        background: radial-gradient(circle, var(--theme-accent) 0%, rgba(255,255,255,0.8) 35%, transparent 70%);
+        box-shadow: 0 0 90px 30px var(--theme-accent), inset 0 0 60px var(--theme-accent);
       }
       100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(2.6);
-        box-shadow: 0 0 160px 80px var(--theme-accent), inset 0 0 80px transparent;
+        transform: translate(-50%, -50%) scale(2.8);
+        box-shadow: 0 0 160px 90px transparent, inset 0 0 90px transparent;
       }
     }
 
-    /* 3. Staggered Pills Ripple */
+    body[data-anim-mode="parabolic"] .rate-capsule-pill.rate-spring {
+      animation: rateSpringBounce 0.46s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    @keyframes rateSpringBounce {
+      0%   { opacity: 0; transform: scale(0.86) translate3d(0, 10px, 0); }
+      65%  { opacity: 1; transform: scale(1.06) translate3d(0, -2px, 0); }
+      100% { opacity: 1; transform: scale(1) translate3d(0, 0, 0); }
+    }
+
+    /* ── MODE B: High-Velocity Horizon Warp + Kinetic Skew (Go Meal) ── */
+    body[data-anim-mode="horizon"] .talent-clean-image.hero-anim-enter {
+      animation: heroHorizonWarp 0.68s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+    }
+    @keyframes heroHorizonWarp {
+      0% {
+        opacity: 0;
+        transform: translate3d(95px, 0, 0) skewX(-6deg) scale(0.94);
+        filter: blur(16px) brightness(1.35) contrast(1.15) drop-shadow(0 0 45px var(--theme-accent));
+      }
+      48% {
+        opacity: 1;
+        transform: translate3d(-12px, 0, 0) skewX(2deg) scale(1.02);
+        filter: blur(0px) brightness(1.05);
+      }
+      78% {
+        transform: translate3d(3px, 0, 0) skewX(-0.5deg) scale(0.995);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) skewX(0deg) scale(1);
+        filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.22));
+      }
+    }
+
+    body[data-anim-mode="horizon"] .shockwave-aura.sonic-flare {
+      animation: horizonFlareWarp 0.68s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+    }
+    @keyframes horizonFlareWarp {
+      0% {
+        opacity: 0.95;
+        transform: translate(-50%, -50%) scale(0.2, 0.1);
+        box-shadow: 0 0 100px 30px var(--theme-accent);
+      }
+      45% {
+        opacity: 0.85;
+        transform: translate(-50%, -50%) scale(2.4, 0.4);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(3.2, 1.2);
+        box-shadow: 0 0 180px 90px transparent;
+      }
+    }
+
+    body[data-anim-mode="horizon"] .editorial-headline-stack.headline-kinetic .headline-line-1,
+    body[data-anim-mode="horizon"] .editorial-headline-stack.headline-kinetic .headline-line-2 {
+      animation: headlineTrackingSnap 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes headlineTrackingSnap {
+      0% {
+        opacity: 0.2;
+        transform: translate3d(-20px, 0, 0) skewX(-3deg);
+        letter-spacing: 0.04em;
+        filter: blur(4px);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) skewX(0deg);
+        letter-spacing: -0.04em;
+        filter: blur(0px);
+      }
+    }
+
+    body[data-anim-mode="horizon"] .pills-row-1.pills-ripple .tag-pill,
+    body[data-anim-mode="horizon"] .pills-row-2.pills-ripple .tag-pill {
+      animation: pillHorizonSlide 0.44s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes pillHorizonSlide {
+      0%   { opacity: 0; transform: translate3d(28px, 0, 0); filter: blur(3px); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0px); }
+    }
+
+    /* ── MODE C: Liquid Glass Depth Portal (Spatial Breakout) ── */
+    body[data-anim-mode="portal"] .talent-clean-image.hero-anim-enter {
+      animation: heroDepthPortal 0.78s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+    }
+    @keyframes heroDepthPortal {
+      0% {
+        opacity: 0;
+        transform: scale(0.66) translate3d(0, 28px, 0);
+        filter: blur(24px) saturate(200%) brightness(1.25);
+      }
+      55% {
+        opacity: 1;
+        transform: scale(1.065) translate3d(0, -6px, 0);
+        filter: blur(0px) saturate(110%) brightness(1.02);
+      }
+      80% {
+        transform: scale(0.99) translate3d(0, 2px, 0);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translate3d(0, 0, 0);
+        filter: blur(0px) saturate(100%) brightness(1) drop-shadow(0 24px 48px rgba(0, 0, 0, 0.22));
+      }
+    }
+
+    body[data-anim-mode="portal"] .shockwave-aura.sonic-flare {
+      animation: portalRippleSpread 0.8s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+    }
+    @keyframes portalRippleSpread {
+      0% {
+        opacity: 0.95;
+        transform: translate(-50%, -50%) scale(0.25);
+        box-shadow: 0 0 0 3px var(--theme-accent), 0 0 45px 12px var(--theme-accent);
+      }
+      50% {
+        opacity: 0.65;
+        box-shadow: 0 0 0 24px var(--theme-accent), 0 0 80px 30px var(--theme-accent);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2.7);
+        box-shadow: 0 0 0 90px transparent, 0 0 150px 70px transparent;
+      }
+    }
+
+    body[data-anim-mode="portal"] .pills-row-1.pills-ripple .tag-pill,
+    body[data-anim-mode="portal"] .pills-row-2.pills-ripple .tag-pill {
+      animation: pillPortalMaterialize 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes pillPortalMaterialize {
+      0%   { opacity: 0; transform: scale(0.88); filter: blur(8px); }
+      100% { opacity: 1; transform: scale(1); filter: blur(0px); }
+    }
+
+    body[data-anim-mode="portal"] .rate-capsule-pill.rate-spring {
+      animation: ratePortalMaterialize 0.52s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes ratePortalMaterialize {
+      0%   { opacity: 0; transform: scale(0.9) translate3d(0, 8px, 0); filter: blur(6px); }
+      100% { opacity: 1; transform: scale(1) translate3d(0, 0, 0); filter: blur(0px); }
+    }
+
+    /* ── SHARED EDITORIAL & DOCK KINETIC MICRO-INTERACTIONS ── */
     .pills-row-1.pills-ripple .tag-pill {
       animation: pillSpringIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
     }
@@ -1211,7 +1358,6 @@
       }
     }
 
-    /* 4. Production Spec Cards Cascade */
     .production-spec-stack.cards-cascade .spec-item-card {
       animation: cardCascadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
@@ -1236,7 +1382,6 @@
       }
     }
 
-    /* 5. Headline Snap Flash */
     .editorial-headline-stack.headline-kinetic .headline-line-1,
     .editorial-headline-stack.headline-kinetic .headline-line-2 {
       animation: headlineSnap 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -1254,7 +1399,6 @@
       }
     }
 
-    /* 6. Rate Capsule Spring */
     .rate-capsule-pill.rate-spring {
       animation: rateSpring 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) both;
     }
@@ -1264,7 +1408,7 @@
       100% { transform: scale(1); }
     }
 
-    /* 7. Center Seam Laser Beam Flash */
+    /* Center Seam Laser Beam Flash */
     .split-canvas-body::after {
       content: '';
       position: absolute;
@@ -1287,6 +1431,153 @@
       0%   { opacity: 0; transform: scaleY(0); }
       45%  { opacity: 1; transform: scaleY(1); }
       100% { opacity: 0; transform: scaleY(1); }
+    }
+
+    /* ── CRAFTWORK MOTION SUITE CONTROLLER DOCK ── */
+    .motion-suite-dock {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      animation: nxSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 0.2s;
+      pointer-events: auto;
+    }
+    .motion-dock-pill {
+      background: rgba(11, 15, 29, 0.90);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      padding: 5px 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+    .motion-dock-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.55);
+      padding: 0 6px 0 8px;
+    }
+    .motion-tabs-group {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 3px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .motion-tab-btn {
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.75);
+      padding: 5px 12px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+    }
+    .motion-tab-btn:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .motion-tab-btn.is-active {
+      background: var(--theme-accent, #38BDF8);
+      color: #0F172A;
+      font-weight: 700;
+      box-shadow: 0 2px 12px rgba(56, 189, 248, 0.45);
+    }
+    .motion-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+      font-size: 9.5px;
+      font-weight: 800;
+    }
+    .motion-tab-btn.is-active .motion-badge {
+      background: rgba(0, 0, 0, 0.22);
+      color: #0F172A;
+    }
+    .motion-dock-divider {
+      width: 1px;
+      height: 18px;
+      background: rgba(255, 255, 255, 0.12);
+      margin: 0 2px;
+    }
+    .motion-action-btn {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      outline: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      color: #F8FAFC;
+      padding: 5px 11px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.18s ease;
+    }
+    .motion-action-btn:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.28);
+      transform: translateY(-1px);
+    }
+    .motion-action-btn:active {
+      transform: translateY(1px);
+    }
+    .motion-tour-btn {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(168, 85, 247, 0.2));
+      border-color: rgba(56, 189, 248, 0.35);
+      color: #38BDF8;
+    }
+    .motion-tour-btn:hover {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(168, 85, 247, 0.35));
+      color: #FFFFFF;
+    }
+
+    body.is-editing .motion-suite-dock {
+      display: none !important;
+    }
+    @media (max-width: 900px) {
+      .motion-suite-dock {
+        bottom: 58px;
+        width: calc(100% - 24px);
+        max-width: 440px;
+      }
+      .motion-dock-pill {
+        justify-content: center;
+        padding: 4px;
+        gap: 3px;
+      }
+      .motion-dock-label {
+        display: none;
+      }
+      .motion-tab-btn {
+        padding: 4px 8px;
+        font-size: 10.5px;
+      }
     }
 
     .talent-clean-image.is-landing {
@@ -1917,6 +2208,39 @@
 
   </main>
 
+  <!-- ── CRAFTWORK MOTION SUITE CONTROLLER ── -->
+  <aside class="motion-suite-dock" aria-label="Interactive Motion Suite">
+    <div class="motion-dock-pill">
+      <span class="motion-dock-label">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="color: var(--theme-accent, #38BDF8);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span>MOTION:</span>
+      </span>
+      <div class="motion-tabs-group" role="tablist">
+        <button type="button" class="motion-tab-btn is-active" data-motion="parabolic" role="tab" aria-selected="true" title="Juice Co: 3D Parabolic Hero Launch + Sonic Flare">
+          <span class="motion-badge">A</span>
+          <span>3D Launch</span>
+        </button>
+        <button type="button" class="motion-tab-btn" data-motion="horizon" role="tab" aria-selected="false" title="Go Meal: High-Velocity Horizon Warp + Kinetic Skew">
+          <span class="motion-badge">B</span>
+          <span>Horizon Warp</span>
+        </button>
+        <button type="button" class="motion-tab-btn" data-motion="portal" role="tab" aria-selected="false" title="Spatial Breakout: Liquid Depth Portal">
+          <span class="motion-badge">C</span>
+          <span>Depth Portal</span>
+        </button>
+      </div>
+      <div class="motion-dock-divider"></div>
+      <button type="button" class="motion-action-btn" id="motionReplayBtn" title="Replay current animation">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        <span>Replay</span>
+      </button>
+      <button type="button" class="motion-action-btn motion-tour-btn" id="motionAutoTourBtn" title="Auto-Tour: Play all 3 animations back-to-back">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <span>Compare 3</span>
+      </button>
+    </div>
+  </aside>
+
 
   <script>
     /* ── DYNAMIC MULTI-CHARACTER & THEME ENGINE (SLIDESHOW) ── */
@@ -2160,45 +2484,22 @@
           window.restoreCharacterImageEdits(themeKey);
         }
 
-        // Trigger Crazy Kinetic Animation Suite
-        if (img) {
-          img.classList.remove('hero-warp-enter');
-          void img.offsetWidth;
-          img.classList.add('hero-warp-enter');
-        }
+        // Trigger Craftwork Kinetic Motion Animation Suite
+        triggerMotionAnimation();
 
-        const pillsRow1 = document.querySelector('.pills-row-1');
-        const pillsRow2 = document.querySelector('.pills-row-2');
-        if (pillsRow1) {
-          pillsRow1.classList.remove('pills-ripple');
-          void pillsRow1.offsetWidth;
-          pillsRow1.classList.add('pills-ripple');
-        }
-        if (pillsRow2) {
-          pillsRow2.classList.remove('pills-ripple');
-          void pillsRow2.offsetWidth;
-          pillsRow2.classList.add('pills-ripple');
-        }
-
-        if (specStack) {
-          specStack.classList.remove('cards-cascade');
-          void specStack.offsetWidth;
-          specStack.classList.add('cards-cascade');
-        }
-
-        const headline = document.querySelector('.editorial-headline-stack');
-        if (headline) {
-          headline.classList.remove('headline-kinetic');
-          void headline.offsetWidth;
-          headline.classList.add('headline-kinetic');
-        }
-
-        const ratePill = document.querySelector('.rate-capsule-pill');
-        if (ratePill) {
-          ratePill.classList.remove('rate-spring');
-          void ratePill.offsetWidth;
-          ratePill.classList.add('rate-spring');
-        }
+        // Sync Header Navigation Active State
+        const navMap = {
+          'sage': 0,    // Curated Roster
+          'cobalt': 1,  // Aerial Cinema
+          'coral': 2,   // 3D Directors
+          'amber': 3,   // Direct Terms
+          'lilac': 0    // Curated Roster / Visual Arts
+        };
+        const navIdx = navMap[themeKey];
+        const navLinks = document.querySelectorAll('.header-nav-link');
+        navLinks.forEach((link, idx) => {
+          link.classList.toggle('active', idx === navIdx);
+        });
 
         setTimeout(() => {
           faders.forEach(el => el.classList.remove('is-switching'));
@@ -2231,6 +2532,134 @@
         }
       });
     });
+
+    // Header nav links interactive theme switching
+    const themeNavMapping = ['sage', 'cobalt', 'coral', 'amber'];
+    document.querySelectorAll('.header-nav-link').forEach((link, idx) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = themeNavMapping[idx];
+        if (target) switchTheme(target, true);
+      });
+    });
+
+    // ── INTERACTIVE MOTION SUITE CONTROLLER LOGIC ──
+    let currentAnimMode = localStorage.getItem('ninjax_anim_mode') || 'parabolic';
+    document.body.setAttribute('data-anim-mode', currentAnimMode);
+
+    function setAnimMode(mode, trigger = true) {
+      currentAnimMode = mode;
+      localStorage.setItem('ninjax_anim_mode', mode);
+      document.body.setAttribute('data-anim-mode', mode);
+      document.querySelectorAll('.motion-tab-btn').forEach(btn => {
+        const isActive = btn.getAttribute('data-motion') === mode;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+      if (trigger) triggerMotionAnimation();
+    }
+
+    function triggerMotionAnimation() {
+      const img = document.querySelector('.talent-clean-image');
+      const aura = document.querySelector('.shockwave-aura');
+      const pillsRow1 = document.querySelector('.pills-row-1');
+      const pillsRow2 = document.querySelector('.pills-row-2');
+      const specStack = document.querySelector('.production-spec-stack');
+      const headline = document.querySelector('.editorial-headline-stack');
+      const ratePill = document.querySelector('.rate-capsule-pill');
+
+      if (img) {
+        img.classList.remove('hero-anim-enter', 'hero-warp-enter');
+        void img.offsetWidth;
+        img.classList.add('hero-anim-enter');
+      }
+      if (aura) {
+        aura.classList.remove('sonic-flare');
+        void aura.offsetWidth;
+        aura.classList.add('sonic-flare');
+      }
+      if (pillsRow1) {
+        pillsRow1.classList.remove('pills-ripple');
+        void pillsRow1.offsetWidth;
+        pillsRow1.classList.add('pills-ripple');
+      }
+      if (pillsRow2) {
+        pillsRow2.classList.remove('pills-ripple');
+        void pillsRow2.offsetWidth;
+        pillsRow2.classList.add('pills-ripple');
+      }
+      if (specStack) {
+        specStack.classList.remove('cards-cascade');
+        void specStack.offsetWidth;
+        specStack.classList.add('cards-cascade');
+      }
+      if (headline) {
+        headline.classList.remove('headline-kinetic');
+        void headline.offsetWidth;
+        headline.classList.add('headline-kinetic');
+      }
+      if (ratePill) {
+        ratePill.classList.remove('rate-spring');
+        void ratePill.offsetWidth;
+        ratePill.classList.add('rate-spring');
+      }
+    }
+
+    // Attach motion switcher listeners
+    document.querySelectorAll('.motion-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const mode = btn.getAttribute('data-motion');
+        if (mode) setAnimMode(mode, true);
+      });
+    });
+
+    const motionReplayBtn = document.getElementById('motionReplayBtn');
+    if (motionReplayBtn) {
+      motionReplayBtn.addEventListener('click', () => {
+        triggerMotionAnimation();
+      });
+    }
+
+    let tourTimer = null;
+    const motionAutoTourBtn = document.getElementById('motionAutoTourBtn');
+    if (motionAutoTourBtn) {
+      motionAutoTourBtn.addEventListener('click', () => {
+        if (tourTimer) {
+          clearTimeout(tourTimer);
+          tourTimer = null;
+          motionAutoTourBtn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>Compare 3</span>';
+          startAutoRotation();
+          return;
+        }
+        motionAutoTourBtn.innerHTML = '<span style="color:#F59E0B">●</span><span>Touring...</span>';
+        stopAutoRotation();
+
+        // 1. Mode A (3D Launch) on Sage
+        setAnimMode('parabolic', false);
+        switchTheme('sage', true);
+
+        // 2. Mode B (Horizon Warp) on Cobalt
+        tourTimer = setTimeout(() => {
+          setAnimMode('horizon', false);
+          switchTheme('cobalt', true);
+
+          // 3. Mode C (Depth Portal) on Lilac
+          tourTimer = setTimeout(() => {
+            setAnimMode('portal', false);
+            switchTheme('lilac', true);
+
+            tourTimer = setTimeout(() => {
+              motionAutoTourBtn.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg><span>Compare 3</span>';
+              tourTimer = null;
+              startAutoRotation();
+            }, 2200);
+          }, 2200);
+        }, 2200);
+      });
+    }
+
+    // Restore saved motion mode tab highlight on startup
+    setAnimMode(currentAnimMode, false);
 
     const card = document.querySelector('.craft-stage-card');
     if (card) {
