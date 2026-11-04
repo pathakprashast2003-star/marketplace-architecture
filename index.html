@@ -846,9 +846,11 @@
       object-fit: contain;
       object-position: bottom center;
       filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.38));
-      transition: opacity 0.25s ease, scale 0.15s ease;
-      animation: none !important;
       transform-origin: bottom center;
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform: translateZ(0);
     }
 
     .soft-pedestal-mist {
@@ -1126,311 +1128,159 @@
       pointer-events: none;
     }
     .theme-fader {
-      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
-    }
-    .theme-fader.is-switching {
-      opacity: 0.25 !important;
-      filter: blur(8px) !important;
-      transform: scale(0.96) !important;
-      transition: opacity 0.18s ease-in, transform 0.18s ease-in, filter 0.18s ease-in !important;
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* ── CRAZY HIGH-VELOCITY THEME TRANSITION SUITE (3-MODE CRAFTWORK) ── */
+    /* ── APPLE-GRADE VELVET SMOOTH THEME TRANSITION SUITE ── */
+    /* Derived from motion-foundations (easing.smooth [0.22, 1, 0.36, 1], distance 22-26px, GPU compositor only) */
     
-    /* ── MODE A: 3D Parabolic Hero Launch + Sonic Flare (Juice Co) ── */
+    /* ── MODE A: Fluid Spring Launch (Apple Keynote Fluidity) ── */
     body[data-anim-mode="parabolic"] .talent-clean-image.hero-anim-enter,
     body:not([data-anim-mode]) .talent-clean-image.hero-anim-enter,
     .talent-clean-image.hero-warp-enter {
-      animation: heroParabolicLaunch 0.72s cubic-bezier(0.34, 1.56, 0.64, 1) both !important;
+      animation: heroVelvetLaunch 0.46s cubic-bezier(0.22, 1, 0.36, 1) both !important;
     }
-    @keyframes heroParabolicLaunch {
+    @keyframes heroVelvetLaunch {
       0% {
-        opacity: 0.08;
-        transform: translate3d(0, 70px, 0) scale(0.90) rotate(-1.5deg);
-        filter: blur(14px) brightness(1.24) drop-shadow(0 0 50px var(--theme-accent));
-      }
-      58% {
-        opacity: 1;
-        transform: translate3d(0, -12px, 0) scale(1.045) rotate(0.6deg);
-        filter: blur(0px) brightness(1.04) drop-shadow(0 20px 40px rgba(0,0,0,0.25));
-      }
-      82% {
-        transform: translate3d(0, 3px, 0) scale(0.992) rotate(-0.2deg);
+        opacity: 0;
+        transform: translate3d(0, 22px, 0) scale(0.98);
       }
       100% {
         opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
-        filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.22));
+        transform: translate3d(0, 0, 0) scale(1);
       }
     }
 
     body[data-anim-mode="parabolic"] .shockwave-aura.sonic-flare,
     body:not([data-anim-mode]) .shockwave-aura.sonic-flare,
     .shockwave-aura.sonic-flare {
-      animation: sonicFlarePulse 0.75s cubic-bezier(0.16, 1, 0.3, 1) both !important;
-    }
-    @keyframes sonicFlarePulse {
-      0% {
-        opacity: 0.95;
-        transform: translate(-50%, -50%) scale(0.2);
-        background: radial-gradient(circle, var(--theme-accent) 0%, rgba(255,255,255,0.8) 35%, transparent 70%);
-        box-shadow: 0 0 90px 30px var(--theme-accent), inset 0 0 60px var(--theme-accent);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(2.8);
-        box-shadow: 0 0 160px 90px transparent, inset 0 0 90px transparent;
-      }
+      animation: auraVelvetPulse 0.55s cubic-bezier(0.16, 1, 0.3, 1) both !important;
     }
 
-    body[data-anim-mode="parabolic"] .rate-capsule-pill.rate-spring {
-      animation: rateSpringBounce 0.46s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-    }
-    @keyframes rateSpringBounce {
-      0%   { opacity: 0; transform: scale(0.86) translate3d(0, 10px, 0); }
-      65%  { opacity: 1; transform: scale(1.06) translate3d(0, -2px, 0); }
-      100% { opacity: 1; transform: scale(1) translate3d(0, 0, 0); }
-    }
-
-    /* ── MODE B: High-Velocity Horizon Warp + Kinetic Skew (Go Meal) ── */
+    /* ── MODE B: Velvet Horizon Glide (Apple Smooth Deceleration) ── */
     body[data-anim-mode="horizon"] .talent-clean-image.hero-anim-enter {
-      animation: heroHorizonWarp 0.68s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+      animation: heroVelvetGlide 0.42s cubic-bezier(0.16, 1, 0.3, 1) both !important;
     }
-    @keyframes heroHorizonWarp {
+    @keyframes heroVelvetGlide {
       0% {
         opacity: 0;
-        transform: translate3d(95px, 0, 0) skewX(-6deg) scale(0.94);
-        filter: blur(16px) brightness(1.35) contrast(1.15) drop-shadow(0 0 45px var(--theme-accent));
-      }
-      48% {
-        opacity: 1;
-        transform: translate3d(-12px, 0, 0) skewX(2deg) scale(1.02);
-        filter: blur(0px) brightness(1.05);
-      }
-      78% {
-        transform: translate3d(3px, 0, 0) skewX(-0.5deg) scale(0.995);
+        transform: translate3d(26px, 0, 0);
       }
       100% {
         opacity: 1;
-        transform: translate3d(0, 0, 0) skewX(0deg) scale(1);
-        filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.22));
+        transform: translate3d(0, 0, 0);
       }
     }
 
     body[data-anim-mode="horizon"] .shockwave-aura.sonic-flare {
-      animation: horizonFlareWarp 0.68s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+      animation: auraHorizonGlide 0.52s cubic-bezier(0.16, 1, 0.3, 1) both !important;
     }
-    @keyframes horizonFlareWarp {
+    @keyframes auraHorizonGlide {
       0% {
-        opacity: 0.95;
-        transform: translate(-50%, -50%) scale(0.2, 0.1);
-        box-shadow: 0 0 100px 30px var(--theme-accent);
-      }
-      45% {
-        opacity: 0.85;
-        transform: translate(-50%, -50%) scale(2.4, 0.4);
+        opacity: 0.6;
+        transform: translateX(-42%) scale(0.85);
       }
       100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(3.2, 1.2);
-        box-shadow: 0 0 180px 90px transparent;
+        transform: translateX(-50%) scale(1.3);
       }
     }
 
-    body[data-anim-mode="horizon"] .editorial-headline-stack.headline-kinetic .headline-line-1,
-    body[data-anim-mode="horizon"] .editorial-headline-stack.headline-kinetic .headline-line-2 {
-      animation: headlineTrackingSnap 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-    @keyframes headlineTrackingSnap {
-      0% {
-        opacity: 0.2;
-        transform: translate3d(-20px, 0, 0) skewX(-3deg);
-        letter-spacing: 0.04em;
-        filter: blur(4px);
-      }
-      100% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) skewX(0deg);
-        letter-spacing: -0.04em;
-        filter: blur(0px);
-      }
-    }
-
-    body[data-anim-mode="horizon"] .pills-row-1.pills-ripple .tag-pill,
-    body[data-anim-mode="horizon"] .pills-row-2.pills-ripple .tag-pill {
-      animation: pillHorizonSlide 0.44s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-    @keyframes pillHorizonSlide {
-      0%   { opacity: 0; transform: translate3d(28px, 0, 0); filter: blur(3px); }
-      100% { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0px); }
-    }
-
-    /* ── MODE C: Liquid Glass Depth Portal (Spatial Breakout) ── */
+    /* ── MODE C: Velvet Depth Bloom (Apple Spatial / VisionOS) ── */
     body[data-anim-mode="portal"] .talent-clean-image.hero-anim-enter {
-      animation: heroDepthPortal 0.78s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+      animation: heroVelvetDepth 0.48s cubic-bezier(0.16, 1, 0.3, 1) both !important;
     }
-    @keyframes heroDepthPortal {
+    @keyframes heroVelvetDepth {
       0% {
         opacity: 0;
-        transform: scale(0.66) translate3d(0, 28px, 0);
-        filter: blur(24px) saturate(200%) brightness(1.25);
-      }
-      55% {
-        opacity: 1;
-        transform: scale(1.065) translate3d(0, -6px, 0);
-        filter: blur(0px) saturate(110%) brightness(1.02);
-      }
-      80% {
-        transform: scale(0.99) translate3d(0, 2px, 0);
+        transform: scale(0.95) translate3d(0, 8px, 0);
       }
       100% {
         opacity: 1;
         transform: scale(1) translate3d(0, 0, 0);
-        filter: blur(0px) saturate(100%) brightness(1) drop-shadow(0 24px 48px rgba(0, 0, 0, 0.22));
       }
     }
 
     body[data-anim-mode="portal"] .shockwave-aura.sonic-flare {
-      animation: portalRippleSpread 0.8s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+      animation: auraVelvetPulse 0.58s cubic-bezier(0.16, 1, 0.3, 1) both !important;
     }
-    @keyframes portalRippleSpread {
+
+    @keyframes auraVelvetPulse {
       0% {
-        opacity: 0.95;
-        transform: translate(-50%, -50%) scale(0.25);
-        box-shadow: 0 0 0 3px var(--theme-accent), 0 0 45px 12px var(--theme-accent);
-      }
-      50% {
-        opacity: 0.65;
-        box-shadow: 0 0 0 24px var(--theme-accent), 0 0 80px 30px var(--theme-accent);
+        opacity: 0.7;
+        transform: translateX(-50%) scale(0.8);
       }
       100% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(2.7);
-        box-shadow: 0 0 0 90px transparent, 0 0 150px 70px transparent;
+        transform: translateX(-50%) scale(1.35);
       }
     }
 
-    body[data-anim-mode="portal"] .pills-row-1.pills-ripple .tag-pill,
-    body[data-anim-mode="portal"] .pills-row-2.pills-ripple .tag-pill {
-      animation: pillPortalMaterialize 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-    @keyframes pillPortalMaterialize {
-      0%   { opacity: 0; transform: scale(0.88); filter: blur(8px); }
-      100% { opacity: 1; transform: scale(1); filter: blur(0px); }
-    }
-
-    body[data-anim-mode="portal"] .rate-capsule-pill.rate-spring {
-      animation: ratePortalMaterialize 0.52s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-    @keyframes ratePortalMaterialize {
-      0%   { opacity: 0; transform: scale(0.9) translate3d(0, 8px, 0); filter: blur(6px); }
-      100% { opacity: 1; transform: scale(1) translate3d(0, 0, 0); filter: blur(0px); }
-    }
-
-    /* ── SHARED EDITORIAL & DOCK KINETIC MICRO-INTERACTIONS ── */
-    .pills-row-1.pills-ripple .tag-pill {
-      animation: pillSpringIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    /* ── VELVET MICRO-INTERACTIONS (EDITORIAL, PILLS, DOCK) ── */
+    .pills-row-1.pills-ripple .tag-pill,
+    .pills-row-2.pills-ripple .tag-pill {
+      animation: pillVelvetIn 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
     .pills-row-1.pills-ripple .tag-pill:nth-child(1) { animation-delay: 0.02s; }
-    .pills-row-1.pills-ripple .tag-pill:nth-child(2) { animation-delay: 0.06s; }
-    .pills-row-1.pills-ripple .tag-pill:nth-child(3) { animation-delay: 0.10s; }
+    .pills-row-1.pills-ripple .tag-pill:nth-child(2) { animation-delay: 0.05s; }
+    .pills-row-1.pills-ripple .tag-pill:nth-child(3) { animation-delay: 0.08s; }
 
     .pills-row-2.pills-ripple .tag-pill {
-      animation: pillSpringIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      animation: pillVelvetIn 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
-    .pills-row-2.pills-ripple .tag-pill:nth-child(1) { animation-delay: 0.14s; }
-    .pills-row-2.pills-ripple .tag-pill:nth-child(2) { animation-delay: 0.18s; }
+    .pills-row-2.pills-ripple .tag-pill:nth-child(1) { animation-delay: 0.10s; }
+    .pills-row-2.pills-ripple .tag-pill:nth-child(2) { animation-delay: 0.13s; }
 
-    @keyframes pillSpringIn {
+    @keyframes pillVelvetIn {
       0% {
-        opacity: 0.15;
-        transform: translate3d(-18px, 0, 0) scale(0.85);
-        filter: blur(4px);
-      }
-      70% {
-        opacity: 1;
-        transform: translate3d(3px, 0, 0) scale(1.05);
-        filter: blur(0px);
+        opacity: 0.25;
+        transform: translate3d(-8px, 0, 0);
       }
       100% {
         opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1);
+        transform: translate3d(0, 0, 0);
       }
     }
 
     .production-spec-stack.cards-cascade .spec-item-card {
-      animation: cardCascadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation: cardVelvetIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
-    .production-spec-stack.cards-cascade .spec-item-card:nth-child(1) { animation-delay: 0.04s; }
-    .production-spec-stack.cards-cascade .spec-item-card:nth-child(2) { animation-delay: 0.09s; }
-    .production-spec-stack.cards-cascade .spec-item-card:nth-child(3) { animation-delay: 0.14s; }
+    .production-spec-stack.cards-cascade .spec-item-card:nth-child(1) { animation-delay: 0.03s; }
+    .production-spec-stack.cards-cascade .spec-item-card:nth-child(2) { animation-delay: 0.07s; }
+    .production-spec-stack.cards-cascade .spec-item-card:nth-child(3) { animation-delay: 0.11s; }
 
-    @keyframes cardCascadeIn {
+    @keyframes cardVelvetIn {
       0% {
-        opacity: 0.15;
-        transform: translate3d(34px, 0, 0) scale(0.95);
-        filter: blur(4px);
-      }
-      70% {
-        opacity: 1;
-        transform: translate3d(-3px, 0, 0) scale(1.02);
-        filter: blur(0px);
+        opacity: 0.25;
+        transform: translate3d(12px, 0, 0);
       }
       100% {
         opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1);
+        transform: translate3d(0, 0, 0);
       }
     }
 
     .editorial-headline-stack.headline-kinetic .headline-line-1,
     .editorial-headline-stack.headline-kinetic .headline-line-2 {
-      animation: headlineSnap 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation: headlineVelvetIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
-    @keyframes headlineSnap {
+    @keyframes headlineVelvetIn {
       0% {
-        opacity: 0.35;
-        transform: translate3d(-12px, 0, 0) skewX(-2deg);
-        filter: blur(3px);
+        opacity: 0.5;
+        transform: translate3d(-6px, 0, 0);
       }
       100% {
         opacity: 1;
-        transform: translate3d(0, 0, 0) skewX(0deg);
-        filter: blur(0px);
+        transform: translate3d(0, 0, 0);
       }
     }
 
     .rate-capsule-pill.rate-spring {
-      animation: rateSpring 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      animation: rateVelvetIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
-    @keyframes rateSpring {
-      0%   { transform: scale(0.92); opacity: 0.35; }
-      65%  { transform: scale(1.05); opacity: 1; }
-      100% { transform: scale(1); }
-    }
-
-    /* Center Seam Laser Beam Flash */
-    .split-canvas-body::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 58%;
-      width: 3px;
-      background: linear-gradient(180deg, transparent, var(--theme-accent), transparent);
-      opacity: 0;
-      pointer-events: none;
-      z-index: 15;
-      transition: opacity 0.25s ease;
-    }
-    body.is-theme-switching .split-canvas-body::after {
-      opacity: 0.85;
-      box-shadow: 0 0 30px var(--theme-accent), 0 0 60px var(--theme-accent);
-      animation: beamFlash 0.6s ease-out;
-    }
-    @keyframes beamFlash {
-      0%   { opacity: 0; transform: scaleY(0); }
-      45%  { opacity: 1; transform: scaleY(1); }
-      100% { opacity: 0; transform: scaleY(1); }
+    @keyframes rateVelvetIn {
+      0%   { opacity: 0.4; transform: translate3d(0, 6px, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
     }
 
     /* ── CRAFTWORK MOTION SUITE CONTROLLER DOCK ── */
@@ -2406,12 +2256,19 @@
       });
     }
 
+    // Preload all 5 character images for zero-decode frame drops (motion-foundations)
+    THEME_KEYS.forEach(k => {
+      if (THEME_PRESETS[k] && THEME_PRESETS[k].imgSrc) {
+        const pre = new Image();
+        pre.src = THEME_PRESETS[k].imgSrc;
+      }
+    });
+
     function switchTheme(themeKey, isManual = false) {
       if (!THEME_PRESETS[themeKey]) return;
       currentThemeKey = themeKey;
       const data = THEME_PRESETS[themeKey];
       const body = document.body;
-      const faders = document.querySelectorAll('.theme-fader');
       const img = document.querySelector('.talent-clean-image');
       const categoryKicker = document.querySelector('.category-kicker');
       const rateVal = document.querySelector('.rate-val');
@@ -2430,82 +2287,67 @@
       });
 
       resetProgressBar();
-      body.classList.add('is-theme-switching');
-      faders.forEach(el => el.classList.add('is-switching'));
 
-      setTimeout(() => {
-        body.setAttribute('data-theme', themeKey);
-        if (img) {
-          const mode = window.innerWidth <= 900 ? 'mobile' : 'desktop';
-          const customImg = localStorage.getItem('custom_img_' + themeKey + '_' + mode) || localStorage.getItem('custom_image_' + themeKey);
-          img.src = customImg || data.imgSrc;
-          img.alt = data.imgAlt;
-          img.style.scale = data.scale || '1.0';
-          img.style.left = data.left || '0px';
-          img.style.bottom = data.bottom || '0px';
-          img.style.transformOrigin = data.transformOrigin || 'bottom center';
-        }
-        if (categoryKicker && data.categoryKicker) categoryKicker.textContent = data.categoryKicker;
-        if (data.rateVal) {
-          const rateNum = document.querySelector('.rate-val-num');
-          if (rateNum) rateNum.textContent = data.rateVal;
-        }
-        if (data.pills) {
-          const p1 = document.querySelector('.dynamic-spec-1');
-          if (p1 && data.pills[0]) p1.innerHTML = `<span class="tag-icon">${data.pills[0].icon}</span> <span class="spec-txt-1">${data.pills[0].text}</span>`;
-          const p2 = document.querySelector('.dynamic-spec-2');
-          if (p2 && data.pills[1]) p2.innerHTML = `<span class="tag-icon">${data.pills[1].icon}</span> <span class="spec-txt-2">${data.pills[1].text}</span>`;
-          const p3 = document.querySelector('.dynamic-spec-3');
-          if (p3 && data.pills[2]) p3.innerHTML = `<span class="tag-icon">${data.pills[2].icon}</span> <span class="spec-txt-3">${data.pills[2].text}</span>`;
-        }
-        if (dockKicker && data.dockKicker) dockKicker.textContent = data.dockKicker;
-        if (dockHeadline && data.dockHeadline) dockHeadline.innerHTML = data.dockHeadline;
-        const dockSub = document.querySelector('.dock-editorial-sub');
-        if (dockSub && data.dockSub) dockSub.textContent = data.dockSub;
-        if (ctaBtn && data.ctaText) ctaBtn.textContent = data.ctaText;
-        if (trust && data.trust) trust.innerHTML = data.trust;
-        if (specStack && data.cards) {
-          specStack.innerHTML = data.cards.map(c => `
-            <div class="spec-item-card">
-              <span>${c.label}</span>
-              <strong>${c.val}</strong>
-            </div>
-          `).join('');
-        }
+      // Instant, zero-latency atomic theme update (no artificial 200ms freeze)
+      body.setAttribute('data-theme', themeKey);
+      if (img) {
+        const mode = window.innerWidth <= 900 ? 'mobile' : 'desktop';
+        const customImg = localStorage.getItem('custom_img_' + themeKey + '_' + mode) || localStorage.getItem('custom_image_' + themeKey);
+        img.src = customImg || data.imgSrc;
+        img.alt = data.imgAlt;
+        img.style.scale = data.scale || '1.0';
+        img.style.left = data.left || '0px';
+        img.style.bottom = data.bottom || '0px';
+        img.style.transformOrigin = data.transformOrigin || 'bottom center';
+      }
+      if (categoryKicker && data.categoryKicker) categoryKicker.textContent = data.categoryKicker;
+      if (data.rateVal) {
+        const rateNum = document.querySelector('.rate-val-num');
+        if (rateNum) rateNum.textContent = data.rateVal;
+      }
+      if (data.pills) {
+        const p1 = document.querySelector('.dynamic-spec-1');
+        if (p1 && data.pills[0]) p1.innerHTML = `<span class="tag-icon">${data.pills[0].icon}</span> <span class="spec-txt-1">${data.pills[0].text}</span>`;
+        const p2 = document.querySelector('.dynamic-spec-2');
+        if (p2 && data.pills[1]) p2.innerHTML = `<span class="tag-icon">${data.pills[1].icon}</span> <span class="spec-txt-2">${data.pills[1].text}</span>`;
+        const p3 = document.querySelector('.dynamic-spec-3');
+        if (p3 && data.pills[2]) p3.innerHTML = `<span class="tag-icon">${data.pills[2].icon}</span> <span class="spec-txt-3">${data.pills[2].text}</span>`;
+      }
+      if (dockKicker && data.dockKicker) dockKicker.textContent = data.dockKicker;
+      if (dockHeadline && data.dockHeadline) dockHeadline.innerHTML = data.dockHeadline;
+      const dockSub = document.querySelector('.dock-editorial-sub');
+      if (dockSub && data.dockSub) dockSub.textContent = data.dockSub;
+      if (ctaBtn && data.ctaText) ctaBtn.textContent = data.ctaText;
+      if (trust && data.trust) trust.innerHTML = data.trust;
+      if (specStack && data.cards) {
+        specStack.innerHTML = data.cards.map(c => `
+          <div class="spec-item-card">
+            <span>${c.label}</span>
+            <strong>${c.val}</strong>
+          </div>
+        `).join('');
+      }
 
-        const aura = document.querySelector('.shockwave-aura');
-        if (aura) {
-          aura.classList.remove('sonic-flare');
-          void aura.offsetWidth;
-          aura.classList.add('sonic-flare');
-        }
+      if (window.restoreCharacterImageEdits) {
+        window.restoreCharacterImageEdits(themeKey);
+      }
 
-        if (window.restoreCharacterImageEdits) {
-          window.restoreCharacterImageEdits(themeKey);
-        }
+      // Trigger Velvet Smooth Motion
+      triggerMotionAnimation();
 
-        // Trigger Craftwork Kinetic Motion Animation Suite
-        triggerMotionAnimation();
-
-        // Sync Header Navigation Active State
-        const navMap = {
-          'sage': 0,    // Curated Roster
-          'cobalt': 1,  // Aerial Cinema
-          'coral': 2,   // 3D Directors
-          'amber': 3,   // Direct Terms
-          'lilac': 0    // Curated Roster / Visual Arts
-        };
-        const navIdx = navMap[themeKey];
-        const navLinks = document.querySelectorAll('.header-nav-link');
-        navLinks.forEach((link, idx) => {
-          link.classList.toggle('active', idx === navIdx);
-        });
-
-        setTimeout(() => {
-          faders.forEach(el => el.classList.remove('is-switching'));
-          body.classList.remove('is-theme-switching');
-        }, 50);
-      }, 200);
+      // Sync Header Navigation Active State
+      const navMap = {
+        'sage': 0,    // Curated Roster
+        'cobalt': 1,  // Aerial Cinema
+        'coral': 2,   // 3D Directors
+        'amber': 3,   // Direct Terms
+        'lilac': 0    // Curated Roster / Visual Arts
+      };
+      const navIdx = navMap[themeKey];
+      const navLinks = document.querySelectorAll('.header-nav-link');
+      navLinks.forEach((link, idx) => {
+        link.classList.toggle('active', idx === navIdx);
+      });
 
       startAutoRotation();
     }
