@@ -511,6 +511,7 @@
       border-radius: 9999px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
       width: fit-content;
+      transform-origin: left center;
       transition: all 0.4s ease;
     }
 
@@ -554,26 +555,34 @@
 
     .spec-pills-cloud {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      max-width: 480px;
+      flex-direction: column;
+      gap: 7px;
+      max-width: 520px;
       min-height: 76px;
+    }
+
+    .pills-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: nowrap;
     }
 
     .tag-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 7px 14px;
+      padding: 7px 12px;
       background: #FFFFFF;
       border: 1px solid rgba(15, 23, 42, 0.09);
       border-radius: 9999px;
       font-family: var(--font-body);
-      font-size: 12.5px;
+      font-size: 11.5px;
       font-weight: 600;
       color: #1E293B;
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
-      letter-spacing: -0.01em;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -817,6 +826,7 @@
     }
 
     .talent-clean-image {
+      position: relative;
       max-height: 92%;
       max-width: 100%;
       object-fit: contain;
@@ -1102,12 +1112,167 @@
       pointer-events: none;
     }
     .theme-fader {
-      transition: opacity 0.24s ease;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
     }
-    /* Clean opacity exit when switching - zero tilt, zero scale, zero wobble */
     .theme-fader.is-switching {
-      opacity: 0 !important;
-      transition: opacity 0.2s ease-in !important;
+      opacity: 0.25 !important;
+      filter: blur(8px) !important;
+      transform: scale(0.96) !important;
+      transition: opacity 0.18s ease-in, transform 0.18s ease-in, filter 0.18s ease-in !important;
+    }
+
+    /* ── CRAZY HIGH-VELOCITY THEME TRANSITION SUITE ── */
+    
+    /* 1. Heroic Character Warp Land */
+    .talent-clean-image.hero-warp-enter {
+      animation: heroWarpLand 0.72s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+    }
+    @keyframes heroWarpLand {
+      0% {
+        opacity: 0.1;
+        transform: translate3d(0, 52px, 0) scale(1.14);
+        filter: blur(16px) brightness(1.28) drop-shadow(0 0 50px var(--theme-accent));
+      }
+      50% {
+        opacity: 1;
+        transform: translate3d(0, -7px, 0) scale(0.98);
+        filter: blur(0px) brightness(1.04) drop-shadow(0 20px 40px rgba(0,0,0,0.25));
+      }
+      75% {
+        transform: translate3d(0, 2px, 0) scale(1.01);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+        filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.22));
+      }
+    }
+
+    /* 2. Sonic Flare Shockwave Ring */
+    .shockwave-aura.sonic-flare {
+      animation: sonicFlarePulse 0.75s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+    }
+    @keyframes sonicFlarePulse {
+      0% {
+        opacity: 0.95;
+        transform: translate(-50%, -50%) scale(0.25);
+        background: radial-gradient(circle, var(--theme-accent) 0%, rgba(255,255,255,0.7) 40%, transparent 70%);
+        box-shadow: 0 0 80px 25px var(--theme-accent), inset 0 0 50px var(--theme-accent);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2.6);
+        box-shadow: 0 0 160px 80px var(--theme-accent), inset 0 0 80px transparent;
+      }
+    }
+
+    /* 3. Staggered Pills Ripple */
+    .pills-row-1.pills-ripple .tag-pill {
+      animation: pillSpringIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    .pills-row-1.pills-ripple .tag-pill:nth-child(1) { animation-delay: 0.02s; }
+    .pills-row-1.pills-ripple .tag-pill:nth-child(2) { animation-delay: 0.06s; }
+    .pills-row-1.pills-ripple .tag-pill:nth-child(3) { animation-delay: 0.10s; }
+
+    .pills-row-2.pills-ripple .tag-pill {
+      animation: pillSpringIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    .pills-row-2.pills-ripple .tag-pill:nth-child(1) { animation-delay: 0.14s; }
+    .pills-row-2.pills-ripple .tag-pill:nth-child(2) { animation-delay: 0.18s; }
+
+    @keyframes pillSpringIn {
+      0% {
+        opacity: 0.15;
+        transform: translate3d(-18px, 0, 0) scale(0.85);
+        filter: blur(4px);
+      }
+      70% {
+        opacity: 1;
+        transform: translate3d(3px, 0, 0) scale(1.05);
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    /* 4. Production Spec Cards Cascade */
+    .production-spec-stack.cards-cascade .spec-item-card {
+      animation: cardCascadeIn 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .production-spec-stack.cards-cascade .spec-item-card:nth-child(1) { animation-delay: 0.04s; }
+    .production-spec-stack.cards-cascade .spec-item-card:nth-child(2) { animation-delay: 0.09s; }
+    .production-spec-stack.cards-cascade .spec-item-card:nth-child(3) { animation-delay: 0.14s; }
+
+    @keyframes cardCascadeIn {
+      0% {
+        opacity: 0.15;
+        transform: translate3d(34px, 0, 0) scale(0.95);
+        filter: blur(4px);
+      }
+      70% {
+        opacity: 1;
+        transform: translate3d(-3px, 0, 0) scale(1.02);
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    /* 5. Headline Snap Flash */
+    .editorial-headline-stack.headline-kinetic .headline-line-1,
+    .editorial-headline-stack.headline-kinetic .headline-line-2 {
+      animation: headlineSnap 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes headlineSnap {
+      0% {
+        opacity: 0.35;
+        transform: translate3d(-12px, 0, 0) skewX(-2deg);
+        filter: blur(3px);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) skewX(0deg);
+        filter: blur(0px);
+      }
+    }
+
+    /* 6. Rate Capsule Spring */
+    .rate-capsule-pill.rate-spring {
+      animation: rateSpring 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    @keyframes rateSpring {
+      0%   { transform: scale(0.92); opacity: 0.35; }
+      65%  { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    /* 7. Center Seam Laser Beam Flash */
+    .split-canvas-body::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 58%;
+      width: 3px;
+      background: linear-gradient(180deg, transparent, var(--theme-accent), transparent);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 15;
+      transition: opacity 0.25s ease;
+    }
+    body.is-theme-switching .split-canvas-body::after {
+      opacity: 0.85;
+      box-shadow: 0 0 30px var(--theme-accent), 0 0 60px var(--theme-accent);
+      animation: beamFlash 0.6s ease-out;
+    }
+    @keyframes beamFlash {
+      0%   { opacity: 0; transform: scaleY(0); }
+      45%  { opacity: 1; transform: scaleY(1); }
+      100% { opacity: 0; transform: scaleY(1); }
     }
 
     .talent-clean-image.is-landing {
@@ -1670,11 +1835,15 @@
             </div>
 
             <div class="spec-pills-cloud">
-              <span class="tag-pill pill-accent"><span class="tag-icon">⚡</span> 0% Agency Cut</span>
-              <span class="tag-pill"><span class="tag-icon">✦</span> Direct Contracts</span>
-              <span class="tag-pill dynamic-spec-1"><span class="tag-icon">◈</span> <span class="spec-txt-1">Sub-D 8K Mesh</span></span>
-              <span class="tag-pill dynamic-spec-2"><span class="tag-icon">⏱</span> <span class="spec-txt-2">24h Dailies</span></span>
-              <span class="tag-pill dynamic-spec-3"><span class="tag-icon">🛡</span> <span class="spec-txt-3">Full IP Buyout</span></span>
+              <div class="pills-row pills-row-1">
+                <span class="tag-pill pill-accent"><span class="tag-icon">⚡</span> 0% Agency Cut</span>
+                <span class="tag-pill"><span class="tag-icon">✦</span> Direct Contracts</span>
+                <span class="tag-pill dynamic-spec-1"><span class="tag-icon">◈</span> <span class="spec-txt-1">Sub-D 8K Mesh</span></span>
+              </div>
+              <div class="pills-row pills-row-2">
+                <span class="tag-pill dynamic-spec-2"><span class="tag-icon">⏱</span> <span class="spec-txt-2">24h Dailies</span></span>
+                <span class="tag-pill dynamic-spec-3"><span class="tag-icon">🛡</span> <span class="spec-txt-3">Full IP Buyout</span></span>
+              </div>
             </div>
           </div>
 
@@ -1744,6 +1913,9 @@
         name: 'Sage Scene',
         imgSrc: 'assets/creator_desk_designer.png',
         imgAlt: 'Digital Creator at Modern Workstation',
+        scale: '1.05',
+        left: '42px',
+        transformOrigin: 'bottom center',
         categoryKicker: 'DIGITAL CRAFT & 3D ATELIER',
         rateVal: '$35–450',
         pills: [
@@ -1767,6 +1939,9 @@
         name: 'Aero Cloud',
         imgSrc: 'assets/upward_flight_pilot_drone.png',
         imgAlt: 'Featured Aerial Cinematographer & Drone Director',
+        scale: '1.0',
+        left: '0px',
+        transformOrigin: 'bottom center',
         categoryKicker: 'COMMERCIAL & AERIAL DIRECTORS',
         rateVal: '$50–600',
         pills: [
@@ -1790,6 +1965,9 @@
         name: 'Purple Illustrator',
         imgSrc: 'assets/purple_haired_illustrator.png',
         imgAlt: 'Purple-Haired Illustrator Drawing on a Pouf',
+        scale: '1.05',
+        left: '25px',
+        transformOrigin: 'bottom center',
         categoryKicker: 'VISUAL ARTS & CHARACTER WORLDS',
         rateVal: '$30–350',
         pills: [
@@ -1813,6 +1991,9 @@
         name: 'Cinema Camera',
         imgSrc: 'assets/smiling_videographer_cinema.png',
         imgAlt: 'Smiling Videographer with Cinema Camera',
+        scale: '1.0',
+        left: '0px',
+        transformOrigin: 'bottom center',
         categoryKicker: 'COMMERCIAL CINEMA & NARRATIVE',
         rateVal: '$50–750',
         pills: [
@@ -1836,6 +2017,9 @@
         name: 'Spatial 3D',
         imgSrc: 'assets/vr_adventure_flight_case.png',
         imgAlt: 'VR Adventure on a Flight Case',
+        scale: '1.0',
+        left: '0px',
+        transformOrigin: 'bottom center',
         categoryKicker: 'REALTIME 3D & IMMERSIVE ENVIRONMENTS',
         rateVal: '$40–550',
         pills: [
@@ -1903,6 +2087,7 @@
       });
 
       resetProgressBar();
+      body.classList.add('is-theme-switching');
       faders.forEach(el => el.classList.add('is-switching'));
 
       setTimeout(() => {
@@ -1912,6 +2097,9 @@
           const customImg = localStorage.getItem('custom_img_' + themeKey + '_' + mode) || localStorage.getItem('custom_image_' + themeKey);
           img.src = customImg || data.imgSrc;
           img.alt = data.imgAlt;
+          img.style.scale = data.scale || '1.0';
+          img.style.left = data.left || '0px';
+          img.style.transformOrigin = data.transformOrigin || 'bottom center';
         }
         if (categoryKicker && data.categoryKicker) categoryKicker.textContent = data.categoryKicker;
         if (data.rateVal) {
@@ -1943,25 +2131,60 @@
 
         const aura = document.querySelector('.shockwave-aura');
         if (aura) {
-          aura.classList.remove('pulse');
+          aura.classList.remove('sonic-flare');
           void aura.offsetWidth;
-          aura.classList.add('pulse');
+          aura.classList.add('sonic-flare');
         }
 
         if (window.restoreCharacterImageEdits) {
           window.restoreCharacterImageEdits(themeKey);
         }
 
-        document.querySelectorAll('.spec-item-card').forEach(card => {
-          card.classList.remove('is-updating');
-          void card.offsetWidth;
-          card.classList.add('is-updating');
-        });
+        // Trigger Crazy Kinetic Animation Suite
+        if (img) {
+          img.classList.remove('hero-warp-enter');
+          void img.offsetWidth;
+          img.classList.add('hero-warp-enter');
+        }
+
+        const pillsRow1 = document.querySelector('.pills-row-1');
+        const pillsRow2 = document.querySelector('.pills-row-2');
+        if (pillsRow1) {
+          pillsRow1.classList.remove('pills-ripple');
+          void pillsRow1.offsetWidth;
+          pillsRow1.classList.add('pills-ripple');
+        }
+        if (pillsRow2) {
+          pillsRow2.classList.remove('pills-ripple');
+          void pillsRow2.offsetWidth;
+          pillsRow2.classList.add('pills-ripple');
+        }
+
+        if (specStack) {
+          specStack.classList.remove('cards-cascade');
+          void specStack.offsetWidth;
+          specStack.classList.add('cards-cascade');
+        }
+
+        const headline = document.querySelector('.editorial-headline-stack');
+        if (headline) {
+          headline.classList.remove('headline-kinetic');
+          void headline.offsetWidth;
+          headline.classList.add('headline-kinetic');
+        }
+
+        const ratePill = document.querySelector('.rate-capsule-pill');
+        if (ratePill) {
+          ratePill.classList.remove('rate-spring');
+          void ratePill.offsetWidth;
+          ratePill.classList.add('rate-spring');
+        }
 
         setTimeout(() => {
           faders.forEach(el => el.classList.remove('is-switching'));
+          body.classList.remove('is-theme-switching');
         }, 50);
-      }, 220);
+      }, 200);
 
       startAutoRotation();
     }
@@ -2003,6 +2226,13 @@
     if (initialTheme && THEME_PRESETS[initialTheme]) {
       switchTheme(initialTheme, true);
     } else {
+      const defaultData = THEME_PRESETS['sage'];
+      const defaultImg = document.querySelector('.talent-clean-image');
+      if (defaultImg && defaultData) {
+        defaultImg.style.scale = defaultData.scale || '1.0';
+        defaultImg.style.left = defaultData.left || '0px';
+        defaultImg.style.transformOrigin = defaultData.transformOrigin || 'bottom center';
+      }
       startAutoRotation();
       resetProgressBar();
     }
@@ -2439,6 +2669,13 @@
 
       function restoreEdits() {
         clearAllInlineStyles();
+        const currentData = (typeof THEME_PRESETS !== 'undefined') ? THEME_PRESETS[currentThemeKey] : null;
+        const charImg = document.querySelector('.talent-clean-image');
+        if (charImg && currentData) {
+          charImg.style.scale = currentData.scale || '1.0';
+          charImg.style.left = currentData.left || '0px';
+          charImg.style.transformOrigin = currentData.transformOrigin || 'bottom center';
+        }
         const modeKey = getStorageKey() + '_' + currentThemeKey;
         try {
           const raw = localStorage.getItem(modeKey) || localStorage.getItem(getStorageKey());
