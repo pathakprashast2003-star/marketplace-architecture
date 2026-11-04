@@ -712,9 +712,9 @@
       object-fit: contain;
       object-position: bottom center;
       filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.38));
-      translate: var(--parallax-x, 0px) var(--parallax-y, 0px);
-      transition: translate 0.15s ease-out;
-      will-change: transform, translate;
+      transition: opacity 0.25s ease;
+      animation: none !important;
+      transform: none !important;
     }
 
     .soft-pedestal-mist {
@@ -983,20 +983,16 @@
       pointer-events: none;
     }
     .theme-fader {
-      transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform, filter;
+      transition: opacity 0.24s ease;
     }
-    /* Dynamic kinetic exit when switching */
+    /* Clean opacity exit when switching - zero tilt, zero scale, zero wobble */
     .theme-fader.is-switching {
       opacity: 0 !important;
-      transform: translate3d(0, -28px, 0) scale(0.92) rotate(-2.5deg) !important;
-      filter: blur(4px) !important;
-      transition: opacity 0.2s ease-in, transform 0.22s cubic-bezier(0.4, 0, 1, 1), filter 0.18s ease !important;
+      transition: opacity 0.2s ease-in !important;
     }
 
-    /* Kinetic 3D landing bounce when new character renders */
     .talent-clean-image.is-landing {
-      animation: kineticHeroLand 0.65s cubic-bezier(0.34, 1.4, 0.64, 1) forwards !important;
+      animation: none !important;
     }
 
     @keyframes kineticHeroLand {
@@ -1167,10 +1163,6 @@
     .btn-secondary-explore     { animation: nxSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.32s; }
     .right-bottom-trust        { animation: nxSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.38s; }
 
-    .center-seam-talent-box {
-      animation: nxHeroLevitate 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
-      animation-delay: 0.08s;
-    }
 
     /* Tactile button lift on hover */
     .btn-action-primary, .btn-secondary-explore, .header-cta-pill {
@@ -1513,10 +1505,6 @@
         if (img) {
           img.src = data.imgSrc;
           img.alt = data.imgAlt;
-          img.classList.remove('is-landing');
-          void img.offsetWidth;
-          img.classList.add('is-landing');
-          img.addEventListener('animationend', () => img.classList.remove('is-landing'), { once: true });
         }
         if (categoryKicker && data.categoryKicker) categoryKicker.textContent = data.categoryKicker;
         if (rateVal && data.rateVal) rateVal.textContent = data.rateVal;
@@ -1802,11 +1790,7 @@
         curX += (targetX - curX) * 0.045;
         curY += (targetY - curY) * 0.045;
 
-        const charImg = document.querySelector('.talent-clean-image, .subject-pilot-image, #heroCharacterSlot');
-        if (charImg && !charImg.classList.contains('drag-selected')) {
-          charImg.style.setProperty('--parallax-x', (curX * 14).toFixed(2) + 'px');
-          charImg.style.setProperty('--parallax-y', (curY * 10).toFixed(2) + 'px');
-        }
+        // Parallax on character image disabled to keep image perfectly stable and prevent wobble
 
         if (Math.abs(targetX - curX) > 0.001 || Math.abs(targetY - curY) > 0.001) {
           requestAnimationFrame(loop);

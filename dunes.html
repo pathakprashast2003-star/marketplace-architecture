@@ -407,9 +407,8 @@
       filter: none;
       user-select: none;
       pointer-events: none;
-      translate: var(--parallax-x, 0px) var(--parallax-y, 0px);
-      transition: translate 0.15s ease-out;
-      will-change: transform, translate;
+      animation: none !important;
+      transition: opacity 0.25s ease !important;
     }
 
     /* Specifically enlarge Sage Scene desk designer character (~20% bigger) without altering any other theme image */
@@ -1133,20 +1132,16 @@
       pointer-events: none;
     }
     .theme-fader {
-      transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform, filter;
+      transition: opacity 0.24s ease;
     }
-    /* Dynamic kinetic exit when switching */
+    /* Clean opacity exit when switching - zero tilt, zero scale, zero wobble */
     .theme-fader.is-switching {
       opacity: 0 !important;
-      transform: translate3d(0, -28px, 0) scale(0.92) rotate(-2.5deg) !important;
-      filter: blur(4px) !important;
-      transition: opacity 0.2s ease-in, transform 0.22s cubic-bezier(0.4, 0, 1, 1), filter 0.18s ease !important;
+      transition: opacity 0.2s ease-in !important;
     }
 
-    /* Kinetic 3D landing bounce when new character renders */
     #heroCharacterSlot.is-landing {
-      animation: kineticHeroLand 0.65s cubic-bezier(0.34, 1.4, 0.64, 1) forwards !important;
+      animation: none !important;
     }
 
     @keyframes kineticHeroLand {
@@ -1658,10 +1653,6 @@
           const customImg = localStorage.getItem('custom_img_' + themeKey + '_' + mode) || localStorage.getItem('custom_image_' + themeKey);
           img.src = customImg || data.imgSrc;
           img.alt = data.imgAlt;
-          img.classList.remove('is-landing');
-          void img.offsetWidth;
-          img.classList.add('is-landing');
-          img.addEventListener('animationend', () => img.classList.remove('is-landing'), { once: true });
         }
         const titleCreative = document.querySelector('.title-creative');
         if (titleCreative) titleCreative.textContent = data.creativeWord;
@@ -2500,11 +2491,7 @@
         curX += (targetX - curX) * 0.045;
         curY += (targetY - curY) * 0.045;
 
-        const charImg = document.querySelector('.talent-clean-image, .subject-pilot-image, #heroCharacterSlot');
-        if (charImg && !charImg.classList.contains('drag-selected')) {
-          charImg.style.setProperty('--parallax-x', (curX * 14).toFixed(2) + 'px');
-          charImg.style.setProperty('--parallax-y', (curY * 10).toFixed(2) + 'px');
-        }
+        // Parallax on character image disabled to keep image perfectly stable and prevent wobble
 
         if (Math.abs(targetX - curX) > 0.001 || Math.abs(targetY - curY) > 0.001) {
           requestAnimationFrame(loop);
