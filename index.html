@@ -1189,88 +1189,147 @@
     }
 
     /* ── APPLE-GRADE CLOCKWISE MOTION SUITE (ORBITAL TURNTABLE) ── */
-    /* Derived from motion-foundations + motion-advanced: organic rotational arc around ground center */
+    /* Derived from motion-foundations + make-interfaces-feel-better: 3 radically distinct physical dimensions */
     
-    /* ── MODE A: Clockwise Orbital Arc (Flagship Turntable Float) ── */
+    /* ── MODE A: 🎡 Turntable Orbit (Clockwise Floor Arc) ── */
     body[data-anim-mode="parabolic"] .talent-clean-image.hero-anim-enter,
     body:not([data-anim-mode]) .talent-clean-image.hero-anim-enter,
     .talent-clean-image.hero-warp-enter {
-      animation: heroClockwiseArcIn 0.52s cubic-bezier(0.22, 1, 0.36, 1) both !important;
-      transform-origin: 50% 125% !important;
+      animation: heroTurntableOrbitIn 0.72s cubic-bezier(0.25, 1, 0.5, 1) both !important;
+      transform-origin: 50% 95% !important;
     }
-    @keyframes heroClockwiseArcIn {
+    @keyframes heroTurntableOrbitIn {
       0% {
         opacity: 0;
-        transform: rotate(-8deg) translate3d(-34px, -16px, 0) scale(0.965);
-      }
-      65% {
-        opacity: 1;
-        transform: rotate(0.9deg) translate3d(2px, -1px, 0) scale(1.006);
+        transform: translate3d(-150px, 45px, 0) scale(0.85) rotate(-3deg);
       }
       100% {
         opacity: 1;
-        transform: rotate(0deg) translate3d(0, 0, 0) scale(1);
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+      }
+    }
+
+    body[data-anim-mode="parabolic"] .orbital-dial-turntable .dial-gradient-sweep.is-spinning {
+      animation: dialTurntableSpin 0.78s cubic-bezier(0.25, 1, 0.5, 1) both;
+    }
+    @keyframes dialTurntableSpin {
+      0% {
+        opacity: 0.95;
+        transform: rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: rotate(180deg);
       }
     }
 
     body[data-anim-mode="parabolic"] .shockwave-aura.sonic-flare,
     body:not([data-anim-mode]) .shockwave-aura.sonic-flare,
     .shockwave-aura.sonic-flare {
-      animation: auraClockwiseBloom 0.55s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+      animation: auraTurntableBloom 0.72s cubic-bezier(0.25, 1, 0.5, 1) both !important;
     }
-
-    /* ── MODE B: Clockwise 3D Helix (Spatial Orbital Spiral) ── */
-    body[data-anim-mode="horizon"] .talent-clean-image.hero-anim-enter {
-      animation: heroClockwiseHelixIn 0.50s cubic-bezier(0.16, 1, 0.3, 1) both !important;
-      transform-origin: 50% 115% !important;
-    }
-    @keyframes heroClockwiseHelixIn {
+    @keyframes auraTurntableBloom {
       0% {
-        opacity: 0;
-        transform: rotate(-12deg) translate3d(-24px, 14px, 0) scale(0.94);
-      }
-      68% {
-        opacity: 1;
-        transform: rotate(1.2deg) translate3d(1px, -2px, 0) scale(1.008);
-      }
-      100% {
-        opacity: 1;
-        transform: rotate(0deg) translate3d(0, 0, 0) scale(1);
-      }
-    }
-
-    body[data-anim-mode="horizon"] .shockwave-aura.sonic-flare {
-      animation: auraClockwiseBloom 0.52s cubic-bezier(0.16, 1, 0.3, 1) both !important;
-    }
-
-    /* ── MODE C: Clockwise Dial Sweep (Radial Speed Arc) ── */
-    body[data-anim-mode="portal"] .talent-clean-image.hero-anim-enter {
-      animation: heroClockwiseDialSweep 0.48s cubic-bezier(0.16, 1, 0.3, 1) both !important;
-      transform-origin: 45% 120% !important;
-    }
-    @keyframes heroClockwiseDialSweep {
-      0% {
-        opacity: 0;
-        transform: rotate(-6deg) translate3d(-28px, 0, 0) scale(0.975);
-      }
-      100% {
-        opacity: 1;
-        transform: rotate(0deg) translate3d(0, 0, 0) scale(1);
-      }
-    }
-
-    body[data-anim-mode="portal"] .shockwave-aura.sonic-flare {
-      animation: auraClockwiseBloom 0.58s cubic-bezier(0.16, 1, 0.3, 1) both !important;
-    }
-
-    @keyframes auraClockwiseBloom {
-      0% {
-        opacity: 0.75;
+        opacity: 0.85;
         transform: translateX(-50%) rotate(-15deg) scale(0.85);
       }
       100% {
         opacity: 0;
-        transform: translateX(-50%) rotate(45deg) scale(1.3);
+        transform: translateX(-50%) rotate(55deg) scale(1.35);
+      }
+    }
+
+    /* ── MODE B: 🌀 3D Depth Vortex (Spatial Forward Zoom) ── */
+    body[data-anim-mode="horizon"] .talent-clean-image.hero-anim-enter {
+      animation: heroDepthVortexIn 0.70s cubic-bezier(0.25, 1, 0.5, 1) both !important;
+      transform-origin: 50% 85% !important;
+    }
+    @keyframes heroDepthVortexIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.30) translate3d(0, 80px, -240px) rotate(-18deg);
+        filter: blur(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translate3d(0, 0, 0) rotate(0deg);
+        filter: blur(0px);
+      }
+    }
+
+    body[data-anim-mode="horizon"] .orbital-dial-turntable .dial-gradient-sweep.is-spinning {
+      animation: dialVortexRipple 0.72s cubic-bezier(0.25, 1, 0.5, 1) both;
+    }
+    @keyframes dialVortexRipple {
+      0% {
+        opacity: 1;
+        transform: scale(0.35) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.6) rotate(90deg);
+      }
+    }
+
+    body[data-anim-mode="horizon"] .shockwave-aura.sonic-flare {
+      animation: auraDepthVortexBloom 0.72s cubic-bezier(0.25, 1, 0.5, 1) both !important;
+    }
+    @keyframes auraDepthVortexBloom {
+      0% {
+        opacity: 0.95;
+        transform: translateX(-50%) scale(0.25);
+      }
+      55% {
+        opacity: 0.65;
+        transform: translateX(-50%) scale(1.35);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-50%) scale(2.1);
+      }
+    }
+
+    /* ── MODE C: ⚡ Clock-Hand Snap (Precision 12-to-3 Radial Arc) ── */
+    body[data-anim-mode="portal"] .talent-clean-image.hero-anim-enter {
+      animation: heroClockSnapIn 0.68s cubic-bezier(0.25, 1, 0.5, 1) both !important;
+      transform-origin: 50% 90% !important;
+    }
+    @keyframes heroClockSnapIn {
+      0% {
+        opacity: 0;
+        transform: translate3d(140px, -110px, 0) scale(0.88) rotate(4deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+      }
+    }
+
+    body[data-anim-mode="portal"] .orbital-dial-turntable .dial-gradient-sweep.is-spinning {
+      animation: dialClockRapidSweep 0.68s cubic-bezier(0.25, 1, 0.5, 1) both;
+    }
+    @keyframes dialClockRapidSweep {
+      0% {
+        opacity: 0.95;
+        transform: rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: rotate(360deg);
+      }
+    }
+
+    body[data-anim-mode="portal"] .shockwave-aura.sonic-flare {
+      animation: auraClockSnapBloom 0.68s cubic-bezier(0.25, 1, 0.5, 1) both !important;
+    }
+    @keyframes auraClockSnapBloom {
+      0% {
+        opacity: 0.85;
+        transform: translateX(-50%) rotate(0deg) scale(0.9);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-50%) rotate(180deg) scale(1.4);
       }
     }
 
@@ -2130,17 +2189,17 @@
         <span>CLOCKWISE:</span>
       </span>
       <div class="motion-tabs-group" role="tablist">
-        <button type="button" class="motion-tab-btn is-active" data-motion="parabolic" role="tab" aria-selected="true" title="Clockwise Orbital Arc: Natural revolving turntable sweep">
+        <button type="button" class="motion-tab-btn is-active" data-motion="parabolic" role="tab" aria-selected="true" title="Clockwise Turntable Orbit: Floor Carousel Arc">
           <span class="motion-badge">A</span>
-          <span>Orbital Arc</span>
+          <span>🎡 Turntable</span>
         </button>
-        <button type="button" class="motion-tab-btn" data-motion="horizon" role="tab" aria-selected="false" title="Clockwise 3D Helix: Depth spiral with perspective pivot">
+        <button type="button" class="motion-tab-btn" data-motion="horizon" role="tab" aria-selected="false" title="Clockwise 3D Depth Vortex: Deep perspective forward zoom">
           <span class="motion-badge">B</span>
-          <span>3D Helix</span>
+          <span>🌀 3D Vortex</span>
         </button>
-        <button type="button" class="motion-tab-btn" data-motion="portal" role="tab" aria-selected="false" title="Clockwise Dial Sweep: Precision watch dial radial glide">
+        <button type="button" class="motion-tab-btn" data-motion="portal" role="tab" aria-selected="false" title="Clockwise Clock-Hand Snap: 12-to-3 radial descent snap">
           <span class="motion-badge">C</span>
-          <span>Dial Sweep</span>
+          <span>⚡ Clock Snap</span>
         </button>
       </div>
       <div class="motion-dock-divider"></div>
