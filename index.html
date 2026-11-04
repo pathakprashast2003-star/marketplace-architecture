@@ -498,7 +498,7 @@
     .roster-pills-cluster {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 15px;
       margin-top: 0;
       max-width: 500px;
     }
@@ -1928,7 +1928,7 @@
         imgSrc: 'assets/creator_desk_designer.png',
         imgAlt: 'Digital Creator at Modern Workstation',
         scale: '1.02',
-        left: '65px',
+        left: '85px',
         bottom: '8px',
         transformOrigin: 'bottom center',
         categoryKicker: 'DIGITAL CRAFT & 3D ATELIER',
@@ -1955,7 +1955,7 @@
         imgSrc: 'assets/upward_flight_pilot_drone.png',
         imgAlt: 'Featured Aerial Cinematographer & Drone Director',
         scale: '1.0',
-        left: '0px',
+        left: '12px',
         bottom: '0px',
         transformOrigin: 'bottom center',
         categoryKicker: 'COMMERCIAL & AERIAL DIRECTORS',
@@ -1981,9 +1981,9 @@
         name: 'Purple Illustrator',
         imgSrc: 'assets/purple_haired_illustrator.png',
         imgAlt: 'Purple-Haired Illustrator Drawing on a Pouf',
-        scale: '1.08',
-        left: '45px',
-        bottom: '20px',
+        scale: '1.05',
+        left: '135px',
+        bottom: '18px',
         transformOrigin: 'bottom center',
         categoryKicker: 'VISUAL ARTS & CHARACTER WORLDS',
         rateVal: '$30–350',
@@ -2036,7 +2036,7 @@
         imgSrc: 'assets/vr_adventure_flight_case.png',
         imgAlt: 'VR Adventure on a Flight Case',
         scale: '1.0',
-        left: '35px',
+        left: '75px',
         bottom: '0px',
         transformOrigin: 'bottom center',
         categoryKicker: 'REALTIME 3D & IMMERSIVE ENVIRONMENTS',
@@ -2286,7 +2286,7 @@
       let initialLeft = 0, initialTop = 0;
       let hasMoved = false;
 
-      const STORAGE_PREFIX = 'ninjax_custom_edits_v3_';
+      const STORAGE_PREFIX = 'ninjax_custom_edits_v4_';
       let manualViewportMode = null;
       function getActiveViewport() {
         if (manualViewportMode) return manualViewportMode;
@@ -2669,7 +2669,6 @@
 
         try {
           localStorage.setItem(modeKey, JSON.stringify(edits));
-          localStorage.setItem(getStorageKey(), JSON.stringify(edits));
           showSavedToast();
         } catch(err) {
           console.warn('Failed saving edits to localStorage', err);
@@ -2700,7 +2699,7 @@
         }
         const modeKey = getStorageKey() + '_' + currentThemeKey;
         try {
-          const raw = localStorage.getItem(modeKey) || localStorage.getItem(getStorageKey());
+          const raw = localStorage.getItem(modeKey);
           if (raw) {
             const edits = JSON.parse(raw);
             Object.keys(edits).forEach(key => {
@@ -2795,10 +2794,14 @@
         hudReset.addEventListener('click', () => {
           if (!confirm('Reset all layout edits for this view?')) return;
           try {
-            localStorage.removeItem(getStorageKey() + '_' + currentThemeKey);
+            THEME_KEYS.forEach(tk => {
+              localStorage.removeItem(getStorageKey() + '_' + tk);
+              localStorage.removeItem('custom_img_' + tk + '_' + getActiveViewport());
+              localStorage.removeItem('custom_image_' + tk);
+              localStorage.removeItem('ninjax_custom_edits_v3_' + getActiveViewport() + '_' + tk);
+            });
             localStorage.removeItem(getStorageKey());
-            localStorage.removeItem('custom_img_' + currentThemeKey + '_' + getActiveViewport());
-            localStorage.removeItem('custom_image_' + currentThemeKey);
+            localStorage.removeItem('ninjax_custom_edits_v3_' + getActiveViewport());
           } catch(e) {}
           clearAllInlineStyles();
           switchTheme(currentThemeKey, true);
