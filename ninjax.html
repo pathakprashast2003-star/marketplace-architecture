@@ -489,14 +489,106 @@
       transition: all 0.4s ease;
     }
 
-    .editorial-subhead-prose {
+    /* Structured Pill Cluster under DIRECT ROSTER (Replaces Story Prose) */
+    .roster-pills-cluster {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 6px;
+      max-width: 440px;
+    }
+
+    .rate-capsule-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 18px;
+      background: var(--rate-pill-bg, rgba(248, 250, 252, 0.95));
+      border: 1px solid var(--rate-pill-border, rgba(15, 23, 42, 0.12));
+      border-radius: 9999px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      width: fit-content;
+      transition: all 0.4s ease;
+    }
+
+    .rate-val-num {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+      color: #0A121F;
+    }
+
+    .rate-val-unit {
+      font-family: var(--font-mono, monospace);
+      font-size: 10px;
+      font-weight: 700;
+      color: #64748B;
+      letter-spacing: 0.08em;
+    }
+
+    .rate-avail-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.28);
+      border-radius: 9999px;
       font-family: var(--font-body);
-      font-size: 15.5px;
-      line-height: 1.62;
-      color: #334155;
-      margin-bottom: 28px;
-      max-width: 400px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #16A34A;
+    }
+
+    .avail-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #16A34A;
+      box-shadow: 0 0 6px #16A34A;
+    }
+
+    .spec-pills-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      max-width: 430px;
+    }
+
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      background: #FFFFFF;
+      border: 1px solid rgba(15, 23, 42, 0.09);
+      border-radius: 9999px;
+      font-family: var(--font-body);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #1E293B;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
       letter-spacing: -0.01em;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tag-pill:hover {
+      transform: translateY(-1px);
+      border-color: rgba(15, 23, 42, 0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    .tag-pill.pill-accent {
+      background: var(--rate-pill-bg, #F0FDF4);
+      border-color: var(--rate-pill-border, rgba(34, 197, 94, 0.3));
+      color: var(--kicker-color, #15803D);
+      font-weight: 700;
+    }
+
+    .tag-icon {
+      font-size: 11px;
+      opacity: 0.9;
     }
 
     .editorial-action-row {
@@ -804,9 +896,13 @@
         font-size: 38px;
       }
 
-      .editorial-subhead-prose {
-        font-size: 13px;
-        line-height: 1.55;
+      .roster-pills-cluster {
+        align-items: center;
+        margin: 0 auto;
+      }
+
+      .spec-pills-cloud {
+        justify-content: center;
       }
 
       .talent-rate-module {
@@ -1384,7 +1480,7 @@
     .category-kicker           { animation: nxSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.06s; }
     .editorial-headline-stack  { animation: nxSlideUp 0.90s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.12s; }
     .talent-rate-module        { animation: nxSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.18s; }
-    .editorial-subhead-prose   { animation: nxSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.24s; }
+    .roster-pills-cluster      { animation: nxSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.22s; }
     .editorial-action-row      { animation: nxSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.30s; }
 
     .dock-mono-kicker          { animation: nxSlideUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.14s; }
@@ -1556,9 +1652,22 @@
             <span class="headline-line-2">ROSTER.</span>
           </div>
 
-          <p class="editorial-subhead-prose">
-            Direct contracts with vetted 3D modelers and CGI artists. Transparent day rates. Zero agency markup.
-          </p>
+          <!-- Structured Pill Cluster under DIRECT ROSTER (Replaces Story Prose) -->
+          <div class="roster-pills-cluster theme-fader">
+            <div class="rate-capsule-pill">
+              <span class="rate-val-num">$35–450</span>
+              <span class="rate-val-unit">/ DAY DIRECT</span>
+              <span class="rate-avail-tag"><span class="avail-dot"></span> Available Now</span>
+            </div>
+
+            <div class="spec-pills-cloud">
+              <span class="tag-pill pill-accent"><span class="tag-icon">⚡</span> 0% Agency Cut</span>
+              <span class="tag-pill"><span class="tag-icon">✦</span> Direct Contracts</span>
+              <span class="tag-pill dynamic-spec-1"><span class="tag-icon">◈</span> <span class="spec-txt-1">Sub-D 8K Mesh</span></span>
+              <span class="tag-pill dynamic-spec-2"><span class="tag-icon">⏱</span> <span class="spec-txt-2">24h Dailies</span></span>
+              <span class="tag-pill dynamic-spec-3"><span class="tag-icon">🛡</span> <span class="spec-txt-3">Full IP Buyout</span></span>
+            </div>
+          </div>
 
         </div>
 
@@ -1627,8 +1736,12 @@
         imgSrc: 'assets/creator_desk_designer.png',
         imgAlt: 'Digital Creator at Modern Workstation',
         categoryKicker: 'DIGITAL CRAFT & 3D ATELIER',
-        rateVal: '$25–400',
-        prose: 'Direct contracts with vetted 3D modelers and CGI artists. Transparent day rates. Zero agency markup.',
+        rateVal: '$35–450',
+        pills: [
+          { icon: '◈', text: 'Sub-D 8K Mesh' },
+          { icon: '⏱', text: '24h Dailies' },
+          { icon: '🛡', text: 'Full IP Buyout' }
+        ],
         dockKicker: 'STUDIO SPECIFICATIONS',
         dockHeadline: 'DIGITAL CRAFT & 3D ATELIER',
         dockSub: 'Sub-D hard-surface modeling, procedural environments, and Octane render engines.',
@@ -1646,8 +1759,12 @@
         imgSrc: 'assets/upward_flight_pilot_drone.png',
         imgAlt: 'Featured Aerial Cinematographer & Drone Director',
         categoryKicker: 'COMMERCIAL & AERIAL DIRECTORS',
-        rateVal: '$45–600',
-        prose: 'Direct contracts with FAA-certified flight captains and FPV cinema operators. Precision high-G telemetry. Zero agency markup.',
+        rateVal: '$50–600',
+        pills: [
+          { icon: '✈️', text: 'FAA Part 107' },
+          { icon: '⏱', text: '0.8ms Telemetry' },
+          { icon: '🛡', text: 'Full IP Buyout' }
+        ],
         dockKicker: 'PRODUCTION SPECIFICATIONS',
         dockHeadline: 'HIGH-VELOCITY CINEMA UNITS',
         dockSub: 'Custom-engineered chase platforms, heavy-lift cinema gimbals, and ultra-low latency telemetry.',
@@ -1666,7 +1783,11 @@
         imgAlt: 'Purple-Haired Illustrator Drawing on a Pouf',
         categoryKicker: 'VISUAL ARTS & CHARACTER WORLDS',
         rateVal: '$30–350',
-        prose: 'Direct contracts with character illustrators and visual developers. Full copyright buyout. Zero agency markup.',
+        pills: [
+          { icon: '🎨', text: 'DCI-P3 Gamut' },
+          { icon: '⏱', text: 'Layered Masters' },
+          { icon: '🛡', text: '100% IP Buyout' }
+        ],
         dockKicker: 'STUDIO SPECIFICATIONS',
         dockHeadline: 'BESPOKE VISUAL WORLDS',
         dockSub: 'Layered vector masters, DCI-P3 color precision, and production-ready visual narrative.',
@@ -1685,7 +1806,11 @@
         imgAlt: 'Smiling Videographer with Cinema Camera',
         categoryKicker: 'COMMERCIAL CINEMA & NARRATIVE',
         rateVal: '$50–750',
-        prose: 'Direct contracts with commercial directors and full-frame camera operators. Broadcast cinema masters. Zero agency markup.',
+        pills: [
+          { icon: '🎬', text: '8K Full-Frame' },
+          { icon: '⏱', text: 'T1.5 Anamorphic' },
+          { icon: '🛡', text: 'Direct Pitch Terms' }
+        ],
         dockKicker: 'OPTICAL SPECIFICATIONS',
         dockHeadline: 'CINEMA-GRADE OPTICS',
         dockSub: 'Full-frame 8K VistaVision sensors, anamorphic T1.5 optics, and RAW commercial pipelines.',
@@ -1704,7 +1829,11 @@
         imgAlt: 'VR Adventure on a Flight Case',
         categoryKicker: 'REALTIME 3D & IMMERSIVE ENVIRONMENTS',
         rateVal: '$40–550',
-        prose: 'Direct contracts with real-time Unreal Engine developers and spatial designers. Native 120 FPS assets. Zero agency markup.',
+        pills: [
+          { icon: '🕹', text: 'Unreal Engine 5.4' },
+          { icon: '⏱', text: '120 FPS OpenXR' },
+          { icon: '🛡', text: 'Spatial Rights' }
+        ],
         dockKicker: 'ENGINE SPECIFICATIONS',
         dockHeadline: 'REALTIME SPATIAL DESIGN',
         dockSub: 'Real-time Unreal Engine 5.4 builds, OpenXR standards, and VisionOS spatial compute.',
@@ -1776,8 +1905,18 @@
           img.alt = data.imgAlt;
         }
         if (categoryKicker && data.categoryKicker) categoryKicker.textContent = data.categoryKicker;
-        if (rateVal && data.rateVal) rateVal.textContent = data.rateVal;
-        if (prose && data.prose) prose.textContent = data.prose;
+        if (data.rateVal) {
+          const rateNum = document.querySelector('.rate-val-num');
+          if (rateNum) rateNum.textContent = data.rateVal;
+        }
+        if (data.pills) {
+          const p1 = document.querySelector('.dynamic-spec-1');
+          if (p1 && data.pills[0]) p1.innerHTML = `<span class="tag-icon">${data.pills[0].icon}</span> <span class="spec-txt-1">${data.pills[0].text}</span>`;
+          const p2 = document.querySelector('.dynamic-spec-2');
+          if (p2 && data.pills[1]) p2.innerHTML = `<span class="tag-icon">${data.pills[1].icon}</span> <span class="spec-txt-2">${data.pills[1].text}</span>`;
+          const p3 = document.querySelector('.dynamic-spec-3');
+          if (p3 && data.pills[2]) p3.innerHTML = `<span class="tag-icon">${data.pills[2].icon}</span> <span class="spec-txt-3">${data.pills[2].text}</span>`;
+        }
         if (dockKicker && data.dockKicker) dockKicker.textContent = data.dockKicker;
         if (dockHeadline && data.dockHeadline) dockHeadline.textContent = data.dockHeadline;
         const dockSub = document.querySelector('.dock-editorial-sub');
@@ -1917,7 +2056,8 @@
         'headline-line-1': { el: () => document.querySelector('.headline-line-1'), name: 'Word: DIRECT', viewport: 'both' },
         'headline-line-2': { el: () => document.querySelector('.headline-line-2'), name: 'Word: ROSTER.', viewport: 'both' },
         'category-kicker': { el: () => document.querySelector('.category-kicker'), name: 'Category Kicker', viewport: 'both' },
-        'editorial-subhead-prose': { el: () => document.querySelector('.editorial-subhead-prose'), name: 'Left Subtitle Copy', viewport: 'both' },
+        'rate-capsule-pill': { el: () => document.querySelector('.rate-capsule-pill'), name: 'Rate Capsule Pill', viewport: 'both' },
+        'spec-pills-cloud': { el: () => document.querySelector('.spec-pills-cloud'), name: 'Spec Pills Cloud', viewport: 'both' },
         'talent-clean-image': { el: () => document.querySelector('.talent-clean-image'), name: 'Character Image', getDisplayName: getCharacterDisplayName, viewport: 'both' },
         'right-production-dock': { el: () => document.querySelector('.right-production-dock'), name: 'Right Production Dock', viewport: 'both' },
         'dock-mono-kicker': { el: () => document.querySelector('.dock-mono-kicker'), name: 'Dock Kicker', viewport: 'both' },
@@ -2034,7 +2174,7 @@
 
       function updateContentEditable(enabled) {
         const textElements = document.querySelectorAll(
-          '.headline-line-1, .headline-line-2, .category-kicker, .editorial-subhead-prose, .dock-title-headline, .dock-editorial-sub, .dock-mono-kicker, .spec-item-card span, .spec-item-card strong, .btn-secondary-explore, .right-bottom-trust span'
+          '.headline-line-1, .headline-line-2, .category-kicker, .rate-val-num, .spec-txt-1, .spec-txt-2, .spec-txt-3, .tag-pill, .dock-title-headline, .dock-editorial-sub, .dock-mono-kicker, .spec-item-card span, .spec-item-card strong, .btn-secondary-explore, .right-bottom-trust span'
         );
         textElements.forEach(el => {
           if (el.closest('#editorHud, #editorToggle, .character-theme-capsules, .preview-layout-switcher')) return;
@@ -2082,7 +2222,7 @@
         if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher, .character-theme-capsules')) return;
 
         let clickedTarget = e.target.closest(
-          '.headline-line-1, .headline-line-2, .category-kicker, .editorial-subhead-prose, .talent-clean-image, .center-seam-talent-box, .right-production-dock, .dock-mono-kicker, .dock-title-headline, .dock-editorial-sub, .production-spec-stack, .spec-item-card, .btn-secondary-explore, .right-bottom-trust'
+          '.headline-line-1, .headline-line-2, .category-kicker, .rate-capsule-pill, .spec-pills-cloud, .tag-pill, .talent-clean-image, .center-seam-talent-box, .right-production-dock, .dock-mono-kicker, .dock-title-headline, .dock-editorial-sub, .production-spec-stack, .spec-item-card, .btn-secondary-explore, .right-bottom-trust'
         ) || e.target;
 
         if (clickedTarget && clickedTarget.classList.contains('center-seam-talent-box')) {
