@@ -407,7 +407,6 @@
       filter: none;
       user-select: none;
       pointer-events: none;
-      animation: floatSubtle 6.5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
       translate: var(--parallax-x, 0px) var(--parallax-y, 0px);
       transition: translate 0.15s ease-out;
       will-change: transform, translate;
@@ -419,12 +418,6 @@
       max-width: 125%;
       scale: 1.20;
       transform-origin: bottom center;
-    }
-
-    @keyframes floatSubtle {
-      0%   { transform: translate3d(0, 0px, 0) rotate(0deg); }
-      50%  { transform: translate3d(0, -9px, 0) rotate(-0.5deg); }
-      100% { transform: translate3d(0, 0px, 0) rotate(0deg); }
     }
 
     /* ── 3-WAY LAYOUT SWITCHER ── */
