@@ -379,16 +379,16 @@
     /* ── LEFT PANE: 58% WHITE CANVAS ── */
     .canvas-left-white {
       background: var(--bg-card-white);
-      padding: 48px 44px 44px 64px;
+      padding: 195px 44px 44px 64px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       position: relative;
       z-index: 2;
     }
 
     .left-editorial-content {
-      max-width: 480px;
+      max-width: 500px;
     }
 
     .category-kicker {
@@ -398,12 +398,15 @@
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--kicker-color, #15803D) !important;
+      height: 18px;
+      line-height: 18px;
       margin-bottom: 14px;
       display: block;
       transition: color 0.4s ease;
     }
 
     .editorial-headline-stack {
+      height: 165px;
       margin-bottom: 22px;
     }
 
@@ -494,8 +497,8 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
-      margin-top: 6px;
-      max-width: 440px;
+      margin-top: 0;
+      max-width: 500px;
     }
 
     .rate-capsule-pill {
@@ -553,7 +556,8 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      max-width: 430px;
+      max-width: 480px;
+      min-height: 76px;
     }
 
     .tag-pill {
@@ -879,6 +883,7 @@
 
       .canvas-left-white {
         padding: 28px 18px;
+        justify-content: center;
       }
 
       .left-editorial-content {
@@ -894,6 +899,10 @@
 
       .headline-line-1, .headline-line-2 {
         font-size: 38px;
+      }
+
+      .editorial-headline-stack {
+        height: auto;
       }
 
       .roster-pills-cluster {
@@ -1809,7 +1818,7 @@
         pills: [
           { icon: '🎬', text: '8K Full-Frame' },
           { icon: '⏱', text: 'T1.5 Anamorphic' },
-          { icon: '🛡', text: 'Direct Pitch Terms' }
+          { icon: '🛡', text: 'Direct Pitch' }
         ],
         dockKicker: 'OPTICAL SPECIFICATIONS',
         dockHeadline: 'CINEMA-GRADE OPTICS',
@@ -1830,7 +1839,7 @@
         categoryKicker: 'REALTIME 3D & IMMERSIVE ENVIRONMENTS',
         rateVal: '$40–550',
         pills: [
-          { icon: '🕹', text: 'Unreal Engine 5.4' },
+          { icon: '🕹', text: 'UE 5.4 Native' },
           { icon: '⏱', text: '120 FPS OpenXR' },
           { icon: '🛡', text: 'Spatial Rights' }
         ],
