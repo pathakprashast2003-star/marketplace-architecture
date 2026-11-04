@@ -6,7 +6,8 @@
   <title>NEXUS // NINJAX — Commercial Directors & Aerial Cinema</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Playfair+Display:ital,wght@1,700;1,900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   
   <style>
     *, *::before, *::after {
@@ -37,6 +38,7 @@
       
       --font-display: 'Cabinet Grotesk', -apple-system, sans-serif;
       --font-serif: 'Playfair Display', Georgia, serif;
+      --font-quirky: 'Dela Gothic One', sans-serif;
       --font-body: 'Inter', -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
@@ -406,24 +408,22 @@
     }
 
     .headline-line-1 {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: clamp(56px, 6vw, 92px);
+      font-family: var(--font-display);
+      font-size: clamp(56px, 6.2vw, 92px);
       font-weight: 900;
       line-height: 0.88;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.045em;
       color: #0A121F;
       display: block;
       text-transform: uppercase;
     }
 
     .headline-line-2 {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: clamp(56px, 6vw, 92px);
+      font-family: var(--font-display);
+      font-size: clamp(56px, 6.2vw, 92px);
       font-weight: 900;
       line-height: 0.88;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.045em;
       color: var(--roster-color, #14532D);
       display: block;
       margin-top: 4px;
@@ -490,12 +490,12 @@
     }
 
     .editorial-subhead-prose {
-      font-family: 'Times New Roman', Times, Georgia, serif;
-      font-size: 16.5px;
+      font-family: var(--font-body);
+      font-size: 15.5px;
       line-height: 1.62;
       color: #334155;
       margin-bottom: 28px;
-      max-width: 440px;
+      max-width: 400px;
       letter-spacing: -0.01em;
     }
 
@@ -590,13 +590,12 @@
     }
 
     .dock-title-headline {
-      font-family: var(--font-serif);
-      font-style: italic;
+      font-family: var(--font-display);
       font-size: clamp(28px, 2.7vw, 42px);
       font-weight: 900;
       color: var(--text-white);
       line-height: 1.05;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.035em;
       margin-bottom: 22px;
       text-shadow: none;
       transition: color 0.4s ease;
@@ -696,7 +695,7 @@
     .center-seam-talent-box {
       position: absolute;
       bottom: 0;
-      left: 54%;
+      left: 50%;
       transform: translateX(-50%);
       height: 94%;
       width: 660px;
@@ -721,7 +720,7 @@
     .soft-pedestal-mist {
       position: absolute;
       bottom: -30px;
-      left: 54%;
+      left: 50%;
       transform: translateX(-50%);
       width: 680px;
       height: 180px;
@@ -1146,8 +1145,8 @@
       100% { opacity: 1; transform: translate3d(0, 0, 0); }
     }
     @keyframes nxHeroLevitate {
-      0%   { opacity: 0; transform: translate3d(0, 28px, 0) scale(0.96); }
-      100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+      0%   { opacity: 0; transform: translate3d(-50%, 28px, 0) scale(0.96); }
+      100% { opacity: 1; transform: translate3d(-50%, 0, 0) scale(1); }
     }
 
     .site-top-bar, .character-theme-capsules, .preview-layout-switcher {
@@ -1304,24 +1303,9 @@
             <span class="headline-line-2">ROSTER.</span>
           </div>
 
-          <!-- Rate & Live SLA Module -->
-          <div class="talent-rate-module">
-            <span class="rate-val">$25–400</span>
-            <span class="rate-term">/ Day Direct</span>
-            <span class="status-badge-live">
-              <span class="status-dot"></span>
-              <span>Available</span>
-            </span>
-          </div>
-
           <p class="editorial-subhead-prose">
             Book vetted commercial directors, FPV cinematographers, and 3D technical artists directly. Zero agency markups. Direct contracts for brand campaigns and music films.
           </p>
-
-          <div class="editorial-action-row">
-            <a href="#book" class="btn-action-primary">Discover Talent →</a>
-            <a href="#proof" class="link-secondary-action">View Verified Proof</a>
-          </div>
 
         </div>
 
