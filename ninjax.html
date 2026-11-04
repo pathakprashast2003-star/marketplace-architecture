@@ -1131,88 +1131,146 @@
       transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* ── APPLE-GRADE VELVET SMOOTH THEME TRANSITION SUITE ── */
-    /* Derived from motion-foundations (easing.smooth [0.22, 1, 0.36, 1], distance 22-26px, GPU compositor only) */
+    /* ── CLOCKWISE ORBITAL TURNTABLE STAGE & DIAL ── */
+    .orbital-dial-turntable {
+      position: absolute;
+      bottom: -32px;
+      left: 50%;
+      transform: translateX(-50%) rotateX(72deg);
+      width: 540px;
+      height: 540px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 4;
+      transform-style: preserve-3d;
+      perspective: 900px;
+    }
+
+    .dial-ring-outer {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(255, 255, 255, 0.22);
+      box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        inset 0 0 50px rgba(var(--theme-accent-rgb, 56, 189, 248), 0.16),
+        0 0 70px rgba(var(--theme-accent-rgb, 56, 189, 248), 0.22);
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .dial-ring-ticks {
+      position: absolute;
+      inset: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background: radial-gradient(circle at center, transparent 62%, rgba(255, 255, 255, 0.04) 68%, transparent 74%);
+    }
+
+    .dial-gradient-sweep {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent 0%, var(--theme-accent, #38BDF8) 55%, transparent 75%);
+      opacity: 0;
+      filter: blur(14px);
+    }
+    .dial-gradient-sweep.is-spinning {
+      animation: dialClockwiseSpin 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    @keyframes dialClockwiseSpin {
+      0% {
+        opacity: 0.85;
+        transform: rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: rotate(180deg);
+      }
+    }
+
+    /* ── APPLE-GRADE CLOCKWISE MOTION SUITE (ORBITAL TURNTABLE) ── */
+    /* Derived from motion-foundations + motion-advanced: organic rotational arc around ground center */
     
-    /* ── MODE A: Fluid Spring Launch (Apple Keynote Fluidity) ── */
+    /* ── MODE A: Clockwise Orbital Arc (Flagship Turntable Float) ── */
     body[data-anim-mode="parabolic"] .talent-clean-image.hero-anim-enter,
     body:not([data-anim-mode]) .talent-clean-image.hero-anim-enter,
     .talent-clean-image.hero-warp-enter {
-      animation: heroVelvetLaunch 0.46s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+      animation: heroClockwiseArcIn 0.52s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+      transform-origin: 50% 125% !important;
     }
-    @keyframes heroVelvetLaunch {
+    @keyframes heroClockwiseArcIn {
       0% {
         opacity: 0;
-        transform: translate3d(0, 22px, 0) scale(0.98);
+        transform: rotate(-8deg) translate3d(-34px, -16px, 0) scale(0.965);
+      }
+      65% {
+        opacity: 1;
+        transform: rotate(0.9deg) translate3d(2px, -1px, 0) scale(1.006);
       }
       100% {
         opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1);
+        transform: rotate(0deg) translate3d(0, 0, 0) scale(1);
       }
     }
 
     body[data-anim-mode="parabolic"] .shockwave-aura.sonic-flare,
     body:not([data-anim-mode]) .shockwave-aura.sonic-flare,
     .shockwave-aura.sonic-flare {
-      animation: auraVelvetPulse 0.55s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+      animation: auraClockwiseBloom 0.55s cubic-bezier(0.16, 1, 0.3, 1) both !important;
     }
 
-    /* ── MODE B: Velvet Horizon Glide (Apple Smooth Deceleration) ── */
+    /* ── MODE B: Clockwise 3D Helix (Spatial Orbital Spiral) ── */
     body[data-anim-mode="horizon"] .talent-clean-image.hero-anim-enter {
-      animation: heroVelvetGlide 0.42s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+      animation: heroClockwiseHelixIn 0.50s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+      transform-origin: 50% 115% !important;
     }
-    @keyframes heroVelvetGlide {
+    @keyframes heroClockwiseHelixIn {
       0% {
         opacity: 0;
-        transform: translate3d(26px, 0, 0);
+        transform: rotate(-12deg) translate3d(-24px, 14px, 0) scale(0.94);
+      }
+      68% {
+        opacity: 1;
+        transform: rotate(1.2deg) translate3d(1px, -2px, 0) scale(1.008);
       }
       100% {
         opacity: 1;
-        transform: translate3d(0, 0, 0);
+        transform: rotate(0deg) translate3d(0, 0, 0) scale(1);
       }
     }
 
     body[data-anim-mode="horizon"] .shockwave-aura.sonic-flare {
-      animation: auraHorizonGlide 0.52s cubic-bezier(0.16, 1, 0.3, 1) both !important;
-    }
-    @keyframes auraHorizonGlide {
-      0% {
-        opacity: 0.6;
-        transform: translateX(-42%) scale(0.85);
-      }
-      100% {
-        opacity: 0;
-        transform: translateX(-50%) scale(1.3);
-      }
+      animation: auraClockwiseBloom 0.52s cubic-bezier(0.16, 1, 0.3, 1) both !important;
     }
 
-    /* ── MODE C: Velvet Depth Bloom (Apple Spatial / VisionOS) ── */
+    /* ── MODE C: Clockwise Dial Sweep (Radial Speed Arc) ── */
     body[data-anim-mode="portal"] .talent-clean-image.hero-anim-enter {
-      animation: heroVelvetDepth 0.48s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+      animation: heroClockwiseDialSweep 0.48s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+      transform-origin: 45% 120% !important;
     }
-    @keyframes heroVelvetDepth {
+    @keyframes heroClockwiseDialSweep {
       0% {
         opacity: 0;
-        transform: scale(0.95) translate3d(0, 8px, 0);
+        transform: rotate(-6deg) translate3d(-28px, 0, 0) scale(0.975);
       }
       100% {
         opacity: 1;
-        transform: scale(1) translate3d(0, 0, 0);
+        transform: rotate(0deg) translate3d(0, 0, 0) scale(1);
       }
     }
 
     body[data-anim-mode="portal"] .shockwave-aura.sonic-flare {
-      animation: auraVelvetPulse 0.58s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+      animation: auraClockwiseBloom 0.58s cubic-bezier(0.16, 1, 0.3, 1) both !important;
     }
 
-    @keyframes auraVelvetPulse {
+    @keyframes auraClockwiseBloom {
       0% {
-        opacity: 0.7;
-        transform: translateX(-50%) scale(0.8);
+        opacity: 0.75;
+        transform: translateX(-50%) rotate(-15deg) scale(0.85);
       }
       100% {
         opacity: 0;
-        transform: translateX(-50%) scale(1.35);
+        transform: translateX(-50%) rotate(45deg) scale(1.3);
       }
     }
 
@@ -2048,8 +2106,14 @@
       <!-- Pedestal Mist Ground -->
       <div class="soft-pedestal-mist" aria-hidden="true"></div>
 
-      <!-- ── CENTER SEAM HERO TALENT (UPWARD FLIGHT) ── -->
+      <!-- ── CENTER SEAM HERO TALENT (CLOCKWISE ORBITAL STAGE) ── -->
       <div class="center-seam-talent-box">
+        <!-- Clockwise Orbital Turntable Stage -->
+        <div class="orbital-dial-turntable" aria-hidden="true">
+          <div class="dial-ring-outer"></div>
+          <div class="dial-ring-ticks"></div>
+          <div class="dial-gradient-sweep"></div>
+        </div>
         <div class="shockwave-aura" aria-hidden="true"></div>
         <img src="assets/creator_desk_designer.png" alt="Digital Creator at Modern Workstation" class="talent-clean-image theme-fader">
       </div>
@@ -2058,25 +2122,25 @@
 
   </main>
 
-  <!-- ── CRAFTWORK MOTION SUITE CONTROLLER ── -->
+  <!-- ── CRAFTWORK CLOCKWISE MOTION CONTROLLER ── -->
   <aside class="motion-suite-dock" aria-label="Interactive Motion Suite">
     <div class="motion-dock-pill">
       <span class="motion-dock-label">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="color: var(--theme-accent, #38BDF8);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        <span>MOTION:</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="color: var(--theme-accent, #38BDF8);"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>CLOCKWISE:</span>
       </span>
       <div class="motion-tabs-group" role="tablist">
-        <button type="button" class="motion-tab-btn is-active" data-motion="parabolic" role="tab" aria-selected="true" title="Juice Co: 3D Parabolic Hero Launch + Sonic Flare">
+        <button type="button" class="motion-tab-btn is-active" data-motion="parabolic" role="tab" aria-selected="true" title="Clockwise Orbital Arc: Natural revolving turntable sweep">
           <span class="motion-badge">A</span>
-          <span>3D Launch</span>
+          <span>Orbital Arc</span>
         </button>
-        <button type="button" class="motion-tab-btn" data-motion="horizon" role="tab" aria-selected="false" title="Go Meal: High-Velocity Horizon Warp + Kinetic Skew">
+        <button type="button" class="motion-tab-btn" data-motion="horizon" role="tab" aria-selected="false" title="Clockwise 3D Helix: Depth spiral with perspective pivot">
           <span class="motion-badge">B</span>
-          <span>Horizon Warp</span>
+          <span>3D Helix</span>
         </button>
-        <button type="button" class="motion-tab-btn" data-motion="portal" role="tab" aria-selected="false" title="Spatial Breakout: Liquid Depth Portal">
+        <button type="button" class="motion-tab-btn" data-motion="portal" role="tab" aria-selected="false" title="Clockwise Dial Sweep: Precision watch dial radial glide">
           <span class="motion-badge">C</span>
-          <span>Depth Portal</span>
+          <span>Dial Sweep</span>
         </button>
       </div>
       <div class="motion-dock-divider"></div>
@@ -2419,6 +2483,12 @@
         aura.classList.remove('sonic-flare');
         void aura.offsetWidth;
         aura.classList.add('sonic-flare');
+      }
+      const dial = document.querySelector('.dial-gradient-sweep');
+      if (dial) {
+        dial.classList.remove('is-spinning');
+        void dial.offsetWidth;
+        dial.classList.add('is-spinning');
       }
       if (pillsRow1) {
         pillsRow1.classList.remove('pills-ripple');
