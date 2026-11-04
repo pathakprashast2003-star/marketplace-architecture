@@ -726,9 +726,9 @@
       object-fit: contain;
       object-position: bottom center;
       filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.38));
-      transition: opacity 0.25s ease;
+      transition: opacity 0.25s ease, scale 0.15s ease;
       animation: none !important;
-      transform: none !important;
+      transform-origin: bottom center;
     }
 
     .soft-pedestal-mist {
@@ -1800,6 +1800,10 @@
           aura.classList.add('pulse');
         }
 
+        if (window.restoreCharacterImageEdits) {
+          window.restoreCharacterImageEdits(themeKey);
+        }
+
         document.querySelectorAll('.spec-item-card').forEach(card => {
           card.classList.remove('is-updating');
           void card.offsetWidth;
@@ -1914,7 +1918,6 @@
         'headline-line-2': { el: () => document.querySelector('.headline-line-2'), name: 'Word: ROSTER.', viewport: 'both' },
         'category-kicker': { el: () => document.querySelector('.category-kicker'), name: 'Category Kicker', viewport: 'both' },
         'editorial-subhead-prose': { el: () => document.querySelector('.editorial-subhead-prose'), name: 'Left Subtitle Copy', viewport: 'both' },
-        'center-seam-talent-box': { el: () => document.querySelector('.center-seam-talent-box'), name: 'Character Hero', getDisplayName: getCharacterDisplayName, viewport: 'both' },
         'talent-clean-image': { el: () => document.querySelector('.talent-clean-image'), name: 'Character Image', getDisplayName: getCharacterDisplayName, viewport: 'both' },
         'right-production-dock': { el: () => document.querySelector('.right-production-dock'), name: 'Right Production Dock', viewport: 'both' },
         'dock-mono-kicker': { el: () => document.querySelector('.dock-mono-kicker'), name: 'Dock Kicker', viewport: 'both' },
@@ -1958,13 +1961,15 @@
       }
 
       function clearAllInlineStyles() {
-        document.querySelectorAll('[data-dragged="true"]').forEach(el => {
+        document.querySelectorAll('[data-dragged="true"], .talent-clean-image').forEach(el => {
           el.style.left = '';
           el.style.top = '';
           el.style.position = '';
           el.style.fontSize = '';
           el.style.zIndex = '';
           el.style.color = '';
+          el.style.scale = '';
+          el.style.transformOrigin = '';
           el.style.maxHeight = '';
           el.style.height = '';
           el.style.maxWidth = '';
@@ -1978,8 +1983,8 @@
 
       function getTargetKey(el) {
         if (!el) return null;
-        if (el.classList.contains('talent-clean-image')) return 'talent-clean-image';
-        if (el.classList.contains('center-seam-talent-box')) return 'center-seam-talent-box';
+        if (el.classList.contains('talent-clean-image') || el.tagName === 'IMG') return 'talent-clean-image';
+        if (el.classList.contains('center-seam-talent-box')) return 'talent-clean-image';
         for (const k of Object.keys(targetMap)) {
           if (targetMap[k].el && targetMap[k].el() === el) return k;
         }
@@ -1998,7 +2003,10 @@
       }
 
       function selectTarget(keyOrEl) {
-        const el = typeof keyOrEl === 'string' ? (targetMap[keyOrEl] ? targetMap[keyOrEl].el() : document.getElementById(keyOrEl) || document.querySelector(`.${keyOrEl}`)) : keyOrEl;
+        let el = typeof keyOrEl === 'string' ? (targetMap[keyOrEl] ? targetMap[keyOrEl].el() : document.getElementById(keyOrEl) || document.querySelector(`.${keyOrEl}`)) : keyOrEl;
+        if (el && el.classList.contains('center-seam-talent-box')) {
+          el = document.querySelector('.talent-clean-image') || el;
+        }
         if (!el) return;
         document.querySelectorAll('.drag-selected').forEach(n => n.classList.remove('drag-selected'));
         activeTarget = el;
@@ -2020,7 +2028,8 @@
         const left = activeTarget.style.left || 'default';
         const top = activeTarget.style.top || 'default';
         const font = activeTarget.style.fontSize ? ` • ${activeTarget.style.fontSize}` : '';
-        hudCoords.textContent = `X: ${left} | Y: ${top}${font}`;
+        const scaleVal = activeTarget.style.scale ? ` • Scale: ${Math.round(parseFloat(activeTarget.style.scale) * 100)}%` : '';
+        hudCoords.textContent = `X: ${left} | Y: ${top}${font}${scaleVal}`;
       }
 
       function updateContentEditable(enabled) {
@@ -2072,9 +2081,13 @@
         if (!isEditing) return;
         if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher, .character-theme-capsules')) return;
 
-        const clickedTarget = e.target.closest(
+        let clickedTarget = e.target.closest(
           '.headline-line-1, .headline-line-2, .category-kicker, .editorial-subhead-prose, .talent-clean-image, .center-seam-talent-box, .right-production-dock, .dock-mono-kicker, .dock-title-headline, .dock-editorial-sub, .production-spec-stack, .spec-item-card, .btn-secondary-explore, .right-bottom-trust'
         ) || e.target;
+
+        if (clickedTarget && clickedTarget.classList.contains('center-seam-talent-box')) {
+          clickedTarget = document.querySelector('.talent-clean-image') || clickedTarget;
+        }
 
         if (!clickedTarget || clickedTarget === document.body || clickedTarget === document.documentElement) return;
 
@@ -2135,12 +2148,23 @@
       }
 
       function adjustImgScale(factor) {
-        const slot = (activeTarget && activeTarget.tagName === 'IMG') ? activeTarget : document.querySelector('.talent-clean-image');
+        const slot = (activeTarget && (activeTarget.tagName === 'IMG' || activeTarget.classList.contains('talent-clean-image')))
+          ? activeTarget
+          : (activeTarget && activeTarget.querySelector && activeTarget.querySelector('img'))
+            ? activeTarget.querySelector('img')
+            : document.querySelector('.talent-clean-image');
         if (!slot) return;
-        const curH = parseFloat(slot.style.maxHeight) || 92;
-        const nextH = Math.min(130, Math.max(30, Math.round(curH * factor)));
-        slot.style.maxHeight = nextH + '%';
+        selectTarget(slot);
+
+        let curScale = parseFloat(slot.style.scale);
+        if (isNaN(curScale) || !curScale) {
+          curScale = 1.0;
+        }
+        const nextScale = +(Math.min(2.5, Math.max(0.3, curScale * factor))).toFixed(3);
+        slot.style.scale = nextScale;
+        slot.style.transformOrigin = 'bottom center';
         slot.setAttribute('data-dragged', 'true');
+        updateCoordsDisplay();
         saveEdits();
       }
 
@@ -2181,8 +2205,8 @@
 
       if (hudFontPlus) hudFontPlus.addEventListener('click', () => adjustFontSize(1.08));
       if (hudFontMinus) hudFontMinus.addEventListener('click', () => adjustFontSize(0.92));
-      if (hudImgMinus) hudImgMinus.addEventListener('click', () => adjustImgScale(0.95));
-      if (hudImgPlus) hudImgPlus.addEventListener('click', () => adjustImgScale(1.05));
+      if (hudImgMinus) hudImgMinus.addEventListener('click', () => adjustImgScale(0.94));
+      if (hudImgPlus) hudImgPlus.addEventListener('click', () => adjustImgScale(1.06));
       if (hudDockUp) hudDockUp.addEventListener('click', () => nudgeDock(8));
       if (hudDockDown) hudDockDown.addEventListener('click', () => nudgeDock(-8));
 
@@ -2211,7 +2235,7 @@
       }
 
       function saveEdits() {
-        const modeKey = getStorageKey();
+        const modeKey = getStorageKey() + '_' + currentThemeKey;
         const edits = {};
         document.querySelectorAll('[data-dragged="true"]').forEach(el => {
           const key = getTargetKey(el);
@@ -2222,13 +2246,30 @@
             fontSize: el.style.fontSize || '',
             color: el.style.color || '',
             zIndex: el.style.zIndex || '',
+            scale: el.style.scale || '',
+            transformOrigin: el.style.transformOrigin || '',
             maxHeight: el.style.maxHeight || '',
+            maxWidth: el.style.maxWidth || '',
             marginBottom: el.style.marginBottom || '',
             position: el.style.position || ''
           };
         });
+
+        const charImg = document.querySelector('.talent-clean-image');
+        if (charImg && (charImg.style.scale || charImg.style.left || charImg.style.top || charImg.style.zIndex)) {
+          edits['talent-clean-image'] = {
+            left: charImg.style.left || '',
+            top: charImg.style.top || '',
+            scale: charImg.style.scale || '',
+            transformOrigin: charImg.style.transformOrigin || 'bottom center',
+            zIndex: charImg.style.zIndex || '',
+            position: charImg.style.position || ''
+          };
+        }
+
         try {
           localStorage.setItem(modeKey, JSON.stringify(edits));
+          localStorage.setItem(getStorageKey(), JSON.stringify(edits));
           showSavedToast();
         } catch(err) {
           console.warn('Failed saving edits to localStorage', err);
@@ -2248,9 +2289,10 @@
       }
 
       function restoreEdits() {
-        const modeKey = getStorageKey();
+        clearAllInlineStyles();
+        const modeKey = getStorageKey() + '_' + currentThemeKey;
         try {
-          const raw = localStorage.getItem(modeKey);
+          const raw = localStorage.getItem(modeKey) || localStorage.getItem(getStorageKey());
           if (raw) {
             const edits = JSON.parse(raw);
             Object.keys(edits).forEach(key => {
@@ -2262,9 +2304,14 @@
                 if (s.fontSize) el.style.fontSize = s.fontSize;
                 if (s.color) el.style.color = s.color;
                 if (s.zIndex) el.style.zIndex = s.zIndex;
+                if (s.scale) {
+                  el.style.scale = s.scale;
+                  el.style.transformOrigin = s.transformOrigin || 'bottom center';
+                }
                 if (s.maxHeight) el.style.maxHeight = s.maxHeight;
+                if (s.maxWidth) el.style.maxWidth = s.maxWidth;
                 if (s.marginBottom) el.style.marginBottom = s.marginBottom;
-                if (s.left || s.top) {
+                if (s.left || s.top || s.scale) {
                   const pos = window.getComputedStyle(el).position;
                   if (pos === 'static') el.style.position = 'relative';
                   el.setAttribute('data-dragged', 'true');
@@ -2276,6 +2323,7 @@
           console.warn('Failed restoring edits', err);
         }
       }
+      window.restoreCharacterImageEdits = restoreEdits;
 
       document.addEventListener('input', (e) => {
         if (!isEditing) return;
@@ -2317,6 +2365,7 @@
             const styles = [];
             if (el.style.left) styles.push(`left: ${el.style.left};`);
             if (el.style.top) styles.push(`top: ${el.style.top};`);
+            if (el.style.scale) styles.push(`scale: ${el.style.scale}; transform-origin: ${el.style.transformOrigin || 'bottom center'};`);
             if (el.style.fontSize) styles.push(`font-size: ${el.style.fontSize};`);
             if (el.style.color) styles.push(`color: ${el.style.color};`);
             if (el.style.maxHeight) styles.push(`max-height: ${el.style.maxHeight};`);
@@ -2338,6 +2387,7 @@
         hudReset.addEventListener('click', () => {
           if (!confirm('Reset all layout edits for this view?')) return;
           try {
+            localStorage.removeItem(getStorageKey() + '_' + currentThemeKey);
             localStorage.removeItem(getStorageKey());
             localStorage.removeItem('custom_img_' + currentThemeKey + '_' + getActiveViewport());
             localStorage.removeItem('custom_image_' + currentThemeKey);
