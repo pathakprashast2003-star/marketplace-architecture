@@ -1814,6 +1814,17 @@
     .nx-media-reel {
       display: block;
     }
+    .nx-media-reel::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 90px;
+      background: linear-gradient(180deg, rgba(8, 12, 22, 0.5) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
     .nx-reel-img {
       width: 100%;
       height: 100%;
@@ -1904,9 +1915,10 @@
       color: #FF6B00;
     }
     .nx-card-sla-tag {
-      background: rgba(16, 185, 129, 0.18);
+      background: rgba(10, 14, 25, 0.75);
       color: #34D399;
-      border-color: rgba(52, 211, 153, 0.3);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     }
 
     /* Bottom Frosted Glass Scrim (Reference 3 Aesthetic) */
