@@ -1411,7 +1411,7 @@
     }
     .nx-wrap {
       width: 100%;
-      max-width: 1240px;
+      max-width: 1360px;
       margin: 0 auto;
       padding-inline: clamp(20px, 4vw, 32px);
       box-sizing: border-box;
@@ -1427,6 +1427,27 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      flex-wrap: wrap;
+    }
+    .nx-criteria-trigger-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #2563EB;
+      background: rgba(37, 99, 235, 0.08);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      border-radius: 999px;
+      padding: 2px 10px;
+      cursor: pointer;
+      text-transform: none;
+      letter-spacing: 0;
+      transition: background-color 0.15s ease, transform 0.15s ease;
+    }
+    .nx-criteria-trigger-btn:hover {
+      background: rgba(37, 99, 235, 0.16);
+      transform: translateY(-1px);
     }
     .nx-kicker::before {
       content: '';
@@ -1808,11 +1829,16 @@
 
     .nx-talent-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
       margin-top: 10px;
     }
-    @media (max-width: 1200px) {
+    @media (max-width: 1380px) {
+      .nx-talent-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 900px) {
       .nx-talent-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -1949,6 +1975,7 @@
     .nx-talent-grid.is-personas .nx-talent-card[data-craft="drone"] .nx-talent-media { background-color: #BAE6FD; }
     .nx-talent-grid.is-personas .nx-talent-card[data-craft="art"] .nx-talent-media { background-color: #E9D5FF; }
     .nx-talent-grid.is-personas .nx-talent-card[data-craft="3d"] .nx-talent-media { background-color: #BBF7D0; }
+    .nx-talent-grid.is-personas .nx-talent-card[data-craft="action"] .nx-talent-media { background-color: #FECDD3; }
 
     /* ── ENTERPRISE CLIENT PROOF PILLS ── */
     .nx-talent-clients {
@@ -1982,7 +2009,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 22px;
+      padding: 0 16px;
       margin-top: -30px;
       position: relative;
       z-index: 5;
@@ -2006,6 +2033,7 @@
     .nx-talent-card[data-craft="drone"] .nx-talent-monogram { background: #0284C7; }
     .nx-talent-card[data-craft="art"] .nx-talent-monogram { background: #9333EA; }
     .nx-talent-card[data-craft="3d"] .nx-talent-monogram { background: #16A34A; }
+    .nx-talent-card[data-craft="action"] .nx-talent-monogram { background: #E11D48; }
 
     .nx-talent-socials {
       display: flex;
@@ -2031,7 +2059,7 @@
 
     /* ── CARD BODY ── */
     .nx-talent-body {
-      padding: 14px 22px 22px;
+      padding: 12px 16px 18px;
       display: flex;
       flex-direction: column;
       flex: 1;
@@ -2053,13 +2081,13 @@
     .nx-talent-name {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: 1.15rem;
+      font-size: 1.02rem;
       color: #0F172A;
       letter-spacing: -0.02em;
       line-height: 1.2;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       white-space: nowrap;
     }
     .nx-verified-badge-blue {
@@ -2085,11 +2113,11 @@
 
     /* ── SIDE-BY-SIDE PILL ACTION BUTTON ── */
     .nx-talent-btn {
-      padding: 8px 18px;
+      padding: 6px 13px;
       border-radius: 999px;
       background: #0F172A;
       color: #FFFFFF;
-      font-size: 12.5px;
+      font-size: 11.5px;
       font-weight: 700;
       border: 1px solid #0F172A;
       cursor: pointer;
@@ -2104,6 +2132,7 @@
     .nx-talent-card[data-craft="drone"] .nx-talent-btn:hover { background: #0369A1; border-color: #0369A1; }
     .nx-talent-card[data-craft="art"] .nx-talent-btn:hover { background: #7E22CE; border-color: #7E22CE; }
     .nx-talent-card[data-craft="3d"] .nx-talent-btn:hover { background: #15803D; border-color: #15803D; }
+    .nx-talent-card[data-craft="action"] .nx-talent-btn:hover { background: #BE123C; border-color: #BE123C; }
 
     .nx-talent-btn:hover {
       transform: translateY(-2px);
@@ -2580,9 +2609,15 @@
     <div class="nx-wrap">
       <!-- ── DIRECT ROSTER (CONTRA-STYLE CREATOR CAROUSEL) ── -->
       <section class="nx-sec" id="roster">
-        <p class="nx-kicker nx-reveal">01 / 05 · Direct Roster</p>
+        <p class="nx-kicker nx-reveal">
+          <span>01 / 05 · Curated Roster</span>
+          <button type="button" class="nx-criteria-trigger-btn" onclick="openCriteriaModal()" aria-label="View curation criteria">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <span>Curation Criteria</span>
+          </button>
+        </p>
         <h2 class="nx-h2 nx-reveal">Verified directors on deck.</h2>
-        <p class="nx-lead nx-reveal">Hand-vetted creative operators with verified equipment, transparent day rates, and direct terms. Zero platform markup.</p>
+        <p class="nx-lead nx-reveal">Weekly Curated Spotlight: 5 hand-vetted creative operators verified for tier-one brand productions, sub-2h SLA response, and direct terms.</p>
 
         <!-- Floating Omni-Search Pill (Contra & The Knot Pattern) -->
         <div class="nx-omni-bar nx-reveal">
@@ -2640,19 +2675,22 @@
         <div class="nx-roster-controls nx-reveal">
           <div class="nx-filter-bar" role="tablist" aria-label="Filter creators by discipline">
             <button type="button" class="nx-filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
-              All Disciplines <span class="nx-filter-count">4</span>
+              All Featured <span class="nx-filter-count">5</span>
             </button>
             <button type="button" class="nx-filter-btn" data-filter="film" role="tab" aria-selected="false">
-              Commercial Cinema
+              Cinema
             </button>
             <button type="button" class="nx-filter-btn" data-filter="drone" role="tab" aria-selected="false">
-              Aerial Cinema
+              Aerial FPV
             </button>
             <button type="button" class="nx-filter-btn" data-filter="art" role="tab" aria-selected="false">
               Illustration
             </button>
             <button type="button" class="nx-filter-btn" data-filter="3d" role="tab" aria-selected="false">
               Spatial 3D
+            </button>
+            <button type="button" class="nx-filter-btn" data-filter="action" role="tab" aria-selected="false">
+              Action &amp; Motion
             </button>
           </div>
 
@@ -2889,6 +2927,62 @@
                 <div class="nx-talent-stat-item">
                   <span class="nx-talent-stat-val">VisionOS</span>
                   <span class="nx-talent-stat-lbl">3D</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Talent Card 5: Samuel Cross (Action & Motion) -->
+          <article class="nx-talent-card nx-reveal" data-craft="action" data-city="los-angeles" data-gear="arri alexa mini lf pursuit tracking vehicle porsche action motion director" data-name="samuel cross">
+            <div class="nx-talent-media">
+              <div class="nx-media-layer nx-media-reel">
+                <img class="nx-reel-img" src="assets/cinema_posters/poster_3_action.jpg" alt="Action chase cinema still by Samuel Cross" loading="lazy">
+                <div class="nx-reel-overlay"></div>
+                <span class="nx-reel-tag"><svg width="10" height="10" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg> 4K Action Reel</span>
+              </div>
+              <div class="nx-media-layer nx-media-persona">
+                <img class="nx-talent-media-img" src="assets/samuel_bust.webp" alt="Samuel Cross 3D character" loading="lazy">
+              </div>
+            </div>
+            <div class="nx-talent-seam">
+              <div class="nx-talent-monogram">SC</div>
+              <div class="nx-talent-socials" aria-label="Creator links">
+                <span class="nx-social-icon" title="Vimeo"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M22.8 6.7c-.1 2.3-1.7 5.4-4.8 9.4-3.2 4.1-5.9 6.2-8.1 6.2-1.4 0-2.5-1.3-3.4-3.8l-1.9-7C4.1 9.3 3.4 8.2 2.5 8.2c-.2 0-.9.4-2.1 1.2L0 8.1c1.3-1.1 2.6-2.3 3.9-3.4 1.8-1.5 3.1-2.3 4-2.4 2.1-.2 3.4 1.2 3.9 4.3.5 3.3.9 5.4 1.1 6.3.6 2.7 1.3 4.1 2.1 4.1.6 0 1.5-.9 2.7-2.8 1.2-1.8 1.8-3.2 1.9-4.2.2-1.6-.5-2.4-2-2.4-.7 0-1.5.2-2.3.5 1.5-4.8 4.3-7.1 8.5-6.9 3.1.2 4.6 2 4.6 5.5z"/></svg></span>
+                <span class="nx-social-icon" title="Instagram"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></span>
+              </div>
+            </div>
+            <div class="nx-talent-body">
+              <div class="nx-talent-id-row">
+                <div class="nx-talent-name-wrap">
+                  <span class="nx-talent-name">
+                    Samuel Cross
+                    <span class="nx-verified-badge-blue" title="Verified Director">
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                  </span>
+                  <span class="nx-talent-handle">@samuel · Los Angeles</span>
+                </div>
+                <button class="nx-talent-btn" type="button" onclick="openInquiryModal('Samuel Cross', 'Action &amp; Motion Director')">Inquire</button>
+              </div>
+              <p class="nx-talent-bio">Action &amp; pursuit vehicle director. High-speed tracking camera operator with ARRI Alexa Mini LF and Russian Arm rigs.</p>
+              <div class="nx-talent-clients">
+                <span class="nx-clients-lbl">Clients</span>
+                <span class="nx-client-tag">Porsche</span>
+                <span class="nx-client-tag">BMW</span>
+                <span class="nx-client-tag">Red Bull</span>
+              </div>
+              <div class="nx-talent-stats-row">
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val">$850</span>
+                  <span class="nx-talent-stat-lbl">/ day</span>
+                </div>
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val nx-talent-stat-sla">⚡ &lt; 1h</span>
+                  <span class="nx-talent-stat-lbl">SLA</span>
+                </div>
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val">Alexa LF</span>
+                  <span class="nx-talent-stat-lbl">Kit</span>
                 </div>
               </div>
             </div>
@@ -4352,6 +4446,24 @@
       document.body.style.overflow = '';
     }
 
+    function openCriteriaModal() {
+      const modal = document.getElementById('criteriaModal');
+      if (modal) {
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeCriteriaModal() {
+      const modal = document.getElementById('criteriaModal');
+      if (modal) {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+    }
+
     function handleFoundingSubmit(e) {
       e.preventDefault();
       document.getElementById('foundingFormView').style.display = 'none';
@@ -4363,6 +4475,7 @@
       if (e.key === 'Escape') {
         closeInquiryModal();
         closeFoundingModal();
+        closeCriteriaModal();
       }
     });
     document.querySelectorAll('.nx-modal-backdrop').forEach(modal => {
@@ -4370,9 +4483,47 @@
         if (e.target === modal) {
           closeInquiryModal();
           closeFoundingModal();
+          closeCriteriaModal();
         }
       });
     });
   </script>
+
+  <!-- ── CURATION CRITERIA MODAL ── -->
+  <div id="criteriaModal" class="nx-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="nx-modal-dialog" style="max-width: 500px;">
+      <button class="nx-modal-close" type="button" onclick="closeCriteriaModal()" aria-label="Close dialog">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <p class="nx-modal-kicker">Nexus Editorial Governance</p>
+      <h3 class="nx-modal-title">How Creators Are Featured</h3>
+      <p class="nx-modal-desc">The homepage Direct Roster features exactly 5 operators per weekly cycle. Creators earn placement via 5 objective production criteria:</p>
+      
+      <div style="display: flex; flex-direction: column; gap: 14px; margin: 20px 0 24px;">
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <span style="width: 24px; height: 24px; border-radius: 50%; background: #0F172A; color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</span>
+          <div><strong style="font-size: 13px; color: #0F172A;">Discipline Balance:</strong> <span style="font-size: 12px; color: #475569;">Exactly 1 operator per core discipline (Cinema, FPV Drone, Illustration, Spatial 3D, Action Motion).</span></div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <span style="width: 24px; height: 24px; border-radius: 50%; background: #0F172A; color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</span>
+          <div><strong style="font-size: 13px; color: #0F172A;">Tier-1 Brand Client Credits:</strong> <span style="font-size: 12px; color: #475569;">Minimum 2 verified commercial credits with Fortune 500 or cultural brands (e.g. Nike, Porsche, Apple, Red Bull).</span></div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <span style="width: 24px; height: 24px; border-radius: 50%; background: #0F172A; color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</span>
+          <div><strong style="font-size: 13px; color: #0F172A;">Hardware &amp; Licensing Lock:</strong> <span style="font-size: 12px; color: #475569;">Verified cinema-grade sensor (ARRI/RED/Inspire 3) and FAA Part 107 flight certification.</span></div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <span style="width: 24px; height: 24px; border-radius: 50%; background: #0F172A; color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">4</span>
+          <div><strong style="font-size: 13px; color: #0F172A;">Sub-2h Guaranteed Response SLA:</strong> <span style="font-size: 12px; color: #475569;">Maintained median inquiry response speed under 2 hours.</span></div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <span style="width: 24px; height: 24px; border-radius: 50%; background: #0F172A; color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">5</span>
+          <div><strong style="font-size: 13px; color: #0F172A;">Weekly Performance Rotation:</strong> <span style="font-size: 12px; color: #475569;">Rotated every Monday based on client inquiry velocity and 100% 5-star review rating.</span></div>
+        </div>
+      </div>
+
+      <button class="nx-modal-submit" type="button" onclick="closeCriteriaModal()">Understood</button>
+    </div>
+  </div>
 </body>
 </html>
