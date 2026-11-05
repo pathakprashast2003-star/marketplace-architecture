@@ -1787,7 +1787,7 @@
     .nx-talent-card {
       background: #FFFFFF;
       border: 1px solid rgba(15, 23, 42, 0.08);
-      border-radius: 30px;
+      border-radius: 32px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -1803,118 +1803,230 @@
       box-shadow: 0 12px 24px -4px rgba(15, 23, 42, 0.05), 0 32px 64px -16px rgba(15, 23, 42, 0.13);
       border-color: rgba(15, 23, 42, 0.16);
     }
+
+    /* ── NAVORA-STYLE BANNER WITH 3D PIXAR CHARACTER & CHECKERED TILES ── */
     .nx-talent-media {
       position: relative;
-      height: 180px;
+      height: 210px;
       width: 100%;
       overflow: hidden;
-      background: #0F172A;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      background-image: 
+        linear-gradient(45deg, rgba(255, 255, 255, 0.22) 25%, transparent 25%), 
+        linear-gradient(-45deg, rgba(255, 255, 255, 0.22) 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.22) 75%), 
+        linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.22) 75%);
+      background-size: 52px 52px;
+      background-position: 0 0, 0 26px, 26px -26px, -26px 0px;
     }
+    .nx-talent-card[data-craft="film"] .nx-talent-media {
+      background-color: #FDE68A;
+    }
+    .nx-talent-card[data-craft="drone"] .nx-talent-media {
+      background-color: #BAE6FD;
+    }
+    .nx-talent-card[data-craft="art"] .nx-talent-media {
+      background-color: #E9D5FF;
+    }
+    .nx-talent-card[data-craft="3d"] .nx-talent-media {
+      background-color: #BBF7D0;
+    }
+
     .nx-talent-media-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 25%;
-      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      height: 98%;
+      width: auto;
+      max-width: 95%;
+      object-fit: contain;
+      object-position: bottom center;
+      filter: drop-shadow(0 12px 20px rgba(15, 23, 42, 0.16));
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      transform-origin: bottom center;
     }
     .nx-talent-card:hover .nx-talent-media-img {
-      transform: scale(1.07);
+      transform: scale(1.05);
     }
-    .nx-talent-media-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(15, 23, 42, 0.15) 0%, rgba(15, 23, 42, 0.04) 40%, rgba(15, 23, 42, 0.6) 100%);
-      pointer-events: none;
+
+    /* ── SEAM ROW: OVERLAPPING MONOGRAM BADGE & SOCIAL PILLS ── */
+    .nx-talent-seam {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      margin-top: -30px;
+      position: relative;
+      z-index: 5;
     }
-    .nx-reel-badge {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: rgba(15, 23, 42, 0.75);
+    .nx-talent-monogram {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 3.5px solid #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.25rem;
       color: #FFFFFF;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      padding: 5px 11px;
+      box-shadow: 0 6px 16px -2px rgba(15, 23, 42, 0.16);
+      flex-shrink: 0;
+    }
+    .nx-talent-card[data-craft="film"] .nx-talent-monogram { background: #D97706; }
+    .nx-talent-card[data-craft="drone"] .nx-talent-monogram { background: #0284C7; }
+    .nx-talent-card[data-craft="art"] .nx-talent-monogram { background: #9333EA; }
+    .nx-talent-card[data-craft="3d"] .nx-talent-monogram { background: #16A34A; }
+
+    .nx-talent-socials {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 4px 8px;
       border-radius: 999px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+    .nx-social-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #475569;
+    }
+
+    /* ── CARD BODY ── */
+    .nx-talent-body {
+      padding: 14px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      background: #FFFFFF;
+    }
+    .nx-talent-id-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .nx-talent-name-wrap {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      flex: 1;
+    }
+    .nx-talent-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #0F172A;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      z-index: 2;
+      white-space: nowrap;
     }
-    .nx-reel-badge svg {
-      fill: currentColor;
-    }
-    .nx-talent-rate {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      background: rgba(15, 23, 42, 0.88);
-      color: #FFFFFF;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      padding: 5px 13px;
-      border-radius: 999px;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      font-variant-numeric: tabular-nums;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      z-index: 2;
-    }
-    .nx-talent-avatar-row {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-top: -34px;
-      margin-bottom: 12px;
-      position: relative;
-      z-index: 3;
-    }
-    .nx-talent-avatar-wrap {
-      position: relative;
-      width: 62px;
-      height: 62px;
-      flex-shrink: 0;
-    }
-    .nx-talent-avatar {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      background: #FFFFFF;
-      border: 3.5px solid #FFFFFF;
-      box-shadow: 0 6px 16px -2px rgba(15, 23, 42, 0.16);
-      display: block;
-    }
-    .nx-avatar-verified {
-      position: absolute;
-      bottom: 0;
-      right: -2px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #059669;
-      border: 2.5px solid #FFFFFF;
+    .nx-verified-badge-blue {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.14);
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: #2563EB;
+      color: #FFFFFF;
+      flex-shrink: 0;
     }
-    .nx-talent-sla {
-      background: #ECFDF5;
-      color: #059669;
+    .nx-talent-handle {
       font-size: 11.5px;
-      font-weight: 700;
-      padding: 6px 12px;
+      color: #64748B;
+      font-weight: 500;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ── SIDE-BY-SIDE PILL ACTION BUTTON ── */
+    .nx-talent-btn {
+      padding: 8px 18px;
       border-radius: 999px;
+      background: #0F172A;
+      color: #FFFFFF;
+      font-size: 12.5px;
+      font-weight: 700;
+      border: 1px solid #0F172A;
+      cursor: pointer;
+      white-space: nowrap;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      border: 1px solid rgba(5, 150, 105, 0.2);
+      gap: 5px;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+      flex-shrink: 0;
+    }
+    .nx-talent-card[data-craft="film"] .nx-talent-btn:hover { background: #B45309; border-color: #B45309; }
+    .nx-talent-card[data-craft="drone"] .nx-talent-btn:hover { background: #0369A1; border-color: #0369A1; }
+    .nx-talent-card[data-craft="art"] .nx-talent-btn:hover { background: #7E22CE; border-color: #7E22CE; }
+    .nx-talent-card[data-craft="3d"] .nx-talent-btn:hover { background: #15803D; border-color: #15803D; }
+
+    .nx-talent-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px -4px rgba(15, 23, 42, 0.25);
+    }
+    .nx-talent-btn:active {
+      transform: scale(0.97);
+    }
+    .nx-talent-btn:focus-visible {
+      outline: 2px solid #0F172A;
+      outline-offset: 2px;
+    }
+
+    /* ── BIO DESCRIPTION ── */
+    .nx-talent-bio {
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: #475569;
+      margin: 0 0 16px;
+      flex: 1;
+    }
+
+    /* ── BOTTOM STATS ROW (NAVORA-STYLE RATE / SLA / GEAR) ── */
+    .nx-talent-stats-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
+      padding-top: 14px;
+      gap: 8px;
+    }
+    .nx-talent-stat-item {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      white-space: nowrap;
+    }
+    .nx-talent-stat-val {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #0F172A;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.01em;
+    }
+    .nx-talent-stat-lbl {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748B;
+    }
+    .nx-talent-stat-sla {
+      color: #059669;
+      font-weight: 700;
     }
 
     /* Empty state */
@@ -1935,110 +2047,6 @@
       font-weight: 600;
       margin-bottom: 16px;
       color: #0F172A;
-    }
-    .nx-talent-body {
-      padding: 0 22px 22px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-    .nx-talent-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 4px;
-    }
-    .nx-talent-name {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 1.32rem;
-      color: #0F172A;
-      letter-spacing: -0.025em;
-      line-height: 1.15;
-      margin: 0 0 4px;
-    }
-    .nx-verified-dot {
-      position: relative;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #10B981;
-      display: inline-block;
-    }
-    .nx-verified-dot::after {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 50%;
-      border: 1.5px solid #10B981;
-      animation: nxPulseRing 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-    }
-    @keyframes nxPulseRing {
-      0% { transform: scale(0.8); opacity: 0.8; }
-      70% { transform: scale(2.2); opacity: 0; }
-      100% { transform: scale(2.2); opacity: 0; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .nx-verified-dot::after { animation: none; }
-    }
-    .nx-talent-craft {
-      font-size: 13px;
-      font-weight: 700;
-      color: #334155;
-      margin-bottom: 2px;
-    }
-    .nx-talent-location {
-      font-size: 12px;
-      color: #64748B;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .nx-talent-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 20px;
-    }
-    .nx-talent-chip {
-      font-size: 11px;
-      font-weight: 600;
-      background: #F8FAFC;
-      color: #334155;
-      padding: 5px 9px;
-      border-radius: 8px;
-      border: 1px solid rgba(15, 23, 42, 0.06);
-    }
-    .nx-talent-btn {
-      margin-top: auto;
-      width: 100%;
-      padding: 13px 0;
-      border-radius: 999px;
-      background: #0F172A;
-      color: #FFFFFF;
-      font-size: 13.5px;
-      font-weight: 700;
-      border: 1px solid #0F172A;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    .nx-talent-btn:hover {
-      background: #1E293B;
-      border-color: #1E293B;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 22px -6px rgba(15, 23, 42, 0.32);
-    }
-    .nx-talent-btn:active {
-      transform: scale(0.97);
-    }
-    .nx-talent-btn:focus-visible {
-      outline: 2px solid #0F172A;
-      outline-offset: 2px;
     }
 
     /* ── STRUCTURED MODALS (THE KNOT & CONTRA ENGINES) ── */
@@ -2224,7 +2232,8 @@
       .nx-tile:nth-child(n) { grid-column: auto; grid-row: auto; }
       .nx-calc, .nx-steps { grid-template-columns: 1fr; }
       .nx-foot { grid-template-columns: 1fr 1fr; }
-      .nx-talent-grid { grid-template-columns: 1fr; }
+      .nx-talent-grid { grid-template-columns: repeat(2, 1fr); }
+      @media (max-width: 640px) { .nx-talent-grid { grid-template-columns: 1fr; } }
     }
 </style>
 </head>
@@ -2518,155 +2527,175 @@
         </div>
 
         <div class="nx-talent-grid">
-          <!-- Talent Card 1: Commercial Cinema -->
+          <!-- Talent Card 1: Marcus Vance (Commercial Cinema) -->
           <article class="nx-talent-card nx-reveal" data-craft="film" data-city="austin" data-gear="cooke 2x anamorphic red v-raptor 8k color grading commercial narrative director" data-name="marcus vance">
             <div class="nx-talent-media">
-              <img class="nx-talent-media-img" src="assets/cinema_posters/poster_0_director.jpg" alt="Commercial cinema reel still by Marcus Vance" loading="lazy">
-              <div class="nx-talent-media-overlay"></div>
-              <span class="nx-reel-badge">
-                <svg width="10" height="10" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                Showreel 01
-              </span>
-              <span class="nx-talent-rate">$650 / day</span>
+              <img class="nx-talent-media-img" src="assets/marcus_bust.webp" alt="Marcus Vance 3D character" loading="lazy">
+            </div>
+            <div class="nx-talent-seam">
+              <div class="nx-talent-monogram">MV</div>
+              <div class="nx-talent-socials" aria-label="Creator links">
+                <span class="nx-social-icon" title="Vimeo"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M22.8 6.7c-.1 2.3-1.7 5.4-4.8 9.4-3.2 4.1-5.9 6.2-8.1 6.2-1.4 0-2.5-1.3-3.4-3.8l-1.9-7C4.1 9.3 3.4 8.2 2.5 8.2c-.2 0-.9.4-2.1 1.2L0 8.1c1.3-1.1 2.6-2.3 3.9-3.4 1.8-1.5 3.1-2.3 4-2.4 2.1-.2 3.4 1.2 3.9 4.3.5 3.3.9 5.4 1.1 6.3.6 2.7 1.3 4.1 2.1 4.1.6 0 1.5-.9 2.7-2.8 1.2-1.8 1.8-3.2 1.9-4.2.2-1.6-.5-2.4-2-2.4-.7 0-1.5.2-2.3.5 1.5-4.8 4.3-7.1 8.5-6.9 3.1.2 4.6 2 4.6 5.5z"/></svg></span>
+                <span class="nx-social-icon" title="Instagram"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></span>
+              </div>
             </div>
             <div class="nx-talent-body">
-              <div class="nx-talent-avatar-row">
-                <div class="nx-talent-avatar-wrap">
-                  <img class="nx-talent-avatar" src="assets/smiling_videographer_cinema.webp" alt="Marcus Vance avatar">
-                  <span class="nx-avatar-verified" title="Verified Creator">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <div class="nx-talent-id-row">
+                <div class="nx-talent-name-wrap">
+                  <span class="nx-talent-name">
+                    Marcus Vance
+                    <span class="nx-verified-badge-blue" title="Verified Director">
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
                   </span>
+                  <span class="nx-talent-handle">@marcus · Austin, TX</span>
                 </div>
-                <span class="nx-talent-sla"><span class="nx-verified-dot"></span> Under 1h response</span>
+                <button class="nx-talent-btn" type="button" onclick="openInquiryModal('Marcus Vance', 'Commercial & Narrative Director')">Inquire</button>
               </div>
-              <div class="nx-talent-header">
-                <span class="nx-talent-name">Marcus Vance</span>
+              <p class="nx-talent-bio">Commercial &amp; narrative director. Specializes in Cooke 2x Anamorphic framing, RED V-Raptor 8K pipelines, and broadcast color grading.</p>
+              <div class="nx-talent-stats-row">
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val">$650</span>
+                  <span class="nx-talent-stat-lbl">/ day</span>
+                </div>
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val nx-talent-stat-sla">⚡ &lt; 1h</span>
+                  <span class="nx-talent-stat-lbl">SLA</span>
+                </div>
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val">RED 8K</span>
+                  <span class="nx-talent-stat-lbl">Kit</span>
+                </div>
               </div>
-              <span class="nx-talent-craft">Commercial &amp; Narrative Director</span>
-              <span class="nx-talent-location">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                Austin, TX · Worldwide Travel
-              </span>
-              <div class="nx-talent-chips">
-                <span class="nx-talent-chip">Cooke 2x Anamorphic</span>
-                <span class="nx-talent-chip">RED V-Raptor 8K</span>
-                <span class="nx-talent-chip">Color Grading</span>
-              </div>
-              <button class="nx-talent-btn" type="button" onclick="openInquiryModal('Marcus Vance', 'Commercial &amp; Narrative Director')">Inquire Direct →</button>
             </div>
           </article>
 
-          <!-- Talent Card 2: Aerial Cinema -->
+          <!-- Talent Card 2: Maya Lin (Aerial Cinema) -->
           <article class="nx-talent-card nx-reveal" data-craft="drone" data-city="los-angeles" data-gear="inspire 3 8k fpv chase heavy cinemadng faa part 107 aerial flight captain" data-name="maya lin">
             <div class="nx-talent-media">
-              <img class="nx-talent-media-img" src="assets/cinema_posters/poster_1_drone.jpg" alt="Aerial flight reel still by Maya Lin" loading="lazy">
-              <div class="nx-talent-media-overlay"></div>
-              <span class="nx-reel-badge">
-                <svg width="10" height="10" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                FPV Reel 02
-              </span>
-              <span class="nx-talent-rate">$550 / day</span>
+              <img class="nx-talent-media-img" src="assets/maya_bust.webp" alt="Maya Lin 3D character" loading="lazy">
+            </div>
+            <div class="nx-talent-seam">
+              <div class="nx-talent-monogram">ML</div>
+              <div class="nx-talent-socials" aria-label="Creator links">
+                <span class="nx-social-icon" title="YouTube"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.5.6c-1 .3-1.8 1.1-2.1 2.1C0 8 0 12 0 12s0 4 .4 5.8c.3 1 1 1.8 2 2.1 1.8.6 9.6.6 9.6.6s7.7 0 9.5-.6c1-.3 1.8-1.1 2.1-2.1.4-1.8.4-5.8.4-5.8s0-4-.5-5.8zM9.5 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></span>
+                <span class="nx-social-icon" title="Instagram"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></span>
+              </div>
             </div>
             <div class="nx-talent-body">
-              <div class="nx-talent-avatar-row">
-                <div class="nx-talent-avatar-wrap">
-                  <img class="nx-talent-avatar" src="assets/upward_flight_pilot_drone.webp" alt="Maya Lin avatar">
-                  <span class="nx-avatar-verified" title="Verified Creator">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <div class="nx-talent-id-row">
+                <div class="nx-talent-name-wrap">
+                  <span class="nx-talent-name">
+                    Maya Lin
+                    <span class="nx-verified-badge-blue" title="Verified Pilot">
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
                   </span>
+                  <span class="nx-talent-handle">@maya · Los Angeles</span>
                 </div>
-                <span class="nx-talent-sla"><span class="nx-verified-dot"></span> Under 2h response</span>
+                <button class="nx-talent-btn" type="button" onclick="openInquiryModal('Maya Lin', 'Aerial & FPV Flight Captain')">Inquire</button>
               </div>
-              <div class="nx-talent-header">
-                <span class="nx-talent-name">Maya Lin</span>
+              <p class="nx-talent-bio">FAA Part 107 certified flight captain. High-speed cinematic FPV chases, Inspire 3 8K CinemaDNG plates, and heavy-lift aerial rigs.</p>
+              <div class="nx-talent-stats-row">
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val">$550</span>
+                  <span class="nx-talent-stat-lbl">/ day</span>
+                </div>
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val nx-talent-stat-sla">⚡ &lt; 2h</span>
+                  <span class="nx-talent-stat-lbl">SLA</span>
+                </div>
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val">Inspire 3</span>
+                  <span class="nx-talent-stat-lbl">Kit</span>
+                </div>
               </div>
-              <span class="nx-talent-craft">Aerial &amp; FPV Flight Captain</span>
-              <span class="nx-talent-location">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                Los Angeles, CA · FAA Part 107
-              </span>
-              <div class="nx-talent-chips">
-                <span class="nx-talent-chip">Inspire 3 8K</span>
-                <span class="nx-talent-chip">FPV Chase Heavy</span>
-                <span class="nx-talent-chip">CinemaDNG</span>
-              </div>
-              <button class="nx-talent-btn" type="button" onclick="openInquiryModal('Maya Lin', 'Aerial &amp; FPV Flight Captain')">Inquire Direct →</button>
             </div>
           </article>
 
-          <!-- Talent Card 3: Illustration & Worlds -->
+          <!-- Talent Card 3: Elena Rostova (Illustration) -->
           <article class="nx-talent-card nx-reveal" data-craft="art" data-city="new-york" data-gear="layered masters dci-p3 gamut 100% ip buyout character world artist illustration" data-name="elena rostova">
             <div class="nx-talent-media">
-              <img class="nx-talent-media-img" src="assets/cinema_posters/poster_2_design.jpg" alt="Visual world art still by Elena Rostova" loading="lazy">
-              <div class="nx-talent-media-overlay"></div>
-              <span class="nx-reel-badge">
-                <svg width="10" height="10" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                Worlds 03
-              </span>
-              <span class="nx-talent-rate">$420 / day</span>
+              <img class="nx-talent-media-img" src="assets/elena_bust.webp" alt="Elena Rostova 3D character" loading="lazy">
+            </div>
+            <div class="nx-talent-seam">
+              <div class="nx-talent-monogram">ER</div>
+              <div class="nx-talent-socials" aria-label="Creator links">
+                <span class="nx-social-icon" title="Behance"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7v-2h7v2zm1.7 4.5c0-3.3-2.3-5.5-5.6-5.5-3.5 0-5.8 2.5-5.8 5.8 0 3.4 2.3 5.8 6 5.8 2.6 0 4.5-1.2 5.2-3.2h-2.5c-.4.8-1.5 1.2-2.6 1.2-1.7 0-3-1-3.2-2.6h8.5c0-.5 0-1 0-1.5zm-5.6-1.8c1.5 0 2.6.9 2.8 2.3h-5.6c.2-1.4 1.3-2.3 2.8-2.3zm-14.1-4.2h-4v14h4.4c3.1 0 5-1.5 5-4.2 0-1.8-.9-3-2.3-3.6 1.1-.6 1.9-1.7 1.9-3.2 0-2-1.8-3-5-3zm-.8 5.5h-1.2v-3.5h1.2c1.7 0 2.5.6 2.5 1.7 0 1.2-.8 1.8-2.5 1.8zm.3 6.5h-1.5v-4.5h1.5c1.8 0 2.7.7 2.7 2.2 0 1.6-.9 2.3-2.7 2.3z"/></svg></span>
+                <span class="nx-social-icon" title="Instagram"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></span>
+              </div>
             </div>
             <div class="nx-talent-body">
-              <div class="nx-talent-avatar-row">
-                <div class="nx-talent-avatar-wrap">
-                  <img class="nx-talent-avatar" src="assets/purple_haired_illustrator.webp" alt="Elena Rostova avatar">
-                  <span class="nx-avatar-verified" title="Verified Creator">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <div class="nx-talent-id-row">
+                <div class="nx-talent-name-wrap">
+                  <span class="nx-talent-name">
+                    Elena Rostova
+                    <span class="nx-verified-badge-blue" title="Verified Artist">
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
                   </span>
+                  <span class="nx-talent-handle">@elena · New York</span>
                 </div>
-                <span class="nx-talent-sla"><span class="nx-verified-dot"></span> Under 3h response</span>
+                <button class="nx-talent-btn" type="button" onclick="openInquiryModal('Elena Rostova', 'Character & World Artist')">Inquire</button>
               </div>
-              <div class="nx-talent-header">
-                <span class="nx-talent-name">Elena Rostova</span>
+              <p class="nx-talent-bio">Character designer &amp; visual world artist. Delivers layered master PSDs in DCI-P3 wide gamut. 100% intellectual property buyout included.</p>
+              <div class="nx-talent-stats-row">
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val">$420</span>
+                  <span class="nx-talent-stat-lbl">/ day</span>
+                </div>
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val nx-talent-stat-sla">⚡ &lt; 3h</span>
+                  <span class="nx-talent-stat-lbl">SLA</span>
+                </div>
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val">DCI-P3</span>
+                  <span class="nx-talent-stat-lbl">Art</span>
+                </div>
               </div>
-              <span class="nx-talent-craft">Character &amp; World Artist</span>
-              <span class="nx-talent-location">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                New York, NY · Remote Delivery
-              </span>
-              <div class="nx-talent-chips">
-                <span class="nx-talent-chip">Layered Masters</span>
-                <span class="nx-talent-chip">DCI-P3 Gamut</span>
-                <span class="nx-talent-chip">100% IP Buyout</span>
-              </div>
-              <button class="nx-talent-btn" type="button" onclick="openInquiryModal('Elena Rostova', 'Character &amp; World Artist')">Inquire Direct →</button>
             </div>
           </article>
 
-          <!-- Talent Card 4: Spatial & Realtime 3D -->
+          <!-- Talent Card 4: Kai Takahashi (Spatial 3D) -->
           <article class="nx-talent-card nx-reveal" data-craft="3d" data-city="seattle" data-gear="unreal engine 5.4 apple vision pro openxr realtime 3d spatial director" data-name="kai takahashi">
             <div class="nx-talent-media">
-              <img class="nx-talent-media-img" src="assets/cinema_posters/poster_4_cgi.jpg" alt="Spatial realtime 3D still by Kai Takahashi" loading="lazy">
-              <div class="nx-talent-media-overlay"></div>
-              <span class="nx-reel-badge">
-                <svg width="10" height="10" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                Unreal 04
-              </span>
-              <span class="nx-talent-rate">$700 / day</span>
+              <img class="nx-talent-media-img" src="assets/kai_bust.webp" alt="Kai Takahashi 3D character" loading="lazy">
+            </div>
+            <div class="nx-talent-seam">
+              <div class="nx-talent-monogram">KT</div>
+              <div class="nx-talent-socials" aria-label="Creator links">
+                <span class="nx-social-icon" title="Twitter"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
+                <span class="nx-social-icon" title="GitHub"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg></span>
+              </div>
             </div>
             <div class="nx-talent-body">
-              <div class="nx-talent-avatar-row">
-                <div class="nx-talent-avatar-wrap">
-                  <img class="nx-talent-avatar" src="assets/vr_adventure_flight_case.webp" alt="Kai Takahashi avatar">
-                  <span class="nx-avatar-verified" title="Verified Creator">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <div class="nx-talent-id-row">
+                <div class="nx-talent-name-wrap">
+                  <span class="nx-talent-name">
+                    Kai Takahashi
+                    <span class="nx-verified-badge-blue" title="Verified Director">
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
                   </span>
+                  <span class="nx-talent-handle">@kai · Seattle, WA</span>
                 </div>
-                <span class="nx-talent-sla"><span class="nx-verified-dot"></span> Under 1h response</span>
+                <button class="nx-talent-btn" type="button" onclick="openInquiryModal('Kai Takahashi', 'Realtime 3D & Spatial Director')">Inquire</button>
               </div>
-              <div class="nx-talent-header">
-                <span class="nx-talent-name">Kai Takahashi</span>
+              <p class="nx-talent-bio">Realtime spatial director. Builds interactive VisionOS spatial stages, Unreal Engine 5.4 procedural worlds, and OpenXR environments.</p>
+              <div class="nx-talent-stats-row">
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val">$700</span>
+                  <span class="nx-talent-stat-lbl">/ day</span>
+                </div>
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val nx-talent-stat-sla">⚡ &lt; 1h</span>
+                  <span class="nx-talent-stat-lbl">SLA</span>
+                </div>
+                <div class="nx-talent-stat-item">
+                  <span class="nx-talent-stat-val">VisionOS</span>
+                  <span class="nx-talent-stat-lbl">3D</span>
+                </div>
               </div>
-              <span class="nx-talent-craft">Realtime 3D &amp; Spatial Director</span>
-              <span class="nx-talent-location">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                Seattle, WA · VisionOS Native
-              </span>
-              <div class="nx-talent-chips">
-                <span class="nx-talent-chip">Unreal Engine 5.4</span>
-                <span class="nx-talent-chip">Apple Vision Pro</span>
-                <span class="nx-talent-chip">OpenXR</span>
-              </div>
-              <button class="nx-talent-btn" type="button" onclick="openInquiryModal('Kai Takahashi', 'Realtime 3D &amp; Spatial Director')">Inquire Direct →</button>
             </div>
           </article>
 
@@ -2691,22 +2720,22 @@
           </button>
           <button class="nx-tile nx-reveal" style="--a:#E0F5FF;--b:#8EE0FE;--c:#47B9FD;--ink:#1E0E38" data-theme-jump="cobalt">
             <span class="nx-tile-txt"><h3>Aerial Cinema</h3><p>FAA-certified drone directors</p></span>
-            <img src="assets/upward_flight_pilot_drone.webp" alt="" loading="lazy" decoding="async">
+            <img src="assets/maya_bust.webp" alt="" loading="lazy" decoding="async">
             <span class="nx-go">Explore →</span>
           </button>
           <button class="nx-tile nx-reveal" style="--a:#FAF5FF;--b:#E9D5FF;--c:#C084FC;--ink:#2A0E44" data-theme-jump="lilac">
             <span class="nx-tile-txt"><h3>Illustration</h3><p>Characters and visual worlds</p></span>
-            <img src="assets/purple_haired_illustrator.webp" alt="" loading="lazy" decoding="async">
+            <img src="assets/elena_bust.webp" alt="" loading="lazy" decoding="async">
             <span class="nx-go">Explore →</span>
           </button>
           <button class="nx-tile nx-reveal" style="--a:#FFF6EE;--b:#FDE6D2;--c:#FDBA74;--ink:#3B1306" data-theme-jump="amber">
             <span class="nx-tile-txt"><h3>Commercial Film</h3><p>Cinema camera operators</p></span>
-            <img src="assets/smiling_videographer_cinema.webp" alt="" loading="lazy" decoding="async">
+            <img src="assets/marcus_bust.webp" alt="" loading="lazy" decoding="async">
             <span class="nx-go">Explore →</span>
           </button>
           <button class="nx-tile nx-reveal" style="--a:#FFF1F3;--b:#FFE0E6;--c:#FDA4AF;--ink:#4A0A24" data-theme-jump="coral">
             <span class="nx-tile-txt"><h3>Spatial &amp; VR</h3><p>Realtime 3D and immersive</p></span>
-            <img src="assets/vr_adventure_flight_case.webp" alt="" loading="lazy" decoding="async">
+            <img src="assets/kai_bust.webp" alt="" loading="lazy" decoding="async">
             <span class="nx-go">Explore →</span>
           </button>
         </div>
@@ -2807,7 +2836,7 @@
       cobalt: {
         themeKey: 'cobalt',
         name: 'Aero Cloud',
-        imgSrc: 'assets/upward_flight_pilot_drone.webp',
+        imgSrc: 'assets/maya_bust.webp',
         imgAlt: 'Upward Flight: Pilot and Drone',
         creativeWord: 'CREATIVE',
         edgeWord: 'EDGE',
@@ -2824,7 +2853,7 @@
       lilac: {
         themeKey: 'lilac',
         name: 'Purple Illustrator',
-        imgSrc: 'assets/purple_haired_illustrator.webp',
+        imgSrc: 'assets/elena_bust.webp',
         imgAlt: 'Purple-Haired Illustrator Drawing on a Pouf',
         creativeWord: 'CREATIVE',
         edgeWord: 'EDGE',
@@ -2839,7 +2868,7 @@
       amber: {
         themeKey: 'amber',
         name: 'Cinema Camera',
-        imgSrc: 'assets/smiling_videographer_cinema.webp',
+        imgSrc: 'assets/marcus_bust.webp',
         imgAlt: 'Smiling Videographer with Cinema Camera',
         creativeWord: 'CREATIVE',
         edgeWord: 'EDGE',
@@ -2856,7 +2885,7 @@
       coral: {
         themeKey: 'coral',
         name: 'Spatial 3D',
-        imgSrc: 'assets/vr_adventure_flight_case.webp',
+        imgSrc: 'assets/kai_bust.webp',
         imgAlt: 'VR Adventure on a Flight Case',
         creativeWord: 'CREATIVE',
         edgeWord: 'EDGE',
