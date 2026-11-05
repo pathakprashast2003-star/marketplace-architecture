@@ -1848,11 +1848,11 @@
             A curated network of 3D artists, digital craftspeople, and visual visionaries.
           </p>
           <div class="action-row">
-            <a href="#" class="btn-discover" onclick="handleAction('discover', event)">
+            <a href="#roster" class="btn-discover" onclick="document.getElementById('roster').scrollIntoView({behavior:'smooth'});return false;">
               <span>Discover Talent</span>
               <span>&rarr;</span>
             </a>
-            <a href="#" class="btn-join" onclick="handleAction('join', event)">
+            <a href="#founding" class="btn-join" onclick="openFoundingModal();return false;">
               <span>Join as Creator</span>
             </a>
           </div>
@@ -1908,39 +1908,6 @@
 
   <div class="nx-page">
     <div class="nx-wrap">
-      <section class="nx-sec" id="disciplines">
-        <p class="nx-kicker nx-reveal">Disciplines</p>
-        <h2 class="nx-h2 nx-reveal">Every kind of visual talent.</h2>
-        <p class="nx-lead nx-reveal">Vetted directors, artists and operators, grouped by the work they do best. Pick a craft and meet the people behind it.</p>
-        <div class="nx-bento">
-          <button class="nx-tile nx-reveal" style="--a:#F3FBE8;--b:#C2E8A6;--c:#76B762;--ink:#0A3219" data-theme-jump="sage">
-            <span class="nx-tile-txt"><h3>Digital Craft &amp; 3D</h3><p>Brand design, 3D and motion</p></span>
-            <img src="assets/creator_desk_designer.webp" alt="" loading="lazy" decoding="async">
-            <span class="nx-go">Explore →</span>
-          </button>
-          <button class="nx-tile nx-reveal" style="--a:#E0F5FF;--b:#8EE0FE;--c:#47B9FD;--ink:#1E0E38" data-theme-jump="cobalt">
-            <span class="nx-tile-txt"><h3>Aerial Cinema</h3><p>FAA-certified drone directors</p></span>
-            <img src="assets/upward_flight_pilot_drone.webp" alt="" loading="lazy" decoding="async">
-            <span class="nx-go">Explore →</span>
-          </button>
-          <button class="nx-tile nx-reveal" style="--a:#FAF5FF;--b:#E9D5FF;--c:#C084FC;--ink:#2A0E44" data-theme-jump="lilac">
-            <span class="nx-tile-txt"><h3>Illustration</h3><p>Characters and visual worlds</p></span>
-            <img src="assets/purple_haired_illustrator.webp" alt="" loading="lazy" decoding="async">
-            <span class="nx-go">Explore →</span>
-          </button>
-          <button class="nx-tile nx-reveal" style="--a:#FFF6EE;--b:#FDE6D2;--c:#FDBA74;--ink:#3B1306" data-theme-jump="amber">
-            <span class="nx-tile-txt"><h3>Commercial Film</h3><p>Cinema camera operators</p></span>
-            <img src="assets/smiling_videographer_cinema.webp" alt="" loading="lazy" decoding="async">
-            <span class="nx-go">Explore →</span>
-          </button>
-          <button class="nx-tile nx-reveal" style="--a:#FFF1F3;--b:#FFE0E6;--c:#FDA4AF;--ink:#4A0A24" data-theme-jump="coral">
-            <span class="nx-tile-txt"><h3>Spatial &amp; VR</h3><p>Realtime 3D and immersive</p></span>
-            <img src="assets/vr_adventure_flight_case.webp" alt="" loading="lazy" decoding="async">
-            <span class="nx-go">Explore →</span>
-          </button>
-        </div>
-      </section>
-
       <!-- ── DIRECT ROSTER (CONTRA-STYLE CREATOR CAROUSEL) ── -->
       <section class="nx-sec" id="roster">
         <p class="nx-kicker nx-reveal">Direct Roster</p>
@@ -2034,6 +2001,40 @@
               <button class="nx-talent-btn" type="button" onclick="openInquiryModal('Kai Takahashi', 'Realtime 3D &amp; Spatial Director')">Inquire Direct →</button>
             </div>
           </article>
+        </div>
+      </section>
+
+      <!-- ── DISCIPLINES BENTO GRID ── -->
+      <section class="nx-sec" id="disciplines">
+        <p class="nx-kicker nx-reveal">Disciplines</p>
+        <h2 class="nx-h2 nx-reveal">Every kind of visual talent.</h2>
+        <p class="nx-lead nx-reveal">Vetted directors, artists and operators, grouped by the work they do best. Pick a craft and meet the people behind it.</p>
+        <div class="nx-bento">
+          <button class="nx-tile nx-reveal" style="--a:#F3FBE8;--b:#C2E8A6;--c:#76B762;--ink:#0A3219" data-theme-jump="sage">
+            <span class="nx-tile-txt"><h3>Digital Craft &amp; 3D</h3><p>Brand design, 3D and motion</p></span>
+            <img src="assets/creator_desk_designer.webp" alt="" loading="lazy" decoding="async">
+            <span class="nx-go">Explore →</span>
+          </button>
+          <button class="nx-tile nx-reveal" style="--a:#E0F5FF;--b:#8EE0FE;--c:#47B9FD;--ink:#1E0E38" data-theme-jump="cobalt">
+            <span class="nx-tile-txt"><h3>Aerial Cinema</h3><p>FAA-certified drone directors</p></span>
+            <img src="assets/upward_flight_pilot_drone.webp" alt="" loading="lazy" decoding="async">
+            <span class="nx-go">Explore →</span>
+          </button>
+          <button class="nx-tile nx-reveal" style="--a:#FAF5FF;--b:#E9D5FF;--c:#C084FC;--ink:#2A0E44" data-theme-jump="lilac">
+            <span class="nx-tile-txt"><h3>Illustration</h3><p>Characters and visual worlds</p></span>
+            <img src="assets/purple_haired_illustrator.webp" alt="" loading="lazy" decoding="async">
+            <span class="nx-go">Explore →</span>
+          </button>
+          <button class="nx-tile nx-reveal" style="--a:#FFF6EE;--b:#FDE6D2;--c:#FDBA74;--ink:#3B1306" data-theme-jump="amber">
+            <span class="nx-tile-txt"><h3>Commercial Film</h3><p>Cinema camera operators</p></span>
+            <img src="assets/smiling_videographer_cinema.webp" alt="" loading="lazy" decoding="async">
+            <span class="nx-go">Explore →</span>
+          </button>
+          <button class="nx-tile nx-reveal" style="--a:#FFF1F3;--b:#FFE0E6;--c:#FDA4AF;--ink:#4A0A24" data-theme-jump="coral">
+            <span class="nx-tile-txt"><h3>Spatial &amp; VR</h3><p>Realtime 3D and immersive</p></span>
+            <img src="assets/vr_adventure_flight_case.webp" alt="" loading="lazy" decoding="async">
+            <span class="nx-go">Explore →</span>
+          </button>
         </div>
       </section>
 
