@@ -3,12 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXUS — Find The Creative Edge</title>
+  <meta name="description" content="A curated directory of vetted 3D artists, drone directors, visual craftspeople, and cinema camera operators with zero platform markups.">
+  <title>NEXUS · Find The Creative Edge</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
+    /* Hallmark · v2.0.0 · genre: modern-minimal · theme: sage · shape: workbench */
+    button:disabled, input:disabled, select:disabled, textarea:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -291,7 +299,7 @@
     }
 
     .btn-discover:hover {
-      background: #000000;
+      background: #0A0718;
       transform: translateY(-2px);
       box-shadow: 
         0 14px 30px -4px rgba(13, 10, 28, 0.38),
@@ -451,7 +459,7 @@
       padding: 6px 14px;
       border-radius: 999px;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -710,10 +718,10 @@
 
       /* Apple Obsidian Primary Button */
       .btn-discover {
-        background: #000000;
+        background: #0A0718;
         color: #FFFFFF;
         box-shadow: 
-          0 10px 28px -4px rgba(0, 0, 0, 0.38),
+          0 10px 28px -4px rgba(10, 7, 24, 0.38),
           inset 0 1px 0 rgba(255, 255, 255, 0.28);
         border: 1px solid rgba(255, 255, 255, 0.12);
         gap: 7px;
@@ -807,7 +815,7 @@
       align-items: center;
       gap: 6px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-      transition: all 0.2s ease;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
       user-select: none;
     }
     .editor-toggle-btn:hover {
@@ -911,7 +919,7 @@
       padding: 3px 8px;
       border-radius: 16px;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: background-color 0.15s ease, color 0.15s ease;
     }
     .hud-view-btn.is-active {
       background: #2563EB;
@@ -1027,7 +1035,7 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      transition: all 0.15s ease;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
       font-family: inherit;
     }
     .hud-btn:hover {
@@ -1074,7 +1082,7 @@
       align-items: center;
       gap: 7px;
       overflow: hidden;
-      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: color 0.22s ease, background-color 0.22s ease, transform 0.22s ease;
     }
     .theme-capsule-btn:hover {
       color: #FFFFFF;
@@ -1741,7 +1749,7 @@
       background: #FFFFFF;
       color: #475569;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
     .nx-budget-pill.is-active, .nx-budget-pill:hover {
       border-color: #0F172A;
@@ -1758,7 +1766,7 @@
       font-weight: 700;
       border: none;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
       box-shadow: 0 10px 24px -6px rgba(15, 23, 42, 0.3);
     }
     .nx-modal-submit:hover {
@@ -1785,6 +1793,15 @@
     }
     .nx-modal-feedback.is-visible {
       display: block;
+    }
+    .nx-modal-icon-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      color: #0F172A;
+      margin: 0 auto 16px;
     }
 
     @media (max-width: 900px) {
@@ -1842,8 +1859,8 @@
     <div class="hud-header">
       <div style="display: flex; align-items: center; gap: 7px;">
         <div class="hud-viewport-switch" role="group" aria-label="Viewport Switcher">
-          <button type="button" id="hudViewDesktop" class="hud-view-btn is-active" title="Switch to Laptop / Desktop View">💻 Laptop</button>
-          <button type="button" id="hudViewMobile" class="hud-view-btn" title="Switch to Mobile View">📱 Mobile</button>
+          <button type="button" id="hudViewDesktop" class="hud-view-btn is-active" title="Switch to Laptop / Desktop View">Laptop</button>
+          <button type="button" id="hudViewMobile" class="hud-view-btn" title="Switch to Mobile View">Mobile</button>
         </div>
         <span>Target: <span id="hudTargetName" class="hud-target-name">CREATIVE EDGE</span></span>
         <span id="hudSaveToast" class="hud-save-toast">✓ Saved</span>
@@ -1860,7 +1877,7 @@
         <button class="hud-btn" type="button" id="hudColorCycle" title="Cycle Color between Dark, Blue, and White">Color</button>
         <button class="hud-btn" type="button" id="hudImgMinus" title="Reduce Character Size by 5%">Img -</button>
         <button class="hud-btn" type="button" id="hudImgPlus" title="Increase Character Size by 5%">Img +</button>
-        <button class="hud-btn" type="button" id="hudPickImage" title="Upload or choose image for this character">🖼️ Pick Img</button>
+        <button class="hud-btn" type="button" id="hudPickImage" title="Upload or choose image for this character">Upload Img</button>
         <input type="file" id="hudFileInput" accept="image/*" style="display:none;" />
         <button class="hud-btn" type="button" id="hudFontMinus" title="Decrease Font Size">A-</button>
         <button class="hud-btn" type="button" id="hudFontPlus" title="Increase Font Size">A+</button>
@@ -2163,15 +2180,6 @@
   </div>
 
   <script>
-    function handleAction(type, e) {
-      if (e) e.preventDefault();
-      if (type === 'discover') {
-        alert("✨ Discovering verified creators on NEXUS.");
-      } else {
-        alert("🚀 Apply to join the NEXUS creator network.");
-      }
-    }
-
     // Helper to drop in your image dynamically when ready
     function setCharacterImage(src) {
       const slot = document.getElementById('heroCharacterSlot');
@@ -3253,21 +3261,23 @@
   <!-- ── 30-SECOND STRUCTURED LEAD INTAKE MODAL (THE KNOT) ── -->
   <div id="inquiryModal" class="nx-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="nx-modal-dialog">
-      <button class="nx-modal-close" type="button" onclick="closeInquiryModal()" aria-label="Close dialog">✕</button>
+      <button class="nx-modal-close" type="button" onclick="closeInquiryModal()" aria-label="Close dialog">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
       <div id="inquiryFormView">
         <p class="nx-modal-kicker">30-Second Direct Inquiry</p>
         <h3 class="nx-modal-title" id="inquiryTargetName">Inquire Direct</h3>
-        <p class="nx-modal-desc">Zero escrow. Zero agency markups. Your project brief is delivered directly to the creator's inbox.</p>
+        <p class="nx-modal-desc">Zero escrow. Zero agency markups. Your project brief is delivered directly to the creator’s inbox.</p>
         <form onsubmit="handleInquirySubmit(event)">
           <div class="nx-form-group">
             <label class="nx-form-label" for="inqDate">Target Shoot / Event Window</label>
-            <input class="nx-form-input" type="text" id="inqDate" placeholder="e.g. Nov 24 – Dec 5 (or Flexible)" required>
+            <input class="nx-form-input" type="text" id="inqDate" placeholder="e.g. Nov 24 to Dec 5 (or Flexible)" required>
           </div>
           <div class="nx-form-group">
             <label class="nx-form-label">Estimated Budget Bracket</label>
             <div class="nx-budget-pills">
-              <button type="button" class="nx-budget-pill is-active" onclick="selectBudget(this, '$1k–$2.5k')">$1k–$2.5k</button>
-              <button type="button" class="nx-budget-pill" onclick="selectBudget(this, '$2.5k–$5k')">$2.5k–$5k</button>
+              <button type="button" class="nx-budget-pill is-active" onclick="selectBudget(this, '$1k to $2.5k')">$1k to $2.5k</button>
+              <button type="button" class="nx-budget-pill" onclick="selectBudget(this, '$2.5k to $5k')">$2.5k to $5k</button>
               <button type="button" class="nx-budget-pill" onclick="selectBudget(this, '$5k+')">$5k+</button>
             </div>
           </div>
@@ -3283,7 +3293,9 @@
         </form>
       </div>
       <div id="inquirySuccessView" class="nx-modal-feedback">
-        <div style="font-size: 40px; margin-bottom: 12px;">⚡</div>
+        <div class="nx-modal-icon-badge">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        </div>
         <h3 class="nx-modal-title" style="margin-bottom: 8px;">Inquiry Dispatched!</h3>
         <p class="nx-modal-desc">Your structured brief was sent directly to <strong id="successTargetName">the creator</strong>. With their &lt; 2h SLA, expect a direct reply to your email shortly.</p>
         <button class="nx-modal-submit" type="button" onclick="closeInquiryModal()">Done</button>
@@ -3294,7 +3306,9 @@
   <!-- ── FOUNDING MEMBER APPLICATION MODAL (THE KNOT / STYLESEAT) ── -->
   <div id="foundingModal" class="nx-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="nx-modal-dialog">
-      <button class="nx-modal-close" type="button" onclick="closeFoundingModal()" aria-label="Close dialog">✕</button>
+      <button class="nx-modal-close" type="button" onclick="closeFoundingModal()" aria-label="Close dialog">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
       <div id="foundingFormView">
         <p class="nx-modal-kicker">Founding Roster · 42/100 Claimed</p>
         <h3 class="nx-modal-title">Claim Your Founding Pass</h3>
@@ -3326,9 +3340,11 @@
         </form>
       </div>
       <div id="foundingSuccessView" class="nx-modal-feedback">
-        <div style="font-size: 40px; margin-bottom: 12px;">🌟</div>
+        <div class="nx-modal-icon-badge">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        </div>
         <h3 class="nx-modal-title" style="margin-bottom: 8px;">Application Queued!</h3>
-        <p class="nx-modal-desc">Your showreel has been submitted to Tyrone's gatekeeper vetting workstation. You will receive activation confirmation within 24 hours.</p>
+        <p class="nx-modal-desc">Your showreel has been submitted to Tyrone’s vetting desk. You will receive activation confirmation within 24 hours.</p>
         <button class="nx-modal-submit" type="button" onclick="closeFoundingModal()">Done</button>
       </div>
     </div>
