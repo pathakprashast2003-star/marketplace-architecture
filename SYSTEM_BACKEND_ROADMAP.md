@@ -22,12 +22,40 @@
 | :--- | :--- | :--- | :--- |
 | **01. Top Hero Stage** | Theme capsule switcher (Sage, Slate, Lilac, Amber, Coral) with 3D character bust fader | Multi-tenant craft routing; CDN asset delivery pipeline for transparent WebP/PNG assets | `craft_disciplines` table. Fastly/Cloudflare Edge caching for `<100ms` hero swap. |
 | **02. Live Architectural Ticker** | Infinite kinetic marquee showing live specs, certified standards, active cities | Dynamic platform metrics ticker service | Background Redis pub/sub aggregating live verified creator count and active cities. |
-| **03. Curated 5-Operator Roster** | Top 5 weekly featured cards with verified blue badges and client tags | **Weekly Spotlight Ranking Algorithm (The 5 Curation Rules)** | Background Cron (`0 0 * * 1`) executing the ranking formula; stores current active slots in `featured_roster_slots`. |
-| **04. Dual-Media Engine** | Toggle: `[ ► Client Reels ]` vs `[ 3D Personas ]` | Media Transcoding & Storage Pipeline | Cloudflare Stream / Mux for 4s H.264 video loops + AWS S3 for 1080p WebP stills + fallback persona selector. |
-| **05. Omni-Search & Filters** | Real-time search by craft, equipment, director name, city filter tabs | High-Performance Search Index | PostgreSQL `pg_trgm` / Meilisearch / Typesense. Full-text inverted index over `name`, `craft`, `gear_locker`, `cities`. |
+| **03. Curated 5-Operator Roster** | Top 5 weekly featured cards: Full-bleed edge-to-edge media with frosted glass scrim, tabular day rate, verified check, and direct inquiry CTA | **Weekly Spotlight Ranking Algorithm (The 5 Curation Rules)** | Background Cron (`0 0 * * 1`) executing the ranking formula; stores current active slots in `featured_roster_slots`. |
+| **04. Dual-Media Engine** | Seamless toggle: `[ ► Client Reels ]` (full-bleed cinema stills) vs `[ 3D Personas ]` (ambient character art) | Media Transcoding & Storage Pipeline | Cloudflare Stream / Mux for 4s H.264 video loops + AWS S3 for 1080p WebP stills + fallback persona selector. |
+| **05. Streamlined Control Dock** | Unified control bar: Category filter pills + live search input + view mode toggle (zero stacked clutter) | High-Performance Search Index | PostgreSQL `pg_trgm` / Meilisearch / Typesense. Full-text inverted index over `name`, `craft`, `gear_locker`, `cities`. |
 | **06. Direct 30-Second Inquiry Modal** | Direct inquiry popup (Shoot window, budget bracket, scope, email) | Structured Lead Dispatch Service | Postmark/SendGrid transactional email API + Twilio SMS webhook to creator. Direct routing, zero middleman escrow. |
 | **07. Zero-Commission Calculator** | Interactive slider ($20k–$200k) comparing 20% platform cut vs Nexus $0 | Value Proposition Engine & ROI Proof | Pure client-side mathematical projection. Logs lead conversion telemetry. |
 | **08. Founding Roster Intake Modal** | Creator application modal (Name, craft, reel URL, day rate) | Creator Vetting & Onboarding Pipeline | Intake webhook to PostgreSQL `creator_applications`. Admin approval dashboard with status flags (`pending`, `vetted`, `active`). |
+
+---
+
+## 3. Visual System Standards & Editorial Architecture (Reverse-Engineered Taste)
+
+### A. The 4 Principles of Edge-to-Edge Synchronicity
+1. **Single Continuous Canvas (Zero Segmentation)**:
+   - Previous versions fragmented the card into 6 competing micro-stripes (Image, Seam, Monogram circle, Name/Button, Bio, Client tags, 3-column stats bar).
+   - The new architecture treats the card as **one unified, monumental art canvas** (`height: 480px`, `border-radius: 28px`).
+   - The visual (cinema reel or 3D character) commands 100% of the card area with subtle scale hover (`scale(1.05)`).
+2. **Frosted Mist Scrim (Apple/Editorial Poster Aesthetic)**:
+   - Overlaid on the lower 40% of the visual canvas:
+     $$\text{Scrim} = \text{linear-gradient}(180\deg, \text{transparent}, \text{rgba}(9, 13, 22, 0.45)\ 22\%, \text{rgba}(9, 13, 22, 0.98)\ 100\%) + \text{backdrop-filter: blur}(16\text{px})$$
+   - Houses only 4 essential, high-intent elements:
+     - Creator Name in crisp white display face + blue verified badge.
+     - Craft & Location subtitle (e.g. `Commercial Cinema · Austin, TX`).
+     - Signature gear kit (e.g. `Cooke 2x Anamorphic · RED V-Raptor 8K`).
+     - Climax footer: Bold tabular day rate (`$650 / day`) + high-contrast tactile pill button (`Inquire Direct →`).
+3. **Streamlined Control Dock (Anti-Clutter Rule)**:
+   - Eliminated the 4 vertically stacked toolbars (search bar + location select + trust strip with dots + filter pills + mode toggle).
+   - Synthesized into **one single, elegant bar**:
+     - Left: Category discipline pills with active state.
+     - Right: Integrated compact live search (`Search talent or gear...`) + View mode toggle (`Client Reels` / `3D Personas`).
+4. **Dynamic Symmetrical Centering**:
+   - Instead of squishing 5 cards into 220px columns or leaving an awkward gap on Row 2, the grid uses responsive flexbox with `justify-content: center`:
+     - Desktop: Row 1 has 3 cards; Row 2 has 2 cards symmetrically centered beneath Row 1 (3+2 museum composition).
+     - Tablet: 2x2 grid + 1 centered card.
+     - Mobile: 100% full-width immersive vertical cards.
 
 ---
 
@@ -153,3 +181,4 @@ CREATE TABLE direct_inquiries (
   - [ ] Cloudflare Stream / Mux automated transcoding worker.
   - [ ] Stripe Billing \$49/month zero-commission membership subscription integration.
   - [ ] Postmark transactional lead notification email webhooks.
+
