@@ -1795,14 +1795,15 @@
       }
     }
 
-    /* Top Media Frame (Dedicated Visual Canvas) */
+    /* Top Media Frame (Tactile 3D Pop-Out Stage) */
     .nx-card-media-frame {
       position: relative;
       margin: 12px 12px 0 12px;
       height: 250px;
       border-radius: 22px;
       overflow: hidden;
-      background: #0B0F19;
+      background: #F8F4F0;
+      transition: background-color 0.3s ease;
     }
     .nx-media-layer {
       position: absolute;
@@ -1812,6 +1813,7 @@
     }
     .nx-media-reel {
       display: none;
+      background: #0B0F19;
     }
     .nx-reel-img {
       width: 100%;
@@ -1824,41 +1826,41 @@
       transform: scale(1.05);
     }
 
-    /* 3D Persona layer (Default Active) */
+    /* 3D Persona layer (Tactile Soft Studio Auras) */
     .nx-media-persona {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 50% 32%, #1F273D 0%, #090C14 85%);
+      background: radial-gradient(circle at 50% 35%, #FFFFFF 0%, #F5EFEB 70%, #EBE2DC 100%);
     }
     .nx-talent-card[data-craft="film"] .nx-media-persona {
-      background: radial-gradient(circle at 50% 30%, #382819 0%, #1D150E 50%, #090C14 85%);
+      background: radial-gradient(circle at 50% 35%, #FFF6EE 0%, #FCE8D8 65%, #F4D5BD 100%);
     }
     .nx-talent-card[data-craft="drone"] .nx-media-persona {
-      background: radial-gradient(circle at 50% 30%, #162E48 0%, #0C1E32 50%, #090C14 85%);
+      background: radial-gradient(circle at 50% 35%, #F2F9FF 0%, #DDF0FB 65%, #C8E5F7 100%);
     }
     .nx-talent-card[data-craft="art"] .nx-media-persona {
-      background: radial-gradient(circle at 50% 30%, #361E4C 0%, #201130 50%, #090C14 85%);
+      background: radial-gradient(circle at 50% 35%, #FBF4FF 0%, #F2DEFC 65%, #E5C8F5 100%);
     }
     .nx-talent-card[data-craft="3d"] .nx-media-persona {
-      background: radial-gradient(circle at 50% 30%, #17382A 0%, #0D221A 50%, #090C14 85%);
+      background: radial-gradient(circle at 50% 35%, #F2FCF6 0%, #DCF5E6 65%, #C7EDD6 100%);
     }
     .nx-talent-card[data-craft="action"] .nx-media-persona {
-      background: radial-gradient(circle at 50% 30%, #3D1C24 0%, #241117 50%, #090C14 85%);
+      background: radial-gradient(circle at 50% 35%, #F7F9FC 0%, #E6EBF2 65%, #D4DDE8 100%);
     }
     .nx-talent-media-img {
-      height: 86%;
+      height: 90%;
       width: auto;
-      max-width: 90%;
+      max-width: 92%;
       object-fit: contain;
       object-position: center bottom;
-      filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.45));
-      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      filter: drop-shadow(0 18px 24px rgba(34, 5, 20, 0.16)) drop-shadow(0 4px 8px rgba(34, 5, 20, 0.08));
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .nx-talent-card:hover .nx-talent-media-img {
-      transform: scale(1.05) translateY(-3px);
+      transform: scale(1.06) translateY(-4px);
     }
 
     /* Mode switching */
@@ -1895,41 +1897,46 @@
       border: 1px solid rgba(255, 255, 255, 0.18);
     }
     .nx-card-craft-tag {
-      background: rgba(10, 14, 25, 0.75);
-      color: #FFFFFF;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+      background: rgba(255, 255, 255, 0.94);
+      color: #0F172A;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(15, 23, 42, 0.08);
     }
     .nx-card-craft-tag svg {
       fill: #FF6B00;
       color: #FF6B00;
     }
     .nx-card-sla-tag {
-      background: rgba(10, 14, 25, 0.78);
-      color: #34D399;
-      border: 1px solid rgba(52, 211, 153, 0.45);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+      background: rgba(255, 255, 255, 0.95);
+      color: #059669;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
     }
     .nx-card-rate-pill {
       position: absolute;
       bottom: 12px;
       right: 12px;
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: 999px;
-      background: rgba(10, 14, 25, 0.82);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      color: #FFFFFF;
+      background: #FFFFFF;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
+      color: #0F172A;
       font-family: var(--font-display);
-      font-size: 13px;
-      font-weight: 800;
+      font-size: 13.5px;
+      font-weight: 850;
       letter-spacing: -0.01em;
       z-index: 4;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .nx-talent-card:hover .nx-card-rate-pill {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.16);
     }
     .nx-card-rate-unit {
       font-size: 11px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.6);
+      font-weight: 600;
+      color: #64748B;
       margin-left: 2px;
     }
 
