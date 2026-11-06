@@ -33,41 +33,45 @@
 
 ## 3. Visual System Standards & Editorial Architecture (Reverse-Engineered Taste)
 
-### A. The 2-Zone Contra Card Architecture (Reverse-Engineered Contra & Matcha Standard)
-To avoid the visual clutter of text overlapping creator faces or media and ensure 10-year scalability for any length of bio or metric list, the roster talent cards implement a decoupled 2-zone physical card structure:
+### A. The Oat & Mill Concentric Sculptural Card Architecture (A Notch Up)
+To eliminate the visual clutter of box-on-box directory cards and achieve the warm, tactile, high-fashion aesthetic of the Oat & Mill reference, the roster talent cards implement a unified sculptural card structure:
 
-1. **Top Media Frame (`.nx-card-media-frame`)**:
-   - **Dedicated Visual Canvas**: `height: 250px; border-radius: 22px; margin: 12px 12px 0 12px; overflow: hidden`.
-   - Houses either the hand-curated 3D creator character persona (`assets/*_bust.webp`) with custom craft radial gradient, or the 16:9 cinema production reel (`assets/cinema_posters/*.jpg`).
-   - Floats craft discipline badges (`8K Cinema Reel`, `FPV Chase Reel`, etc.) and response SLA badges (`< 1h SLA`, `< 2h SLA`) along the top edge.
-   - Anchors the creator's day rate pill (`$650/day`, `$550/day`, etc.) at the bottom right.
-   - Decoupled completely from text content: faces, camera gear, and keyframes are 100% unobstructed.
+1. **Bespoke Sculptural Craft Canvases (`.nx-talent-card`)**:
+   - Each creator sits on a single, continuous, warm tactile chassis (`border-radius: 36px`) customized to their discipline:
+     - **Marcus Vance (Commercial Cinema)**: Warm terracotta-blush (`#FAF2EC` with amber ambient glow).
+     - **Maya Lin (Aerial FPV)**: Soft coastal sky & cloud blue (`#EFF6FB` with cyan ambient glow).
+     - **Elena Rostova (Character & World Art)**: Velvet lilac & royal blush (`#F7EFF9` with violet ambient glow).
+     - **Kai Takahashi (Realtime Spatial 3D)**: Fresh matcha-mint (`#EEF8F3` with emerald ambient glow).
+     - **Samuel Cross (Action & Motion)**: Champagne warm sand (`#F5F2EB` with warm slate ambient glow).
 
-2. **Bottom Content Body (`.nx-card-body`)**:
-   - **Pure White Structured Canvas**: High-contrast, tactile physical card body with:
-     - **Name & Verification**: Rendered in **Outfit** font (`font-weight: 800; font-size: 1.35rem; letter-spacing: -0.025em`) with blue SVG verified checkmark.
-     - **Role & Location**: Rendered in **Plus Jakarta Sans** (`12.5px`, muted slate `#64748B`).
-     - **Grounded Human Bio**: Un-slopped single-sentence human bio (`13px`, `#475569`, 3-line clamp with natural wrapping).
-     - **Equipment & Skill Chips**: Soft rounded pills inspired by the Matcha reference (`border-radius: 8px; background: #F1F5F9; font-size: 11px; font-weight: 600`), displaying verified gear (e.g., `Cooke 2x Anamorphic`, `RED V-Raptor 8K`, `DCI-P3 Color`).
-     - **Contra Key-Value Metrics Table**: Clean 3-row key-value table with top and bottom hairline borders (`1px solid rgba(15, 23, 42, 0.08)`):
-       - `Projects` | `42`
-       - `Earnings` | `$140k+`
-       - `Rating` | `★★★★★ 5.0`
-     - **Dual-Action Stack**:
-       - Primary: Full-width dark pill button `[ Hire <Name> → ]` (`#0F172A`, height 44px, border-radius 14px) triggering the direct inquiry modal.
-       - Secondary: Split row with `[ ✉ Message ]` (height 38px, border-radius 12px) and quick-save bookmark `[ 🔖 ]` with toast feedback.
+2. **3D Character Hero Stage (`.nx-card-media-frame`)**:
+   - Expanded height (`275px`) providing dramatic headroom for the 3D personas.
+   - Persona layer (`.nx-media-persona`) with luminous radiant ambient aura and large-scale transparent busts (`height: 98%`).
+   - Multi-tier ambient drop-shadows: `filter: drop-shadow(0 22px 30px rgba(59, 10, 36, 0.22)) drop-shadow(0 6px 12px rgba(59, 10, 36, 0.08))`.
+   - Tactile elevation on hover: `transform: scale(1.08) translateY(-8px)`.
+   - Dual-media compatibility: Seamlessly switches to 16:9 cinema production reels with 26px rounded corners.
 
-3. **Concentric Radii & Geometric Harmony**:
-   - Outer Card: `32px` radius with `1px solid rgba(15, 23, 42, 0.09)` and dual-elevation shadow (`0 10px 30px -8px rgba(15, 23, 42, 0.06)`).
-   - Inner Media Canvas: `22px` radius with `12px` bezel offset ($\text{Outer} \approx \text{Inner} + \text{Padding}$).
-   - Action Buttons: `14px` primary / `12px` secondary.
-   - Skill Chips: `8px`.
+3. **Floating Oat & Mill White Rate Pill & Badges**:
+   - Elevated pure white rate pill: `$650/day`, `$550/day`, etc. (`background: #FFFFFF; color: #220514; font-weight: 850; box-shadow: 0 6px 18px rgba(59, 10, 36, 0.12); border-radius: 9999px;`).
+   - Translucent white craft pills (`8K Cinema Reel`) and SLA badges (`⚡ < 1h SLA`).
 
-4. **Dynamic Symmetrical Centering**:
-   - Instead of squishing 5 cards into 220px columns or leaving an awkward gap on Row 2, the grid uses responsive flexbox with `justify-content: center`:
-     - Desktop: Row 1 has 3 cards; Row 2 has 2 cards symmetrically centered beneath Row 1 (3+2 museum composition).
-     - Tablet: 2x2 grid + 1 centered card.
-     - Mobile: 100% full-width immersive vertical cards.
+4. **Concentric Nested Cardstock Body (`.nx-card-body`)**:
+   - Pristine white card nested with concentric radii (`36px` outer $\rightarrow$ `26px` inner with `12px` margin).
+   - **Director Title**: Set in **Outfit** (`1.45rem`, weight 850, `#220514`) with blue verified badge.
+   - **Role & Location**: `Commercial Cinema · Austin, TX` (`color: #7E656F; font-size: 12.5px; font-weight: 600;`).
+   - **Editorial Bio**: Single un-slopped human sentence (`font-size: 13px; line-height: 1.5; color: #4A333E;`).
+   - **Equipment Chips**: Soft rounded pills (`background: #FAF5F2; color: #5C4550; font-size: 11px; font-weight: 650;`).
+   - **Horizontal Stat Ribbon (`.nx-card-stat-ribbon`)**:
+     - Single horizontal stat ribbon bounded by soft hairline dividers:
+       `★★★★★ 5.0  •  42 Projects  •  $140k+ Earned`
+     - Completely replaces the tall 3-row vertical table, granting spacious breathing room.
+   - **Deep Wine Action Stack**:
+     - Primary button: Deep wine (`#3B0A24`) pill button `[ Hire Marcus → ]` (`height: 46px; border-radius: 14px; color: #FFFFFF; font-weight: 750; box-shadow: 0 6px 18px rgba(59, 10, 36, 0.22);`).
+     - Sub-action row: `[ ✉ Message ]` (`background: #FAF5F2; color: #3B0A24;`) + `[ 🔖 ]` bookmark.
+
+5. **Dynamic Symmetrical Centering**:
+   - Row 1 features 3 cards; Row 2 features 2 cards symmetrically centered beneath Row 1 (3+2 museum composition).
+   - 100% responsive down to 390px mobile viewports.
 
 ### B. Tactile 3D Mobile Experience Architecture (Oat & Mill Reference)
 Implemented in [`artisan_experience.html`](artisan_experience.html) with 4 bespoke 3D assets:
