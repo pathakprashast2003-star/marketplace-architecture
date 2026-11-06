@@ -33,29 +33,36 @@
 
 ## 3. Visual System Standards & Editorial Architecture (Reverse-Engineered Taste)
 
-### A. The 5 Principles of High-End Editorial Card Architecture (Natasha Romanoff / Card B Reference)
-1. **Physical Card Framing & Concentric Radii**:
-   - The card features a prominent 8px solid white framing border (`border: 8px solid #FFFFFF; border-radius: 36px; height: 540px`).
-   - Creates a tactile, museum-grade art print elevation against the drafting grid canvas (`#F8F9FA`).
-   - Adheres to Hallmark concentric radii: 36px outer border → 28px inner canvas → 14px button/bookmark radius.
-2. **High-Character Editorial Typography**:
-   - Headline and metrics display face tokenized to Google's **Outfit** font (`--font-display: 'Outfit', sans-serif`).
-   - Body copy and metadata tokenized to **Plus Jakarta Sans** (`--font-body: 'Plus Jakarta Sans', sans-serif`).
-   - Completely eliminates generic system fonts and AI-slop corporate typography.
-3. **Un-slopped Editorial Bios & Background Vectors**:
-   - Swapped out childish 3D Pixar bubbles for custom resolution-independent editorial vector art with Bauhaus color blocking and Matisse organic curves.
-   - Replaced multi-paragraph generic bios with a single grounded human sentence per operator (Unslop contract).
-4. **3-Stat Trio with Hairline Dividers**:
-   - Symmetrical 3-column data grid with vertical hairline dividers (`1px solid rgba(255, 255, 255, 0.12)`):
-     - Column 1: Star Rating (`★ 5.0 Rating`)
-     - Column 2: Platform Earnings (`$140k+ Earned`)
-     - Column 3: Day Rate (`$650/day Day Rate`)
-5. **Dual-Action Row (The Card B Victory)**:
-   - Primary action: Wide white pill button `[ ✉ Get In Touch ]` with direct inquiry modal trigger.
-   - Secondary action: Dark rounded bookmark button `[ 🔖 ]` with instant shortlist save toggle and feedback toast.
-   - Synthesized into **one single, elegant bar**:
-     - Left: Category discipline pills with active state.
-     - Right: Integrated compact live search (`Search talent or gear...`) + View mode toggle (`Client Reels` / `3D Personas`).
+### A. The 2-Zone Contra Card Architecture (Reverse-Engineered Contra & Matcha Standard)
+To avoid the visual clutter of text overlapping creator faces or media and ensure 10-year scalability for any length of bio or metric list, the roster talent cards implement a decoupled 2-zone physical card structure:
+
+1. **Top Media Frame (`.nx-card-media-frame`)**:
+   - **Dedicated Visual Canvas**: `height: 250px; border-radius: 22px; margin: 12px 12px 0 12px; overflow: hidden`.
+   - Houses either the hand-curated 3D creator character persona (`assets/*_bust.webp`) with custom craft radial gradient, or the 16:9 cinema production reel (`assets/cinema_posters/*.jpg`).
+   - Floats craft discipline badges (`8K Cinema Reel`, `FPV Chase Reel`, etc.) and response SLA badges (`< 1h SLA`, `< 2h SLA`) along the top edge.
+   - Anchors the creator's day rate pill (`$650/day`, `$550/day`, etc.) at the bottom right.
+   - Decoupled completely from text content: faces, camera gear, and keyframes are 100% unobstructed.
+
+2. **Bottom Content Body (`.nx-card-body`)**:
+   - **Pure White Structured Canvas**: High-contrast, tactile physical card body with:
+     - **Name & Verification**: Rendered in **Outfit** font (`font-weight: 800; font-size: 1.35rem; letter-spacing: -0.025em`) with blue SVG verified checkmark.
+     - **Role & Location**: Rendered in **Plus Jakarta Sans** (`12.5px`, muted slate `#64748B`).
+     - **Grounded Human Bio**: Un-slopped single-sentence human bio (`13px`, `#475569`, 3-line clamp with natural wrapping).
+     - **Equipment & Skill Chips**: Soft rounded pills inspired by the Matcha reference (`border-radius: 8px; background: #F1F5F9; font-size: 11px; font-weight: 600`), displaying verified gear (e.g., `Cooke 2x Anamorphic`, `RED V-Raptor 8K`, `DCI-P3 Color`).
+     - **Contra Key-Value Metrics Table**: Clean 3-row key-value table with top and bottom hairline borders (`1px solid rgba(15, 23, 42, 0.08)`):
+       - `Projects` | `42`
+       - `Earnings` | `$140k+`
+       - `Rating` | `★★★★★ 5.0`
+     - **Dual-Action Stack**:
+       - Primary: Full-width dark pill button `[ Hire <Name> → ]` (`#0F172A`, height 44px, border-radius 14px) triggering the direct inquiry modal.
+       - Secondary: Split row with `[ ✉ Message ]` (height 38px, border-radius 12px) and quick-save bookmark `[ 🔖 ]` with toast feedback.
+
+3. **Concentric Radii & Geometric Harmony**:
+   - Outer Card: `32px` radius with `1px solid rgba(15, 23, 42, 0.09)` and dual-elevation shadow (`0 10px 30px -8px rgba(15, 23, 42, 0.06)`).
+   - Inner Media Canvas: `22px` radius with `12px` bezel offset ($\text{Outer} \approx \text{Inner} + \text{Padding}$).
+   - Action Buttons: `14px` primary / `12px` secondary.
+   - Skill Chips: `8px`.
+
 4. **Dynamic Symmetrical Centering**:
    - Instead of squishing 5 cards into 220px columns or leaving an awkward gap on Row 2, the grid uses responsive flexbox with `justify-content: center`:
      - Desktop: Row 1 has 3 cards; Row 2 has 2 cards symmetrically centered beneath Row 1 (3+2 museum composition).
