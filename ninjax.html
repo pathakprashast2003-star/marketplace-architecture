@@ -2163,38 +2163,155 @@
       box-shadow: 0 4px 10px rgba(59, 10, 36, 0.08);
     }
 
-    /* Sleek Horizontal Stat Ribbon */
-    .nx-card-stat-ribbon {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-top: 1px solid rgba(59, 10, 36, 0.1);
-      border-bottom: 1px solid rgba(59, 10, 36, 0.1);
-      font-size: 12px;
-      color: #735965;
-      font-family: var(--font-body);
+    /* ── 3-COLUMN TABULAR TELEMETRY MATRIX (NATASHA ROMANOFF INSPIRED) ── */
+    .nx-card-tabular-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(59, 10, 36, 0.1);
+      border-radius: 16px;
+      padding: 8px 4px;
+      margin: 12px 0 16px;
+      box-shadow: 0 2px 8px rgba(59, 10, 36, 0.04);
     }
-    .nx-stat-item {
+    .nx-tabular-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 6px;
+      text-align: center;
+    }
+    .nx-tabular-cell:not(:last-child) {
+      border-right: 1px solid rgba(59, 10, 36, 0.1);
+    }
+    .nx-tabular-val {
+      font-family: var(--font-display);
+      font-weight: 850;
+      font-size: 13.5px;
+      color: #220514;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      font-weight: 550;
+      gap: 3px;
+      line-height: 1.2;
     }
-    .nx-stat-item strong {
+    .nx-tabular-val .nx-stat-star {
+      color: #F59E0B;
+      font-size: 12px;
+    }
+    .nx-tabular-label {
+      font-family: var(--font-body);
+      font-size: 9px;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #735965;
+      margin-top: 4px;
+      line-height: 1.1;
+    }
+
+    /* ── EXECUTIVE TABULAR DIRECTORY TABLE VIEW ── */
+    .nx-directory-table-wrap {
+      display: none;
+      width: 100%;
+      background: #FFFFFF;
+      border: 1px solid rgba(59, 10, 36, 0.1);
+      border-radius: 28px;
+      box-shadow: 0 20px 45px -15px rgba(59, 10, 36, 0.08);
+      overflow-x: auto;
+      margin-top: 20px;
+    }
+    .nx-directory-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-family: var(--font-body);
+      min-width: 860px;
+    }
+    .nx-directory-table th {
+      background: #FAF5F2;
+      padding: 16px 20px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #735965;
+      border-bottom: 1px solid rgba(59, 10, 36, 0.1);
+      white-space: nowrap;
+    }
+    .nx-directory-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(59, 10, 36, 0.06);
+      font-size: 13.5px;
+      color: #220514;
+      vertical-align: middle;
+      transition: background 0.15s ease;
+    }
+    .nx-directory-table tr:hover td {
+      background: #FAF8F6;
+    }
+    .nx-table-creator-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nx-table-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid rgba(59, 10, 36, 0.1);
+    }
+    .nx-table-name {
       font-family: var(--font-display);
       font-weight: 800;
+      font-size: 14.5px;
       color: #220514;
-      font-size: 12.5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
-    .nx-stat-stars {
-      color: #F59E0B;
-      letter-spacing: 0.5px;
+    .nx-table-sub {
       font-size: 11.5px;
+      color: #735965;
+      margin-top: 2px;
     }
-    .nx-stat-dot {
-      color: rgba(59, 10, 36, 0.25);
-      font-size: 10px;
+    .nx-table-rate {
+      font-family: var(--font-display);
+      font-weight: 850;
+      font-size: 15px;
+      color: #220514;
+      white-space: nowrap;
+    }
+    .nx-table-action-btn {
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: #3B0A24;
+      color: #FFFFFF;
+      font-weight: 750;
+      font-size: 12px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(59, 10, 36, 0.2);
+      transition: transform 0.15s ease, background 0.15s ease;
+      white-space: nowrap;
+    }
+    .nx-table-action-btn:hover {
+      transform: translateY(-1px);
+      background: #5A1137;
+    }
+
+    /* Toggling between Grid and Table View */
+    .nx-sec.is-table-mode .nx-talent-grid {
+      display: none !important;
+    }
+    .nx-sec.is-table-mode .nx-directory-table-wrap {
+      display: block !important;
     }
 
     /* Action Stack */
@@ -2862,7 +2979,7 @@
               <button type="button" id="nxOmniClear" class="nx-roster-search-clear is-hidden" aria-label="Clear search">✕</button>
             </div>
 
-            <!-- View Toggle (Production Reels vs 3D Personas vs Case Scenarios) -->
+            <!-- View Toggle (Production Reels vs 3D Personas vs Case Scenarios vs Tabular View) -->
             <div class="nx-view-toggle" role="group" aria-label="Toggle creator media format">
               <button type="button" class="nx-view-btn is-active" data-view="reels" id="btnViewReels" aria-pressed="true">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
@@ -2875,6 +2992,10 @@
               <button type="button" class="nx-view-btn" data-view="cases" id="btnViewCases" aria-pressed="false" title="Highlight Production Edge Cases (1, 2, 3)">
                 <span style="font-size: 11px;">⚡</span>
                 <span>Case Scenarios</span>
+              </button>
+              <button type="button" class="nx-view-btn" data-view="table" id="btnViewTable" aria-pressed="false" title="Executive Tabular Comparison View">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/></svg>
+                <span>Tabular View</span>
               </button>
               <a href="artisan_experience.html" class="nx-view-btn" style="text-decoration: none; border-color: rgba(246, 154, 100, 0.4); color: #3B0A24; background: #FFF4EC;" title="View 3D Mobile Studio">
                 <span style="font-size: 11px;">🍦</span>
@@ -2926,13 +3047,20 @@
                 <span class="nx-card-chip">DCI-P3 Color</span>
               </div>
 
-              <!-- Oat & Mill Horizontal Stat Ribbon -->
-              <div class="nx-card-stat-ribbon">
-                <span class="nx-stat-item"><span class="nx-stat-stars">★★★★★</span> 5.0</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>42</strong> Projects</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>$140k+</strong> Earned</span>
+              <!-- 3-Column Tabular Telemetry Matrix -->
+              <div class="nx-card-tabular-grid">
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val"><span class="nx-stat-star">★</span> 5.0</div>
+                  <div class="nx-tabular-label">Rating</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">$140k+</div>
+                  <div class="nx-tabular-label">Earned</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">$650/d</div>
+                  <div class="nx-tabular-label">Day Rate</div>
+                </div>
               </div>
 
               <!-- Action Stack -->
@@ -2995,13 +3123,20 @@
                 <span class="nx-card-chip">FAA Part 107</span>
               </div>
 
-              <!-- Oat & Mill Horizontal Stat Ribbon -->
-              <div class="nx-card-stat-ribbon">
-                <span class="nx-stat-item"><span class="nx-stat-stars">★★★★★</span> 4.9</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>68</strong> Projects</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>$185k+</strong> Earned</span>
+              <!-- 3-Column Tabular Telemetry Matrix -->
+              <div class="nx-card-tabular-grid">
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val"><span class="nx-stat-star">★</span> 4.9</div>
+                  <div class="nx-tabular-label">Rating</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">$185k+</div>
+                  <div class="nx-tabular-label">Earned</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">$550/d</div>
+                  <div class="nx-tabular-label">Day Rate</div>
+                </div>
               </div>
 
               <!-- Action Stack -->
@@ -3064,13 +3199,20 @@
                 <span class="nx-card-chip">100% IP Buyout</span>
               </div>
 
-              <!-- Oat & Mill Horizontal Stat Ribbon -->
-              <div class="nx-card-stat-ribbon">
-                <span class="nx-stat-item"><span class="nx-stat-stars">★★★★★</span> 4.8</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>35</strong> Projects</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>$92k+</strong> Earned</span>
+              <!-- 3-Column Tabular Telemetry Matrix -->
+              <div class="nx-card-tabular-grid">
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val"><span class="nx-stat-star">★</span> 4.8</div>
+                  <div class="nx-tabular-label">Rating</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">$92k+</div>
+                  <div class="nx-tabular-label">Earned</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">$420/d</div>
+                  <div class="nx-tabular-label">Day Rate</div>
+                </div>
               </div>
 
               <!-- Action Stack -->
@@ -3092,40 +3234,21 @@
             </div>
           </article>
 
-          <!-- Talent Card 4: David Kim (Case 1: No Content Yet / Junior AC Starting Out) -->
-          <article class="nx-talent-card nx-reveal" data-craft="film cases case-1" data-case="1" data-has-silhouette="true" data-city="chicago" data-gear="arri certified red dit prep dual-slot media 2nd unit camera op focus pulling" data-name="david kim" onclick="openInquiryModal('David Kim', '2nd Unit AC & Camera Operator')">
+          <!-- Talent Card 4: David Kim (Case 1: First Project / Junior AC Starting Out) -->
+          <article class="nx-talent-card nx-reveal" data-craft="film cases case-1" data-case="1" data-city="chicago" data-gear="arri certified red dit prep dual-slot media 2nd unit camera op focus pulling" data-name="david kim" onclick="openInquiryModal('David Kim', '2nd Unit AC & Camera Operator')">
             <div class="nx-card-media-frame">
-              <!-- Case 1: Architectural Camera Contour Silhouette -->
-              <div class="nx-media-layer nx-media-silhouette">
-                <svg class="nx-silhouette-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Technical cinema camera contour">
-                  <defs>
-                    <radialGradient id="camGlow" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stop-color="#F69A64" stop-opacity="0.35"/>
-                      <stop offset="100%" stop-color="#F69A64" stop-opacity="0"/>
-                    </radialGradient>
-                  </defs>
-                  <circle cx="100" cy="95" r="75" fill="url(#camGlow)"/>
-                  <path d="M30 65 L65 72 L65 118 L30 125 Z" stroke="#3B0A24" stroke-width="2.5" stroke-linejoin="round" fill="rgba(255,255,255,0.7)"/>
-                  <line x1="28" y1="62" x2="68" y2="70" stroke="#3B0A24" stroke-width="3" stroke-linecap="round"/>
-                  <rect x="65" y="78" width="30" height="34" rx="3" stroke="#3B0A24" stroke-width="2.5" fill="rgba(255,255,255,0.85)"/>
-                  <line x1="75" y1="78" x2="75" y2="112" stroke="#F69A64" stroke-width="2" stroke-linecap="round"/>
-                  <line x1="85" y1="78" x2="85" y2="112" stroke="#F69A64" stroke-width="2" stroke-linecap="round"/>
-                  <rect x="95" y="68" width="55" height="54" rx="8" stroke="#3B0A24" stroke-width="2.5" fill="#FFFFFF"/>
-                  <circle cx="122" cy="95" r="14" stroke="#3B0A24" stroke-width="2" fill="rgba(59,10,36,0.06)"/>
-                  <circle cx="122" cy="95" r="6" fill="#3B0A24"/>
-                  <path d="M105 68 L105 52 L145 52 L145 68" stroke="#3B0A24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                  <rect x="75" y="44" width="26" height="18" rx="3" stroke="#3B0A24" stroke-width="2" fill="#FAF2EC"/>
-                  <line x1="88" y1="62" x2="88" y2="68" stroke="#3B0A24" stroke-width="2"/>
-                  <rect x="150" y="76" width="16" height="38" rx="4" stroke="#3B0A24" stroke-width="2" fill="rgba(59,10,36,0.12)"/>
-                  <line x1="55" y1="126" x2="160" y2="126" stroke="#3B0A24" stroke-width="3.5" stroke-linecap="round"/>
-                  <path d="M110 126 L110 145 M95 145 L125 145 M100 145 L70 185 M120 145 L150 185 M110 145 L110 188" stroke="#3B0A24" stroke-width="2.5" stroke-linecap="round"/>
-                </svg>
+              <div class="nx-media-layer nx-media-persona">
+                <img class="nx-talent-media-img" src="assets/character_filmmaker_transparent.png" alt="David Kim 3D character" loading="lazy">
+              </div>
+              <div class="nx-media-layer nx-media-reel">
+                <img class="nx-reel-img" src="assets/cinema_posters/poster_0_director.jpg" alt="Cinema camera focus pulling still by David Kim" loading="lazy">
               </div>
               <div class="nx-card-topbar">
                 <span class="nx-card-pill nx-card-craft-tag">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                  Reel In Prep
+                  <svg width="10" height="10" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  2nd Unit Prep
                 </span>
+                <span class="nx-card-pill nx-card-sla-tag">⚡ &lt; 1h SLA</span>
                 <span class="nx-case-badge case-1">Case 1: First Project</span>
               </div>
               <div class="nx-card-rate-pill">$350<span class="nx-card-rate-unit">/day</span></div>
@@ -3153,13 +3276,20 @@
                 <span class="nx-card-chip">Dual-Slot Media</span>
               </div>
 
-              <!-- Oat & Mill Horizontal Stat Ribbon (New Talent State) -->
-              <div class="nx-card-stat-ribbon">
-                <span class="nx-stat-item"><span class="nx-stat-stars">★</span> New Talent</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>0</strong> Projects</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>&lt; 1h</strong> Response</span>
+              <!-- 3-Column Tabular Telemetry Matrix -->
+              <div class="nx-card-tabular-grid">
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val"><span class="nx-stat-star">★</span> Vetted</div>
+                  <div class="nx-tabular-label">New Talent</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">0 Gigs</div>
+                  <div class="nx-tabular-label">Portfolio</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">$350/d</div>
+                  <div class="nx-tabular-label">First-Rate</div>
+                </div>
               </div>
 
               <!-- Action Stack -->
@@ -3184,8 +3314,10 @@
           <!-- Talent Card 5: Somatic Vision Studio (Case 2: Anonymous Studio / Refuses to Show Face) -->
           <article class="nx-talent-card nx-reveal" data-craft="3d cases case-2" data-case="2" data-city="london" data-gear="unreal engine 5.4 octane render visionos native apple vision pro spatial 3d studio" data-name="somatic vision studio" onclick="openInquiryModal('Somatic Vision Studio', 'Realtime Spatial Computing Studio')">
             <div class="nx-card-media-frame">
-              <!-- Case 2: 16:9 Work-First Reel Still (Zero Face Required) -->
-              <div class="nx-media-layer nx-media-reel" style="display: block;">
+              <div class="nx-media-layer nx-media-persona">
+                <img class="nx-talent-media-img" src="assets/kai_bust.webp" alt="Somatic Vision 3D character" loading="lazy">
+              </div>
+              <div class="nx-media-layer nx-media-reel">
                 <img class="nx-reel-img" src="assets/cinema_posters/poster_4_cgi.jpg" alt="VisionOS spatial 3D keyframe by Somatic Vision Studio" loading="lazy">
               </div>
               <div class="nx-card-topbar">
@@ -3193,6 +3325,7 @@
                   <svg width="10" height="10" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                   VisionOS 3D Reel
                 </span>
+                <span class="nx-card-pill nx-card-sla-tag">⚡ &lt; 1h SLA</span>
                 <span class="nx-case-badge case-2">Case 2: Studio / No-Face</span>
               </div>
               <div class="nx-card-rate-pill">$750<span class="nx-card-rate-unit">/day</span></div>
@@ -3221,13 +3354,20 @@
                 <span class="nx-card-chip">VisionOS Native</span>
               </div>
 
-              <!-- Oat & Mill Horizontal Stat Ribbon -->
-              <div class="nx-card-stat-ribbon">
-                <span class="nx-stat-item"><span class="nx-stat-stars">★★★★★</span> 5.0</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>28</strong> Projects</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>$195k+</strong> Earned</span>
+              <!-- 3-Column Tabular Telemetry Matrix -->
+              <div class="nx-card-tabular-grid">
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val"><span class="nx-stat-star">★</span> 5.0</div>
+                  <div class="nx-tabular-label">Rating</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">$195k+</div>
+                  <div class="nx-tabular-label">Earned</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">$750/d</div>
+                  <div class="nx-tabular-label">Day Rate</div>
+                </div>
               </div>
 
               <!-- Action Stack -->
@@ -3250,40 +3390,20 @@
           </article>
 
           <!-- Talent Card 6: Nova Capture (Case 3: Zero-Effort / Auto-Synthesized Onboarding) -->
-          <article class="nx-talent-card nx-reveal" data-craft="action cases case-3" data-case="3" data-has-silhouette="true" data-city="los-angeles" data-gear="red komodo-x ronin 4d 8k pursuit vehicle tracking action camera" data-name="nova capture" onclick="openInquiryModal('Nova Capture', 'Action Camera & Pursuit Operator')">
+          <article class="nx-talent-card nx-reveal" data-craft="action cases case-3" data-case="3" data-city="los-angeles" data-gear="red komodo-x ronin 4d 8k pursuit vehicle tracking action camera" data-name="nova capture" onclick="openInquiryModal('Nova Capture', 'Action Camera & Pursuit Operator')">
             <div class="nx-card-media-frame">
-              <!-- Case 3: Auto-Synthesized Pursuit Rig Technical Contour -->
-              <div class="nx-media-layer nx-media-silhouette">
-                <svg class="nx-silhouette-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Technical pursuit vehicle contour">
-                  <defs>
-                    <radialGradient id="pursuitGlow" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stop-color="#C55221" stop-opacity="0.3"/>
-                      <stop offset="100%" stop-color="#C55221" stop-opacity="0"/>
-                    </radialGradient>
-                  </defs>
-                  <circle cx="100" cy="100" r="75" fill="url(#pursuitGlow)"/>
-                  <path d="M30 60 Q90 40 150 75" stroke="#3B0A24" stroke-width="4" stroke-linecap="round"/>
-                  <path d="M35 72 Q90 52 148 83" stroke="#B4A08C" stroke-width="2.5" stroke-linecap="round"/>
-                  <line x1="55" y1="52" x2="65" y2="65" stroke="#3B0A24" stroke-width="2"/>
-                  <line x1="85" y1="46" x2="95" y2="60" stroke="#3B0A24" stroke-width="2"/>
-                  <line x1="115" y1="52" x2="125" y2="70" stroke="#3B0A24" stroke-width="2"/>
-                  <circle cx="152" cy="105" r="28" stroke="#3B0A24" stroke-width="2.5" fill="rgba(255,255,255,0.7)"/>
-                  <rect x="138" y="94" width="28" height="22" rx="4" stroke="#3B0A24" stroke-width="2" fill="#FFFFFF"/>
-                  <circle cx="132" cy="105" r="7" stroke="#3B0A24" stroke-width="2" fill="#C55221"/>
-                  <path d="M30 60 L20 85 M15 85 L28 85" stroke="#3B0A24" stroke-width="3" stroke-linecap="round"/>
-                  <rect x="12" y="85" width="20" height="28" rx="4" fill="#3B0A24"/>
-                  <rect x="50" y="145" width="100" height="12" rx="3" stroke="#3B0A24" stroke-width="2.5" fill="#FAF5F2"/>
-                  <line x1="40" y1="157" x2="160" y2="157" stroke="#3B0A24" stroke-width="3" stroke-linecap="round"/>
-                  <line x1="75" y1="145" x2="85" y2="95" stroke="#3B0A24" stroke-width="3"/>
-                  <line x1="125" y1="145" x2="115" y2="95" stroke="#3B0A24" stroke-width="3"/>
-                  <circle cx="100" cy="90" r="12" stroke="#3B0A24" stroke-width="2.5" fill="#FFFFFF"/>
-                </svg>
+              <div class="nx-media-layer nx-media-persona">
+                <img class="nx-talent-media-img" src="assets/samuel_bust.webp" alt="Nova Capture 3D character" loading="lazy">
+              </div>
+              <div class="nx-media-layer nx-media-reel">
+                <img class="nx-reel-img" src="assets/cinema_posters/poster_3_action.jpg" alt="High speed chase sequence still by Nova Capture" loading="lazy">
               </div>
               <div class="nx-card-topbar">
                 <span class="nx-card-pill nx-card-craft-tag">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
-                  Auto-Synthesized
+                  <svg width="10" height="10" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  Pursuit Arm Rig
                 </span>
+                <span class="nx-card-pill nx-card-sla-tag">⚡ Ready</span>
                 <span class="nx-case-badge case-3">Case 3: Zero-Effort</span>
               </div>
               <div class="nx-card-rate-pill">$600<span class="nx-card-rate-unit">/day</span></div>
@@ -3312,13 +3432,20 @@
                 <span class="nx-card-chip">Pursuit Arm</span>
               </div>
 
-              <!-- Oat & Mill Horizontal Stat Ribbon -->
-              <div class="nx-card-stat-ribbon">
-                <span class="nx-stat-item"><span class="nx-stat-stars">★</span> Verified Operator</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item">Direct Terms</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item">Ready to Shoot</span>
+              <!-- 3-Column Tabular Telemetry Matrix -->
+              <div class="nx-card-tabular-grid">
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val"><span class="nx-stat-star">★</span> 4.9</div>
+                  <div class="nx-tabular-label">Rating</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">19 Gigs</div>
+                  <div class="nx-tabular-label">Delivered</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">$600/d</div>
+                  <div class="nx-tabular-label">Day Rate</div>
+                </div>
               </div>
 
               <!-- Action Stack -->
@@ -3344,6 +3471,153 @@
             <p>No vetted directors match your current search criteria.</p>
             <button type="button" id="nxResetSearch" class="nx-filter-btn">Reset All Filters</button>
           </div>
+        </div>
+
+        <!-- ── EXECUTIVE TABULAR COMPARISON MATRIX (PROCUREMENT VIEW) ── -->
+        <div class="nx-directory-table-wrap" id="directoryTableWrap">
+          <table class="nx-directory-table" aria-label="Executive Creator Comparison Matrix">
+            <thead>
+              <tr>
+                <th scope="col">Creator / Studio</th>
+                <th scope="col">Discipline</th>
+                <th scope="col">Certified Equipment &amp; Kit</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Delivered</th>
+                <th scope="col">Career Earned</th>
+                <th scope="col">Day Rate</th>
+                <th scope="col">Response SLA</th>
+                <th scope="col" style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="nx-table-creator-cell">
+                    <img src="assets/marcus_bust.webp" alt="Marcus Vance" class="nx-table-avatar">
+                    <div>
+                      <div class="nx-table-name">Marcus Vance <span class="nx-verified-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
+                      <div class="nx-table-sub">Austin, TX · Commercial &amp; Narrative</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="nx-card-chip">Commercial Film</span></td>
+                <td><span style="font-size:12px; color:#5A4350;">Cooke 2x Anamorphic, RED V-Raptor 8K</span></td>
+                <td><strong style="color:#220514; font-variant-numeric:tabular-nums;"><span style="color:#F59E0B;">★</span> 5.0</strong> <span style="font-size:11px; color:#735965;">(42)</span></td>
+                <td><strong style="font-variant-numeric:tabular-nums;">42 Projects</strong></td>
+                <td><strong style="font-variant-numeric:tabular-nums; color:#220514;">$140k+</strong></td>
+                <td><span class="nx-table-rate">$650<span style="font-size:11px; font-weight:600; color:#735965;">/day</span></span></td>
+                <td><span class="nx-card-pill" style="font-size:11px;">⚡ &lt; 1h</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="nx-table-action-btn" onclick="openInquiryModal('Marcus Vance', 'Commercial & Narrative Director')">Inquire →</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="nx-table-creator-cell">
+                    <img src="assets/maya_bust.webp" alt="Maya Lin" class="nx-table-avatar">
+                    <div>
+                      <div class="nx-table-name">Maya Lin <span class="nx-verified-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
+                      <div class="nx-table-sub">Los Angeles, CA · Aerial FPV Captain</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="nx-card-chip">Aerial Cinema</span></td>
+                <td><span style="font-size:12px; color:#5A4350;">DJI Inspire 3 8K, Heavy-Lift FPV, FAA 107</span></td>
+                <td><strong style="color:#220514; font-variant-numeric:tabular-nums;"><span style="color:#F59E0B;">★</span> 4.9</strong> <span style="font-size:11px; color:#735965;">(68)</span></td>
+                <td><strong style="font-variant-numeric:tabular-nums;">68 Projects</strong></td>
+                <td><strong style="font-variant-numeric:tabular-nums; color:#220514;">$185k+</strong></td>
+                <td><span class="nx-table-rate">$550<span style="font-size:11px; font-weight:600; color:#735965;">/day</span></span></td>
+                <td><span class="nx-card-pill" style="font-size:11px;">⚡ &lt; 2h</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="nx-table-action-btn" onclick="openInquiryModal('Maya Lin', 'Aerial & FPV Flight Captain')">Inquire →</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="nx-table-creator-cell">
+                    <img src="assets/elena_bust.webp" alt="Elena Rostova" class="nx-table-avatar">
+                    <div>
+                      <div class="nx-table-name">Elena Rostova <span class="nx-verified-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
+                      <div class="nx-table-sub">New York, NY · Character &amp; World Art</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="nx-card-chip">Illustration</span></td>
+                <td><span style="font-size:12px; color:#5A4350;">Layered Master PSDs, DCI-P3 Gamut</span></td>
+                <td><strong style="color:#220514; font-variant-numeric:tabular-nums;"><span style="color:#F59E0B;">★</span> 4.8</strong> <span style="font-size:11px; color:#735965;">(35)</span></td>
+                <td><strong style="font-variant-numeric:tabular-nums;">35 Projects</strong></td>
+                <td><strong style="font-variant-numeric:tabular-nums; color:#220514;">$92k+</strong></td>
+                <td><span class="nx-table-rate">$420<span style="font-size:11px; font-weight:600; color:#735965;">/day</span></span></td>
+                <td><span class="nx-card-pill" style="font-size:11px;">⚡ &lt; 3h</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="nx-table-action-btn" onclick="openInquiryModal('Elena Rostova', 'Character & World Artist')">Inquire →</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="nx-table-creator-cell">
+                    <img src="assets/character_filmmaker_transparent.png" alt="David Kim" class="nx-table-avatar" style="object-position: center top;">
+                    <div>
+                      <div class="nx-table-name">David Kim <span class="nx-verified-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
+                      <div class="nx-table-sub">Chicago, IL · 2nd Unit AC &amp; Camera Op</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="nx-card-chip">2nd Unit Film</span></td>
+                <td><span style="font-size:12px; color:#5A4350;">ARRI Mini LF Certified, RED DIT Prep</span></td>
+                <td><strong style="color:#220514; font-variant-numeric:tabular-nums;"><span style="color:#F59E0B;">★</span> Vetted</strong> <span style="font-size:11px; color:#735965;">(New)</span></td>
+                <td><strong style="font-variant-numeric:tabular-nums; color:#735965;">0 Projects</strong></td>
+                <td><strong style="font-variant-numeric:tabular-nums; color:#735965;">First-Gig</strong></td>
+                <td><span class="nx-table-rate">$350<span style="font-size:11px; font-weight:600; color:#735965;">/day</span></span></td>
+                <td><span class="nx-card-pill" style="font-size:11px;">⚡ &lt; 1h</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="nx-table-action-btn" onclick="openInquiryModal('David Kim', '2nd Unit AC & Camera Operator')">Inquire →</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="nx-table-creator-cell">
+                    <img src="assets/kai_bust.webp" alt="Somatic Vision" class="nx-table-avatar">
+                    <div>
+                      <div class="nx-table-name">Somatic Vision <span class="nx-verified-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
+                      <div class="nx-table-sub">London, UK · Spatial Computing Studio</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="nx-card-chip">Spatial &amp; 3D</span></td>
+                <td><span style="font-size:12px; color:#5A4350;">Unreal 5.4, Octane, VisionOS Native</span></td>
+                <td><strong style="color:#220514; font-variant-numeric:tabular-nums;"><span style="color:#F59E0B;">★</span> 5.0</strong> <span style="font-size:11px; color:#735965;">(28)</span></td>
+                <td><strong style="font-variant-numeric:tabular-nums;">28 Projects</strong></td>
+                <td><strong style="font-variant-numeric:tabular-nums; color:#220514;">$195k+</strong></td>
+                <td><span class="nx-table-rate">$750<span style="font-size:11px; font-weight:600; color:#735965;">/day</span></span></td>
+                <td><span class="nx-card-pill" style="font-size:11px;">⚡ &lt; 1h</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="nx-table-action-btn" onclick="openInquiryModal('Somatic Vision Studio', 'Realtime Spatial Computing Studio')">Inquire →</button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="nx-table-creator-cell">
+                    <img src="assets/samuel_bust.webp" alt="Nova Capture" class="nx-table-avatar">
+                    <div>
+                      <div class="nx-table-name">Nova Capture <span class="nx-verified-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></div>
+                      <div class="nx-table-sub">Los Angeles, CA · Action &amp; Pursuit Arm</div>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="nx-card-chip">Action Tracking</span></td>
+                <td><span style="font-size:12px; color:#5A4350;">RED Komodo-X, Ronin 4D 8K, Pursuit Rig</span></td>
+                <td><strong style="color:#220514; font-variant-numeric:tabular-nums;"><span style="color:#F59E0B;">★</span> 4.9</strong> <span style="font-size:11px; color:#735965;">(19)</span></td>
+                <td><strong style="font-variant-numeric:tabular-nums;">19 Projects</strong></td>
+                <td><strong style="font-variant-numeric:tabular-nums; color:#220514;">$114k+</strong></td>
+                <td><span class="nx-table-rate">$600<span style="font-size:11px; font-weight:600; color:#735965;">/day</span></span></td>
+                <td><span class="nx-card-pill" style="font-size:11px;">⚡ Ready</span></td>
+                <td style="text-align: right;">
+                  <button type="button" class="nx-table-action-btn" onclick="openInquiryModal('Nova Capture', 'Action Camera & Pursuit Operator')">Inquire →</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -4617,27 +4891,34 @@
         });
       }
 
-      // Roster View Toggle (3D Personas vs Client Reels)
+      // Roster View Toggle (3D Personas vs Client Reels vs Cases vs Executive Tabular View)
       const viewToggleBtns = document.querySelectorAll('.nx-view-btn');
       const talentGrid = document.querySelector('.nx-talent-grid');
+      const rosterSec = document.getElementById('roster');
       if (viewToggleBtns.length && talentGrid) {
         viewToggleBtns.forEach(btn => {
           btn.addEventListener('click', () => {
+            if (btn.tagName === 'A') return;
             viewToggleBtns.forEach(b => {
               b.classList.remove('is-active');
               b.setAttribute('aria-pressed', 'false');
             });
             btn.classList.add('is-active');
             btn.setAttribute('aria-pressed', 'true');
-            if (btn.dataset.view === 'reels') {
-              talentGrid.classList.add('is-reels');
-              talentGrid.classList.remove('is-cases');
-            } else if (btn.dataset.view === 'cases') {
-              talentGrid.classList.add('is-cases');
-              talentGrid.classList.remove('is-reels');
+            if (btn.dataset.view === 'table') {
+              if (rosterSec) rosterSec.classList.add('is-table-mode');
             } else {
-              talentGrid.classList.remove('is-reels');
-              talentGrid.classList.remove('is-cases');
+              if (rosterSec) rosterSec.classList.remove('is-table-mode');
+              if (btn.dataset.view === 'reels') {
+                talentGrid.classList.add('is-reels');
+                talentGrid.classList.remove('is-cases');
+              } else if (btn.dataset.view === 'cases') {
+                talentGrid.classList.add('is-cases');
+                talentGrid.classList.remove('is-reels');
+              } else {
+                talentGrid.classList.remove('is-reels');
+                talentGrid.classList.remove('is-cases');
+              }
             }
           });
         });
@@ -5035,12 +5316,19 @@
                 <span class="nx-card-chip">Direct Terms</span>
                 <span class="nx-card-chip">First-Job Rate</span>
               </div>
-              <div class="nx-card-stat-ribbon">
-                <span class="nx-stat-item"><span class="nx-stat-stars">★</span> New Talent</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>0</strong> Projects</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>&lt; 1h</strong> Response</span>
+              <div class="nx-card-tabular-grid">
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val"><span class="nx-stat-star">★</span> Vetted</div>
+                  <div class="nx-tabular-label">New Talent</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">0 Gigs</div>
+                  <div class="nx-tabular-label">Portfolio</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">$${cleanRate}/d</div>
+                  <div class="nx-tabular-label">Day Rate</div>
+                </div>
               </div>
               <div class="nx-card-actions">
                 <button type="button" class="nx-card-hire-btn" onclick="event.stopPropagation(); openInquiryModal('${name}', '${craft.toUpperCase()}')"><span>Inquire with ${name}</span></button>
@@ -5074,12 +5362,19 @@
                 <span class="nx-card-chip">Verified Entity</span>
                 <span class="nx-card-chip">100% IP Buyout</span>
               </div>
-              <div class="nx-card-stat-ribbon">
-                <span class="nx-stat-item"><span class="nx-stat-stars">★★★★★</span> 5.0</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>14</strong> Projects</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>$85k+</strong> Earned</span>
+              <div class="nx-card-tabular-grid">
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val"><span class="nx-stat-star">★</span> 5.0</div>
+                  <div class="nx-tabular-label">Rating</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">14 Gigs</div>
+                  <div class="nx-tabular-label">Delivered</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">$${cleanRate}/d</div>
+                  <div class="nx-tabular-label">Day Rate</div>
+                </div>
               </div>
               <div class="nx-card-actions">
                 <button type="button" class="nx-card-hire-btn" onclick="event.stopPropagation(); openInquiryModal('${name}', 'Production Studio')"><span>Inquire with ${name}</span></button>
@@ -5112,12 +5407,19 @@
                 <span class="nx-card-chip">Direct Terms</span>
                 <span class="nx-card-chip">Verified SLA</span>
               </div>
-              <div class="nx-card-stat-ribbon">
-                <span class="nx-stat-item"><span class="nx-stat-stars">★</span> Ready to Shoot</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>Direct</strong> Terms</span>
-                <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>&lt; 2h</strong> SLA</span>
+              <div class="nx-card-tabular-grid">
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val"><span class="nx-stat-star">★</span> Ready</div>
+                  <div class="nx-tabular-label">Status</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">&lt; 2h</div>
+                  <div class="nx-tabular-label">SLA</div>
+                </div>
+                <div class="nx-tabular-cell">
+                  <div class="nx-tabular-val">$${cleanRate}/d</div>
+                  <div class="nx-tabular-label">Day Rate</div>
+                </div>
               </div>
               <div class="nx-card-actions">
                 <button type="button" class="nx-card-hire-btn" onclick="event.stopPropagation(); openInquiryModal('${name}', 'Independent Specialist')"><span>Inquire with ${name}</span></button>
