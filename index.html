@@ -1840,22 +1840,42 @@
       transform: scale(1.05);
     }
 
-    /* Editorial Vector Art Layer (Default Active) */
+    /* 3D Persona layer (Default Active) */
     .nx-media-persona {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
       height: 100%;
-      background: #0B0F19;
+      background: radial-gradient(circle at 50% 32%, #1F273D 0%, #090C14 85%);
     }
-    .nx-editorial-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    .nx-talent-card[data-craft="film"] .nx-media-persona {
+      background: radial-gradient(circle at 50% 30%, #382819 0%, #1D150E 50%, #090C14 85%);
     }
-    .nx-talent-card:hover .nx-editorial-img {
-      transform: scale(1.04);
+    .nx-talent-card[data-craft="drone"] .nx-media-persona {
+      background: radial-gradient(circle at 50% 30%, #162E48 0%, #0C1E32 50%, #090C14 85%);
+    }
+    .nx-talent-card[data-craft="art"] .nx-media-persona {
+      background: radial-gradient(circle at 50% 30%, #361E4C 0%, #201130 50%, #090C14 85%);
+    }
+    .nx-talent-card[data-craft="3d"] .nx-media-persona {
+      background: radial-gradient(circle at 50% 30%, #17382A 0%, #0D221A 50%, #090C14 85%);
+    }
+    .nx-talent-card[data-craft="action"] .nx-media-persona {
+      background: radial-gradient(circle at 50% 30%, #3D1C24 0%, #241117 50%, #090C14 85%);
+    }
+    .nx-talent-media-img {
+      height: 74%;
+      width: auto;
+      max-width: 88%;
+      object-fit: contain;
+      object-position: center bottom;
+      filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.55));
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      margin-bottom: 96px;
+    }
+    .nx-talent-card:hover .nx-talent-media-img {
+      transform: scale(1.05) translateY(-4px);
     }
 
     /* Mode switching */
@@ -2560,15 +2580,15 @@
               <button type="button" id="nxOmniClear" class="nx-roster-search-clear is-hidden" aria-label="Clear search">✕</button>
             </div>
 
-            <!-- View Toggle (Editorial Portfolios vs Cinema Stills) -->
+            <!-- View Toggle (3D Personas vs Client Reels) -->
             <div class="nx-view-toggle" role="group" aria-label="Toggle creator media format">
-              <button type="button" class="nx-view-btn is-active" data-view="editorial" id="btnViewEditorial" aria-pressed="true">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
-                <span>Editorial Portfolios</span>
+              <button type="button" class="nx-view-btn is-active" data-view="personas" id="btnViewPersonas" aria-pressed="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span>3D Personas</span>
               </button>
               <button type="button" class="nx-view-btn" data-view="reels" id="btnViewReels" aria-pressed="false">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                <span>Cinema Stills</span>
+                <span>Client Reels</span>
               </button>
             </div>
           </div>
@@ -2579,7 +2599,7 @@
           <article class="nx-talent-card nx-reveal" data-craft="film" data-city="austin" data-gear="cooke 2x anamorphic red v-raptor 8k color grading commercial narrative director" data-name="marcus vance" onclick="openInquiryModal('Marcus Vance', 'Commercial & Narrative Director')">
             <div class="nx-talent-media">
               <div class="nx-media-layer nx-media-persona">
-                <img class="nx-editorial-img" src="assets/editorial_vectors/marcus_vance.svg" alt="Marcus Vance editorial vector portrait" loading="lazy">
+                <img class="nx-talent-media-img" src="assets/marcus_bust.webp" alt="Marcus Vance 3D character" loading="lazy">
               </div>
               <div class="nx-media-layer nx-media-reel">
                 <img class="nx-reel-img" src="assets/cinema_posters/poster_0_director.jpg" alt="Commercial cinema still by Marcus Vance" loading="lazy">
@@ -2639,7 +2659,7 @@
           <article class="nx-talent-card nx-reveal" data-craft="drone" data-city="los-angeles" data-gear="inspire 3 8k fpv chase heavy cinemadng faa part 107 aerial flight captain" data-name="maya lin" onclick="openInquiryModal('Maya Lin', 'Aerial & FPV Flight Captain')">
             <div class="nx-talent-media">
               <div class="nx-media-layer nx-media-persona">
-                <img class="nx-editorial-img" src="assets/editorial_vectors/maya_lin.svg" alt="Maya Lin editorial vector portrait" loading="lazy">
+                <img class="nx-talent-media-img" src="assets/maya_bust.webp" alt="Maya Lin 3D character" loading="lazy">
               </div>
               <div class="nx-media-layer nx-media-reel">
                 <img class="nx-reel-img" src="assets/cinema_posters/poster_1_drone.jpg" alt="Aerial cinematic still by Maya Lin" loading="lazy">
@@ -2699,7 +2719,7 @@
           <article class="nx-talent-card nx-reveal" data-craft="art" data-city="new-york" data-gear="layered masters dci-p3 gamut 100% ip buyout character world artist illustration" data-name="elena rostova" onclick="openInquiryModal('Elena Rostova', 'Character & World Artist')">
             <div class="nx-talent-media">
               <div class="nx-media-layer nx-media-persona">
-                <img class="nx-editorial-img" src="assets/editorial_vectors/elena_rostova.svg" alt="Elena Rostova editorial vector portrait" loading="lazy">
+                <img class="nx-talent-media-img" src="assets/elena_bust.webp" alt="Elena Rostova 3D character" loading="lazy">
               </div>
               <div class="nx-media-layer nx-media-reel">
                 <img class="nx-reel-img" src="assets/cinema_posters/poster_2_design.jpg" alt="Visual world art by Elena Rostova" loading="lazy">
@@ -2759,7 +2779,7 @@
           <article class="nx-talent-card nx-reveal" data-craft="3d" data-city="seattle" data-gear="unreal engine 5.4 apple vision pro openxr realtime 3d spatial director" data-name="kai takahashi" onclick="openInquiryModal('Kai Takahashi', 'Realtime 3D & Spatial Director')">
             <div class="nx-talent-media">
               <div class="nx-media-layer nx-media-persona">
-                <img class="nx-editorial-img" src="assets/editorial_vectors/kai_takahashi.svg" alt="Kai Takahashi editorial vector portrait" loading="lazy">
+                <img class="nx-talent-media-img" src="assets/kai_bust.webp" alt="Kai Takahashi 3D character" loading="lazy">
               </div>
               <div class="nx-media-layer nx-media-reel">
                 <img class="nx-reel-img" src="assets/cinema_posters/poster_4_cgi.jpg" alt="Spatial 3D render by Kai Takahashi" loading="lazy">
@@ -2819,7 +2839,7 @@
           <article class="nx-talent-card nx-reveal" data-craft="action" data-city="los-angeles" data-gear="arri alexa mini lf pursuit tracking vehicle porsche action motion director" data-name="samuel cross" onclick="openInquiryModal('Samuel Cross', 'Action & Motion Director')">
             <div class="nx-talent-media">
               <div class="nx-media-layer nx-media-persona">
-                <img class="nx-editorial-img" src="assets/editorial_vectors/samuel_cross.svg" alt="Samuel Cross editorial vector portrait" loading="lazy">
+                <img class="nx-talent-media-img" src="assets/samuel_bust.webp" alt="Samuel Cross 3D character" loading="lazy">
               </div>
               <div class="nx-media-layer nx-media-reel">
                 <img class="nx-reel-img" src="assets/cinema_posters/poster_3_action.jpg" alt="Action chase cinema still by Samuel Cross" loading="lazy">
@@ -4149,7 +4169,7 @@
         });
       }
 
-      // Roster View Toggle (Editorial Portfolios vs Cinema Stills)
+      // Roster View Toggle (3D Personas vs Client Reels)
       const viewToggleBtns = document.querySelectorAll('.nx-view-btn');
       const talentGrid = document.querySelector('.nx-talent-grid');
       if (viewToggleBtns.length && talentGrid) {
@@ -4170,7 +4190,7 @@
         });
       }
 
-      filterBtns.forEach(btn => {
+            filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           activeCraftFilter = btn.dataset.filter;
           filterBtns.forEach(b => {
