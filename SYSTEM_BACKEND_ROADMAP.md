@@ -8,7 +8,10 @@
 ## 1. Executive Product Vision & Architecture
 
 * **Product**: Nexus (`nexus.build`)
-* **Business Model**: **Zero-Escrow Direct Creator Marketplace**. Flat \$49/month creator membership. 0% platform take-rate on client billings.
+* **Business Model**: **Hybrid Enterprise Marketplace Economics (Contra & The Knot Reverse-Engineered)**:
+  * **Tier 1 (Creator SaaS Pro)**: \$39–\$49/month Creator Pro subscription for custom portfolios, zero-commission invoices, and priority directory ranking.
+  * **Tier 2 (Client Protection & Escrow)**: 3.5%–5% milestone payment protection fee paid by hiring clients (guarantees funds on milestone lock, eliminating non-payment risk and managing 1099 tax paperwork).
+  * **Tier 3 (Enterprise Concierge)**: 15%–20% fee for fully managed brand crew assembly, Net-30 invoicing, master service agreements, and \$5M production liability insurance.
 * **Target Audience**:
   * **Demand (Buyers)**: Enterprise Creative Directors, Heads of Production, Brand Leads (Nike, Apple, Porsche, Netflix, Spotify, A24, Wieden+Kennedy).
   * **Supply (Creators)**: Hand-vetted commercial directors, aerial FPV pilots, world illustrators, spatial 3D directors, action motion operators.
@@ -94,6 +97,36 @@ Implemented in [`artisan_experience.html`](artisan_experience.html) with 4 bespo
    - Live quantity increment/decrement recalculating subtotals in real-time.
    - Toast notifications on item addition.
    - Triple-phone studio display mode vs single-device interactive simulator toggle.
+
+### C. The 3 Production Edge-Cases Architecture (Real-World Creator Personas)
+In real production marketplaces, not every creator has an existing 4K reel, an animated 3D persona, or wants to display their personal face. The frontend and backend architecturally solve the 3 critical edge cases:
+
+1. **Case 1: No Content Yet / Junior Talent / First Gig (`David Kim`)**:
+   - **The Problem**: A freshly certified 2nd Unit AC or film school graduate has real gear knowledge and technical competence, but zero polished commercial reels or 3D mascots.
+   - **Frontend UI Pattern**:
+     - **Architectural Craft Tool Silhouette**: Clean vector contour of professional equipment (e.g. cinema camera with Matte Box on heavy-duty tripod) rendered in deep wine (`#3B0A24`) with subtle rhythmic glow (`@keyframes silhouettePulse`).
+     - **First-Job Rate Anchoring**: Transparent introductory day rate (`$350/day`) signaling accessible entry pricing.
+     - **Telemetry Badges**: `⭐ New Talent · 0 Projects · < 1h Response`.
+     - **Verified Credential Chips**: `ARRI Certified`, `RED DIT Prep`, `Dual-Slot Media` to prove technical competence despite zero on-platform history.
+   - **Backend Schema & Logic**: `creators.profile_state = 'first_gig'`, `creators.is_new_talent = true`. Ranking boost for vetted new talent in search filters.
+
+2. **Case 2: No Face / Anonymous Studio / Privacy (`Somatic Vision Studio`)**:
+   - **The Problem**: High-end CGI, VFX, and Spatial Computing collectives operate as anonymous creative shops or technical operators who refuse to put a personal cartoon or selfie on their business listing.
+   - **Frontend UI Pattern**:
+     - **Work-First Media Stage**: Full-bleed 16:9 reel still showcasing output (e.g. liquid metallic VisionOS chrome stage) rather than human biology.
+     - **Studio Monogram Badge**: Sculptural dual-letter monogram badge (`[ SV ]`) in deep obsidian plum and gold hairline stroke (`.nx-card-monogram`).
+     - **KYC Identity Verification**: Blue verified checkmark confirming legal company incorporation and banking KYC.
+     - **Day Rate & Telemetry**: `$750/day · 28 Projects · $195k+ Earned`.
+   - **Backend Schema & Logic**: `creators.display_mode = 'studio_anonymous'`, `creators.studio_monogram = 'SV'`, `creators.company_number = 'UK-0847291'`.
+
+3. **Case 3: Zero Effort / 30-Second Lazy Onboard (`Nova Capture`)**:
+   - **The Problem**: Top pursuit operators and camera riggers are busy on set; they will not spend 45 minutes filling out forms, cropping headshots, or rendering mascots.
+   - **Frontend UI Pattern**:
+     - **Auto-Synthesized Palette & Contour**: Auto-generated tactile pursuit crane arm contour silhouette based on selected category (`Action & Motion`).
+     - **Instant Initials Monogram**: `[ NC ]` extracted automatically from name string.
+     - **Minimalist Telemetry**: `⭐ Verified Operator · Direct Terms · Ready to Shoot`.
+     - **Day Rate**: `$600/day`.
+   - **Backend Schema & Logic**: 3-field instant onboarding (`full_name`, `discipline`, `day_rate`). Automated worker infers tags (`RED Komodo-X`, `Ronin 4D 8K`, `Pursuit Arm`) from discipline defaults until custom equipment is registered.
 
 ---
 

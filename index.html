@@ -1919,6 +1919,92 @@
     .nx-talent-grid.is-reels .nx-media-persona {
       display: none;
     }
+    .nx-talent-grid.is-cases .nx-case-badge {
+      display: inline-flex !important;
+    }
+
+    /* Production Case Indicators */
+    .nx-case-badge {
+      display: none;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      background: #3B0A24;
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(59, 10, 36, 0.2);
+    }
+    .nx-case-badge.case-1 {
+      background: #C55221;
+    }
+    .nx-case-badge.case-2 {
+      background: #3B0A24;
+    }
+    .nx-case-badge.case-3 {
+      background: #0284C7;
+    }
+
+    /* Case 1 & Case 3: Architectural Craft Tool Silhouette */
+    .nx-media-silhouette {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .nx-talent-card[data-has-silhouette="true"] .nx-media-silhouette {
+      display: flex;
+    }
+    .nx-talent-card[data-has-silhouette="true"] .nx-media-persona {
+      display: none !important;
+    }
+    .nx-talent-grid.is-reels .nx-talent-card[data-has-silhouette="true"] .nx-media-reel {
+      display: none;
+    }
+    .nx-talent-grid.is-reels .nx-talent-card[data-has-silhouette="true"] .nx-media-silhouette {
+      display: flex;
+    }
+
+    .nx-silhouette-svg {
+      width: 78%;
+      height: 78%;
+      max-height: 220px;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 28px rgba(59, 10, 36, 0.15));
+      animation: silhouettePulse 4.5s ease-in-out infinite;
+    }
+    @keyframes silhouettePulse {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 0.94; }
+      50% { transform: translateY(-5px) scale(1.02); opacity: 1; }
+    }
+
+    /* Studio Monogram Badge (Case 2 & Case 3) */
+    .nx-card-monogram {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: #3B0A24;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-weight: 850;
+      font-size: 13.5px;
+      letter-spacing: -0.02em;
+      box-shadow: 0 4px 12px rgba(59, 10, 36, 0.22);
+      flex-shrink: 0;
+    }
+    .nx-card-monogram.is-gold {
+      background: linear-gradient(135deg, #3B0A24 0%, #6E1244 100%);
+      color: #FFDEB3;
+      border: 1px solid rgba(255, 222, 179, 0.3);
+    }
 
     /* Floating Badges inside top media frame */
     .nx-card-topbar {
@@ -2659,7 +2745,7 @@
         <div class="nx-roster-controls nx-reveal">
           <div class="nx-filter-bar" role="tablist" aria-label="Filter creators by discipline">
             <button type="button" class="nx-filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
-              All Featured <span class="nx-filter-count">5</span>
+              All Featured <span class="nx-filter-count">6</span>
             </button>
             <button type="button" class="nx-filter-btn" data-filter="film" role="tab" aria-selected="false">
               Cinema
@@ -2676,6 +2762,9 @@
             <button type="button" class="nx-filter-btn" data-filter="action" role="tab" aria-selected="false">
               Action &amp; Motion
             </button>
+            <button type="button" class="nx-filter-btn" data-filter="cases" role="tab" aria-selected="false" style="border-color: rgba(59, 10, 36, 0.2); font-weight: 750;">
+              ⚡ Scenarios (1, 2, 3)
+            </button>
           </div>
 
           <div class="nx-roster-actions">
@@ -2685,19 +2774,23 @@
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
               </svg>
-              <input type="text" id="nxOmniInput" class="nx-roster-search-input" placeholder="Search talent or gear..." aria-label="Filter talent by keyword or gear" />
+              <input type="text" id="nxOmniInput" class="nx-roster-search-input" placeholder="Search talent, gear, or case..." aria-label="Filter talent by keyword or gear" />
               <button type="button" id="nxOmniClear" class="nx-roster-search-clear is-hidden" aria-label="Clear search">✕</button>
             </div>
 
-            <!-- View Toggle (3D Personas vs Client Reels) -->
+            <!-- View Toggle (Production Reels vs 3D Personas vs Case Scenarios) -->
             <div class="nx-view-toggle" role="group" aria-label="Toggle creator media format">
-              <button type="button" class="nx-view-btn is-active" data-view="personas" id="btnViewPersonas" aria-pressed="true">
+              <button type="button" class="nx-view-btn is-active" data-view="reels" id="btnViewReels" aria-pressed="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span>Client Reels</span>
+              </button>
+              <button type="button" class="nx-view-btn" data-view="personas" id="btnViewPersonas" aria-pressed="false">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 <span>3D Personas</span>
               </button>
-              <button type="button" class="nx-view-btn" data-view="reels" id="btnViewReels" aria-pressed="false">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                <span>Client Reels</span>
+              <button type="button" class="nx-view-btn" data-view="cases" id="btnViewCases" aria-pressed="false" title="Highlight Production Edge Cases (1, 2, 3)">
+                <span style="font-size: 11px;">⚡</span>
+                <span>Case Scenarios</span>
               </button>
               <a href="artisan_experience.html" class="nx-view-btn" style="text-decoration: none; border-color: rgba(246, 154, 100, 0.4); color: #3B0A24; background: #FFF4EC;" title="View 3D Mobile Studio">
                 <span style="font-size: 11px;">🍦</span>
@@ -2707,7 +2800,7 @@
           </div>
         </div>
 
-        <div class="nx-talent-grid">
+        <div class="nx-talent-grid is-reels">
           <!-- Talent Card 1: Marcus Vance (Commercial Cinema) -->
           <article class="nx-talent-card nx-reveal" data-craft="film" data-city="austin" data-gear="cooke 2x anamorphic red v-raptor 8k color grading commercial narrative director" data-name="marcus vance" onclick="openInquiryModal('Marcus Vance', 'Commercial & Narrative Director')">
             <div class="nx-card-media-frame">
@@ -2915,68 +3008,88 @@
             </div>
           </article>
 
-          <!-- Talent Card 4: Kai Takahashi (Spatial 3D) -->
-          <article class="nx-talent-card nx-reveal" data-craft="3d" data-city="seattle" data-gear="unreal engine 5.4 apple vision pro openxr realtime 3d spatial director" data-name="kai takahashi" onclick="openInquiryModal('Kai Takahashi', 'Realtime 3D & Spatial Director')">
+          <!-- Talent Card 4: David Kim (Case 1: No Content Yet / Junior AC Starting Out) -->
+          <article class="nx-talent-card nx-reveal" data-craft="film cases case-1" data-case="1" data-has-silhouette="true" data-city="chicago" data-gear="arri certified red dit prep dual-slot media 2nd unit camera op focus pulling" data-name="david kim" onclick="openInquiryModal('David Kim', '2nd Unit AC & Camera Operator')">
             <div class="nx-card-media-frame">
-              <div class="nx-media-layer nx-media-persona">
-                <img class="nx-talent-media-img" src="assets/kai_bust.webp" alt="Kai Takahashi 3D character" loading="lazy">
-              </div>
-              <div class="nx-media-layer nx-media-reel">
-                <img class="nx-reel-img" src="assets/cinema_posters/poster_4_cgi.jpg" alt="Spatial 3D render by Kai Takahashi" loading="lazy">
+              <!-- Case 1: Architectural Camera Contour Silhouette -->
+              <div class="nx-media-layer nx-media-silhouette">
+                <svg class="nx-silhouette-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Technical cinema camera contour">
+                  <defs>
+                    <radialGradient id="camGlow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="#F69A64" stop-opacity="0.35"/>
+                      <stop offset="100%" stop-color="#F69A64" stop-opacity="0"/>
+                    </radialGradient>
+                  </defs>
+                  <circle cx="100" cy="95" r="75" fill="url(#camGlow)"/>
+                  <path d="M30 65 L65 72 L65 118 L30 125 Z" stroke="#3B0A24" stroke-width="2.5" stroke-linejoin="round" fill="rgba(255,255,255,0.7)"/>
+                  <line x1="28" y1="62" x2="68" y2="70" stroke="#3B0A24" stroke-width="3" stroke-linecap="round"/>
+                  <rect x="65" y="78" width="30" height="34" rx="3" stroke="#3B0A24" stroke-width="2.5" fill="rgba(255,255,255,0.85)"/>
+                  <line x1="75" y1="78" x2="75" y2="112" stroke="#F69A64" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="85" y1="78" x2="85" y2="112" stroke="#F69A64" stroke-width="2" stroke-linecap="round"/>
+                  <rect x="95" y="68" width="55" height="54" rx="8" stroke="#3B0A24" stroke-width="2.5" fill="#FFFFFF"/>
+                  <circle cx="122" cy="95" r="14" stroke="#3B0A24" stroke-width="2" fill="rgba(59,10,36,0.06)"/>
+                  <circle cx="122" cy="95" r="6" fill="#3B0A24"/>
+                  <path d="M105 68 L105 52 L145 52 L145 68" stroke="#3B0A24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="75" y="44" width="26" height="18" rx="3" stroke="#3B0A24" stroke-width="2" fill="#FAF2EC"/>
+                  <line x1="88" y1="62" x2="88" y2="68" stroke="#3B0A24" stroke-width="2"/>
+                  <rect x="150" y="76" width="16" height="38" rx="4" stroke="#3B0A24" stroke-width="2" fill="rgba(59,10,36,0.12)"/>
+                  <line x1="55" y1="126" x2="160" y2="126" stroke="#3B0A24" stroke-width="3.5" stroke-linecap="round"/>
+                  <path d="M110 126 L110 145 M95 145 L125 145 M100 145 L70 185 M120 145 L150 185 M110 145 L110 188" stroke="#3B0A24" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
               </div>
               <div class="nx-card-topbar">
                 <span class="nx-card-pill nx-card-craft-tag">
-                  <svg width="10" height="10" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                  VisionOS Stage
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  Reel In Prep
                 </span>
-                <span class="nx-card-pill nx-card-sla-tag">⚡ &lt; 1h SLA</span>
+                <span class="nx-case-badge case-1">Case 1: First Project</span>
               </div>
-              <div class="nx-card-rate-pill">$700<span class="nx-card-rate-unit">/day</span></div>
+              <div class="nx-card-rate-pill">$350<span class="nx-card-rate-unit">/day</span></div>
             </div>
             
             <div class="nx-card-body">
               <div class="nx-card-header">
                 <div class="nx-card-name-row">
                   <h3 class="nx-card-name">
-                    Kai Takahashi
-                    <span class="nx-verified-badge" title="VisionOS Verified">
+                    David Kim
+                    <span class="nx-verified-badge" title="KYC Identity Vetted & Certified Operator">
                       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     </span>
                   </h3>
                 </div>
-                <p class="nx-card-role">Realtime Spatial · Seattle, WA</p>
+                <p class="nx-card-role">2nd Unit AC &amp; Camera Op · Chicago, IL</p>
               </div>
 
-              <p class="nx-card-bio">Spatial director architecting interactive VisionOS stages, Unreal Engine 5.4 worlds, and OpenXR rigs.</p>
+              <p class="nx-card-bio">Trained on ARRI Alexa Mini LF and RED V-Raptor workflows. Ready for 2nd Unit AC focus pulling and raw digital imaging.</p>
               
               <!-- Skills / Equipment Chips -->
               <div class="nx-card-chips">
-                <span class="nx-card-chip">Unreal Engine 5.4</span>
-                <span class="nx-card-chip">Apple Vision Pro</span>
-                <span class="nx-card-chip">OpenXR Pipeline</span>
+                <span class="nx-card-chip">ARRI Certified</span>
+                <span class="nx-card-chip">RED DIT Prep</span>
+                <span class="nx-card-chip">Dual-Slot Media</span>
               </div>
 
-              <!-- Oat & Mill Horizontal Stat Ribbon -->
+              <!-- Oat & Mill Horizontal Stat Ribbon (New Talent State) -->
               <div class="nx-card-stat-ribbon">
-                <span class="nx-stat-item"><span class="nx-stat-stars">★★★★★</span> 5.0</span>
+                <span class="nx-stat-item"><span class="nx-stat-stars">★</span> New Talent</span>
                 <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>54</strong> Projects</span>
+                <span class="nx-stat-item"><strong>0</strong> Projects</span>
                 <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>$220k+</strong> Earned</span>
+                <span class="nx-stat-item"><strong>&lt; 1h</strong> Response</span>
               </div>
 
               <!-- Action Stack -->
               <div class="nx-card-actions">
-                <button type="button" class="nx-card-hire-btn" onclick="event.stopPropagation(); openInquiryModal('Kai Takahashi', 'Realtime 3D & Spatial Director')">
-                  <span>Hire Kai</span>
+                <button type="button" class="nx-card-hire-btn" onclick="event.stopPropagation(); openInquiryModal('David Kim', '2nd Unit AC & Camera Operator')">
+                  <span>Inquire with David</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </button>
                 <div class="nx-card-sub-actions">
-                  <button type="button" class="nx-card-msg-btn" onclick="event.stopPropagation(); openInquiryModal('Kai Takahashi', 'Realtime 3D & Spatial Director')">
+                  <button type="button" class="nx-card-msg-btn" onclick="event.stopPropagation(); openInquiryModal('David Kim', '2nd Unit AC & Camera Operator')">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
                     <span>Message</span>
                   </button>
-                  <button type="button" class="nx-card-save-btn" onclick="event.stopPropagation(); toggleSaveCreator(this, 'Kai Takahashi')" aria-label="Save Kai Takahashi to shortlist">
+                  <button type="button" class="nx-card-save-btn" onclick="event.stopPropagation(); toggleSaveCreator(this, 'David Kim')" aria-label="Save David Kim to shortlist">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
                   </button>
                 </div>
@@ -2984,68 +3097,158 @@
             </div>
           </article>
 
-          <!-- Talent Card 5: Samuel Cross (Action & Motion) -->
-          <article class="nx-talent-card nx-reveal" data-craft="action" data-city="los-angeles" data-gear="arri alexa mini lf pursuit tracking vehicle porsche action motion director" data-name="samuel cross" onclick="openInquiryModal('Samuel Cross', 'Action & Motion Director')">
+          <!-- Talent Card 5: Somatic Vision Studio (Case 2: Anonymous Studio / Refuses to Show Face) -->
+          <article class="nx-talent-card nx-reveal" data-craft="3d cases case-2" data-case="2" data-city="london" data-gear="unreal engine 5.4 octane render visionos native apple vision pro spatial 3d studio" data-name="somatic vision studio" onclick="openInquiryModal('Somatic Vision Studio', 'Realtime Spatial Computing Studio')">
             <div class="nx-card-media-frame">
-              <div class="nx-media-layer nx-media-persona">
-                <img class="nx-talent-media-img" src="assets/samuel_bust.webp" alt="Samuel Cross 3D character" loading="lazy">
-              </div>
-              <div class="nx-media-layer nx-media-reel">
-                <img class="nx-reel-img" src="assets/cinema_posters/poster_3_action.jpg" alt="Action chase cinema still by Samuel Cross" loading="lazy">
+              <!-- Case 2: 16:9 Work-First Reel Still (Zero Face Required) -->
+              <div class="nx-media-layer nx-media-reel" style="display: block;">
+                <img class="nx-reel-img" src="assets/cinema_posters/poster_4_cgi.jpg" alt="VisionOS spatial 3D keyframe by Somatic Vision Studio" loading="lazy">
               </div>
               <div class="nx-card-topbar">
                 <span class="nx-card-pill nx-card-craft-tag">
                   <svg width="10" height="10" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                  4K Action Reel
+                  VisionOS 3D Reel
                 </span>
-                <span class="nx-card-pill nx-card-sla-tag">⚡ &lt; 1h SLA</span>
+                <span class="nx-case-badge case-2">Case 2: Studio / No-Face</span>
               </div>
-              <div class="nx-card-rate-pill">$850<span class="nx-card-rate-unit">/day</span></div>
+              <div class="nx-card-rate-pill">$750<span class="nx-card-rate-unit">/day</span></div>
             </div>
             
             <div class="nx-card-body">
               <div class="nx-card-header">
                 <div class="nx-card-name-row">
                   <h3 class="nx-card-name">
-                    Samuel Cross
-                    <span class="nx-verified-badge" title="ARRI Alexa LF Verified">
+                    <span class="nx-card-monogram is-gold" title="Somatic Vision Monogram">SV</span>
+                    Somatic Vision
+                    <span class="nx-verified-badge" title="Studio Vetted & Registered Enterprise">
                       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     </span>
                   </h3>
                 </div>
-                <p class="nx-card-role">Action Cinema · Los Angeles, CA</p>
+                <p class="nx-card-role">Realtime Spatial Computing · London, UK</p>
               </div>
 
-              <p class="nx-card-bio">Pursuit vehicle operator tracking high-speed precision camera lines with ARRI Alexa Mini LF on Russian Arms.</p>
+              <p class="nx-card-bio">Boutique spatial computing studio architecting commercial Apple VisionOS stages and high-gloss 3D key visuals.</p>
               
               <!-- Skills / Equipment Chips -->
               <div class="nx-card-chips">
-                <span class="nx-card-chip">ARRI Alexa Mini LF</span>
-                <span class="nx-card-chip">Russian Arm Rig</span>
-                <span class="nx-card-chip">Pursuit Vehicle</span>
+                <span class="nx-card-chip">Unreal Engine 5.4</span>
+                <span class="nx-card-chip">Octane Render</span>
+                <span class="nx-card-chip">VisionOS Native</span>
               </div>
 
               <!-- Oat & Mill Horizontal Stat Ribbon -->
               <div class="nx-card-stat-ribbon">
-                <span class="nx-stat-item"><span class="nx-stat-stars">★★★★★</span> 4.9</span>
+                <span class="nx-stat-item"><span class="nx-stat-stars">★★★★★</span> 5.0</span>
                 <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>81</strong> Projects</span>
+                <span class="nx-stat-item"><strong>28</strong> Projects</span>
                 <span class="nx-stat-dot">•</span>
-                <span class="nx-stat-item"><strong>$310k+</strong> Earned</span>
+                <span class="nx-stat-item"><strong>$195k+</strong> Earned</span>
               </div>
 
               <!-- Action Stack -->
               <div class="nx-card-actions">
-                <button type="button" class="nx-card-hire-btn" onclick="event.stopPropagation(); openInquiryModal('Samuel Cross', 'Action & Motion Director')">
-                  <span>Hire Samuel</span>
+                <button type="button" class="nx-card-hire-btn" onclick="event.stopPropagation(); openInquiryModal('Somatic Vision Studio', 'Realtime Spatial Computing Studio')">
+                  <span>Inquire with Somatic</span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </button>
                 <div class="nx-card-sub-actions">
-                  <button type="button" class="nx-card-msg-btn" onclick="event.stopPropagation(); openInquiryModal('Samuel Cross', 'Action & Motion Director')">
+                  <button type="button" class="nx-card-msg-btn" onclick="event.stopPropagation(); openInquiryModal('Somatic Vision Studio', 'Realtime Spatial Computing Studio')">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
                     <span>Message</span>
                   </button>
-                  <button type="button" class="nx-card-save-btn" onclick="event.stopPropagation(); toggleSaveCreator(this, 'Samuel Cross')" aria-label="Save Samuel Cross to shortlist">
+                  <button type="button" class="nx-card-save-btn" onclick="event.stopPropagation(); toggleSaveCreator(this, 'Somatic Vision Studio')" aria-label="Save Somatic Vision Studio to shortlist">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Talent Card 6: Nova Capture (Case 3: Zero-Effort / Auto-Synthesized Onboarding) -->
+          <article class="nx-talent-card nx-reveal" data-craft="action cases case-3" data-case="3" data-has-silhouette="true" data-city="los-angeles" data-gear="red komodo-x ronin 4d 8k pursuit vehicle tracking action camera" data-name="nova capture" onclick="openInquiryModal('Nova Capture', 'Action Camera & Pursuit Operator')">
+            <div class="nx-card-media-frame">
+              <!-- Case 3: Auto-Synthesized Pursuit Rig Technical Contour -->
+              <div class="nx-media-layer nx-media-silhouette">
+                <svg class="nx-silhouette-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Technical pursuit vehicle contour">
+                  <defs>
+                    <radialGradient id="pursuitGlow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="#C55221" stop-opacity="0.3"/>
+                      <stop offset="100%" stop-color="#C55221" stop-opacity="0"/>
+                    </radialGradient>
+                  </defs>
+                  <circle cx="100" cy="100" r="75" fill="url(#pursuitGlow)"/>
+                  <path d="M30 60 Q90 40 150 75" stroke="#3B0A24" stroke-width="4" stroke-linecap="round"/>
+                  <path d="M35 72 Q90 52 148 83" stroke="#B4A08C" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="55" y1="52" x2="65" y2="65" stroke="#3B0A24" stroke-width="2"/>
+                  <line x1="85" y1="46" x2="95" y2="60" stroke="#3B0A24" stroke-width="2"/>
+                  <line x1="115" y1="52" x2="125" y2="70" stroke="#3B0A24" stroke-width="2"/>
+                  <circle cx="152" cy="105" r="28" stroke="#3B0A24" stroke-width="2.5" fill="rgba(255,255,255,0.7)"/>
+                  <rect x="138" y="94" width="28" height="22" rx="4" stroke="#3B0A24" stroke-width="2" fill="#FFFFFF"/>
+                  <circle cx="132" cy="105" r="7" stroke="#3B0A24" stroke-width="2" fill="#C55221"/>
+                  <path d="M30 60 L20 85 M15 85 L28 85" stroke="#3B0A24" stroke-width="3" stroke-linecap="round"/>
+                  <rect x="12" y="85" width="20" height="28" rx="4" fill="#3B0A24"/>
+                  <rect x="50" y="145" width="100" height="12" rx="3" stroke="#3B0A24" stroke-width="2.5" fill="#FAF5F2"/>
+                  <line x1="40" y1="157" x2="160" y2="157" stroke="#3B0A24" stroke-width="3" stroke-linecap="round"/>
+                  <line x1="75" y1="145" x2="85" y2="95" stroke="#3B0A24" stroke-width="3"/>
+                  <line x1="125" y1="145" x2="115" y2="95" stroke="#3B0A24" stroke-width="3"/>
+                  <circle cx="100" cy="90" r="12" stroke="#3B0A24" stroke-width="2.5" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <div class="nx-card-topbar">
+                <span class="nx-card-pill nx-card-craft-tag">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+                  Auto-Synthesized
+                </span>
+                <span class="nx-case-badge case-3">Case 3: Zero-Effort</span>
+              </div>
+              <div class="nx-card-rate-pill">$600<span class="nx-card-rate-unit">/day</span></div>
+            </div>
+            
+            <div class="nx-card-body">
+              <div class="nx-card-header">
+                <div class="nx-card-name-row">
+                  <h3 class="nx-card-name">
+                    <span class="nx-card-monogram" title="Nova Capture Monogram">NC</span>
+                    Nova Capture
+                    <span class="nx-verified-badge" title="Auto-Verified via Stripe KYC">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                  </h3>
+                </div>
+                <p class="nx-card-role">Action Camera &amp; Pursuit · Los Angeles, CA</p>
+              </div>
+
+              <p class="nx-card-bio">High-speed camera tracking operator for automotive sequences, stabilized gimbal arm, and high-G maneuvers.</p>
+              
+              <!-- Skills / Equipment Chips -->
+              <div class="nx-card-chips">
+                <span class="nx-card-chip">RED Komodo-X</span>
+                <span class="nx-card-chip">Ronin 4D 8K</span>
+                <span class="nx-card-chip">Pursuit Arm</span>
+              </div>
+
+              <!-- Oat & Mill Horizontal Stat Ribbon -->
+              <div class="nx-card-stat-ribbon">
+                <span class="nx-stat-item"><span class="nx-stat-stars">★</span> Verified Operator</span>
+                <span class="nx-stat-dot">•</span>
+                <span class="nx-stat-item">Direct Terms</span>
+                <span class="nx-stat-dot">•</span>
+                <span class="nx-stat-item">Ready to Shoot</span>
+              </div>
+
+              <!-- Action Stack -->
+              <div class="nx-card-actions">
+                <button type="button" class="nx-card-hire-btn" onclick="event.stopPropagation(); openInquiryModal('Nova Capture', 'Action Camera & Pursuit Operator')">
+                  <span>Inquire with Nova</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+                <div class="nx-card-sub-actions">
+                  <button type="button" class="nx-card-msg-btn" onclick="event.stopPropagation(); openInquiryModal('Nova Capture', 'Action Camera & Pursuit Operator')">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                    <span>Message</span>
+                  </button>
+                  <button type="button" class="nx-card-save-btn" onclick="event.stopPropagation(); toggleSaveCreator(this, 'Nova Capture')" aria-label="Save Nova Capture to shortlist">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path></svg>
                   </button>
                 </div>
@@ -4271,7 +4474,7 @@
           const gear = (card.dataset.gear || '').toLowerCase();
           const corpus = name + ' ' + craft + ' ' + city + ' ' + gear;
 
-          const matchesCraft = (activeCraftFilter === 'all' || craft === activeCraftFilter);
+          const matchesCraft = (activeCraftFilter === 'all' || craft.split(' ').includes(activeCraftFilter));
           const matchesCity = (selectedCity === 'all' || city === selectedCity);
           const matchesQuery = (!query || corpus.includes(query));
 
@@ -4344,8 +4547,13 @@
             btn.setAttribute('aria-pressed', 'true');
             if (btn.dataset.view === 'reels') {
               talentGrid.classList.add('is-reels');
+              talentGrid.classList.remove('is-cases');
+            } else if (btn.dataset.view === 'cases') {
+              talentGrid.classList.add('is-cases');
+              talentGrid.classList.remove('is-reels');
             } else {
               talentGrid.classList.remove('is-reels');
+              talentGrid.classList.remove('is-cases');
             }
           });
         });
