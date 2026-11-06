@@ -393,23 +393,24 @@
 
     .image-container-slot {
       width: 100%;
-      height: 96vh;
+      height: 90vh;
       display: flex;
       align-items: flex-end;
       justify-content: center;
       position: relative;
-      transform: translateY(-22px);
+      padding: 0 32px 24px 0;
+      box-sizing: border-box;
     }
 
     #heroCharacterSlot {
       position: relative;
       z-index: 2;
-      /* Scaled up ~7% for stronger hero presence */
-      max-height: 93vh;
-      max-width: 104%;
+      max-height: 82vh;
+      max-width: 90%;
+      width: auto;
+      height: auto;
       object-fit: contain;
       object-position: bottom center;
-      /* Removed duplicate CSS drop-shadow: lets the clean native baked contact shadow shine without muddy blur */
       filter: none;
       user-select: none;
       pointer-events: none;
@@ -417,11 +418,10 @@
       transition: opacity 0.25s ease !important;
     }
 
-    /* Specifically enlarge Sage Scene desk designer character (~20% bigger) without altering any other theme image */
     body[data-theme="sage"] #heroCharacterSlot {
-      max-height: 106vh;
-      max-width: 125%;
-      scale: 1.20;
+      max-height: 85vh;
+      max-width: 95%;
+      scale: 1;
       transform-origin: bottom center;
     }
 
@@ -3189,7 +3189,7 @@
       cobalt: {
         themeKey: 'cobalt',
         name: 'Aero Cloud',
-        imgSrc: 'assets/maya_bust.webp',
+        imgSrc: 'assets/upward_flight_pilot_drone.webp',
         imgAlt: 'Upward Flight: Pilot and Drone',
         creativeWord: 'CREATIVE',
         edgeWord: 'EDGE',
@@ -3206,7 +3206,7 @@
       lilac: {
         themeKey: 'lilac',
         name: 'Purple Illustrator',
-        imgSrc: 'assets/elena_bust.webp',
+        imgSrc: 'assets/purple_haired_illustrator.webp',
         imgAlt: 'Purple-Haired Illustrator Drawing on a Pouf',
         creativeWord: 'CREATIVE',
         edgeWord: 'EDGE',
@@ -3221,7 +3221,7 @@
       amber: {
         themeKey: 'amber',
         name: 'Cinema Camera',
-        imgSrc: 'assets/marcus_bust.webp',
+        imgSrc: 'assets/smiling_videographer_cinema.webp',
         imgAlt: 'Smiling Videographer with Cinema Camera',
         creativeWord: 'CREATIVE',
         edgeWord: 'EDGE',
@@ -3238,7 +3238,7 @@
       coral: {
         themeKey: 'coral',
         name: 'Spatial 3D',
-        imgSrc: 'assets/kai_bust.webp',
+        imgSrc: 'assets/vr_adventure_flight_case.webp',
         imgAlt: 'VR Adventure on a Flight Case',
         creativeWord: 'CREATIVE',
         edgeWord: 'EDGE',
@@ -4064,8 +4064,9 @@
         const mode = getActiveViewport();
         const tKey = currentThemeKey;
         try {
-          // Restore custom image for this character & viewport
-          const customImg = localStorage.getItem('custom_img_' + tKey + '_' + mode) || localStorage.getItem('custom_image_' + tKey);
+          // Restore custom image for this character & viewport (busts belong to roster, not hero)
+          let customImg = localStorage.getItem('custom_img_' + tKey + '_' + mode) || localStorage.getItem('custom_image_' + tKey);
+          if (customImg && customImg.includes('_bust.webp')) customImg = null;
           const charSlot = document.getElementById('heroCharacterSlot');
           if (charSlot) {
             charSlot.src = customImg || (THEME_PRESETS[tKey] ? THEME_PRESETS[tKey].imgSrc : charSlot.src);
@@ -4079,6 +4080,8 @@
           if (raw) {
             const data = JSON.parse(raw);
             Object.keys(data).forEach(key => {
+              // Skip overriding heroCharacterSlot with stale oversized dimensions
+              if (key === 'heroCharacterSlot' && !isEditing) return;
               let el = null;
               if (targetMap[key] && targetMap[key].el) el = targetMap[key].el();
               if (!el && document.getElementById(key)) el = document.getElementById(key);
