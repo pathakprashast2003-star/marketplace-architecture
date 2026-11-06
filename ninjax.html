@@ -1753,16 +1753,13 @@
       margin-top: 14px;
     }
 
-    /* ── CONTRA & EDITORIAL CREATOR CARD ARCHITECTURE ── */
+    /* ── OAT & MILL TACTILE 3D CREATOR CARD ARCHITECTURE ── */
     .nx-talent-card {
       position: relative;
       flex: 0 1 calc(33.333% - 16px);
       min-width: 320px;
       max-width: 380px;
-      background: #FFFFFF;
-      border: 1px solid rgba(15, 23, 42, 0.09);
-      border-radius: 32px;
-      box-shadow: 0 10px 30px -8px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.02);
+      border-radius: 36px;
       overflow: hidden;
       cursor: pointer;
       display: flex;
@@ -1772,11 +1769,58 @@
     .nx-talent-card.is-hidden {
       display: none !important;
     }
-    .nx-talent-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(15, 23, 42, 0.16);
-      box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.06);
+    
+    /* Bespoke Sculptural Craft Palettes */
+    .nx-talent-card[data-craft="film"] {
+      background: #FDF6EE;
+      border: 1px solid rgba(246, 154, 100, 0.24);
+      box-shadow: 0 16px 36px -8px rgba(246, 154, 100, 0.16), 0 4px 12px rgba(15, 23, 42, 0.03);
     }
+    .nx-talent-card[data-craft="film"]:hover {
+      box-shadow: 0 24px 50px -10px rgba(246, 154, 100, 0.28), 0 0 0 1px rgba(246, 154, 100, 0.3);
+      transform: translateY(-8px);
+    }
+
+    .nx-talent-card[data-craft="drone"] {
+      background: #F0F7FC;
+      border: 1px solid rgba(98, 193, 225, 0.24);
+      box-shadow: 0 16px 36px -8px rgba(98, 193, 225, 0.16), 0 4px 12px rgba(15, 23, 42, 0.03);
+    }
+    .nx-talent-card[data-craft="drone"]:hover {
+      box-shadow: 0 24px 50px -10px rgba(98, 193, 225, 0.28), 0 0 0 1px rgba(98, 193, 225, 0.3);
+      transform: translateY(-8px);
+    }
+
+    .nx-talent-card[data-craft="art"] {
+      background: #F8F2FC;
+      border: 1px solid rgba(196, 140, 235, 0.24);
+      box-shadow: 0 16px 36px -8px rgba(196, 140, 235, 0.16), 0 4px 12px rgba(15, 23, 42, 0.03);
+    }
+    .nx-talent-card[data-craft="art"]:hover {
+      box-shadow: 0 24px 50px -10px rgba(196, 140, 235, 0.28), 0 0 0 1px rgba(196, 140, 235, 0.3);
+      transform: translateY(-8px);
+    }
+
+    .nx-talent-card[data-craft="3d"] {
+      background: #EFF8F3;
+      border: 1px solid rgba(98, 193, 165, 0.24);
+      box-shadow: 0 16px 36px -8px rgba(98, 193, 165, 0.16), 0 4px 12px rgba(15, 23, 42, 0.03);
+    }
+    .nx-talent-card[data-craft="3d"]:hover {
+      box-shadow: 0 24px 50px -10px rgba(98, 193, 165, 0.28), 0 0 0 1px rgba(98, 193, 165, 0.3);
+      transform: translateY(-8px);
+    }
+
+    .nx-talent-card[data-craft="action"] {
+      background: #F5F7FA;
+      border: 1px solid rgba(140, 160, 190, 0.24);
+      box-shadow: 0 16px 36px -8px rgba(140, 160, 190, 0.16), 0 4px 12px rgba(15, 23, 42, 0.03);
+    }
+    .nx-talent-card[data-craft="action"]:hover {
+      box-shadow: 0 24px 50px -10px rgba(140, 160, 190, 0.28), 0 0 0 1px rgba(140, 160, 190, 0.3);
+      transform: translateY(-8px);
+    }
+
     .nx-talent-card:focus-visible {
       outline: 3px solid #0F172A;
       outline-offset: 4px;
@@ -1791,18 +1835,17 @@
       .nx-talent-card {
         flex: 1 1 100%;
         min-width: 0;
-        border-radius: 28px;
+        border-radius: 30px;
       }
     }
 
-    /* Top Media Frame (Tactile 3D Pop-Out Stage) */
+    /* Top Media Frame (3D Pop-Out Stage) */
     .nx-card-media-frame {
       position: relative;
-      margin: 12px 12px 0 12px;
+      margin: 10px 10px 0 10px;
       height: 250px;
-      border-radius: 22px;
+      border-radius: 26px;
       overflow: hidden;
-      background: #F8F4F0;
       transition: background-color 0.3s ease;
     }
     .nx-media-layer {
@@ -1814,6 +1857,8 @@
     .nx-media-reel {
       display: none;
       background: #0B0F19;
+      border-radius: 24px;
+      overflow: hidden;
     }
     .nx-reel-img {
       width: 100%;
@@ -1826,41 +1871,42 @@
       transform: scale(1.05);
     }
 
-    /* 3D Persona layer (Tactile Soft Studio Auras) */
+    /* 3D Persona layer (Luminous Radiant Ambient Aura) */
     .nx-media-persona {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 50% 35%, #FFFFFF 0%, #F5EFEB 70%, #EBE2DC 100%);
+      background: transparent;
     }
     .nx-talent-card[data-craft="film"] .nx-media-persona {
-      background: radial-gradient(circle at 50% 35%, #FFF6EE 0%, #FCE8D8 65%, #F4D5BD 100%);
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.7) 0%, rgba(253, 246, 238, 0) 75%);
     }
     .nx-talent-card[data-craft="drone"] .nx-media-persona {
-      background: radial-gradient(circle at 50% 35%, #F2F9FF 0%, #DDF0FB 65%, #C8E5F7 100%);
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.7) 0%, rgba(240, 247, 252, 0) 75%);
     }
     .nx-talent-card[data-craft="art"] .nx-media-persona {
-      background: radial-gradient(circle at 50% 35%, #FBF4FF 0%, #F2DEFC 65%, #E5C8F5 100%);
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.7) 0%, rgba(248, 242, 252, 0) 75%);
     }
     .nx-talent-card[data-craft="3d"] .nx-media-persona {
-      background: radial-gradient(circle at 50% 35%, #F2FCF6 0%, #DCF5E6 65%, #C7EDD6 100%);
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.7) 0%, rgba(239, 248, 243, 0) 75%);
     }
     .nx-talent-card[data-craft="action"] .nx-media-persona {
-      background: radial-gradient(circle at 50% 35%, #F7F9FC 0%, #E6EBF2 65%, #D4DDE8 100%);
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.7) 0%, rgba(245, 247, 250, 0) 75%);
     }
+
     .nx-talent-media-img {
-      height: 90%;
+      height: 94%;
       width: auto;
-      max-width: 92%;
+      max-width: 94%;
       object-fit: contain;
       object-position: center bottom;
-      filter: drop-shadow(0 18px 24px rgba(34, 5, 20, 0.16)) drop-shadow(0 4px 8px rgba(34, 5, 20, 0.08));
+      filter: drop-shadow(0 20px 26px rgba(34, 5, 20, 0.20)) drop-shadow(0 6px 10px rgba(34, 5, 20, 0.08));
       transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .nx-talent-card:hover .nx-talent-media-img {
-      transform: scale(1.06) translateY(-4px);
+      transform: scale(1.07) translateY(-6px);
     }
 
     /* Mode switching */
@@ -1871,7 +1917,7 @@
       display: none;
     }
 
-    /* Floating Badges inside top media frame */
+        /* Floating Badges inside top media frame */
     .nx-card-topbar {
       position: absolute;
       top: 12px;
@@ -1940,13 +1986,17 @@
       margin-left: 2px;
     }
 
-    /* Structured Editorial Content Body (Below Image) */
+    /* Structured Editorial Content Body (Sculptural Inner White Card) */
     .nx-card-body {
-      padding: 18px 20px 22px;
+      padding: 20px 18px 22px;
+      margin: 0 10px 12px 10px;
+      border-radius: 26px;
       display: flex;
       flex-direction: column;
       gap: 12px;
       background: #FFFFFF;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+      border: 1px solid rgba(15, 23, 42, 0.04);
     }
     .nx-card-header {
       display: flex;
