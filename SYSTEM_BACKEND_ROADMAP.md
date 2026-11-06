@@ -69,9 +69,31 @@ To avoid the visual clutter of text overlapping creator faces or media and ensur
      - Tablet: 2x2 grid + 1 centered card.
      - Mobile: 100% full-width immersive vertical cards.
 
+### B. Tactile 3D Mobile Experience Architecture (Oat & Mill Reference)
+Implemented in [`artisan_experience.html`](artisan_experience.html) with 4 bespoke 3D assets:
+1. **Screen 1 (Discover & Featured Product)**:
+   - Slogan: `Better Ice cream, better planet` with circular avatar.
+   - Filter chips: `All`, `🍨 Ice-Cream`, `🍦 Popsicles`, `🍬 Confections`.
+   - 3D Pop-Out Card: `assets/oat_rocky_road_pint.png` rendered at a 15-degree tilt breaking out of the blush-pink card container with drop shadow.
+   - Price tag `$12.00` + rounded wine button with shopping cart icon.
+   - Floating persistent dock: `(2) Cart / 2 Items` with mini tub thumbnails.
+2. **Screen 2 (Product Detail)**:
+   - Centered 3D hero tub (`assets/oat_turtle_crossing_hero.png`) with speckled apricot lid and tactile lighting.
+   - Organic wave stepper container (`− 02 +`) with dynamic subtotal price pill (`$16.00`).
+   - Deep wine full-width `Add To Cart` button with shopping cart icon box.
+3. **Screen 3 (Cart & Checkout)**:
+   - Deep wine canvas (`#3B0A24`) with cart items stack (`assets/oat_chocolate_chip_mini.png`, etc.).
+   - Floating delivery summary card (`Delivery charge: $04.44`, `Total Amount USD 38.00`).
+   - 3D overflow ice cream scoop (`assets/oat_ice_cream_scoop.png`) with dripping dark chocolate and bakery sprinkles.
+   - Full pill CTA button: `Make Payment >>>`.
+4. **Interactive Capabilities**:
+   - Live quantity increment/decrement recalculating subtotals in real-time.
+   - Toast notifications on item addition.
+   - Triple-phone studio display mode vs single-device interactive simulator toggle.
+
 ---
 
-## 3. Algorithmic Specifications (What Needs to Be Built in Backend)
+## 4. Algorithmic Specifications (What Needs to Be Built in Backend)
 
 ### A. The 5-Operator Curation Algorithm (Weekly Monday Cron)
 The homepage features only 5 operators per weekly cycle. The backend selection engine runs every Monday at 00:00 UTC:

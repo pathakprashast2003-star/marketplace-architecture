@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OAT & MILL · Artisanal 3D Mobile Experience</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Hallmark · v2.0.0 · genre: playful · theme: blush-wine · shape: workbench */
+    :root {
+      /* Surfaces */
+      --oat-wine-dark: #3B0A24;         /* Cart canvas & primary buttons */
+      --oat-wine-deep: #250415;         /* Deepest button active states */
+      --oat-wine-surface: #4A1030;      /* Elevated wine cards */
+      --oat-cream-bg: #F7EFEA;          /* App canvas background */
+      --oat-cream-surface: #FAF4F0;     /* Soft warm inner surfaces */
+      --oat-card-white: #FFFFFF;        /* Crisp card surface */
+      --oat-card-pink: #F8E3E3;         /* Rocky Road featured card background */
+      --oat-card-pink-dark: #F3CECE;    /* Pink hover tint */
+      --oat-blush: #F4E8E3;             /* Secondary container fills */
+      
+      /* Accents */
+      --oat-peach: #F69A64;             /* Quantity pill, icons, highlights */
+      --oat-peach-soft: #FDEBDD;        /* Soft peach badges & chips */
+      --oat-peach-light: #FFF4EC;       /* Ultra light peach highlight */
+      --oat-amber-badge: #F4A460;       /* Cart counter notification badge */
+      --oat-mint: #62C1A5;              /* Green peppermint accent */
+      
+      /* Text */
+      --oat-text-title: #220514;        /* Dark headings on cream */
+      --oat-text-body: #4A333E;         /* Standard body */
+      --oat-text-muted: #8A6D79;        /* Secondary copy */
+      --oat-text-light: #FFFFFF;        /* White text on wine surfaces */
+      --oat-text-light-sub: #D9B8C7;    /* Secondary text on wine surfaces */
+      
+      /* Typography */
+      --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      
+      /* Radii */
+      --radius-device: 48px;
+      --radius-screen: 38px;
+      --radius-card: 30px;
+      --radius-pill: 9999px;
+      --radius-chip: 16px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: clip;
+      background: #F3EAE5;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(246, 154, 100, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(59, 10, 36, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(248, 227, 227, 0.4) 0%, transparent 60%);
+      color: var(--oat-text-title);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Navigation Masthead */
+    .oat-top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 36px;
+      background: rgba(243, 234, 229, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(59, 10, 36, 0.08);
+    }
+    .oat-brand-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .oat-brand-badge {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--oat-wine-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .oat-brand-badge span {
+      display: inline-block;
+      padding: 3px 10px;
+      background: var(--oat-wine-dark);
+      color: #FFFFFF;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .oat-top-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .oat-mode-toggle {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 4px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(59, 10, 36, 0.1);
+      box-shadow: 0 2px 8px rgba(59, 10, 36, 0.04);
+    }
+    .oat-mode-btn {
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      background: transparent;
+      color: var(--oat-text-muted);
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+    .oat-mode-btn.is-active {
+      background: var(--oat-wine-dark);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(59, 10, 36, 0.18);
+    }
+    .oat-mode-btn:focus-visible {
+      outline: 2px solid var(--oat-wine-dark);
+      outline-offset: 2px;
+    }
+    .oat-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      background: #FFFFFF;
+      color: var(--oat-wine-dark);
+      border: 1px solid rgba(59, 10, 36, 0.12);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+    }
+    .oat-back-link:hover {
+      background: var(--oat-cream-surface);
+      border-color: var(--oat-wine-dark);
+      transform: translateY(-1px);
+    }
+    .oat-back-link:focus-visible {
+      outline: 2px solid var(--oat-wine-dark);
+      outline-offset: 2px;
+    }
+
+    /* Main Stage */
+    .oat-stage-container {
+      max-width: 1420px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    /* Studio Header Note */
+    .oat-header-intro {
+      text-align: center;
+      max-width: 680px;
+    }
+    .oat-header-tag {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--oat-peach);
+      margin-bottom: 8px;
+    }
+    .oat-header-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 850;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      color: var(--oat-wine-dark);
+      margin-bottom: 12px;
+    }
+    .oat-header-desc {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--oat-text-muted);
+    }
+
+    /* 3-Phone Studio Stage Grid */
+    .oat-studio-grid {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+
+    /* Mobile Device Frame */
+    .oat-device-chassis {
+      width: 360px;
+      height: 740px;
+      background: #FFFFFF;
+      border-radius: var(--radius-device);
+      box-shadow: 
+        0 24px 60px -12px rgba(59, 10, 36, 0.18),
+        0 12px 24px -8px rgba(59, 10, 36, 0.1),
+        0 0 0 10px #FFFFFF,
+        0 0 0 12px rgba(59, 10, 36, 0.08);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .oat-device-chassis:hover {
+      transform: translateY(-8px);
+      box-shadow: 
+        0 36px 80px -16px rgba(59, 10, 36, 0.25),
+        0 18px 32px -8px rgba(59, 10, 36, 0.12),
+        0 0 0 10px #FFFFFF,
+        0 0 0 12px rgba(59, 10, 36, 0.14);
+    }
+    .oat-device-screen {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===================================================
+       SCREEN 1: DISCOVER / FLAVOR OF THE WEEK
+       =================================================== */
+    .oat-screen-discover {
+      background: var(--oat-cream-bg);
+      padding: 24px 22px 20px;
+      justify-content: space-between;
+    }
+    .oat-s1-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .oat-s1-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1.25;
+      color: var(--oat-text-title);
+    }
+    .oat-s1-title strong {
+      font-weight: 850;
+      color: var(--oat-wine-dark);
+    }
+    .oat-s1-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      padding: 3px;
+      box-shadow: 0 4px 12px rgba(59, 10, 36, 0.08);
+      overflow: hidden;
+    }
+    .oat-s1-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    /* Category Chips */
+    .oat-chips-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .oat-chips-strip::-webkit-scrollbar {
+      display: none;
+    }
+    .oat-filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      background: #FFFFFF;
+      color: var(--oat-text-muted);
+      font-family: var(--font-display);
+      font-size: 12.5px;
+      font-weight: 650;
+      border: 1px solid rgba(59, 10, 36, 0.05);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+    .oat-filter-chip.is-active {
+      background: #FFFFFF;
+      color: var(--oat-text-title);
+      box-shadow: 0 4px 12px rgba(59, 10, 36, 0.06);
+      border-color: rgba(59, 10, 36, 0.1);
+    }
+    .oat-filter-chip:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Flavor of the week label */
+    .oat-s1-section-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .oat-s1-section-label {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 750;
+      color: var(--oat-text-title);
+    }
+    .oat-s1-section-arrow {
+      font-size: 16px;
+      color: var(--oat-text-title);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* 3D Pop-Out Rocky Road Card */
+    .oat-hero-card {
+      position: relative;
+      background: var(--oat-card-pink);
+      border-radius: var(--radius-card);
+      padding: 24px 20px;
+      height: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 16px 32px -8px rgba(243, 206, 206, 0.6);
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .oat-hero-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -10px rgba(243, 206, 206, 0.8);
+    }
+    .oat-hero-info {
+      position: relative;
+      z-index: 5;
+    }
+    .oat-hero-name {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 850;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--oat-text-title);
+      margin-bottom: 8px;
+    }
+    .oat-hero-sub-badge {
+      display: inline-block;
+      padding: 5px 12px;
+      background: #FFFFFF;
+      color: var(--oat-text-title);
+      border-radius: var(--radius-pill);
+      font-size: 11.5px;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    /* 3D Container Pop-Out Image */
+    .oat-hero-popout-img-wrapper {
+      position: absolute;
+      top: -18px;
+      right: -24px;
+      width: 260px;
+      height: 290px;
+      pointer-events: none;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .oat-hero-popout-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 24px rgba(59, 10, 36, 0.22));
+      transform: rotate(8deg);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .oat-hero-card:hover .oat-hero-popout-img {
+      transform: rotate(12deg) scale(1.05) translateY(-6px);
+    }
+
+    /* Card Footer Row */
+    .oat-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 5;
+    }
+    .oat-card-price-pill {
+      padding: 8px 16px;
+      background: #FFFFFF;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 850;
+      color: var(--oat-text-title);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .oat-card-add-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: var(--oat-wine-dark);
+      color: #FFFFFF;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px rgba(59, 10, 36, 0.3);
+      transition: transform 0.15s ease, background-color 0.2s ease;
+    }
+    .oat-card-add-btn:hover {
+      background: var(--oat-wine-deep);
+      transform: scale(1.06);
+    }
+    .oat-card-add-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Floating Bottom Dock */
+    .oat-bottom-dock {
+      margin-top: 16px;
+      padding: 12px 18px;
+      border-radius: var(--radius-pill);
+      background: var(--oat-wine-dark);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 12px 28px rgba(59, 10, 36, 0.35);
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    .oat-bottom-dock:hover {
+      transform: translateY(-2px);
+      background: var(--oat-wine-deep);
+    }
+    .oat-dock-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .oat-dock-badge {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--oat-peach);
+      color: var(--oat-wine-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 850;
+    }
+    .oat-dock-text {
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .oat-dock-thumbs {
+      display: flex;
+      align-items: center;
+      gap: -8px;
+    }
+    .oat-dock-thumb-img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      object-fit: contain;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      border: 1.5px solid var(--oat-wine-dark);
+    }
+
+    /* ===================================================
+       SCREEN 2: PRODUCT DETAIL (TURTLE CROSSING)
+       =================================================== */
+    .oat-screen-detail {
+      background: var(--oat-cream-bg);
+      padding: 24px 22px 20px;
+      justify-content: space-between;
+    }
+    .oat-s2-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    .oat-s2-back-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      color: var(--oat-text-title);
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(59, 10, 36, 0.06);
+      transition: transform 0.15s ease;
+    }
+    .oat-s2-back-btn:hover {
+      transform: scale(1.08);
+    }
+    .oat-s2-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--oat-text-title);
+    }
+    .oat-s2-spacer {
+      width: 38px;
+    }
+
+    /* Hero Product Centerpiece */
+    .oat-s2-hero-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 20px 0 10px;
+    }
+    .oat-s2-hero-img {
+      width: 250px;
+      height: 270px;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 30px rgba(59, 10, 36, 0.16));
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .oat-s2-hero-stage:hover .oat-s2-hero-img {
+      transform: scale(1.04) translateY(-4px);
+    }
+
+    /* Organic Wave Stepper Container */
+    .oat-stepper-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .oat-organic-stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 240px;
+      background: #FFFFFF;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 8px 24px rgba(59, 10, 36, 0.08);
+    }
+    .oat-step-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--oat-text-title);
+      border: none;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.15s ease, transform 0.15s ease;
+    }
+    .oat-step-btn:hover {
+      background: var(--oat-cream-surface);
+      transform: scale(1.1);
+    }
+    .oat-step-btn:active {
+      transform: scale(0.9);
+    }
+    .oat-step-qty {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 850;
+      color: var(--oat-text-title);
+      letter-spacing: -0.02em;
+    }
+    .oat-step-price-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 16px;
+      background: var(--oat-peach-soft);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 850;
+      color: var(--oat-text-title);
+      box-shadow: 0 2px 6px rgba(246, 154, 100, 0.2);
+    }
+
+    /* Screen 2 Bottom CTA */
+    .oat-s2-cta-btn {
+      width: 100%;
+      height: 56px;
+      border-radius: var(--radius-pill);
+      background: var(--oat-wine-dark);
+      color: #FFFFFF;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px 6px 24px;
+      box-shadow: 0 12px 28px rgba(59, 10, 36, 0.3);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    .oat-s2-cta-btn:hover {
+      background: var(--oat-wine-deep);
+      transform: translateY(-2px);
+    }
+    .oat-s2-cta-btn:active {
+      transform: scale(0.98);
+    }
+    .oat-s2-cta-text {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 750;
+      letter-spacing: -0.01em;
+    }
+    .oat-s2-cta-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--oat-peach-soft);
+      color: var(--oat-wine-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    /* ===================================================
+       SCREEN 3: CART / ORDER SUMMARY (WINE CANVAS)
+       =================================================== */
+    .oat-screen-cart {
+      background: var(--oat-wine-dark);
+      color: #FFFFFF;
+      padding: 24px 22px 20px;
+      justify-content: space-between;
+    }
+    .oat-s3-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .oat-s3-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 850;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+    }
+    .oat-s3-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--oat-peach);
+      color: var(--oat-wine-dark);
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 850;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Cart Items Stack */
+    .oat-cart-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .oat-cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .oat-cart-item-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .oat-cart-thumb {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #FFFFFF;
+      padding: 4px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .oat-cart-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .oat-cart-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .oat-cart-name {
+      font-family: var(--font-display);
+      font-size: 14.5px;
+      font-weight: 750;
+      color: #FFFFFF;
+    }
+    .oat-cart-flavor {
+      font-size: 11.5px;
+      color: var(--oat-text-light-sub);
+    }
+    .oat-cart-price-pill {
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--oat-wine-dark);
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    /* Floating Delivery Summary Card with Overflow Scoop */
+    .oat-summary-card {
+      position: relative;
+      background: #FFFFFF;
+      color: var(--oat-text-title);
+      border-radius: var(--radius-card);
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+      margin-bottom: 16px;
+    }
+    .oat-summary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12.5px;
+    }
+    .oat-summary-row.oat-row-muted {
+      color: var(--oat-text-muted);
+      font-weight: 600;
+    }
+    .oat-summary-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(59, 10, 36, 0.08);
+      margin: 4px 0;
+    }
+    .oat-summary-total-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--oat-text-muted);
+    }
+    .oat-summary-total-val {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 850;
+      letter-spacing: -0.02em;
+      color: var(--oat-text-title);
+    }
+
+    /* Overflow Scoop Visual Asset */
+    .oat-summary-overflow-scoop {
+      position: absolute;
+      bottom: -16px;
+      right: -12px;
+      width: 95px;
+      height: 95px;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .oat-summary-overflow-scoop img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.25));
+    }
+
+    /* Screen 3 Bottom Action: Make Payment */
+    .oat-s3-pay-btn {
+      width: 100%;
+      height: 54px;
+      border-radius: var(--radius-pill);
+      background: #FFFFFF;
+      color: var(--oat-wine-dark);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px 6px 24px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+    .oat-s3-pay-btn:hover {
+      background: var(--oat-cream-surface);
+      transform: translateY(-2px);
+    }
+    .oat-s3-pay-btn:active {
+      transform: scale(0.98);
+    }
+    .oat-s3-pay-text {
+      font-family: var(--font-display);
+      font-size: 15.5px;
+      font-weight: 800;
+    }
+    .oat-s3-pay-arrow-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--oat-peach);
+      color: var(--oat-wine-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    /* Toast Notification */
+    .oat-toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--oat-wine-dark);
+      color: #FFFFFF;
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 16px 36px rgba(59, 10, 36, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 100;
+      opacity: 0;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+      pointer-events: none;
+    }
+    .oat-toast.is-visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+    .oat-toast-icon {
+      color: var(--oat-peach);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1200px) {
+      .oat-studio-grid {
+        gap: 24px;
+      }
+      .oat-device-chassis {
+        width: 320px;
+        height: 680px;
+      }
+      .oat-hero-card {
+        height: 310px;
+      }
+      .oat-hero-popout-img-wrapper {
+        width: 220px;
+        height: 250px;
+      }
+      .oat-s2-hero-img {
+        width: 210px;
+        height: 230px;
+      }
+    }
+    @media (max-width: 768px) {
+      .oat-top-bar {
+        padding: 12px 20px;
+      }
+      .oat-stage-container {
+        padding: 24px 16px 60px;
+      }
+      .oat-studio-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+      .oat-device-chassis {
+        width: 100%;
+        max-width: 360px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Masthead -->
+  <header class="oat-top-bar">
+    <div class="oat-brand-group">
+      <a href="index.html" class="oat-brand-badge">
+        OAT &amp; MILL <span>Studio 3D</span>
+      </a>
+    </div>
+
+    <div class="oat-top-controls">
+      <div class="oat-mode-toggle" role="group" aria-label="Display mode">
+        <button type="button" class="oat-mode-btn is-active" id="btnModeStudio" onclick="setStudioMode('studio')">
+          📱 3-Device Studio View
+        </button>
+        <button type="button" class="oat-mode-btn" id="btnModeSim" onclick="setStudioMode('simulator')">
+          ⚡ Interactive Simulator
+        </button>
+      </div>
+      <a href="index.html#roster" class="oat-back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><polyline points="12 19 5 12 12 5"></polyline></svg>
+        <span>Back to Nexus</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Stage -->
+  <main class="oat-stage-container">
+    <div class="oat-header-intro">
+      <div class="oat-header-tag">Tactile 3D Mobile Experience</div>
+      <h1 class="oat-header-title">Better ice cream, better planet.</h1>
+      <p class="oat-header-desc">
+        A tactile, organic 3-screen mobile experience with perspective 3D packaging pop-outs, fluid wave steppers, and rich burgundy &amp; peach typography.
+      </p>
+    </div>
+
+    <!-- 3-Phone Studio Stage Grid -->
+    <section class="oat-studio-grid" id="studioGrid">
+
+      <!-- ============================================
+           DEVICE 1: SCREEN 1 (DISCOVER / FLAVOR OF THE WEEK)
+           ============================================ -->
+      <article class="oat-device-chassis" id="deviceScreen1">
+        <div class="oat-device-screen oat-screen-discover">
+          
+          <div>
+            <!-- Header -->
+            <div class="oat-s1-header">
+              <div class="oat-s1-title">
+                Better <strong>Ice cream</strong><br>
+                better planet
+              </div>
+              <div class="oat-s1-avatar">
+                <img src="assets/marcus_bust.webp" alt="User avatar">
+              </div>
+            </div>
+
+            <!-- Category Filter Chips -->
+            <div class="oat-chips-strip">
+              <button type="button" class="oat-filter-chip">All</button>
+              <button type="button" class="oat-filter-chip is-active">🍨 Ice-Cream</button>
+              <button type="button" class="oat-filter-chip">🍦 Popsicles</button>
+              <button type="button" class="oat-filter-chip">🍬 Confections</button>
+            </div>
+
+            <!-- Section Bar -->
+            <div class="oat-s1-section-bar">
+              <span class="oat-s1-section-label">Flavor of the week</span>
+              <span class="oat-s1-section-arrow" onclick="jumpToScreen(2)">→</span>
+            </div>
+
+            <!-- 3D Pop-Out Card: Rocky Road -->
+            <div class="oat-hero-card" onclick="jumpToScreen(2)">
+              <div class="oat-hero-info">
+                <h2 class="oat-hero-name">Rocky<br>Road</h2>
+                <div class="oat-hero-sub-badge">Fudge Brownie</div>
+              </div>
+
+              <!-- 3D Tilted Pop-Out Tub Image -->
+              <div class="oat-hero-popout-img-wrapper">
+                <img class="oat-hero-popout-img" src="assets/oat_rocky_road_pint.png" alt="OAT &amp; MILL Rocky Road Fudge Brownie Pint">
+              </div>
+
+              <!-- Card Bottom Row -->
+              <div class="oat-card-footer">
+                <div class="oat-card-price-pill">$12.00</div>
+                <button type="button" class="oat-card-add-btn" onclick="event.stopPropagation(); addItemToCart('Rocky Road', 12.00, 'assets/oat_rocky_road_pint.png')">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Floating Dock -->
+          <div class="oat-bottom-dock" onclick="jumpToScreen(3)">
+            <div class="oat-dock-left">
+              <div class="oat-dock-badge" id="dockCartCount">2</div>
+              <div class="oat-dock-text">Cart · <span id="dockCartItemsLabel">2 Items</span></div>
+            </div>
+            <div class="oat-dock-thumbs">
+              <img class="oat-dock-thumb-img" src="assets/oat_chocolate_chip_mini.png" alt="Chocolate Mini">
+              <img class="oat-dock-thumb-img" src="assets/oat_rocky_road_pint.png" alt="Rocky Road">
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- ============================================
+           DEVICE 2: SCREEN 2 (PRODUCT DETAIL - TURTLE CROSSING)
+           ============================================ -->
+      <article class="oat-device-chassis" id="deviceScreen2">
+        <div class="oat-device-screen oat-screen-detail">
+          
+          <!-- Screen 2 Top Nav -->
+          <div class="oat-s2-nav">
+            <button type="button" class="oat-s2-back-btn" onclick="jumpToScreen(1)" aria-label="Go back to discover">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+            </button>
+            <div class="oat-s2-title">Turtle Crossing</div>
+            <div class="oat-s2-spacer"></div>
+          </div>
+
+          <!-- Hero Product Showcase -->
+          <div class="oat-s2-hero-stage">
+            <img class="oat-s2-hero-img" src="assets/oat_turtle_crossing_hero.png" alt="OAT &amp; MILL Turtle Crossing Hero Pint">
+          </div>
+
+          <!-- Stepper and Action -->
+          <div>
+            <div class="oat-stepper-container">
+              <div class="oat-organic-stepper">
+                <button type="button" class="oat-step-btn" onclick="updateQty(-1)" aria-label="Decrease quantity">−</button>
+                <span class="oat-step-qty" id="stepperQtyVal">02</span>
+                <button type="button" class="oat-step-btn" onclick="updateQty(1)" aria-label="Increase quantity">+</button>
+              </div>
+              <div class="oat-step-price-pill" id="stepperPriceVal">$16.00</div>
+            </div>
+
+            <button type="button" class="oat-s2-cta-btn" onclick="addCurrentProductToCart()">
+              <span class="oat-s2-cta-text">Add To Cart</span>
+              <div class="oat-s2-cta-icon-box">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+              </div>
+            </button>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- ============================================
+           DEVICE 3: SCREEN 3 (CART & CHECKOUT)
+           ============================================ -->
+      <article class="oat-device-chassis" id="deviceScreen3">
+        <div class="oat-device-screen oat-screen-cart">
+          
+          <div>
+            <!-- Header -->
+            <div class="oat-s3-header">
+              <div class="oat-s3-title">Cart</div>
+              <div class="oat-s3-badge" id="cartTopBadge">3</div>
+            </div>
+
+            <!-- Cart Stack -->
+            <div class="oat-cart-stack">
+              <div class="oat-cart-item">
+                <div class="oat-cart-item-left">
+                  <div class="oat-cart-thumb">
+                    <img src="assets/oat_rocky_road_pint.png" alt="Chocolate">
+                  </div>
+                  <div class="oat-cart-meta">
+                    <div class="oat-cart-name">Chocolate</div>
+                    <div class="oat-cart-flavor">Peanut butter ripple</div>
+                  </div>
+                </div>
+                <div class="oat-cart-price-pill">$8.00</div>
+              </div>
+
+              <div class="oat-cart-item">
+                <div class="oat-cart-item-left">
+                  <div class="oat-cart-thumb">
+                    <img src="assets/oat_turtle_crossing_hero.png" alt="Turtle Crossing">
+                  </div>
+                  <div class="oat-cart-meta">
+                    <div class="oat-cart-name">Turtle Crossing</div>
+                    <div class="oat-cart-flavor">Creamy vanilla x 2</div>
+                  </div>
+                </div>
+                <div class="oat-cart-price-pill">$16.00</div>
+              </div>
+
+              <div class="oat-cart-item">
+                <div class="oat-cart-item-left">
+                  <div class="oat-cart-thumb">
+                    <img src="assets/oat_chocolate_chip_mini.png" alt="Chocolate Chip">
+                  </div>
+                  <div class="oat-cart-meta">
+                    <div class="oat-cart-name">Chocolate Chip</div>
+                    <div class="oat-cart-flavor">Green peppermint</div>
+                  </div>
+                </div>
+                <div class="oat-cart-price-pill">$10.00</div>
+              </div>
+            </div>
+
+            <!-- Delivery Summary Card with Overflow Scoop -->
+            <div class="oat-summary-card">
+              <div class="oat-summary-row oat-row-muted">
+                <span>Delivery charge</span>
+                <span>$04.44</span>
+              </div>
+              <div class="oat-summary-divider"></div>
+              <div class="oat-summary-row">
+                <div>
+                  <div class="oat-summary-total-label">Total Amount</div>
+                  <div class="oat-summary-total-val">USD 38.00</div>
+                </div>
+              </div>
+
+              <!-- Overflow Scoop 3D Element -->
+              <div class="oat-summary-overflow-scoop">
+                <img src="assets/oat_ice_cream_scoop.png" alt="Artisan vanilla bean ice cream scoop with chocolate syrup and sprinkles">
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Action: Make Payment -->
+          <button type="button" class="oat-s3-pay-btn" onclick="triggerPayment()">
+            <span class="oat-s3-pay-text">Make Payment</span>
+            <div class="oat-s3-pay-arrow-box">&gt;&gt;&gt;</div>
+          </button>
+
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- Toast Notification -->
+  <div class="oat-toast" id="oatToast">
+    <span class="oat-toast-icon">🍦</span>
+    <span id="oatToastMsg">Added to your order!</span>
+  </div>
+
+  <script>
+    // State
+    let currentQty = 2;
+    const unitPrice = 8.00;
+    let cartCount = 3;
+
+    function updateQty(delta) {
+      currentQty = Math.max(1, Math.min(12, currentQty + delta));
+      const formattedQty = currentQty < 10 ? '0' + currentQty : '' + currentQty;
+      document.getElementById('stepperQtyVal').textContent = formattedQty;
+      
+      const totalPrice = (currentQty * unitPrice).toFixed(2);
+      document.getElementById('stepperPriceVal').textContent = '$' + totalPrice;
+    }
+
+    function addCurrentProductToCart() {
+      cartCount += currentQty;
+      updateCartDisplay();
+      showToast(`Added ${currentQty}x Turtle Crossing ($${(currentQty * unitPrice).toFixed(2)}) to Cart!`);
+      jumpToScreen(3);
+    }
+
+    function addItemToCart(name, price, img) {
+      cartCount += 1;
+      updateCartDisplay();
+      showToast(`Added ${name} ($${price.toFixed(2)}) to Cart!`);
+    }
+
+    function updateCartDisplay() {
+      const topBadge = document.getElementById('cartTopBadge');
+      if (topBadge) topBadge.textContent = cartCount;
+
+      const dockCount = document.getElementById('dockCartCount');
+      if (dockCount) dockCount.textContent = cartCount;
+
+      const dockLabel = document.getElementById('dockCartItemsLabel');
+      if (dockLabel) dockLabel.textContent = `${cartCount} Items`;
+    }
+
+    function triggerPayment() {
+      showToast('Payment Authorized: USD 38.00! Delivery dispatched.');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('oatToast');
+      const toastMsg = document.getElementById('oatToastMsg');
+      toastMsg.textContent = msg;
+      toast.classList.add('is-visible');
+      setTimeout(() => {
+        toast.classList.remove('is-visible');
+      }, 2800);
+    }
+
+    function jumpToScreen(screenNum) {
+      const dev = document.getElementById('deviceScreen' + screenNum);
+      if (dev) {
+        dev.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+        dev.style.transform = 'translateY(-14px) scale(1.02)';
+        setTimeout(() => {
+          dev.style.transform = '';
+        }, 600);
+      }
+    }
+
+    function setStudioMode(mode) {
+      const btnStudio = document.getElementById('btnModeStudio');
+      const btnSim = document.getElementById('btnModeSim');
+      const dev1 = document.getElementById('deviceScreen1');
+      const dev2 = document.getElementById('deviceScreen2');
+      const dev3 = document.getElementById('deviceScreen3');
+
+      if (mode === 'studio') {
+        btnStudio.classList.add('is-active');
+        btnSim.classList.remove('is-active');
+        dev1.style.display = 'flex';
+        dev2.style.display = 'flex';
+        dev3.style.display = 'flex';
+      } else {
+        btnSim.classList.add('is-active');
+        btnStudio.classList.remove('is-active');
+        // Simulator mode focuses on active device
+        dev1.style.display = 'flex';
+        dev2.style.display = 'flex';
+        dev3.style.display = 'flex';
+        dev2.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  </script>
+</body>
+</html>
