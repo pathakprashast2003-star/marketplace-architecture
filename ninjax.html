@@ -1842,9 +1842,9 @@
     /* Top Media Frame (3D Pop-Out Stage) */
     .nx-card-media-frame {
       position: relative;
-      margin: 12px 12px 0 12px;
-      height: 275px;
-      border-radius: 28px;
+      margin: 0;
+      height: 285px;
+      border-radius: 36px 36px 0 0;
       overflow: hidden;
       transition: background-color 0.3s ease;
     }
@@ -1857,8 +1857,11 @@
     .nx-media-reel {
       display: none;
       background: #0B0F19;
-      border-radius: 26px;
+      margin: 16px 16px 0 16px;
+      height: calc(100% - 16px);
+      border-radius: 24px;
       overflow: hidden;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.16);
     }
     .nx-reel-img {
       width: 100%;
@@ -1917,12 +1920,12 @@
       display: none;
     }
 
-        /* Floating Badges inside top media frame */
+    /* Floating Badges inside top media frame */
     .nx-card-topbar {
       position: absolute;
-      top: 14px;
-      left: 14px;
-      right: 14px;
+      top: 16px;
+      left: 16px;
+      right: 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -1933,8 +1936,8 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      padding: 5px 12px;
-      border-radius: 999px;
+      padding: 6px 13px;
+      border-radius: 9999px;
       font-size: 11px;
       font-weight: 750;
       letter-spacing: 0.02em;
@@ -1944,7 +1947,7 @@
     .nx-card-craft-tag {
       background: rgba(255, 255, 255, 0.94);
       color: #220514;
-      box-shadow: 0 4px 12px rgba(59, 10, 36, 0.08);
+      box-shadow: 0 4px 14px rgba(59, 10, 36, 0.08);
       border: 1px solid rgba(59, 10, 36, 0.08);
     }
     .nx-card-craft-tag svg {
@@ -1955,17 +1958,17 @@
       background: rgba(255, 255, 255, 0.95);
       color: #059669;
       border: 1px solid rgba(16, 185, 129, 0.35);
-      box-shadow: 0 4px 12px rgba(59, 10, 36, 0.08);
+      box-shadow: 0 4px 14px rgba(59, 10, 36, 0.08);
     }
     .nx-card-rate-pill {
       position: absolute;
-      bottom: 12px;
-      right: 14px;
+      bottom: 14px;
+      right: 16px;
       padding: 7px 16px;
-      border-radius: 999px;
+      border-radius: 9999px;
       background: #FFFFFF;
-      border: 1px solid rgba(59, 10, 36, 0.06);
-      box-shadow: 0 6px 18px rgba(59, 10, 36, 0.12);
+      border: 1px solid rgba(59, 10, 36, 0.08);
+      box-shadow: 0 8px 22px rgba(59, 10, 36, 0.14);
       color: #220514;
       font-family: var(--font-display);
       font-size: 14px;
@@ -1976,7 +1979,7 @@
     }
     .nx-talent-card:hover .nx-card-rate-pill {
       transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(59, 10, 36, 0.18);
+      box-shadow: 0 10px 26px rgba(59, 10, 36, 0.2);
     }
     .nx-card-rate-unit {
       font-size: 11px;
@@ -1985,17 +1988,17 @@
       margin-left: 2px;
     }
 
-        /* Structured Editorial Content Body (Sculptural Inner White Card) */
+    /* Structured Editorial Content Body (Seamless Sculptural Canvas) */
     .nx-card-body {
-      padding: 22px 20px 24px;
-      margin: 0 12px 14px 12px;
-      border-radius: 26px;
+      padding: 6px 22px 24px 22px;
+      margin: 0;
+      border-radius: 0 0 36px 36px;
       display: flex;
       flex-direction: column;
-      gap: 13px;
-      background: #FFFFFF;
-      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
-      border: 1px solid rgba(15, 23, 42, 0.04);
+      gap: 12px;
+      background: transparent;
+      box-shadow: none;
+      border: none;
     }
     .nx-card-header {
       display: flex;
@@ -2034,15 +2037,15 @@
     .nx-card-role {
       font-family: var(--font-body);
       font-size: 12.5px;
-      font-weight: 600;
-      color: #7E656F;
+      font-weight: 650;
+      color: #735965;
       margin: 0;
     }
     .nx-card-bio {
       font-family: var(--font-body);
       font-size: 13px;
       line-height: 1.5;
-      color: #4A333E;
+      color: #3B2330;
       margin: 0;
       font-weight: 450;
       display: -webkit-box;
@@ -2051,33 +2054,39 @@
       overflow: hidden;
     }
 
-    /* Gear / Skill Chips (Matcha Reference) */
+    /* Gear / Skill Chips (Floating Crisp Porcelain Pills) */
     .nx-card-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
     }
     .nx-card-chip {
-      padding: 4px 10px;
-      border-radius: 8px;
-      background: #FAF5F2;
-      color: #5C4550;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      background: #FFFFFF;
+      color: #3B0A24;
       font-size: 11px;
       font-weight: 650;
       white-space: nowrap;
-      border: 1px solid rgba(59, 10, 36, 0.06);
+      border: 1px solid rgba(59, 10, 36, 0.08);
+      box-shadow: 0 2px 6px rgba(59, 10, 36, 0.04);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .nx-card-chip:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(59, 10, 36, 0.08);
     }
 
-    /* Sleek Horizontal Stat Ribbon (Oat & Mill Inspired) */
+    /* Sleek Horizontal Stat Ribbon */
     .nx-card-stat-ribbon {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 10px 0;
-      border-top: 1px solid rgba(59, 10, 36, 0.08);
-      border-bottom: 1px solid rgba(59, 10, 36, 0.08);
+      border-top: 1px solid rgba(59, 10, 36, 0.1);
+      border-bottom: 1px solid rgba(59, 10, 36, 0.1);
       font-size: 12px;
-      color: #7E656F;
+      color: #735965;
       font-family: var(--font-body);
     }
     .nx-stat-item {
@@ -2111,93 +2120,103 @@
     }
     .nx-card-hire-btn {
       width: 100%;
-      height: 46px;
+      height: 48px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      border-radius: 14px;
+      border-radius: 9999px;
       background: #3B0A24;
       color: #FFFFFF;
       font-family: var(--font-display);
-      font-size: 14px;
+      font-size: 14.5px;
       font-weight: 750;
       border: none;
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(59, 10, 36, 0.22);
+      box-shadow: 0 8px 22px rgba(59, 10, 36, 0.22);
       transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
     }
     .nx-card-hire-btn:hover {
       background: #250415;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(59, 10, 36, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(59, 10, 36, 0.32);
     }
     .nx-card-hire-btn:active {
       transform: scale(0.98);
     }
     .nx-card-hire-btn:focus-visible {
-      outline: 2px solid #3B0A24;
+      outline: 3px solid #3B0A24;
       outline-offset: 2px;
     }
-        .nx-card-sub-actions {
+    .nx-card-sub-actions {
       display: flex;
       align-items: center;
       gap: 8px;
     }
     .nx-card-msg-btn {
       flex: 1;
-      height: 38px;
+      height: 40px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      border-radius: 12px;
-      background: #F8FAFC;
-      color: #334155;
+      gap: 7px;
+      border-radius: 9999px;
+      background: #FFFFFF;
+      color: #3B0A24;
+      border: 1px solid rgba(59, 10, 36, 0.12);
+      box-shadow: 0 2px 8px rgba(59, 10, 36, 0.05);
       font-family: var(--font-display);
-      font-size: 12.5px;
-      font-weight: 650;
-      border: 1px solid rgba(15, 23, 42, 0.1);
+      font-size: 13px;
+      font-weight: 700;
       cursor: pointer;
-      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
     }
     .nx-card-msg-btn:hover {
-      background: #F1F5F9;
-      color: #0F172A;
-      border-color: rgba(15, 23, 42, 0.2);
+      background: #FAF5F2;
+      border-color: rgba(59, 10, 36, 0.25);
+      transform: translateY(-1px);
+    }
+    .nx-card-msg-btn:active {
+      transform: scale(0.98);
     }
     .nx-card-msg-btn:focus-visible {
-      outline: 2px solid #0F172A;
+      outline: 2px solid #3B0A24;
       outline-offset: 2px;
     }
     .nx-card-save-btn {
-      flex: 0 0 38px;
-      width: 38px;
-      height: 38px;
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border-radius: 12px;
-      background: #F8FAFC;
-      color: #64748B;
-      border: 1px solid rgba(15, 23, 42, 0.1);
+      border-radius: 9999px;
+      background: #FFFFFF;
+      color: #3B0A24;
+      border: 1px solid rgba(59, 10, 36, 0.12);
+      box-shadow: 0 2px 8px rgba(59, 10, 36, 0.05);
       cursor: pointer;
-      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
     }
     .nx-card-save-btn:hover {
-      background: #F1F5F9;
-      color: #FF6B00;
-      border-color: rgba(255, 107, 0, 0.4);
+      background: #FAF5F2;
+      border-color: rgba(59, 10, 36, 0.25);
+      transform: translateY(-1px);
     }
-    .nx-card-save-btn.is-saved {
-      background: #FFF7ED;
-      color: #FF6B00;
-      border-color: #FF6B00;
-      box-shadow: 0 2px 8px rgba(255, 107, 0, 0.2);
+    .nx-card-save-btn:active {
+      transform: scale(0.95);
     }
     .nx-card-save-btn:focus-visible {
-      outline: 2px solid #0F172A;
+      outline: 2px solid #3B0A24;
       outline-offset: 2px;
+    }
+    .nx-card-save-btn.is-saved {
+      background: #3B0A24;
+      color: #FFFFFF;
+      border-color: #3B0A24;
+    }
+    .nx-card-save-btn.is-saved svg {
+      fill: #FFFFFF;
     }
 
     /* Empty state */

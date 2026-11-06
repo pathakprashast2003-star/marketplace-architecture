@@ -33,11 +33,11 @@
 
 ## 3. Visual System Standards & Editorial Architecture (Reverse-Engineered Taste)
 
-### A. The Oat & Mill Concentric Sculptural Card Architecture (A Notch Up)
-To eliminate the visual clutter of box-on-box directory cards and achieve the warm, tactile, high-fashion aesthetic of the Oat & Mill reference, the roster talent cards implement a unified sculptural card structure:
+### A. The Seamless Sculptural Craft Architecture (Impeccable Production Standard)
+To eliminate the visual clutter of box-on-box directory cards and achieve the pure, tactile, editorial aesthetic of the Oat & Mill reference, the roster talent cards implement a seamless, monolithic craft structure:
 
-1. **Bespoke Sculptural Craft Canvases (`.nx-talent-card`)**:
-   - Each creator sits on a single, continuous, warm tactile chassis (`border-radius: 36px`) customized to their discipline:
+1. **Bespoke Seamless Sculptural Canvases (`.nx-talent-card`)**:
+   - Each creator sits on a single, continuous, monolithic tactile chassis (`border-radius: 36px`) customized to their discipline, with zero nested white boxes:
      - **Marcus Vance (Commercial Cinema)**: Warm terracotta-blush (`#FAF2EC` with amber ambient glow).
      - **Maya Lin (Aerial FPV)**: Soft coastal sky & cloud blue (`#EFF6FB` with cyan ambient glow).
      - **Elena Rostova (Character & World Art)**: Velvet lilac & royal blush (`#F7EFF9` with violet ambient glow).
@@ -45,33 +45,33 @@ To eliminate the visual clutter of box-on-box directory cards and achieve the wa
      - **Samuel Cross (Action & Motion)**: Champagne warm sand (`#F5F2EB` with warm slate ambient glow).
 
 2. **3D Character Hero Stage (`.nx-card-media-frame`)**:
-   - Expanded height (`275px`) providing dramatic headroom for the 3D personas.
-   - Persona layer (`.nx-media-persona`) with luminous radiant ambient aura and large-scale transparent busts (`height: 98%`).
+   - Expanded height (`285px`) with seamless `36px` top radii flowing continuously into the card body.
+   - Persona layer (`.nx-media-persona`) with radiant ambient aura and large-scale transparent busts (`height: 98%`).
    - Multi-tier ambient drop-shadows: `filter: drop-shadow(0 22px 30px rgba(59, 10, 36, 0.22)) drop-shadow(0 6px 12px rgba(59, 10, 36, 0.08))`.
    - Tactile elevation on hover: `transform: scale(1.08) translateY(-8px)`.
-   - Dual-media compatibility: Seamlessly switches to 16:9 cinema production reels with 26px rounded corners.
+   - Dual-media compatibility: In Cinema Reels mode, displays 16:9 production reels with 24px inner radii and subtle drop shadow.
 
 3. **Floating Oat & Mill White Rate Pill & Badges**:
-   - Elevated pure white rate pill: `$650/day`, `$550/day`, etc. (`background: #FFFFFF; color: #220514; font-weight: 850; box-shadow: 0 6px 18px rgba(59, 10, 36, 0.12); border-radius: 9999px;`).
+   - Elevated pure white rate pill: `$650/day`, `$550/day`, etc. (`background: #FFFFFF; color: #220514; font-weight: 850; box-shadow: 0 8px 22px rgba(59, 10, 36, 0.14); border-radius: 9999px;`).
    - Translucent white craft pills (`8K Cinema Reel`) and SLA badges (`⚡ < 1h SLA`).
 
-4. **Concentric Nested Cardstock Body (`.nx-card-body`)**:
-   - Pristine white card nested with concentric radii (`36px` outer $\rightarrow$ `26px` inner with `12px` margin).
+4. **Monolithic Editorial Content Body (`.nx-card-body`)**:
+   - Sits directly on the sculptural canvas (`background: transparent; margin: 0; padding: 6px 22px 24px 22px;`).
    - **Director Title**: Set in **Outfit** (`1.45rem`, weight 850, `#220514`) with blue verified badge.
-   - **Role & Location**: `Commercial Cinema · Austin, TX` (`color: #7E656F; font-size: 12.5px; font-weight: 600;`).
-   - **Editorial Bio**: Single un-slopped human sentence (`font-size: 13px; line-height: 1.5; color: #4A333E;`).
-   - **Equipment Chips**: Soft rounded pills (`background: #FAF5F2; color: #5C4550; font-size: 11px; font-weight: 650;`).
+   - **Role & Location**: `Commercial Cinema · Austin, TX` (`color: #735965; font-size: 12.5px; font-weight: 650;`).
+   - **Editorial Bio**: Single un-slopped human sentence (`font-size: 13px; line-height: 1.5; color: #3B2330;`).
+   - **Porcelain Gear Chips**: Floating pure white pills (`background: #FFFFFF; color: #3B0A24; border-radius: 9999px; font-size: 11px; font-weight: 650; box-shadow: 0 2px 6px rgba(59, 10, 36, 0.04);`).
    - **Horizontal Stat Ribbon (`.nx-card-stat-ribbon`)**:
-     - Single horizontal stat ribbon bounded by soft hairline dividers:
+     - Single horizontal stat ribbon bounded by delicate hairline dividers:
        `★★★★★ 5.0  •  42 Projects  •  $140k+ Earned`
-     - Completely replaces the tall 3-row vertical table, granting spacious breathing room.
-   - **Deep Wine Action Stack**:
-     - Primary button: Deep wine (`#3B0A24`) pill button `[ Hire Marcus → ]` (`height: 46px; border-radius: 14px; color: #FFFFFF; font-weight: 750; box-shadow: 0 6px 18px rgba(59, 10, 36, 0.22);`).
-     - Sub-action row: `[ ✉ Message ]` (`background: #FAF5F2; color: #3B0A24;`) + `[ 🔖 ]` bookmark.
+     - Replaces bulky accounting tables with calm editorial rhythm.
+   - **Full Pill Action Stack**:
+     - Primary button: Deep wine (`#3B0A24`) pill button `[ Hire Marcus → ]` (`height: 48px; border-radius: 9999px; color: #FFFFFF; font-weight: 750; box-shadow: 0 8px 22px rgba(59, 10, 36, 0.22);`).
+     - Sub-action row: Pure white pill `[ ✉ Message ]` (`background: #FFFFFF; color: #3B0A24; border-radius: 9999px;`) + `[ 🔖 ]` bookmark.
 
 5. **Dynamic Symmetrical Centering**:
    - Row 1 features 3 cards; Row 2 features 2 cards symmetrically centered beneath Row 1 (3+2 museum composition).
-   - 100% responsive down to 390px mobile viewports.
+   - 100% responsive down to 390px mobile viewports with WCAG 2.2 AA contrast compliance.
 
 ### B. Tactile 3D Mobile Experience Architecture (Oat & Mill Reference)
 Implemented in [`artisan_experience.html`](artisan_experience.html) with 4 bespoke 3D assets:
