@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg_lav" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F5EEFD"/>
+      <stop offset="100%" stop-color="#E4CCFA"/>
+    </linearGradient>
+    <linearGradient id="plum" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7E22CE"/>
+      <stop offset="100%" stop-color="#4C127A"/>
+    </linearGradient>
+    <linearGradient id="coral" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FB7185"/>
+      <stop offset="100%" stop-color="#D4143B"/>
+    </linearGradient>
+    <linearGradient id="olive" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#84CC16"/>
+      <stop offset="100%" stop-color="#3F6907"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="600" height="750" fill="url(#bg_lav)"/>
+  
+  <!-- Matisse Cutouts & Abstract Foliage -->
+  <circle cx="460" cy="170" r="130" fill="url(#coral)" opacity="0.9"/>
+  <path d="M 0 180 C 140 140 240 280 200 440 C 160 560 60 600 0 680 Z" fill="url(#olive)" opacity="0.8"/>
+  <path d="M 280 380 Q 460 300 580 420 L 600 750 L 180 750 Z" fill="url(#plum)" opacity="0.95"/>
+  
+  <!-- Stylized Illustrator Figure -->
+  <g transform="translate(300, 160)">
+    <!-- Silk Coat & Torso filling down -->
+    <path d="M -200 600 L -170 280 C -150 160 -80 120 0 120 C 80 120 150 160 170 280 L 200 600 Z" fill="#3B0764"/>
+    <path d="M -65 130 L 0 230 L 65 130 Z" fill="#FB7185"/>
+    
+    <!-- Neck -->
+    <rect x="-22" y="55" width="44" height="75" rx="10" fill="#E8B896"/>
+    
+    <!-- Head Base -->
+    <ellipse cx="0" cy="45" rx="64" ry="74" fill="#FCE4D6"/>
+    
+    <!-- Editorial Wavy Bob Hair (Natasha Romanoff inspired) -->
+    <path d="M -74 30 C -85 90 -65 130 -40 135 C -60 100 -55 40 -40 0 C -20 -40 20 -40 40 0 C 55 40 60 100 40 135 C 65 130 85 90 74 30 C 72 -50 -72 -50 -74 30 Z" fill="#180B26"/>
+    <path d="M -50 -10 Q 0 -35 50 -10" fill="none" stroke="#FB7185" stroke-width="4" opacity="0.6"/>
+    
+    <!-- Eyes & Editorial Liner -->
+    <ellipse cx="-24" cy="42" rx="6" ry="3.5" fill="#180B26"/>
+    <ellipse cx="24" cy="42" rx="6" ry="3.5" fill="#180B26"/>
+    <path d="M -34 38 L -16 40" stroke="#7E22CE" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 16 40 L 34 38" stroke="#7E22CE" stroke-width="2.5" stroke-linecap="round"/>
+    
+    <!-- Nose & Crimson Lips -->
+    <path d="M -2 46 L -3 66 L 5 66" fill="none" stroke="#C28965" stroke-width="2" stroke-linecap="round"/>
+    <path d="M -16 86 Q 0 96 16 86" fill="none" stroke="#E11D48" stroke-width="3.5" stroke-linecap="round"/>
+    
+    <!-- Elegant Gold Drop Earring -->
+    <path d="M 68 52 L 68 85" stroke="#F59E0B" stroke-width="3"/>
+    <circle cx="68" cy="90" r="5" fill="#F59E0B"/>
+    
+    <!-- Stylus / Pencil in hand gesture -->
+    <g transform="translate(120, 220) rotate(-40)">
+      <rect x="-6" y="-80" width="12" height="120" rx="3" fill="#F59E0B"/>
+      <polygon points="0,-95 -6,-80 6,-80" fill="#180B26"/>
+    </g>
+  </g>
+</svg>

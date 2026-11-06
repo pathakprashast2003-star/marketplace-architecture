@@ -33,21 +33,26 @@
 
 ## 3. Visual System Standards & Editorial Architecture (Reverse-Engineered Taste)
 
-### A. The 4 Principles of Edge-to-Edge Synchronicity
-1. **Single Continuous Canvas (Zero Segmentation)**:
-   - Previous versions fragmented the card into 6 competing micro-stripes (Image, Seam, Monogram circle, Name/Button, Bio, Client tags, 3-column stats bar).
-   - The new architecture treats the card as **one unified, monumental art canvas** (`height: 480px`, `border-radius: 28px`).
-   - The visual (cinema reel or 3D character) commands 100% of the card area with subtle scale hover (`scale(1.05)`).
-2. **Frosted Mist Scrim (Apple/Editorial Poster Aesthetic)**:
-   - Overlaid on the lower 40% of the visual canvas:
-     $$\text{Scrim} = \text{linear-gradient}(180\deg, \text{transparent}, \text{rgba}(9, 13, 22, 0.45)\ 22\%, \text{rgba}(9, 13, 22, 0.98)\ 100\%) + \text{backdrop-filter: blur}(16\text{px})$$
-   - Houses only 4 essential, high-intent elements:
-     - Creator Name in crisp white display face + blue verified badge.
-     - Craft & Location subtitle (e.g. `Commercial Cinema · Austin, TX`).
-     - Signature gear kit (e.g. `Cooke 2x Anamorphic · RED V-Raptor 8K`).
-     - Climax footer: Bold tabular day rate (`$650 / day`) + high-contrast tactile pill button (`Inquire Direct →`).
-3. **Streamlined Control Dock (Anti-Clutter Rule)**:
-   - Eliminated the 4 vertically stacked toolbars (search bar + location select + trust strip with dots + filter pills + mode toggle).
+### A. The 5 Principles of High-End Editorial Card Architecture (Natasha Romanoff / Card B Reference)
+1. **Physical Card Framing & Concentric Radii**:
+   - The card features a prominent 8px solid white framing border (`border: 8px solid #FFFFFF; border-radius: 36px; height: 540px`).
+   - Creates a tactile, museum-grade art print elevation against the drafting grid canvas (`#F8F9FA`).
+   - Adheres to Hallmark concentric radii: 36px outer border → 28px inner canvas → 14px button/bookmark radius.
+2. **High-Character Editorial Typography**:
+   - Headline and metrics display face tokenized to Google's **Outfit** font (`--font-display: 'Outfit', sans-serif`).
+   - Body copy and metadata tokenized to **Plus Jakarta Sans** (`--font-body: 'Plus Jakarta Sans', sans-serif`).
+   - Completely eliminates generic system fonts and AI-slop corporate typography.
+3. **Un-slopped Editorial Bios & Background Vectors**:
+   - Swapped out childish 3D Pixar bubbles for custom resolution-independent editorial vector art with Bauhaus color blocking and Matisse organic curves.
+   - Replaced multi-paragraph generic bios with a single grounded human sentence per operator (Unslop contract).
+4. **3-Stat Trio with Hairline Dividers**:
+   - Symmetrical 3-column data grid with vertical hairline dividers (`1px solid rgba(255, 255, 255, 0.12)`):
+     - Column 1: Star Rating (`★ 5.0 Rating`)
+     - Column 2: Platform Earnings (`$140k+ Earned`)
+     - Column 3: Day Rate (`$650/day Day Rate`)
+5. **Dual-Action Row (The Card B Victory)**:
+   - Primary action: Wide white pill button `[ ✉ Get In Touch ]` with direct inquiry modal trigger.
+   - Secondary action: Dark rounded bookmark button `[ 🔖 ]` with instant shortlist save toggle and feedback toast.
    - Synthesized into **one single, elegant bar**:
      - Left: Category discipline pills with active state.
      - Right: Integrated compact live search (`Search talent or gear...`) + View mode toggle (`Client Reels` / `3D Personas`).
