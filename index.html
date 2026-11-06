@@ -2471,17 +2471,101 @@
       transform: translateY(-2px);
       box-shadow: 0 14px 28px -6px rgba(15, 23, 42, 0.4);
     }
-      font-weight: 700;
-      font-size: 15px;
-      border: 0;
-      cursor: pointer;
-      margin-top: 10px;
-      box-shadow: 0 15px 30px -10px var(--btn-primary);
-      transition: transform 0.2s ease, opacity 0.2s ease;
+    /* ── 30-SECOND STUDIO SYNTHESIZER (CASE 1, 2, 3 ONBOARDING) ── */
+    .nx-modal-dialog.is-synthesizer {
+      max-width: 620px;
+      max-height: 90vh;
+      overflow-y: auto;
     }
-    .nx-modal-submit:hover {
-      transform: translateY(-2px);
-      opacity: 0.95;
+    .nx-mode-tabs {
+      display: flex;
+      gap: 6px;
+      background: #F1F5F9;
+      padding: 4px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .nx-mode-tab {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 750;
+      color: #64748B;
+      cursor: pointer;
+      transition: background 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .nx-mode-tab.is-active {
+      background: #FFFFFF;
+      color: #3B0A24;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .nx-mini-preview-box {
+      background: #FAF5F2;
+      border: 1px solid rgba(59, 10, 36, 0.12);
+      border-radius: 20px;
+      padding: 14px 16px;
+      margin: 16px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nx-mini-thumb {
+      width: 72px;
+      height: 72px;
+      border-radius: 14px;
+      background: #FFFFFF;
+      border: 1px solid rgba(59, 10, 36, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .nx-mini-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .nx-mini-meta {
+      flex: 1;
+      min-width: 0;
+    }
+    .nx-mini-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #3B0A24;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nx-mini-sub {
+      font-size: 11.5px;
+      color: #735965;
+      margin-top: 2px;
+    }
+    .nx-mini-rate {
+      font-size: 13px;
+      font-weight: 850;
+      color: #3B0A24;
+      background: #FFFFFF;
+      padding: 4px 10px;
+      border-radius: 999px;
+      box-shadow: 0 2px 6px rgba(59, 10, 36, 0.1);
+      white-space: nowrap;
+    }
+    @keyframes newCardGlow {
+      0% { box-shadow: 0 0 0 0 rgba(197, 82, 33, 0.6); transform: scale(0.97); }
+      50% { box-shadow: 0 0 0 16px rgba(197, 82, 33, 0); transform: scale(1.02); }
+      100% { box-shadow: 0 4px 20px rgba(59, 10, 36, 0.08); transform: scale(1); }
+    }
+    .nx-talent-card.is-newly-added {
+      animation: newCardGlow 2.5s ease-out;
     }
     .nx-modal-feedback {
       display: none;
@@ -4624,49 +4708,108 @@
     </div>
   </div>
 
-  <!-- ── FOUNDING MEMBER APPLICATION MODAL (THE KNOT / STYLESEAT) ── -->
+  <!-- ── 30-SECOND STUDIO SYNTHESIZER MODAL (CASE 1, 2, 3 ENGINE) ── -->
   <div id="foundingModal" class="nx-modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="nx-modal-dialog">
+    <div class="nx-modal-dialog is-synthesizer">
       <button class="nx-modal-close" type="button" onclick="closeFoundingModal()" aria-label="Close dialog">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
       <div id="foundingFormView">
-        <p class="nx-modal-kicker">Founding Roster · 42/100 Claimed</p>
-        <h3 class="nx-modal-title">Claim Your Founding Pass</h3>
-        <p class="nx-modal-desc">90 days free. Permanent Founding Member badge. Priority search ranking. 0% platform commission on all future client deals.</p>
-        <form onsubmit="handleFoundingSubmit(event)">
-          <div class="nx-form-group">
-            <label class="nx-form-label" for="foundName">Your Name / Studio Name</label>
-            <input class="nx-form-input" type="text" id="foundName" placeholder="e.g. Apex Visuals" required>
+        <p class="nx-modal-kicker">30-Second Studio Synthesizer</p>
+        <h3 class="nx-modal-title">Publish Your Live Profile</h3>
+        <p class="nx-modal-desc">No headshots? No face? Zero portfolio? Select your scenario to auto-synthesize your live card directly into the directory.</p>
+        
+        <!-- Scenario Mode Switcher -->
+        <div class="nx-mode-tabs" role="tablist" aria-label="Select Onboarding Scenario">
+          <button type="button" class="nx-mode-tab is-active" id="tabCase1" onclick="setSynthesizerMode('case1')">⚡ Case 1: First Gig</button>
+          <button type="button" class="nx-mode-tab" id="tabCase2" onclick="setSynthesizerMode('case2')">🛡️ Case 2: Studio / No-Face</button>
+          <button type="button" class="nx-mode-tab" id="tabCase3" onclick="setSynthesizerMode('case3')">🚀 Case 3: 30s Auto-Sync</button>
+        </div>
+
+        <form id="synthForm" onsubmit="handleFoundingSubmit(event)">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="nx-form-group">
+              <label class="nx-form-label" for="foundName">Creator / Studio Name</label>
+              <input class="nx-form-input" type="text" id="foundName" value="Kira Vance" placeholder="e.g. Kira Vance" required oninput="updateLivePreview()">
+            </div>
+            <div class="nx-form-group">
+              <label class="nx-form-label" for="foundCity">City / Hub</label>
+              <input class="nx-form-input" type="text" id="foundCity" value="Brooklyn, NY" placeholder="e.g. Brooklyn, NY" required oninput="updateLivePreview()">
+            </div>
           </div>
-          <div class="nx-form-group">
-            <label class="nx-form-label" for="foundCraft">Primary Craft &amp; Discipline</label>
-            <select class="nx-form-select" id="foundCraft" required>
-              <option value="Commercial Cinema">Commercial &amp; Narrative Cinema</option>
-              <option value="Aerial Cinema">Aerial &amp; Drone Filming (FAA Part 107)</option>
-              <option value="Spatial 3D">Realtime 3D &amp; Spatial Computing</option>
-              <option value="Illustration">Character Art &amp; World Building</option>
-              <option value="Digital Craft">Digital Craft &amp; Design Systems</option>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="nx-form-group">
+              <label class="nx-form-label" for="foundCraft">Primary Discipline</label>
+              <select class="nx-form-select" id="foundCraft" required onchange="updateLivePreview()">
+                <option value="film">Commercial &amp; Narrative Cinema</option>
+                <option value="drone">Aerial FPV &amp; Drone Flight</option>
+                <option value="art">Character &amp; World Art</option>
+                <option value="3d">Realtime 3D &amp; Spatial</option>
+                <option value="action">Action Camera &amp; Pursuit</option>
+              </select>
+            </div>
+            <div class="nx-form-group">
+              <label class="nx-form-label" for="foundRate">Standard Day Rate ($USD)</label>
+              <input class="nx-form-input" type="text" id="foundRate" value="$380/day" placeholder="e.g. $380/day" required oninput="updateLivePreview()">
+            </div>
+          </div>
+
+          <!-- Mode-Specific Input Group -->
+          <div id="groupMode1" class="nx-form-group">
+            <label class="nx-form-label" for="foundToolSil">Craft Tool Silhouette</label>
+            <select class="nx-form-select" id="foundToolSil" onchange="updateLivePreview()">
+              <option value="cam">Cinema Camera Rig (ARRI Alexa / RED)</option>
+              <option value="pursuit">High-Speed Pursuit Crane Rig</option>
             </select>
+            <p style="font-size: 11.5px; color: #64748B; margin-top: 6px;">Generates glowing animated vector hardware contour for certified new talent.</p>
           </div>
-          <div class="nx-form-group">
-            <label class="nx-form-label" for="foundReel">Portfolio / Showreel URL</label>
-            <input class="nx-form-input" type="url" id="foundReel" placeholder="https://vimeo.com/... or portfolio link" required>
+
+          <div id="groupMode2" class="nx-form-group" style="display: none;">
+            <label class="nx-form-label" for="foundReelImg">16:9 Reel Still Keyframe</label>
+            <select class="nx-form-select" id="foundReelImg" onchange="updateLivePreview()">
+              <option value="assets/cinema_posters/poster_4_cgi.jpg">VisionOS Liquid Chrome Stage</option>
+              <option value="assets/cinema_posters/poster_3_editorial.jpg">High-Fashion Architectural Editorial</option>
+              <option value="assets/cinema_posters/poster_1_drone.jpg">Coastal FPV Heavy-Lift Horizon</option>
+            </select>
+            <p style="font-size: 11.5px; color: #64748B; margin-top: 6px;">Studio Monogram badge auto-derived from initials. Personal face omitted.</p>
           </div>
-          <div class="nx-form-group">
-            <label class="nx-form-label" for="foundRate">Standard Day Rate ($USD)</label>
-            <input class="nx-form-input" type="text" id="foundRate" placeholder="e.g. $550/day" required>
+
+          <div id="groupMode3" class="nx-form-group" style="display: none;">
+            <label class="nx-form-label" for="foundSyncUrl">1-Click Sync URL (Vimeo / Behance / IG)</label>
+            <input class="nx-form-input" type="text" id="foundSyncUrl" value="vimeo.com/kiravance" placeholder="vimeo.com/... or portfolio link" oninput="updateLivePreview()">
+            <p style="font-size: 11.5px; color: #64748B; margin-top: 6px;">Extracts palette, auto-configures gear tags, and generates instant profile.</p>
           </div>
-          <button class="nx-modal-submit" type="submit">Submit for Founding Vetting →</button>
+
+          <!-- Live Dynamic Mini-Preview -->
+          <div class="nx-mini-preview-box">
+            <div class="nx-mini-thumb" id="miniPreviewThumb">
+              <!-- Dynamically rendered -->
+            </div>
+            <div class="nx-mini-meta">
+              <div class="nx-mini-title">
+                <span id="miniPreviewName">Kira Vance</span>
+                <span class="nx-verified-badge" style="width:14px;height:14px;border-radius:50%;background:#0284C7;display:inline-flex;align-items:center;justify-content:center;">
+                  <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <span id="miniPreviewBadge" class="nx-case-badge case-1" style="display:inline-flex;font-size:9px;padding:2px 6px;">Case 1</span>
+              </div>
+              <div class="nx-mini-sub" id="miniPreviewSub">Commercial Cinema · Brooklyn, NY</div>
+            </div>
+            <div class="nx-mini-rate" id="miniPreviewRate">$380/day</div>
+          </div>
+
+          <button class="nx-modal-submit" id="btnSynthSubmit" type="submit" style="background: #3B0A24; font-weight: 800;">🚀 Synthesize &amp; Publish to Live Grid →</button>
         </form>
       </div>
+
       <div id="foundingSuccessView" class="nx-modal-feedback">
-        <div class="nx-modal-icon-badge">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        <div class="nx-modal-icon-badge" style="background: #FAF2EC; color: #3B0A24; width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 16px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
         </div>
-        <h3 class="nx-modal-title" style="margin-bottom: 8px;">Application Queued!</h3>
-        <p class="nx-modal-desc">Your showreel has been submitted to Tyrone’s vetting desk. You will receive activation confirmation within 24 hours.</p>
-        <button class="nx-modal-submit" type="button" onclick="closeFoundingModal()">Done</button>
+        <h3 class="nx-modal-title" style="margin-bottom: 8px;">Card Synthesized &amp; Published!</h3>
+        <p class="nx-modal-desc">Your profile is now live in the directory with instant direct inquiry routing.</p>
+        <button class="nx-modal-submit" type="button" onclick="closeFoundingModalAndScroll()">View on Live Roster ↓</button>
       </div>
     </div>
   </div>
@@ -4728,6 +4871,9 @@
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      if (typeof updateLivePreview === 'function') {
+        updateLivePreview();
+      }
     }
 
     function closeFoundingModal() {
@@ -4755,11 +4901,259 @@
       }
     }
 
+    /* ── 30-SECOND STUDIO SYNTHESIZER ENGINE ── */
+    let currentSynthMode = 'case1';
+    let newlyCreatedCardId = null;
+
+    function setSynthesizerMode(mode) {
+      currentSynthMode = mode;
+      document.querySelectorAll('.nx-mode-tab').forEach(t => t.classList.remove('is-active'));
+      const activeBtn = document.getElementById(mode === 'case1' ? 'tabCase1' : mode === 'case2' ? 'tabCase2' : 'tabCase3');
+      if (activeBtn) activeBtn.classList.add('is-active');
+
+      const g1 = document.getElementById('groupMode1');
+      const g2 = document.getElementById('groupMode2');
+      const g3 = document.getElementById('groupMode3');
+      if (g1) g1.style.display = (mode === 'case1' ? 'block' : 'none');
+      if (g2) g2.style.display = (mode === 'case2' ? 'block' : 'none');
+      if (g3) g3.style.display = (mode === 'case3' ? 'block' : 'none');
+
+      const nameInput = document.getElementById('foundName');
+      const rateInput = document.getElementById('foundRate');
+
+      if (mode === 'case1') {
+        if (nameInput) nameInput.value = 'Kira Vance';
+        if (rateInput) rateInput.value = '$380/day';
+      } else if (mode === 'case2') {
+        if (nameInput) nameInput.value = 'Phantom VFX Studio';
+        if (rateInput) rateInput.value = '$720/day';
+      } else if (mode === 'case3') {
+        if (nameInput) nameInput.value = 'Apex Pursuit';
+        if (rateInput) rateInput.value = '$580/day';
+      }
+
+      updateLivePreview();
+    }
+
+    function updateLivePreview() {
+      const name = (document.getElementById('foundName') ? document.getElementById('foundName').value.trim() : '') || 'New Creator';
+      const city = (document.getElementById('foundCity') ? document.getElementById('foundCity').value.trim() : '') || 'Brooklyn, NY';
+      const craft = (document.getElementById('foundCraft') ? document.getElementById('foundCraft').value : 'film');
+      const rate = (document.getElementById('foundRate') ? document.getElementById('foundRate').value.trim() : '') || '$380/day';
+
+      const thumb = document.getElementById('miniPreviewThumb');
+      const nameEl = document.getElementById('miniPreviewName');
+      const subEl = document.getElementById('miniPreviewSub');
+      const rateEl = document.getElementById('miniPreviewRate');
+      const badgeEl = document.getElementById('miniPreviewBadge');
+
+      if (nameEl) nameEl.textContent = name;
+      if (subEl) subEl.textContent = (craft.toUpperCase()) + ' · ' + city;
+      if (rateEl) rateEl.textContent = rate;
+
+      if (!thumb || !badgeEl) return;
+
+      if (currentSynthMode === 'case1') {
+        badgeEl.className = 'nx-case-badge case-1';
+        badgeEl.textContent = 'Case 1: First Gig';
+        const silChoice = document.getElementById('foundToolSil') ? document.getElementById('foundToolSil').value : 'cam';
+        if (silChoice === 'cam') {
+          thumb.innerHTML = '<svg width="42" height="42" viewBox="0 0 200 200" fill="none"><path d="M30 65 L65 72 L65 118 L30 125 Z" stroke="#3B0A24" stroke-width="5" fill="#FAF2EC"/><rect x="95" y="68" width="55" height="54" rx="8" stroke="#3B0A24" stroke-width="5" fill="#FFFFFF"/><circle cx="122" cy="95" r="14" stroke="#3B0A24" stroke-width="4"/><line x1="55" y1="126" x2="160" y2="126" stroke="#3B0A24" stroke-width="6"/></svg>';
+        } else {
+          thumb.innerHTML = '<svg width="42" height="42" viewBox="0 0 200 200" fill="none"><path d="M30 60 Q90 40 150 75" stroke="#3B0A24" stroke-width="6"/><circle cx="152" cy="105" r="28" stroke="#3B0A24" stroke-width="5" fill="#FFFFFF"/></svg>';
+        }
+      } else if (currentSynthMode === 'case2') {
+        badgeEl.className = 'nx-case-badge case-2';
+        badgeEl.textContent = 'Case 2: Studio / No-Face';
+        const initials = name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase() || 'ST';
+        const imgUrl = document.getElementById('foundReelImg') ? document.getElementById('foundReelImg').value : 'assets/cinema_posters/poster_4_cgi.jpg';
+        thumb.innerHTML = `<img src="${imgUrl}" alt="Reel Still"><span style="position:absolute;bottom:4px;right:4px;width:20px;height:20px;border-radius:6px;background:#3B0A24;color:#FFF;font-size:9px;font-weight:900;display:flex;align-items:center;justify-content:center;">${initials}</span>`;
+      } else {
+        badgeEl.className = 'nx-case-badge case-3';
+        badgeEl.textContent = 'Case 3: 30s Auto-Sync';
+        const initials = name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase() || 'AP';
+        thumb.innerHTML = `<div style="width:100%;height:100%;background:linear-gradient(135deg,#3B0A24,#6E1244);color:#FFDEB3;font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center;">${initials}</div>`;
+      }
+    }
+
     function handleFoundingSubmit(e) {
       e.preventDefault();
+      const name = (document.getElementById('foundName') ? document.getElementById('foundName').value.trim() : '') || 'New Creator';
+      const city = (document.getElementById('foundCity') ? document.getElementById('foundCity').value.trim() : '') || 'New York, NY';
+      const craft = (document.getElementById('foundCraft') ? document.getElementById('foundCraft').value : 'film');
+      const rate = (document.getElementById('foundRate') ? document.getElementById('foundRate').value.trim() : '') || '$380/day';
+      const cleanRate = rate.replace(/[^\d]/g, '') || '380';
+
+      const grid = document.querySelector('.nx-talent-grid');
+      if (!grid) return;
+
+      const cardId = 'card-custom-' + Date.now();
+      newlyCreatedCardId = cardId;
+
+      let cardHtml = '';
+      const initials = name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase() || 'NX';
+
+      if (currentSynthMode === 'case1') {
+        const silChoice = document.getElementById('foundToolSil') ? document.getElementById('foundToolSil').value : 'cam';
+        const svgContent = silChoice === 'cam' ? `
+          <svg class="nx-silhouette-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><radialGradient id="camGlowNew" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#F69A64" stop-opacity="0.35"/><stop offset="100%" stop-color="#F69A64" stop-opacity="0"/></radialGradient></defs>
+            <circle cx="100" cy="95" r="75" fill="url(#camGlowNew)"/>
+            <path d="M30 65 L65 72 L65 118 L30 125 Z" stroke="#3B0A24" stroke-width="2.5" stroke-linejoin="round" fill="rgba(255,255,255,0.7)"/>
+            <rect x="95" y="68" width="55" height="54" rx="8" stroke="#3B0A24" stroke-width="2.5" fill="#FFFFFF"/>
+            <circle cx="122" cy="95" r="14" stroke="#3B0A24" stroke-width="2" fill="rgba(59,10,36,0.06)"/>
+            <line x1="55" y1="126" x2="160" y2="126" stroke="#3B0A24" stroke-width="3.5" stroke-linecap="round"/>
+          </svg>` : `
+          <svg class="nx-silhouette-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="75" fill="rgba(197,82,33,0.15)"/>
+            <path d="M30 60 Q90 40 150 75" stroke="#3B0A24" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="152" cy="105" r="28" stroke="#3B0A24" stroke-width="2.5" fill="rgba(255,255,255,0.7)"/>
+          </svg>`;
+
+        cardHtml = `
+          <article class="nx-talent-card nx-reveal is-in is-newly-added" id="${cardId}" data-craft="${craft} cases case-1" data-case="1" data-has-silhouette="true" data-city="${city.toLowerCase()}" data-gear="certified technician focus puller calibrated optics" data-name="${name.toLowerCase()}" onclick="openInquiryModal('${name}', '${craft.toUpperCase()} Operator')">
+            <div class="nx-card-media-frame">
+              <div class="nx-media-layer nx-media-silhouette">
+                ${svgContent}
+              </div>
+              <div class="nx-card-topbar">
+                <span class="nx-card-pill nx-card-craft-tag">● Reel In Prep</span>
+                <span class="nx-case-badge case-1">Case 1: First Project</span>
+              </div>
+              <div class="nx-card-rate-pill">$${cleanRate}<span class="nx-card-rate-unit">/day</span></div>
+            </div>
+            <div class="nx-card-body">
+              <div class="nx-card-header">
+                <div class="nx-card-name-row">
+                  <h3 class="nx-card-name">${name} <span class="nx-verified-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></h3>
+                </div>
+                <p class="nx-card-role">${craft.toUpperCase()} Operator · ${city}</p>
+              </div>
+              <p class="nx-card-bio">Certified operator trained on commercial glass and digital imaging workflows. Ready for upcoming call times.</p>
+              <div class="nx-card-chips">
+                <span class="nx-card-chip">Certified Hardware</span>
+                <span class="nx-card-chip">Direct Terms</span>
+                <span class="nx-card-chip">First-Job Rate</span>
+              </div>
+              <div class="nx-card-stat-ribbon">
+                <span class="nx-stat-item"><span class="nx-stat-stars">★</span> New Talent</span>
+                <span class="nx-stat-dot">•</span>
+                <span class="nx-stat-item"><strong>0</strong> Projects</span>
+                <span class="nx-stat-dot">•</span>
+                <span class="nx-stat-item"><strong>&lt; 1h</strong> Response</span>
+              </div>
+              <div class="nx-card-actions">
+                <button type="button" class="nx-card-hire-btn" onclick="event.stopPropagation(); openInquiryModal('${name}', '${craft.toUpperCase()}')"><span>Inquire with ${name}</span></button>
+              </div>
+            </div>
+          </article>`;
+      } else if (currentSynthMode === 'case2') {
+        const imgUrl = document.getElementById('foundReelImg') ? document.getElementById('foundReelImg').value : 'assets/cinema_posters/poster_4_cgi.jpg';
+        cardHtml = `
+          <article class="nx-talent-card nx-reveal is-in is-newly-added" id="${cardId}" data-craft="${craft} cases case-2" data-case="2" data-city="${city.toLowerCase()}" data-gear="commercial pipeline vfx color grading realtime" data-name="${name.toLowerCase()}" onclick="openInquiryModal('${name}', 'Production Studio')">
+            <div class="nx-card-media-frame">
+              <div class="nx-media-layer nx-media-reel" style="display:flex;">
+                <img class="nx-talent-media-img" src="${imgUrl}" alt="${name} Work Still" loading="lazy">
+              </div>
+              <div class="nx-card-topbar">
+                <span class="nx-card-pill nx-card-craft-tag">▶ Studio Reel</span>
+                <span class="nx-case-badge case-2">Case 2: Studio / No-Face</span>
+              </div>
+              <div class="nx-card-rate-pill">$${cleanRate}<span class="nx-card-rate-unit">/day</span></div>
+            </div>
+            <div class="nx-card-body">
+              <div class="nx-card-header">
+                <div class="nx-card-name-row">
+                  <h3 class="nx-card-name"><span class="nx-card-monogram">${initials}</span> ${name} <span class="nx-verified-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></h3>
+                </div>
+                <p class="nx-card-role">Creative Studio · ${city}</p>
+              </div>
+              <p class="nx-card-bio">Boutique visual collective delivering high-end brand assets and technical pipeline solutions.</p>
+              <div class="nx-card-chips">
+                <span class="nx-card-chip">Studio Team</span>
+                <span class="nx-card-chip">Verified Entity</span>
+                <span class="nx-card-chip">100% IP Buyout</span>
+              </div>
+              <div class="nx-card-stat-ribbon">
+                <span class="nx-stat-item"><span class="nx-stat-stars">★★★★★</span> 5.0</span>
+                <span class="nx-stat-dot">•</span>
+                <span class="nx-stat-item"><strong>14</strong> Projects</span>
+                <span class="nx-stat-dot">•</span>
+                <span class="nx-stat-item"><strong>$85k+</strong> Earned</span>
+              </div>
+              <div class="nx-card-actions">
+                <button type="button" class="nx-card-hire-btn" onclick="event.stopPropagation(); openInquiryModal('${name}', 'Production Studio')"><span>Inquire with ${name}</span></button>
+              </div>
+            </div>
+          </article>`;
+      } else {
+        cardHtml = `
+          <article class="nx-talent-card nx-reveal is-in is-newly-added" id="${cardId}" data-craft="${craft} cases case-3" data-case="3" data-has-silhouette="true" data-city="${city.toLowerCase()}" data-gear="auto sync dynamic pipeline fast response" data-name="${name.toLowerCase()}" onclick="openInquiryModal('${name}', 'Autonomous Specialist')">
+            <div class="nx-card-media-frame">
+              <div class="nx-media-layer nx-media-silhouette">
+                <svg class="nx-silhouette-svg" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="75" fill="rgba(2,132,199,0.15)"/><path d="M30 60 Q90 40 150 75" stroke="#3B0A24" stroke-width="4"/><circle cx="152" cy="105" r="28" stroke="#3B0A24" stroke-width="2.5" fill="#FFFFFF"/></svg>
+              </div>
+              <div class="nx-card-topbar">
+                <span class="nx-card-pill nx-card-craft-tag">⚡ Auto-Synthesized</span>
+                <span class="nx-case-badge case-3">Case 3: Zero-Effort</span>
+              </div>
+              <div class="nx-card-rate-pill">$${cleanRate}<span class="nx-card-rate-unit">/day</span></div>
+            </div>
+            <div class="nx-card-body">
+              <div class="nx-card-header">
+                <div class="nx-card-name-row">
+                  <h3 class="nx-card-name"><span class="nx-card-monogram is-gold">${initials}</span> ${name} <span class="nx-verified-badge"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span></h3>
+                </div>
+                <p class="nx-card-role">Independent Specialist · ${city}</p>
+              </div>
+              <p class="nx-card-bio">Synthesized via 1-click portfolio sync with verified equipment and rapid direct dispatch.</p>
+              <div class="nx-card-chips">
+                <span class="nx-card-chip">Instant Dispatch</span>
+                <span class="nx-card-chip">Direct Terms</span>
+                <span class="nx-card-chip">Verified SLA</span>
+              </div>
+              <div class="nx-card-stat-ribbon">
+                <span class="nx-stat-item"><span class="nx-stat-stars">★</span> Ready to Shoot</span>
+                <span class="nx-stat-dot">•</span>
+                <span class="nx-stat-item"><strong>Direct</strong> Terms</span>
+                <span class="nx-stat-dot">•</span>
+                <span class="nx-stat-item"><strong>&lt; 2h</strong> SLA</span>
+              </div>
+              <div class="nx-card-actions">
+                <button type="button" class="nx-card-hire-btn" onclick="event.stopPropagation(); openInquiryModal('${name}', 'Independent Specialist')"><span>Inquire with ${name}</span></button>
+              </div>
+            </div>
+          </article>`;
+      }
+
+      grid.insertAdjacentHTML('beforeend', cardHtml);
+
+      const filterCount = document.querySelector('.nx-filter-count');
+      if (filterCount) {
+        const curCount = parseInt(filterCount.textContent) || 6;
+        filterCount.textContent = curCount + 1;
+      }
+
       document.getElementById('foundingFormView').style.display = 'none';
       document.getElementById('foundingSuccessView').classList.add('is-visible');
     }
+
+    function closeFoundingModalAndScroll() {
+      closeFoundingModal();
+      if (newlyCreatedCardId) {
+        setTimeout(() => {
+          const newCard = document.getElementById(newlyCreatedCardId);
+          if (newCard) {
+            newCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 250);
+      }
+    }
+
+    // Initialize live preview on load
+    document.addEventListener('DOMContentLoaded', () => {
+      updateLivePreview();
+    });
 
     // Close on backdrop click & ESC
     document.addEventListener('keydown', e => {
