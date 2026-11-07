@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Playfair+Display:ital,wght@0,500..900;1,500..900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Playfair+Display:ital,wght@0,500..900;1,500..900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap"
     rel="stylesheet">
 
   <style>
@@ -3589,70 +3589,115 @@
       text-wrap: pretty;
     }
 
-    /* ── ANALOG FILM PRODUCTION STICKER COLLAGE (EDITORIAL MOODBOARD) ── */
+    /* ── HD FILM PRODUCTION STICKER STAGE (SEPARATE HD STICKERS FROM ZIP) ── */
     #roster .nx-roster-title-cluster {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 28px;
+      gap: 24px;
       margin-bottom: 24px;
     }
 
     #roster .nx-roster-title-main {
       flex: 1;
-      max-width: 560px;
+      max-width: 540px;
     }
 
-    #roster .nx-film-collage-wrap {
+    #roster .nx-film-stickers-stage {
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      flex: 1.2;
+      width: 600px;
+      height: 230px;
+      flex-shrink: 0;
       user-select: none;
       z-index: 5;
     }
 
-    #roster .nx-film-collage {
-      position: relative;
+    #roster .nx-sticker-doodles {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    #roster .nx-film-sticker {
+      position: absolute;
       display: inline-block;
       cursor: grab;
       user-select: none;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
-      filter: drop-shadow(0 6px 18px rgba(20, 17, 15, 0.08));
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), filter 0.28s ease;
+      filter: drop-shadow(0 6px 14px rgba(20, 17, 15, 0.11));
       will-change: transform;
     }
 
-    #roster .nx-film-collage:hover {
-      transform: translateY(-4px) scale(1.025);
-      filter: drop-shadow(0 14px 28px rgba(20, 17, 15, 0.14));
+    #roster .nx-film-sticker:hover {
+      filter: drop-shadow(0 18px 30px rgba(20, 17, 15, 0.20));
+      z-index: 20 !important;
     }
 
-    #roster .nx-film-collage:active {
+    #roster .nx-film-sticker:active {
       cursor: grabbing;
-      transform: scale(0.985);
     }
 
-    #roster .nx-collage-master-img {
+    #roster .nx-film-sticker .nx-sticker-img {
       display: block;
-      width: 100%;
-      max-width: 530px;
       height: auto;
       pointer-events: none;
       -webkit-user-drag: none;
     }
 
-    @media (max-width: 1120px) {
+    /* 1. Separate HD Sticker: Pantone Swatch Fan */
+    #roster .nx-sticker-pantone {
+      left: 50px;
+      top: 35px;
+      transform: rotate(-10deg);
+      z-index: 2;
+    }
+    #roster .nx-sticker-pantone:hover {
+      transform: rotate(-6deg) translateY(-6px) scale(1.05);
+    }
+
+    /* 2. Separate HD Sticker: 35mm Analog SLR Camera */
+    #roster .nx-sticker-camera {
+      left: 175px;
+      top: 15px;
+      transform: rotate(-4deg);
+      z-index: 4;
+    }
+    #roster .nx-sticker-camera:hover {
+      transform: rotate(0deg) translateY(-8px) scale(1.06);
+    }
+
+    /* 3. Separate HD Sticker: Production Memo Note */
+    #roster .nx-sticker-memo {
+      left: 330px;
+      top: 55px;
+      transform: rotate(5deg);
+      z-index: 3;
+    }
+    #roster .nx-sticker-memo:hover {
+      transform: rotate(2deg) translateY(-6px) scale(1.05);
+    }
+
+    @media (max-width: 1160px) {
       #roster .nx-roster-title-cluster {
         flex-direction: column;
         align-items: flex-start;
-        gap: 18px;
+        gap: 16px;
       }
-      #roster .nx-film-collage-wrap {
+      #roster .nx-film-stickers-stage {
         width: 100%;
-        max-width: 480px;
-        justify-content: flex-start;
+        max-width: 580px;
+        transform-origin: left center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      #roster .nx-film-stickers-stage {
+        transform: scale(0.85);
+        margin-left: -20px;
       }
     }
 
@@ -5958,15 +6003,62 @@
             <p class="nx-lead nx-reveal">Weekly Curated Spotlight: Hand-vetted creative directors &amp; lead operators on active standby.</p>
           </div>
 
-          <!-- ── ANALOG FILM PRODUCTION STICKER COLLAGE (EDITORIAL MOODBOARD) ── -->
-          <div class="nx-film-collage-wrap nx-reveal" aria-label="Analog film production editorial moodboard collage" role="region">
-            <div class="nx-film-collage" id="nxFilmCollage" title="Verified Analog Production Moodboard // 35mm SLR · Color Grading · Direct Booking (Draggable)" tabindex="0">
-              <img src="assets/stickers/analog_editorial_collage_master.png"
-                alt="Analog film production moodboard stickers: 35mm SLR camera with prime optic, Pantone sage & cobalt color swatch fan, production memo note with tier-1 SLA, palette chips and handwritten annotations"
-                class="nx-collage-master-img"
-                width="530"
-                height="255"
-                loading="eager" />
+          <!-- ── HD ANALOG FILM PRODUCTION STICKER STAGE (SEPARATE HD STICKERS FROM ZIP) ── -->
+          <div class="nx-film-stickers-stage nx-reveal" aria-label="Analog film production editorial stickers" role="region">
+            <!-- Vector Hand-Drawn Annotations & Doodles Overlay -->
+            <svg class="nx-sticker-doodles" viewBox="0 0 600 230" fill="none" aria-hidden="true">
+              <!-- 'Color Grading!' speech bubble + curved arrow -->
+              <g class="nx-doodle-grading">
+                <ellipse cx="46" cy="136" rx="38" ry="21" stroke="#14110F" stroke-width="1.8" fill="#FFFFFF" fill-opacity="0.95" />
+                <text x="46" y="132" font-family="'Caveat', cursive, -apple-system, sans-serif" font-size="14.5" font-weight="700" fill="#14110F" text-anchor="middle">Color</text>
+                <text x="46" y="148" font-family="'Caveat', cursive, -apple-system, sans-serif" font-size="14.5" font-weight="700" fill="#14110F" text-anchor="middle">Grading!</text>
+                <!-- Curved arrow pointing to Pantone fan -->
+                <path d="M 52 158 Q 60 178 76 182" stroke="#14110F" stroke-width="1.8" stroke-linecap="round" fill="none" />
+                <path d="M 68 181 L 76 182 L 74 174" stroke="#14110F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              </g>
+
+              <!-- Blue accent marks above Pantone -->
+              <path d="M 82 92 L 74 106 M 94 88 L 88 102" stroke="#2563EB" stroke-width="3" stroke-linecap="round" />
+
+              <!-- Yellow radiant burst rays above camera -->
+              <path d="M 275 22 L 265 10 M 285 20 L 285 6 M 295 22 L 305 10" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" />
+
+              <!-- 'Verified.' script + curved arrow -->
+              <g class="nx-doodle-verified">
+                <text x="175" y="44" font-family="'Caveat', cursive, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#14110F">Verified.</text>
+                <!-- Hand-drawn star ☆ -->
+                <polygon points="234,32 237,39 244,39 239,43 241,50 234,46 228,50 230,43 225,39 232,39" stroke="#14110F" stroke-width="1.6" fill="none" stroke-linejoin="round" />
+                <!-- Arrow pointing to camera -->
+                <path d="M 212 50 Q 220 64 232 68" stroke="#14110F" stroke-width="1.8" stroke-linecap="round" fill="none" />
+                <path d="M 224 68 L 232 68 L 230 61" stroke="#14110F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              </g>
+
+              <!-- Hand-drawn star ☆ above Production Memo -->
+              <polygon points="455,70 458,77 465,77 460,81 462,88 455,84 449,88 451,81 446,77 453,77" stroke="#14110F" stroke-width="1.6" fill="none" stroke-linejoin="round" />
+
+              <!-- 'Direct Booking.' script + curved arrow -->
+              <g class="nx-doodle-direct">
+                <text x="548" y="140" font-family="'Caveat', cursive, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#14110F" text-anchor="middle">Direct</text>
+                <text x="548" y="158" font-family="'Caveat', cursive, -apple-system, sans-serif" font-size="16" font-weight="700" fill="#14110F" text-anchor="middle">Booking.</text>
+                <!-- Arrow pointing to memo -->
+                <path d="M 548 170 Q 541 188 521 185" stroke="#14110F" stroke-width="1.8" stroke-linecap="round" fill="none" />
+                <path d="M 529 181 L 521 185 L 527 191" stroke="#14110F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+              </g>
+            </svg>
+
+            <!-- 1. Separate HD Sticker: Pantone Swatch Fan -->
+            <div class="nx-film-sticker nx-sticker-pantone" data-sticker="pantone" title="Pantone Swatch Deck // Sage & Cobalt (Draggable)" tabindex="0">
+              <img src="assets/stickers/02_pantone_swatch_fan.png" alt="Pantone Color Swatch Fan HD Sticker" class="nx-sticker-img" width="168" height="172" loading="eager" />
+            </div>
+
+            <!-- 2. Separate HD Sticker: 35mm Analog SLR Camera -->
+            <div class="nx-film-sticker nx-sticker-camera" data-sticker="camera" title="Olympus 35mm Analog Optic // Direct Frame Capture (Draggable)" tabindex="0">
+              <img src="assets/stickers/01_35mm_analog_camera.png" alt="35mm Analog SLR Camera HD Sticker" class="nx-sticker-img" width="228" height="158" loading="eager" />
+            </div>
+
+            <!-- 3. Separate HD Sticker: Production Memo Note -->
+            <div class="nx-film-sticker nx-sticker-memo" data-sticker="memo" title="Production Memo // Hand-Vetted Directors · 0% Commission (Draggable)" tabindex="0">
+              <img src="assets/stickers/03_production_memo.png" alt="Production Memo Note HD Sticker" class="nx-sticker-img" width="215" height="137" loading="eager" />
             </div>
           </div>
         </div>
