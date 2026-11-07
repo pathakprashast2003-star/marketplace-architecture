@@ -4356,21 +4356,25 @@
       font-weight: 600;
     }
 
-    #roster .pc-verified-pill {
+    #roster .pc-verified-tick {
       margin-left: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 4.5px;
-      font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      color: #1F7A4D;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
       background: rgba(31, 122, 77, 0.08);
-      border: 1px solid rgba(31, 122, 77, 0.18);
-      padding: 4px 10px;
-      border-radius: 999px;
+      border: 1px solid rgba(31, 122, 77, 0.22);
+      color: #1F7A4D;
+      display: grid;
+      place-items: center;
+      flex: none;
       box-shadow: 0 1px 2px rgba(31, 122, 77, 0.04);
+      transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
+    }
+
+    #roster .nx-talent-card:hover .pc-verified-tick {
+      background: rgba(31, 122, 77, 0.14);
+      border-color: rgba(31, 122, 77, 0.35);
+      transform: scale(1.08);
     }
 
     #roster .pc-name {
@@ -4388,9 +4392,7 @@
     }
 
     #roster .pc-name-badge {
-      display: inline-flex;
-      color: #2563EB;
-      flex: none;
+      display: none;
     }
 
     #roster .pc-blurb {
@@ -4409,7 +4411,8 @@
       text-overflow: ellipsis;
     }
 
-    #roster .pc-chips {
+    /* ── CURATED ATELIER SPEC NOTES (EQUIPMENT & FORMAT) ── */
+    #roster .pc-notes-list {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
@@ -4418,105 +4421,118 @@
       list-style: none;
     }
 
-    #roster .pc-chips li {
+    #roster .pc-note-tag {
       font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: transparent;
-      color: #5A544E;
-      border: 1px solid rgba(20, 17, 15, 0.12);
-      transition: background-color 0.2s, border-color 0.2s, color 0.2s;
-    }
-
-    #roster .nx-talent-card:hover .pc-chips li {
-      background: rgba(20, 17, 15, 0.04);
-      border-color: rgba(20, 17, 15, 0.20);
-      color: var(--r-ink);
-    }
-
-    /* ── TABULAR METRIC ROW: EDITORIAL BADGES & PILLS ── */
-    #roster .pc-metrics {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      flex-wrap: wrap;
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(20, 17, 15, 0.08);
-    }
-
-    #roster .pc-badge-pill {
+      padding: 4px 9px;
+      border-radius: 6px;
+      background: #F5F1EB;
+      color: #4C463F;
+      border: 1px solid rgba(20, 17, 15, 0.08);
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 4px 10px;
+      gap: 5.5px;
+      letter-spacing: 0.015em;
+      transition: background-color 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    #roster .pc-note-bullet {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #A39486;
+      flex: none;
+      transition: background-color 0.2s;
+    }
+
+    #roster .nx-talent-card:hover .pc-note-tag {
+      background: #EDE6DE;
+      border-color: rgba(20, 17, 15, 0.16);
+      color: #14110F;
+    }
+
+    #roster .nx-talent-card:hover .pc-note-bullet {
+      background: #14110F;
+    }
+
+    /* ── UNIFIED EDITORIAL SPEC & TIMING STRIP ── */
+    #roster .pc-spec-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      padding: 7px 14px;
+      background: #F8F5EF;
+      border: 1px solid rgba(20, 17, 15, 0.08);
       border-radius: 999px;
+      box-shadow: 0 1px 2px rgba(20, 17, 15, 0.02);
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    #roster .nx-talent-card:hover .pc-spec-strip {
+      background: #F0ECE4;
+      border-color: rgba(20, 17, 15, 0.16);
+    }
+
+    #roster .pc-spec-col {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
       font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
       font-size: 11.5px;
       font-variant-numeric: tabular-nums;
-      transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+      color: #2D2723;
     }
 
-    #roster .pc-pill-rating {
-      background: #F7F5F0;
-      border: 1px solid rgba(20, 17, 15, 0.09);
-      color: var(--r-ink, #14110F);
-    }
-
-    #roster .pc-pill-rating .pc-star {
+    #roster .pc-spec-star {
       color: #D97706;
       font-size: 12px;
       line-height: 1;
     }
 
-    #roster .pc-pill-rating .pc-score {
+    #roster .pc-spec-score {
       font-weight: 700;
-      color: var(--r-ink, #14110F);
+      color: #14110F;
     }
 
-    #roster .pc-pill-rating .pc-rev-count {
-      color: var(--r-ink-3, #7D766E);
+    #roster .pc-spec-sub {
+      color: #7D766E;
       font-weight: 500;
       font-size: 11px;
     }
 
-    #roster .pc-pill-volume {
-      background: #F7F5F0;
-      border: 1px solid rgba(20, 17, 15, 0.09);
-      font-weight: 600;
-      color: #4A443E;
+    #roster .pc-spec-main {
+      font-weight: 700;
+      color: #14110F;
     }
 
-    #roster .pc-pill-sla {
-      margin-left: auto;
-      background: rgba(31, 122, 77, 0.08);
-      border: 1px solid rgba(31, 122, 77, 0.20);
+    #roster .pc-spec-divider {
+      width: 1px;
+      height: 14px;
+      background: rgba(20, 17, 15, 0.12);
+      flex: none;
+      margin: 0 4px;
+    }
+
+    #roster .pc-spec-timing {
+      display: inline-flex;
+      align-items: center;
+      gap: 5.5px;
       color: #166534;
       font-weight: 600;
       font-size: 11px;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
     }
 
-    #roster .pc-sla-dot {
+    #roster .pc-spec-pulse {
       width: 6px;
       height: 6px;
       border-radius: 50%;
       background: #16A34A;
-      box-shadow: 0 0 6px rgba(22, 163, 74, 0.45);
+      box-shadow: 0 0 6px rgba(22, 163, 74, 0.50);
       flex: none;
-    }
-
-    #roster .nx-talent-card:hover .pc-pill-rating,
-    #roster .nx-talent-card:hover .pc-pill-volume {
-      background: #EFECE5;
-      border-color: rgba(20, 17, 15, 0.16);
-    }
-
-    #roster .nx-talent-card:hover .pc-pill-sla {
-      background: rgba(31, 122, 77, 0.12);
-      border-color: rgba(31, 122, 77, 0.30);
+      animation: pcPulse 1.8s ease-in-out infinite;
     }
 
     /* ── CARD FOOTER CTA BUTTONS (OAT & MILL CHERRY / OBSIDIAN) ── */
@@ -8139,9 +8155,31 @@
       </div>
     `;
 
-        // Chip list
+        // Atelier Spec Notes list (warm bone ground, micro-radius, technical bullet)
         const gearList = (data.gear && data.gear.length) ? data.gear : ['Cinema Camera', 'Color Calibrated', 'Direct SLA'];
-        const chipsHtml = gearList.map(g => `<li>${esc(g)}</li>`).join('');
+        const notesHtml = gearList.map(g => `<li class="pc-note-tag"><span class="pc-note-bullet"></span>${esc(g)}</li>`).join('');
+
+        // Timing & Metric formatting (unambiguous turnaround SLA)
+        let timingText = 'Replies in <1h';
+        if (data.sla === '< 1h response') timingText = 'Replies in <1h';
+        else if (data.sla === '< 2h response') timingText = 'Replies in <2h';
+        else if (data.sla === '< 3h response') timingText = 'Replies in <3h';
+        else if (data.sla === 'Ready Now') timingText = 'Available Now';
+        else if (data.sla) timingText = data.sla;
+
+        let earnedMain = data.earned || '$100k+';
+        let earnedSub = 'Earned';
+        if (earnedMain.includes('Deliveries')) {
+          const parts = earnedMain.split(' ');
+          earnedMain = parts[0];
+          earnedSub = parts[1] || 'Projects';
+        } else if (earnedMain === 'First-Rate') {
+          earnedMain = 'Pro';
+          earnedSub = 'Tier';
+        }
+
+        const isNewTalent = ratingRaw === 'New' || (data.reviews && data.reviews.includes('New'));
+        const reviewCountStr = data.reviews ? data.reviews.replace(/[^0-9]/g, '') : '';
 
         const cardHtml = `
       <div class="pc">
@@ -8166,29 +8204,31 @@
               <span class="pc-pill-dot">/</span>
               <span class="pc-loc-tag">${esc(location)}</span>
             </div>
-            <div class="pc-verified-pill" title="${esc(data.verifiedLabel)}">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              <span>Verified</span>
+            <div class="pc-verified-tick" title="Verified Creator · Vetted Identity" aria-label="Verified">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
           </div>
 
-          <h3 class="pc-name">${esc(name)} ${V_ICON}</h3>
+          <h3 class="pc-name">${esc(name)}</h3>
           <p class="pc-blurb">${esc(capWords(data.blurb, 13))}</p>
 
-          <ul class="pc-chips">${chipsHtml}</ul>
+          <ul class="pc-notes-list">${notesHtml}</ul>
 
-          <div class="pc-metrics">
-            <div class="pc-badge-pill pc-pill-rating">
-              <span class="pc-star">★</span>
-              <span class="pc-score">${esc(ratingRaw)}</span>
-              <span class="pc-rev-count">(${esc(data.reviews)})</span>
+          <div class="pc-spec-strip">
+            <div class="pc-spec-col pc-spec-rating" title="Rating">
+              <span class="pc-spec-star">★</span>
+              <span class="pc-spec-score">${esc(ratingRaw)}</span>
+              ${isNewTalent ? '<span class="pc-spec-sub">Talent</span>' : `<span class="pc-spec-sub">(${esc(reviewCountStr || data.reviews)})</span>`}
             </div>
-            <div class="pc-badge-pill pc-pill-volume">
-              <span>${esc(data.earned)}</span>
+            <span class="pc-spec-divider"></span>
+            <div class="pc-spec-col pc-spec-track" title="Verified Track Record">
+              <span class="pc-spec-main">${esc(earnedMain)}</span>
+              <span class="pc-spec-sub">${esc(earnedSub)}</span>
             </div>
-            <div class="pc-badge-pill pc-pill-sla">
-              <span class="pc-sla-dot"></span>
-              <span>${esc(data.sla)}</span>
+            <span class="pc-spec-divider"></span>
+            <div class="pc-spec-col pc-spec-timing" title="Turnaround SLA: ${esc(timingText)}">
+              <span class="pc-spec-pulse"></span>
+              <span class="pc-spec-timing-text">${esc(timingText)}</span>
             </div>
           </div>
 
