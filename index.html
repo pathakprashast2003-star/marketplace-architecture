@@ -7270,11 +7270,7 @@
         'hero-editorial-chunk': { el: () => document.querySelector('.hero-editorial-chunk'), name: 'Action Dock', viewport: 'both' },
         'btn-discover': { el: () => document.querySelector('.btn-discover'), name: 'Discover Talent Button', viewport: 'both' },
         'btn-join': { el: () => document.querySelector('.btn-join'), name: 'Join as Creator Button', viewport: 'both' },
-        'apple-spec-bar': { el: () => document.querySelector('.apple-spec-bar'), name: 'Proof Specs Bar', viewport: 'both' },
-
-        // Curated Roster & Editable Stickers targets
-        'roster-h2': { el: () => document.querySelector('#roster .nx-h2'), name: 'Headline: Verified Directors', viewport: 'both' },
-        'sticker-camera': { el: () => document.querySelector('.nx-sticker-camera'), name: 'Sticker: 35mm Camera', viewport: 'both' }
+        'apple-spec-bar': { el: () => document.querySelector('.apple-spec-bar'), name: 'Proof Specs Bar', viewport: 'both' }
       };
 
       const defaultTexts = {
@@ -7321,6 +7317,7 @@
 
       function clearAllInlineStyles() {
         document.querySelectorAll('[data-dragged="true"]').forEach(el => {
+          if (el.closest('#roster')) return; // Never touch roster elements or stickers
           el.style.left = '';
           el.style.top = '';
           el.style.position = '';
@@ -7339,7 +7336,7 @@
 
         Object.keys(targetMap).forEach(key => {
           const el = targetMap[key].el ? targetMap[key].el() : null;
-          if (!el) return;
+          if (!el || el.closest('#roster')) return;
           el.style.left = '';
           el.style.top = '';
           el.style.position = '';
@@ -7472,11 +7469,11 @@
       // Universal click & pointer drag handling
       document.addEventListener('pointerdown', (e) => {
         if (!isEditing) return;
-        if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher, .character-theme-capsules')) return;
+        if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher, .character-theme-capsules, #roster')) return;
 
         // Choose appropriate target element: either closest interactive or clicked
         const clickedTarget = e.target.closest(
-          '.nx-film-sticker, #roster .nx-h2, #heroCharacterSlot, .title-row, .mb-word, .title-wefind-mobile, .mobile-backdrop-headline, .headline-stack, .hero-subheadline, .btn-discover, .btn-join, .action-row, .apple-spec-bar, .spec-item, .hero-editorial-chunk'
+          '#heroCharacterSlot, .title-row, .mb-word, .title-wefind-mobile, .mobile-backdrop-headline, .headline-stack, .hero-subheadline, .btn-discover, .btn-join, .action-row, .apple-spec-bar, .spec-item, .hero-editorial-chunk'
         ) || e.target;
 
         if (!clickedTarget || clickedTarget === document.body || clickedTarget === document.documentElement) return;
@@ -7758,11 +7755,12 @@
           if (!raw) return;
           const texts = JSON.parse(raw);
           Object.keys(texts).forEach(key => {
+            if (key.includes('roster') || key.includes('sticker')) return;
             let el = null;
             if (targetMap[key] && targetMap[key].el) el = targetMap[key].el();
             if (!el && document.getElementById(key)) el = document.getElementById(key);
             if (!el) el = document.querySelector(`[data-edit-key="${key}"], .${key}`);
-            if (el && texts[key]) {
+            if (el && texts[key] && !el.closest('#roster')) {
               el.innerHTML = texts[key];
             }
           });
@@ -7780,8 +7778,9 @@
         } catch (e) { }
 
         document.querySelectorAll('[data-dragged="true"]').forEach(el => {
+          if (el.closest('#roster')) return;
           const key = getTargetKey(el);
-          if (key) {
+          if (key && !key.includes('roster') && !key.includes('sticker')) {
             data[key] = {
               left: el.style.left || '',
               top: el.style.top || '',
@@ -7836,13 +7835,14 @@
           if (raw) {
             const data = JSON.parse(raw);
             Object.keys(data).forEach(key => {
+              if (key.includes('roster') || key.includes('sticker')) return;
               // Skip overriding heroCharacterSlot with stale oversized dimensions
               if (key === 'heroCharacterSlot' && !isEditing) return;
               let el = null;
               if (targetMap[key] && targetMap[key].el) el = targetMap[key].el();
               if (!el && document.getElementById(key)) el = document.getElementById(key);
               if (!el) el = document.querySelector(`[data-edit-key="${key}"], .${key}`);
-              if (el && data[key]) {
+              if (el && data[key] && !el.closest('#roster')) {
                 const d = data[key];
                 if (d.left) el.style.left = d.left;
                 if (d.top) el.style.top = d.top;
@@ -9208,10 +9208,33 @@
         try {
           localStorage.removeItem('nx_sticker_pos_pantone');
           localStorage.removeItem('nx_sticker_pos_memo');
+          // Purge any legacy theme-dependent entries from the hero editor
+          ['desktop', 'mobile'].forEach(m => {
+            ['sage', 'cobalt', 'lilac', 'amber', 'coral'].forEach(t => {
+              const k = 'dunes_custom_edits_v8_' + m + '_' + t;
+              const raw = localStorage.getItem(k);
+              if (raw) {
+                const d = JSON.parse(raw);
+                if (d['sticker-camera'] || d['roster-h2'] || d['nx-sticker-camera']) {
+                  delete d['sticker-camera'];
+                  delete d['roster-h2'];
+                  delete d['nx-sticker-camera'];
+                  localStorage.setItem(k, JSON.stringify(d));
+                }
+              }
+            });
+          });
         } catch (_) {}
 
         const stickers = document.querySelectorAll('#roster .nx-film-sticker, #roster .nx-film-collage, #roster .nx-dkv-sticker');
         stickers.forEach(el => {
+          // Clear any conflicting inline styles from hero editor
+          el.style.left = '';
+          el.style.top = '';
+          el.style.right = '';
+          el.style.bottom = '';
+          el.removeAttribute('data-dragged');
+
           if (el._dragInit) return;
           el._dragInit = true;
           const stickerId = el.dataset.sticker || el.className;
