@@ -4936,13 +4936,35 @@
       margin: 0;
     }
 
+    #roster .pc-ghost-index {
+      position: absolute;
+      right: 14px;
+      bottom: 68px;
+      font-family: 'Times New Roman', Times, Georgia, serif;
+      font-size: 68px;
+      font-style: italic;
+      font-weight: 700;
+      line-height: 1;
+      color: #14110F;
+      opacity: 0.038;
+      pointer-events: none;
+      user-select: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 0;
+    }
+
+    #roster .nx-talent-card:hover .pc-ghost-index {
+      opacity: 0.075;
+      transform: translateY(-2px);
+    }
+
     #roster .pc-spec-timing {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      color: #166534;
-      font-weight: 600;
+      gap: 5.5px;
+      color: #15803D;
+      font-weight: 650;
       font-size: 11px;
       letter-spacing: -0.01em;
       white-space: nowrap;
@@ -4953,9 +4975,21 @@
       height: 6px;
       border-radius: 50%;
       background: #10B981;
-      box-shadow: 0 0 6px rgba(16, 185, 129, 0.55);
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
       flex: none;
-      animation: pcPulse 1.8s ease-in-out infinite;
+      animation: pcPulseRadar 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    @keyframes pcPulseRadar {
+      0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
     }
 
     /* ── CARD FOOTER CTA BUTTONS (OAT & MILL CHERRY / OBSIDIAN) ── */
@@ -4967,6 +5001,8 @@
       height: 48px;
       min-height: 48px;
       max-height: 48px;
+      position: relative;
+      z-index: 2;
     }
 
     #roster .pc-book {
@@ -5008,7 +5044,7 @@
     }
 
     #roster .pc-book:hover svg {
-      transform: translateX(3px);
+      transform: translate(3px, -2px);
     }
 
     #roster .pc-save {
@@ -8553,8 +8589,9 @@
         }
       });
 
-      function renderCard(c) {
+      function renderCard(c, cardIdx) {
         if (c.querySelector('.pc')) return;
+        const cardNum = String(((typeof cardIdx === 'number' ? cardIdx : 0) + 1)).padStart(2, '0');
         const nameKey = (c.dataset.name || '').toLowerCase().trim();
         const data = TALENT[nameKey] || TALENT['marcus vance'];
 
@@ -8683,6 +8720,7 @@
 
         <!-- EDITORIAL CARD BODY (OAT & MILL TYPOGRAPHY) -->
         <div class="pc-body">
+          <span class="pc-ghost-index" aria-hidden="true">${cardNum}</span>
           <div class="pc-kicker-row">
             <div class="pc-kicker-cluster">
               <span class="pc-craft-badge is-${esc(craftSlug)}">
@@ -8845,7 +8883,7 @@
       }
 
       const runRoster = () => {
-        document.querySelectorAll('#roster .nx-talent-card').forEach(renderCard);
+        document.querySelectorAll('#roster .nx-talent-card').forEach((c, i) => renderCard(c, i));
         initViewSync();
       };
 
