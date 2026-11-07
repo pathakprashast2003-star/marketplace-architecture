@@ -2803,87 +2803,627 @@
     }
 
 
-    /* ── ROSTER v4: pop-out character cards (figure breaks the frame, notched price, gear chips) ── */
-    #roster .nx-talent-grid { gap: 40px 28px; padding-top: 0; }
-    #roster .nx-talent-card, #roster .nx-talent-card[data-craft] {
-      --g1: #FF6B5E; --g2: #C8192E; --glow: rgba(200,25,46,.35);
-      display: block; background: #FFFFFF; border-radius: 34px; padding: 12px 12px 18px; overflow: visible; aspect-ratio: auto;
-      box-shadow: 0 1px 0 rgba(20,17,15,.04), 0 30px 60px -38px rgba(20,17,15,.35);
-      transition: transform .6s var(--r-ease), box-shadow .6s var(--r-ease);
+    /* ── ROSTER: KOTO 3D BREAKOUT + IMPECCABLE EDITORIAL ARCHITECTURE ── */
+    #roster {
+      --r-ink: #14110F;
+      --r-ink-2: #57514B;
+      --r-ink-3: #8C857D;
+      --r-paper: #FBFAF7;
+      --r-card: #FFFFFF;
+      --r-line: rgba(20, 17, 15, 0.09);
+      --r-accent: #2956D4;
+      --r-ok: #1F7A4D;
+      --r-serif: 'Newsreader', 'Times New Roman', Georgia, serif;
+      --r-spring: cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      isolation: isolate;
     }
-    #roster .nx-talent-card[data-craft*="drone"] { --g1: #4E9BFF; --g2: #1A3FA8; --glow: rgba(26,63,168,.35); }
-    #roster .nx-talent-card[data-craft*="art"]   { --g1: #C58BFF; --g2: #6B21C8; --glow: rgba(107,33,200,.35); }
-    #roster .nx-talent-card[data-craft*="3d"]    { --g1: #7FD36B; --g2: #1F6B3A; --glow: rgba(31,107,58,.35); }
-    #roster .nx-talent-card[data-craft*="action"]{ --g1: #FFB347; --g2: #D2560E; --glow: rgba(210,86,14,.35); }
-    #roster .nx-talent-card:hover, #roster .nx-talent-card[data-craft]:hover { transform: translateY(-8px); background: #fff; box-shadow: 0 50px 80px -40px var(--glow); }
-    #roster .nx-talent-card > :not(.pc) { display: none !important; }
-    #roster .pc-stage { position: relative; height: 250px; border-radius: 24px; background: radial-gradient(120% 90% at 20% 0%, var(--g1), var(--g2)); box-shadow: 0 24px 40px -24px var(--glow); }
-    #roster .pc-stage::before { content: ''; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(60% 50% at 50% 100%, rgba(255,255,255,.22), transparent 70%); }
-    #roster .pc-fig { position: absolute; left: 50%; bottom: 0; height: 340px; width: auto; max-width: 110%; transform: translateX(-50%); transform-origin: 50% 100%; filter: drop-shadow(0 20px 24px rgba(0,0,0,.28)); transition: transform .7s var(--r-ease); pointer-events: none; border-radius: 0 0 24px 24px; }
-    #roster .nx-talent-card:hover .pc-fig { transform: translateX(-50%) scale(1.06) rotate(-1.5deg); }
-    #roster .pc-price { position: absolute; top: -12px; right: -12px; background: #fff; padding: 12px 18px 14px 20px; border-radius: 0 34px 0 26px; font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: -.02em; color: var(--r-ink); font-variant-numeric: tabular-nums; z-index: 3; }
-    #roster .pc-price small { font-size: 13px; font-weight: 500; color: var(--r-ink-3); margin-left: 2px; }
-    #roster .pc-price::before, #roster .pc-price::after { content: ''; position: absolute; width: 26px; height: 26px; background: radial-gradient(circle at 0 100%, transparent 25.5px, #fff 26px); }
-    #roster .pc-price::before { left: -26px; top: 12px; }
-    #roster .pc-price::after { right: 12px; bottom: -26px; }
-    #roster .pc-strip { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 9px 16px; border-radius: 0 0 24px 24px; background: color-mix(in srgb, var(--g2) 78%, #000); color: rgba(255,255,255,.88); font-size: 13px; text-align: center; }
-    #roster .pc-info { padding: 18px 8px 0; }
-    #roster .pc-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    #roster .pc-name { font-family: var(--font-display); font-weight: 700; font-size: 26px; letter-spacing: -.025em; line-height: 1.1; margin: 0; color: var(--r-ink); display: flex; align-items: center; gap: 8px; min-width: 0; }
-    #roster .pc-name svg { width: 20px; height: 20px; flex: none; }
-    #roster .pc-meta { margin: 4px 0 0; font-size: 14px; color: var(--r-ink-3); }
-    #roster .pc-meta b { color: var(--r-ink); font-weight: 600; margin-left: 4px; }
-    #roster .pc-rating { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; font-size: 14px; color: var(--r-ink); white-space: nowrap; }
-    #roster .pc-rating svg { color: #F5A524; }
-    #roster .pc-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 0; padding: 0; list-style: none; }
-    #roster .pc-chips li { font-size: 12.5px; padding: 6px 12px; border-radius: 999px; background: color-mix(in srgb, var(--g1) 14%, #F4F2EE); color: color-mix(in srgb, var(--g2) 60%, var(--r-ink)); text-transform: capitalize; }
-    #roster .pc-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 18px; }
-    #roster .pc-book { flex: 1; height: 48px; border: 0; border-radius: 999px; background: var(--r-ink); color: #fff; font: 600 15px var(--font-body); display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: background-color .3s var(--r-ease), transform .2s var(--r-ease); }
-    #roster .nx-talent-card:hover .pc-book { background: var(--g2); }
-    #roster .pc-book:active { transform: scale(.97); }
-    #roster .pc-book svg { transition: transform .4s var(--r-ease); }
-    #roster .pc-book:hover svg { transform: translate(3px,-3px); }
-    #roster .pc-save { width: 48px; height: 48px; border-radius: 16px; border: 1px solid var(--r-line); background: #fff; color: var(--r-ink); display: grid; place-items: center; cursor: pointer; flex: none; }
-    #roster .pc-save[aria-pressed="true"] svg { fill: currentColor; }
-    #roster .pc-book:focus-visible, #roster .pc-save:focus-visible { outline: 2px solid var(--r-ink); outline-offset: 2px; transition: none; }
-    @media (max-width: 760px) { #roster .nx-talent-grid { gap: 110px; } }
-    @media (prefers-reduced-motion: reduce) { #roster .pc-fig, #roster .nx-talent-card { transition: none; } }
 
-    /* ── ROSTER v5: media states (A video+photos, B video only, C photos only, D avatar only, E nothing) ── */
-    #roster .pc-stage.is-media { overflow: visible; background: #1a1a1a; }
-    #roster .pc-media { overflow: hidden; }
-    #roster .pc-stage.has-avatar .pc-strip { padding-left: 80px; }
-    #roster .pc-stage.is-media .pc-price { top: 0; right: 0; }
-    #roster .pc-media, #roster .pc-media > * { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
-    #roster .pc-media img { transition: opacity .45s var(--r-ease), transform 1.1s var(--r-ease); }
-    #roster .pc-media img:not(.is-on) { opacity: 0; }
-    #roster .nx-talent-card:hover .pc-media img.is-on { transform: scale(1.04); }
-    #roster .pc-media video { opacity: 0; transition: opacity .4s var(--r-ease); }
-    #roster .pc-media.is-playing video { opacity: 1; }
-    #roster .pc-stage.is-media::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(to top, rgba(0,0,0,.45), transparent 40%); pointer-events: none; z-index: 1; }
-    #roster .pc-stage.is-media .pc-strip { background: transparent; text-align: left; padding: 12px 16px; display: flex; align-items: center; gap: 8px; }
-    #roster .pc-reel { position: absolute; top: 12px; left: 12px; z-index: 3; display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: rgba(0,0,0,.45); color: #fff; font-size: 12px; font-weight: 600; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-    #roster .pc-reel i { width: 6px; height: 6px; border-radius: 50%; background: #fff; opacity: .5; }
-    #roster .pc-media.is-playing ~ .pc-reel i { background: #FF4D4D; opacity: 1; animation: pcRec 1s steps(2) infinite; }
-    @keyframes pcRec { 50% { opacity: .2; } }
-    #roster .pc-nav { position: absolute; top: 50%; z-index: 3; width: 34px; height: 34px; margin-top: -17px; border-radius: 999px; border: 0; background: rgba(255,255,255,.9); color: #111; display: grid; place-items: center; cursor: pointer; opacity: 0; transition: opacity .3s var(--r-ease); }
-    #roster .pc-nav.prev { left: 10px; } #roster .pc-nav.next { right: 10px; }
-    #roster .nx-talent-card:hover .pc-nav, #roster .pc-nav:focus-visible { opacity: 1; }
-    #roster .pc-dots { display: inline-flex; gap: 4px; margin-left: auto; }
-    #roster .pc-dots b { width: 6px; height: 6px; border-radius: 999px; background: rgba(255,255,255,.5); transition: width .3s var(--r-ease), background-color .3s; }
-    #roster .pc-dots b.is-on { width: 16px; background: #fff; }
-    #roster .pc-avatar { position: absolute; left: 16px; bottom: -22px; z-index: 4; width: 52px; height: 52px; border-radius: 999px; border: 3px solid #fff; background: var(--g1) center / cover no-repeat; box-shadow: 0 8px 16px -8px rgba(0,0,0,.4); }
-    #roster .pc-stage.has-avatar + .pc-info { padding-top: 34px; }
-    #roster .pc-initials { position: absolute; inset: 0; border-radius: inherit; display: grid; place-items: center; overflow: hidden;
-      background: repeating-linear-gradient(-45deg, rgba(255,255,255,.07) 0 14px, transparent 14px 28px), radial-gradient(120% 90% at 20% 0%, var(--g1), var(--g2)); }
-    #roster .pc-initials span { font-family: 'Archivo Black', var(--font-display); font-size: 120px; line-height: 1; letter-spacing: -.04em; color: rgba(255,255,255,.92); text-shadow: 0 20px 40px rgba(0,0,0,.2); }
-    #roster .pc-soon { position: absolute; left: 12px; top: 12px; z-index: 3; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.92); color: var(--r-ink); font-size: 12px; font-weight: 600; }
-    #roster .pc-stage.is-media:has(.pc-soon) .pc-media img { object-position: 50% 12%; }
-    #roster .pc-demo { display: inline-block; margin: 0 0 10px 8px; font: 600 11px/1 var(--font-body); color: #8C857D; background: #F1EEE8; border: 1px dashed #CFC8BD; border-radius: 6px; padding: 5px 8px; }
-    @media (prefers-reduced-motion: reduce) { #roster .pc-media video { display: none; } }
-    #roster .nx-roster-controls { z-index: 60; }
-    #roster .nx-talent-grid { position: relative; z-index: 1; }
-    @media (max-width: 760px) { #roster .nx-talent-card, #roster .nx-talent-card[data-craft] { aspect-ratio: 3 / 4.3; } }
+    #roster .nx-talent-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 56px 28px;
+      margin-top: 24px;
+      padding-top: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    #roster .nx-talent-card,
+    #roster .nx-talent-card[data-craft] {
+      min-width: 0;
+      max-width: none;
+      flex: none;
+      display: flex;
+      flex-direction: column;
+      background: #FFFFFF;
+      border: 1px solid rgba(20, 17, 15, 0.08);
+      border-radius: 34px;
+      padding: 12px 12px 22px 12px;
+      box-shadow: 0 4px 6px -1px rgba(20, 17, 15, 0.03), 0 24px 48px -20px rgba(20, 17, 15, 0.12);
+      overflow: visible !important;
+      position: relative;
+      isolation: isolate;
+      transition: transform 0.5s var(--r-spring), box-shadow 0.5s var(--r-spring), border-color 0.3s;
+      cursor: pointer;
+    }
+
+    #roster .nx-talent-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 16px -2px rgba(20, 17, 15, 0.04), 0 38px 68px -18px rgba(20, 17, 15, 0.22);
+      border-color: rgba(20, 17, 15, 0.16);
+    }
+
+    #roster .nx-talent-card > :not(.pc) {
+      display: none !important;
+    }
+
+    #roster .pc {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+      overflow: visible;
+    }
+
+    /* ── STAGE: HERO 3D BREAKOUT CANVAS ── */
+    #roster .pc-stage {
+      position: relative;
+      height: 250px;
+      border-radius: 26px;
+      background: var(--stage-bg, radial-gradient(135% 100% at 50% 15%, #FFE8D6 0%, #E2935D 100%));
+      box-shadow: 0 16px 32px -16px rgba(20, 17, 15, 0.16);
+      overflow: visible !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 0.5s var(--r-spring);
+    }
+
+    #roster .nx-talent-card:hover .pc-stage {
+      box-shadow: 0 22px 38px -12px rgba(20, 17, 15, 0.24);
+    }
+
+    /* Subtle ambient depth mesh on stage */
+    #roster .pc-stage::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(60% 50% at 50% 100%, rgba(255,255,255,0.35), transparent 75%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── MARVEL-STYLE TRANSGRESSING BREAKOUT CHARACTER ── */
+    #roster .pc-persona-wrap {
+      position: absolute;
+      inset: 0;
+      overflow: visible;
+      pointer-events: none;
+      z-index: 4;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.4s var(--r-spring), transform 0.55s var(--r-spring);
+    }
+
+    #roster .pc-breakout-fig {
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 318px; /* Stands 68px above the 250px stage! */
+      width: auto;
+      max-width: 115%;
+      object-fit: contain;
+      pointer-events: none;
+      transform-origin: 50% 95%;
+      filter: drop-shadow(0 14px 22px rgba(20, 17, 15, 0.22)) drop-shadow(0 4px 6px rgba(20, 17, 15, 0.10));
+      transition: transform 0.6s var(--r-spring), filter 0.6s var(--r-spring);
+    }
+
+    #roster .nx-talent-card:hover .pc-breakout-fig {
+      transform: translateX(-50%) translateY(-10px) scale(1.05) rotate(-1deg);
+      filter: drop-shadow(0 26px 32px rgba(20, 17, 15, 0.30)) drop-shadow(0 8px 14px rgba(20, 17, 15, 0.14));
+    }
+
+    /* ── REEL & MEDIA VIEWER LAYER ── */
+    #roster .pc-media-wrap {
+      position: absolute;
+      inset: 0;
+      border-radius: 26px;
+      overflow: hidden;
+      z-index: 2;
+      opacity: 0;
+      pointer-events: none;
+      background: #111;
+      transition: opacity 0.4s var(--r-spring);
+    }
+
+    #roster .pc-media-wrap img,
+    #roster .pc-media-wrap video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+      transition: transform 0.8s var(--r-spring), opacity 0.4s;
+    }
+
+    #roster .pc-media-wrap img:not(.is-active) {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #roster .pc-media-wrap img.is-active {
+      opacity: 1;
+    }
+
+    #roster .pc-media-wrap video {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #roster .pc-media-wrap.is-playing video {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #roster .pc-media-gradient {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 45%);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* Card Mode States */
+    #roster .pc-stage.mode-media .pc-media-wrap,
+    #roster .nx-talent-grid.is-reels .pc-stage:not(.mode-persona) .pc-media-wrap {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #roster .pc-stage.mode-media .pc-persona-wrap,
+    #roster .nx-talent-grid.is-reels .pc-stage:not(.mode-persona) .pc-persona-wrap {
+      opacity: 0;
+      transform: scale(0.94);
+    }
+
+    /* ── TOP BADGES & PRICE (SEAMLESS APPLE PILLS, ZERO CORNER ARTIFACTS) ── */
+    #roster .pc-craft-pill {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 10;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px) saturate(1.4);
+      -webkit-backdrop-filter: blur(12px) saturate(1.4);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      color: var(--r-ink);
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(20, 17, 15, 0.08);
+      pointer-events: auto;
+    }
+
+    #roster .pc-craft-pill.is-live::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #EF4444;
+      animation: pcPulse 1.4s ease-in-out infinite;
+    }
+
+    @keyframes pcPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    #roster .pc-price-pill {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 10;
+      display: inline-flex;
+      align-items: baseline;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px) saturate(1.4);
+      -webkit-backdrop-filter: blur(16px) saturate(1.4);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 19px;
+      letter-spacing: -0.02em;
+      color: var(--r-ink);
+      box-shadow: 0 4px 14px -2px rgba(20, 17, 15, 0.12);
+      font-variant-numeric: tabular-nums;
+      pointer-events: auto;
+    }
+
+    #roster .pc-price-pill small {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--r-ink-3);
+      margin-left: 2px;
+    }
+
+    /* ── STAGE BOTTOM CONTROLLER DOCK ── */
+    #roster .pc-stage-dock {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      pointer-events: auto;
+    }
+
+    #roster .pc-mode-group {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(20, 17, 15, 0.55);
+      backdrop-filter: blur(14px) saturate(1.4);
+      -webkit-backdrop-filter: blur(14px) saturate(1.4);
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      border-radius: 999px;
+      padding: 3px;
+    }
+
+    #roster .pc-mode-btn {
+      border: 0;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background-color 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    #roster .pc-mode-btn:hover {
+      color: #FFFFFF;
+    }
+
+    #roster .pc-mode-btn.is-active {
+      background: #FFFFFF;
+      color: var(--r-ink);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    #roster .pc-carousel-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: auto;
+    }
+
+    #roster .pc-carousel-arrow {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      color: var(--r-ink);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    #roster .pc-carousel-arrow:hover {
+      background: #FFFFFF;
+      transform: scale(1.08);
+    }
+
+    #roster .pc-photo-dots {
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+      padding: 4px 8px;
+      border-radius: 999px;
+      margin-left: auto;
+    }
+
+    #roster .pc-photo-dots span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      transition: width 0.25s, background-color 0.25s;
+    }
+
+    #roster .pc-photo-dots span.is-active {
+      width: 14px;
+      border-radius: 999px;
+      background: #FFFFFF;
+    }
+
+    /* ── CARD BODY: IMPECCABLE EDITORIAL HIERARCHY (OAT & MILL) ── */
+    #roster .pc-body {
+      padding: 18px 4px 0 4px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    #roster .pc-kicker-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    #roster .pc-kicker {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--r-ink);
+    }
+
+    #roster .pc-kicker-dot {
+      color: var(--r-ink-3);
+      font-size: 12px;
+    }
+
+    #roster .pc-city {
+      font-size: 13.5px;
+      color: var(--r-ink-2);
+    }
+
+    #roster .pc-verified {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--r-ok);
+      background: color-mix(in srgb, var(--r-ok) 10%, transparent);
+      padding: 2.5px 8px 2.5px 6px;
+      border-radius: 999px;
+    }
+
+    #roster .pc-name {
+      font-family: var(--r-serif);
+      font-weight: 500;
+      font-size: clamp(1.75rem, 2.4vw, 2.15rem);
+      letter-spacing: -0.025em;
+      line-height: 1.08;
+      color: var(--r-ink);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #roster .pc-name-badge {
+      display: inline-flex;
+      color: #2563EB;
+      flex: none;
+    }
+
+    #roster .pc-blurb {
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: var(--r-ink-2);
+      margin: 8px 0 0 0;
+      max-width: 40ch;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    #roster .pc-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 14px 0 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #roster .pc-chips li {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: #F4F1EA;
+      color: var(--r-ink-2);
+      border: 1px solid rgba(20, 17, 15, 0.05);
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    #roster .nx-talent-card:hover .pc-chips li {
+      background: #ECE7DD;
+      color: var(--r-ink);
+    }
+
+    /* ── TABULAR METRIC ROW ── */
+    #roster .pc-metrics {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--r-line);
+      font-size: 13.5px;
+      color: var(--r-ink-2);
+      font-variant-numeric: tabular-nums;
+    }
+
+    #roster .pc-star {
+      color: #F59E0B;
+      font-size: 14px;
+    }
+
+    #roster .pc-score {
+      font-weight: 700;
+      color: var(--r-ink);
+    }
+
+    #roster .pc-rev-count {
+      color: var(--r-ink-3);
+      font-size: 12.5px;
+    }
+
+    #roster .pc-sep {
+      color: var(--r-line);
+    }
+
+    #roster .pc-sla {
+      font-weight: 500;
+      color: var(--r-ok);
+      background: color-mix(in srgb, var(--r-ok) 9%, transparent);
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-left: auto;
+    }
+
+    /* ── CARD FOOTER CTA BUTTONS (OAT & MILL CHERRY / OBSIDIAN) ── */
+    #roster .pc-foot {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    #roster .pc-book {
+      flex: 1;
+      height: 48px;
+      border: 0;
+      border-radius: 999px;
+      background: #19120F;
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 14.5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(20, 17, 15, 0.12);
+      transition: background-color 0.25s var(--r-spring), transform 0.15s var(--r-spring), box-shadow 0.25s;
+    }
+
+    #roster .nx-talent-card:hover .pc-book {
+      background: #3B0A24; /* Oat & Mill deep cherry */
+      box-shadow: 0 8px 20px -4px rgba(59, 10, 36, 0.40);
+    }
+
+    #roster .pc-book:active {
+      transform: scale(0.97);
+    }
+
+    #roster .pc-book svg {
+      transition: transform 0.3s var(--r-spring);
+    }
+
+    #roster .pc-book:hover svg {
+      transform: translateX(3px);
+    }
+
+    #roster .pc-save {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      border: 1px solid var(--r-line);
+      background: #FFFFFF;
+      color: var(--r-ink);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      flex: none;
+      transition: background-color 0.2s, border-color 0.2s, transform 0.15s;
+    }
+
+    #roster .pc-save:hover {
+      background: #F4F1EA;
+      border-color: rgba(20, 17, 15, 0.20);
+    }
+
+    #roster .pc-save:active {
+      transform: scale(0.95);
+    }
+
+    #roster .pc-save[aria-pressed="true"] svg {
+      fill: currentColor;
+    }
+
+    #roster .pc-book:focus-visible,
+    #roster .pc-save:focus-visible,
+    #roster .pc-mode-btn:focus-visible,
+    #roster .pc-carousel-arrow:focus-visible {
+      outline: 2px solid var(--r-ink);
+      outline-offset: 2px;
+      transition: none;
+    }
+
+    /* ── RESPONSIVE & MOBILE POLISH ── */
+    @media (max-width: 1080px) {
+      #roster .nx-talent-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 52px 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #roster .nx-talent-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 56px;
+        margin-top: 16px;
+      }
+      #roster .nx-talent-card {
+        padding: 12px 12px 18px 12px;
+        border-radius: 28px;
+      }
+      #roster .pc-stage {
+        height: 230px;
+      }
+      #roster .pc-breakout-fig {
+        height: 285px;
+      }
+      #roster .pc-name {
+        font-size: 1.7rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #roster .pc-breakout-fig,
+      #roster .nx-talent-card,
+      #roster .pc-book,
+      #roster .pc-media-wrap video {
+        transition-duration: 0.01ms !important;
+        animation: none !important;
+        transform: none !important;
+      }
+    }
 
     /* ── DISCIPLINES MOSAIC: one hot palette, poster type, interlocking tiles ── */
     #disciplines {
@@ -5526,69 +6066,357 @@
 <script>document.querySelectorAll('#roster .nx-talent-card').forEach((c,i)=>c.style.setProperty('--i',i%3));</script>
 <script>
 (function(){
-  /* DEMO media per creator. In production this comes from the media table (approved rows, sorted). */
-  const P='assets/cinema_posters/';
-  const DEMO={
-    'marcus vance':{state:'A',avatar:'assets/character_filmmaker.jpg',video:'assets/reels/reel_0_director.mp4',duration:'0:45',photos:[P+'poster_0_director.jpg',P+'poster_3_action.jpg',P+'poster_4_cgi.jpg']},
-    'maya lin':{state:'B',avatar:'assets/character_drone_pilot.jpg',video:'assets/reels/reel_1_drone.mp4',duration:'0:30',photos:[]},
-    'elena rostova':{state:'C',avatar:'assets/character_designer.jpg',photos:[P+'poster_2_design.jpg',P+'poster_4_cgi.jpg','assets/purple_haired_illustrator.webp']},
-    'david kim':{state:'D',avatar:'assets/char_athletic_boy.jpg',photos:[]},
-    'somatic vision studio':{state:'E',photos:[]},
-    'nova capture':{state:'C',avatar:'assets/char_skater_girl.jpg',photos:[P+'poster_3_action.jpg',P+'poster_1_drone.jpg']}
+  /* ── MASTER ROSTER TALENT REPOSITORY: 3D BREAKOUT + EDITORIAL MEDIA ── */
+  const P = 'assets/cinema_posters/';
+  const TALENT = {
+    'marcus vance': {
+      personaImg: 'assets/character_filmmaker_transparent.png',
+      stageBg: 'radial-gradient(135% 100% at 50% 15%, #FFE8D6 0%, #E2935D 100%)',
+      craftPill: '🎬 4K Reel · 0:45',
+      video: 'assets/reels/reel_0_director.mp4',
+      duration: '0:45',
+      photos: [P + 'poster_0_director.jpg', P + 'poster_3_action.jpg', P + 'poster_4_cgi.jpg'],
+      verifiedLabel: 'ARRI & RED Vetted',
+      reviews: '28 reviews',
+      earned: '$140k+',
+      sla: '< 1h response',
+      gear: ['Cooke 2x Anamorphic', 'RED V-Raptor 8K', 'DCI-P3 Color'],
+      blurb: 'Directing commercial & narrative sequences focused on anamorphic glass, automotive rhythm, and raw human cinema.'
+    },
+    'maya lin': {
+      personaImg: 'assets/character_drone_operator_final.png',
+      stageBg: 'radial-gradient(135% 100% at 50% 15%, #E0F2FE 0%, #38BDF8 100%)',
+      craftPill: '🚁 FPV Reel · 0:30',
+      video: 'assets/reels/reel_1_drone.mp4',
+      duration: '0:30',
+      photos: [P + 'poster_1_drone.jpg', 'assets/upward_flight_pilot_drone.webp'],
+      verifiedLabel: 'FAA Part 107 Captain',
+      reviews: '42 reviews',
+      earned: '$185k+',
+      sla: '< 2h response',
+      gear: ['DJI Inspire 3 8K', 'Heavy-Lift FPV', 'FAA Part 107'],
+      blurb: 'FAA Part 107 flight captain chasing heavy-lift FPV sequences across alpine ridges and coastal horizons.'
+    },
+    'elena rostova': {
+      personaImg: 'assets/character_digital_creator_transparent.png',
+      stageBg: 'radial-gradient(135% 100% at 50% 15%, #F5EEFF 0%, #C084FC 100%)',
+      craftPill: '🎨 28 Sets · PSD',
+      photos: [P + 'poster_2_design.jpg', 'assets/purple_haired_illustrator.webp', P + 'poster_4_cgi.jpg'],
+      verifiedLabel: 'Master Illustrator',
+      reviews: '19 reviews',
+      earned: '$92k+',
+      sla: '< 3h response',
+      gear: ['Layered Masters', 'Wide DCI-P3', '100% IP Buyout'],
+      blurb: 'World builder crafting layered painterly character systems and editorial art in wide DCI-P3 gamut.'
+    },
+    'david kim': {
+      personaImg: 'assets/char_athletic_transparent.png',
+      stageBg: 'radial-gradient(135% 100% at 50% 15%, #DCFCE7 0%, #4ADE80 100%)',
+      craftPill: '⚡ 2nd Unit · Ready',
+      photos: [P + 'poster_0_director.jpg', 'assets/char_athletic_boy.jpg'],
+      verifiedLabel: 'KYC Identity Vetted',
+      reviews: 'New Talent',
+      earned: 'First-Rate SLA',
+      sla: '< 1h response',
+      gear: ['ARRI Certified', 'RED DIT Prep', 'Dual-Slot Media'],
+      blurb: 'Trained on ARRI Alexa Mini LF and RED V-Raptor workflows. Ready for 2nd Unit AC focus pulling and high-speed sync.'
+    },
+    'somatic vision studio': {
+      personaImg: 'assets/vr_adventure_flight_case.webp',
+      stageBg: 'radial-gradient(135% 100% at 50% 15%, #F1F5F9 0%, #94A3B8 100%)',
+      craftPill: '🥽 VisionOS · 60fps',
+      photos: [P + 'poster_4_cgi.jpg'],
+      verifiedLabel: 'Studio Enterprise',
+      reviews: '31 reviews',
+      earned: '$195k+',
+      sla: '< 1h response',
+      gear: ['Unreal Engine 5.4', 'Octane Render', 'VisionOS Native'],
+      blurb: 'Boutique spatial computing studio architecting commercial Apple VisionOS stages and high-gloss 3D worlds.'
+    },
+    'nova capture': {
+      personaImg: 'assets/char_skater_girl_transparent.png',
+      stageBg: 'radial-gradient(135% 100% at 50% 15%, #FEF3C7 0%, #FB923C 100%)',
+      craftPill: '🏎 Pursuit Arm · 120fps',
+      photos: [P + 'poster_3_action.jpg', P + 'poster_1_drone.jpg'],
+      verifiedLabel: 'Auto-Verified Stripe KYC',
+      reviews: '23 reviews',
+      earned: '19 Deliveries',
+      sla: 'Ready Now',
+      gear: ['RED Komodo-X', 'Ronin 4D 8K', 'Pursuit Arm'],
+      blurb: 'High-speed camera tracking operator for automotive sequences, stabilized gimbal arm, and high-G maneuvers.'
+    }
   };
-  const LABEL={A:'Demo state A: video + photos',B:'Demo state B: video only',C:'Demo state C: photos only',D:'Demo state D: profile photo only',E:'Demo state E: nothing uploaded'};
-  const V='<svg viewBox="0 0 24 24" aria-label="Verified"><path fill="#3B82F6" d="M12 1.5l2.6 1.9 3.2-.1 1 3 2.6 1.9-1 3 1 3-2.6 1.9-1 3-3.2-.1L12 22.5l-2.6-1.9-3.2.1-1-3L2.6 15.8l1-3-1-3 2.6-1.9 1-3 3.2.1z"/><path d="M8 12.2l2.7 2.7L16.2 9.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  const CH=d=>'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="'+(d<0?'m15 18-6-6 6-6':'m9 18 6-6-6-6')+'"/></svg>';
-  const esc=t=>String(t||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  let playing=null;
-  function play(m){ if(playing&&playing!==m) stop(playing); const v=m.querySelector('video'); if(!v)return; if(!v.src) v.src=v.dataset.src; v.play().then(()=>{m.classList.add('is-playing'); playing=m;}).catch(()=>{}); }
-  function stop(m){ const v=m.querySelector('video'); if(v){v.pause();} m.classList.remove('is-playing'); if(playing===m) playing=null; }
 
-  function stage(c,d,price){
-    const name=(c.dataset.name||''), st=d.state;
-    const price_='<span class="pc-price">'+price+'</span>';
-    const av=d.avatar?'<span class="pc-avatar" style="background-image:url(\''+esc(d.avatar)+'\')" role="img" aria-label="Profile photo"></span>':'';
-    if(st==='E'){
-      const ini=name.split(' ').filter(Boolean).slice(0,2).map(w=>w[0].toUpperCase()).join('');
-      return '<div class="pc-stage"><div class="pc-initials"><span>'+esc(ini)+'</span></div><span class="pc-soon">New on Nexus</span>'+price_+'</div>';
+  const V_ICON = '<svg class="pc-name-badge" width="18" height="18" viewBox="0 0 24 24" aria-label="Verified"><path fill="#2563EB" d="M12 1.5l2.6 1.9 3.2-.1 1 3 2.6 1.9-1 3 1 3-2.6 1.9-1 3-3.2-.1L12 22.5l-2.6-1.9-3.2.1-1-3L2.6 15.8l1-3-1-3 2.6-1.9 1-3 3.2.1z"/><path d="M8 12.2l2.7 2.7L16.2 9.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const esc = t => String(t || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  let activeVideo = null;
+  function playVideo(stageEl) {
+    const video = stageEl.querySelector('video');
+    if (!video) return;
+    if (activeVideo && activeVideo !== video) {
+      activeVideo.pause();
+      const parent = activeVideo.closest('.pc-media-wrap');
+      if (parent) parent.classList.remove('is-playing');
     }
-    const photos = d.photos.length ? d.photos : (st==='D' ? [d.avatar] : []);
-    let media='<div class="pc-media">';
-    if(st==='B') media+='<img class="is-on" src="'+esc(d.video.replace('.mp4','.jpg'))+'" alt="" onerror="this.remove()">';
-    photos.forEach((p,i)=>media+='<img'+(i===0?' class="is-on"':'')+' src="'+esc(p)+'" alt="" loading="lazy" decoding="async">');
-    if(d.video) media+='<video muted playsinline loop preload="none" data-src="'+esc(d.video)+'"></video>';
-    media+='</div>';
-    let extra='';
-    if(d.video) extra+='<span class="pc-reel"><i></i>Reel '+esc(d.duration)+'</span>';
-    if(st==='D') extra+='<span class="pc-soon">Portfolio coming soon</span>';
-    if(photos.length>1 && st!=='D') extra+='<button type="button" class="pc-nav prev" aria-label="Previous photo">'+CH(-1)+'</button><button type="button" class="pc-nav next" aria-label="Next photo">'+CH(1)+'</button><span class="pc-strip">'+(st==='A'?'Hover to play reel':'Photo 1 of '+photos.length)+'<span class="pc-dots">'+photos.map((_,i)=>'<b'+(i?'':' class="is-on"')+'></b>').join('')+'</span></span>';
-    else if(d.video) extra+='<span class="pc-strip">Hover to play reel</span>';
-    return '<div class="pc-stage is-media'+(av?' has-avatar':'')+'">'+media+extra+price_+(st==='D'?'':av)+'</div>';
+    if (!video.src && video.dataset.src) video.src = video.dataset.src;
+    video.play().then(() => {
+      const wrap = stageEl.querySelector('.pc-media-wrap');
+      if (wrap) wrap.classList.add('is-playing');
+      activeVideo = video;
+    }).catch(() => {});
   }
 
-  function up(c){
-    if(c.querySelector('.pc'))return;
-    const q=x=>c.querySelector(x), t=x=>(q(x)||{}).textContent||'';
-    const d=DEMO[c.dataset.name]||{state:'E',photos:[]};
-    const name=t('.nx-card-name').trim(), role=t('.nx-card-kicker').trim(), city=t('.nx-card-city').trim();
-    const rate=q('.nx-card-rate')?q('.nx-card-rate').firstChild.textContent.trim():'';
-    const unit=t('.nx-card-unit')||'/day', rating=t('.nx-card-rating').replace('★','').trim();
-    const gear=(c.dataset.gear||'').split(/\s+/).filter(w=>w.length>3).slice(0,3);
-    const act=q('.nx-card-action-circle');
-    c.insertAdjacentHTML('beforeend','<div class="pc"><span class="pc-demo">'+LABEL[d.state]+'</span>'+stage(c,d,esc(rate)+'<small>'+esc(unit)+'</small>')+'<div class="pc-info"><div class="pc-row"><h3 class="pc-name">'+esc(name)+V+'</h3><span class="pc-rating">'+(d.state==='E'?'New':'<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>'+esc(rating))+'</span></div><p class="pc-meta">'+esc(role)+'<b>'+esc(city)+'</b></p><ul class="pc-chips">'+gear.map(g=>'<li>'+esc(g)+'</li>').join('')+'</ul><div class="pc-foot"><button type="button" class="pc-book">Book '+esc(name.split(' ')[0])+'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></button><button type="button" class="pc-save" aria-pressed="false" aria-label="Save '+esc(name)+'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button></div></div></div>');
-    const m=c.querySelector('.pc-media');
-    if(m && m.querySelector('video')){
-      if(matchMedia('(hover:hover)').matches){ c.addEventListener('mouseenter',()=>play(m)); c.addEventListener('mouseleave',()=>stop(m)); }
-      else { new IntersectionObserver(es=>es.forEach(e=>e.intersectionRatio>.6?play(m):stop(m)),{threshold:[0,.6]}).observe(m); }
+  function stopVideo(stageEl) {
+    const video = stageEl.querySelector('video');
+    if (video) {
+      video.pause();
+      const wrap = stageEl.querySelector('.pc-media-wrap');
+      if (wrap) wrap.classList.remove('is-playing');
+      if (activeVideo === video) activeVideo = null;
     }
-    let idx=0; const imgs=m?[...m.querySelectorAll('img')]:[], dots=[...c.querySelectorAll('.pc-dots b')], strip=c.querySelector('.pc-strip');
-    const go=n=>{ if(m)stop(m); idx=(idx+n+imgs.length)%imgs.length; imgs.forEach((im,i)=>im.classList.toggle('is-on',i===idx)); dots.forEach((b,i)=>b.classList.toggle('is-on',i===idx)); if(strip&&d.state!=='A') strip.firstChild.textContent='Photo '+(idx+1)+' of '+imgs.length; };
-    c.querySelectorAll('.pc-nav').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation(); go(b.classList.contains('next')?1:-1);}));
-    c.querySelector('.pc-book').addEventListener('click',e=>{e.stopPropagation(); act?act.click():c.click();});
-    c.querySelector('.pc-save').addEventListener('click',e=>{e.stopPropagation(); const b=e.currentTarget; b.setAttribute('aria-pressed', b.getAttribute('aria-pressed')!=='true');});
   }
-  const run=()=>document.querySelectorAll('#roster .nx-talent-card').forEach(up);
-  run(); const g=document.querySelector('#roster .nx-talent-grid'); if(g) new MutationObserver(run).observe(g,{childList:true});
+
+  // Apple Motion: Pause video playback when browser tab is hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden' && activeVideo) {
+      activeVideo.pause();
+    }
+  });
+
+  function renderCard(c) {
+    if (c.querySelector('.pc')) return;
+    const nameKey = (c.dataset.name || '').toLowerCase().trim();
+    const data = TALENT[nameKey] || TALENT['marcus vance'];
+
+    const q = sel => c.querySelector(sel);
+    const textOf = sel => (q(sel) || {}).textContent || '';
+    const name = textOf('.nx-card-name').trim() || 'Creative Director';
+    const role = textOf('.nx-card-kicker').trim() || 'Visual Artist';
+    const city = textOf('.nx-card-city').trim() || 'Global';
+    const rateEl = q('.nx-card-rate');
+    const rate = rateEl ? rateEl.firstChild.textContent.trim() : '$500';
+    const unit = textOf('.nx-card-unit') || '/day';
+    const ratingRaw = textOf('.nx-card-rating').replace('★', '').trim() || '5.0';
+    const firstName = name.split(' ')[0] || 'Talent';
+
+    // Build stage HTML
+    const hasVideo = Boolean(data.video);
+    const photos = data.photos && data.photos.length ? data.photos : [];
+    const hasMedia = hasVideo || photos.length > 0;
+
+    let mediaHtml = '<div class="pc-media-wrap">';
+    photos.forEach((photo, idx) => {
+      mediaHtml += `<img class="${idx === 0 ? 'is-active' : ''}" src="${esc(photo)}" alt="${esc(name)} work sample ${idx + 1}" loading="lazy" decoding="async">`;
+    });
+    if (hasVideo) {
+      mediaHtml += `<video muted playsinline loop preload="none" data-src="${esc(data.video)}"></video>`;
+    }
+    mediaHtml += '<div class="pc-media-gradient"></div></div>';
+
+    // Stage dock controls
+    let dockHtml = `
+      <div class="pc-stage-dock">
+        <div class="pc-mode-group">
+          <button type="button" class="pc-mode-btn is-active" data-set-mode="persona" aria-label="Show 3D Persona">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Persona</span>
+          </button>
+          ${hasMedia ? `
+          <button type="button" class="pc-mode-btn" data-set-mode="media" aria-label="${hasVideo ? 'Play Reel' : 'View Work'}">
+            ${hasVideo ? '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20"/></svg><span>Reel</span>' : '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Work</span>'}
+          </button>
+          ` : ''}
+        </div>
+        ${photos.length > 1 ? `
+        <div class="pc-carousel-nav">
+          <button type="button" class="pc-carousel-arrow pc-prev" aria-label="Previous photo">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <button type="button" class="pc-carousel-arrow pc-next" aria-label="Next photo">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <div class="pc-photo-dots">
+            ${photos.map((_, i) => `<span class="${i === 0 ? 'is-active' : ''}"></span>`).join('')}
+          </div>
+        </div>
+        ` : ''}
+      </div>
+    `;
+
+    // Chip list
+    const gearList = (data.gear && data.gear.length) ? data.gear : ['Cinema Camera', 'Color Calibrated', 'Direct SLA'];
+    const chipsHtml = gearList.map(g => `<li>${esc(g)}</li>`).join('');
+
+    const cardHtml = `
+      <div class="pc">
+        <!-- 3D HERO BREAKOUT STAGE -->
+        <div class="pc-stage" style="--stage-bg: ${data.stageBg}">
+          <span class="pc-craft-pill ${hasVideo ? 'is-live' : ''}">${esc(data.craftPill)}</span>
+          <span class="pc-price-pill">${esc(rate)}<small>${esc(unit)}</small></span>
+          
+          <div class="pc-persona-wrap">
+            <img class="pc-breakout-fig" src="${esc(data.personaImg)}" alt="${esc(name)} 3D character" loading="lazy" decoding="async">
+          </div>
+
+          ${mediaHtml}
+          ${dockHtml}
+        </div>
+
+        <!-- EDITORIAL CARD BODY (OAT & MILL TYPOGRAPHY) -->
+        <div class="pc-body">
+          <div class="pc-kicker-row">
+            <span class="pc-kicker">${esc(role)}</span>
+            <span class="pc-kicker-dot">·</span>
+            <span class="pc-city">${esc(city)}</span>
+            <span class="pc-verified" title="${esc(data.verifiedLabel)}">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              Verified
+            </span>
+          </div>
+
+          <h3 class="pc-name">${esc(name)} ${V_ICON}</h3>
+          <p class="pc-blurb">${esc(data.blurb)}</p>
+
+          <ul class="pc-chips">${chipsHtml}</ul>
+
+          <div class="pc-metrics">
+            <span class="pc-star">★</span>
+            <span class="pc-score">${esc(ratingRaw)}</span>
+            <span class="pc-rev-count">(${esc(data.reviews)})</span>
+            <span class="pc-sep">·</span>
+            <span class="pc-score">${esc(data.earned)}</span>
+            <span class="pc-sla">${esc(data.sla)}</span>
+          </div>
+
+          <div class="pc-foot">
+            <button type="button" class="pc-book" onclick="event.stopPropagation(); openInquiryModal('${esc(name)}', '${esc(role)} · ${esc(city)}')">
+              <span>Book ${esc(firstName)}</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </button>
+            <button type="button" class="pc-save" aria-pressed="false" aria-label="Save ${esc(name)} to Shortlist">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    c.insertAdjacentHTML('beforeend', cardHtml);
+
+    // Interactive Mode Controls on Stage
+    const stage = c.querySelector('.pc-stage');
+    const modeBtns = c.querySelectorAll('.pc-mode-btn');
+    modeBtns.forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const mode = btn.dataset.setMode;
+        modeBtns.forEach(b => b.classList.toggle('is-active', b === btn));
+        if (mode === 'media') {
+          stage.classList.add('mode-media');
+          stage.classList.remove('mode-persona');
+          playVideo(stage);
+        } else {
+          stage.classList.add('mode-persona');
+          stage.classList.remove('mode-media');
+          stopVideo(stage);
+        }
+      });
+    });
+
+    // Hover Video Playback for desktop
+    if (hasVideo && matchMedia('(hover:hover)').matches) {
+      c.addEventListener('mouseenter', () => {
+        const grid = document.querySelector('.nx-talent-grid');
+        if (grid && grid.classList.contains('is-reels')) {
+          playVideo(stage);
+        } else if (stage.classList.contains('mode-media')) {
+          playVideo(stage);
+        }
+      });
+      c.addEventListener('mouseleave', () => {
+        stopVideo(stage);
+      });
+    }
+
+    // Photo Carousel Navigation
+    let photoIdx = 0;
+    const imgEls = [...stage.querySelectorAll('.pc-media-wrap img')];
+    const dotEls = [...stage.querySelectorAll('.pc-photo-dots span')];
+
+    const showPhoto = (n) => {
+      if (!imgEls.length) return;
+      photoIdx = (photoIdx + n + imgEls.length) % imgEls.length;
+      imgEls.forEach((im, i) => im.classList.toggle('is-active', i === photoIdx));
+      dotEls.forEach((dot, i) => dot.classList.toggle('is-active', i === photoIdx));
+    };
+
+    const prevBtn = stage.querySelector('.pc-prev');
+    const nextBtn = stage.querySelector('.pc-next');
+    if (prevBtn) {
+      prevBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        showPhoto(-1);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        showPhoto(1);
+      });
+    }
+
+    // Bookmark Toggle
+    const saveBtn = c.querySelector('.pc-save');
+    if (saveBtn) {
+      saveBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        const pressed = saveBtn.getAttribute('aria-pressed') === 'true';
+        saveBtn.setAttribute('aria-pressed', String(!pressed));
+      });
+    }
+  }
+
+  // Synchronize global view toggles (3D Personas vs Client Reels vs Case Scenarios)
+  function initViewSync() {
+    const btnReels = document.getElementById('btnViewReels');
+    const btnPersonas = document.getElementById('btnViewPersonas');
+    const btnCases = document.getElementById('btnViewCases');
+
+    if (btnReels) {
+      btnReels.addEventListener('click', () => {
+        document.querySelectorAll('#roster .pc-stage').forEach(st => {
+          st.classList.add('mode-media');
+          st.classList.remove('mode-persona');
+          st.querySelectorAll('.pc-mode-btn').forEach(b => {
+            b.classList.toggle('is-active', b.dataset.setMode === 'media');
+          });
+        });
+      });
+    }
+
+    if (btnPersonas) {
+      btnPersonas.addEventListener('click', () => {
+        document.querySelectorAll('#roster .pc-stage').forEach(st => {
+          st.classList.add('mode-persona');
+          st.classList.remove('mode-media');
+          stopVideo(st);
+          st.querySelectorAll('.pc-mode-btn').forEach(b => {
+            b.classList.toggle('is-active', b.dataset.setMode === 'persona');
+          });
+        });
+      });
+    }
+  }
+
+  const runRoster = () => {
+    document.querySelectorAll('#roster .nx-talent-card').forEach(renderCard);
+    initViewSync();
+  };
+
+  runRoster();
+  const grid = document.querySelector('#roster .nx-talent-grid');
+  if (grid) new MutationObserver(runRoster).observe(grid, { childList: true });
 })();
 </script>
 </body>
