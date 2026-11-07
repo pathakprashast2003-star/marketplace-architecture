@@ -3589,7 +3589,7 @@
       text-wrap: pretty;
     }
 
-    /* ── DKV VISUAL COMMUNICATIONS EDITORIAL STICKERS (OUTSIDE OF CARDS, ON SCREEN CANVAS) ── */
+    /* ── ANALOG FILM PRODUCTION STICKERS (PHOTOREALISTIC DIE-CUT PNGS) ── */
     #roster .nx-roster-title-cluster {
       position: relative;
       display: flex;
@@ -3604,12 +3604,12 @@
       max-width: 660px;
     }
 
-    #roster .nx-dkv-stickers {
+    #roster .nx-film-stickers {
       position: relative;
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding-bottom: 4px;
+      gap: 18px;
+      padding-bottom: 6px;
       flex-shrink: 0;
       user-select: none;
       z-index: 3;
@@ -3621,216 +3621,64 @@
         align-items: flex-start;
         gap: 16px;
       }
-      #roster .nx-dkv-stickers {
+      #roster .nx-film-stickers {
         flex-wrap: wrap;
-        gap: 12px;
+        gap: 14px;
       }
     }
 
-    /* Individual DKV Sticker Basis */
-    #roster .nx-dkv-sticker {
+    /* Individual Photorealistic Sticker */
+    #roster .nx-film-sticker {
       position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       cursor: grab;
       user-select: none;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
-      filter: drop-shadow(0 6px 14px rgba(20, 17, 15, 0.09));
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), filter 0.32s ease;
+      filter: drop-shadow(0 6px 14px rgba(20, 17, 15, 0.12));
     }
 
-    #roster .nx-dkv-sticker:hover {
-      transform: translateY(-6px) scale(1.08) rotate(0deg) !important;
-      filter: drop-shadow(0 14px 28px rgba(20, 17, 15, 0.16));
+    #roster .nx-film-sticker:hover {
+      transform: translateY(-8px) scale(1.08) rotate(0deg) !important;
+      filter: drop-shadow(0 16px 28px rgba(20, 17, 15, 0.20));
       z-index: 10;
     }
 
-    #roster .nx-dkv-sticker:active {
+    #roster .nx-film-sticker:active {
       cursor: grabbing;
       transform: scale(0.96) !important;
     }
 
-    /* Sticker 1: 35mm Analog SLR Camera */
-    #roster .nx-sticker-camera {
+    #roster .nx-film-sticker .nx-sticker-img {
+      display: block;
+      height: auto;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Sticker 1: 35mm Camera */
+    #roster .nx-film-camera {
       transform: rotate(-5deg);
     }
-
-    #roster .nx-sticker-tape {
-      position: absolute;
-      top: -8px;
-      left: 18px;
-      width: 36px;
-      height: 14px;
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      border: 1px solid rgba(20, 17, 15, 0.10);
-      transform: rotate(-3.5deg);
-      box-shadow: 0 1px 3px rgba(20, 17, 15, 0.06);
-      pointer-events: none;
-      z-index: 5;
+    #roster .nx-film-camera .nx-sticker-img {
+      width: 118px;
     }
 
-    #roster .nx-camera-sticker-label {
-      position: absolute;
-      bottom: -4px;
-      right: 2px;
-      background: #1C1917;
-      color: #F5F4F0;
-      font-family: var(--font-mono, monospace);
-      font-size: 8px;
-      font-weight: 750;
-      padding: 2px 5px;
-      border-radius: 4px;
-      letter-spacing: 0.06em;
-      border: 1px solid #FFFFFF;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Sticker 2: Pantone Swatch Fan */
+    #roster .nx-film-pantone {
+      transform: rotate(3.5deg);
+    }
+    #roster .nx-film-pantone .nx-sticker-img {
+      width: 106px;
     }
 
-    /* Sticker 2: Paper Airplane */
-    #roster .nx-sticker-airplane {
-      transform: rotate(4deg);
-    }
-
-    /* Sticker 3: Pantone Swatches Fan */
-    #roster .nx-sticker-pantone {
-      transform: rotate(3deg);
-      width: 72px;
-      height: 72px;
-    }
-
-    #roster .nx-pantone-fan {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    #roster .nx-pantone-card {
-      position: absolute;
-      width: 44px;
-      height: 58px;
-      background: #FFFFFF;
-      border-radius: 4px;
-      padding: 3px;
-      box-shadow: 0 3px 8px rgba(20, 17, 15, 0.10);
-      border: 1px solid rgba(20, 17, 15, 0.08);
-      transform-origin: 10px 50px;
-      transition: transform 0.25s ease;
-    }
-
-    #roster .nx-pantone-card.card-sage {
-      transform: rotate(-18deg);
-      z-index: 1;
-    }
-
-    #roster .nx-pantone-card.card-cobalt {
-      transform: rotate(0deg);
-      z-index: 2;
-    }
-
-    #roster .nx-pantone-card.card-amber {
-      transform: rotate(18deg);
-      z-index: 3;
-    }
-
-    #roster .nx-pantone-color {
-      width: 100%;
-      height: 32px;
-      border-radius: 2px;
-    }
-
-    #roster .nx-pantone-meta {
-      padding-top: 2px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    #roster .nx-p-brand {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: 6px;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      color: #14110F;
-    }
-
-    #roster .nx-p-code {
-      font-family: -apple-system, BlinkMacSystemFont, monospace;
-      font-size: 5.5px;
-      font-weight: 600;
-      color: #78716C;
-    }
-
-    #roster .nx-pantone-binder-clip {
-      position: absolute;
-      bottom: 0px;
-      left: 6px;
-      width: 12px;
-      height: 8px;
-      background: #292524;
-      border-radius: 2px;
-      z-index: 5;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Sticker 4: Torn Memo Note */
-    #roster .nx-sticker-memo {
+    /* Sticker 3: Clipped Production Memo Note */
+    #roster .nx-film-memo {
       transform: rotate(-3deg);
-      background: #FFFDF8;
-      border: 1px solid rgba(20, 17, 15, 0.10);
-      border-bottom: 2px dashed rgba(20, 17, 15, 0.22);
-      padding: 8px 10px 7px 12px;
-      border-radius: 4px 4px 1px 1px;
-      box-shadow: 0 4px 12px rgba(20, 17, 15, 0.08);
-      font-family: var(--font-mono, monospace);
     }
-
-    #roster .nx-paperclip {
-      position: absolute;
-      top: -8px;
-      left: 10px;
-      width: 8px;
-      height: 18px;
-      border: 2px solid #78716C;
-      border-radius: 6px;
-      border-bottom: 0;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-    }
-
-    #roster .nx-memo-kicker {
-      font-size: 7.5px;
-      font-weight: 800;
-      color: #C55221;
-      letter-spacing: 0.06em;
-    }
-
-    #roster .nx-memo-title {
-      font-size: 9.5px;
-      font-weight: 900;
-      color: #14110F;
-      letter-spacing: 0.04em;
-    }
-
-    #roster .nx-memo-spec {
-      font-size: 7.5px;
-      font-weight: 600;
-      color: #57514B;
-      margin-top: 1px;
-    }
-
-    /* Sticker 5: Retro Acid Smiley */
-    #roster .nx-sticker-smiley {
-      transform: rotate(8deg);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    #roster .nx-doodle-sparkle {
-      color: #F59E0B;
-      font-size: 16px;
-      animation: nxTwinkle 2.4s ease-in-out infinite;
-    }
-
-    @keyframes nxTwinkle {
-      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
-      50% { transform: scale(1.3) rotate(45deg); opacity: 1; }
+    #roster .nx-film-memo .nx-sticker-img {
+      width: 116px;
     }
 
     /* Floating Canvas Margin Tag */
@@ -6103,118 +5951,21 @@
             <p class="nx-lead nx-reveal">Weekly Curated Spotlight: Hand-vetted creative directors &amp; lead operators on active standby.</p>
           </div>
 
-          <!-- EDITORIAL DKV VISUAL COMMUNICATIONS STICKER CLUSTER (PINTEREST MOOD BOARD INSPIRED) -->
-          <div class="nx-dkv-stickers nx-reveal" aria-label="Editorial visual communications stickers" role="region">
-            <!-- Sticker 1: 35mm Analog SLR Camera Die-Cut Sticker -->
-            <div class="nx-dkv-sticker nx-sticker-camera" title="35mm Analog Optic // Direct Frame Capture" tabindex="0">
-              <div class="nx-sticker-tape"></div>
-              <svg width="98" height="76" viewBox="0 0 110 84" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- White Die Cut Sticker Outline -->
-                <rect x="5" y="16" width="100" height="62" rx="14" fill="#FFFFFF" stroke="#E7E5E4" stroke-width="2.5" />
-                <path d="M 38 16 L 43 8 L 67 8 L 72 16 Z" fill="#FFFFFF" stroke="#E7E5E4" stroke-width="2.5" stroke-linejoin="round" />
-                
-                <!-- Camera Body Base (Textured Dark Body) -->
-                <rect x="8" y="19" width="94" height="56" rx="11" fill="#1C1917" />
-                <rect x="8" y="32" width="94" height="32" rx="4" fill="#292524" />
-                <line x1="8" y1="32" x2="102" y2="32" stroke="#44403C" stroke-width="1" />
-                
-                <!-- Silver Top Plate & Prism -->
-                <path d="M 8 26 L 8 19 Q 8 18 9 18 L 101 18 Q 102 18 102 19 L 102 26 Z" fill="#D6D3D1" />
-                <path d="M 40 18 L 44 10 L 66 10 L 70 18 Z" fill="#E7E5E4" />
-                <line x1="40" y1="18" x2="70" y2="18" stroke="#A8A29E" stroke-width="1" />
-                
-                <!-- Knurled Controls -->
-                <rect x="14" y="13.5" width="14" height="4.5" rx="1.5" fill="#A8A29E" />
-                <rect x="82" y="12.5" width="10" height="5.5" rx="1.5" fill="#EA580C" />
-                <circle cx="87" cy="15" r="1.8" fill="#C2410C" />
-                <rect x="74" y="14" width="6" height="4" rx="1" fill="#78716C" />
-                
-                <!-- Viewfinder -->
-                <rect x="50" y="12" width="10" height="5" rx="1" fill="#0C4A6E" stroke="#38BDF8" stroke-width="0.8" />
-                
-                <!-- Red Emblem -->
-                <circle cx="24" cy="27" r="4.5" fill="#DC2626" />
-                <circle cx="24" cy="27" r="2.5" fill="#EF4444" />
-                
-                <!-- 50mm Lens Barrel -->
-                <circle cx="55" cy="46" r="23" fill="#D6D3D1" stroke="#A8A29E" stroke-width="1.5" />
-                <circle cx="55" cy="46" r="20" fill="#1C1917" stroke="#44403C" stroke-width="1.2" />
-                <circle cx="55" cy="46" r="16" fill="#0F172A" />
-                <circle cx="55" cy="46" r="12" fill="url(#dkvLensGlass)" />
-                <ellipse cx="51" cy="42" rx="6" ry="3" fill="rgba(255,255,255,0.45)" transform="rotate(-30 51 42)" />
-                <ellipse cx="58" cy="50" rx="3.5" ry="1.5" fill="rgba(56,189,248,0.5)" transform="rotate(-30 58 50)" />
-                <defs>
-                  <radialGradient id="dkvLensGlass" cx="45%" cy="40%" r="60%">
-                    <stop offset="0%" stop-color="#0284C7" />
-                    <stop offset="60%" stop-color="#0F172A" />
-                    <stop offset="100%" stop-color="#042F2E" />
-                  </radialGradient>
-                </defs>
-              </svg>
-              <div class="nx-camera-sticker-label">35mm ANALOG</div>
+          <!-- ── ANALOG FILM PRODUCTION STICKER TRIO (REAL HIGH-RES DIE-CUT PNGS) ── -->
+          <div class="nx-film-stickers nx-reveal" aria-label="Analog film production editorial stickers" role="region">
+            <!-- Sticker 1: 35mm Analog SLR Camera -->
+            <div class="nx-film-sticker nx-film-camera" title="35mm Analog Optic // Direct Frame Capture" tabindex="0">
+              <img src="assets/stickers/analog_sticker_2.png" alt="35mm Analog SLR Camera Die-Cut Sticker" class="nx-sticker-img" width="118" height="89" loading="eager" />
             </div>
 
-            <!-- Sticker 2: Origami Paper Airplane with Dotted Flight Loop -->
-            <div class="nx-dkv-sticker nx-sticker-airplane" title="Creative Direct Air // Flight Path" tabindex="0">
-              <svg width="86" height="68" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 12 72 C 18 52, 34 50, 42 64 C 48 74, 60 72, 62 58 C 64 42, 68 34, 78 26" 
-                      stroke="#78716C" stroke-width="1.8" stroke-dasharray="3.5 3.5" stroke-linecap="round" fill="none" opacity="0.75" />
-                <g transform="translate(48, 4) rotate(15)">
-                  <polygon points="32,0 0,26 12,32 16,42 22,34 32,0" fill="#FFFFFF" stroke="#E7E5E4" stroke-width="1.2" stroke-linejoin="round" />
-                  <polygon points="32,0 0,26 14,24 32,0" fill="#F5F4F0" />
-                  <polygon points="32,0 14,24 24,32 32,0" fill="#E7E5E4" />
-                  <polygon points="14,24 16,38 20,30" fill="#D6D3D1" />
-                  <line x1="32" y1="0" x2="14" y2="24" stroke="#A8A29E" stroke-width="0.8" />
-                </g>
-              </svg>
+            <!-- Sticker 2: Pantone Swatch Fan (Sage & Cobalt) -->
+            <div class="nx-film-sticker nx-film-pantone" title="Pantone Swatch Deck // Sage & Cobalt" tabindex="0">
+              <img src="assets/stickers/analog_sticker_1.png" alt="Pantone Color Swatch Fan Sticker" class="nx-sticker-img" width="106" height="100" loading="eager" />
             </div>
 
-            <!-- Sticker 3: Pantone Swatch Palette Fan with Metal Clip -->
-            <div class="nx-dkv-sticker nx-sticker-pantone" title="Pantone Swatch Deck // Creative Palette" tabindex="0">
-              <div class="nx-pantone-fan">
-                <div class="nx-pantone-card card-sage">
-                  <div class="nx-pantone-color" style="background: #10B981;"></div>
-                  <div class="nx-pantone-meta">
-                    <span class="nx-p-brand">PANTONE</span>
-                    <span class="nx-p-code">16-6340</span>
-                  </div>
-                </div>
-                <div class="nx-pantone-card card-cobalt">
-                  <div class="nx-pantone-color" style="background: #2563EB;"></div>
-                  <div class="nx-pantone-meta">
-                    <span class="nx-p-brand">PANTONE</span>
-                    <span class="nx-p-code">19-4052</span>
-                  </div>
-                </div>
-                <div class="nx-pantone-card card-amber">
-                  <div class="nx-pantone-color" style="background: #EA580C;"></div>
-                  <div class="nx-pantone-meta">
-                    <span class="nx-p-brand">PANTONE</span>
-                    <span class="nx-p-code">16-1454</span>
-                  </div>
-                </div>
-                <div class="nx-pantone-binder-clip"></div>
-              </div>
-            </div>
-
-            <!-- Sticker 4: Torn Paper Memo Note with Wire Paperclip -->
-            <div class="nx-dkv-sticker nx-sticker-memo" title="Editorial Production Memo" tabindex="0">
-              <div class="nx-paperclip"></div>
-              <div class="nx-memo-kicker">ROSTER № 01</div>
-              <div class="nx-memo-title">TIER-1 OPS</div>
-              <div class="nx-memo-spec">✓ DIRECT TERMS · VERIFIED</div>
-            </div>
-
-            <!-- Sticker 5: Retro Acid Smiley Badge -->
-            <div class="nx-dkv-sticker nx-sticker-smiley" title="Creative Joy // Acid Studio" tabindex="0">
-              <svg width="42" height="42" viewBox="0 0 46 46" fill="none">
-                <circle cx="23" cy="23" r="22" fill="#FFFFFF" stroke="#E7E5E4" stroke-width="1.5" />
-                <circle cx="23" cy="23" r="19" fill="#FACC15" />
-                <ellipse cx="17" cy="18" rx="2.2" ry="3.5" fill="#1C1917" />
-                <ellipse cx="29" cy="18" rx="2.2" ry="3.5" fill="#1C1917" />
-                <path d="M 15 26 Q 23 35 31 26" stroke="#1C1917" stroke-width="2.6" stroke-linecap="round" fill="none" />
-              </svg>
-              <span class="nx-doodle-sparkle">✦</span>
+            <!-- Sticker 3: Clipped Production Memo Note -->
+            <div class="nx-film-sticker nx-film-memo" title="Production Memo // Hand-Vetted Directors · 0% Commission" tabindex="0">
+              <img src="assets/stickers/analog_sticker_4.png" alt="Clipped Production Memo Note Sticker" class="nx-sticker-img" width="116" height="77" loading="eager" />
             </div>
           </div>
         </div>
@@ -9304,9 +9055,9 @@
         }
       }
 
-      // Interactive Draggable Screen Stickers (Pinterest / DKV mood board tactile feel)
+      // Interactive Draggable Screen Stickers (Photorealistic tactile feel)
       function initDraggableStickers() {
-        const stickers = document.querySelectorAll('#roster .nx-dkv-sticker');
+        const stickers = document.querySelectorAll('#roster .nx-film-sticker, #roster .nx-dkv-sticker');
         stickers.forEach(el => {
           if (el._dragInit) return;
           el._dragInit = true;
