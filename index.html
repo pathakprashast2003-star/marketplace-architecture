@@ -3967,7 +3967,10 @@
       background: #FFFFFF;
       border: 1px solid rgba(20, 17, 15, 0.08);
       border-radius: 34px;
-      padding: 12px 12px 22px 12px;
+      padding: 12px 12px 20px 12px;
+      height: 600px;
+      min-height: 600px;
+      max-height: 600px;
       box-shadow: 0 4px 6px -1px rgba(20, 17, 15, 0.03), 0 24px 48px -20px rgba(20, 17, 15, 0.12);
       overflow: visible !important;
       position: relative;
@@ -4468,13 +4471,17 @@
       font-weight: 450;
       font-size: clamp(1.85rem, 2.5vw, 2.25rem);
       letter-spacing: -0.03em;
-      line-height: 1.04;
+      line-height: 38px;
+      height: 38px;
       color: var(--r-ink, #14110F);
-      margin: 2px 0 0 0;
+      margin: 0;
       display: flex;
       align-items: center;
       gap: 8px;
       font-feature-settings: "liga" 1, "dlig" 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     #roster .pc-name-badge {
@@ -4482,14 +4489,16 @@
     }
 
     #roster .pc-blurb {
-      font-family: 'Times New Roman', Times, 'Newsreader', Georgia, serif;
+      font-family: 'Times New Roman', Times, serif;
       font-style: italic;
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 400;
-      line-height: 1.52;
+      line-height: 1.5;
       color: #4A443E;
-      margin: 10px 0 0 0;
-      max-width: 42ch;
+      margin: 8px 0 0 0;
+      height: 44px;
+      min-height: 44px;
+      max-height: 44px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -4502,23 +4511,27 @@
       display: flex;
       flex-wrap: wrap;
       gap: 7px;
-      margin: 14px 0 0 0;
+      margin: 12px 0 0 0;
       padding: 0;
       list-style: none;
+      height: 64px;
+      min-height: 64px;
+      max-height: 64px;
+      overflow: hidden;
+      align-content: flex-start;
     }
 
     #roster .pc-note-tag {
-      font-family: 'Newsreader', 'Times New Roman', Georgia, serif;
-      font-size: 12.5px;
-      font-weight: 550;
-      padding: 4.5px 11px;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 11px;
       border-radius: 8px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       letter-spacing: -0.01em;
       line-height: 1.25;
-      font-feature-settings: "liga" 1, "dlig" 1;
       box-shadow: 0 1px 2px rgba(20, 17, 15, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.75);
       transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s, border-color 0.2s;
     }
@@ -4579,17 +4592,20 @@
       box-shadow: 0 3px 8px rgba(16, 185, 129, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.90);
     }
 
-    /* ── UNIFIED EDITORIAL SPEC & TIMING STRIP ── */
+    /* ── UNIFIED EDITORIAL SPEC & TIMING STRIP (APPLE 3-COLUMN STRUCTURED GRID) ── */
     #roster .pc-spec-strip {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
       align-items: center;
-      justify-content: space-between;
-      margin-top: 16px;
-      padding: 7px 14px;
+      margin-top: 14px;
+      padding: 0 8px;
+      height: 38px;
+      min-height: 38px;
+      max-height: 38px;
       background: #FFFFFF;
-      border: 1px solid rgba(20, 17, 15, 0.09);
+      border: 1px solid rgba(20, 17, 15, 0.10);
       border-radius: 999px;
-      box-shadow: 0 2px 6px rgba(20, 17, 15, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.90);
+      box-shadow: 0 1px 3px rgba(20, 17, 15, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.90);
       transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
     }
 
@@ -4600,17 +4616,22 @@
     }
 
     #roster .pc-spec-col {
-      display: inline-flex;
+      display: flex;
       align-items: center;
+      justify-content: center;
       gap: 4px;
-      font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+      font-family: -apple-system, BlinkMacSystemFont, var(--font-body, 'Plus Jakarta Sans'), sans-serif;
       font-size: 11.5px;
       font-variant-numeric: tabular-nums;
       color: #2D2723;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 0 4px;
     }
 
     #roster .pc-spec-star {
-      color: #D97706;
+      color: #F59E0B;
       font-size: 12px;
       line-height: 1;
     }
@@ -4621,7 +4642,7 @@
     }
 
     #roster .pc-spec-sub {
-      color: #7D766E;
+      color: #78716C;
       font-weight: 500;
       font-size: 11px;
     }
@@ -4633,28 +4654,30 @@
 
     #roster .pc-spec-divider {
       width: 1px;
-      height: 14px;
+      height: 16px;
       background: rgba(20, 17, 15, 0.12);
       flex: none;
-      margin: 0 4px;
+      margin: 0;
     }
 
     #roster .pc-spec-timing {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 5.5px;
+      justify-content: center;
+      gap: 5px;
       color: #166534;
       font-weight: 600;
       font-size: 11px;
-      letter-spacing: 0.01em;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
     }
 
     #roster .pc-spec-pulse {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #16A34A;
-      box-shadow: 0 0 6px rgba(22, 163, 74, 0.50);
+      background: #10B981;
+      box-shadow: 0 0 6px rgba(16, 185, 129, 0.55);
       flex: none;
       animation: pcPulse 1.8s ease-in-out infinite;
     }
@@ -4664,7 +4687,10 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-top: 16px;
+      margin-top: 14px;
+      height: 48px;
+      min-height: 48px;
+      max-height: 48px;
     }
 
     #roster .pc-book {
@@ -4758,6 +4784,9 @@
       #roster .nx-talent-card {
         padding: 12px 12px 18px 12px;
         border-radius: 28px;
+        height: auto;
+        min-height: auto;
+        max-height: none;
       }
 
       #roster .pc-stage {
@@ -8301,13 +8330,13 @@
         };
         const craftSlug = craftSlugMap[craft.toLowerCase().trim()] || 'cinema';
 
-        // Timing & Metric formatting (unambiguous turnaround SLA)
-        let timingText = 'Replies in <1h';
-        if (data.sla === '< 1h response') timingText = 'Replies in <1h';
-        else if (data.sla === '< 2h response') timingText = 'Replies in <2h';
-        else if (data.sla === '< 3h response') timingText = 'Replies in <3h';
-        else if (data.sla === 'Ready Now') timingText = 'Available Now';
-        else if (data.sla) timingText = data.sla;
+        // Timing & Metric formatting (Apple structured 3-column SLA)
+        let timingText = 'Replies <1h';
+        if (data.sla === '< 1h response') timingText = 'Replies <1h';
+        else if (data.sla === '< 2h response') timingText = 'Replies <2h';
+        else if (data.sla === '< 3h response') timingText = 'Replies <3h';
+        else if (data.sla === 'Ready Now') timingText = 'Available';
+        else if (data.sla) timingText = data.sla.replace(' response', '');
 
         let earnedMain = data.earned || '$100k+';
         let earnedSub = 'Earned';
