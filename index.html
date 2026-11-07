@@ -3452,12 +3452,16 @@
     }
 
     #roster .nx-kicker {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0;
-      text-transform: none;
-      color: var(--r-ink-2);
+      display: inline-flex;
+      align-items: center;
       gap: 12px;
+      font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #78716C;
+      margin-bottom: 8px;
     }
 
     #roster .nx-kicker::before {
@@ -3465,57 +3469,77 @@
     }
 
     #roster .nx-criteria-trigger-btn {
-      font-size: 13px;
+      font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
+      font-size: 12.5px;
+      font-weight: 600;
       padding: 4px 12px;
-      color: var(--r-ink);
-      background: transparent;
-      border-color: var(--r-line);
+      color: #57514B;
+      background: #FFFFFF;
+      border: 1px solid rgba(20, 17, 15, 0.12);
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(20, 17, 15, 0.03);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #roster .nx-criteria-trigger-btn:hover {
+      background: #F9F8F6;
+      color: #14110F;
+      border-color: rgba(20, 17, 15, 0.22);
+      transform: translateY(-1px);
     }
 
     #roster .nx-h2 {
-      font-family: var(--r-serif);
-      font-weight: 500;
-      letter-spacing: -.03em;
-      font-size: clamp(2.8rem, 6vw, 5.2rem);
-      line-height: .98;
-      max-width: 12ch;
-      color: var(--r-ink);
-      overflow-wrap: break-word;
-      min-width: 0;
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      font-size: clamp(3.2rem, 5.8vw, 5.4rem);
+      line-height: 1.05;
+      max-width: 26ch;
+      color: #14110F;
+      margin: 12px 0 16px 0;
+      text-wrap: balance;
     }
 
     #roster .nx-lead {
-      color: var(--r-ink-2);
-      max-width: 46ch;
-      margin-bottom: 44px;
+      font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
+      font-size: clamp(1.1rem, 1.35vw, 1.25rem);
+      line-height: 1.6;
+      color: #57514B;
+      max-width: 68ch;
+      margin: 0 0 36px 0;
+      text-wrap: pretty;
     }
 
-    /* control dock: one quiet row, sticky while browsing */
+    /* ── ROSTER CONTROLS: OPEN ON WHITE CANVAS (NO CARD, NO BORDER BOX) ── */
     #roster .nx-roster-controls {
-      position: sticky;
-      top: 14px;
-      z-index: 20;
-      flex-direction: row;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px 20px;
-      padding: 8px 8px 8px 20px;
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--r-card) 95%, transparent);
-      backdrop-filter: blur(18px) saturate(1.4);
-      -webkit-backdrop-filter: blur(18px) saturate(1.4);
-      border: 1px solid var(--r-line);
-      box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset, 0 18px 40px -24px rgba(20, 17, 15, .25);
-      margin-bottom: 40px;
+      position: relative;
+      top: auto;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 0;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      margin-bottom: 36px;
     }
 
     #roster .nx-filter-bar {
-      gap: 2px;
-      flex-wrap: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
       overflow-x: auto;
       scrollbar-width: none;
-      min-width: 0;
+      padding: 2px 0;
     }
 
     #roster .nx-filter-bar::-webkit-scrollbar {
@@ -3523,118 +3547,146 @@
     }
 
     #roster .nx-filter-btn {
-      position: relative;
-      border: 0;
-      background: transparent;
-      color: var(--r-ink-3);
-      font-size: 14px;
+      font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
+      font-size: 13px;
       font-weight: 600;
-      padding: 10px 12px;
+      padding: 8px 16px;
       border-radius: 999px;
+      border: 1px solid rgba(20, 17, 15, 0.12);
+      background: #FFFFFF;
+      color: #57534E;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
       white-space: nowrap;
-      transition: color .2s var(--r-ease), background-color .2s var(--r-ease);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 2px rgba(20, 17, 15, 0.03);
     }
 
     #roster .nx-filter-btn:hover {
-      color: var(--r-ink);
-      background: rgba(20, 17, 15, .04);
-      transform: none;
-      box-shadow: none;
+      background: #F9F8F6;
+      color: #14110F;
+      border-color: rgba(20, 17, 15, 0.24);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(20, 17, 15, 0.06);
     }
 
     #roster .nx-filter-btn.is-active {
-      color: var(--r-ink);
-      background: transparent;
-      box-shadow: none;
+      background: #14110F;
+      color: #FFFFFF;
+      border-color: #14110F;
+      box-shadow: 0 2px 8px rgba(20, 17, 15, 0.20);
     }
 
     #roster .nx-filter-btn::after {
-      content: '';
-      position: absolute;
-      left: 12px;
-      right: 12px;
-      bottom: 4px;
-      height: 2px;
-      border-radius: 2px;
-      background: var(--r-ink);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform .35s var(--r-ease);
-    }
-
-    #roster .nx-filter-btn.is-active::after {
-      transform: scaleX(1);
+      display: none;
     }
 
     #roster .nx-filter-count {
-      background: var(--r-ink);
-      color: var(--r-card);
+      background: rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
       font-size: 11px;
-      min-width: 20px;
-      height: 20px;
+      font-weight: 700;
+      min-width: 18px;
+      height: 18px;
       border-radius: 999px;
       display: inline-grid;
       place-items: center;
-      padding: 0 6px;
+      padding: 0 5px;
+    }
+
+    #roster .nx-filter-btn:not(.is-active) .nx-filter-count {
+      background: rgba(20, 17, 15, 0.08);
+      color: #57534E;
     }
 
     #roster .nx-roster-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: space-between;
+      gap: 16px;
       flex-wrap: wrap;
+      width: 100%;
     }
 
     #roster .nx-roster-search {
-      background: rgba(20, 17, 15, .045);
-      border: 1px solid transparent;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      background: #FFFFFF;
+      border: 1px solid rgba(20, 17, 15, 0.12);
       border-radius: 999px;
-      transition: background-color .2s var(--r-ease), border-color .2s var(--r-ease);
+      padding: 0 14px 0 36px;
+      height: 40px;
+      box-shadow: 0 1px 2px rgba(20, 17, 15, 0.03);
+      transition: all 0.2s ease;
+      flex: 1;
+      max-width: 360px;
+    }
+
+    #roster .nx-search-icon {
+      position: absolute;
+      left: 14px;
+      color: #78716C;
+      pointer-events: none;
     }
 
     #roster .nx-roster-search:focus-within {
-      background: var(--r-card);
-      border-color: var(--r-ink);
+      background: #FFFFFF;
+      border-color: #14110F;
+      box-shadow: 0 0 0 3px rgba(20, 17, 15, 0.08);
     }
 
     #roster .nx-roster-search-input {
       background: transparent;
       border: 0;
-      font-size: 14px;
-      color: var(--r-ink);
-      min-width: 220px;
-    }
-
-    #roster .nx-roster-search-input:focus {
+      font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
+      font-size: 13.5px;
+      color: #14110F;
+      width: 100%;
+      height: 100%;
+      min-width: 0;
       outline: none;
-      box-shadow: none;
     }
 
     #roster .nx-view-toggle {
-      background: rgba(20, 17, 15, .045);
-      border: 0;
-      box-shadow: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #F4F2EE;
+      border: 1px solid rgba(20, 17, 15, 0.08);
+      border-radius: 999px;
       padding: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
 
     #roster .nx-view-btn {
-      font-size: 13px;
+      font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
+      font-size: 12.5px;
       font-weight: 600;
-      color: var(--r-ink-2);
-      padding: 8px 12px;
-      text-decoration: none;
-      background: transparent;
+      color: #78716C;
+      padding: 6px 14px;
+      border-radius: 999px;
       border: 0;
+      background: transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     #roster .nx-view-btn:hover {
-      color: var(--r-ink);
+      color: #14110F;
     }
 
     #roster .nx-view-btn.is-active {
-      background: var(--r-card);
-      color: var(--r-ink);
-      box-shadow: 0 1px 2px rgba(20, 17, 15, .08), 0 4px 12px -4px rgba(20, 17, 15, .15);
+      background: #FFFFFF;
+      color: #14110F;
+      box-shadow: 0 1px 3px rgba(20, 17, 15, 0.10);
     }
 
     /* grid: real grid, no centring gaps */
@@ -3890,9 +3942,11 @@
 
     @media (max-width: 760px) {
       #roster .nx-roster-controls {
-        border-radius: 24px;
-        padding: 10px;
+        padding: 0;
         position: static;
+        background: transparent;
+        border: none;
+        box-shadow: none;
       }
 
       #roster .nx-roster-actions,
@@ -5484,9 +5538,8 @@
             <span>Curation Criteria</span>
           </button>
         </p>
-        <h2 class="nx-h2 nx-reveal">Verified directors on deck.</h2>
-        <p class="nx-lead nx-reveal">Weekly Curated Spotlight: 5 hand-vetted creative operators verified for tier-one
-          brand productions, sub-2h SLA response, and direct terms.</p>
+        <h2 class="nx-h2 nx-reveal">Verified Directors on Deck.</h2>
+        <p class="nx-lead nx-reveal">Weekly Curated Spotlight: Hand-vetted creative directors, spatial artists, and camera operators verified for tier-one brand productions with sub-2h turnaround SLA.</p>
 
         <!-- Streamlined Control Dock: Category Tabs + Live Search + View Toggle -->
         <div class="nx-roster-controls nx-reveal">
