@@ -3920,9 +3920,9 @@
       background: #FFFFFF;
     }
 
-    /* ── CARD BODY: IMPECCABLE EDITORIAL HIERARCHY (OAT & MILL) ── */
+    /* ── CARD BODY: PURE HIGH-END EDITORIAL HIERARCHY (CEREAL / KINFOLK / OAT & MILL) ── */
     #roster .pc-body {
-      padding: 18px 4px 0 4px;
+      padding: 20px 4px 0 4px;
       display: flex;
       flex-direction: column;
       flex: 1;
@@ -3933,23 +3933,30 @@
       align-items: center;
       gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     #roster .pc-kicker {
-      font-size: 13.5px;
-      font-weight: 600;
-      color: var(--r-ink);
+      font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--r-ink-3, #8C857D);
     }
 
     #roster .pc-kicker-dot {
-      color: var(--r-ink-3);
-      font-size: 12px;
+      color: rgba(20, 17, 15, 0.25);
+      font-size: 11px;
     }
 
     #roster .pc-city {
-      font-size: 13.5px;
-      color: var(--r-ink-2);
+      font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--r-ink-2, #57514B);
     }
 
     #roster .pc-verified {
@@ -3957,25 +3964,28 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 600;
-      color: var(--r-ok);
-      background: color-mix(in srgb, var(--r-ok) 10%, transparent);
+      letter-spacing: 0.03em;
+      color: #1F7A4D;
+      background: rgba(31, 122, 77, 0.08);
+      border: 1px solid rgba(31, 122, 77, 0.15);
       padding: 2.5px 8px 2.5px 6px;
       border-radius: 999px;
     }
 
     #roster .pc-name {
-      font-family: var(--r-serif);
-      font-weight: 500;
-      font-size: clamp(1.75rem, 2.4vw, 2.15rem);
-      letter-spacing: -0.025em;
-      line-height: 1.08;
-      color: var(--r-ink);
+      font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
+      font-weight: 450;
+      font-size: clamp(1.85rem, 2.5vw, 2.25rem);
+      letter-spacing: -0.03em;
+      line-height: 1.04;
+      color: var(--r-ink, #14110F);
       margin: 0;
       display: flex;
       align-items: center;
       gap: 8px;
+      font-feature-settings: "liga" 1, "dlig" 1;
     }
 
     #roster .pc-name-badge {
@@ -3985,12 +3995,13 @@
     }
 
     #roster .pc-blurb {
-      font-family: var(--font-body);
-      font-size: 14.5px;
-      line-height: 1.5;
-      color: var(--r-ink-2);
-      margin: 8px 0 0 0;
-      max-width: 40ch;
+      font-family: 'Newsreader', Georgia, serif;
+      font-style: italic;
+      font-size: 15.5px;
+      line-height: 1.55;
+      color: #554F48;
+      margin: 10px 0 0 0;
+      max-width: 42ch;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -4007,18 +4018,20 @@
     }
 
     #roster .pc-chips li {
-      font-size: 12px;
+      font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+      font-size: 11.5px;
       font-weight: 500;
-      padding: 5px 11px;
+      padding: 4px 10px;
       border-radius: 999px;
-      background: #F4F1EA;
-      color: var(--r-ink-2);
-      border: 1px solid rgba(20, 17, 15, 0.05);
-      transition: background-color 0.2s, color 0.2s;
+      background: transparent;
+      color: #5A544E;
+      border: 1px solid rgba(20, 17, 15, 0.12);
+      transition: background-color 0.2s, border-color 0.2s, color 0.2s;
     }
 
     #roster .nx-talent-card:hover .pc-chips li {
-      background: #ECE7DD;
+      background: rgba(20, 17, 15, 0.04);
+      border-color: rgba(20, 17, 15, 0.20);
       color: var(--r-ink);
     }
 
@@ -4030,14 +4043,14 @@
       margin-top: 16px;
       padding-top: 14px;
       border-top: 1px solid var(--r-line);
-      font-size: 13.5px;
+      font-size: 13px;
       color: var(--r-ink-2);
       font-variant-numeric: tabular-nums;
     }
 
     #roster .pc-star {
-      color: #F59E0B;
-      font-size: 14px;
+      color: #D97706;
+      font-size: 13px;
     }
 
     #roster .pc-score {
@@ -4047,20 +4060,20 @@
 
     #roster .pc-rev-count {
       color: var(--r-ink-3);
-      font-size: 12.5px;
+      font-size: 12px;
     }
 
     #roster .pc-sep {
-      color: var(--r-line);
+      color: rgba(20, 17, 15, 0.20);
     }
 
     #roster .pc-sla {
-      font-weight: 500;
+      font-weight: 600;
       color: var(--r-ok);
       background: color-mix(in srgb, var(--r-ok) 9%, transparent);
-      padding: 2px 7px;
+      padding: 2px 8px;
       border-radius: 999px;
-      font-size: 12px;
+      font-size: 11.5px;
       margin-left: auto;
     }
 
@@ -4077,11 +4090,12 @@
       height: 48px;
       border: 0;
       border-radius: 999px;
-      background: #19120F;
+      background: #14110F;
       color: #FFFFFF;
       font-family: var(--font-body);
       font-weight: 600;
       font-size: 14.5px;
+      letter-spacing: 0.01em;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -4092,8 +4106,8 @@
     }
 
     #roster .nx-talent-card:hover .pc-book {
-      background: #3B0A24; /* Oat & Mill deep cherry */
-      box-shadow: 0 8px 20px -4px rgba(59, 10, 36, 0.40);
+      background: #2D091D; /* Oat & Mill deep cherry / vintage wine */
+      box-shadow: 0 8px 22px -4px rgba(45, 9, 29, 0.40);
     }
 
     #roster .pc-book:active {
@@ -4111,8 +4125,8 @@
     #roster .pc-save {
       width: 48px;
       height: 48px;
-      border-radius: 16px;
-      border: 1px solid var(--r-line);
+      border-radius: 999px;
+      border: 1px solid rgba(20, 17, 15, 0.12);
       background: #FFFFFF;
       color: var(--r-ink);
       display: grid;
@@ -4123,8 +4137,8 @@
     }
 
     #roster .pc-save:hover {
-      background: #F4F1EA;
-      border-color: rgba(20, 17, 15, 0.20);
+      background: #F8F6F2;
+      border-color: rgba(20, 17, 15, 0.25);
     }
 
     #roster .pc-save:active {
@@ -7126,7 +7140,7 @@
   const TALENT = {
     'marcus vance': {
       personaImg: 'assets/character_filmmaker_transparent.png',
-      stageBg: 'radial-gradient(135% 100% at 50% 15%, #FFE8D6 0%, #E2935D 100%)',
+      stageBg: 'radial-gradient(135% 100% at 50% 15%, #FBF6F0 0%, #EFE3D4 100%)',
       craftPill: '🎬 4K Reel · 0:45',
       video: 'assets/reels/reel_0_director.mp4',
       duration: '0:45',
@@ -7140,7 +7154,7 @@
     },
     'maya lin': {
       personaImg: 'assets/character_drone_operator_final.png',
-      stageBg: 'radial-gradient(135% 100% at 50% 15%, #E0F2FE 0%, #38BDF8 100%)',
+      stageBg: 'radial-gradient(135% 100% at 50% 15%, #F0F6FD 0%, #DCE9F6 100%)',
       craftPill: '🚁 FPV Reel · 0:30',
       video: 'assets/reels/reel_1_drone.mp4',
       duration: '0:30',
@@ -7154,7 +7168,7 @@
     },
     'elena rostova': {
       personaImg: 'assets/character_digital_creator_transparent.png',
-      stageBg: 'radial-gradient(135% 100% at 50% 15%, #F5EEFF 0%, #C084FC 100%)',
+      stageBg: 'radial-gradient(135% 100% at 50% 15%, #F6F3FA 0%, #E9DEFA 100%)',
       craftPill: '🎨 28 Sets · PSD',
       photos: [P + 'poster_2_design.jpg', 'assets/purple_haired_illustrator.webp', P + 'poster_4_cgi.jpg'],
       verifiedLabel: 'Master Illustrator',
@@ -7166,7 +7180,7 @@
     },
     'david kim': {
       personaImg: 'assets/char_athletic_transparent.png',
-      stageBg: 'radial-gradient(135% 100% at 50% 15%, #DCFCE7 0%, #4ADE80 100%)',
+      stageBg: 'radial-gradient(135% 100% at 50% 15%, #F2F8F4 0%, #DBEAE0 100%)',
       craftPill: '⚡ 2nd Unit · Ready',
       photos: [P + 'poster_0_director.jpg', 'assets/char_athletic_boy.jpg'],
       verifiedLabel: 'KYC Identity Vetted',
@@ -7178,7 +7192,7 @@
     },
     'somatic vision studio': {
       personaImg: 'assets/vr_adventure_flight_case.webp',
-      stageBg: 'radial-gradient(135% 100% at 50% 15%, #F1F5F9 0%, #94A3B8 100%)',
+      stageBg: 'radial-gradient(135% 100% at 50% 15%, #F4F4F6 0%, #DFE1E6 100%)',
       craftPill: '🥽 VisionOS · 60fps',
       photos: [P + 'poster_4_cgi.jpg'],
       verifiedLabel: 'Studio Enterprise',
@@ -7190,7 +7204,7 @@
     },
     'nova capture': {
       personaImg: 'assets/char_skater_girl_transparent.png',
-      stageBg: 'radial-gradient(135% 100% at 50% 15%, #FEF3C7 0%, #FB923C 100%)',
+      stageBg: 'radial-gradient(135% 100% at 50% 15%, #FCF6F0 0%, #F5E1D0 100%)',
       craftPill: '🏎 Pursuit Arm · 120fps',
       photos: [P + 'poster_3_action.jpg', P + 'poster_1_drone.jpg'],
       verifiedLabel: 'Auto-Verified Stripe KYC',
@@ -7246,7 +7260,14 @@
 
     const q = sel => c.querySelector(sel);
     const textOf = sel => (q(sel) || {}).textContent || '';
-    const name = textOf('.nx-card-name').trim() || 'Creative Director';
+    const nameEl = q('.nx-card-name');
+    let name = 'Creative Director';
+    if (nameEl) {
+      const clone = nameEl.cloneNode(true);
+      const mono = clone.querySelector('.nx-card-monogram');
+      if (mono) mono.remove();
+      name = clone.textContent.replace(/\s+/g, ' ').trim();
+    }
     const roleRaw = textOf('.nx-card-kicker').trim() || 'Visual Artist';
     const kickerParts = roleRaw.split('·').map(s => s.trim());
     const craft = kickerParts[0] || 'Visual Artist';
