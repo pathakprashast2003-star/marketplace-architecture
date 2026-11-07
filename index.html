@@ -3567,13 +3567,13 @@
     }
 
     #roster .nx-deck-accent {
-      background-image: var(--deck-gradient, linear-gradient(135deg, #F97316 0%, #EA580C 50%, #C2410C 100%));
+      background-image: linear-gradient(135deg, #F97316 0%, #EA580C 50%, #C2410C 100%) !important;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       display: inline-block;
       font-family: inherit;
       font-weight: 500;
-      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: none;
     }
 
     #roster .nx-lead {
@@ -3718,13 +3718,7 @@
       text-align: center;
       letter-spacing: -0.02em;
     }
-      display: block;
-      height: auto;
-      pointer-events: none;
-      -webkit-user-drag: none;
-    }
-
-    /* Sticker Annotations (Attached to each sticker for persistent pairing) */
+    /* Single Master HD Film Sticker: 35mm Analog SLR Camera */
     #roster .nx-sticker-doodle {
       position: absolute;
       inset: 0;
@@ -3732,56 +3726,11 @@
       z-index: 2;
     }
 
-    /* 1. Separate HD Sticker: Pantone Swatch Fan (Default Canvas Placement) */
-    #roster .nx-sticker-pantone {
-      right: 330px;
-      top: 10px;
-      transform: rotate(-13deg);
-      z-index: 2;
-    }
-    #roster .nx-sticker-pantone:hover {
-      transform: rotate(-9deg) translateY(-8px) scale(1.05);
-    }
-    #roster .nx-sticker-pantone .nx-doodle-svg {
-      position: absolute;
-      left: -52px;
-      top: 90px;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.06));
-    }
-    #roster .nx-sticker-pantone .nx-doodle-ticks {
-      position: absolute;
-      left: 36px;
-      top: -12px;
-    }
-
-    /* 2. Separate HD Sticker: Production Memo Note (Default Canvas Placement) */
-    #roster .nx-sticker-memo {
-      right: 175px;
-      top: 70px;
-      transform: rotate(-5deg);
-      z-index: 3;
-    }
-    #roster .nx-sticker-memo:hover {
-      transform: rotate(-1deg) translateY(-8px) scale(1.05);
-    }
-    #roster .nx-sticker-memo .nx-doodle-star-memo {
-      position: absolute;
-      right: 28px;
-      top: -22px;
-    }
-    #roster .nx-sticker-memo .nx-doodle-direct {
-      position: absolute;
-      right: -55px;
-      top: 15px;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.06));
-    }
-
-    /* 3. Separate HD Sticker: 35mm Analog SLR Camera (Default Canvas Placement) */
     #roster .nx-sticker-camera {
-      right: 15px;
-      top: -10px;
+      right: 40px;
+      top: -15px;
       transform: rotate(6deg);
-      z-index: 4;
+      z-index: 15;
     }
     #roster .nx-sticker-camera:hover {
       transform: rotate(2deg) translateY(-8px) scale(1.05);
@@ -3799,54 +3748,35 @@
     }
 
     @media (max-width: 1200px) {
-      #roster .nx-sticker-pantone {
-        right: 360px;
-        top: 15px;
-      }
-      #roster .nx-sticker-memo {
-        right: 170px;
-        top: 70px;
-      }
       #roster .nx-sticker-camera {
-        right: 15px;
-        top: -5px;
+        right: 25px;
+        top: -8px;
       }
     }
 
     @media (max-width: 1060px) {
       #roster .nx-roster-title-cluster {
-        min-height: 380px;
+        min-height: 270px;
       }
       #roster .nx-film-stickers-stage {
         position: relative;
-        height: 200px;
-        margin-top: 20px;
-      }
-      #roster .nx-sticker-pantone {
-        left: 20px;
-        right: auto;
-        top: 20px;
-      }
-      #roster .nx-sticker-memo {
-        left: 240px;
-        right: auto;
-        top: 60px;
+        height: 190px;
+        margin-top: 15px;
       }
       #roster .nx-sticker-camera {
-        right: 20px;
-        left: auto;
+        right: 25px;
         top: 0px;
       }
     }
 
     @media (max-width: 640px) {
       #roster .nx-roster-title-cluster {
-        min-height: 320px;
+        min-height: 220px;
       }
       #roster .nx-film-stickers-stage {
-        transform: scale(0.72);
+        transform: scale(0.78);
         transform-origin: left top;
-        height: 160px;
+        height: 150px;
       }
     }
 
@@ -6152,59 +6082,9 @@
             <p class="nx-lead nx-reveal">Weekly Curated Spotlight: Hand-vetted creative directors &amp; lead operators on active standby.</p>
           </div>
 
-          <!-- ── HD ANALOG FILM PRODUCTION STICKER STAGE (SEPARATE HD STICKERS SCATTERED) ── -->
-          <div class="nx-film-stickers-stage nx-reveal" aria-label="Analog film production editorial stickers" role="region">
-            <!-- 1. Separate HD Sticker: Pantone Swatch Fan (Scattered Left-Center) -->
-            <div class="nx-film-sticker nx-sticker-pantone" data-sticker="pantone" data-rotate="-13" title="Pantone Swatch Deck // Sage &amp; Cobalt (Draggable &amp; Resizable)" tabindex="0">
-              <div class="nx-sticker-doodle doodle-pantone">
-                <svg width="110" height="90" viewBox="0 0 110 90" fill="none" class="nx-doodle-svg" aria-hidden="true">
-                  <ellipse cx="48" cy="32" rx="42" ry="22" stroke="#14110F" stroke-width="1.8" fill="#FFFFFF" fill-opacity="0.95" />
-                  <text x="48" y="28" font-family="'Caveat', cursive, -apple-system, sans-serif" font-size="14.5" font-weight="700" fill="#14110F" text-anchor="middle">Color</text>
-                  <text x="48" y="44" font-family="'Caveat', cursive, -apple-system, sans-serif" font-size="14.5" font-weight="700" fill="#14110F" text-anchor="middle">Grading!</text>
-                  <!-- Curved arrow pointing to Pantone fan -->
-                  <path d="M 54 54 Q 68 74 86 76" stroke="#14110F" stroke-width="1.8" stroke-linecap="round" fill="none" />
-                  <path d="M 78 74 L 86 76 L 82 68" stroke="#14110F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-                </svg>
-                <!-- Blue accent ticks -->
-                <svg width="40" height="30" viewBox="0 0 40 30" fill="none" class="nx-doodle-ticks" aria-hidden="true">
-                  <path d="M 12 24 L 20 6 M 24 22 L 32 4" stroke="#2563EB" stroke-width="3" stroke-linecap="round" />
-                </svg>
-              </div>
-              <img src="assets/stickers/02_pantone_swatch_fan.png" alt="Pantone Color Swatch Fan HD Sticker" class="nx-sticker-img" width="170" height="174" loading="eager" />
-              <!-- Quick Size Control -->
-              <div class="nx-sticker-resizer" aria-label="Resize sticker">
-                <button type="button" class="nx-resize-btn btn-minus" title="Make smaller (−10%)" aria-label="Decrease size">−</button>
-                <span class="nx-resize-val">100%</span>
-                <button type="button" class="nx-resize-btn btn-plus" title="Make bigger (+10%)" aria-label="Increase size">+</button>
-              </div>
-            </div>
-
-            <!-- 2. Separate HD Sticker: Production Memo Note (Scattered Lower Center-Right) -->
-            <div class="nx-film-sticker nx-sticker-memo" data-sticker="memo" data-rotate="-5" title="Production Memo // Hand-Vetted Directors · 0% Commission (Draggable &amp; Resizable)" tabindex="0">
-              <div class="nx-sticker-doodle doodle-memo">
-                <!-- Star ☆ -->
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="nx-doodle-star-memo" aria-hidden="true">
-                  <polygon points="12,2 15,9 22,9 17,13 19,20 12,16 5,20 7,13 2,9 9,9" stroke="#14110F" stroke-width="1.6" fill="none" stroke-linejoin="round" />
-                </svg>
-                <!-- Direct Booking text + arrow -->
-                <svg width="120" height="85" viewBox="0 0 120 85" fill="none" class="nx-doodle-direct" aria-hidden="true">
-                  <text x="55" y="24" font-family="'Caveat', cursive, -apple-system, sans-serif" font-size="16.5" font-weight="700" fill="#14110F" text-anchor="middle">Direct</text>
-                  <text x="55" y="42" font-family="'Caveat', cursive, -apple-system, sans-serif" font-size="16.5" font-weight="700" fill="#14110F" text-anchor="middle">Booking.</text>
-                  <!-- Arrow pointing to memo -->
-                  <path d="M 52 52 Q 44 68 22 66" stroke="#14110F" stroke-width="1.8" stroke-linecap="round" fill="none" />
-                  <path d="M 30 61 L 22 66 L 27 72" stroke="#14110F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-                </svg>
-              </div>
-              <img src="assets/stickers/03_production_memo.png" alt="Production Memo Note HD Sticker" class="nx-sticker-img" width="220" height="140" loading="eager" />
-              <!-- Quick Size Control -->
-              <div class="nx-sticker-resizer" aria-label="Resize sticker">
-                <button type="button" class="nx-resize-btn btn-minus" title="Make smaller (−10%)" aria-label="Decrease size">−</button>
-                <span class="nx-resize-val">100%</span>
-                <button type="button" class="nx-resize-btn btn-plus" title="Make bigger (+10%)" aria-label="Increase size">+</button>
-              </div>
-            </div>
-
-            <!-- 3. Separate HD Sticker: 35mm Analog SLR Camera (Scattered Upper Right) -->
+          <!-- ── HD ANALOG FILM PRODUCTION STICKER STAGE (CAMERA ONLY) ── -->
+          <div class="nx-film-stickers-stage nx-reveal" aria-label="Analog film production editorial sticker" role="region">
+            <!-- Master HD Sticker: 35mm Analog SLR Camera (Draggable & Resizable) -->
             <div class="nx-film-sticker nx-sticker-camera" data-sticker="camera" data-rotate="6" title="Olympus 35mm Analog Optic // Direct Frame Capture (Draggable &amp; Resizable)" tabindex="0">
               <div class="nx-sticker-doodle doodle-camera">
                 <!-- Yellow radiant burst rays -->
@@ -6221,9 +6101,9 @@
                   <path d="M 64 54 L 72 54 L 70 47" stroke="#14110F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
                 </svg>
               </div>
-              <img src="assets/stickers/01_35mm_analog_camera.png" alt="35mm Analog SLR Camera HD Sticker" class="nx-sticker-img" width="236" height="163" loading="eager" />
-              <!-- Quick Size Control -->
-              <div class="nx-sticker-resizer" aria-label="Resize sticker">
+              <img src="assets/stickers/01_35mm_analog_camera.png" alt="35mm Analog SLR Camera HD Sticker" class="nx-sticker-img" width="248" height="172" loading="eager" />
+              <!-- Quick Size Control Micro-Toolbar -->
+              <div class="nx-sticker-resizer" aria-label="Resize camera sticker">
                 <button type="button" class="nx-resize-btn btn-minus" title="Make smaller (−10%)" aria-label="Decrease size">−</button>
                 <span class="nx-resize-val">100%</span>
                 <button type="button" class="nx-resize-btn btn-plus" title="Make bigger (+10%)" aria-label="Increase size">+</button>
@@ -7224,19 +7104,6 @@
         if (edgeMobile) edgeMobile.textContent = data.edgeWord;
 
         if (subText) subText.textContent = data.subText;
-        const deckAccent = document.querySelector('#roster .nx-deck-accent');
-        if (deckAccent) {
-          const gradients = {
-            sage: 'linear-gradient(135deg, #10B981 0%, #059669 50%, #047857 100%)',
-            cobalt: 'linear-gradient(135deg, #38BDF8 0%, #2563EB 50%, #1D4ED8 100%)',
-            lilac: 'linear-gradient(135deg, #C084FC 0%, #9333EA 50%, #7E22CE 100%)',
-            amber: 'linear-gradient(135deg, #F59E0B 0%, #EA580C 50%, #C2410C 100%)',
-            coral: 'linear-gradient(135deg, #FF384D 0%, #E11D48 50%, #BE123C 100%)'
-          };
-          if (gradients[themeKey]) {
-            deckAccent.style.backgroundImage = gradients[themeKey];
-          }
-        }
         const specBar = document.querySelector('.apple-spec-bar');
         if (specBar && data.specs) {
           specBar.innerHTML = data.specs;
@@ -7407,8 +7274,6 @@
 
         // Curated Roster & Editable Stickers targets
         'roster-h2': { el: () => document.querySelector('#roster .nx-h2'), name: 'Headline: Verified Directors', viewport: 'both' },
-        'sticker-pantone': { el: () => document.querySelector('.nx-sticker-pantone'), name: 'Sticker: Pantone Fan', viewport: 'both' },
-        'sticker-memo': { el: () => document.querySelector('.nx-sticker-memo'), name: 'Sticker: Production Memo', viewport: 'both' },
         'sticker-camera': { el: () => document.querySelector('.nx-sticker-camera'), name: 'Sticker: 35mm Camera', viewport: 'both' }
       };
 
@@ -9340,6 +9205,11 @@
 
       // Interactive Draggable Screen Stickers & 3D Tilt Collage
       function initDraggableStickers() {
+        try {
+          localStorage.removeItem('nx_sticker_pos_pantone');
+          localStorage.removeItem('nx_sticker_pos_memo');
+        } catch (_) {}
+
         const stickers = document.querySelectorAll('#roster .nx-film-sticker, #roster .nx-film-collage, #roster .nx-dkv-sticker');
         stickers.forEach(el => {
           if (el._dragInit) return;
