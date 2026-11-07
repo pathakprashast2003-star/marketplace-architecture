@@ -3556,14 +3556,14 @@
     #roster .nx-h2 {
       font-family: 'Times New Roman', Times, Georgia, serif;
       font-weight: 500;
-      letter-spacing: -0.02em;
-      font-size: clamp(2.6rem, 4.6vw, 4.4rem);
-      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-size: clamp(3.6rem, 6.4vw, 6.2rem);
+      line-height: 1.02;
       text-transform: none;
       max-width: none;
       color: #14110F;
-      margin: 10px 0 12px 0;
-      white-space: normal;
+      margin: 10px 0 16px 0;
+      text-wrap: balance;
     }
 
     #roster .nx-deck-accent {
@@ -3578,13 +3578,13 @@
 
     #roster .nx-lead {
       font-family: 'Times New Roman', Times, 'Newsreader', Georgia, serif;
-      font-size: 15.5px;
+      font-size: clamp(15.5px, 1.25vw, 17.5px);
       font-style: italic;
       font-weight: 400;
-      line-height: 1.5;
+      line-height: 1.55;
       color: #57514B;
       max-width: 68ch;
-      margin: 0;
+      margin: 0 0 6px 0;
       letter-spacing: 0.015em;
       text-wrap: pretty;
     }
@@ -3594,8 +3594,8 @@
       position: relative;
       display: block;
       width: 100%;
-      margin-bottom: 26px;
-      min-height: 170px;
+      margin-bottom: 28px;
+      min-height: 200px;
     }
 
     #roster .nx-roster-title-main {
@@ -3637,7 +3637,87 @@
       z-index: 100 !important;
     }
 
+    #roster .nx-film-sticker.drag-selected {
+      outline: 2px dashed #F97316;
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+
     #roster .nx-film-sticker .nx-sticker-img {
+      display: block;
+      height: auto;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Sticker Inline Size Controls (Micro-Toolbar for Making Stickers Different in Size) */
+    #roster .nx-sticker-resizer {
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 3px 6px;
+      background: rgba(20, 17, 15, 0.90);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 60;
+      user-select: none;
+    }
+
+    #roster .nx-film-sticker:hover .nx-sticker-resizer,
+    #roster .nx-film-sticker.drag-selected .nx-sticker-resizer,
+    body.is-editing #roster .nx-sticker-resizer {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    #roster .nx-resize-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.12s ease;
+      padding: 0;
+    }
+
+    #roster .nx-resize-btn:hover {
+      background: #F97316;
+      color: #FFFFFF;
+      transform: scale(1.15);
+    }
+
+    #roster .nx-resize-btn:active {
+      transform: scale(0.90);
+    }
+
+    #roster .nx-resize-val {
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+      min-width: 28px;
+      text-align: center;
+      letter-spacing: -0.02em;
+    }
       display: block;
       height: auto;
       pointer-events: none;
@@ -6075,7 +6155,7 @@
           <!-- ── HD ANALOG FILM PRODUCTION STICKER STAGE (SEPARATE HD STICKERS SCATTERED) ── -->
           <div class="nx-film-stickers-stage nx-reveal" aria-label="Analog film production editorial stickers" role="region">
             <!-- 1. Separate HD Sticker: Pantone Swatch Fan (Scattered Left-Center) -->
-            <div class="nx-film-sticker nx-sticker-pantone" data-sticker="pantone" data-rotate="-13" title="Pantone Swatch Deck // Sage &amp; Cobalt (Draggable)" tabindex="0">
+            <div class="nx-film-sticker nx-sticker-pantone" data-sticker="pantone" data-rotate="-13" title="Pantone Swatch Deck // Sage &amp; Cobalt (Draggable &amp; Resizable)" tabindex="0">
               <div class="nx-sticker-doodle doodle-pantone">
                 <svg width="110" height="90" viewBox="0 0 110 90" fill="none" class="nx-doodle-svg" aria-hidden="true">
                   <ellipse cx="48" cy="32" rx="42" ry="22" stroke="#14110F" stroke-width="1.8" fill="#FFFFFF" fill-opacity="0.95" />
@@ -6091,10 +6171,16 @@
                 </svg>
               </div>
               <img src="assets/stickers/02_pantone_swatch_fan.png" alt="Pantone Color Swatch Fan HD Sticker" class="nx-sticker-img" width="170" height="174" loading="eager" />
+              <!-- Quick Size Control -->
+              <div class="nx-sticker-resizer" aria-label="Resize sticker">
+                <button type="button" class="nx-resize-btn btn-minus" title="Make smaller (−10%)" aria-label="Decrease size">−</button>
+                <span class="nx-resize-val">100%</span>
+                <button type="button" class="nx-resize-btn btn-plus" title="Make bigger (+10%)" aria-label="Increase size">+</button>
+              </div>
             </div>
 
             <!-- 2. Separate HD Sticker: Production Memo Note (Scattered Lower Center-Right) -->
-            <div class="nx-film-sticker nx-sticker-memo" data-sticker="memo" data-rotate="-5" title="Production Memo // Hand-Vetted Directors · 0% Commission (Draggable)" tabindex="0">
+            <div class="nx-film-sticker nx-sticker-memo" data-sticker="memo" data-rotate="-5" title="Production Memo // Hand-Vetted Directors · 0% Commission (Draggable &amp; Resizable)" tabindex="0">
               <div class="nx-sticker-doodle doodle-memo">
                 <!-- Star ☆ -->
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="nx-doodle-star-memo" aria-hidden="true">
@@ -6110,10 +6196,16 @@
                 </svg>
               </div>
               <img src="assets/stickers/03_production_memo.png" alt="Production Memo Note HD Sticker" class="nx-sticker-img" width="220" height="140" loading="eager" />
+              <!-- Quick Size Control -->
+              <div class="nx-sticker-resizer" aria-label="Resize sticker">
+                <button type="button" class="nx-resize-btn btn-minus" title="Make smaller (−10%)" aria-label="Decrease size">−</button>
+                <span class="nx-resize-val">100%</span>
+                <button type="button" class="nx-resize-btn btn-plus" title="Make bigger (+10%)" aria-label="Increase size">+</button>
+              </div>
             </div>
 
             <!-- 3. Separate HD Sticker: 35mm Analog SLR Camera (Scattered Upper Right) -->
-            <div class="nx-film-sticker nx-sticker-camera" data-sticker="camera" data-rotate="6" title="Olympus 35mm Analog Optic // Direct Frame Capture (Draggable)" tabindex="0">
+            <div class="nx-film-sticker nx-sticker-camera" data-sticker="camera" data-rotate="6" title="Olympus 35mm Analog Optic // Direct Frame Capture (Draggable &amp; Resizable)" tabindex="0">
               <div class="nx-sticker-doodle doodle-camera">
                 <!-- Yellow radiant burst rays -->
                 <svg width="60" height="35" viewBox="0 0 60 35" fill="none" class="nx-doodle-rays" aria-hidden="true">
@@ -6130,6 +6222,12 @@
                 </svg>
               </div>
               <img src="assets/stickers/01_35mm_analog_camera.png" alt="35mm Analog SLR Camera HD Sticker" class="nx-sticker-img" width="236" height="163" loading="eager" />
+              <!-- Quick Size Control -->
+              <div class="nx-sticker-resizer" aria-label="Resize sticker">
+                <button type="button" class="nx-resize-btn btn-minus" title="Make smaller (−10%)" aria-label="Decrease size">−</button>
+                <span class="nx-resize-val">100%</span>
+                <button type="button" class="nx-resize-btn btn-plus" title="Make bigger (+10%)" aria-label="Increase size">+</button>
+              </div>
             </div>
           </div>
         </div>
@@ -7305,7 +7403,13 @@
         'hero-editorial-chunk': { el: () => document.querySelector('.hero-editorial-chunk'), name: 'Action Dock', viewport: 'both' },
         'btn-discover': { el: () => document.querySelector('.btn-discover'), name: 'Discover Talent Button', viewport: 'both' },
         'btn-join': { el: () => document.querySelector('.btn-join'), name: 'Join as Creator Button', viewport: 'both' },
-        'apple-spec-bar': { el: () => document.querySelector('.apple-spec-bar'), name: 'Proof Specs Bar', viewport: 'both' }
+        'apple-spec-bar': { el: () => document.querySelector('.apple-spec-bar'), name: 'Proof Specs Bar', viewport: 'both' },
+
+        // Curated Roster & Editable Stickers targets
+        'roster-h2': { el: () => document.querySelector('#roster .nx-h2'), name: 'Headline: Verified Directors', viewport: 'both' },
+        'sticker-pantone': { el: () => document.querySelector('.nx-sticker-pantone'), name: 'Sticker: Pantone Fan', viewport: 'both' },
+        'sticker-memo': { el: () => document.querySelector('.nx-sticker-memo'), name: 'Sticker: Production Memo', viewport: 'both' },
+        'sticker-camera': { el: () => document.querySelector('.nx-sticker-camera'), name: 'Sticker: 35mm Camera', viewport: 'both' }
       };
 
       const defaultTexts = {
@@ -7507,7 +7611,7 @@
 
         // Choose appropriate target element: either closest interactive or clicked
         const clickedTarget = e.target.closest(
-          '#heroCharacterSlot, .title-row, .mb-word, .title-wefind-mobile, .mobile-backdrop-headline, .headline-stack, .hero-subheadline, .btn-discover, .btn-join, .action-row, .apple-spec-bar, .spec-item, .hero-editorial-chunk'
+          '.nx-film-sticker, #roster .nx-h2, #heroCharacterSlot, .title-row, .mb-word, .title-wefind-mobile, .mobile-backdrop-headline, .headline-stack, .hero-subheadline, .btn-discover, .btn-join, .action-row, .apple-spec-bar, .spec-item, .hero-editorial-chunk'
         ) || e.target;
 
         if (!clickedTarget || clickedTarget === document.body || clickedTarget === document.documentElement) return;
@@ -7579,6 +7683,16 @@
       }
 
       function adjustImgScale(factor) {
+        // Support resizing individual stickers from the Image Editor
+        const sticker = activeTarget ? activeTarget.closest('.nx-film-sticker') : null;
+        if (sticker && typeof sticker._setScale === 'function') {
+          const cur = parseFloat(sticker.dataset.scale || 1);
+          sticker._setScale(cur * factor);
+          if (hudCoords) hudCoords.textContent = `Sticker Scale: ${Math.round(parseFloat(sticker.dataset.scale) * 100)}%`;
+          showSavedToast();
+          return;
+        }
+
         const slot = (activeTarget && activeTarget.tagName === 'IMG') ? activeTarget : document.getElementById('heroCharacterSlot');
         if (!slot) return;
         const mode = getActiveViewport();
@@ -9232,22 +9346,71 @@
           el._dragInit = true;
           const stickerId = el.dataset.sticker || el.className;
           const baseRot = parseFloat(el.dataset.rotate || 0);
-          let isDragging = false, startX = 0, startY = 0, currentX = 0, currentY = 0;
+          let isDragging = false, startX = 0, startY = 0;
+          let currentX = 0, currentY = 0, currentScale = 1;
 
-          // Restore saved user-placed coordinates if present
+          // Restore saved user-placed coordinates and custom scale if present
           try {
             const saved = localStorage.getItem('nx_sticker_pos_' + stickerId);
             if (saved) {
               const parsed = JSON.parse(saved);
-              if (typeof parsed.x === 'number' && typeof parsed.y === 'number') {
-                currentX = parsed.x;
-                currentY = parsed.y;
-                el.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${baseRot}deg)`;
-              }
+              if (typeof parsed.x === 'number') currentX = parsed.x;
+              if (typeof parsed.y === 'number') currentY = parsed.y;
+              if (typeof parsed.scale === 'number') currentScale = parsed.scale;
             }
           } catch (_) {}
 
+          function updateDisplay() {
+            el.dataset.dragX = currentX;
+            el.dataset.dragY = currentY;
+            el.dataset.scale = currentScale;
+            el.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${baseRot}deg) scale(${currentScale})`;
+            const valSpan = el.querySelector('.nx-resize-val');
+            if (valSpan) valSpan.textContent = Math.round(currentScale * 100) + '%';
+            try {
+              localStorage.setItem('nx_sticker_pos_' + stickerId, JSON.stringify({ x: currentX, y: currentY, scale: currentScale }));
+            } catch (_) {}
+          }
+
+          if (currentX !== 0 || currentY !== 0 || currentScale !== 1) {
+            updateDisplay();
+          }
+
+          el._setScale = function(newScale) {
+            currentScale = Math.min(2.5, Math.max(0.35, Math.round(newScale * 100) / 100));
+            updateDisplay();
+          };
+
+          // Inline Micro-Toolbar (+ / -) handlers for individual sticker resizing
+          const btnPlus = el.querySelector('.btn-plus');
+          const btnMinus = el.querySelector('.btn-minus');
+          if (btnPlus) {
+            btnPlus.addEventListener('click', e => {
+              e.stopPropagation();
+              el._setScale(currentScale * 1.1);
+            });
+            btnPlus.addEventListener('mousedown', e => e.stopPropagation());
+          }
+          if (btnMinus) {
+            btnMinus.addEventListener('click', e => {
+              e.stopPropagation();
+              el._setScale(currentScale * 0.9);
+            });
+            btnMinus.addEventListener('mousedown', e => e.stopPropagation());
+          }
+
+          // Wheel zoom on sticker with Alt/Ctrl or during edit mode
+          el.addEventListener('wheel', e => {
+            if (e.altKey || e.ctrlKey || document.body.classList.contains('is-editing')) {
+              e.preventDefault();
+              e.stopPropagation();
+              const delta = e.deltaY < 0 ? 1.06 : 0.94;
+              el._setScale(currentScale * delta);
+            }
+          }, { passive: false });
+
           el.addEventListener('mousedown', e => {
+            if (e.target.closest('.nx-sticker-resizer')) return;
             isDragging = true;
             startX = e.clientX - currentX;
             startY = e.clientY - currentY;
@@ -9259,24 +9422,27 @@
             if (!isDragging) return;
             currentX = e.clientX - startX;
             currentY = e.clientY - startY;
-            el.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${baseRot}deg) scale(1.04)`;
+            el.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${baseRot}deg) scale(${currentScale * 1.04})`;
           });
           window.addEventListener('mouseup', () => {
             if (!isDragging) return;
             isDragging = false;
             el.style.cursor = 'grab';
-            el.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${baseRot}deg)`;
-            try {
-              localStorage.setItem('nx_sticker_pos_' + stickerId, JSON.stringify({ x: currentX, y: currentY }));
-            } catch (_) {}
+            updateDisplay();
           });
 
-          // Double click resets sticker to initial position
+          // Double click resets sticker to initial position and 100% scale
           el.addEventListener('dblclick', e => {
             e.stopPropagation();
             currentX = 0;
             currentY = 0;
+            currentScale = 1;
             el.style.transform = '';
+            el.dataset.dragX = 0;
+            el.dataset.dragY = 0;
+            el.dataset.scale = 1;
+            const valSpan = el.querySelector('.nx-resize-val');
+            if (valSpan) valSpan.textContent = '100%';
             try {
               localStorage.removeItem('nx_sticker_pos_' + stickerId);
             } catch (_) {}
