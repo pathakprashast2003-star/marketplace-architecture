@@ -3921,42 +3921,29 @@
       box-shadow: 0 3px 12px rgba(234, 88, 12, 0.22);
     }
 
-    #roster .nx-roster-actions {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
+    /* ── 1. Elongated Full-Width Search Command Bar (Placed on Top) ── */
+    #roster .nx-roster-search-dock {
       width: 100%;
-    }
-
-    #roster .nx-roster-search-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex: 1.4;
-      min-width: 320px;
-      max-width: 660px;
     }
 
     #roster .nx-roster-search {
       position: relative;
-      display: inline-flex;
+      display: flex;
       align-items: center;
       background: #FFFFFF;
       border: 1.5px solid rgba(20, 17, 15, 0.14);
       border-radius: 999px;
-      padding: 0 16px 0 46px;
-      height: 52px;
-      box-shadow: 0 2px 6px rgba(20, 17, 15, 0.03), 0 10px 22px rgba(20, 17, 15, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.95);
-      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-      flex: 1;
-      min-width: 250px;
+      padding: 0 22px 0 56px;
+      height: 54px;
+      width: 100%;
+      box-sizing: border-box;
+      box-shadow: 0 2px 8px rgba(20, 17, 15, 0.04), 0 12px 28px rgba(20, 17, 15, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     #roster .nx-search-icon {
       position: absolute;
-      left: 16px;
+      left: 20px;
       color: #78716C;
       pointer-events: none;
       transition: color 0.2s ease, transform 0.2s ease;
@@ -3965,12 +3952,31 @@
     #roster .nx-roster-search:focus-within {
       background: #FFFFFF;
       border-color: var(--wave-azure, #C55221);
-      box-shadow: 0 0 0 3.5px rgba(234, 88, 12, 0.12), 0 8px 24px rgba(20, 17, 15, 0.06);
+      box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.12), 0 12px 32px rgba(20, 17, 15, 0.06);
     }
 
     #roster .nx-roster-search:focus-within .nx-search-icon {
       color: var(--wave-azure, #C55221);
-      transform: scale(1.1);
+      transform: scale(1.12);
+    }
+
+    #roster .nx-roster-search-input {
+      background: transparent;
+      border: 0;
+      font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
+      font-size: 15px;
+      font-weight: 500;
+      color: #14110F;
+      width: 100%;
+      height: 100%;
+      min-width: 0;
+      outline: none;
+      letter-spacing: -0.01em;
+    }
+
+    #roster .nx-roster-search-input::placeholder {
+      color: #9CA3AF;
+      font-weight: 400;
     }
 
     #roster .nx-search-kbd {
@@ -3985,49 +3991,74 @@
       letter-spacing: 0.04em;
       pointer-events: none;
       flex: none;
-      margin-left: 6px;
+      margin-left: 10px;
     }
 
-    #roster .nx-roster-search-input {
-      background: transparent;
-      border: 0;
-      font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
-      font-size: 14.5px;
-      font-weight: 500;
+    #roster .nx-roster-search-clear {
+      border: none;
+      background: #E7E5E4;
+      color: #44403C;
+      cursor: pointer;
+      font-size: 11px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 8px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    #roster .nx-roster-search-clear:hover {
+      background: #D6D3D1;
       color: #14110F;
-      width: 100%;
-      height: 100%;
-      min-width: 0;
-      outline: none;
     }
 
-    #roster .nx-roster-search-input::placeholder {
-      color: #9CA3AF;
-      font-weight: 450;
+    #roster .nx-roster-search-clear.is-hidden {
+      display: none;
+    }
+
+    /* ── 2. Below It: All Badges Dock (Categories + Gear Chips + View Modes) ── */
+    #roster .nx-badges-dock {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    #roster .nx-badges-secondary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      width: 100%;
     }
 
     /* Quick Gear Badges / Filter Chips */
     #roster .nx-gear-chips {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      flex-shrink: 0;
+      gap: 6px;
+      flex-wrap: wrap;
     }
 
     #roster .nx-gear-chip-title {
       font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 750;
       color: #78716C;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      margin-right: 2px;
+      margin-right: 4px;
     }
 
     #roster .nx-gear-chip {
       display: inline-flex;
       align-items: center;
-      padding: 4px 9px;
+      padding: 6px 13px;
       font-family: var(--font-mono, monospace);
       font-size: 11px;
       font-weight: 600;
@@ -4063,11 +4094,12 @@
       border: 1.5px solid rgba(20, 17, 15, 0.12);
       border-radius: 999px;
       padding: 4px 6px;
-      height: 52px;
+      height: 46px;
       box-shadow: 0 2px 6px rgba(20, 17, 15, 0.03), 0 10px 20px rgba(20, 17, 15, 0.02);
       box-sizing: border-box;
       overflow-x: auto;
       scrollbar-width: none;
+      flex-shrink: 0;
     }
 
     #roster .nx-view-btn {
@@ -4075,7 +4107,7 @@
       font-size: 12.5px;
       font-weight: 600;
       color: #665F58;
-      padding: 6.5px 14px;
+      padding: 6px 14px;
       border-radius: 999px;
       border: 0;
       background: transparent;
@@ -5970,103 +6002,108 @@
           </div>
         </div>
 
-        <!-- Streamlined Control Dock: Category Tabs + Live Search + View Toggle -->
+        <!-- Streamlined Control Dock: Elongated Search on Top + All Badges Below -->
         <div class="nx-roster-controls nx-reveal">
-          <div class="nx-filter-bar" role="tablist" aria-label="Filter creators by discipline">
-            <button type="button" class="nx-filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
-              <span>All Featured</span> <span class="nx-filter-count">6</span>
-            </button>
-            <button type="button" class="nx-filter-btn filter-cinema" data-filter="film" role="tab" aria-selected="false">
-              <span class="nx-filter-dot dot-cinema"></span>
-              <span>Cinema</span>
-            </button>
-            <button type="button" class="nx-filter-btn filter-aerial" data-filter="drone" role="tab" aria-selected="false">
-              <span class="nx-filter-dot dot-aerial"></span>
-              <span>Aerial FPV</span>
-            </button>
-            <button type="button" class="nx-filter-btn filter-art" data-filter="art" role="tab" aria-selected="false">
-              <span class="nx-filter-dot dot-art"></span>
-              <span>Illustration</span>
-            </button>
-            <button type="button" class="nx-filter-btn filter-spatial" data-filter="3d" role="tab" aria-selected="false">
-              <span class="nx-filter-dot dot-spatial"></span>
-              <span>Spatial 3D</span>
-            </button>
-            <button type="button" class="nx-filter-btn filter-action" data-filter="action" role="tab" aria-selected="false">
-              <span class="nx-filter-dot dot-action"></span>
-              <span>Action &amp; Motion</span>
-            </button>
-            <button type="button" class="nx-filter-btn filter-scenarios" data-filter="cases" role="tab" aria-selected="false">
-              <span class="nx-scenario-spark">⚡</span>
-              <span>Scenarios (1, 2, 3)</span>
-            </button>
+          <!-- 1. Elongated Full-Width Search Command Bar (Top) -->
+          <div class="nx-roster-search-dock">
+            <div class="nx-roster-search is-elongated">
+              <svg class="nx-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="nxOmniInput" class="nx-roster-search-input"
+                placeholder="Search directors, cameras (ARRI, RED, FX9), lenses, disciplines, or gear..."
+                aria-label="Filter talent by keyword or gear" />
+              <kbd class="nx-search-kbd">⌘K</kbd>
+              <button type="button" id="nxOmniClear" class="nx-roster-search-clear is-hidden"
+                aria-label="Clear search">✕</button>
+            </div>
           </div>
 
-          <div class="nx-roster-actions">
-            <!-- Search & Gear Command Dock: Enlarged, Beautiful, Apple-Grade -->
-            <div class="nx-roster-search-group">
-              <div class="nx-roster-search">
-                <svg class="nx-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-                <input type="text" id="nxOmniInput" class="nx-roster-search-input"
-                  placeholder="Search talent, cameras (ARRI, RED, FX9), gear..." aria-label="Filter talent by keyword or gear" />
-                <kbd class="nx-search-kbd">⌘K</kbd>
-                <button type="button" id="nxOmniClear" class="nx-roster-search-clear is-hidden"
-                  aria-label="Clear search">✕</button>
-              </div>
+          <!-- 2. Below It: All Badges Dock (Categories + Gear Chips + View Modes) -->
+          <div class="nx-badges-dock">
+            <!-- Row 1 of Badges: Category Discipline Filter Pills -->
+            <div class="nx-filter-bar" role="tablist" aria-label="Filter creators by discipline">
+              <button type="button" class="nx-filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
+                <span>All Featured</span> <span class="nx-filter-count">6</span>
+              </button>
+              <button type="button" class="nx-filter-btn filter-cinema" data-filter="film" role="tab" aria-selected="false">
+                <span class="nx-filter-dot dot-cinema"></span>
+                <span>Cinema</span>
+              </button>
+              <button type="button" class="nx-filter-btn filter-aerial" data-filter="drone" role="tab" aria-selected="false">
+                <span class="nx-filter-dot dot-aerial"></span>
+                <span>Aerial FPV</span>
+              </button>
+              <button type="button" class="nx-filter-btn filter-art" data-filter="art" role="tab" aria-selected="false">
+                <span class="nx-filter-dot dot-art"></span>
+                <span>Illustration</span>
+              </button>
+              <button type="button" class="nx-filter-btn filter-spatial" data-filter="3d" role="tab" aria-selected="false">
+                <span class="nx-filter-dot dot-spatial"></span>
+                <span>Spatial 3D</span>
+              </button>
+              <button type="button" class="nx-filter-btn filter-action" data-filter="action" role="tab" aria-selected="false">
+                <span class="nx-filter-dot dot-action"></span>
+                <span>Action &amp; Motion</span>
+              </button>
+              <button type="button" class="nx-filter-btn filter-scenarios" data-filter="cases" role="tab" aria-selected="false">
+                <span class="nx-scenario-spark">⚡</span>
+                <span>Scenarios (1, 2, 3)</span>
+              </button>
+            </div>
 
-              <!-- Quick Gear Hint Pills -->
+            <!-- Row 2 of Badges: Quick Gear Specification Badges (Left) & View Toggle (Right) -->
+            <div class="nx-badges-secondary-row">
               <div class="nx-gear-chips" aria-label="Quick gear filters">
-                <span class="nx-gear-chip-title">Gear:</span>
+                <span class="nx-gear-chip-title">Filter by Gear:</span>
                 <button type="button" class="nx-gear-chip" data-gear="ARRI">ARRI 35</button>
                 <button type="button" class="nx-gear-chip" data-gear="RED">RED 8K</button>
                 <button type="button" class="nx-gear-chip" data-gear="FPV">DJI FPV</button>
                 <button type="button" class="nx-gear-chip" data-gear="Cooke">Cooke 2X</button>
               </div>
-            </div>
 
-            <!-- View Toggle (Production Reels vs 3D Personas vs Case Scenarios vs Tabular View) -->
-            <div class="nx-view-toggle" role="group" aria-label="Toggle creator media format">
-              <button type="button" class="nx-view-btn is-active" data-view="reels" id="btnViewReels"
-                aria-pressed="true">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-                <span>Client Reels</span>
-              </button>
-              <button type="button" class="nx-view-btn" data-view="personas" id="btnViewPersonas" aria-pressed="false">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-                <span>3D Personas</span>
-              </button>
-              <button type="button" class="nx-view-btn" data-view="cases" id="btnViewCases" aria-pressed="false"
-                title="Highlight Production Edge Cases (1, 2, 3)">
-                <span style="font-size: 12px;">⚡</span>
-                <span>Case Scenarios</span>
-              </button>
-              <button type="button" class="nx-view-btn" data-view="table" id="btnViewTable" aria-pressed="false"
-                title="Executive Tabular Comparison View">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <path d="M3 9h18" />
-                  <path d="M3 15h18" />
-                  <path d="M9 3v18" />
-                </svg>
-                <span>Tabular View</span>
-              </button>
-              <a href="artisan_experience.html" class="nx-view-btn"
-                style="text-decoration: none; border-color: rgba(246, 154, 100, 0.4); color: #3B0A24; background: #FFF4EC;"
-                title="View 3D Mobile Studio">
-                <span style="font-size: 12px;">🍦</span>
-                <span>3D Mobile Studio</span>
-              </a>
+              <!-- View Toggle (Production Reels vs 3D Personas vs Case Scenarios vs Tabular View) -->
+              <div class="nx-view-toggle" role="group" aria-label="Toggle creator media format">
+                <button type="button" class="nx-view-btn is-active" data-view="reels" id="btnViewReels"
+                  aria-pressed="true">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <span>Client Reels</span>
+                </button>
+                <button type="button" class="nx-view-btn" data-view="personas" id="btnViewPersonas" aria-pressed="false">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <span>3D Personas</span>
+                </button>
+                <button type="button" class="nx-view-btn" data-view="cases" id="btnViewCases" aria-pressed="false"
+                  title="Highlight Production Edge Cases (1, 2, 3)">
+                  <span style="font-size: 12px;">⚡</span>
+                  <span>Case Scenarios</span>
+                </button>
+                <button type="button" class="nx-view-btn" data-view="table" id="btnViewTable" aria-pressed="false"
+                  title="Executive Tabular Comparison View">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M3 9h18" />
+                    <path d="M3 15h18" />
+                    <path d="M9 3v18" />
+                  </svg>
+                  <span>Tabular View</span>
+                </button>
+                <a href="artisan_experience.html" class="nx-view-btn"
+                  style="text-decoration: none; border-color: rgba(246, 154, 100, 0.4); color: #3B0A24; background: #FFF4EC;"
+                  title="View 3D Mobile Studio">
+                  <span style="font-size: 12px;">🍦</span>
+                  <span>3D Mobile Studio</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
