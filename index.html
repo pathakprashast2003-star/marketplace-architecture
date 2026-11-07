@@ -3443,12 +3443,7 @@
     }
 
     #roster::before {
-      content: '';
-      position: absolute;
-      inset: -60px calc(50% - 50vw) 40px;
-      z-index: -1;
-      background: var(--r-paper);
-      border-block: 1px solid var(--r-line);
+      display: none !important;
     }
 
     #roster .nx-kicker {
@@ -3493,24 +3488,27 @@
     }
 
     #roster .nx-h2 {
-      font-family: 'Times New Roman', Times, serif;
-      font-weight: 400;
-      letter-spacing: -0.025em;
-      font-size: clamp(3.2rem, 5.8vw, 5.4rem);
-      line-height: 1.05;
-      max-width: 26ch;
+      font-family: var(--font-display, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: clamp(2.8rem, 5.2vw, 4.8rem);
+      line-height: 0.98;
+      text-transform: uppercase;
+      max-width: 22ch;
       color: #14110F;
-      margin: 12px 0 16px 0;
+      margin: 14px 0 16px 0;
       text-wrap: balance;
     }
 
     #roster .nx-lead {
-      font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
-      font-size: clamp(1.1rem, 1.35vw, 1.25rem);
-      line-height: 1.6;
-      color: #57514B;
-      max-width: 68ch;
-      margin: 0 0 36px 0;
+      font-family: 'Times New Roman', Times, Georgia, serif;
+      font-size: 16.5px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.55;
+      color: #4A443E;
+      max-width: 64ch;
+      margin: 0 0 32px 0;
       text-wrap: pretty;
     }
 
@@ -3693,7 +3691,7 @@
     #roster .nx-talent-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 56px 28px;
+      gap: 104px 36px;
       margin-top: 0;
     }
 
@@ -4004,9 +4002,9 @@
     #roster .nx-talent-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 56px 28px;
+      gap: 104px 36px;
       margin-top: 24px;
-      padding-top: 24px;
+      padding-top: 36px;
       position: relative;
       z-index: 1;
     }
