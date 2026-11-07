@@ -3589,96 +3589,71 @@
       text-wrap: pretty;
     }
 
-    /* ── ANALOG FILM PRODUCTION STICKERS (PHOTOREALISTIC DIE-CUT PNGS) ── */
+    /* ── ANALOG FILM PRODUCTION STICKER COLLAGE (EDITORIAL MOODBOARD) ── */
     #roster .nx-roster-title-cluster {
       position: relative;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: space-between;
-      gap: 32px;
+      gap: 28px;
       margin-bottom: 24px;
     }
 
     #roster .nx-roster-title-main {
       flex: 1;
-      max-width: 660px;
+      max-width: 560px;
     }
 
-    #roster .nx-film-stickers {
+    #roster .nx-film-collage-wrap {
       position: relative;
       display: flex;
       align-items: center;
-      gap: 18px;
-      padding-bottom: 6px;
-      flex-shrink: 0;
+      justify-content: flex-end;
+      flex: 1.2;
       user-select: none;
-      z-index: 3;
+      z-index: 5;
     }
 
-    @media (max-width: 1060px) {
-      #roster .nx-roster-title-cluster {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-      }
-      #roster .nx-film-stickers {
-        flex-wrap: wrap;
-        gap: 14px;
-      }
-    }
-
-    /* Individual Photorealistic Sticker */
-    #roster .nx-film-sticker {
+    #roster .nx-film-collage {
       position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      display: inline-block;
       cursor: grab;
       user-select: none;
-      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), filter 0.32s ease;
-      filter: drop-shadow(0 6px 14px rgba(20, 17, 15, 0.12));
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+      filter: drop-shadow(0 6px 18px rgba(20, 17, 15, 0.08));
+      will-change: transform;
     }
 
-    #roster .nx-film-sticker:hover {
-      transform: translateY(-8px) scale(1.08) rotate(0deg) !important;
-      filter: drop-shadow(0 16px 28px rgba(20, 17, 15, 0.20));
-      z-index: 10;
+    #roster .nx-film-collage:hover {
+      transform: translateY(-4px) scale(1.025);
+      filter: drop-shadow(0 14px 28px rgba(20, 17, 15, 0.14));
     }
 
-    #roster .nx-film-sticker:active {
+    #roster .nx-film-collage:active {
       cursor: grabbing;
-      transform: scale(0.96) !important;
+      transform: scale(0.985);
     }
 
-    #roster .nx-film-sticker .nx-sticker-img {
+    #roster .nx-collage-master-img {
       display: block;
+      width: 100%;
+      max-width: 530px;
       height: auto;
       pointer-events: none;
       -webkit-user-drag: none;
     }
 
-    /* Sticker 1: 35mm Camera */
-    #roster .nx-film-camera {
-      transform: rotate(-5deg);
-    }
-    #roster .nx-film-camera .nx-sticker-img {
-      width: 118px;
-    }
-
-    /* Sticker 2: Pantone Swatch Fan */
-    #roster .nx-film-pantone {
-      transform: rotate(3.5deg);
-    }
-    #roster .nx-film-pantone .nx-sticker-img {
-      width: 106px;
-    }
-
-    /* Sticker 3: Clipped Production Memo Note */
-    #roster .nx-film-memo {
-      transform: rotate(-3deg);
-    }
-    #roster .nx-film-memo .nx-sticker-img {
-      width: 116px;
+    @media (max-width: 1120px) {
+      #roster .nx-roster-title-cluster {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+      #roster .nx-film-collage-wrap {
+        width: 100%;
+        max-width: 480px;
+        justify-content: flex-start;
+      }
     }
 
     /* Floating Canvas Margin Tag */
@@ -5983,21 +5958,15 @@
             <p class="nx-lead nx-reveal">Weekly Curated Spotlight: Hand-vetted creative directors &amp; lead operators on active standby.</p>
           </div>
 
-          <!-- ── ANALOG FILM PRODUCTION STICKER TRIO (REAL HIGH-RES DIE-CUT PNGS) ── -->
-          <div class="nx-film-stickers nx-reveal" aria-label="Analog film production editorial stickers" role="region">
-            <!-- Sticker 1: 35mm Analog SLR Camera -->
-            <div class="nx-film-sticker nx-film-camera" title="35mm Analog Optic // Direct Frame Capture" tabindex="0">
-              <img src="assets/stickers/analog_sticker_2.png" alt="35mm Analog SLR Camera Die-Cut Sticker" class="nx-sticker-img" width="118" height="89" loading="eager" />
-            </div>
-
-            <!-- Sticker 2: Pantone Swatch Fan (Sage & Cobalt) -->
-            <div class="nx-film-sticker nx-film-pantone" title="Pantone Swatch Deck // Sage & Cobalt" tabindex="0">
-              <img src="assets/stickers/analog_sticker_1.png" alt="Pantone Color Swatch Fan Sticker" class="nx-sticker-img" width="106" height="100" loading="eager" />
-            </div>
-
-            <!-- Sticker 3: Clipped Production Memo Note -->
-            <div class="nx-film-sticker nx-film-memo" title="Production Memo // Hand-Vetted Directors · 0% Commission" tabindex="0">
-              <img src="assets/stickers/analog_sticker_4.png" alt="Clipped Production Memo Note Sticker" class="nx-sticker-img" width="116" height="77" loading="eager" />
+          <!-- ── ANALOG FILM PRODUCTION STICKER COLLAGE (EDITORIAL MOODBOARD) ── -->
+          <div class="nx-film-collage-wrap nx-reveal" aria-label="Analog film production editorial moodboard collage" role="region">
+            <div class="nx-film-collage" id="nxFilmCollage" title="Verified Analog Production Moodboard // 35mm SLR · Color Grading · Direct Booking (Draggable)" tabindex="0">
+              <img src="assets/stickers/analog_editorial_collage_master.png"
+                alt="Analog film production moodboard stickers: 35mm SLR camera with prime optic, Pantone sage & cobalt color swatch fan, production memo note with tier-1 SLA, palette chips and handwritten annotations"
+                class="nx-collage-master-img"
+                width="530"
+                height="255"
+                loading="eager" />
             </div>
           </div>
         </div>
@@ -9092,9 +9061,9 @@
         }
       }
 
-      // Interactive Draggable Screen Stickers (Photorealistic tactile feel)
+      // Interactive Draggable Screen Stickers & 3D Tilt Collage
       function initDraggableStickers() {
-        const stickers = document.querySelectorAll('#roster .nx-film-sticker, #roster .nx-dkv-sticker');
+        const stickers = document.querySelectorAll('#roster .nx-film-sticker, #roster .nx-film-collage, #roster .nx-dkv-sticker');
         stickers.forEach(el => {
           if (el._dragInit) return;
           el._dragInit = true;
@@ -9111,7 +9080,7 @@
             if (!isDragging) return;
             currentX = e.clientX - startX;
             currentY = e.clientY - startY;
-            el.style.transform = `translate(${currentX}px, ${currentY}px) scale(1.08)`;
+            el.style.transform = `translate(${currentX}px, ${currentY}px) scale(1.04)`;
           });
           window.addEventListener('mouseup', () => {
             if (!isDragging) return;
@@ -9119,6 +9088,21 @@
             el.style.cursor = 'grab';
           });
         });
+
+        // 3D Tilt on Hover for Moodboard Collage
+        const collage = document.getElementById('nxFilmCollage');
+        if (collage && !collage._tiltInit) {
+          collage._tiltInit = true;
+          collage.addEventListener('mousemove', (e) => {
+            const rect = collage.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            collage.style.transform = `perspective(800px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg) scale(1.02)`;
+          });
+          collage.addEventListener('mouseleave', () => {
+            collage.style.transform = '';
+          });
+        }
       }
 
       // Quick Gear Filter Chip Click Handlers
