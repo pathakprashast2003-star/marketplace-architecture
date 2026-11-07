@@ -3428,137 +3428,506 @@
 
     /* ── ROSTER v2: editorial casting sheet (hallmark floor + taste) ── */
     #roster {
-      --r-ink: #14110F; --r-ink-2: #57514B; --r-ink-3: #8C857D;
-      --r-paper: #FBFAF7; --r-card: #FFFFFF; --r-line: rgba(20,17,15,.09);
-      --r-accent: var(--wave-cobalt, #2956D4); --r-ok: #1F7A4D;
+      --r-ink: #14110F;
+      --r-ink-2: #57514B;
+      --r-ink-3: #8C857D;
+      --r-paper: #FBFAF7;
+      --r-card: #FFFFFF;
+      --r-line: rgba(20, 17, 15, .09);
+      --r-accent: var(--wave-cobalt, #2956D4);
+      --r-ok: #1F7A4D;
       --r-serif: 'Newsreader', Georgia, serif;
-      --r-ease: cubic-bezier(.22,1,.36,1);
-      position: relative; isolation: isolate;
+      --r-ease: cubic-bezier(.22, 1, .36, 1);
+      position: relative;
+      isolation: isolate;
     }
+
     #roster::before {
-      content: ''; position: absolute; inset: -60px calc(50% - 50vw) 40px; z-index: -1;
+      content: '';
+      position: absolute;
+      inset: -60px calc(50% - 50vw) 40px;
+      z-index: -1;
       background: var(--r-paper);
       border-block: 1px solid var(--r-line);
     }
-    #roster .nx-kicker { font-size: 15px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--r-ink-2); gap: 12px; }
-    #roster .nx-kicker::before { display: none; }
-    #roster .nx-criteria-trigger-btn { font-size: 13px; padding: 4px 12px; color: var(--r-ink); background: transparent; border-color: var(--r-line); }
-    #roster .nx-h2 { font-family: var(--r-serif); font-weight: 500; letter-spacing: -.03em; font-size: clamp(2.8rem, 6vw, 5.2rem); line-height: .98; max-width: 12ch; color: var(--r-ink); overflow-wrap: break-word; min-width: 0; }
-    #roster .nx-lead { color: var(--r-ink-2); max-width: 46ch; margin-bottom: 44px; }
+
+    #roster .nx-kicker {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--r-ink-2);
+      gap: 12px;
+    }
+
+    #roster .nx-kicker::before {
+      display: none;
+    }
+
+    #roster .nx-criteria-trigger-btn {
+      font-size: 13px;
+      padding: 4px 12px;
+      color: var(--r-ink);
+      background: transparent;
+      border-color: var(--r-line);
+    }
+
+    #roster .nx-h2 {
+      font-family: var(--r-serif);
+      font-weight: 500;
+      letter-spacing: -.03em;
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      line-height: .98;
+      max-width: 12ch;
+      color: var(--r-ink);
+      overflow-wrap: break-word;
+      min-width: 0;
+    }
+
+    #roster .nx-lead {
+      color: var(--r-ink-2);
+      max-width: 46ch;
+      margin-bottom: 44px;
+    }
 
     /* control dock: one quiet row, sticky while browsing */
     #roster .nx-roster-controls {
-      position: sticky; top: 14px; z-index: 20;
-      flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px;
-      padding: 8px 8px 8px 20px; border-radius: 999px;
+      position: sticky;
+      top: 14px;
+      z-index: 20;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 20px;
+      padding: 8px 8px 8px 20px;
+      border-radius: 999px;
       background: color-mix(in srgb, var(--r-card) 95%, transparent);
-      backdrop-filter: blur(18px) saturate(1.4); -webkit-backdrop-filter: blur(18px) saturate(1.4);
+      backdrop-filter: blur(18px) saturate(1.4);
+      -webkit-backdrop-filter: blur(18px) saturate(1.4);
       border: 1px solid var(--r-line);
-      box-shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 18px 40px -24px rgba(20,17,15,.25);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset, 0 18px 40px -24px rgba(20, 17, 15, .25);
       margin-bottom: 40px;
     }
-    #roster .nx-filter-bar { gap: 2px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; min-width: 0; }
-    #roster .nx-filter-bar::-webkit-scrollbar { display: none; }
+
+    #roster .nx-filter-bar {
+      gap: 2px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      min-width: 0;
+    }
+
+    #roster .nx-filter-bar::-webkit-scrollbar {
+      display: none;
+    }
+
     #roster .nx-filter-btn {
-      position: relative; border: 0; background: transparent; color: var(--r-ink-3);
-      font-size: 14px; font-weight: 600; padding: 10px 12px; border-radius: 999px; white-space: nowrap;
+      position: relative;
+      border: 0;
+      background: transparent;
+      color: var(--r-ink-3);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
       transition: color .2s var(--r-ease), background-color .2s var(--r-ease);
     }
-    #roster .nx-filter-btn:hover { color: var(--r-ink); background: rgba(20,17,15,.04); transform: none; box-shadow: none; }
-    #roster .nx-filter-btn.is-active { color: var(--r-ink); background: transparent; box-shadow: none; }
-    #roster .nx-filter-btn::after {
-      content: ''; position: absolute; left: 12px; right: 12px; bottom: 4px; height: 2px; border-radius: 2px;
-      background: var(--r-ink); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--r-ease);
+
+    #roster .nx-filter-btn:hover {
+      color: var(--r-ink);
+      background: rgba(20, 17, 15, .04);
+      transform: none;
+      box-shadow: none;
     }
-    #roster .nx-filter-btn.is-active::after { transform: scaleX(1); }
-    #roster .nx-filter-count { background: var(--r-ink); color: var(--r-card); font-size: 11px; min-width: 20px; height: 20px; border-radius: 999px; display: inline-grid; place-items: center; padding: 0 6px; }
-    #roster .nx-roster-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    #roster .nx-roster-search { background: rgba(20,17,15,.045); border: 1px solid transparent; border-radius: 999px; transition: background-color .2s var(--r-ease), border-color .2s var(--r-ease); }
-    #roster .nx-roster-search:focus-within { background: var(--r-card); border-color: var(--r-ink); }
-    #roster .nx-roster-search-input { background: transparent; border: 0; font-size: 14px; color: var(--r-ink); min-width: 220px; }
-    #roster .nx-roster-search-input:focus { outline: none; box-shadow: none; }
-    #roster .nx-view-toggle { background: rgba(20,17,15,.045); border: 0; box-shadow: none; padding: 4px; }
-    #roster .nx-view-btn { font-size: 13px; font-weight: 600; color: var(--r-ink-2); padding: 8px 12px; text-decoration: none; background: transparent; border: 0; }
-    #roster .nx-view-btn:hover { color: var(--r-ink); }
-    #roster .nx-view-btn.is-active { background: var(--r-card); color: var(--r-ink); box-shadow: 0 1px 2px rgba(20,17,15,.08), 0 4px 12px -4px rgba(20,17,15,.15); }
+
+    #roster .nx-filter-btn.is-active {
+      color: var(--r-ink);
+      background: transparent;
+      box-shadow: none;
+    }
+
+    #roster .nx-filter-btn::after {
+      content: '';
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 4px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--r-ink);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s var(--r-ease);
+    }
+
+    #roster .nx-filter-btn.is-active::after {
+      transform: scaleX(1);
+    }
+
+    #roster .nx-filter-count {
+      background: var(--r-ink);
+      color: var(--r-card);
+      font-size: 11px;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      display: inline-grid;
+      place-items: center;
+      padding: 0 6px;
+    }
+
+    #roster .nx-roster-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    #roster .nx-roster-search {
+      background: rgba(20, 17, 15, .045);
+      border: 1px solid transparent;
+      border-radius: 999px;
+      transition: background-color .2s var(--r-ease), border-color .2s var(--r-ease);
+    }
+
+    #roster .nx-roster-search:focus-within {
+      background: var(--r-card);
+      border-color: var(--r-ink);
+    }
+
+    #roster .nx-roster-search-input {
+      background: transparent;
+      border: 0;
+      font-size: 14px;
+      color: var(--r-ink);
+      min-width: 220px;
+    }
+
+    #roster .nx-roster-search-input:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    #roster .nx-view-toggle {
+      background: rgba(20, 17, 15, .045);
+      border: 0;
+      box-shadow: none;
+      padding: 4px;
+    }
+
+    #roster .nx-view-btn {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--r-ink-2);
+      padding: 8px 12px;
+      text-decoration: none;
+      background: transparent;
+      border: 0;
+    }
+
+    #roster .nx-view-btn:hover {
+      color: var(--r-ink);
+    }
+
+    #roster .nx-view-btn.is-active {
+      background: var(--r-card);
+      color: var(--r-ink);
+      box-shadow: 0 1px 2px rgba(20, 17, 15, .08), 0 4px 12px -4px rgba(20, 17, 15, .15);
+    }
 
     /* grid: real grid, no centring gaps */
-    #roster .nx-talent-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px 28px; margin-top: 0; }
+    #roster .nx-talent-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 56px 28px;
+      margin-top: 0;
+    }
+
     #roster .nx-talent-card,
     #roster .nx-talent-card[data-craft] {
-      min-width: 0; max-width: none; flex: none;
-      background: transparent; border: 0; box-shadow: none; padding: 0; border-radius: 0;
+      min-width: 0;
+      max-width: none;
+      flex: none;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding: 0;
+      border-radius: 0;
       transition: transform .5s var(--r-ease);
     }
-    #roster .nx-talent-card:hover, #roster .nx-talent-card[data-craft]:hover { transform: none; box-shadow: none; background: transparent; }
-    #roster .nx-talent-card.is-hidden { display: none; }
-    #roster .nx-talent-card:focus-visible { outline: 2px solid var(--r-ink); outline-offset: 8px; border-radius: 22px; transition: none; }
+
+    #roster .nx-talent-card:hover,
+    #roster .nx-talent-card[data-craft]:hover {
+      transform: none;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    #roster .nx-talent-card.is-hidden {
+      display: none;
+    }
+
+    #roster .nx-talent-card:focus-visible {
+      outline: 2px solid var(--r-ink);
+      outline-offset: 8px;
+      border-radius: 22px;
+      transition: none;
+    }
 
     #roster .nx-card-media-viewport {
-      aspect-ratio: 4 / 5; height: auto; border-radius: 22px; overflow: hidden; border: 0;
-      background: #E9E5DF; box-shadow: 0 30px 60px -40px rgba(20,17,15,.55);
+      aspect-ratio: 4 / 5;
+      height: auto;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 0;
+      background: #E9E5DF;
+      box-shadow: 0 30px 60px -40px rgba(20, 17, 15, .55);
       isolation: isolate;
     }
+
     #roster .nx-card-media-viewport::after {
-      content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-      background: linear-gradient(to top, rgba(0,0,0,.42), transparent 38%);
-      opacity: .0; transition: opacity .5s var(--r-ease);
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(to top, rgba(0, 0, 0, .42), transparent 38%);
+      opacity: .0;
+      transition: opacity .5s var(--r-ease);
     }
-    #roster .nx-talent-card:hover .nx-card-media-viewport::after { opacity: 1; }
-    #roster .nx-card-media-viewport img { transition: transform 1.1s var(--r-ease); }
-    #roster .nx-talent-card:hover .nx-card-media-viewport img { transform: scale(1.045); }
+
+    #roster .nx-talent-card:hover .nx-card-media-viewport::after {
+      opacity: 1;
+    }
+
+    #roster .nx-card-media-viewport img {
+      transition: transform 1.1s var(--r-ease);
+    }
+
+    #roster .nx-talent-card:hover .nx-card-media-viewport img {
+      transform: scale(1.045);
+    }
+
     #roster .nx-media-badge {
-      top: 14px; left: 14px; z-index: 3; background: rgba(20,17,15,.38); color: #fff;
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,.18); font-size: 12px; font-weight: 600; letter-spacing: 0; text-transform: none;
+      top: 14px;
+      left: 14px;
+      z-index: 3;
+      background: rgba(20, 17, 15, .38);
+      color: #fff;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, .18);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: none;
     }
+
     #roster .nx-media-play-pill {
-      top: auto; bottom: 16px; left: 16px; z-index: 3; transform: translateY(8px); opacity: 0;
-      background: #fff; color: var(--r-ink); font-size: 13px; font-weight: 600;
+      top: auto;
+      bottom: 16px;
+      left: 16px;
+      z-index: 3;
+      transform: translateY(8px);
+      opacity: 0;
+      background: #fff;
+      color: var(--r-ink);
+      font-size: 13px;
+      font-weight: 600;
       transition: opacity .35s var(--r-ease), transform .35s var(--r-ease);
     }
-    #roster .nx-talent-card:hover .nx-media-play-pill { opacity: 1; transform: translateY(0); }
 
-    #roster .nx-card-body { padding: 20px 2px 0; }
-    #roster .nx-card-kicker-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; justify-content: flex-start; }
-    #roster .nx-card-kicker { font-size: 14px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--r-ink); }
-    #roster .nx-card-city { font-size: 14px; color: var(--r-ink-3); }
-    #roster .nx-card-verified, .nx-card-verified {
-      margin-left: auto; display: inline-flex; align-items: center; gap: 4px;
-      font-size: 12px; font-weight: 600; color: var(--r-ok, #1F7A4D);
-      background: color-mix(in srgb, #1F7A4D 9%, transparent); padding: 3px 8px 3px 6px; border-radius: 999px;
+    #roster .nx-talent-card:hover .nx-media-play-pill {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .nx-card-city { font-size: 13px; color: #8C857D; }
-    #roster .nx-card-name { font-family: var(--r-serif); font-weight: 500; font-size: clamp(1.7rem, 2.3vw, 2.1rem); letter-spacing: -.02em; line-height: 1.05; color: var(--r-ink); }
-    #roster .nx-card-blurb { font-family: var(--font-body); font-size: 15px; line-height: 1.55; color: var(--r-ink-2); margin-top: 10px; max-width: 38ch; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-    #roster .nx-card-footer { border-top: 1px solid var(--r-line); margin-top: 18px; padding: 16px 2px 0; display: flex; align-items: center; justify-content: space-between; }
-    #roster .nx-card-rate { font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: -.02em; color: var(--r-ink); font-variant-numeric: tabular-nums; }
-    #roster .nx-card-unit { font-weight: 500; font-size: 14px; color: var(--r-ink-3); margin-left: 2px; }
-    #roster .nx-card-rating { background: transparent; border: 0; box-shadow: none; padding: 0; font-size: 14px; font-weight: 600; color: var(--r-ink-2); }
-    #roster .nx-star { color: var(--r-ink); }
+    #roster .nx-card-body {
+      padding: 20px 2px 0;
+    }
+
+    #roster .nx-card-kicker-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+      justify-content: flex-start;
+    }
+
+    #roster .nx-card-kicker {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--r-ink);
+    }
+
+    #roster .nx-card-city {
+      font-size: 14px;
+      color: var(--r-ink-3);
+    }
+
+    #roster .nx-card-verified,
+    .nx-card-verified {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--r-ok, #1F7A4D);
+      background: color-mix(in srgb, #1F7A4D 9%, transparent);
+      padding: 3px 8px 3px 6px;
+      border-radius: 999px;
+    }
+
+    .nx-card-city {
+      font-size: 13px;
+      color: #8C857D;
+    }
+
+    #roster .nx-card-name {
+      font-family: var(--r-serif);
+      font-weight: 500;
+      font-size: clamp(1.7rem, 2.3vw, 2.1rem);
+      letter-spacing: -.02em;
+      line-height: 1.05;
+      color: var(--r-ink);
+    }
+
+    #roster .nx-card-blurb {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--r-ink-2);
+      margin-top: 10px;
+      max-width: 38ch;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    #roster .nx-card-footer {
+      border-top: 1px solid var(--r-line);
+      margin-top: 18px;
+      padding: 16px 2px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #roster .nx-card-rate {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: -.02em;
+      color: var(--r-ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    #roster .nx-card-unit {
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--r-ink-3);
+      margin-left: 2px;
+    }
+
+    #roster .nx-card-rating {
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding: 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--r-ink-2);
+    }
+
+    #roster .nx-star {
+      color: var(--r-ink);
+    }
+
     #roster .nx-card-action-circle {
-      width: 44px; height: 44px; border-radius: 999px; background: transparent; color: var(--r-ink);
-      border: 1px solid var(--r-line); box-shadow: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--r-ink);
+      border: 1px solid var(--r-line);
+      box-shadow: none;
       transition: background-color .3s var(--r-ease), color .3s var(--r-ease), border-color .3s var(--r-ease), transform .3s var(--r-ease);
     }
-    #roster .nx-talent-card:hover .nx-card-action-circle { background: var(--r-ink); color: #fff; border-color: var(--r-ink); transform: rotate(-45deg); }
-    #roster .nx-card-action-circle:focus-visible, #roster .nx-filter-btn:focus-visible, #roster .nx-view-btn:focus-visible, #roster .nx-criteria-trigger-btn:focus-visible { outline: 2px solid var(--r-ink); outline-offset: 2px; transition: none; }
+
+    #roster .nx-talent-card:hover .nx-card-action-circle {
+      background: var(--r-ink);
+      color: #fff;
+      border-color: var(--r-ink);
+      transform: rotate(-45deg);
+    }
+
+    #roster .nx-card-action-circle:focus-visible,
+    #roster .nx-filter-btn:focus-visible,
+    #roster .nx-view-btn:focus-visible,
+    #roster .nx-criteria-trigger-btn:focus-visible {
+      outline: 2px solid var(--r-ink);
+      outline-offset: 2px;
+      transition: none;
+    }
 
     /* staggered entrance */
-    #roster .nx-talent-grid .nx-talent-card.nx-reveal { transition-delay: calc(var(--i, 0) * 70ms); }
-
-    @media (max-width: 1080px) { #roster .nx-talent-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (max-width: 760px) {
-      #roster .nx-roster-controls { border-radius: 24px; padding: 10px; position: static; }
-      #roster .nx-roster-actions, #roster .nx-roster-search { width: 100%; }
-      #roster .nx-roster-search-input { min-width: 0; width: 100%; }
-      #roster .nx-view-toggle { overflow-x: auto; max-width: 100%; }
-      #roster .nx-talent-grid { grid-template-columns: minmax(0, 1fr); gap: 44px; }
+    #roster .nx-talent-grid .nx-talent-card.nx-reveal {
+      transition-delay: calc(var(--i, 0) * 70ms);
     }
+
+    @media (max-width: 1080px) {
+      #roster .nx-talent-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      #roster .nx-roster-controls {
+        border-radius: 24px;
+        padding: 10px;
+        position: static;
+      }
+
+      #roster .nx-roster-actions,
+      #roster .nx-roster-search {
+        width: 100%;
+      }
+
+      #roster .nx-roster-search-input {
+        min-width: 0;
+        width: 100%;
+      }
+
+      #roster .nx-view-toggle {
+        overflow-x: auto;
+        max-width: 100%;
+      }
+
+      #roster .nx-talent-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 44px;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      #roster *, #roster *::before, #roster *::after { transition-duration: .01ms !important; animation: none !important; }
-      #roster .nx-talent-card:hover .nx-card-media-viewport img { transform: none; }
+
+      #roster *,
+      #roster *::before,
+      #roster *::after {
+        transition-duration: .01ms !important;
+        animation: none !important;
+      }
+
+      #roster .nx-talent-card:hover .nx-card-media-viewport img {
+        transform: none;
+      }
     }
 
 
@@ -3613,7 +3982,7 @@
       border-color: rgba(20, 17, 15, 0.16);
     }
 
-    #roster .nx-talent-card > :not(.pc) {
+    #roster .nx-talent-card> :not(.pc) {
       display: none !important;
     }
 
@@ -3649,7 +4018,7 @@
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      background: radial-gradient(60% 50% at 50% 100%, rgba(255,255,255,0.35), transparent 75%);
+      background: radial-gradient(60% 50% at 50% 100%, rgba(255, 255, 255, 0.35), transparent 75%);
       pointer-events: none;
       z-index: 1;
     }
@@ -3673,7 +4042,8 @@
       bottom: -4px;
       left: 50%;
       transform: translateX(-50%);
-      height: 318px; /* Stands 68px above the 250px stage! */
+      height: 318px;
+      /* Stands 68px above the 250px stage! */
       width: auto;
       max-width: 115%;
       object-fit: contain;
@@ -3735,7 +4105,7 @@
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 45%);
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, transparent 45%);
       pointer-events: none;
       z-index: 3;
     }
@@ -3785,8 +4155,17 @@
     }
 
     @keyframes pcPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.85);
+      }
     }
 
     #roster .pc-price-pill {
@@ -3866,7 +4245,7 @@
     #roster .pc-mode-btn.is-active {
       background: #FFFFFF;
       color: var(--r-ink);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     }
 
     #roster .pc-carousel-nav {
@@ -3931,57 +4310,77 @@
     #roster .pc-kicker-row {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    #roster .pc-kicker {
+    #roster .pc-craft-loc-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: #F6F3EE;
+      border: 1px solid rgba(20, 17, 15, 0.09);
       font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-      font-size: 11.5px;
-      font-weight: 700;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: var(--r-ink-3, #8C857D);
-    }
-
-    #roster .pc-kicker-dot {
-      color: rgba(20, 17, 15, 0.25);
       font-size: 11px;
-    }
-
-    #roster .pc-city {
-      font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-      font-size: 11.5px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
+      font-weight: 700;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--r-ink-2, #57514B);
+      color: #4A443E;
+      box-shadow: 0 1px 2px rgba(20, 17, 15, 0.02);
+      transition: background-color 0.2s, border-color 0.2s, color 0.2s;
     }
 
-    #roster .pc-verified {
+    #roster .nx-talent-card:hover .pc-craft-loc-pill {
+      background: #EFECE5;
+      border-color: rgba(20, 17, 15, 0.16);
+      color: #14110F;
+    }
+
+    #roster .pc-craft-tag {
+      color: #2D2723;
+      font-weight: 700;
+    }
+
+    #roster .pc-pill-dot {
+      color: rgba(20, 17, 15, 0.30);
+      font-weight: 400;
+      font-size: 10px;
+    }
+
+    #roster .pc-loc-tag {
+      color: #6E675F;
+      font-weight: 600;
+    }
+
+    #roster .pc-verified-pill {
       margin-left: auto;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 4.5px;
+      font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.03em;
       color: #1F7A4D;
       background: rgba(31, 122, 77, 0.08);
-      border: 1px solid rgba(31, 122, 77, 0.15);
-      padding: 2.5px 8px 2.5px 6px;
+      border: 1px solid rgba(31, 122, 77, 0.18);
+      padding: 4px 10px;
       border-radius: 999px;
+      box-shadow: 0 1px 2px rgba(31, 122, 77, 0.04);
     }
 
     #roster .pc-name {
-      font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
+      font-family: 'Newsreader', 'Times New Roman', Georgia, serif;
       font-weight: 450;
       font-size: clamp(1.85rem, 2.5vw, 2.25rem);
       letter-spacing: -0.03em;
       line-height: 1.04;
       color: var(--r-ink, #14110F);
-      margin: 0;
+      margin: 2px 0 0 0;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -3995,17 +4394,19 @@
     }
 
     #roster .pc-blurb {
-      font-family: 'Newsreader', Georgia, serif;
+      font-family: 'Times New Roman', Times, 'Newsreader', Georgia, serif;
       font-style: italic;
-      font-size: 15.5px;
-      line-height: 1.55;
-      color: #554F48;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.52;
+      color: #4A443E;
       margin: 10px 0 0 0;
       max-width: 42ch;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     #roster .pc-chips {
@@ -4035,46 +4436,87 @@
       color: var(--r-ink);
     }
 
-    /* ── TABULAR METRIC ROW ── */
+    /* ── TABULAR METRIC ROW: EDITORIAL BADGES & PILLS ── */
     #roster .pc-metrics {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
+      flex-wrap: wrap;
       margin-top: 16px;
       padding-top: 14px;
-      border-top: 1px solid var(--r-line);
-      font-size: 13px;
-      color: var(--r-ink-2);
-      font-variant-numeric: tabular-nums;
+      border-top: 1px solid rgba(20, 17, 15, 0.08);
     }
 
-    #roster .pc-star {
-      color: #D97706;
-      font-size: 13px;
-    }
-
-    #roster .pc-score {
-      font-weight: 700;
-      color: var(--r-ink);
-    }
-
-    #roster .pc-rev-count {
-      color: var(--r-ink-3);
-      font-size: 12px;
-    }
-
-    #roster .pc-sep {
-      color: rgba(20, 17, 15, 0.20);
-    }
-
-    #roster .pc-sla {
-      font-weight: 600;
-      color: var(--r-ok);
-      background: color-mix(in srgb, var(--r-ok) 9%, transparent);
-      padding: 2px 8px;
+    #roster .pc-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
       border-radius: 999px;
+      font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
       font-size: 11.5px;
+      font-variant-numeric: tabular-nums;
+      transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    #roster .pc-pill-rating {
+      background: #F7F5F0;
+      border: 1px solid rgba(20, 17, 15, 0.09);
+      color: var(--r-ink, #14110F);
+    }
+
+    #roster .pc-pill-rating .pc-star {
+      color: #D97706;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    #roster .pc-pill-rating .pc-score {
+      font-weight: 700;
+      color: var(--r-ink, #14110F);
+    }
+
+    #roster .pc-pill-rating .pc-rev-count {
+      color: var(--r-ink-3, #7D766E);
+      font-weight: 500;
+      font-size: 11px;
+    }
+
+    #roster .pc-pill-volume {
+      background: #F7F5F0;
+      border: 1px solid rgba(20, 17, 15, 0.09);
+      font-weight: 600;
+      color: #4A443E;
+    }
+
+    #roster .pc-pill-sla {
       margin-left: auto;
+      background: rgba(31, 122, 77, 0.08);
+      border: 1px solid rgba(31, 122, 77, 0.20);
+      color: #166534;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+    }
+
+    #roster .pc-sla-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #16A34A;
+      box-shadow: 0 0 6px rgba(22, 163, 74, 0.45);
+      flex: none;
+    }
+
+    #roster .nx-talent-card:hover .pc-pill-rating,
+    #roster .nx-talent-card:hover .pc-pill-volume {
+      background: #EFECE5;
+      border-color: rgba(20, 17, 15, 0.16);
+    }
+
+    #roster .nx-talent-card:hover .pc-pill-sla {
+      background: rgba(31, 122, 77, 0.12);
+      border-color: rgba(31, 122, 77, 0.30);
     }
 
     /* ── CARD FOOTER CTA BUTTONS (OAT & MILL CHERRY / OBSIDIAN) ── */
@@ -4172,22 +4614,27 @@
         gap: 56px;
         margin-top: 16px;
       }
+
       #roster .nx-talent-card {
         padding: 12px 12px 18px 12px;
         border-radius: 28px;
       }
+
       #roster .pc-stage {
         height: 230px;
       }
+
       #roster .pc-breakout-fig {
         height: 285px;
       }
+
       #roster .pc-name {
         font-size: 1.7rem;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
+
       #roster .pc-breakout-fig,
       #roster .nx-talent-card,
       #roster .pc-book,
@@ -4200,82 +4647,416 @@
 
     /* ── DISCIPLINES MOSAIC: one hot palette, poster type, interlocking tiles ── */
     #disciplines {
-      --m-hot: #F0145A; --m-pink: #F57FC8; --m-blush: #FBD3E6; --m-cream: #F6E3D6;
-      --m-wine: #6E0B2E; --m-ink: #2A0414; --m-paper: #FFF7F2;
+      --m-hot: #F0145A;
+      --m-pink: #F57FC8;
+      --m-blush: #FBD3E6;
+      --m-cream: #F6E3D6;
+      --m-wine: #6E0B2E;
+      --m-ink: #2A0414;
+      --m-paper: #FFF7F2;
       --m-poster: 'Archivo Black', 'Plus Jakarta Sans', sans-serif;
-      --m-ease: cubic-bezier(.22,1,.36,1);
+      --m-ease: cubic-bezier(.22, 1, .36, 1);
     }
-    #disciplines .mz-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 40px; margin-bottom: 36px; }
-    #disciplines .mz-title { font-family: var(--m-poster); font-size: clamp(2.6rem, 6.4vw, 5.8rem); line-height: .9; letter-spacing: -.035em; text-transform: uppercase; color: var(--m-ink); margin: 0; max-width: 11ch; overflow-wrap: break-word; min-width: 0; }
-    #disciplines .mz-sub { font-size: 17px; line-height: 1.55; color: var(--m-wine); max-width: 34ch; margin: 0; }
-    #disciplines .mz { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: clamp(150px, 15vw, 210px); gap: 12px; }
-    #disciplines .mz-t { position: relative; overflow: hidden; border-radius: 22px; border: 0; padding: 0; margin: 0; font: inherit; color: inherit; text-decoration: none; display: block; isolation: isolate; transition: transform .6s var(--m-ease); }
-    #disciplines button.mz-t, #disciplines a.mz-t { cursor: pointer; }
-    #disciplines button.mz-t:hover, #disciplines a.mz-t:hover { transform: translateY(-4px) rotate(-.4deg); }
-    #disciplines .mz-t:focus-visible { outline: 3px solid var(--m-ink); outline-offset: 3px; transition: none; }
-    #disciplines .mz-t img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.1s var(--m-ease); }
-    #disciplines .mz-t:hover img { transform: scale(1.06); }
 
-    .mz-a { grid-column: 1 / 6; grid-row: span 2; }
-    .mz-b { grid-column: 6 / 13; }
-    .mz-c { grid-column: 6 / 9; }
-    .mz-d { grid-column: 9 / 11; }
-    .mz-e { grid-column: 11 / 13; grid-row: span 2; }
-    .mz-f { grid-column: 1 / 4; grid-row: span 2; }
-    .mz-g { grid-column: 4 / 7; }
-    .mz-h { grid-column: 7 / 11; }
-    .mz-i { grid-column: 4 / 13; }
+    #disciplines .mz-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px 40px;
+      margin-bottom: 36px;
+    }
 
-    #disciplines .mz-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, color-mix(in srgb, var(--m-ink) 80%, transparent), transparent 55%); z-index: 1; }
-    #disciplines .mz-cap { position: absolute; left: 22px; bottom: 20px; z-index: 2; display: grid; gap: 2px; text-align: left; color: var(--m-paper); }
-    #disciplines .mz-cap b { font-family: var(--m-poster); font-weight: 400; font-size: clamp(1.4rem, 2.4vw, 2.2rem); line-height: 1; text-transform: uppercase; letter-spacing: -.02em; }
-    #disciplines .mz-cap i { font-style: normal; font-size: 14px; opacity: .8; }
+    #disciplines .mz-title {
+      font-family: var(--m-poster);
+      font-size: clamp(2.6rem, 6.4vw, 5.8rem);
+      line-height: .9;
+      letter-spacing: -.035em;
+      text-transform: uppercase;
+      color: var(--m-ink);
+      margin: 0;
+      max-width: 11ch;
+      overflow-wrap: break-word;
+      min-width: 0;
+    }
 
-    #disciplines .mz-type { background: var(--m-hot); display: flex; align-items: center; }
-    #disciplines .mz-run { display: flex; gap: .4em; white-space: nowrap; animation: mzRun 14s linear infinite; }
-    #disciplines .mz-run em { font-style: normal; font-family: var(--m-poster); text-transform: uppercase; font-size: clamp(3.4rem, 8vw, 7.4rem); line-height: 1; letter-spacing: -.03em; color: var(--m-pink); }
-    #disciplines .mz-run em:nth-child(even) { color: transparent; -webkit-text-stroke: 2px var(--m-pink); }
-    @keyframes mzRun { to { transform: translateX(-50%); } }
+    #disciplines .mz-sub {
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--m-wine);
+      max-width: 34ch;
+      margin: 0;
+    }
 
-    #disciplines .mz-char { background: var(--m-pink); }
-    #disciplines .mz-c { background: var(--m-blush); }
-    #disciplines .mz-e { background: var(--m-wine); }
-    #disciplines .mz-g { background: var(--m-cream); }
-    #disciplines .mz-h { background: var(--m-pink); }
-    #disciplines .mz-char img { object-fit: contain; object-position: center bottom; padding-top: 14px; }
-    #disciplines .mz-e img { object-fit: cover; object-position: 50% 100%; padding-top: 0; transform-origin: bottom; }
-    #disciplines .mz-c img, #disciplines .mz-g img { transform: scale(1.12); transform-origin: bottom; }
-    #disciplines .mz-c:hover img, #disciplines .mz-g:hover img { transform: scale(1.2); }
-    #disciplines .mz-tag { position: absolute; left: 14px; top: 14px; z-index: 2; background: var(--m-paper); color: var(--m-ink); font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 999px; transition: background-color .3s var(--m-ease), color .3s var(--m-ease); }
-    #disciplines .mz-char:hover .mz-tag { background: var(--m-ink); color: var(--m-paper); }
+    #disciplines .mz {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      grid-auto-rows: clamp(150px, 15vw, 210px);
+      gap: 12px;
+    }
 
-    #disciplines .mz-mark { background: var(--m-cream); display: grid; place-items: center; }
-    #disciplines .mz-mark svg { width: 72%; height: 72%; animation: mzSpin 18s linear infinite; }
-    @keyframes mzSpin { to { transform: rotate(360deg); } }
+    #disciplines .mz-t {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      font: inherit;
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      isolation: isolate;
+      transition: transform .6s var(--m-ease);
+    }
 
-    #disciplines .mz-poster { background: var(--m-pink); padding: 20px; display: flex; flex-direction: column; color: var(--m-ink); }
-    #disciplines .mz-small { font-size: 12px; font-weight: 700; margin: 0; text-align: center; }
-    #disciplines .mz-for { font-family: var(--m-poster); text-transform: uppercase; font-size: clamp(2rem, 3.6vw, 3.2rem); line-height: .9; letter-spacing: -.03em; margin: 10px 0 0; text-align: center; color: var(--m-ink); }
-    #disciplines .mz-flower { flex: 1; display: grid; place-items: center; color: var(--m-wine); min-height: 0; }
-    #disciplines .mz-flower svg { width: min(78%, 240px); height: auto; transition: transform 1.2s var(--m-ease); }
-    #disciplines .mz-poster:hover .mz-flower svg { transform: rotate(45deg) scale(1.05); }
+    #disciplines button.mz-t,
+    #disciplines a.mz-t {
+      cursor: pointer;
+    }
 
-    #disciplines .mz-big { background: var(--m-hot); color: var(--m-pink); display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(20px, 3vw, 44px); }
-    #disciplines .mz-big span { font-family: var(--m-poster); text-transform: uppercase; font-size: clamp(2.6rem, 6.2vw, 6rem); line-height: .86; letter-spacing: -.035em; }
-    #disciplines .mz-arrow { width: clamp(56px, 7vw, 104px); height: auto; flex: none; transition: transform .6s var(--m-ease); }
-    #disciplines .mz-big:hover .mz-arrow { transform: translate(8px, -8px); }
+    #disciplines button.mz-t:hover,
+    #disciplines a.mz-t:hover {
+      transform: translateY(-4px) rotate(-.4deg);
+    }
+
+    #disciplines .mz-t:focus-visible {
+      outline: 3px solid var(--m-ink);
+      outline-offset: 3px;
+      transition: none;
+    }
+
+    #disciplines .mz-t img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 1.1s var(--m-ease);
+    }
+
+    #disciplines .mz-t:hover img {
+      transform: scale(1.06);
+    }
+
+    .mz-a {
+      grid-column: 1 / 6;
+      grid-row: span 2;
+    }
+
+    .mz-b {
+      grid-column: 6 / 13;
+    }
+
+    .mz-c {
+      grid-column: 6 / 9;
+    }
+
+    .mz-d {
+      grid-column: 9 / 11;
+    }
+
+    .mz-e {
+      grid-column: 11 / 13;
+      grid-row: span 2;
+    }
+
+    .mz-f {
+      grid-column: 1 / 4;
+      grid-row: span 2;
+    }
+
+    .mz-g {
+      grid-column: 4 / 7;
+    }
+
+    .mz-h {
+      grid-column: 7 / 11;
+    }
+
+    .mz-i {
+      grid-column: 4 / 13;
+    }
+
+    #disciplines .mz-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, color-mix(in srgb, var(--m-ink) 80%, transparent), transparent 55%);
+      z-index: 1;
+    }
+
+    #disciplines .mz-cap {
+      position: absolute;
+      left: 22px;
+      bottom: 20px;
+      z-index: 2;
+      display: grid;
+      gap: 2px;
+      text-align: left;
+      color: var(--m-paper);
+    }
+
+    #disciplines .mz-cap b {
+      font-family: var(--m-poster);
+      font-weight: 400;
+      font-size: clamp(1.4rem, 2.4vw, 2.2rem);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -.02em;
+    }
+
+    #disciplines .mz-cap i {
+      font-style: normal;
+      font-size: 14px;
+      opacity: .8;
+    }
+
+    #disciplines .mz-type {
+      background: var(--m-hot);
+      display: flex;
+      align-items: center;
+    }
+
+    #disciplines .mz-run {
+      display: flex;
+      gap: .4em;
+      white-space: nowrap;
+      animation: mzRun 14s linear infinite;
+    }
+
+    #disciplines .mz-run em {
+      font-style: normal;
+      font-family: var(--m-poster);
+      text-transform: uppercase;
+      font-size: clamp(3.4rem, 8vw, 7.4rem);
+      line-height: 1;
+      letter-spacing: -.03em;
+      color: var(--m-pink);
+    }
+
+    #disciplines .mz-run em:nth-child(even) {
+      color: transparent;
+      -webkit-text-stroke: 2px var(--m-pink);
+    }
+
+    @keyframes mzRun {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    #disciplines .mz-char {
+      background: var(--m-pink);
+    }
+
+    #disciplines .mz-c {
+      background: var(--m-blush);
+    }
+
+    #disciplines .mz-e {
+      background: var(--m-wine);
+    }
+
+    #disciplines .mz-g {
+      background: var(--m-cream);
+    }
+
+    #disciplines .mz-h {
+      background: var(--m-pink);
+    }
+
+    #disciplines .mz-char img {
+      object-fit: contain;
+      object-position: center bottom;
+      padding-top: 14px;
+    }
+
+    #disciplines .mz-e img {
+      object-fit: cover;
+      object-position: 50% 100%;
+      padding-top: 0;
+      transform-origin: bottom;
+    }
+
+    #disciplines .mz-c img,
+    #disciplines .mz-g img {
+      transform: scale(1.12);
+      transform-origin: bottom;
+    }
+
+    #disciplines .mz-c:hover img,
+    #disciplines .mz-g:hover img {
+      transform: scale(1.2);
+    }
+
+    #disciplines .mz-tag {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      z-index: 2;
+      background: var(--m-paper);
+      color: var(--m-ink);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 999px;
+      transition: background-color .3s var(--m-ease), color .3s var(--m-ease);
+    }
+
+    #disciplines .mz-char:hover .mz-tag {
+      background: var(--m-ink);
+      color: var(--m-paper);
+    }
+
+    #disciplines .mz-mark {
+      background: var(--m-cream);
+      display: grid;
+      place-items: center;
+    }
+
+    #disciplines .mz-mark svg {
+      width: 72%;
+      height: 72%;
+      animation: mzSpin 18s linear infinite;
+    }
+
+    @keyframes mzSpin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    #disciplines .mz-poster {
+      background: var(--m-pink);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      color: var(--m-ink);
+    }
+
+    #disciplines .mz-small {
+      font-size: 12px;
+      font-weight: 700;
+      margin: 0;
+      text-align: center;
+    }
+
+    #disciplines .mz-for {
+      font-family: var(--m-poster);
+      text-transform: uppercase;
+      font-size: clamp(2rem, 3.6vw, 3.2rem);
+      line-height: .9;
+      letter-spacing: -.03em;
+      margin: 10px 0 0;
+      text-align: center;
+      color: var(--m-ink);
+    }
+
+    #disciplines .mz-flower {
+      flex: 1;
+      display: grid;
+      place-items: center;
+      color: var(--m-wine);
+      min-height: 0;
+    }
+
+    #disciplines .mz-flower svg {
+      width: min(78%, 240px);
+      height: auto;
+      transition: transform 1.2s var(--m-ease);
+    }
+
+    #disciplines .mz-poster:hover .mz-flower svg {
+      transform: rotate(45deg) scale(1.05);
+    }
+
+    #disciplines .mz-big {
+      background: var(--m-hot);
+      color: var(--m-pink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(20px, 3vw, 44px);
+    }
+
+    #disciplines .mz-big span {
+      font-family: var(--m-poster);
+      text-transform: uppercase;
+      font-size: clamp(2.6rem, 6.2vw, 6rem);
+      line-height: .86;
+      letter-spacing: -.035em;
+    }
+
+    #disciplines .mz-arrow {
+      width: clamp(56px, 7vw, 104px);
+      height: auto;
+      flex: none;
+      transition: transform .6s var(--m-ease);
+    }
+
+    #disciplines .mz-big:hover .mz-arrow {
+      transform: translate(8px, -8px);
+    }
 
     @media (max-width: 900px) {
-      #disciplines .mz { grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-rows: 150px; }
-      .mz-a { grid-column: 1 / 7; } .mz-b { grid-column: 1 / 7; } .mz-c { grid-column: 1 / 4; } .mz-d { grid-column: 4 / 7; }
-      .mz-e { grid-column: 4 / 7; } .mz-f { grid-column: 1 / 4; } .mz-g { grid-column: 1 / 4; } .mz-h { grid-column: 4 / 7; } .mz-i { grid-column: 1 / 7; }
+      #disciplines .mz {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        grid-auto-rows: 150px;
+      }
+
+      .mz-a {
+        grid-column: 1 / 7;
+      }
+
+      .mz-b {
+        grid-column: 1 / 7;
+      }
+
+      .mz-c {
+        grid-column: 1 / 4;
+      }
+
+      .mz-d {
+        grid-column: 4 / 7;
+      }
+
+      .mz-e {
+        grid-column: 4 / 7;
+      }
+
+      .mz-f {
+        grid-column: 1 / 4;
+      }
+
+      .mz-g {
+        grid-column: 1 / 4;
+      }
+
+      .mz-h {
+        grid-column: 4 / 7;
+      }
+
+      .mz-i {
+        grid-column: 1 / 7;
+      }
     }
+
     @media (prefers-reduced-motion: reduce) {
-      #disciplines .mz-run, #disciplines .mz-mark svg { animation: none; }
-      #disciplines .mz-t, #disciplines .mz-t img, #disciplines .mz-flower svg { transition: none; }
+
+      #disciplines .mz-run,
+      #disciplines .mz-mark svg {
+        animation: none;
+      }
+
+      #disciplines .mz-t,
+      #disciplines .mz-t img,
+      #disciplines .mz-flower svg {
+        transition: none;
+      }
     }
-</style>
+  </style>
 </head>
+
 <body data-theme="sage">
 
   <!-- Character & Theme Navigation Capsules (Slideshow) -->
@@ -7139,6 +7920,11 @@
   const P = 'assets/cinema_posters/';
   const TALENT = {
     'marcus vance': {
+      craft: 'Commercial Cinema',
+      location: 'Austin, TX',
+      rating: '5.0',
+      rate: '$650',
+      unit: '/day',
       personaImg: 'assets/character_filmmaker_transparent.png',
       stageBg: 'radial-gradient(135% 100% at 50% 15%, #FBF6F0 0%, #EFE3D4 100%)',
       craftPill: '🎬 4K Reel · 0:45',
@@ -7150,9 +7936,14 @@
       earned: '$140k+',
       sla: '< 1h response',
       gear: ['Cooke 2x Anamorphic', 'RED V-Raptor 8K', 'DCI-P3 Color'],
-      blurb: 'Directing commercial & narrative sequences focused on anamorphic glass, automotive rhythm, and raw human cinema.'
+      blurb: 'Directing commercial and narrative cinema with anamorphic glass and raw human rhythm.'
     },
     'maya lin': {
+      craft: 'Aerial Cinema',
+      location: 'Los Angeles, CA',
+      rating: '4.9',
+      rate: '$550',
+      unit: '/day',
       personaImg: 'assets/character_drone_operator_final.png',
       stageBg: 'radial-gradient(135% 100% at 50% 15%, #F0F6FD 0%, #DCE9F6 100%)',
       craftPill: '🚁 FPV Reel · 0:30',
@@ -7164,9 +7955,14 @@
       earned: '$185k+',
       sla: '< 2h response',
       gear: ['DJI Inspire 3 8K', 'Heavy-Lift FPV', 'FAA Part 107'],
-      blurb: 'FAA Part 107 flight captain chasing heavy-lift FPV sequences across alpine ridges and coastal horizons.'
+      blurb: 'Chasing heavy-lift FPV flight sequences across alpine ridges and sweeping coastal horizons.'
     },
     'elena rostova': {
+      craft: 'Character & World Art',
+      location: 'New York, NY',
+      rating: '4.8',
+      rate: '$420',
+      unit: '/day',
       personaImg: 'assets/character_digital_creator_transparent.png',
       stageBg: 'radial-gradient(135% 100% at 50% 15%, #F6F3FA 0%, #E9DEFA 100%)',
       craftPill: '🎨 28 Sets · PSD',
@@ -7176,21 +7972,31 @@
       earned: '$92k+',
       sla: '< 3h response',
       gear: ['Layered Masters', 'Wide DCI-P3', '100% IP Buyout'],
-      blurb: 'World builder crafting layered painterly character systems and editorial art in wide DCI-P3 gamut.'
+      blurb: 'Crafting layered painterly character systems and editorial worlds in wide DCI-P3 gamut.'
     },
     'david kim': {
+      craft: '2nd Unit AC',
+      location: 'Chicago, IL',
+      rating: '5.0',
+      rate: '$350',
+      unit: '/day',
       personaImg: 'assets/char_athletic_transparent.png',
       stageBg: 'radial-gradient(135% 100% at 50% 15%, #F2F8F4 0%, #DBEAE0 100%)',
       craftPill: '⚡ 2nd Unit · Ready',
       photos: [P + 'poster_0_director.jpg', 'assets/char_athletic_boy.jpg'],
       verifiedLabel: 'KYC Identity Vetted',
       reviews: 'New Talent',
-      earned: 'First-Rate SLA',
+      earned: 'First-Rate',
       sla: '< 1h response',
       gear: ['ARRI Certified', 'RED DIT Prep', 'Dual-Slot Media'],
-      blurb: 'Trained on ARRI Alexa Mini LF and RED V-Raptor workflows. Ready for 2nd Unit AC focus pulling and high-speed sync.'
+      blurb: 'Trained on ARRI Mini LF and RED V-Raptor for precision focus pulling.'
     },
     'somatic vision studio': {
+      craft: 'Spatial 3D Studio',
+      location: 'London, UK',
+      rating: '5.0',
+      rate: '$750',
+      unit: '/day',
       personaImg: 'assets/vr_adventure_flight_case.webp',
       stageBg: 'radial-gradient(135% 100% at 50% 15%, #F4F4F6 0%, #DFE1E6 100%)',
       craftPill: '🥽 VisionOS · 60fps',
@@ -7200,9 +8006,14 @@
       earned: '$195k+',
       sla: '< 1h response',
       gear: ['Unreal Engine 5.4', 'Octane Render', 'VisionOS Native'],
-      blurb: 'Boutique spatial computing studio architecting commercial Apple VisionOS stages and high-gloss 3D worlds.'
+      blurb: 'Architecting commercial Apple VisionOS spatial stages and high-gloss real-time 3D environments.'
     },
     'nova capture': {
+      craft: 'Pursuit Arm & Action',
+      location: 'Los Angeles, CA',
+      rating: '4.9',
+      rate: '$600',
+      unit: '/day',
       personaImg: 'assets/char_skater_girl_transparent.png',
       stageBg: 'radial-gradient(135% 100% at 50% 15%, #FCF6F0 0%, #F5E1D0 100%)',
       craftPill: '🏎 Pursuit Arm · 120fps',
@@ -7212,88 +8023,94 @@
       earned: '19 Deliveries',
       sla: 'Ready Now',
       gear: ['RED Komodo-X', 'Ronin 4D 8K', 'Pursuit Arm'],
-      blurb: 'High-speed camera tracking operator for automotive sequences, stabilized gimbal arm, and high-G maneuvers.'
+      blurb: 'Tracking high-speed automotive pursuit sequences with stabilized gimbal arms and cinema glass.'
     }
   };
 
-  const V_ICON = '<svg class="pc-name-badge" width="18" height="18" viewBox="0 0 24 24" aria-label="Verified"><path fill="#2563EB" d="M12 1.5l2.6 1.9 3.2-.1 1 3 2.6 1.9-1 3 1 3-2.6 1.9-1 3-3.2-.1L12 22.5l-2.6-1.9-3.2.1-1-3L2.6 15.8l1-3-1-3 2.6-1.9 1-3 3.2.1z"/><path d="M8 12.2l2.7 2.7L16.2 9.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  const esc = t => String(t || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+      const V_ICON = '<svg class="pc-name-badge" width="18" height="18" viewBox="0 0 24 24" aria-label="Verified"><path fill="#2563EB" d="M12 1.5l2.6 1.9 3.2-.1 1 3 2.6 1.9-1 3 1 3-2.6 1.9-1 3-3.2-.1L12 22.5l-2.6-1.9-3.2.1-1-3L2.6 15.8l1-3-1-3 2.6-1.9 1-3 3.2.1z"/><path d="M8 12.2l2.7 2.7L16.2 9.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      const esc = t => String(t || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+      const capWords = (str, limit = 13) => {
+        if (!str) return '';
+        const words = str.trim().split(/\s+/);
+        if (words.length <= limit) return str.trim();
+        return words.slice(0, limit).join(' ') + '...';
+      };
 
-  let activeVideo = null;
-  function playVideo(stageEl) {
-    const video = stageEl.querySelector('video');
-    if (!video) return;
-    if (activeVideo && activeVideo !== video) {
-      activeVideo.pause();
-      const parent = activeVideo.closest('.pc-media-wrap');
-      if (parent) parent.classList.remove('is-playing');
-    }
-    if (!video.src && video.dataset.src) video.src = video.dataset.src;
-    video.play().then(() => {
-      const wrap = stageEl.querySelector('.pc-media-wrap');
-      if (wrap) wrap.classList.add('is-playing');
-      activeVideo = video;
-    }).catch(() => {});
-  }
+      let activeVideo = null;
+      function playVideo(stageEl) {
+        const video = stageEl.querySelector('video');
+        if (!video) return;
+        if (activeVideo && activeVideo !== video) {
+          activeVideo.pause();
+          const parent = activeVideo.closest('.pc-media-wrap');
+          if (parent) parent.classList.remove('is-playing');
+        }
+        if (!video.src && video.dataset.src) video.src = video.dataset.src;
+        video.play().then(() => {
+          const wrap = stageEl.querySelector('.pc-media-wrap');
+          if (wrap) wrap.classList.add('is-playing');
+          activeVideo = video;
+        }).catch(() => { });
+      }
 
-  function stopVideo(stageEl) {
-    const video = stageEl.querySelector('video');
-    if (video) {
-      video.pause();
-      const wrap = stageEl.querySelector('.pc-media-wrap');
-      if (wrap) wrap.classList.remove('is-playing');
-      if (activeVideo === video) activeVideo = null;
-    }
-  }
+      function stopVideo(stageEl) {
+        const video = stageEl.querySelector('video');
+        if (video) {
+          video.pause();
+          const wrap = stageEl.querySelector('.pc-media-wrap');
+          if (wrap) wrap.classList.remove('is-playing');
+          if (activeVideo === video) activeVideo = null;
+        }
+      }
 
-  // Apple Motion: Pause video playback when browser tab is hidden
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden' && activeVideo) {
-      activeVideo.pause();
-    }
-  });
+      // Apple Motion: Pause video playback when browser tab is hidden
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden' && activeVideo) {
+          activeVideo.pause();
+        }
+      });
 
-  function renderCard(c) {
-    if (c.querySelector('.pc')) return;
-    const nameKey = (c.dataset.name || '').toLowerCase().trim();
-    const data = TALENT[nameKey] || TALENT['marcus vance'];
+      function renderCard(c) {
+        if (c.querySelector('.pc')) return;
+        const nameKey = (c.dataset.name || '').toLowerCase().trim();
+        const data = TALENT[nameKey] || TALENT['marcus vance'];
 
-    const q = sel => c.querySelector(sel);
-    const textOf = sel => (q(sel) || {}).textContent || '';
-    const nameEl = q('.nx-card-name');
-    let name = 'Creative Director';
-    if (nameEl) {
-      const clone = nameEl.cloneNode(true);
-      const mono = clone.querySelector('.nx-card-monogram');
-      if (mono) mono.remove();
-      name = clone.textContent.replace(/\s+/g, ' ').trim();
-    }
-    const roleRaw = textOf('.nx-card-kicker').trim() || 'Visual Artist';
-    const kickerParts = roleRaw.split('·').map(s => s.trim());
-    const craft = kickerParts[0] || 'Visual Artist';
-    const location = kickerParts[1] || textOf('.nx-card-city').trim() || (c.dataset.city ? c.dataset.city.replace('-', ' ') : 'Global');
-    const rateEl = q('.nx-card-rate');
-    const rate = rateEl ? rateEl.firstChild.textContent.trim() : '$500';
-    const unit = textOf('.nx-card-unit') || '/day';
-    const ratingRaw = textOf('.nx-card-rating').replace('★', '').trim() || '5.0';
-    const firstName = name.split(' ')[0] || 'Talent';
+        const q = sel => c.querySelector(sel);
+        const textOf = sel => (q(sel) || {}).textContent || '';
+        const nameEl = q('.nx-card-name');
+        let name = 'Creative Director';
+        if (nameEl) {
+          const clone = nameEl.cloneNode(true);
+          const mono = clone.querySelector('.nx-card-monogram');
+          if (mono) mono.remove();
+          name = clone.textContent.replace(/\s+/g, ' ').trim();
+        }
+        const roleRaw = textOf('.nx-card-kicker').trim() || 'Visual Artist';
+        const kickerParts = roleRaw.split('·').map(s => s.trim());
+        const craft = data.craft || kickerParts[0] || 'Visual Artist';
+        const location = data.location || kickerParts[1] || textOf('.nx-card-city').trim() || (c.dataset.city ? c.dataset.city.replace('-', ' ') : 'Global');
+        const rateEl = q('.nx-card-rate');
+        const rate = data.rate || (rateEl ? rateEl.firstChild.textContent.trim() : '$500');
+        const unit = data.unit || textOf('.nx-card-unit') || '/day';
+        const ratingRaw = data.rating || textOf('.nx-card-rating').replace('★', '').trim() || '5.0';
+        const firstName = name.split(' ')[0] || 'Talent';
 
-    // Build stage HTML
-    const hasVideo = Boolean(data.video);
-    const photos = data.photos && data.photos.length ? data.photos : [];
-    const hasMedia = hasVideo || photos.length > 0;
+        // Build stage HTML
+        const hasVideo = Boolean(data.video);
+        const photos = data.photos && data.photos.length ? data.photos : [];
+        const hasMedia = hasVideo || photos.length > 0;
 
-    let mediaHtml = '<div class="pc-media-wrap">';
-    photos.forEach((photo, idx) => {
-      mediaHtml += `<img class="${idx === 0 ? 'is-active' : ''}" src="${esc(photo)}" alt="${esc(name)} work sample ${idx + 1}" loading="lazy" decoding="async">`;
-    });
-    if (hasVideo) {
-      mediaHtml += `<video muted playsinline loop preload="none" data-src="${esc(data.video)}"></video>`;
-    }
-    mediaHtml += '<div class="pc-media-gradient"></div></div>';
+        let mediaHtml = '<div class="pc-media-wrap">';
+        photos.forEach((photo, idx) => {
+          mediaHtml += `<img class="${idx === 0 ? 'is-active' : ''}" src="${esc(photo)}" alt="${esc(name)} work sample ${idx + 1}" loading="lazy" decoding="async">`;
+        });
+        if (hasVideo) {
+          mediaHtml += `<video muted playsinline loop preload="none" data-src="${esc(data.video)}"></video>`;
+        }
+        mediaHtml += '<div class="pc-media-gradient"></div></div>';
 
-    // Stage dock controls
-    let dockHtml = `
+        // Stage dock controls
+        let dockHtml = `
       <div class="pc-stage-dock">
         <div class="pc-mode-group">
           <button type="button" class="pc-mode-btn is-active" data-set-mode="persona" aria-label="Show 3D Persona">
@@ -7322,11 +8139,11 @@
       </div>
     `;
 
-    // Chip list
-    const gearList = (data.gear && data.gear.length) ? data.gear : ['Cinema Camera', 'Color Calibrated', 'Direct SLA'];
-    const chipsHtml = gearList.map(g => `<li>${esc(g)}</li>`).join('');
+        // Chip list
+        const gearList = (data.gear && data.gear.length) ? data.gear : ['Cinema Camera', 'Color Calibrated', 'Direct SLA'];
+        const chipsHtml = gearList.map(g => `<li>${esc(g)}</li>`).join('');
 
-    const cardHtml = `
+        const cardHtml = `
       <div class="pc">
         <!-- 3D HERO BREAKOUT STAGE -->
         <div class="pc-stage" style="--stage-bg: ${data.stageBg}">
@@ -7334,7 +8151,7 @@
           <span class="pc-price-pill">${esc(rate)}<small>${esc(unit)}</small></span>
           
           <div class="pc-persona-wrap">
-            <img class="pc-breakout-fig" src="${esc(data.personaImg)}" alt="${esc(name)} 3D character" loading="lazy" decoding="async">
+            <img class="pc-breakout-fig" src="${esc(data.personaImg)}" alt="${esc(name)} 3D character" loading="eager" decoding="async">
           </div>
 
           ${mediaHtml}
@@ -7344,27 +8161,35 @@
         <!-- EDITORIAL CARD BODY (OAT & MILL TYPOGRAPHY) -->
         <div class="pc-body">
           <div class="pc-kicker-row">
-            <span class="pc-kicker">${esc(craft)}</span>
-            <span class="pc-kicker-dot">·</span>
-            <span class="pc-city">${esc(location)}</span>
-            <span class="pc-verified" title="${esc(data.verifiedLabel)}">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-              Verified
-            </span>
+            <div class="pc-craft-loc-pill">
+              <span class="pc-craft-tag">${esc(craft)}</span>
+              <span class="pc-pill-dot">/</span>
+              <span class="pc-loc-tag">${esc(location)}</span>
+            </div>
+            <div class="pc-verified-pill" title="${esc(data.verifiedLabel)}">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Verified</span>
+            </div>
           </div>
 
           <h3 class="pc-name">${esc(name)} ${V_ICON}</h3>
-          <p class="pc-blurb">${esc(data.blurb)}</p>
+          <p class="pc-blurb">${esc(capWords(data.blurb, 13))}</p>
 
           <ul class="pc-chips">${chipsHtml}</ul>
 
           <div class="pc-metrics">
-            <span class="pc-star">★</span>
-            <span class="pc-score">${esc(ratingRaw)}</span>
-            <span class="pc-rev-count">(${esc(data.reviews)})</span>
-            <span class="pc-sep">·</span>
-            <span class="pc-score">${esc(data.earned)}</span>
-            <span class="pc-sla">${esc(data.sla)}</span>
+            <div class="pc-badge-pill pc-pill-rating">
+              <span class="pc-star">★</span>
+              <span class="pc-score">${esc(ratingRaw)}</span>
+              <span class="pc-rev-count">(${esc(data.reviews)})</span>
+            </div>
+            <div class="pc-badge-pill pc-pill-volume">
+              <span>${esc(data.earned)}</span>
+            </div>
+            <div class="pc-badge-pill pc-pill-sla">
+              <span class="pc-sla-dot"></span>
+              <span>${esc(data.sla)}</span>
+            </div>
           </div>
 
           <div class="pc-foot">
@@ -7380,122 +8205,123 @@
       </div>
     `;
 
-    c.insertAdjacentHTML('beforeend', cardHtml);
+        c.insertAdjacentHTML('beforeend', cardHtml);
 
-    // Interactive Mode Controls on Stage
-    const stage = c.querySelector('.pc-stage');
-    const modeBtns = c.querySelectorAll('.pc-mode-btn');
-    modeBtns.forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.stopPropagation();
-        const mode = btn.dataset.setMode;
-        modeBtns.forEach(b => b.classList.toggle('is-active', b === btn));
-        if (mode === 'media') {
-          stage.classList.add('mode-media');
-          stage.classList.remove('mode-persona');
-          playVideo(stage);
-        } else {
-          stage.classList.add('mode-persona');
-          stage.classList.remove('mode-media');
-          stopVideo(stage);
-        }
-      });
-    });
-
-    // Hover Video Playback for desktop
-    if (hasVideo && matchMedia('(hover:hover)').matches) {
-      c.addEventListener('mouseenter', () => {
-        const grid = document.querySelector('.nx-talent-grid');
-        if (grid && grid.classList.contains('is-reels')) {
-          playVideo(stage);
-        } else if (stage.classList.contains('mode-media')) {
-          playVideo(stage);
-        }
-      });
-      c.addEventListener('mouseleave', () => {
-        stopVideo(stage);
-      });
-    }
-
-    // Photo Carousel Navigation
-    let photoIdx = 0;
-    const imgEls = [...stage.querySelectorAll('.pc-media-wrap img')];
-    const dotEls = [...stage.querySelectorAll('.pc-photo-dots span')];
-
-    const showPhoto = (n) => {
-      if (!imgEls.length) return;
-      photoIdx = (photoIdx + n + imgEls.length) % imgEls.length;
-      imgEls.forEach((im, i) => im.classList.toggle('is-active', i === photoIdx));
-      dotEls.forEach((dot, i) => dot.classList.toggle('is-active', i === photoIdx));
-    };
-
-    const prevBtn = stage.querySelector('.pc-prev');
-    const nextBtn = stage.querySelector('.pc-next');
-    if (prevBtn) {
-      prevBtn.addEventListener('click', e => {
-        e.stopPropagation();
-        showPhoto(-1);
-      });
-    }
-    if (nextBtn) {
-      nextBtn.addEventListener('click', e => {
-        e.stopPropagation();
-        showPhoto(1);
-      });
-    }
-
-    // Bookmark Toggle
-    const saveBtn = c.querySelector('.pc-save');
-    if (saveBtn) {
-      saveBtn.addEventListener('click', e => {
-        e.stopPropagation();
-        const pressed = saveBtn.getAttribute('aria-pressed') === 'true';
-        saveBtn.setAttribute('aria-pressed', String(!pressed));
-      });
-    }
-  }
-
-  // Synchronize global view toggles (3D Personas vs Client Reels vs Case Scenarios)
-  function initViewSync() {
-    const btnReels = document.getElementById('btnViewReels');
-    const btnPersonas = document.getElementById('btnViewPersonas');
-    const btnCases = document.getElementById('btnViewCases');
-
-    if (btnReels) {
-      btnReels.addEventListener('click', () => {
-        document.querySelectorAll('#roster .pc-stage').forEach(st => {
-          st.classList.add('mode-media');
-          st.classList.remove('mode-persona');
-          st.querySelectorAll('.pc-mode-btn').forEach(b => {
-            b.classList.toggle('is-active', b.dataset.setMode === 'media');
+        // Interactive Mode Controls on Stage
+        const stage = c.querySelector('.pc-stage');
+        const modeBtns = c.querySelectorAll('.pc-mode-btn');
+        modeBtns.forEach(btn => {
+          btn.addEventListener('click', e => {
+            e.stopPropagation();
+            const mode = btn.dataset.setMode;
+            modeBtns.forEach(b => b.classList.toggle('is-active', b === btn));
+            if (mode === 'media') {
+              stage.classList.add('mode-media');
+              stage.classList.remove('mode-persona');
+              playVideo(stage);
+            } else {
+              stage.classList.add('mode-persona');
+              stage.classList.remove('mode-media');
+              stopVideo(stage);
+            }
           });
         });
-      });
-    }
 
-    if (btnPersonas) {
-      btnPersonas.addEventListener('click', () => {
-        document.querySelectorAll('#roster .pc-stage').forEach(st => {
-          st.classList.add('mode-persona');
-          st.classList.remove('mode-media');
-          stopVideo(st);
-          st.querySelectorAll('.pc-mode-btn').forEach(b => {
-            b.classList.toggle('is-active', b.dataset.setMode === 'persona');
+        // Hover Video Playback for desktop
+        if (hasVideo && matchMedia('(hover:hover)').matches) {
+          c.addEventListener('mouseenter', () => {
+            const grid = document.querySelector('.nx-talent-grid');
+            if (grid && grid.classList.contains('is-reels')) {
+              playVideo(stage);
+            } else if (stage.classList.contains('mode-media')) {
+              playVideo(stage);
+            }
           });
-        });
-      });
-    }
-  }
+          c.addEventListener('mouseleave', () => {
+            stopVideo(stage);
+          });
+        }
 
-  const runRoster = () => {
-    document.querySelectorAll('#roster .nx-talent-card').forEach(renderCard);
-    initViewSync();
-  };
+        // Photo Carousel Navigation
+        let photoIdx = 0;
+        const imgEls = [...stage.querySelectorAll('.pc-media-wrap img')];
+        const dotEls = [...stage.querySelectorAll('.pc-photo-dots span')];
 
-  runRoster();
-  const grid = document.querySelector('#roster .nx-talent-grid');
-  if (grid) new MutationObserver(runRoster).observe(grid, { childList: true });
-})();
-</script>
+        const showPhoto = (n) => {
+          if (!imgEls.length) return;
+          photoIdx = (photoIdx + n + imgEls.length) % imgEls.length;
+          imgEls.forEach((im, i) => im.classList.toggle('is-active', i === photoIdx));
+          dotEls.forEach((dot, i) => dot.classList.toggle('is-active', i === photoIdx));
+        };
+
+        const prevBtn = stage.querySelector('.pc-prev');
+        const nextBtn = stage.querySelector('.pc-next');
+        if (prevBtn) {
+          prevBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            showPhoto(-1);
+          });
+        }
+        if (nextBtn) {
+          nextBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            showPhoto(1);
+          });
+        }
+
+        // Bookmark Toggle
+        const saveBtn = c.querySelector('.pc-save');
+        if (saveBtn) {
+          saveBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            const pressed = saveBtn.getAttribute('aria-pressed') === 'true';
+            saveBtn.setAttribute('aria-pressed', String(!pressed));
+          });
+        }
+      }
+
+      // Synchronize global view toggles (3D Personas vs Client Reels vs Case Scenarios)
+      function initViewSync() {
+        const btnReels = document.getElementById('btnViewReels');
+        const btnPersonas = document.getElementById('btnViewPersonas');
+        const btnCases = document.getElementById('btnViewCases');
+
+        if (btnReels) {
+          btnReels.addEventListener('click', () => {
+            document.querySelectorAll('#roster .pc-stage').forEach(st => {
+              st.classList.add('mode-media');
+              st.classList.remove('mode-persona');
+              st.querySelectorAll('.pc-mode-btn').forEach(b => {
+                b.classList.toggle('is-active', b.dataset.setMode === 'media');
+              });
+            });
+          });
+        }
+
+        if (btnPersonas) {
+          btnPersonas.addEventListener('click', () => {
+            document.querySelectorAll('#roster .pc-stage').forEach(st => {
+              st.classList.add('mode-persona');
+              st.classList.remove('mode-media');
+              stopVideo(st);
+              st.querySelectorAll('.pc-mode-btn').forEach(b => {
+                b.classList.toggle('is-active', b.dataset.setMode === 'persona');
+              });
+            });
+          });
+        }
+      }
+
+      const runRoster = () => {
+        document.querySelectorAll('#roster .nx-talent-card').forEach(renderCard);
+        initViewSync();
+      };
+
+      runRoster();
+      const grid = document.querySelector('#roster .nx-talent-grid');
+      if (grid) new MutationObserver(runRoster).observe(grid, { childList: true });
+    })();
+  </script>
 </body>
+
 </html>
