@@ -3557,13 +3557,13 @@
       font-family: 'Times New Roman', Times, Georgia, serif;
       font-weight: 500;
       letter-spacing: -0.02em;
-      font-size: clamp(3.2rem, 5.8vw, 5.2rem);
-      line-height: 1.04;
+      font-size: clamp(2.6rem, 4.6vw, 4.4rem);
+      line-height: 1.05;
       text-transform: none;
-      max-width: 26ch;
+      max-width: none;
       color: #14110F;
-      margin: 12px 0 14px 0;
-      text-wrap: balance;
+      margin: 10px 0 12px 0;
+      white-space: normal;
     }
 
     #roster .nx-deck-accent {
@@ -3578,43 +3578,42 @@
 
     #roster .nx-lead {
       font-family: 'Times New Roman', Times, 'Newsreader', Georgia, serif;
-      font-size: 15px;
+      font-size: 15.5px;
       font-style: italic;
       font-weight: 400;
       line-height: 1.5;
       color: #57514B;
-      max-width: 56ch;
+      max-width: 68ch;
       margin: 0;
       letter-spacing: 0.015em;
       text-wrap: pretty;
     }
 
-    /* ── HD FILM PRODUCTION STICKER STAGE (SEPARATE HD STICKERS SCATTERED) ── */
+    /* ── HD FILM PRODUCTION STICKER STAGE (OPEN HEADLINE + FREEFORM OVERLAY STAGE) ── */
     #roster .nx-roster-title-cluster {
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      margin-bottom: 24px;
-      min-height: 250px;
+      display: block;
+      width: 100%;
+      margin-bottom: 26px;
+      min-height: 170px;
     }
 
     #roster .nx-roster-title-main {
-      flex: 0 0 auto;
-      max-width: 480px;
+      width: 100%;
+      max-width: none;
       position: relative;
       z-index: 2;
     }
 
     #roster .nx-film-stickers-stage {
-      flex: 1 1 auto;
-      position: relative;
-      height: 250px;
-      min-height: 250px;
-      min-width: 0;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
       user-select: none;
-      z-index: 5;
+      z-index: 10;
+      overflow: visible;
     }
 
     #roster .nx-film-sticker {
@@ -3622,6 +3621,7 @@
       display: inline-block;
       cursor: grab;
       user-select: none;
+      pointer-events: auto;
       transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), filter 0.28s ease;
       filter: drop-shadow(0 8px 20px rgba(20, 17, 15, 0.12));
       will-change: transform;
@@ -3629,11 +3629,12 @@
 
     #roster .nx-film-sticker:hover {
       filter: drop-shadow(0 20px 36px rgba(20, 17, 15, 0.22));
-      z-index: 25 !important;
+      z-index: 50 !important;
     }
 
     #roster .nx-film-sticker:active {
       cursor: grabbing;
+      z-index: 100 !important;
     }
 
     #roster .nx-film-sticker .nx-sticker-img {
@@ -3651,10 +3652,10 @@
       z-index: 2;
     }
 
-    /* 1. Separate HD Sticker: Pantone Swatch Fan (Scattered Left-Center) */
+    /* 1. Separate HD Sticker: Pantone Swatch Fan (Default Canvas Placement) */
     #roster .nx-sticker-pantone {
-      left: 15px;
-      top: 40px;
+      right: 330px;
+      top: 10px;
       transform: rotate(-13deg);
       z-index: 2;
     }
@@ -3673,10 +3674,10 @@
       top: -12px;
     }
 
-    /* 2. Separate HD Sticker: Production Memo Note (Scattered Lower Center-Right) */
+    /* 2. Separate HD Sticker: Production Memo Note (Default Canvas Placement) */
     #roster .nx-sticker-memo {
-      left: 40%;
-      top: 90px;
+      right: 175px;
+      top: 70px;
       transform: rotate(-5deg);
       z-index: 3;
     }
@@ -3695,10 +3696,10 @@
       filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.06));
     }
 
-    /* 3. Separate HD Sticker: 35mm Analog SLR Camera (Scattered Upper Right) */
+    /* 3. Separate HD Sticker: 35mm Analog SLR Camera (Default Canvas Placement) */
     #roster .nx-sticker-camera {
-      right: 20px;
-      top: 5px;
+      right: 15px;
+      top: -10px;
       transform: rotate(6deg);
       z-index: 4;
     }
@@ -3719,52 +3720,53 @@
 
     @media (max-width: 1200px) {
       #roster .nx-sticker-pantone {
-        left: 5px;
-        top: 35px;
+        right: 360px;
+        top: 15px;
       }
       #roster .nx-sticker-memo {
-        left: 36%;
-        top: 95px;
+        right: 170px;
+        top: 70px;
       }
       #roster .nx-sticker-camera {
-        right: 10px;
-        top: 5px;
+        right: 15px;
+        top: -5px;
       }
     }
 
     @media (max-width: 1060px) {
       #roster .nx-roster-title-cluster {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
+        min-height: 380px;
       }
       #roster .nx-film-stickers-stage {
-        flex: none;
-        width: 100%;
-        max-width: 720px;
-        height: 240px;
-        min-height: 240px;
-        transform-origin: left center;
+        position: relative;
+        height: 200px;
+        margin-top: 20px;
       }
       #roster .nx-sticker-pantone {
         left: 20px;
+        right: auto;
+        top: 20px;
       }
       #roster .nx-sticker-memo {
-        left: 260px;
+        left: 240px;
+        right: auto;
+        top: 60px;
       }
       #roster .nx-sticker-camera {
         right: 20px;
+        left: auto;
+        top: 0px;
       }
     }
 
     @media (max-width: 640px) {
+      #roster .nx-roster-title-cluster {
+        min-height: 320px;
+      }
       #roster .nx-film-stickers-stage {
-        flex: none;
-        transform: scale(0.75);
-        transform-origin: left center;
-        height: 180px;
-        min-height: 180px;
-        margin-left: -10px;
+        transform: scale(0.72);
+        transform-origin: left top;
+        height: 160px;
       }
     }
 
@@ -9228,14 +9230,28 @@
         stickers.forEach(el => {
           if (el._dragInit) return;
           el._dragInit = true;
-          let isDragging = false, startX = 0, startY = 0, currentX = 0, currentY = 0;
+          const stickerId = el.dataset.sticker || el.className;
           const baseRot = parseFloat(el.dataset.rotate || 0);
+          let isDragging = false, startX = 0, startY = 0, currentX = 0, currentY = 0;
+
+          // Restore saved user-placed coordinates if present
+          try {
+            const saved = localStorage.getItem('nx_sticker_pos_' + stickerId);
+            if (saved) {
+              const parsed = JSON.parse(saved);
+              if (typeof parsed.x === 'number' && typeof parsed.y === 'number') {
+                currentX = parsed.x;
+                currentY = parsed.y;
+                el.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${baseRot}deg)`;
+              }
+            }
+          } catch (_) {}
 
           el.addEventListener('mousedown', e => {
             isDragging = true;
             startX = e.clientX - currentX;
             startY = e.clientY - currentY;
-            el.style.zIndex = '99';
+            el.style.zIndex = '999';
             el.style.cursor = 'grabbing';
             e.preventDefault();
           });
@@ -9250,6 +9266,20 @@
             isDragging = false;
             el.style.cursor = 'grab';
             el.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${baseRot}deg)`;
+            try {
+              localStorage.setItem('nx_sticker_pos_' + stickerId, JSON.stringify({ x: currentX, y: currentY }));
+            } catch (_) {}
+          });
+
+          // Double click resets sticker to initial position
+          el.addEventListener('dblclick', e => {
+            e.stopPropagation();
+            currentX = 0;
+            currentY = 0;
+            el.style.transform = '';
+            try {
+              localStorage.removeItem('nx_sticker_pos_' + stickerId);
+            } catch (_) {}
           });
         });
 
