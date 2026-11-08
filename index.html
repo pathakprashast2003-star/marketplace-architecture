@@ -1800,277 +1800,396 @@
     }
 
     /* ── AWWWARDS SOTD: ZERO COMMISSION EDITORIAL INSTRUMENT (ANNOT + HISTOGRAM + ODOMETER) ── */
+    #fees {
+      padding-bottom: 140px;
+    }
+
+    .nx-monolith-header {
+      margin-bottom: 40px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .nx-compare-kicker-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #C55221;
+      background: #FFF1ED;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(197, 82, 33, 0.18);
+    }
+
+    .nx-monolith-h2 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.4rem, 4.6vw, 3.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      color: #0F172A;
+      margin: 0 0 16px;
+      max-width: 22ch;
+      text-wrap: balance;
+    }
+
+    .nx-h2-serif {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+      color: #C55221;
+      letter-spacing: 0;
+    }
+
+    .nx-monolith-lead {
+      font-size: clamp(1.02rem, 1.25vw, 1.18rem);
+      line-height: 1.6;
+      color: #475569;
+      max-width: 64ch;
+      margin: 0 auto;
+      text-wrap: pretty;
+    }
+
+    /* ── MAIN EDITORIAL CARD (Crisp Light-Mode Elevated Chassis) ── */
     .nx-compare-card {
       background: #FFFFFF;
       border: 1px solid rgba(15, 23, 42, 0.09);
       border-radius: 28px;
-      box-shadow: 0 24px 64px -16px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(15, 23, 42, 0.03);
+      box-shadow: 0 24px 60px -12px rgba(15, 23, 42, 0.07), 0 4px 16px -2px rgba(15, 23, 42, 0.03);
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      margin-top: 24px;
       position: relative;
     }
 
-    /* ── TOP SCRUBBER DECK (HISTOGRAM + FLOATING BUBBLE TOOLTIP) ── */
+    /* ── TOP SCRUBBER DECK (IMAGE 1: CENTERED HERO CARD + HISTOGRAM) ── */
     .nx-scrubber-deck {
-      padding: clamp(28px, 4vw, 48px);
+      padding: clamp(32px, 4.5vw, 52px) clamp(24px, 4vw, 48px);
       background: #FAFAF9;
-      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
-    }
-
-    .nx-scrubber-hero-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 24px;
-      margin-bottom: 28px;
-      flex-wrap: wrap;
-    }
-
-    .nx-scrubber-label-group {
+      border-bottom: 1px solid rgba(15, 23, 42, 0.07);
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      align-items: center;
+      text-align: center;
     }
 
-    .nx-scrubber-tag {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+    .nx-scrubber-headline {
+      font-size: clamp(14px, 1.4vw, 16px);
+      font-weight: 600;
       color: #64748B;
+      margin-bottom: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nx-scrubber-info-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: #E2E8F0;
+      color: #64748B;
+      font-size: 11px;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    /* ── CENTERED HERO ODOMETER CARD (IMAGE 1 & IMAGE 3) ── */
+    .nx-odometer-hero-box {
+      background: #FFFFFF;
+      border: 1px solid rgba(15, 23, 42, 0.1);
+      border-radius: 22px;
+      padding: 16px clamp(24px, 4vw, 44px);
+      box-shadow: 0 12px 36px -4px rgba(15, 23, 42, 0.06), 0 2px 8px rgba(15, 23, 42, 0.02);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      position: relative;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .nx-odometer-hero-box:hover {
+      border-color: rgba(197, 82, 33, 0.25);
+      box-shadow: 0 16px 44px -4px rgba(197, 82, 33, 0.09), 0 4px 12px rgba(15, 23, 42, 0.03);
+    }
+
+    .nx-odo-currency {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 4.4vw, 48px);
+      font-weight: 900;
+      color: #0F172A;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .nx-odo-reel-wrap {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5.2vw, 56px);
+      font-weight: 900;
+      color: #0F172A;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .nx-digit-col {
+      display: inline-block;
+      width: 0.61em;
+      height: 1.15em;
+      overflow: hidden;
+      position: relative;
+      vertical-align: middle;
+    }
+
+    .nx-digit-strip {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      will-change: transform;
+    }
+
+    .nx-digit-strip span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 1.15em;
+      line-height: 1.15em;
+    }
+
+    .nx-digit-comma {
+      display: inline-block;
+      margin: 0 2px;
+      font-size: 0.9em;
+      line-height: 1;
+      color: #0F172A;
+      vertical-align: middle;
+    }
+
+    .nx-odo-unit {
+      font-size: clamp(14px, 1.4vw, 17px);
+      font-weight: 600;
+      color: #64748B;
+      letter-spacing: -0.01em;
+      margin-left: 2px;
+    }
+
+    /* Green Surplus Pill Badge (Image 3: +0.29% Reference) */
+    .nx-odo-surplus-badge {
+      display: inline-flex;
+      align-items: center;
+      background: #ECFDF5;
+      color: #059669;
+      border: 1px solid rgba(16, 185, 129, 0.22);
+      font-size: clamp(12.5px, 1.2vw, 14px);
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 999px;
+      letter-spacing: -0.01em;
+      margin-left: 6px;
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
+      transition: transform 0.25s ease, background-color 0.25s ease;
     }
 
     .nx-scrubber-subtext {
-      font-size: 13.5px;
-      color: #475569;
-    }
-
-    /* Odometer Number Display Card */
-    .nx-odometer-pill {
-      background: #FFFFFF;
-      border: 1.5px solid rgba(15, 23, 42, 0.1);
-      border-radius: 20px;
-      padding: 14px 24px;
-      display: inline-flex;
-      align-items: baseline;
-      gap: 6px;
-      box-shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.06);
-      flex-wrap: wrap;
-    }
-
-    .nx-odometer-currency {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 2.6vw, 2.4rem);
-      font-weight: 800;
-      color: #C55221;
-    }
-
-    .nx-odometer-num {
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 4vw, 3.4rem);
-      font-weight: 850;
-      letter-spacing: -0.04em;
-      color: #0F172A;
-      font-variant-numeric: tabular-nums;
-      line-height: 1;
-    }
-
-    .nx-odometer-unit {
-      font-size: 14px;
-      font-weight: 700;
+      font-size: clamp(13px, 1.25vw, 15px);
       color: #64748B;
+      max-width: 54ch;
+      line-height: 1.5;
+      margin-bottom: 34px;
     }
 
-    .nx-odometer-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 12px;
-      font-weight: 800;
-      padding: 5px 12px;
-      border-radius: 999px;
-      background: #ECFDF5;
-      color: #059669;
-      border: 1px solid rgba(16, 185, 129, 0.25);
-      margin-left: 10px;
-      font-variant-numeric: tabular-nums;
+    /* ── HISTOGRAM & SCRUBBER SLIDER CONTAINER (IMAGE 1) ── */
+    .nx-slider-deck-inner {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
     }
 
-    /* 5 Aperture Presets */
-    .nx-aperture-stops {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      margin-bottom: 32px;
-    }
-
-    .nx-stop-btn {
-      appearance: none;
-      background: #FFFFFF;
-      border: 1.5px solid rgba(15, 23, 42, 0.1);
-      border-radius: 14px;
-      padding: 12px 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      cursor: pointer;
-      font-family: var(--font-body);
-      transition: border-color 0.18s ease, transform 0.15s ease, background 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .nx-stop-btn:hover {
-      border-color: #C55221;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(197, 82, 33, 0.12);
-    }
-
-    .nx-stop-btn:active {
-      transform: scale(0.97);
-    }
-
-    .nx-stop-btn.is-active {
-      background: #0F172A;
-      border-color: #0F172A;
-      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.2);
-    }
-
-    .nx-stop-btn span {
-      font-size: 13.5px;
-      font-weight: 800;
-      color: #0F172A;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .nx-stop-btn.is-active span {
-      color: #FFFFFF;
-    }
-
-    .nx-stop-btn small {
-      font-size: 11px;
-      font-weight: 600;
-      color: #64748B;
-    }
-
-    .nx-stop-btn.is-active small {
-      color: #CBD5E1;
-    }
-
-    /* Interactive Histogram + Floating Bubble Slider */
     .nx-slider-container {
       position: relative;
-      padding-top: 36px;
-      margin-bottom: 12px;
+      margin-bottom: 28px;
+      padding-top: 48px;
     }
 
-    /* Floating Bubble Tooltip */
+    /* Floating Tooltip Bubble (Image 1: 8,600 Reference) */
     .nx-slider-bubble {
       position: absolute;
       top: 0;
-      left: 33.3%;
       transform: translateX(-50%);
-      background: #0F172A;
-      color: #FFFFFF;
-      font-size: 12px;
+      background: #FFFFFF;
+      border: 1.5px solid #0F172A;
+      color: #0F172A;
+      font-family: var(--font-display);
+      font-size: 13.5px;
       font-weight: 800;
-      padding: 4px 12px;
-      border-radius: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
       pointer-events: none;
       white-space: nowrap;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
-      transition: left 0.05s linear;
+      transition: left 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 10;
     }
 
     .nx-slider-bubble::after {
-      content: '';
+      content: "";
       position: absolute;
-      bottom: -4px;
+      bottom: -5px;
       left: 50%;
-      transform: translateX(-50%);
-      border-width: 4px 4px 0;
-      border-style: solid;
-      border-color: #0F172A transparent transparent;
-    }
-
-    /* Native Range Slider */
-    .nx-precision-slider {
-      appearance: none;
-      -webkit-appearance: none;
-      width: 100%;
-      height: 10px;
-      border-radius: 999px;
-      background: linear-gradient(to right, #C55221 var(--range-pct, 33.3%), #E2E8F0 var(--range-pct, 33.3%));
-      outline: none;
-      cursor: pointer;
-      position: relative;
-      z-index: 3;
-    }
-
-    .nx-precision-slider::-webkit-slider-thumb {
-      appearance: none;
-      -webkit-appearance: none;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 8px;
+      height: 8px;
       background: #FFFFFF;
-      border: 3.5px solid #C55221;
-      box-shadow: 0 2px 10px rgba(197, 82, 33, 0.35);
-      cursor: grab;
-      transition: transform 0.15s ease, border-color 0.15s ease;
+      border-right: 1.5px solid #0F172A;
+      border-bottom: 1.5px solid #0F172A;
     }
 
-    .nx-precision-slider:active::-webkit-slider-thumb {
-      transform: scale(1.15);
+    .nx-precision-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: #E2E8F0;
+      outline: none;
+      cursor: grab;
+      position: relative;
+      z-index: 5;
+      margin: 0;
+    }
+
+    .nx-precision-slider:active {
       cursor: grabbing;
     }
 
-    .nx-precision-slider::-moz-range-thumb {
-      width: 26px;
-      height: 26px;
+    .nx-precision-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: #FFFFFF;
       border: 3.5px solid #C55221;
-      box-shadow: 0 2px 10px rgba(197, 82, 33, 0.35);
+      box-shadow: 0 3px 10px rgba(197, 82, 33, 0.3), 0 1px 3px rgba(0,0,0,0.1);
       cursor: grab;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
-    /* Histogram Vertical Bars underneath Slider */
+    .nx-precision-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.18);
+      box-shadow: 0 4px 16px rgba(197, 82, 33, 0.4);
+    }
+
+    .nx-precision-slider::-webkit-slider-thumb:active {
+      transform: scale(1.08);
+      cursor: grabbing;
+    }
+
+    /* Tactile Gaussian Histogram (Image 1) */
     .nx-histogram-bars {
       display: flex;
-      justify-content: space-between;
       align-items: flex-end;
-      height: 22px;
-      margin-top: 8px;
-      padding: 0 6px;
+      justify-content: space-between;
+      height: 38px;
+      padding: 0 8px;
+      margin-top: 10px;
       gap: 3px;
     }
 
     .nx-hist-bar {
       flex: 1;
+      background: #E2E8F0;
       border-radius: 2px;
-      background: #CBD5E1;
-      transition: background 0.15s ease, height 0.15s ease;
+      transition: background-color 0.15s ease, height 0.2s ease;
+      min-width: 2px;
     }
 
     .nx-hist-bar.is-active {
       background: #C55221;
+      box-shadow: 0 0 6px rgba(197, 82, 33, 0.25);
     }
 
     .nx-ruler-labels {
       display: flex;
       justify-content: space-between;
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
-      color: #64748B;
-      font-variant-numeric: tabular-nums;
-      margin-top: 8px;
+      color: #94A3B8;
+      letter-spacing: 0.02em;
+      margin-top: 10px;
       padding: 0 4px;
     }
 
-    /* ── ANNOT-STYLE COMPARISON TABLE (REFERENCE 2) ── */
+    /* 5 Aperture Presets */
+    .nx-aperture-stops {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .nx-stop-btn {
+      padding: 8px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(15, 23, 42, 0.09);
+      background: #FFFFFF;
+      color: #475569;
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    }
+
+    .nx-stop-btn small {
+      font-size: 10px;
+      font-weight: 600;
+      color: #94A3B8;
+      transition: color 0.2s ease;
+    }
+
+    .nx-stop-btn:hover {
+      border-color: rgba(197, 82, 33, 0.3);
+      color: #C55221;
+      transform: translateY(-1px);
+    }
+
+    .nx-stop-btn.is-active {
+      background: #0F172A;
+      color: #FFFFFF;
+      border-color: #0F172A;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.16);
+    }
+
+    .nx-stop-btn.is-active small {
+      color: #94A3B8;
+    }
+
+    /* ── ANNOT COMPARISON TABLE (IMAGE 2: 4 BALANCED COLUMNS) ── */
     .nx-annot-table-wrap {
-      padding: clamp(24px, 3.5vw, 44px);
+      padding: clamp(24px, 4vw, 48px);
       overflow-x: auto;
     }
 
@@ -2079,145 +2198,187 @@
       border-collapse: separate;
       border-spacing: 0;
       text-align: left;
+      min-width: 780px;
     }
 
     .nx-annot-table th {
-      padding: 16px 20px 24px;
+      padding: 18px 20px 22px;
       font-size: 12px;
       font-weight: 800;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #64748B;
       border-bottom: 1.5px solid #E2E8F0;
+      vertical-align: bottom;
     }
 
     .nx-th-feat {
-      width: 38%;
+      width: 32%;
     }
 
+    /* Highlighted Nexus Pillar (Image 2: Annot Red Column Card Reference) */
     .nx-th-nexus {
-      width: 34%;
-      background: rgba(197, 82, 33, 0.035);
-      border-top: 2px solid #C55221 !important;
-      border-left: 2px solid #C55221 !important;
-      border-right: 2px solid #C55221 !important;
-      border-top-left-radius: 18px;
-      border-top-right-radius: 18px;
-      padding: 20px 24px 20px !important;
-    }
-
-    .nx-th-trad {
       width: 28%;
-      padding-left: 24px !important;
+      background: rgba(197, 82, 33, 0.035);
+      border-top: 2.5px solid #C55221 !important;
+      border-left: 2.5px solid #C55221 !important;
+      border-right: 2.5px solid #C55221 !important;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      padding: 24px 20px 20px !important;
+      text-align: center;
+      position: relative;
     }
 
-    .nx-winner-badge {
-      display: inline-flex;
+    .nx-th-trad,
+    .nx-th-agency {
+      width: 20%;
+      text-align: center;
+      padding: 18px 16px 22px !important;
+    }
+
+    .nx-col-brand-header {
+      display: flex;
+      flex-direction: column;
       align-items: center;
       gap: 6px;
-      font-size: 12px;
-      font-weight: 850;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #C55221;
-      margin-bottom: 4px;
     }
 
-    .nx-winner-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
+    /* Annot-style Brand Square Logo (Image 2) */
+    .nx-col-logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       background: #C55221;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(197, 82, 33, 0.28);
     }
 
-    .nx-winner-rate {
+    .nx-col-logo-muted {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #F1F5F9;
+      color: #64748B;
+      font-size: 16px;
+      font-weight: 800;
+      border: 1px solid #E2E8F0;
+    }
+
+    .nx-col-logo {
+      font-size: 13.5px;
+      font-weight: 850;
+      letter-spacing: -0.01em;
+      color: #C55221;
+    }
+
+    .nx-col-take-rate {
       font-family: var(--font-display);
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 900;
       color: #0F172A;
       letter-spacing: -0.02em;
     }
 
-    .nx-trad-title {
-      font-size: 12px;
+    .nx-col-muted-title {
+      font-size: 13px;
       font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #64748B;
-      margin-bottom: 4px;
+      color: #334155;
     }
 
-    .nx-trad-rate {
+    .nx-col-muted-rate {
       font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 800;
+      font-size: 15px;
+      font-weight: 700;
       color: #64748B;
     }
 
     .nx-annot-table td {
-      padding: 18px 20px;
+      padding: 16px 18px;
       border-bottom: 1px solid #F1F5F9;
-      font-size: 14px;
+      font-size: 13.5px;
       vertical-align: middle;
     }
 
     .nx-td-feat {
       font-weight: 600;
       color: #0F172A;
-    }
-
-    .nx-td-nexus {
-      background: rgba(197, 82, 33, 0.035);
-      border-left: 2px solid #C55221 !important;
-      border-right: 2px solid #C55221 !important;
-      padding-left: 24px !important;
-      padding-right: 24px !important;
-      font-weight: 700;
-      color: #0F172A;
-    }
-
-    .nx-td-trad {
-      padding-left: 24px !important;
-      color: #475569;
-    }
-
-    .nx-annot-table tr:last-child .nx-td-nexus {
-      border-bottom: 2px solid #C55221 !important;
-      border-bottom-left-radius: 18px;
-      border-bottom-right-radius: 18px;
-    }
-
-    .nx-annot-cell {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    /* Icon Badges (Annot Style) */
+    .nx-feat-icon {
+      font-size: 16px;
+      width: 24px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .nx-td-nexus {
+      background: rgba(197, 82, 33, 0.035);
+      border-left: 2.5px solid #C55221 !important;
+      border-right: 2.5px solid #C55221 !important;
+      padding: 16px 18px !important;
+      text-align: center;
+      font-weight: 700;
+      color: #0F172A;
+    }
+
+    .nx-td-trad,
+    .nx-td-agency {
+      text-align: center;
+      color: #475569;
+    }
+
+    .nx-annot-table tr:last-child .nx-td-nexus {
+      border-bottom: 2.5px solid #C55221 !important;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    .nx-cell-content {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* Icon Badges (Image 2: Solid Green Circle Checkmark & Muted Cross) */
     .nx-check-circle {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background: #10B981;
       color: #FFFFFF;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 900;
       flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
     }
 
     .nx-cross-circle {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background: #F1F5F9;
       color: #94A3B8;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 900;
       flex-shrink: 0;
     }
@@ -2235,34 +2396,33 @@
     }
 
     /* ── TANGIBLE REINVESTMENT DECK (LIGHT EDITORIAL) ── */
-    .nx-reinvest-panel {
-      padding: clamp(24px, 3.5vw, 40px) clamp(28px, 4vw, 48px);
+    .nx-reinvest-deck {
+      padding: clamp(24px, 4vw, 44px) clamp(24px, 4vw, 48px);
       background: #FAFAF9;
-      border-top: 1px solid rgba(15, 23, 42, 0.08);
-      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      border-top: 1px solid rgba(15, 23, 42, 0.07);
     }
 
     .nx-reinvest-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 20px;
+      gap: 20px;
+      margin-bottom: 22px;
       flex-wrap: wrap;
-      gap: 12px;
     }
 
-    .nx-reinvest-tag {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #C55221;
+    .nx-reinvest-tagline {
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #C55221;
     }
 
-    .nx-reinvest-title {
+    .nx-reinvest-sub {
       font-size: 13.5px;
       color: #64748B;
       font-weight: 500;
@@ -2278,153 +2438,113 @@
       background: #FFFFFF;
       border: 1px solid rgba(15, 23, 42, 0.08);
       border-radius: 16px;
-      padding: 18px 20px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 10px;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
-      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
 
     .nx-reinvest-card:hover {
-      border-color: #C55221;
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(197, 82, 33, 0.1);
+      border-color: rgba(197, 82, 33, 0.25);
+      box-shadow: 0 8px 24px rgba(197, 82, 33, 0.08);
     }
 
-    .nx-reinvest-cat {
+    .nx-card-cat {
       font-size: 11px;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: #64748B;
-      display: block;
+      margin-bottom: 8px;
     }
 
-    .nx-reinvest-name {
+    .nx-card-name {
       font-family: var(--font-display);
-      font-size: 15px;
+      font-size: 15.5px;
       font-weight: 800;
       color: #0F172A;
-      letter-spacing: -0.01em;
-      line-height: 1.3;
-      margin: 2px 0 0;
+      margin-bottom: 6px;
     }
 
-    .nx-reinvest-desc {
-      font-size: 12px;
-      color: #64748B;
-      line-height: 1.45;
-      margin: 0;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .nx-reinvest-val {
-      font-family: var(--font-mono);
-      font-size: 13.5px;
-      font-weight: 700;
+    .nx-card-val {
+      font-size: 13px;
+      font-weight: 800;
       color: #059669;
-      font-variant-numeric: tabular-nums;
-      padding-top: 8px;
-      border-top: 1px dashed rgba(15, 23, 42, 0.08);
-      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+
+    .nx-card-desc {
+      font-size: 12px;
+      line-height: 1.5;
+      color: #64748B;
     }
 
     /* ── FOOTER BAR (PURCHASING POWER + CTA) ── */
     .nx-compare-footer {
-      padding: 24px clamp(28px, 4vw, 48px);
-      background: #FFFFFF;
+      padding: 24px clamp(24px, 4vw, 48px);
+      background: #0F172A;
+      color: #FFFFFF;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 24px;
       flex-wrap: wrap;
     }
 
-    .nx-perk-ticker {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      max-width: 58ch;
-    }
-
-    .nx-perk-label {
+    .nx-footer-purchasing-power {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #C55221;
+      gap: 12px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #E2E8F0;
+      max-width: 65ch;
+      line-height: 1.5;
     }
 
-    .nx-perk-statement {
+    .nx-bolt-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(197, 82, 33, 0.25);
+      color: #FF8552;
       font-size: 14px;
-      color: #334155;
-      line-height: 1.5;
-      font-weight: 500;
-      transition: opacity 0.15s ease, transform 0.15s ease;
+      flex-shrink: 0;
     }
 
     .nx-monolith-cta-btn {
-      appearance: none;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 16px 32px;
-      background: #0F172A;
-      color: #FFFFFF;
-      border: none;
-      border-radius: 14px;
-      font-family: var(--font-body);
-      font-size: 15px;
+      gap: 8px;
+      padding: 13px 26px;
+      border-radius: 999px;
+      background: #FFFFFF;
+      color: #0F172A;
+      font-family: inherit;
+      font-size: 13.5px;
       font-weight: 800;
-      letter-spacing: -0.01em;
-      cursor: pointer;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
-      transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
       white-space: nowrap;
     }
 
     .nx-monolith-cta-btn:hover {
-      background: #C55221;
+      background: #FFF1ED;
+      color: #C55221;
       transform: translateY(-2px);
-      box-shadow: 0 12px 32px rgba(197, 82, 33, 0.3);
-    }
-
-    .nx-monolith-cta-btn:active {
-      transform: scale(0.97);
-    }
-
-    .nx-monolith-cta-btn svg {
-      transition: transform 0.2s ease;
-    }
-
-    .nx-monolith-cta-btn:hover svg {
-      transform: translateX(4px);
+      box-shadow: 0 8px 24px rgba(197, 82, 33, 0.3);
     }
 
     @media (max-width: 900px) {
-      .nx-aperture-stops {
-        grid-template-columns: repeat(2, 1fr) 1fr;
-      }
-
       .nx-reinvest-grid {
         grid-template-columns: repeat(2, 1fr);
-      }
-
-      .nx-compare-footer {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .nx-monolith-cta-btn {
-        justify-content: center;
       }
     }
 
@@ -2432,186 +2552,17 @@
       .nx-reinvest-grid {
         grid-template-columns: 1fr;
       }
-
-      .nx-annot-table th,
-      .nx-annot-table td {
-        padding: 12px 10px;
-        font-size: 12px;
+      .nx-compare-footer {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
       }
-    }
-
-    /* steps */
-    .nx-steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .nx-step-n {
-      display: inline-grid;
-      place-items: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: #0F172A;
-      color: #fff;
-      font-weight: 700;
-      font-size: 14px;
-    }
-
-    .nx-step h3 {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 1.7rem;
-      letter-spacing: -.03em;
-      margin: 40px 0 10px;
-      color: #0F172A;
-    }
-
-    .nx-step p {
-      margin: 0;
-      line-height: 1.6;
-      color: #475569;
-    }
-
-    /* founding: architectural card */
-    .nx-found {
-      position: relative;
-      overflow: hidden;
-      border-radius: 40px;
-      padding: clamp(48px, 7vw, 90px) clamp(24px, 5vw, 80px);
-      text-align: center;
-      background: #FFFFFF;
-      border: 1px solid rgba(15, 23, 42, 0.08);
-      box-shadow: 0 20px 50px -20px rgba(15, 23, 42, 0.08);
-    }
-
-    .nx-found>* {
-      position: relative;
-      z-index: 1;
-    }
-
-    .nx-found .nx-h2,
-    .nx-found .nx-lead {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .nx-perks {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin: 0 0 40px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .nx-perks li {
-      padding: 11px 20px;
-      border-radius: 999px;
-      background: #F1F5F9;
-      color: #0F172A;
-      font-size: 14px;
-      font-weight: 600;
-      border: 1px solid rgba(15, 23, 42, 0.06);
-    }
-
-    .nx-btn {
-      display: inline-block;
-      padding: 19px 36px;
-      border-radius: 999px;
-      background: #0F172A;
-      color: #fff;
-      font-weight: 700;
-      text-decoration: none;
-      box-shadow: 0 20px 40px -18px rgba(15, 23, 42, 0.4);
-      transition: transform .3s cubic-bezier(.22, 1, .36, 1), background .2s ease;
-    }
-
-    .nx-btn:hover {
-      transform: translateY(-2px);
-      background: #1E293B;
-    }
-
-    /* footer */
-    .nx-foot {
-      display: grid;
-      grid-template-columns: 1.4fr repeat(3, 1fr);
-      gap: 32px;
-      padding: 64px 0 72px;
-      border-top: 1px solid rgba(15, 23, 42, 0.08);
-      font-size: 14px;
-    }
-
-    .nx-foot h4 {
-      font-size: 12px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: #64748B;
-      margin: 0 0 16px;
-      font-weight: 700;
-    }
-
-    .nx-foot a {
-      display: block;
-      color: #334155;
-      text-decoration: none;
-      padding: 5px 0;
-    }
-
-    .nx-foot a:hover {
-      color: #0F172A;
-    }
-
-    .nx-logo {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 30px;
-      letter-spacing: -.04em;
-      color: #0F172A;
-    }
-
-    /* reveal on scroll: one gentle rise, transform/opacity only */
-    .nx-reveal {
-      opacity: 0;
-      translate: 0 30px;
-      transition: opacity .9s cubic-bezier(.22, 1, .36, 1), translate 1s cubic-bezier(.22, 1, .36, 1);
-    }
-
-    .nx-reveal.is-in {
-      opacity: 1;
-      translate: 0 0;
-    }
-
-    .nx-bento .nx-reveal:nth-child(2),
-    .nx-steps .nx-reveal:nth-child(2),
-    .nx-calc .nx-reveal:nth-child(2) {
-      transition-delay: .08s;
-    }
-
-    .nx-bento .nx-reveal:nth-child(3),
-    .nx-steps .nx-reveal:nth-child(3) {
-      transition-delay: .16s;
-    }
-
-    .nx-bento .nx-reveal:nth-child(4) {
-      transition-delay: .2s;
-    }
-
-    .nx-bento .nx-reveal:nth-child(5) {
-      transition-delay: .24s;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .nx-reveal {
-        opacity: 1;
-        translate: none;
-        transition: none;
+      .nx-footer-purchasing-power {
+        flex-direction: column;
+        text-align: center;
       }
-
-      html {
-        scroll-behavior: auto;
+      .nx-monolith-cta-btn {
+        justify-content: center;
       }
     }
 
@@ -6783,222 +6734,330 @@
       <!-- ── ZERO COMMISSION SECTION (02 / 04) ── -->
       <section class="nx-sec" id="fees">
         <div class="nx-monolith-header nx-reveal">
-          <div class="nx-monolith-kicker">
-            <span class="nx-kicker-dot"></span>
-            <span>02 / 04 · ZERO COMMISSION PROTOCOL</span>
+          <div class="nx-compare-kicker-pill">
+            <span>Compare</span>
           </div>
-          <h2 class="nx-monolith-h2">Keep everything <span class="nx-h2-serif">you earn.</span></h2>
-          <p class="nx-monolith-lead">Traditional freelance marketplaces take 20% off every project. Nexus is a verified direct directory—one flat membership, direct client wire, and zero toll on your day rate.</p>
+          <h2 class="nx-monolith-h2">How does Nexus compare <span class="nx-h2-serif">to traditional platforms?</span></h2>
+          <p class="nx-monolith-lead">Traditional freelance platforms take around 20% of every project plus mandatory escrow holds. Nexus is a verified direct directory: one flat membership, 100% day-rate retention, and direct client wire.</p>
         </div>
 
         <!-- The Elevated Editorial Comparison Console (Annot + Histogram Reference) -->
         <div class="nx-compare-card nx-reveal">
-          <!-- Top Scrubber Deck: Odometer Pill + Aperture Stops + Histogram Range -->
+          <!-- Top Scrubber Deck: Centered Odometer Hero Card (Image 1 & 3) -->
           <div class="nx-scrubber-deck">
-            <div class="nx-scrubber-hero-row">
-              <div class="nx-scrubber-label-group">
-                <span class="nx-scrubber-tag">Annual Production Billings</span>
-                <span class="nx-scrubber-subtext">Drag the precision slider or select a benchmark tier:</span>
+            <div class="nx-scrubber-headline">
+              <span>Start with a flat monthly membership that includes verified direct wires.</span>
+              <span class="nx-scrubber-info-icon" title="No take-rates, no hidden escrow fees, direct ACH & wire settlement">i</span>
+            </div>
+            
+            <!-- Centered Odometer Hero Card (Image 1 & Image 3) -->
+            <div class="nx-odometer-hero-box">
+              <span class="nx-odo-currency">$</span>
+              <div class="nx-odo-reel-wrap" id="nxOdometerReel">
+                <!-- Rendered dynamically by Odometer JS Engine with descending reels -->
               </div>
-              <div class="nx-odometer-pill">
-                <span class="nx-odometer-currency">$</span>
-                <span class="nx-odometer-num" id="nxEarnVal">80,000</span>
-                <span class="nx-odometer-unit">/ yr</span>
-                <span class="nx-odometer-badge" id="nxSave">+ $16,000 Retained</span>
-              </div>
+              <span id="nxEarnVal" style="display:none;">80,000</span>
+              <span class="nx-odo-unit">/ yr</span>
+              <span class="nx-odo-surplus-badge" id="nxSave">+ $16,000 Retained</span>
             </div>
 
-            <!-- 5 Aperture Presets -->
-            <div class="nx-aperture-stops" role="group" aria-label="Preset annual billings">
-              <button type="button" class="nx-stop-btn" data-val="40000"><span>$40,000</span><small>Part-time</small></button>
-              <button type="button" class="nx-stop-btn is-active" data-val="80000"><span>$80,000</span><small>Active DP</small></button>
-              <button type="button" class="nx-stop-btn" data-val="120000"><span>$120,000</span><small>Commercial Dir</small></button>
-              <button type="button" class="nx-stop-btn" data-val="160000"><span>$160,000</span><small>Lead Operator</small></button>
-              <button type="button" class="nx-stop-btn" data-val="200000"><span>$200,000+</span><small>Studio Production</small></button>
-            </div>
+            <div class="nx-scrubber-subtext">Drag the precision slider to preview your retained income and platform savings. No hidden take-rates.</div>
 
-            <!-- Histogram + Slider with Floating Value Bubble Tooltip -->
-            <div class="nx-slider-container">
-              <div class="nx-slider-bubble" id="nxSliderBubble">$80,000</div>
-              <label for="nxEarn" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Adjust yearly billings</label>
-              <input class="nx-precision-slider" id="nxEarn" type="range" min="20000" max="200000" step="5000" value="80000">
-              
-              <!-- 40 Tactile Histogram Bars -->
-              <div class="nx-histogram-bars" id="nxHistogram" aria-hidden="true">
-                <span class="nx-hist-bar" style="height: 35%;"></span>
-                <span class="nx-hist-bar" style="height: 45%;"></span>
-                <span class="nx-hist-bar" style="height: 60%;"></span>
-                <span class="nx-hist-bar" style="height: 50%;"></span>
-                <span class="nx-hist-bar" style="height: 70%;"></span>
-                <span class="nx-hist-bar" style="height: 85%;"></span>
-                <span class="nx-hist-bar" style="height: 65%;"></span>
-                <span class="nx-hist-bar" style="height: 90%;"></span>
-                <span class="nx-hist-bar" style="height: 100%;"></span>
-                <span class="nx-hist-bar" style="height: 80%;"></span>
-                <span class="nx-hist-bar" style="height: 95%;"></span>
-                <span class="nx-hist-bar" style="height: 75%;"></span>
-                <span class="nx-hist-bar" style="height: 85%;"></span>
-                <span class="nx-hist-bar" style="height: 60%;"></span>
-                <span class="nx-hist-bar" style="height: 70%;"></span>
-                <span class="nx-hist-bar" style="height: 55%;"></span>
-                <span class="nx-hist-bar" style="height: 65%;"></span>
-                <span class="nx-hist-bar" style="height: 80%;"></span>
-                <span class="nx-hist-bar" style="height: 90%;"></span>
-                <span class="nx-hist-bar" style="height: 75%;"></span>
-                <span class="nx-hist-bar" style="height: 60%;"></span>
-                <span class="nx-hist-bar" style="height: 50%;"></span>
-                <span class="nx-hist-bar" style="height: 65%;"></span>
-                <span class="nx-hist-bar" style="height: 70%;"></span>
-                <span class="nx-hist-bar" style="height: 80%;"></span>
-                <span class="nx-hist-bar" style="height: 60%;"></span>
-                <span class="nx-hist-bar" style="height: 55%;"></span>
-                <span class="nx-hist-bar" style="height: 45%;"></span>
-                <span class="nx-hist-bar" style="height: 65%;"></span>
-                <span class="nx-hist-bar" style="height: 75%;"></span>
-                <span class="nx-hist-bar" style="height: 85%;"></span>
-                <span class="nx-hist-bar" style="height: 95%;"></span>
-                <span class="nx-hist-bar" style="height: 70%;"></span>
-                <span class="nx-hist-bar" style="height: 60%;"></span>
-                <span class="nx-hist-bar" style="height: 50%;"></span>
-                <span class="nx-hist-bar" style="height: 40%;"></span>
-                <span class="nx-hist-bar" style="height: 55%;"></span>
-                <span class="nx-hist-bar" style="height: 65%;"></span>
-                <span class="nx-hist-bar" style="height: 70%;"></span>
-                <span class="nx-hist-bar" style="height: 60%;"></span>
+            <!-- Slider Container with Floating Tooltip Bubble & 50-Bar Histogram (Image 1) -->
+            <div class="nx-slider-deck-inner">
+              <div class="nx-slider-container">
+                <div class="nx-slider-bubble" id="nxSliderBubble">$80,000</div>
+                <label for="nxEarn" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Adjust yearly billings</label>
+                <input class="nx-precision-slider" id="nxEarn" type="range" min="20000" max="200000" step="5000" value="80000">
+                
+                <!-- 50 Tactile Gaussian Histogram Bars (Image 1) -->
+                <div class="nx-histogram-bars" id="nxHistogram" aria-hidden="true">
+                  <span class="nx-hist-bar" style="height: 25%;"></span>
+                  <span class="nx-hist-bar" style="height: 32%;"></span>
+                  <span class="nx-hist-bar" style="height: 38%;"></span>
+                  <span class="nx-hist-bar" style="height: 46%;"></span>
+                  <span class="nx-hist-bar" style="height: 55%;"></span>
+                  <span class="nx-hist-bar" style="height: 68%;"></span>
+                  <span class="nx-hist-bar" style="height: 78%;"></span>
+                  <span class="nx-hist-bar" style="height: 90%;"></span>
+                  <span class="nx-hist-bar" style="height: 100%;"></span>
+                  <span class="nx-hist-bar" style="height: 94%;"></span>
+                  <span class="nx-hist-bar" style="height: 88%;"></span>
+                  <span class="nx-hist-bar" style="height: 82%;"></span>
+                  <span class="nx-hist-bar" style="height: 76%;"></span>
+                  <span class="nx-hist-bar" style="height: 70%;"></span>
+                  <span class="nx-hist-bar" style="height: 65%;"></span>
+                  <span class="nx-hist-bar" style="height: 62%;"></span>
+                  <span class="nx-hist-bar" style="height: 68%;"></span>
+                  <span class="nx-hist-bar" style="height: 74%;"></span>
+                  <span class="nx-hist-bar" style="height: 85%;"></span>
+                  <span class="nx-hist-bar" style="height: 92%;"></span>
+                  <span class="nx-hist-bar" style="height: 96%;"></span>
+                  <span class="nx-hist-bar" style="height: 88%;"></span>
+                  <span class="nx-hist-bar" style="height: 80%;"></span>
+                  <span class="nx-hist-bar" style="height: 72%;"></span>
+                  <span class="nx-hist-bar" style="height: 65%;"></span>
+                  <span class="nx-hist-bar" style="height: 58%;"></span>
+                  <span class="nx-hist-bar" style="height: 52%;"></span>
+                  <span class="nx-hist-bar" style="height: 48%;"></span>
+                  <span class="nx-hist-bar" style="height: 44%;"></span>
+                  <span class="nx-hist-bar" style="height: 50%;"></span>
+                  <span class="nx-hist-bar" style="height: 58%;"></span>
+                  <span class="nx-hist-bar" style="height: 68%;"></span>
+                  <span class="nx-hist-bar" style="height: 75%;"></span>
+                  <span class="nx-hist-bar" style="height: 80%;"></span>
+                  <span class="nx-hist-bar" style="height: 72%;"></span>
+                  <span class="nx-hist-bar" style="height: 62%;"></span>
+                  <span class="nx-hist-bar" style="height: 54%;"></span>
+                  <span class="nx-hist-bar" style="height: 46%;"></span>
+                  <span class="nx-hist-bar" style="height: 40%;"></span>
+                  <span class="nx-hist-bar" style="height: 35%;"></span>
+                  <span class="nx-hist-bar" style="height: 30%;"></span>
+                  <span class="nx-hist-bar" style="height: 28%;"></span>
+                  <span class="nx-hist-bar" style="height: 25%;"></span>
+                  <span class="nx-hist-bar" style="height: 22%;"></span>
+                  <span class="nx-hist-bar" style="height: 20%;"></span>
+                </div>
+
+                <div class="nx-ruler-labels" aria-hidden="true">
+                  <span>$20,000</span>
+                  <span>$65,000</span>
+                  <span>$110,000</span>
+                  <span>$155,000</span>
+                  <span>$200,000+</span>
+                </div>
               </div>
 
-              <div class="nx-ruler-labels" aria-hidden="true">
-                <span>$20,000</span>
-                <span>$65,000</span>
-                <span>$110,000</span>
-                <span>$155,000</span>
-                <span>$200,000+</span>
+              <!-- 5 Aperture Presets -->
+              <div class="nx-aperture-stops" role="group" aria-label="Preset annual billings">
+                <button type="button" class="nx-stop-btn" data-val="40000"><span>$40,000</span><small>Part-time</small></button>
+                <button type="button" class="nx-stop-btn is-active" data-val="80000"><span>$80,000</span><small>Active DP</small></button>
+                <button type="button" class="nx-stop-btn" data-val="120000"><span>$120,000</span><small>Commercial Dir</small></button>
+                <button type="button" class="nx-stop-btn" data-val="160000"><span>$160,000</span><small>Lead Operator</small></button>
+                <button type="button" class="nx-stop-btn" data-val="200000"><span>$200,000+</span><small>Studio Production</small></button>
               </div>
             </div>
           </div>
 
-          <!-- Highlighted Feature Comparison Table (Annot Reference 2) -->
+          <!-- Comparison Table (Image 2: 4-Column Annot Architecture) -->
           <div class="nx-annot-table-wrap">
             <table class="nx-annot-table" aria-label="Nexus vs Traditional Marketplaces comparison">
               <thead>
                 <tr>
                   <th class="nx-th-feat">Commercial Terms</th>
                   <th class="nx-th-nexus">
-                    <div class="nx-winner-badge">
-                      <span class="nx-winner-dot"></span>
-                      <span>Nexus Direct</span>
+                    <div class="nx-col-brand-header">
+                      <div class="nx-col-logo-badge">N</div>
+                      <div class="nx-col-logo">Nexus Direct</div>
+                      <div class="nx-col-take-rate">0% Take Rate</div>
                     </div>
-                    <div class="nx-winner-rate">0% Take Rate</div>
                   </th>
                   <th class="nx-th-trad">
-                    <div class="nx-trad-title">Traditional Marketplaces</div>
-                    <div class="nx-trad-rate">20% Escrow Cut</div>
+                    <div class="nx-col-brand-header">
+                      <div class="nx-col-logo-muted">⚡</div>
+                      <div class="nx-col-muted-title">Upwork / Fiverr</div>
+                      <div class="nx-col-muted-rate">20% Escrow Toll</div>
+                    </div>
+                  </th>
+                  <th class="nx-th-agency">
+                    <div class="nx-col-brand-header">
+                      <div class="nx-col-logo-muted">🏛️</div>
+                      <div class="nx-col-muted-title">Talent Agencies</div>
+                      <div class="nx-col-muted-rate">25–35% Markup</div>
+                    </div>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="nx-td-feat">Platform Commission</td>
+                  <td class="nx-td-feat">
+                    <span class="nx-feat-icon">⚡</span>
+                    <span>Platform Commission</span>
+                  </td>
                   <td class="nx-td-nexus">
-                    <div class="nx-annot-cell">
+                    <div class="nx-cell-content">
                       <span class="nx-check-circle" aria-label="Included">✔</span>
-                      <strong class="nx-win-figure">0% (Zero platform toll)</strong>
+                      <strong class="nx-win-figure">0% (Zero toll)</strong>
                     </div>
                   </td>
                   <td class="nx-td-trad">
-                    <div class="nx-annot-cell">
+                    <div class="nx-cell-content">
                       <span class="nx-cross-circle" aria-label="Excluded">✕</span>
-                      <span class="nx-loss-figure">20% deducted per invoice</span>
+                      <span class="nx-loss-figure">20% on milestones</span>
+                    </div>
+                  </td>
+                  <td class="nx-td-agency">
+                    <div class="nx-cell-content">
+                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-loss-figure">25–35% agency cut</span>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="nx-td-feat">Your Annual Take-Home</td>
+                  <td class="nx-td-feat">
+                    <span class="nx-feat-icon">💰</span>
+                    <span>Annual Creator Take-Home</span>
+                  </td>
                   <td class="nx-td-nexus">
-                    <div class="nx-annot-cell">
+                    <div class="nx-cell-content">
                       <span class="nx-check-circle" aria-label="Included">✔</span>
                       <strong class="nx-win-figure" id="nxUsBarVal">Keep $80,000 (100% Retained)</strong>
                     </div>
                   </td>
                   <td class="nx-td-trad">
-                    <div class="nx-annot-cell">
+                    <div class="nx-cell-content">
                       <span class="nx-cross-circle" aria-label="Excluded">✕</span>
-                      <span class="nx-loss-figure" id="nxThemRetainedVal">Creator receives $64,000 (80%)</span>
+                      <span class="nx-loss-figure" id="nxThemRetainedVal">Creator keeps $64,000 (80%)</span>
+                    </div>
+                  </td>
+                  <td class="nx-td-agency">
+                    <div class="nx-cell-content">
+                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-loss-figure" id="nxAgencyRetainedVal">Creator keeps $56,000 (70%)</span>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="nx-td-feat">Annual Platform Toll / Extraction</td>
+                  <td class="nx-td-feat">
+                    <span class="nx-feat-icon">📉</span>
+                    <span>Annual Extraction / Loss</span>
+                  </td>
                   <td class="nx-td-nexus">
-                    <div class="nx-annot-cell">
+                    <div class="nx-cell-content">
                       <span class="nx-check-circle" aria-label="Included">✔</span>
                       <strong class="nx-win-figure">$0.00 Platform Fee</strong>
                     </div>
                   </td>
                   <td class="nx-td-trad">
-                    <div class="nx-annot-cell">
+                    <div class="nx-cell-content">
                       <span class="nx-cross-circle" aria-label="Excluded">✕</span>
-                      <span class="nx-loss-figure" id="nxThem">−$16,000 toll</span>
+                      <span class="nx-loss-figure" id="nxThem">−$16,000 toll / yr</span>
+                    </div>
+                  </td>
+                  <td class="nx-td-agency">
+                    <div class="nx-cell-content">
+                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-loss-figure" id="nxAgencyToll">−$24,000 markup / yr</span>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="nx-td-feat">Payout Velocity &amp; Escrow</td>
+                  <td class="nx-td-feat">
+                    <span class="nx-feat-icon">⏳</span>
+                    <span>5-Year Compounded Loss</span>
+                  </td>
                   <td class="nx-td-nexus">
-                    <div class="nx-annot-cell">
+                    <div class="nx-cell-content">
                       <span class="nx-check-circle" aria-label="Included">✔</span>
-                      <span>Same-day direct wire &amp; ACH</span>
+                      <strong class="nx-win-figure">$0 Lost (100% Retained)</strong>
                     </div>
                   </td>
                   <td class="nx-td-trad">
-                    <div class="nx-annot-cell">
+                    <div class="nx-cell-content">
                       <span class="nx-cross-circle" aria-label="Excluded">✕</span>
-                      <span>14–21 day mandatory escrow hold</span>
+                      <span class="nx-loss-figure" id="nxUpwork5Yr">−$80,000 Lost</span>
+                    </div>
+                  </td>
+                  <td class="nx-td-agency">
+                    <div class="nx-cell-content">
+                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-loss-figure" id="nxAgency5Yr">−$120,000 Lost</span>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="nx-td-feat">Client Relationship Ownership</td>
+                  <td class="nx-td-feat">
+                    <span class="nx-feat-icon">⏱️</span>
+                    <span>Payout Velocity &amp; Escrow</span>
+                  </td>
                   <td class="nx-td-nexus">
-                    <div class="nx-annot-cell">
+                    <div class="nx-cell-content">
                       <span class="nx-check-circle" aria-label="Included">✔</span>
-                      <span>100% direct client ownership for life</span>
+                      <span>Same-day wire &amp; ACH</span>
                     </div>
                   </td>
                   <td class="nx-td-trad">
-                    <div class="nx-annot-cell">
+                    <div class="nx-cell-content">
                       <span class="nx-cross-circle" aria-label="Excluded">✕</span>
-                      <span>Platform gates communications &amp; NDAs</span>
+                      <span>14–21 day escrow lockup</span>
+                    </div>
+                  </td>
+                  <td class="nx-td-agency">
+                    <div class="nx-cell-content">
+                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span>NET 60–90 payment delays</span>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="nx-td-feat">Master Agreements &amp; IP Rights</td>
+                  <td class="nx-td-feat">
+                    <span class="nx-feat-icon">🤝</span>
+                    <span>Direct Client Ownership</span>
+                  </td>
                   <td class="nx-td-nexus">
-                    <div class="nx-annot-cell">
+                    <div class="nx-cell-content">
                       <span class="nx-check-circle" aria-label="Included">✔</span>
-                      <span>You own 100% of contracts &amp; masters</span>
+                      <span>100% direct client ownership</span>
                     </div>
                   </td>
                   <td class="nx-td-trad">
-                    <div class="nx-annot-cell">
+                    <div class="nx-cell-content">
                       <span class="nx-cross-circle" aria-label="Excluded">✕</span>
-                      <span>Platform-enforced terms &amp; licensing</span>
+                      <span>Platform gates &amp; monitors chat</span>
+                    </div>
+                  </td>
+                  <td class="nx-td-agency">
+                    <div class="nx-cell-content">
+                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span>Agency holds client contract</span>
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <td class="nx-td-feat">Pricing Model</td>
+                  <td class="nx-td-feat">
+                    <span class="nx-feat-icon">📜</span>
+                    <span>Master IP &amp; Raw Deliverables</span>
+                  </td>
                   <td class="nx-td-nexus">
-                    <div class="nx-annot-cell">
+                    <div class="nx-cell-content">
                       <span class="nx-check-circle" aria-label="Included">✔</span>
-                      <strong class="nx-win-figure">One flat $29/mo membership</strong>
+                      <span>You retain 100% master IP</span>
                     </div>
                   </td>
                   <td class="nx-td-trad">
-                    <div class="nx-annot-cell">
+                    <div class="nx-cell-content">
                       <span class="nx-cross-circle" aria-label="Excluded">✕</span>
-                      <span class="nx-loss-figure">Perpetual 20% tax on every job</span>
+                      <span>Standard platform TOS terms</span>
+                    </div>
+                  </td>
+                  <td class="nx-td-agency">
+                    <div class="nx-cell-content">
+                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span>Work-for-hire rights to agency</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="nx-td-feat">
+                    <span class="nx-feat-icon">🏷️</span>
+                    <span>Commercial Billing Model</span>
+                  </td>
+                  <td class="nx-td-nexus">
+                    <div class="nx-cell-content">
+                      <span class="nx-check-circle" aria-label="Included">✔</span>
+                      <span>Flat verified membership</span>
+                    </div>
+                  </td>
+                  <td class="nx-td-trad">
+                    <div class="nx-cell-content">
+                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span>20% toll on every client $</span>
+                    </div>
+                  </td>
+                  <td class="nx-td-agency">
+                    <div class="nx-cell-content">
+                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span>Heavy agency markup on labor</span>
                     </div>
                   </td>
                 </tr>
@@ -7006,64 +7065,35 @@
             </table>
           </div>
 
-          <!-- Dynamic Capital Reinvestment Deck (What the Surplus Buys) -->
-          <div class="nx-reinvest-panel">
+          <!-- Dynamic Reinvestment Deck: What Your Retained Capital Buys -->
+          <div class="nx-reinvest-deck">
             <div class="nx-reinvest-header">
-              <span class="nx-reinvest-tag">⚡ TANGIBLE CAPITAL REINVESTMENT</span>
-              <span class="nx-reinvest-title">What keeping 100% of your billings purchases for your production studio annually:</span>
+              <span class="nx-reinvest-tagline">
+                <span class="nx-kicker-dot"></span>
+                <span>Production Capital Reinvestment</span>
+              </span>
+              <span class="nx-reinvest-sub">What keeping 100% of billings purchases for your production studio annually:</span>
             </div>
-            <div class="nx-reinvest-grid">
-              <div class="nx-reinvest-card">
-                <div>
-                  <span class="nx-reinvest-cat" id="gearCat1">🎥 Cine Optics</span>
-                  <h4 class="nx-reinvest-name" id="gearItem1">4× Cooke Anamorphic Primes</h4>
-                  <p class="nx-reinvest-desc" id="gearDesc1">Full-frame prime rentals for high-end automotive &amp; commercial spots</p>
-                </div>
-                <div class="nx-reinvest-val" id="gearVal1">$6,400</div>
-              </div>
-              <div class="nx-reinvest-card">
-                <div>
-                  <span class="nx-reinvest-cat" id="gearCat2">✈️ Location Travel</span>
-                  <h4 class="nx-reinvest-name" id="gearItem2">8× Location Shoot Flights</h4>
-                  <p class="nx-reinvest-desc" id="gearDesc2">Transatlantic flights and regional gear logistics for director &amp; AC</p>
-                </div>
-                <div class="nx-reinvest-val" id="gearVal2">$4,800</div>
-              </div>
-              <div class="nx-reinvest-card">
-                <div>
-                  <span class="nx-reinvest-cat" id="gearCat3">🖥️ Studio Compute</span>
-                  <h4 class="nx-reinvest-name" id="gearItem3">Dual RTX 4090 Unreal Node</h4>
-                  <p class="nx-reinvest-desc" id="gearDesc3">Dedicated real-time virtual production &amp; GPU rendering workstation</p>
-                </div>
-                <div class="nx-reinvest-val" id="gearVal3">$3,200</div>
-              </div>
-              <div class="nx-reinvest-card">
-                <div>
-                  <span class="nx-reinvest-cat" id="gearCat4">🛡️ Direct Shield</span>
-                  <h4 class="nx-reinvest-name" id="gearItem4">Inland Marine Insurance</h4>
-                  <p class="nx-reinvest-desc" id="gearDesc4">Comprehensive annual production liability and equipment insurance</p>
-                </div>
-                <div class="nx-reinvest-val" id="gearVal4">$1,600</div>
-              </div>
+
+            <div class="nx-reinvest-grid" id="nxGearGrid">
+              <!-- Rendered Dynamically via JS based on billings tier -->
             </div>
           </div>
 
-          <!-- Bottom Footer Bar: Dynamic Purchasing Power Ticker + Direct CTA -->
+          <!-- Elevated Monolith Footer Bar -->
           <div class="nx-compare-footer">
-            <div class="nx-perk-ticker">
-              <div class="nx-perk-label">
-                <span>⚡</span>
-                <span>ANNUAL PURCHASING POWER SURPLUS</span>
-              </div>
-              <div class="nx-perk-statement" id="nxSavePerk">Equivalent to 8 commercial shoot flights + 2 master anamorphic prime lens rentals.</div>
+            <div class="nx-footer-purchasing-power">
+              <span class="nx-bolt-badge">⚡</span>
+              <span id="nxSavePerk">Equivalent to 8 commercial shoot flights + 2 master anamorphic prime lens rentals.</span>
             </div>
-            <button type="button" class="nx-monolith-cta-btn" onclick="openInquiryModal('Curated Director', 'Zero Commission Roster')">
+            <a class="nx-monolith-cta-btn" href="#roster">
               <span>Apply for Curated Membership</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </button>
+              <span>→</span>
+            </a>
           </div>
         </div>
       </section>
+
 
       <!-- ── PROTOCOL SECTION (03 / 04) ── -->
       <section class="nx-sec" id="how">
@@ -8206,7 +8236,7 @@
       const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: 0.12 });
       document.querySelectorAll('.nx-reveal').forEach(el => io.observe(el));
 
-      // Fee Calculator & Advanced Motion Suite (Annot + Histogram + Number Animation Reference)
+      // Fee Calculator & Advanced Motion Suite (Image 1, 2, 3 Odometer Engine)
       const range = document.getElementById('nxEarn'), fmt = n => '$' + n.toLocaleString('en-US');
       const feeFor = v => Math.round(v * 0.2);
 
@@ -8234,183 +8264,182 @@
           ]
         },
         {
-          threshold: 95000,
+          threshold: 105000,
           items: [
-            { cat: '🎥 Cine Optics', name: '4× Cooke Anamorphic Primes', val: '$6,400', desc: 'Full-frame prime rentals for high-end automotive & commercial spots' },
-            { cat: '✈️ Location Travel', name: '8× Location Shoot Flights', val: '$4,800', desc: 'Transatlantic flights and regional gear logistics for director & AC' },
-            { cat: '🖥️ Studio Compute', name: 'Dual RTX 4090 Unreal Node', val: '$3,200', desc: 'Dedicated real-time virtual production & GPU rendering workstation' },
-            { cat: '🛡️ Direct Shield', name: 'Inland Marine Insurance', val: '$1,600', desc: 'Comprehensive annual production liability and equipment insurance' }
+            { cat: '🎥 Cine Camera', name: 'RED Komodo 6K Package', val: '$6,800', desc: 'Global shutter cinema body, cage, breakout box & RF mount cine lenses' },
+            { cat: '✈️ Travel & Crew', name: '8× Commercial Flights', val: '$4,800', desc: 'Cross-country production scout flights + 2nd unit DP travel accommodation' },
+            { cat: '🖥️ Studio Compute', name: 'M3 Max 128GB Workstation', val: '$3,200', desc: 'Real-time 8K playback, color grading & DaVinci Resolve Studio surface' },
+            { cat: '🛡️ Annual Shield', name: 'Comprehensive E&O Insurance', val: '$1,200', desc: 'Errors and omissions liability policy for national commercial distribution' }
           ]
         },
         {
-          threshold: 135000,
+          threshold: 155000,
           items: [
-            { cat: '🎥 Cine Optics', name: 'ARRI Alexa 35 Rental Pkg', val: '$9,600', desc: '3-week A-camera package with Master Primes & Preston wireless FIZ' },
-            { cat: '✈️ Travel & Crew', name: '12× Global Shoot Flights', val: '$7,200', desc: 'Global commercial scout flights & international production transport' },
-            { cat: '🖥️ Post Suite', name: 'DaVinci Resolve Mini Suite', val: '$4,800', desc: 'Master color-grading surface, Flanders Scientific reference monitor' },
-            { cat: '🛡️ Studio Reserve', name: 'Legal Counsel & IP Vault', val: '$2,400', desc: 'Entertainment attorney contract templates and direct client master IP' }
-          ]
-        },
-        {
-          threshold: 175000,
-          items: [
-            { cat: '🎥 High-Speed Rig', name: 'Phantom Flex4K Package', val: '$12,800', desc: '1,000 fps ultra slow-motion commercial rig with dedicated tech' },
-            { cat: '✈️ Global Freight', name: 'Crew Flight & Freight Hub', val: '$9,600', desc: 'Multi-city commercial campaign travel, excess baggage & carnet fees' },
-            { cat: '🖥️ Virtual Stage', name: 'LED Volume Stage Days', val: '$6,400', desc: '2 full production shoot days in an Unreal Engine in-camera VFX volume' },
-            { cat: '🛡️ Studio Growth', name: 'Dedicated Studio Lease', val: '$3,200', desc: '3 months prime studio/gear prep space in Brooklyn or Los Angeles' }
+            { cat: '🎥 Cine Optics', name: 'Atlas Orion Anamorphic Set', val: '$11,500', desc: '2× anamorphic prime lenses for cinematic commercial look & oval bokeh' },
+            { cat: '💡 Lighting Rig', name: 'Aputure Electro Storm Kit', val: '$7,200', desc: 'Point-source BLAIR LED fixtures for commercial daylight simulation' },
+            { cat: '🖥️ Post Compute', name: 'Mac Studio Ultra 192GB', val: '$4,500', desc: 'Dual ProRes engines running uncompressed open-gate raw workflows' },
+            { cat: '🏢 Studio Lease', name: 'Production Loft Space', val: '$8,800', desc: 'Dedicated downtown edit suite & client review screening lounge' }
           ]
         },
         {
           threshold: Infinity,
           items: [
-            { cat: '🎥 Pursuit Vehicle', name: 'Motorized Pursuit Arm Rig', val: '$16,000', desc: 'High-speed camera pursuit crane & stabilized gimbal for car commercials' },
-            { cat: '✈️ Global Logistics', name: 'Worldwide Campaign Travel', val: '$12,000', desc: 'Full commercial production crew business class flights & logistics' },
-            { cat: '🖥️ Render Farm', name: 'GPU Render Cluster Node', val: '$8,000', desc: '4× RTX 4090 96GB VRAM on-premise Houdini & Redshift render farm' },
-            { cat: '🛡️ Studio Fund', name: 'Full-Year Studio Lease', val: '$4,000', desc: '100% of your annual studio lease covered purely by retained surplus' }
+            { cat: '🎥 Flagship Cine', name: 'ARRI Alexa Mini LF Package', val: '$18,000', desc: 'Large format cinema package rental for premium global fashion & auto spots' },
+            { cat: '💡 High-End G&E', name: 'Complete 3-Ton Grip Van', val: '$8,500', desc: 'Full commercial grip truck rental with dana dolly & modern rigging gear' },
+            { cat: '🏢 Studio Lease', name: 'Annual Loft Lease Deposit', val: '$9,500', desc: 'High-ceiling industrial studio space in Brooklyn or Los Angeles Arts District' },
+            { cat: '🛡️ Legal Retainer', name: 'Production Legal Shield', val: '$4,000', desc: 'Retained commercial entertainment attorney for contract & buy-out review' }
           ]
         }
       ];
 
-      let lastGearTier = -1;
       const updateGearDeck = (billings) => {
-        const tierIdx = GEAR_TIERS.findIndex(t => billings <= t.threshold);
-        if (tierIdx === -1 || tierIdx === lastGearTier) return;
-        lastGearTier = tierIdx;
-        const tier = GEAR_TIERS[tierIdx];
-
-        tier.items.forEach((item, idx) => {
-          const num = idx + 1;
-          const catEl = document.getElementById(`gearCat${num}`);
-          const itemEl = document.getElementById(`gearItem${num}`);
-          const descEl = document.getElementById(`gearDesc${num}`);
-          const valEl = document.getElementById(`gearVal${num}`);
-
-          if (catEl) catEl.textContent = item.cat;
-          if (itemEl) itemEl.textContent = item.name;
-          if (descEl) descEl.textContent = item.desc;
-          if (valEl) valEl.textContent = item.val;
-        });
+        const grid = document.getElementById('nxGearGrid');
+        if (!grid) return;
+        const tier = GEAR_TIERS.find(t => billings <= t.threshold) || GEAR_TIERS[GEAR_TIERS.length - 1];
+        grid.innerHTML = tier.items.map(item => `
+          <div class="nx-reinvest-card">
+            <div>
+              <div class="nx-card-cat">${item.cat}</div>
+              <div class="nx-card-name">${item.name}</div>
+            </div>
+            <div>
+              <div class="nx-card-val">${item.val} / yr</div>
+              <div class="nx-card-desc">${item.desc}</div>
+            </div>
+          </div>
+        `).join('');
       };
 
-      // ── Smooth Interrupt-Safe Number Counter ──
-      let countAnimId = null;
-      let currentAnimatedVals = {
-        earn: 80000,
-        them: 16000,
-        save: 16000,
-        retained: 64000
-      };
+      // ── Mechanical Odometer Digit Reel Engine (Image 3: Tima King Reverse-Order Specification) ──
+      const odoReelWrap = document.getElementById('nxOdometerReel');
+      let previousBillingVal = null;
 
-      const animateNumbersTo = (targetEarn, isInstant = false) => {
-        if (countAnimId) {
-          cancelAnimationFrame(countAnimId);
-          countAnimId = null;
+      const renderOdometerReel = (val, isScrubbing = false) => {
+        if (!odoReelWrap) return;
+        const formatted = val.toLocaleString('en-US');
+        const chars = formatted.split('');
+        const digits = chars.filter(c => c !== ',');
+        const totalDigits = digits.length;
+
+        // Check if DOM column count matches digit count
+        let cols = odoReelWrap.querySelectorAll('.nx-digit-col');
+        if (cols.length !== totalDigits) {
+          let html = '';
+          chars.forEach(ch => {
+            if (ch === ',') {
+              html += '<span class="nx-digit-comma">,</span>';
+            } else {
+              // Descending digits: 9 down to 0
+              // When target increases, position moves DOWNWARD (less negative)
+              // When target decreases, position moves UPWARD (more negative)
+              let spans = '';
+              for (let d = 9; d >= 0; d--) spans += '<span>' + d + '</span>';
+              html += '<span class="nx-digit-col"><span class="nx-digit-strip">' + spans + '</span></span>';
+            }
+          });
+          odoReelWrap.innerHTML = html;
+          cols = odoReelWrap.querySelectorAll('.nx-digit-col');
         }
 
-        const targetThem = feeFor(targetEarn);
-        const targetSave = targetThem;
-        const targetRetained = targetEarn - targetThem;
+        // Apply reverse-order staggered transition
+        cols.forEach((col, i) => {
+          const targetDigit = parseInt(digits[i], 10);
+          const strip = col.querySelector('.nx-digit-strip');
+          const targetIndex = 9 - targetDigit;
+          
+          if (!strip) return;
 
-        const earnValEl = document.getElementById('nxEarnVal');
-        const themEl = document.getElementById('nxThem');
-        const saveEl = document.getElementById('nxSave');
-        const themRetainedEl = document.getElementById('nxThemRetainedVal');
-        const usBar = document.getElementById('nxUsBarVal');
-
-        if (isInstant || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          currentAnimatedVals.earn = targetEarn;
-          currentAnimatedVals.them = targetThem;
-          currentAnimatedVals.save = targetSave;
-          currentAnimatedVals.retained = targetRetained;
-
-          if (earnValEl) earnValEl.textContent = fmt(targetEarn).replace('$', '');
-          if (themEl) themEl.textContent = '−' + fmt(targetThem);
-          if (saveEl) saveEl.textContent = '+ ' + fmt(targetSave) + ' Retained';
-          if (themRetainedEl) themRetainedEl.textContent = 'Creator receives ' + fmt(targetRetained) + ' (80%)';
-          if (usBar) usBar.textContent = 'Keep ' + fmt(targetEarn) + ' (100% Retained)';
-          return;
-        }
-
-        const startEarn = currentAnimatedVals.earn;
-        const startThem = currentAnimatedVals.them;
-        const startSave = currentAnimatedVals.save;
-        const startRetained = currentAnimatedVals.retained;
-
-        const startTime = performance.now();
-        const duration = 400;
-        const easeOutExpo = t => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
-
-        const step = (now) => {
-          const elapsed = now - startTime;
-          const progress = Math.min(1, elapsed / duration);
-          const eased = easeOutExpo(progress);
-
-          currentAnimatedVals.earn = Math.round(startEarn + (targetEarn - startEarn) * eased);
-          currentAnimatedVals.them = Math.round(startThem + (targetThem - startThem) * eased);
-          currentAnimatedVals.save = Math.round(startSave + (targetSave - startSave) * eased);
-          currentAnimatedVals.retained = Math.round(startRetained + (targetRetained - startRetained) * eased);
-
-          if (earnValEl) earnValEl.textContent = fmt(currentAnimatedVals.earn).replace('$', '');
-          if (themEl) themEl.textContent = '−' + fmt(currentAnimatedVals.them);
-          if (saveEl) saveEl.textContent = '+ ' + fmt(currentAnimatedVals.save) + ' Retained';
-          if (themRetainedEl) themRetainedEl.textContent = 'Creator receives ' + fmt(currentAnimatedVals.retained) + ' (80%)';
-          if (usBar) usBar.textContent = 'Keep ' + fmt(currentAnimatedVals.earn) + ' (100% Retained)';
-
-          if (progress < 1) {
-            countAnimId = requestAnimationFrame(step);
+          if (previousBillingVal === null) {
+            strip.style.transition = 'none';
+          } else if (isScrubbing) {
+            // Snappy fluid response during scrubbing
+            const reverseDelay = (totalDigits - 1 - i) * 18;
+            strip.style.transition = `transform 0.22s cubic-bezier(0.16, 1, 0.3, 1) ${reverseDelay}ms`;
           } else {
-            countAnimId = null;
+            // Elegant mechanical rolling reel on stop click
+            const reverseDelay = (totalDigits - 1 - i) * 35;
+            strip.style.transition = `transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) ${reverseDelay}ms`;
           }
-        };
+          strip.style.transform = `translateY(-${targetIndex * 10}%)`;
+        });
 
-        countAnimId = requestAnimationFrame(step);
+        previousBillingVal = val;
       };
 
       // ── Smooth Perk Crossfade ──
       const perkEl = document.getElementById('nxSavePerk');
-      let currentPerkText = perkEl ? perkEl.textContent : '';
-
+      let perkAnimTimeout = null;
       const updatePerkSmoothly = (newText) => {
-        if (!perkEl || newText === currentPerkText) return;
-        currentPerkText = newText;
+        if (!perkEl || perkEl.textContent === newText) return;
+        clearTimeout(perkAnimTimeout);
+        perkEl.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
         perkEl.style.opacity = '0';
         perkEl.style.transform = 'translateY(4px)';
-
-        setTimeout(() => {
+        perkAnimTimeout = setTimeout(() => {
           perkEl.textContent = newText;
           perkEl.style.opacity = '1';
           perkEl.style.transform = 'translateY(0)';
-        }, 150);
+        }, 200);
       };
 
-      const upd = (isInstant = false) => {
+      // ── Master Update Function ──
+      const upd = (isScrubbing = false) => {
         if (!range) return;
-        const v = +range.value, f = feeFor(v);
+        const v = +range.value;
+        const upworkToll = feeFor(v);
+        const upworkRetained = v - upworkToll;
+        const upwork5Yr = upworkToll * 5;
+
+        const agencyToll = Math.round(v * 0.30);
+        const agencyRetained = v - agencyToll;
+        const agency5Yr = agencyToll * 5;
+
         const minVal = +range.min || 20000, maxVal = +range.max || 200000;
         const pct = Math.max(0, Math.min(100, ((v - minVal) / (maxVal - minVal)) * 100));
 
         // Update precision slider visual fill
         range.style.setProperty('--range-pct', `${pct}%`);
 
-        // Update floating bubble tooltip position and text (Reference 1)
+        // Update floating bubble tooltip position and text (Image 1)
         const bubble = document.getElementById('nxSliderBubble');
         if (bubble) {
           bubble.textContent = fmt(v);
           bubble.style.left = `calc(${pct}% + (${14 - pct * 0.28}px))`;
         }
 
-        // Update Histogram vertical bars (Reference 1)
+        // Update Histogram vertical bars (Image 1)
         const bars = document.querySelectorAll('.nx-histogram-bars .nx-hist-bar');
         const activeBarLimit = Math.round((pct / 100) * bars.length);
         bars.forEach((bar, idx) => {
           bar.classList.toggle('is-active', idx <= activeBarLimit);
         });
 
-        // Smooth Counter Animation (Reference 3)
-        animateNumbersTo(v, isInstant);
+        // Update Rolling Odometer Digit Animation (Image 3: Tima King Reverse-Order Spec)
+        renderOdometerReel(v, isScrubbing);
+
+        // Keep existing element text content updated for tests / screen readers
+        const earnValEl = document.getElementById('nxEarnVal');
+        const saveEl = document.getElementById('nxSave');
+        const usBar = document.getElementById('nxUsBarVal');
+        const themRetainedEl = document.getElementById('nxThemRetainedVal');
+        const agencyRetainedEl = document.getElementById('nxAgencyRetainedVal');
+        const themEl = document.getElementById('nxThem');
+        const agencyTollEl = document.getElementById('nxAgencyToll');
+        const upwork5YrEl = document.getElementById('nxUpwork5Yr');
+        const agency5YrEl = document.getElementById('nxAgency5Yr');
+
+        if (earnValEl) earnValEl.textContent = v.toLocaleString('en-US');
+        if (saveEl) saveEl.textContent = '+ ' + fmt(upworkToll) + ' Retained';
+        if (usBar) usBar.textContent = 'Keep ' + fmt(v) + ' (100% Retained)';
+        if (themRetainedEl) themRetainedEl.textContent = 'Creator keeps ' + fmt(upworkRetained) + ' (80%)';
+        if (agencyRetainedEl) agencyRetainedEl.textContent = 'Creator keeps ' + fmt(agencyRetained) + ' (70%)';
+        if (themEl) themEl.textContent = '−' + fmt(upworkToll) + ' toll / yr';
+        if (agencyTollEl) agencyTollEl.textContent = '−' + fmt(agencyToll) + ' markup / yr';
+        if (upwork5YrEl) upwork5YrEl.textContent = '−' + fmt(upwork5Yr) + ' Lost';
+        if (agency5YrEl) agency5YrEl.textContent = '−' + fmt(agency5Yr) + ' Lost';
 
         // Smooth Perk Crossfade
-        updatePerkSmoothly(getPerkText(f));
+        updatePerkSmoothly(getPerkText(upworkToll));
 
         // Dynamic Studio Gear Reinvestment Deck Update
         updateGearDeck(v);
@@ -8423,6 +8452,7 @@
 
       if (range) {
         range.addEventListener('input', () => upd(true));
+        range.addEventListener('change', () => upd(false));
 
         document.querySelectorAll('.nx-stop-btn').forEach(btn => {
           btn.addEventListener('click', () => {
@@ -8431,14 +8461,13 @@
           });
         });
 
-        upd(true);
+        upd(false);
       }
 
       // Magnetic hover on Monolith CTA
       const monolithCta = document.querySelector('.nx-monolith-cta-btn');
       if (monolithCta) {
         monolithCta.addEventListener('pointermove', (e) => {
-          if (window.innerWidth <= 900) return;
           const rect = monolithCta.getBoundingClientRect();
           const x = e.clientX - (rect.left + rect.width / 2);
           const y = e.clientY - (rect.top + rect.height / 2);
@@ -8450,7 +8479,7 @@
         });
       }
 
-            // Unified Omni-Search & Interactive Category Filtering Engine
+      // Unified Omni-Search & Interactive Category Filtering Engine
       const omniInput = document.getElementById('nxOmniInput');
       const citySelect = document.getElementById('nxCitySelect');
       const omniClear = document.getElementById('nxOmniClear');
