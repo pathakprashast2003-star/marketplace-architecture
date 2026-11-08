@@ -1869,7 +1869,7 @@
       color: var(--color-fees-muted);
     }
 
-    /* ── CENTERED HERO ODOMETER CARD (IMAGE 1 & IMAGE 3) ── */
+    /* ── CENTERED HERO ODOMETER CARD (TIMA KING & IMAGE 1 SPEC) ── */
     .nx-odometer-hero-box {
       background: var(--color-fees-card);
       border: 1px solid var(--color-fees-card-border);
@@ -1911,6 +1911,7 @@
       font-variant-numeric: tabular-nums;
     }
 
+    /* Bi-Directional Digit Cell with Vertical Edge Gradient Mask */
     .nx-digit-col {
       display: inline-block;
       width: 0.61em;
@@ -1918,24 +1919,20 @@
       overflow: hidden;
       position: relative;
       vertical-align: middle;
+      mask-image: linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
     }
 
-    .nx-digit-strip {
-      display: flex;
-      flex-direction: column;
+    .nx-digit-col span {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      will-change: transform;
-    }
-
-    .nx-digit-strip span {
+      height: 1.15em;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 1.15em;
-      line-height: 1.15em;
+      will-change: transform;
     }
 
     .nx-digit-comma {
@@ -1955,10 +1952,17 @@
       margin-left: 4px;
     }
 
-    /* Green Surplus Pill Badge (Image 3: +0.29% Reference) */
+    /* Green Surplus Pill Badge (Tima King: Adjacent Ticker Badge) */
+    @keyframes nxBadgePulse {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.07); }
+      100% { transform: scale(1); }
+    }
+
     .nx-odo-surplus-badge {
       display: inline-flex;
       align-items: center;
+      gap: 4px;
       background: var(--color-fees-win-tint);
       color: var(--color-fees-win);
       border: 1px solid var(--color-fees-win-border);
@@ -1970,6 +1974,39 @@
       margin-left: 8px;
       box-shadow: var(--shadow-fees-badge);
       transition: transform 0.24s ease, background-color 0.24s ease;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .nx-odo-surplus-badge.is-pulsing {
+      animation: nxBadgePulse 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nx-badge-reel-wrap {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .nx-badge-digit-col {
+      display: inline-block;
+      width: 0.62em;
+      height: 1.2em;
+      overflow: hidden;
+      position: relative;
+      vertical-align: middle;
+    }
+
+    .nx-badge-digit-col span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1.2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      will-change: transform;
     }
 
     .nx-scrubber-subtext {
@@ -2532,7 +2569,7 @@
 
     @media (prefers-reduced-motion: reduce) {
       .nx-slider-bubble,
-      .nx-digit-strip,
+      .nx-digit-col span,
       .nx-aperture-stop,
       .nx-reinvest-card,
       .nx-monolith-cta-btn {
@@ -6725,15 +6762,17 @@
               <span class="nx-scrubber-info-label" title="Zero take-rates, zero escrow hold, direct ACH & wire settlement">ⓘ</span>
             </div>
             
-            <!-- Centered Odometer Hero Card (Image 1 & Image 3) -->
+            <!-- Centered Odometer Hero Card (Tima King & Image 1 Spec) -->
             <div class="nx-odometer-hero-box">
               <span class="nx-odo-currency">$</span>
               <div class="nx-odo-reel-wrap" id="nxOdometerReel">
-                <!-- Rendered dynamically by Odometer JS Engine with descending reels -->
+                <!-- Rendered dynamically by BiDirectionalOdometer Engine -->
               </div>
               <span id="nxEarnVal" style="display:none;">80,000</span>
               <span class="nx-odo-unit">/ yr</span>
-              <span class="nx-odo-surplus-badge" id="nxSave">+ $16,000 Retained</span>
+              <span class="nx-odo-surplus-badge" id="nxSave">
+                <span>+ $</span><span class="nx-badge-reel-wrap" id="nxSaveReel"></span><span> Retained</span>
+              </span>
             </div>
 
             <div class="nx-scrubber-subtext">Drag the precision slider to preview your retained income and platform savings. No hidden take-rates.</div>
@@ -8208,7 +8247,7 @@
       const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: 0.12 });
       document.querySelectorAll('.nx-reveal').forEach(el => io.observe(el));
 
-      // Fee Calculator & Advanced Motion Suite (Image 1, 2, 3 Odometer Engine)
+      // Fee Calculator & Advanced Motion Suite (Tima King Directional Engine & motion-advanced)
       const range = document.getElementById('nxEarn'), fmt = n => '$' + n.toLocaleString('en-US');
       const feeFor = v => Math.round(v * 0.2);
 
@@ -8282,61 +8321,111 @@
         `).join('');
       };
 
-      // ── Mechanical Odometer Digit Reel Engine (Image 3: Tima King Reverse-Order Specification) ──
-      const odoReelWrap = document.getElementById('nxOdometerReel');
-      let previousBillingVal = null;
-
-      const renderOdometerReel = (val, isScrubbing = false) => {
-        if (!odoReelWrap) return;
-        const formatted = val.toLocaleString('en-US');
-        const chars = formatted.split('');
-        const digits = chars.filter(c => c !== ',');
-        const totalDigits = digits.length;
-
-        // Check if DOM column count matches digit count
-        let cols = odoReelWrap.querySelectorAll('.nx-digit-col');
-        if (cols.length !== totalDigits) {
-          let html = '';
-          chars.forEach(ch => {
-            if (ch === ',') {
-              html += '<span class="nx-digit-comma">,</span>';
-            } else {
-              // Descending digits: 9 down to 0
-              // When target increases, position moves DOWNWARD (less negative)
-              // When target decreases, position moves UPWARD (more negative)
-              let spans = '';
-              for (let d = 9; d >= 0; d--) spans += '<span>' + d + '</span>';
-              html += '<span class="nx-digit-col"><span class="nx-digit-strip">' + spans + '</span></span>';
-            }
-          });
-          odoReelWrap.innerHTML = html;
-          cols = odoReelWrap.querySelectorAll('.nx-digit-col');
+      // ── Advanced Bi-Directional Odometer Reel Engine (Tima King Pinterest Specification) ──
+      class BiDirectionalOdometer {
+        constructor(containerEl, colClass = 'nx-digit-col', commaClass = 'nx-digit-comma') {
+          this.container = containerEl;
+          this.colClass = colClass;
+          this.commaClass = commaClass;
+          this.prevVal = null;
         }
 
-        // Apply reverse-order staggered transition
-        cols.forEach((col, i) => {
-          const targetDigit = parseInt(digits[i], 10);
-          const strip = col.querySelector('.nx-digit-strip');
-          const targetIndex = 9 - targetDigit;
-          
-          if (!strip) return;
+        render(val, isScrubbing = false) {
+          if (!this.container) return;
+          const isIncrease = this.prevVal === null ? true : (val >= this.prevVal);
+          const formatted = val.toLocaleString('en-US');
+          const chars = formatted.split('');
+          const digits = chars.filter(c => c !== ',');
+          const totalDigits = digits.length;
 
-          if (previousBillingVal === null) {
-            strip.style.transition = 'none';
-          } else if (isScrubbing) {
-            // Snappy fluid response during scrubbing
-            const reverseDelay = (totalDigits - 1 - i) * 18;
-            strip.style.transition = `transform 0.22s cubic-bezier(0.16, 1, 0.3, 1) ${reverseDelay}ms`;
-          } else {
-            // Elegant mechanical rolling reel on stop click
-            const reverseDelay = (totalDigits - 1 - i) * 35;
-            strip.style.transition = `transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) ${reverseDelay}ms`;
+          // Rebuild columns only when total character count changes
+          let cols = this.container.querySelectorAll('.' + this.colClass);
+          if (cols.length !== totalDigits) {
+            let html = '';
+            chars.forEach(ch => {
+              if (ch === ',') {
+                html += `<span class="${this.commaClass}">,</span>`;
+              } else {
+                html += `<span class="${this.colClass}"><span>0</span></span>`;
+              }
+            });
+            this.container.innerHTML = html;
+            cols = this.container.querySelectorAll('.' + this.colClass);
           }
-          strip.style.transform = `translateY(-${targetIndex * 10}%)`;
-        });
 
-        previousBillingVal = val;
-      };
+          // Reverse-order staggered animation: rightmost digit starts first!
+          cols.forEach((col, idx) => {
+            const targetDigit = digits[idx];
+            const reverseDelay = (totalDigits - 1 - idx) * (isScrubbing ? 14 : 35);
+            const duration = isScrubbing ? 0.20 : 0.46;
+            this.animateDigit(col, targetDigit, isIncrease, reverseDelay, duration, this.prevVal === null);
+          });
+
+          this.prevVal = val;
+        }
+
+        animateDigit(col, targetDigit, isIncrease, delay, duration, isInstant) {
+          let currentSpan = col.querySelector('span.current') || col.querySelector('span');
+          const currentVal = currentSpan ? currentSpan.textContent : '';
+
+          if (currentVal === targetDigit && !isInstant) {
+            return; // Already in place
+          }
+
+          if (isInstant) {
+            col.innerHTML = `<span class="current" style="transform: translateY(0);">${targetDigit}</span>`;
+            return;
+          }
+
+          // Directional coordinates:
+          // Increasing billings -> Motion goes DOWNWARD (incoming enters from top: -100% -> 0%)
+          // Decreasing billings -> Motion goes UPWARD (incoming enters from bottom: +100% -> 0%)
+          const startY = isIncrease ? -100 : 100;
+          const exitY = isIncrease ? 100 : -100;
+
+          const incomingSpan = document.createElement('span');
+          incomingSpan.textContent = targetDigit;
+          incomingSpan.className = 'incoming';
+          incomingSpan.style.transform = `translateY(${startY}%)`;
+          incomingSpan.style.transition = `transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`;
+
+          if (currentSpan) {
+            currentSpan.className = 'exiting';
+            currentSpan.style.transition = `transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`;
+          }
+
+          col.appendChild(incomingSpan);
+
+          // Force reflow and start GPU transform
+          requestAnimationFrame(() => {
+            incomingSpan.style.transform = 'translateY(0%)';
+            if (currentSpan) {
+              currentSpan.style.transform = `translateY(${exitY}%)`;
+            }
+          });
+
+          // Clean up old DOM node once animation ends
+          setTimeout(() => {
+            if (currentSpan && currentSpan.parentNode === col) {
+              col.removeChild(currentSpan);
+            }
+            incomingSpan.className = 'current';
+          }, (duration * 1000) + delay + 40);
+        }
+      }
+
+      // Initialize Dual-Odometer Instances (Main Billings + Synchronized Surplus Badge)
+      const mainOdometer = new BiDirectionalOdometer(
+        document.getElementById('nxOdometerReel'),
+        'nx-digit-col',
+        'nx-digit-comma'
+      );
+
+      const badgeOdometer = new BiDirectionalOdometer(
+        document.getElementById('nxSaveReel'),
+        'nx-badge-digit-col',
+        'nx-digit-comma'
+      );
 
       // ── Smooth Perk Crossfade ──
       const perkEl = document.getElementById('nxSavePerk');
@@ -8354,7 +8443,7 @@
         }, 200);
       };
 
-      // ── Master Update Function ──
+      // ── Master Interactive Update Function ──
       const upd = (isScrubbing = false) => {
         if (!range) return;
         const v = +range.value;
@@ -8372,7 +8461,7 @@
         // Update precision slider visual fill
         range.style.setProperty('--range-pct', `${pct}%`);
 
-        // Update floating bubble tooltip position and text (Image 1)
+        // Update floating bubble tooltip position and text (GPU TranslateX)
         const bubble = document.getElementById('nxSliderBubble');
         if (bubble) {
           bubble.textContent = fmt(v);
@@ -8389,12 +8478,20 @@
           bar.classList.toggle('is-active', idx <= activeBarLimit);
         });
 
-        // Update Rolling Odometer Digit Animation (Image 3: Tima King Reverse-Order Spec)
-        renderOdometerReel(v, isScrubbing);
+        // 1. Update Main Billings Odometer (Tima King Directional Reel Engine)
+        mainOdometer.render(v, isScrubbing);
 
-        // Keep existing element text content updated for tests / screen readers
+        // 2. Update Synchronized Surplus Badge Reel with Spring Pulse
+        badgeOdometer.render(upworkToll, isScrubbing);
+        const badgeEl = document.getElementById('nxSave');
+        if (badgeEl && !isScrubbing) {
+          badgeEl.classList.remove('is-pulsing');
+          void badgeEl.offsetWidth; // Force CSS reflow to re-trigger pulse
+          badgeEl.classList.add('is-pulsing');
+        }
+
+        // 3. Keep semantic text updated for tests / screen readers
         const earnValEl = document.getElementById('nxEarnVal');
-        const saveEl = document.getElementById('nxSave');
         const usBar = document.getElementById('nxUsBarVal');
         const themRetainedEl = document.getElementById('nxThemRetainedVal');
         const agencyRetainedEl = document.getElementById('nxAgencyRetainedVal');
@@ -8404,7 +8501,6 @@
         const agency5YrEl = document.getElementById('nxAgency5Yr');
 
         if (earnValEl) earnValEl.textContent = v.toLocaleString('en-US');
-        if (saveEl) saveEl.textContent = '+ ' + fmt(upworkToll) + ' Retained';
         if (usBar) usBar.textContent = 'Keep ' + fmt(v) + ' (100% Retained)';
         if (themRetainedEl) themRetainedEl.textContent = 'Creator keeps ' + fmt(upworkRetained) + ' (80%)';
         if (agencyRetainedEl) agencyRetainedEl.textContent = 'Creator keeps ' + fmt(agencyRetained) + ' (70%)';
@@ -8413,13 +8509,13 @@
         if (upwork5YrEl) upwork5YrEl.textContent = '−' + fmt(upwork5Yr) + ' Lost';
         if (agency5YrEl) agency5YrEl.textContent = '−' + fmt(agency5Yr) + ' Lost';
 
-        // Smooth Perk Crossfade
+        // 4. Smooth Perk Crossfade
         updatePerkSmoothly(getPerkText(upworkToll));
 
-        // Dynamic Studio Gear Reinvestment Deck Update
+        // 5. Dynamic Studio Gear Reinvestment Deck Update
         updateGearDeck(v);
 
-        // Update stop buttons active state
+        // 6. Update aperture presets active state
         document.querySelectorAll('.nx-aperture-stop').forEach(btn => {
           btn.classList.toggle('is-active', +btn.dataset.val === v);
         });
