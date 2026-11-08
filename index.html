@@ -2081,6 +2081,29 @@
     .nx-calc-fill.is-us {
       background: #10B981;
       width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nx-calc-fill.is-us::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+      transform: skewX(-20deg);
+      pointer-events: none;
+    }
+
+    .nx-calc-fill.is-us.has-shimmer::after {
+      animation: trackShimmer 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes trackShimmer {
+      0% { left: -60%; }
+      100% { left: 140%; }
     }
 
     .nx-calc-track-legend {
@@ -2100,7 +2123,7 @@
       font-weight: 600;
     }
 
-    /* Right Card: Editorial Retained Wealth Poster */
+    /* Right Card: Editorial Retained Wealth Poster with Advanced 3D & Lighting */
     .nx-card.nx-save {
       background: #0B0F19;
       background-image: radial-gradient(circle at 85% 15%, rgba(245, 158, 11, 0.16) 0%, transparent 60%), radial-gradient(circle at 15% 85%, rgba(16, 185, 129, 0.08) 0%, transparent 55%);
@@ -2114,6 +2137,9 @@
       justify-content: space-between;
       position: relative;
       overflow: hidden;
+      transform-style: preserve-3d;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+      will-change: transform, background-image;
     }
 
     .nx-save-top {
@@ -2181,6 +2207,52 @@
       font-variant-numeric: tabular-nums;
       color: #34D399;
       text-shadow: 0 4px 24px rgba(16, 185, 129, 0.25);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.2s ease;
+      display: inline-block;
+    }
+
+    .nx-save-num.is-updating {
+      transform: scale(1.035);
+      text-shadow: 0 4px 32px rgba(52, 211, 153, 0.55);
+    }
+
+    /* SVG Checkmark sequential path draw-on */
+    .nx-check-path {
+      stroke-dasharray: 26;
+      stroke-dashoffset: 26;
+      transition: stroke-dashoffset 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nx-card.nx-save.is-in .nx-save-proof-list li:nth-child(1) .nx-check-path {
+      stroke-dashoffset: 0;
+      transition-delay: 0.2s;
+    }
+
+    .nx-card.nx-save.is-in .nx-save-proof-list li:nth-child(2) .nx-check-path {
+      stroke-dashoffset: 0;
+      transition-delay: 0.35s;
+    }
+
+    .nx-card.nx-save.is-in .nx-save-proof-list li:nth-child(3) .nx-check-path {
+      stroke-dashoffset: 0;
+      transition-delay: 0.5s;
+    }
+
+    /* Accessibility: Reduced motion query */
+    @media (prefers-reduced-motion: reduce) {
+      .nx-check-path {
+        stroke-dashoffset: 0 !important;
+        transition: none !important;
+      }
+      .nx-save-num.is-updating {
+        transform: none !important;
+      }
+      .nx-calc-fill.is-us::after {
+        display: none !important;
+      }
+      .nx-card.nx-save {
+        transform: none !important;
+      }
     }
 
     .nx-save-frequency {
@@ -6759,15 +6831,15 @@
             <!-- Direct Proof Checklist -->
             <ul class="nx-save-proof-list">
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline class="nx-check-path" points="20 6 9 17 4 12"/></svg>
                 <span>Direct client wire & ACH payments</span>
               </li>
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline class="nx-check-path" points="20 6 9 17 4 12"/></svg>
                 <span>Zero invoice escrow hold or payout fees</span>
               </li>
               <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline class="nx-check-path" points="20 6 9 17 4 12"/></svg>
                 <span>You own 100% of master rights & relationships</span>
               </li>
             </ul>
@@ -7922,7 +7994,7 @@
       const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { threshold: 0.12 });
       document.querySelectorAll('.nx-reveal').forEach(el => io.observe(el));
 
-      // Fee Calculator & Visualizer
+      // Fee Calculator & Advanced Motion Suite (motion-advanced)
       const range = document.getElementById('nxEarn'), fmt = n => '$' + n.toLocaleString('en-US');
       const feeFor = v => Math.round(v * 0.2);
       console.assert(feeFor(80000) === 16000 && feeFor(50000) === 10000, 'fee calc');
@@ -7939,37 +8011,131 @@
         }
       };
 
-      const upd = () => {
+      // ── Advanced Motion: Smooth Interrupt-Safe Number Counter ──
+      let countAnimId = null;
+      let currentAnimatedVals = {
+        earn: 80000,
+        them: 16000,
+        save: 16000,
+        retained: 64000
+      };
+
+      const animateNumbersTo = (targetEarn, isInstant = false) => {
+        if (countAnimId) {
+          cancelAnimationFrame(countAnimId);
+          countAnimId = null;
+        }
+
+        const targetThem = feeFor(targetEarn);
+        const targetSave = targetThem;
+        const targetRetained = targetEarn - targetThem;
+
+        const earnValEl = document.getElementById('nxEarnVal');
+        const themEl = document.getElementById('nxThem');
+        const saveEl = document.getElementById('nxSave');
+        const themBar = document.getElementById('nxThemBarVal');
+        const themRetainedEl = document.getElementById('nxThemRetainedVal');
+        const usBar = document.getElementById('nxUsBarVal');
+
+        if (isInstant || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          currentAnimatedVals.earn = targetEarn;
+          currentAnimatedVals.them = targetThem;
+          currentAnimatedVals.save = targetSave;
+          currentAnimatedVals.retained = targetRetained;
+
+          if (earnValEl) earnValEl.textContent = fmt(targetEarn);
+          if (themEl) themEl.textContent = '−' + fmt(targetThem);
+          if (saveEl) saveEl.textContent = fmt(targetSave);
+          if (themBar) themBar.textContent = '−' + fmt(targetThem);
+          if (themRetainedEl) themRetainedEl.textContent = 'Creator receives ' + fmt(targetRetained);
+          if (usBar) usBar.textContent = 'Keep ' + fmt(targetEarn);
+          return;
+        }
+
+        const startEarn = currentAnimatedVals.earn;
+        const startThem = currentAnimatedVals.them;
+        const startSave = currentAnimatedVals.save;
+        const startRetained = currentAnimatedVals.retained;
+
+        if (saveEl) saveEl.classList.add('is-updating');
+
+        const startTime = performance.now();
+        const duration = 400; // Snappy physics duration
+        const easeOutExpo = t => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+
+        const step = (now) => {
+          const elapsed = now - startTime;
+          const progress = Math.min(1, elapsed / duration);
+          const eased = easeOutExpo(progress);
+
+          currentAnimatedVals.earn = Math.round(startEarn + (targetEarn - startEarn) * eased);
+          currentAnimatedVals.them = Math.round(startThem + (targetThem - startThem) * eased);
+          currentAnimatedVals.save = Math.round(startSave + (targetSave - startSave) * eased);
+          currentAnimatedVals.retained = Math.round(startRetained + (targetRetained - startRetained) * eased);
+
+          if (earnValEl) earnValEl.textContent = fmt(currentAnimatedVals.earn);
+          if (themEl) themEl.textContent = '−' + fmt(currentAnimatedVals.them);
+          if (saveEl) saveEl.textContent = fmt(currentAnimatedVals.save);
+          if (themBar) themBar.textContent = '−' + fmt(currentAnimatedVals.them);
+          if (themRetainedEl) themRetainedEl.textContent = 'Creator receives ' + fmt(currentAnimatedVals.retained);
+          if (usBar) usBar.textContent = 'Keep ' + fmt(currentAnimatedVals.earn);
+
+          if (progress < 1) {
+            countAnimId = requestAnimationFrame(step);
+          } else {
+            countAnimId = null;
+            if (saveEl) saveEl.classList.remove('is-updating');
+          }
+        };
+
+        countAnimId = requestAnimationFrame(step);
+      };
+
+      // ── Advanced Motion: Smooth Perk Text Morph & Crossfade ──
+      const perkEl = document.getElementById('nxSavePerk');
+      let currentPerkText = perkEl ? perkEl.textContent : '';
+
+      const updatePerkSmoothly = (newText) => {
+        if (!perkEl || newText === currentPerkText) return;
+        currentPerkText = newText;
+        perkEl.style.transition = 'opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1), transform 0.16s cubic-bezier(0.16, 1, 0.3, 1)';
+        perkEl.style.opacity = '0';
+        perkEl.style.transform = 'translateY(4px)';
+
+        setTimeout(() => {
+          perkEl.textContent = newText;
+          perkEl.style.opacity = '1';
+          perkEl.style.transform = 'translateY(0)';
+        }, 160);
+      };
+
+      // ── Advanced Motion: Retained Track Shimmer Wave ──
+      const triggerTrackShimmer = () => {
+        const fillUs = document.querySelector('.nx-calc-fill.is-us');
+        if (fillUs) {
+          fillUs.classList.remove('has-shimmer');
+          void fillUs.offsetWidth; // Force reflow
+          fillUs.classList.add('has-shimmer');
+        }
+      };
+
+      const upd = (isInstant = false) => {
         if (!range) return;
-        const v = +range.value, f = feeFor(v), retainedOld = v - f;
+        const v = +range.value, f = feeFor(v);
         const minVal = +range.min || 20000, maxVal = +range.max || 200000;
         const pct = Math.max(0, Math.min(100, ((v - minVal) / (maxVal - minVal)) * 100));
 
         // Update range slider visual fill
         range.style.setProperty('--range-pct', `${pct}%`);
 
-        // Update numeric readouts
-        const earnValEl = document.getElementById('nxEarnVal');
-        if (earnValEl) earnValEl.textContent = fmt(v);
+        // Smooth Counter Animation
+        animateNumbersTo(v, isInstant);
 
-        const themEl = document.getElementById('nxThem');
-        if (themEl) themEl.textContent = '−' + fmt(f);
+        // Smooth Perk Crossfade
+        updatePerkSmoothly(getPerkText(f));
 
-        const saveEl = document.getElementById('nxSave');
-        if (saveEl) saveEl.textContent = fmt(f);
-
-        const themBar = document.getElementById('nxThemBarVal');
-        if (themBar) themBar.textContent = '−' + fmt(f);
-
-        const themRetainedEl = document.getElementById('nxThemRetainedVal');
-        if (themRetainedEl) themRetainedEl.textContent = 'Creator receives ' + fmt(retainedOld);
-
-        const usBar = document.getElementById('nxUsBarVal');
-        if (usBar) usBar.textContent = 'Keep ' + fmt(v);
-
-        // Update dynamic purchasing power perk
-        const perkEl = document.getElementById('nxSavePerk');
-        if (perkEl) perkEl.textContent = getPerkText(f);
+        // Shimmer wave on Nexus track
+        triggerTrackShimmer();
 
         // Update preset buttons active state
         document.querySelectorAll('.nx-preset-btn').forEach(btn => {
@@ -7978,18 +8144,91 @@
       };
 
       if (range) {
-        range.addEventListener('input', upd);
+        // Dragging slider updates instantaneously for zero input latency
+        range.addEventListener('input', () => upd(true));
 
-        // Attach click listeners to preset buttons
+        // Preset button clicks use the full smooth physics counter animation
         document.querySelectorAll('.nx-preset-btn').forEach(btn => {
           btn.addEventListener('click', () => {
             range.value = btn.dataset.val;
-            upd();
+            upd(false);
           });
         });
 
-        upd();
+        // Initial setup
+        upd(true);
       }
+
+      // ── Advanced Motion: 3D Interactive Perspective Tilt & Dynamic Specular Light ──
+      const savePosterCard = document.querySelector('.nx-card.nx-save');
+      if (savePosterCard) {
+        let tiltRaf = null;
+        let targetTiltX = 0, targetTiltY = 0, currentTiltX = 0, currentTiltY = 0;
+        let specX = 85, specY = 15;
+
+        const renderTilt = () => {
+          currentTiltX += (targetTiltX - currentTiltX) * 0.14;
+          currentTiltY += (targetTiltY - currentTiltY) * 0.14;
+
+          savePosterCard.style.transform = `perspective(1000px) rotateX(${currentTiltX.toFixed(2)}deg) rotateY(${currentTiltY.toFixed(2)}deg)`;
+          savePosterCard.style.backgroundImage = `radial-gradient(circle at ${specX.toFixed(1)}% ${specY.toFixed(1)}%, rgba(245, 158, 11, 0.22) 0%, transparent 60%), radial-gradient(circle at 15% 85%, rgba(16, 185, 129, 0.08) 0%, transparent 55%)`;
+
+          if (Math.abs(targetTiltX - currentTiltX) > 0.01 || Math.abs(targetTiltY - currentTiltY) > 0.01) {
+            tiltRaf = requestAnimationFrame(renderTilt);
+          } else {
+            tiltRaf = null;
+          }
+        };
+
+        savePosterCard.addEventListener('pointermove', (e) => {
+          if (window.innerWidth <= 900) return;
+          const rect = savePosterCard.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          specX = (x / rect.width) * 100;
+          specY = (y / rect.height) * 100;
+
+          const normX = (x / rect.width) * 2 - 1;
+          const normY = (y / rect.height) * 2 - 1;
+
+          targetTiltX = -normY * 3.2;
+          targetTiltY = normX * 3.8;
+
+          if (!tiltRaf) tiltRaf = requestAnimationFrame(renderTilt);
+        });
+
+        savePosterCard.addEventListener('pointerleave', () => {
+          targetTiltX = 0;
+          targetTiltY = 0;
+          specX = 85;
+          specY = 15;
+          if (!tiltRaf) tiltRaf = requestAnimationFrame(renderTilt);
+        });
+      }
+
+      // ── Advanced Motion: Magnetic Cursor Pull on CTA Button ──
+      const saveCtaBtn = document.querySelector('.nx-save-cta-btn');
+      if (saveCtaBtn) {
+        saveCtaBtn.addEventListener('pointermove', (e) => {
+          if (window.innerWidth <= 900) return;
+          const rect = saveCtaBtn.getBoundingClientRect();
+          const x = e.clientX - (rect.left + rect.width / 2);
+          const y = e.clientY - (rect.top + rect.height / 2);
+          saveCtaBtn.style.transform = `translate(${x * 0.14}px, ${y * 0.14}px) translateY(-2px)`;
+        });
+
+        saveCtaBtn.addEventListener('pointerleave', () => {
+          saveCtaBtn.style.transform = '';
+        });
+      }
+
+      // ── Rule 2: Pause infinite animations when document.visibilityState === "hidden" ──
+      document.addEventListener('visibilitychange', () => {
+        const dot = document.querySelector('.nx-save-status-dot');
+        if (dot) {
+          dot.style.animationPlayState = document.visibilityState === 'hidden' ? 'paused' : 'running';
+        }
+      });
 
       // Unified Omni-Search & Interactive Category Filtering Engine
       const omniInput = document.getElementById('nxOmniInput');
@@ -9049,7 +9288,7 @@
               </span>
             </div>
             <span class="pc-verified-seal" title="Verified Creator · Vetted Identity" aria-label="Verified">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline class="nx-check-path" points="20 6 9 17 4 12"/></svg>
             </span>
           </div>
 
