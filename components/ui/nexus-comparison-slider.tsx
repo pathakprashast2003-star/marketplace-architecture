@@ -369,8 +369,8 @@ export function NexusComparisonSection({
         </p>
       </div>
 
-      {/* ── Two-Card Split Console: Matrix on Left, Simulator on Right ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch relative z-10">
+      {/* ── Two-Card Split Console: Matrix on Left, Simulator on Right (Craftwork Sticky Balance) ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start relative z-10">
         
         {/* ── LEFT: Commercial Comparison Matrix Card (7 cols) ── */}
         <div data-ui="comparison-matrix" className="lg:col-span-7 bg-white rounded-2xl p-5 sm:p-7 flex flex-col justify-between border border-slate-900/[0.06] font-['Times_New_Roman',_Times,_Georgia,_serif]">
@@ -537,43 +537,58 @@ export function NexusComparisonSection({
                           </td>
                         </tr>
 
-                        {/* Forensic Audit Drawer ("Open Up" State with Times New Roman) */}
+                        {/* Forensic Audit Drawer ("Open Up" State with Exact 4-Column Structural Alignment) */}
                         {isExpanded && (
-                          <tr className={`bg-[#F5F3EB] border-b border-slate-900/[0.08] ${isLast ? "rounded-b-xl" : ""}`}> {/* taste-skill-ignore */}
-                            <td colSpan={4} className="p-3 sm:p-4">
-                              <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
-                                {/* Nexus Forensic Box */}
-                                <div className="bg-white rounded-xl p-3 border border-emerald-900/10"> {/* taste-skill-ignore */}
-                                  <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-800 mb-1 font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                                    <span className="w-2 h-2 rounded-full bg-emerald-600 shrink-0" />
-                                    <span>Nexus Direct Reality</span>
-                                  </div>
-                                  <p className="text-xs text-neutral-700 leading-relaxed italic font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                                    {item.nexus.audit}
-                                  </p>
-                                </div>
+                          <tr className={`bg-[#F8F7F2] border-b border-slate-900/[0.08] ${isLast ? "rounded-b-xl" : ""}`}> {/* taste-skill-ignore */}
+                            {/* Col 1: Term Scope & Audit Header (under Commercial terms) */}
+                            <td className="p-3 sm:p-3.5 align-top border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
+                              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                                Forensic Audit
+                              </div>
+                              <div className="text-xs font-bold text-neutral-800 leading-snug">
+                                {item.label}
+                              </div>
+                              <p className="text-[11px] text-neutral-500 mt-1 italic leading-relaxed">
+                                Contract comparison across direct vs platform terms.
+                              </p>
+                            </td>
 
-                                {/* Upwork Forensic Box */}
-                                <div className="bg-white rounded-xl p-3 border border-neutral-200"> {/* taste-skill-ignore */}
-                                  <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-800 mb-1 font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                                    <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
-                                    <span>Upwork Toll Reality</span>
-                                  </div>
-                                  <p className="text-xs text-neutral-600 leading-relaxed italic font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                                    {item.upwork.audit}
-                                  </p>
+                            {/* Col 2: Nexus Direct Audit (Directly under Nexus Direct Column) */}
+                            <td className="p-2.5 sm:p-3 align-top bg-[#FAF8F3] border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
+                              <div className="bg-white rounded-xl p-3 border border-emerald-900/10 h-full"> {/* taste-skill-ignore */}
+                                <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-800 mb-1 font-['Times_New_Roman',_Times,_Georgia,_serif]">
+                                  <span className="w-2 h-2 rounded-full bg-emerald-600 shrink-0" />
+                                  <span>Nexus Direct</span>
                                 </div>
+                                <p className="text-xs text-neutral-700 leading-relaxed italic font-['Times_New_Roman',_Times,_Georgia,_serif]">
+                                  {item.nexus.audit}
+                                </p>
+                              </div>
+                            </td>
 
-                                {/* Agency Forensic Box */}
-                                <div className="bg-white rounded-xl p-3 border border-neutral-200"> {/* taste-skill-ignore */}
-                                  <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-800 mb-1 font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                                    <span className="w-2 h-2 rounded-full bg-neutral-400 shrink-0" />
-                                    <span>Agency Margin Reality</span>
-                                  </div>
-                                  <p className="text-xs text-neutral-600 leading-relaxed italic font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                                    {item.agency.audit}
-                                  </p>
+                            {/* Col 3: Upwork Audit (Directly under Upwork Column) */}
+                            <td className="p-2.5 sm:p-3 align-top border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
+                              <div className="bg-white rounded-xl p-3 border border-neutral-200 h-full"> {/* taste-skill-ignore */}
+                                <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-800 mb-1 font-['Times_New_Roman',_Times,_Georgia,_serif]">
+                                  <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
+                                  <span>Upwork Toll</span>
                                 </div>
+                                <p className="text-xs text-neutral-600 leading-relaxed italic font-['Times_New_Roman',_Times,_Georgia,_serif]">
+                                  {item.upwork.audit}
+                                </p>
+                              </div>
+                            </td>
+
+                            {/* Col 4: Agency Audit (Directly under Talent Agencies Column) */}
+                            <td className="p-2.5 sm:p-3 align-top">
+                              <div className="bg-white rounded-xl p-3 border border-neutral-200 h-full"> {/* taste-skill-ignore */}
+                                <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-800 mb-1 font-['Times_New_Roman',_Times,_Georgia,_serif]">
+                                  <span className="w-2 h-2 rounded-full bg-neutral-400 shrink-0" />
+                                  <span>Agency Cut</span>
+                                </div>
+                                <p className="text-xs text-neutral-600 leading-relaxed italic font-['Times_New_Roman',_Times,_Georgia,_serif]">
+                                  {item.agency.audit}
+                                </p>
                               </div>
                             </td>
                           </tr>
@@ -603,8 +618,8 @@ export function NexusComparisonSection({
           </div>
         </div>
 
-        {/* ── RIGHT: Retained Revenue Simulator Card (5 cols) ── */}
-        <div data-ui="revenue-simulator" className="lg:col-span-5 bg-white rounded-2xl p-5 sm:p-7 flex flex-col justify-between border border-slate-900/[0.06] font-['Times_New_Roman',_Times,_Georgia,_serif]">
+        {/* ── RIGHT: Retained Revenue Simulator Card (5 cols, Craftwork Sticky Pinning) ── */}
+        <div data-ui="revenue-simulator" className="lg:col-span-5 bg-white rounded-2xl p-5 sm:p-7 flex flex-col justify-between border border-slate-900/[0.06] font-['Times_New_Roman',_Times,_Georgia,_serif] lg:sticky lg:top-8">
           <div>
             {/* Simulator Header */}
             <div className="mb-4">
