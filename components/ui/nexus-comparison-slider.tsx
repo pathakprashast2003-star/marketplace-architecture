@@ -1,55 +1,62 @@
 "use client";
 
 import * as React from "react";
-import { 
-  Check, 
+import {
+  Check,
   X,
-  ChevronDown,
-  ChevronUp,
   ArrowRight,
   Building2,
-  Grid
+  Grid,
 } from "lucide-react";
 
-const DIGITS = Array.from({ length: 10 }, (_, index) => index);
+/* ─── Rolling digit animation ─────────────────────────────────────────────── */
+const DIGITS = Array.from({ length: 10 }, (_, i) => i);
 
-export function RollingPrice({ 
-  value, 
-  format, 
-  reduced, 
-  className = "" 
-}: { 
-  value: number; 
-  format: (value: number) => string; 
-  reduced: boolean; 
-  className?: string; 
+export function RollingPrice({
+  value,
+  format,
+  reduced,
+  className = "",
+}: {
+  value: number;
+  format: (v: number) => string;
+  reduced: boolean;
+  className?: string;
 }) {
   const text = format(value);
   return (
-    <span data-price={value} className={`inline-flex items-baseline whitespace-nowrap tabular-nums tracking-tight ${className}`}>
+    <span
+      data-price={value}
+      className={`inline-flex items-baseline whitespace-nowrap tabular-nums tracking-tight ${className}`}
+    >
       <span className="sr-only">{text}</span>
       <span aria-hidden="true" className="inline-flex items-baseline">
-        {Array.from(text).map((character, index) =>
-          /\d/.test(character) ? (
-            <span key={text.length - index} className="relative inline-block h-[1em] w-[0.6em] overflow-hidden">
+        {Array.from(text).map((ch, i) =>
+          /\d/.test(ch) ? (
+            <span
+              key={text.length - i}
+              className="relative inline-block h-[1em] w-[0.6em] overflow-hidden"
+            >
               <span
                 data-digit
                 style={{
-                  transform: `translateY(-${Number(character)}em)`,
-                  transition: reduced ? "none" : "transform 360ms cubic-bezier(0.22, 1, 0.36, 1)",
+                  transform: `translateY(-${Number(ch)}em)`,
+                  transition: reduced
+                    ? "none"
+                    : "transform 360ms cubic-bezier(0.22,1,0.36,1)",
                 }}
                 className="block"
               >
-                {DIGITS.map((digit) => (
-                  <span key={digit} className="block h-[1em] text-center leading-none">
-                    {digit}
+                {DIGITS.map((d) => (
+                  <span key={d} className="block h-[1em] text-center leading-none">
+                    {d}
                   </span>
                 ))}
               </span>
             </span>
           ) : (
-            <span key={text.length - index} className="leading-none">
-              {character}
+            <span key={text.length - i} className="leading-none">
+              {ch}
             </span>
           )
         )}
@@ -58,32 +65,106 @@ export function RollingPrice({
   );
 }
 
+/* ─── Retained purchasing power copy ──────────────────────────────────────── */
 const getPerkText = (saved: number) => {
-  if (saved < 7000) {
+  if (saved < 7000)
     return "Equivalent to your annual camera gear insurance policy + 12TB encrypted cloud dailies backup.";
-  } else if (saved < 14000) {
+  if (saved < 14000)
     return "Equivalent to a complete RED Komodo 6K cinema package rental for 4 commercial shoots.";
-  } else if (saved < 24000) {
+  if (saved < 24000)
     return "Equivalent to 8 commercial shoot flights + 2 master anamorphic prime lens rentals.";
-  } else {
-    return "Equivalent to 100% of your annual creative studio lease in Brooklyn, Austin, or Berlin.";
-  }
+  return "Equivalent to 100% of your annual creative studio lease in Brooklyn, Austin, or Berlin.";
 };
 
+/* ─── Preset billings ──────────────────────────────────────────────────────── */
 const PRESET_APERTURES = [
-  { label: "$40,000", sub: "Part-time", value: 40000 },
-  { label: "$80,000", sub: "Active DP", value: 80000 },
-  { label: "$120,000", sub: "Commercial Dir", value: 120000 },
-  { label: "$160,000", sub: "Lead Operator", value: 160000 },
+  { label: "$40,000",   sub: "Part-time",        value: 40000  },
+  { label: "$80,000",   sub: "Active DP",         value: 80000  },
+  { label: "$120,000",  sub: "Commercial Dir",    value: 120000 },
+  { label: "$160,000",  sub: "Lead Operator",     value: 160000 },
   { label: "$200,000+", sub: "Studio Production", value: 200000 },
 ];
 
 const TOTAL_BARS = 60;
+const TNR = "font-['Times_New_Roman',Times,Georgia,serif]";
 
-/**
- * Editorial Commercial Console: Centralised Times New Roman Header & Architectural Vertical Lines
- * Section 02 / 04: Commercial Comparison Matrix & Retained Revenue Simulator
- */
+/* ─── Comparison rows ──────────────────────────────────────────────────────── */
+type CompRow = {
+  label: string;
+  nexus: string;
+  upwork: string;
+  agency: string;
+};
+
+function buildRows(billings: number): CompRow[] {
+  const fmt = (n: number) => n.toLocaleString("en-US");
+  const upworkRetained = billings - Math.round(billings * 0.20);
+  const agencyRetained = billings - Math.round(billings * 0.30);
+
+  return [
+    { label: "Commission on your bookings", nexus: "0%",             upwork: "20%",                  agency: "25–35%"             },
+    { label: "You keep",                    nexus: `$${fmt(billings)}`, upwork: `$${fmt(upworkRetained)}`, agency: `$${fmt(agencyRetained)}` },
+    { label: "Clients pay you directly",    nexus: "✓",              upwork: "✗",                    agency: "✗"                  },
+    { label: "Get paid the same day",       nexus: "✓",              upwork: "✗",                    agency: "✗"                  },
+    { label: "Talk to clients anywhere",    nexus: "✓",              upwork: "✗",                    agency: "✗"                  },
+    { label: "Portfolio, reel and photos",  nexus: "✓",              upwork: "✓",                    agency: "✗"                  },
+    { label: "Master IP & deliverables",    nexus: "✓",              upwork: "✗",                    agency: "✗"                  },
+    { label: "Flat verified membership",    nexus: "✓",              upwork: "✗",                    agency: "✗"                  },
+  ];
+}
+
+/* ─── Cell ─────────────────────────────────────────────────────────────────── */
+function Cell({
+  value,
+  highlight,
+  muted,
+}: {
+  value: string;
+  highlight?: boolean;
+  muted?: boolean;
+}) {
+  const isCheck = value === "✓";
+  const isCross = value === "✗";
+  const isMoney = value.startsWith("$");
+  const isPct   = value.endsWith("%") || value.includes("–");
+
+  if (isCheck) {
+    return (
+      <td className={`py-4 px-4 text-center align-middle border-l border-slate-900/[0.07]${highlight ? " bg-[#FAF7F2]" : ""}`}> {/* taste-skill-ignore */}
+        <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500/10">
+          <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[2.5]" />
+        </span>
+      </td>
+    );
+  }
+  if (isCross) {
+    return (
+      <td className={`py-4 px-4 text-center align-middle border-l border-slate-900/[0.07]${highlight ? " bg-[#FAF7F2]" : ""}`}> {/* taste-skill-ignore */}
+        <span className="inline-flex items-center justify-center w-5 h-5">
+          <X className="w-4 h-4 text-neutral-300 stroke-[1.5]" />
+        </span>
+      </td>
+    );
+  }
+
+  return (
+    <td className={`py-4 px-4 text-center align-middle border-l border-slate-900/[0.07]${highlight ? " bg-[#FAF7F2]" : ""}`}> {/* taste-skill-ignore */}
+      <span
+        className={`${TNR} tabular-nums ${
+          isMoney
+            ? `text-base sm:text-lg font-bold tracking-tight ${muted ? "text-neutral-400" : "text-[#14110F]"}`
+            : isPct
+            ? `text-sm sm:text-base font-bold ${muted ? "text-neutral-400" : "text-[#C55221]"}`
+            : `text-sm font-semibold ${muted ? "text-neutral-400" : "text-neutral-700"}`
+        }`}
+      >
+        {value}
+      </span>
+    </td>
+  );
+}
+
+/* ─── Main export ──────────────────────────────────────────────────────────── */
 export function NexusComparisonSection({
   initialBillings = 105000,
   onSelectPlan,
@@ -99,243 +180,30 @@ export function NexusComparisonSection({
   React.useEffect(() => {
     const q = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(q.matches);
-    const handler = () => setReducedMotion(q.matches);
-    q.addEventListener("change", handler);
-    return () => q.removeEventListener("change", handler);
+    const h = () => setReducedMotion(q.matches);
+    q.addEventListener("change", h);
+    return () => q.removeEventListener("change", h);
   }, []);
 
   React.useEffect(() => {
-    const updateW = () => {
-      if (containerRef.current) {
+    const update = () => {
+      if (containerRef.current)
         setContainerWidth(containerRef.current.offsetWidth || 480);
-      }
     };
-    updateW();
-    window.addEventListener("resize", updateW);
-    return () => window.removeEventListener("resize", updateW);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
   }, []);
 
   const upworkToll = Math.round(billings * 0.20);
-  const upworkRetained = billings - upworkToll;
-  const upwork5Yr = upworkToll * 5;
-
-  const agencyToll = Math.round(billings * 0.30);
-  const agencyRetained = billings - agencyToll;
-  const agency5Yr = agencyToll * 5;
-
-  const minVal = 20000;
-  const maxVal = 200000;
-  const pct = Math.max(0, Math.min(100, ((billings - minVal) / (maxVal - minVal)) * 100));
-
-  // Active bar index for the 60-bar Gaussian wave
-  const activeBarIndex = (pct / 100) * (TOTAL_BARS - 1);
-
-  const fmt = (n: number) => n.toLocaleString("en-US");
-
-  // Floating bubble horizontal offset
-  const offsetPx = 10 - pct * 0.20;
-  const bubbleX = (pct / 100) * containerWidth + offsetPx;
-
-  // Interactive matrix row state ("open up" capability - open by default)
-  const [expandedRows, setExpandedRows] = React.useState<Record<string, boolean>>({
-    commission: true,
-    takehome: true,
-    extraction: true,
-    fiveyear: true,
-    escrow: true,
-    clientownership: true,
-    iprights: true,
-    billingmodel: true,
-  });
-  const [hoveredRowId, setHoveredRowId] = React.useState<string | null>(null);
-
-  const toggleRow = (id: string) => {
-    setExpandedRows((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
-  const rowsList = [
-    "commission",
-    "takehome",
-    "extraction",
-    "fiveyear",
-    "escrow",
-    "clientownership",
-    "iprights",
-    "billingmodel",
-  ];
-
-  const allExpanded = rowsList.every((id) => !!expandedRows[id]);
-
-  const toggleAllRows = () => {
-    const nextState = !allExpanded;
-    const next: Record<string, boolean> = {};
-    rowsList.forEach((id) => {
-      next[id] = nextState;
-    });
-    setExpandedRows(next);
-  };
-
-  const comparisonItems = [
-    {
-      id: "commission",
-      label: "Platform commission",
-      nexus: {
-        value: "0% (Zero toll)",
-        badge: "Zero Toll",
-        isWinner: true,
-        audit: "Nexus Direct operates as a verified direct directory. 0% cut taken on invoices, milestones, or wires. 100% of client payout is received.",
-      },
-      upwork: {
-        value: "20% on milestones",
-        isPenalty: true,
-        audit: "Upwork extracts 10% to 20% on milestone billing, plus 3% to 5% client payment processing and foreign exchange conversion deductions.",
-      },
-      agency: {
-        value: "25 to 35% agency cut",
-        isPenalty: true,
-        audit: "Traditional creative representation agencies deduct 25% to 35% mandatory commission, or apply marked-up labor rates undisclosed to creators.",
-      },
-    },
-    {
-      id: "takehome",
-      label: "Annual creator take-home",
-      nexus: {
-        value: `Keep $${fmt(billings)} (100%)`,
-        badge: "Full Retention",
-        isWinner: true,
-        audit: `At $${fmt(billings)} annual production volume, you retain exactly $${fmt(billings)}. Zero intermediary deductions or holding accounts.`,
-      },
-      upwork: {
-        value: `Creator keeps $${fmt(upworkRetained)} (80%)`,
-        isPenalty: true,
-        audit: `At $${fmt(billings)} billing, Upwork automatically strips $${fmt(upworkToll)} from your gross milestone payouts each year.`,
-      },
-      agency: {
-        value: `Creator keeps $${fmt(agencyRetained)} (70%)`,
-        isPenalty: true,
-        audit: `Traditional agency commissions strip $${fmt(agencyToll)} from your annual earnings before sending you net settlement checks.`,
-      },
-    },
-    {
-      id: "extraction",
-      label: "Annual platform extraction",
-      nexus: {
-        value: "$0.00 Platform Fee",
-        badge: "Flat Membership",
-        isWinner: true,
-        audit: "Predictable, flat verified membership. Nexus never taxes career scaling or penalizes higher-value commercial projects.",
-      },
-      upwork: {
-        value: `−$${fmt(upworkToll)} toll / yr`,
-        isPenalty: true,
-        audit: "Tolls compound indefinitely on every milestone. The more value you generate, the more dollars the platform extracts from your craft.",
-      },
-      agency: {
-        value: `−$${fmt(agencyToll)} markup / yr`,
-        isPenalty: true,
-        audit: "Agency partner cuts and administrative overhead siphon creative gross profit, depressing your day-rate ceiling.",
-      },
-    },
-    {
-      id: "fiveyear",
-      label: "5-Year compounded toll",
-      nexus: {
-        value: "$0 Lost (100% Retained)",
-        badge: "Wealth Compounding",
-        isWinner: true,
-        audit: `Over five active production years at current volume, zero toll preserves an extra $${fmt(upwork5Yr)} to $${fmt(agency5Yr)} in creator wealth.`,
-      },
-      upwork: {
-        value: `−$${fmt(upwork5Yr)} Lost`,
-        isPenalty: true,
-        audit: `Five years of milestone extraction costs $${fmt(upwork5Yr)} in unrecoverable platform tolling that could fund an entire camera package.`,
-      },
-      agency: {
-        value: `−$${fmt(agency5Yr)} Lost`,
-        isPenalty: true,
-        audit: `Five years of agency representation extracts $${fmt(agency5Yr)} in creative labor capital that goes to corporate overhead.`,
-      },
-    },
-    {
-      id: "escrow",
-      label: "Payout velocity & escrow",
-      nexus: {
-        value: "Same-day wire & ACH",
-        isWinner: true,
-        audit: "Direct client wire, ACH, or credit card settlement directly to your business checking. Zero intermediary holding periods.",
-      },
-      upwork: {
-        value: "14 to 21 day escrow lockup",
-        isPenalty: true,
-        audit: "Mandatory security holds: 5-day client review, followed by 10-day platform clearing cycles before funds become withdrawable.",
-      },
-      agency: {
-        value: "NET 60 to 90 payment delays",
-        isPenalty: true,
-        audit: "Agencies standardly pay creators only after their own client invoices clear, forcing creators to float production cash for months.",
-      },
-    },
-    {
-      id: "clientownership",
-      label: "Direct client ownership",
-      nexus: {
-        value: "100% direct client ownership",
-        isWinner: true,
-        audit: "You own the client relationship. Message via Slack, email, cell, or in-person. Direct repeat bookings with zero restrictions.",
-      },
-      upwork: {
-        value: "Platform gates chat",
-        isPenalty: true,
-        audit: "Strict platform non-circumvention rules threaten account suspension or legal action for off-platform communication or payments.",
-      },
-      agency: {
-        value: "Agency holds client contract",
-        isPenalty: true,
-        audit: "Non-compete and exclusivity agreements legally prevent creators from contacting or signing direct contracts with agency clients.",
-      },
-    },
-    {
-      id: "iprights",
-      label: "Master IP & deliverables",
-      nexus: {
-        value: "You retain 100% master IP",
-        isWinner: true,
-        audit: "Creator retains master files and grants license upon full payment. Full rights to use footage in personal portfolio and showreels.",
-      },
-      upwork: {
-        value: "Standard platform TOS terms",
-        isPenalty: true,
-        audit: "Work subject to standardized platform TOS and automated dispute adjudication systems run by algorithm.",
-      },
-      agency: {
-        value: "Work-for-hire rights to agency",
-        isPenalty: true,
-        audit: "Extensive work-for-hire agreements grant broad rights and raw assets to the agency and brand, restricting director reel usage.",
-      },
-    },
-    {
-      id: "billingmodel",
-      label: "Commercial billing model",
-      nexus: {
-        value: "Flat verified membership",
-        isWinner: true,
-        audit: "Single verified membership fee. Predictable overhead. Grow your commercial rate from $800/day to $2,500/day without higher tolls.",
-      },
-      upwork: {
-        value: "20% toll on every client $",
-        isPenalty: true,
-        audit: "Toll structure taxes creator growth. High-billing creators subsidize the infrastructure without proportional benefits.",
-      },
-      agency: {
-        value: "Heavy agency markup on labor",
-        isPenalty: true,
-        audit: "Agencies inflate client invoice prices with heavy margins, often pricing senior directors out of nimble, high-craft brand budgets.",
-      },
-    },
-  ];
+  const minVal     = 20000;
+  const maxVal     = 200000;
+  const pct        = Math.max(0, Math.min(100, ((billings - minVal) / (maxVal - minVal)) * 100));
+  const activeBar  = (pct / 100) * (TOTAL_BARS - 1);
+  const offsetPx   = 10 - pct * 0.20;
+  const bubbleX    = (pct / 100) * containerWidth + offsetPx;
+  const fmt        = (n: number) => n.toLocaleString("en-US");
+  const rows       = buildRows(billings);
 
   const handleSelect = (plan: string) => {
     if (onSelectPlan) {
@@ -346,426 +214,268 @@ export function NexusComparisonSection({
   };
 
   return (
-    <div className="w-full max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-12 sm:pb-16 text-[#0F1115] font-['Times_New_Roman',_Times,_Georgia,_serif] relative">
-      
-      {/* ── Centralised Editorial Header in Times New Roman (Matching Above Section) ── */}
-      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 flex flex-col items-center">
-        {/* Section Kicker Pill */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900/[0.04] border border-slate-900/[0.08] text-xs font-semibold text-slate-600 tracking-wide mb-3.5 font-['Times_New_Roman',_Times,_Georgia,_serif]">
-          <span className="font-bold text-slate-900">02 / 04</span>
-          <span className="text-slate-300">·</span>
-          <span>Zero Commission</span>
-        </div>
+    <div className={`w-full max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-10 pt-0 pb-16 text-[#0F1115] ${TNR} relative`}>
 
-        {/* Centralised Title in Times New Roman */}
-        <h2 className="font-['Times_New_Roman',_Times,_Georgia,_serif] text-4xl sm:text-5xl md:text-[56px] font-normal tracking-tight text-[#14110F] leading-[1.06] text-balance">
-          Find the right plan for your <span className="italic text-[#C55221]">production.</span>
-        </h2>
-
-        {/* Centralised Lead in Times New Roman Italic */}
-        <p className="font-['Times_New_Roman',_Times,_Georgia,_serif] italic text-base sm:text-lg text-neutral-600 mt-3.5 max-w-2xl mx-auto leading-relaxed text-balance">
-          Transparent commercial terms. Traditional freelance platforms take 20% on milestones plus escrow holds. 
-          Nexus Direct is verified and direct: 100% day-rate retention and same-day client wire.
+      {/* ── Section Header ── */}
+      <div className="text-center max-w-3xl mx-auto mb-12 flex flex-col items-center">
+        <p className={`${TNR} uppercase tracking-[0.18em] text-[11px] font-semibold text-neutral-400 mb-4`}>
+          Pricing &amp; Roster
         </p>
+        <h2 className={`${TNR} text-[42px] sm:text-[56px] md:text-[68px] font-normal leading-[1.04] tracking-tight text-[#14110F] text-balance`}>
+          one flat price. keep
+          <br />
+          <em className="not-italic text-[#14110F]">every dollar.</em>
+        </h2>
+        <p className={`${TNR} text-sm sm:text-base text-neutral-500 mt-5 max-w-sm mx-auto leading-relaxed`}>
+          Creators and teachers pay a monthly membership. Clients book you
+          directly, and we never take a cut.
+        </p>
+
+        {/* Live billing slider pill */}
+        <div className="mt-8 flex items-center gap-3 bg-[#F8F6F1] rounded-full px-5 py-2.5 w-full max-w-md">
+          <span className={`${TNR} text-sm text-neutral-500 whitespace-nowrap`}>If you book</span>
+          <span className={`${TNR} text-sm font-bold text-[#14110F] min-w-[76px] tabular-nums`}>
+            ${fmt(billings)}
+          </span>
+          <div className="flex-1 relative" ref={containerRef}>
+            {/* Bubble */}
+            <div
+              className="absolute -top-7 -translate-x-1/2 px-2 py-0.5 rounded-full bg-[#C55221] text-white text-[10px] font-bold whitespace-nowrap pointer-events-none"
+              style={{ left: `${bubbleX}px` }}
+            >
+              ${fmt(billings)}
+            </div>
+            <input
+              type="range"
+              min={minVal}
+              max={maxVal}
+              step={5000}
+              value={billings}
+              onChange={(e) => setBillings(Number(e.target.value))}
+              className="impeccable-slider w-full"
+              aria-label="Simulate annual billings"
+            />
+          </div>
+          <span className={`${TNR} text-sm text-neutral-500 whitespace-nowrap`}>of work a month</span>
+        </div>
       </div>
 
-      {/* ── Two-Card Split Console: Matrix on Left, Simulator on Right (Craftwork Sticky Balance) ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start relative z-10">
-        
-        {/* ── LEFT: Commercial Comparison Matrix Card (7 cols) ── */}
-        <div data-ui="comparison-matrix" className="lg:col-span-7 bg-white rounded-2xl p-5 sm:p-7 flex flex-col justify-between border border-slate-900/[0.06] font-['Times_New_Roman',_Times,_Georgia,_serif]">
+      {/* ── Comparison Table ── */}
+      <div className="bg-white rounded-3xl border border-slate-900/[0.06] overflow-hidden shadow-sm">
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[640px] border-collapse">
+            <thead>
+              <tr className="border-b-2 border-slate-900/[0.07]"> {/* taste-skill-ignore */}
+                {/* Label column */}
+                <th scope="col" className="py-7 pl-8 pr-6 text-left w-[36%] align-bottom">
+                  {/* intentionally empty */}
+                </th>
+
+                {/* Nexus Direct */}
+                <th scope="col" className="py-7 px-6 text-center w-[22%] bg-[#FAF7F2] border-l border-slate-900/[0.07] align-bottom"> {/* taste-skill-ignore */}
+                  <div className="flex flex-col items-center gap-1.5 pb-1">
+                    <div className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C55221]/10 ${TNR} text-[11px] font-bold text-[#C55221] tracking-wide uppercase`}>
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#C55221]" />
+                      Creator membership
+                    </div>
+                    <div className={`${TNR} text-xl sm:text-2xl font-bold text-[#14110F] leading-tight mt-1`}>
+                      nexus
+                    </div>
+                  </div>
+                </th>
+
+                {/* Upwork */}
+                <th scope="col" className="py-7 px-4 text-center w-[21%] border-l border-slate-900/[0.07] align-bottom"> {/* taste-skill-ignore */}
+                  <div className="flex flex-col items-center gap-1 pb-1">
+                    <Grid className="w-4 h-4 text-neutral-300 mb-1" />
+                    <div className={`${TNR} text-xs text-neutral-400 font-medium leading-tight`}>Freelance sites</div>
+                    <div className={`${TNR} text-sm sm:text-base font-semibold text-neutral-600 leading-tight`}>upwork, fiverr</div>
+                  </div>
+                </th>
+
+                {/* Agencies */}
+                <th scope="col" className="py-7 px-4 text-center w-[21%] border-l border-slate-900/[0.07] align-bottom"> {/* taste-skill-ignore */}
+                  <div className="flex flex-col items-center gap-1 pb-1">
+                    <Building2 className="w-4 h-4 text-neutral-300 mb-1" />
+                    <div className={`${TNR} text-xs text-neutral-400 font-medium leading-tight`}>Representation</div>
+                    <div className={`${TNR} text-sm sm:text-base font-semibold text-neutral-600 leading-tight`}>agencies</div>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {rows.map((row, idx) => (
+                <tr
+                  key={row.label}
+                  className={`${idx % 2 === 1 ? "bg-[#FAFAF8]" : "bg-white"} border-b border-slate-900/[0.05]`} /* taste-skill-ignore */
+                >
+                  <td className="py-4 pl-8 pr-6 align-middle">
+                    <span className={`${TNR} text-sm sm:text-[15px] text-neutral-700 font-medium leading-snug`}>
+                      {row.label}
+                    </span>
+                  </td>
+                  <Cell value={row.nexus}  highlight />
+                  <Cell value={row.upwork} muted />
+                  <Cell value={row.agency} muted />
+                </tr>
+              ))}
+            </tbody>
+
+            <tfoot>
+              <tr className="border-t-2 border-slate-900/[0.07]"> {/* taste-skill-ignore */}
+                <td className="py-5 pl-8 pr-6">
+                  <p className={`${TNR} text-xs text-neutral-400 italic`}>
+                    Every dollar negotiated is 100% yours.
+                  </p>
+                </td>
+                <td className="py-5 px-5 bg-[#FAF7F2] border-l border-slate-900/[0.07]"> {/* taste-skill-ignore */}
+                  <button
+                    type="button"
+                    onClick={() => handleSelect("nexus")}
+                    className={`${TNR} w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-[#14110F] hover:bg-black text-white text-sm font-semibold tracking-wide transition-colors cursor-pointer`}
+                  >
+                    <span>Apply now</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </td>
+                <td className="py-5 px-4 text-center border-l border-slate-900/[0.07]"> {/* taste-skill-ignore */}
+                  <span className={`${TNR} text-xs text-neutral-400 italic`}>20% toll on every booking</span>
+                </td>
+                <td className="py-5 px-4 text-center border-l border-slate-900/[0.07]"> {/* taste-skill-ignore */}
+                  <span className={`${TNR} text-xs text-neutral-400 italic`}>25–35% markup on labor</span>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      {/* ── Retained Revenue Simulator (below table) ── */}
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
+
+        {/* Left: big earnings */}
+        <div className="bg-white rounded-2xl border border-slate-900/[0.06] p-7 flex flex-col justify-between">
           <div>
-            {/* Matrix Header with "Open Up" Forensic Audit Control */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
-              <div>
-                <h3 className="font-['Times_New_Roman',_Times,_Georgia,_serif] text-xl sm:text-2xl font-semibold text-[#0F1115] tracking-tight">
-                  Commercial comparison matrix
-                </h3>
-                <p className="text-xs text-neutral-500 mt-0.5 italic">
-                  Verified direct directory vs legacy platform toll-gates
-                </p>
-              </div>
+            <p className={`${TNR} text-[10px] uppercase tracking-widest text-neutral-400 font-semibold mb-1`}>
+              Retained Revenue Simulator
+            </p>
+            <p className={`${TNR} text-xs text-neutral-400 italic mb-6`}>
+              Simulate annual take-home across billing volume
+            </p>
 
-              {/* Master Open Up Button */}
-              <button
-                type="button"
-                onClick={toggleAllRows}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/[0.04] hover:bg-slate-900/[0.08] text-xs font-semibold text-slate-700 transition-colors cursor-pointer w-fit self-start sm:self-auto font-['Times_New_Roman',_Times,_Georgia,_serif]"
-                aria-expanded={allExpanded}
-              >
-                {allExpanded ? (
-                  <>
-                    <ChevronUp className="w-3.5 h-3.5 text-slate-500" />
-                    <span>Collapse details</span>
-                  </>
-                ) : (
-                  <>
-                    <ChevronDown className="w-3.5 h-3.5 text-slate-500" />
-                    <span>Open forensic audit</span>
-                  </>
-                )}
-                <span className="text-[10px] text-slate-400 font-semibold">8/8</span>
-              </button>
+            <div className="flex items-baseline gap-1 mb-2">
+              <span className={`${TNR} text-2xl font-medium text-neutral-300`}>$</span>
+              <span className={`${TNR} text-5xl sm:text-6xl font-bold text-[#14110F] leading-none tabular-nums tracking-tight`}>
+                <RollingPrice value={billings} format={(v) => v.toLocaleString("en-US")} reduced={reducedMotion} />
+              </span>
+              <span className={`${TNR} text-sm text-neutral-400 ml-1`}>/yr</span>
             </div>
 
-            {/* Matrix Table with Crisp Vertical Lines */}
-            <div className="overflow-x-auto -mx-1 sm:mx-0">
-              <table className="w-full min-w-[560px] text-left text-xs sm:text-[13px] border-collapse font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                <thead>
-                  <tr className="border-b border-slate-900/[0.08]"> {/* taste-skill-ignore */}
-                    <th scope="col" className="pb-3 px-3 text-xs sm:text-sm font-semibold text-neutral-600 w-[33%] pr-3 border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
-                      Commercial terms
-                    </th>
-                    
-                    {/* Nexus Direct Featured Column Header (Elevated with Vertical Divider) */}
-                    <th scope="col" className="pb-3 px-3 w-[29%] bg-[#FAF8F3] rounded-t-xl text-center border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
-                      <div className="flex flex-col items-center">
-                        <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-[11px] font-bold text-emerald-800 tracking-wider mb-1 uppercase font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
-                          0% Take Rate
-                        </div>
-                        <div className="font-bold text-sm sm:text-base text-[#0F1115] leading-tight font-['Times_New_Roman',_Times,_Georgia,_serif]">Nexus Direct</div>
-                        <div className="text-xs text-neutral-500 mt-0.5 font-medium italic">Flat Membership</div>
-                      </div>
-                    </th>
-
-                    {/* Upwork Column with Vertical Divider */}
-                    <th scope="col" className="pb-3 px-3 w-[19%] text-center border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
-                      <div className="flex flex-col items-center">
-                        <Grid className="w-4 h-4 text-neutral-400 mb-1" />
-                        <div className="font-semibold text-xs sm:text-sm text-neutral-700 leading-tight font-['Times_New_Roman',_Times,_Georgia,_serif]">Upwork / Freelance</div>
-                        <div className="text-xs text-neutral-500 mt-0.5 font-medium italic">20% Escrow Toll</div>
-                      </div>
-                    </th>
-
-                    {/* Talent Agencies Column */}
-                    <th scope="col" className="pb-3 px-3 w-[19%] text-center">
-                      <div className="flex flex-col items-center">
-                        <Building2 className="w-4 h-4 text-neutral-400 mb-1" />
-                        <div className="font-semibold text-xs sm:text-sm text-neutral-700 leading-tight font-['Times_New_Roman',_Times,_Georgia,_serif]">Talent Agencies</div>
-                        <div className="text-xs text-neutral-500 mt-0.5 font-medium italic">25 to 35% Markup</div>
-                      </div>
-                    </th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  {comparisonItems.map((item, index) => {
-                    const isExpanded = !!expandedRows[item.id];
-                    const isHovered = hoveredRowId === item.id;
-                    const isLast = index === comparisonItems.length - 1;
-
-                    return (
-                      <React.Fragment key={item.id}>
-                        {/* Interactive Main Row with Vertical Lines and Hover Tracking */}
-                        <tr
-                          onMouseEnter={() => setHoveredRowId(item.id)}
-                          onMouseLeave={() => setHoveredRowId(null)}
-                          onClick={() => toggleRow(item.id)}
-                          className={`border-b border-slate-900/[0.06] transition-colors duration-150 cursor-pointer select-none ${ /* taste-skill-ignore */
-                            isHovered ? "bg-[#F7F5EE]/80" : index % 2 === 0 ? "bg-transparent" : "bg-[#FAF8F3]/50"
-                          } ${isExpanded ? "bg-[#F5F3EB]" : ""}`}
-                          role="button"
-                          tabIndex={0}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" || e.key === " ") {
-                              e.preventDefault();
-                              toggleRow(item.id);
-                            }
-                          }}
-                          aria-expanded={isExpanded}
-                        >
-                          {/* Term Label with Chevron Indicator (Vertical Line on Right) */}
-                          <td className="py-3 px-3 text-[#14110F] font-medium pr-2 border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
-                            <div className="flex items-center gap-1.5">
-                              <span 
-                                className={`p-0.5 rounded transition-transform duration-200 text-neutral-400 ${
-                                  isExpanded ? "rotate-180 text-slate-700" : ""
-                                }`}
-                                aria-hidden="true"
-                              >
-                                <ChevronDown className="w-3.5 h-3.5" />
-                              </span>
-                              <span className="text-xs sm:text-sm font-semibold text-neutral-800 font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                                {item.label}
-                              </span>
-                            </div>
-                          </td>
-
-                          {/* Nexus Direct (Elevated Column with Vertical Line on Right) */}
-                          <td className={`py-3 px-3 bg-[#FAF8F3] border-r border-slate-900/[0.08] ${isLast && !isExpanded ? "rounded-b-xl" : ""}`}> {/* taste-skill-ignore */}
-                            <div className="flex items-center gap-2 justify-center font-bold text-center whitespace-nowrap">
-                              <span className="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0">
-                                <Check className="w-2.5 h-2.5 stroke-[3]" />
-                              </span>
-                              <span className="text-xs sm:text-sm text-[#0F1115] font-bold font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                                {item.nexus.value}
-                              </span>
-                            </div>
-                          </td>
-
-                          {/* Upwork Column (Vertical Line on Right) */}
-                          <td className="py-3 px-2 text-center border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
-                            <div className="flex items-center gap-1.5 justify-center text-xs sm:text-sm font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                              {item.upwork.isPenalty ? (
-                                <span className="w-3.5 h-3.5 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 ring-1 ring-rose-200">
-                                  <X className="w-2 h-2 stroke-[2.5]" />
-                                </span>
-                              ) : (
-                                <span className="w-3.5 h-3.5 rounded-full border border-neutral-300 flex items-center justify-center shrink-0" />
-                              )}
-                              <span className={item.upwork.isPenalty ? "text-neutral-700 font-medium" : "text-neutral-500"}>
-                                {item.upwork.value}
-                              </span>
-                            </div>
-                          </td>
-
-                          {/* Talent Agencies Column */}
-                          <td className="py-3 px-2 text-center">
-                            <div className="flex items-center gap-1.5 justify-center text-xs sm:text-sm font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                              {item.agency.isPenalty ? (
-                                <span className="w-3.5 h-3.5 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 ring-1 ring-rose-200">
-                                  <X className="w-2 h-2 stroke-[2.5]" />
-                                </span>
-                              ) : (
-                                <span className="w-3.5 h-3.5 rounded-full border border-neutral-300 flex items-center justify-center shrink-0" />
-                              )}
-                              <span className={item.agency.isPenalty ? "text-neutral-700 font-medium" : "text-neutral-500"}>
-                                {item.agency.value}
-                              </span>
-                            </div>
-                          </td>
-                        </tr>
-
-                        {/* Forensic Audit Drawer ("Open Up" State with Exact 4-Column Structural Alignment) */}
-                        {isExpanded && (
-                          <tr className={`bg-[#F8F7F2] border-b border-slate-900/[0.08] ${isLast ? "rounded-b-xl" : ""}`}> {/* taste-skill-ignore */}
-                            {/* Col 1: Term Scope & Audit Header (under Commercial terms) */}
-                            <td className="p-3 sm:p-3.5 align-top border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
-                              <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
-                                Forensic Audit
-                              </div>
-                              <div className="text-xs font-bold text-neutral-800 leading-snug">
-                                {item.label}
-                              </div>
-                              <p className="text-[11px] text-neutral-500 mt-1 italic leading-relaxed">
-                                Contract comparison across direct vs platform terms.
-                              </p>
-                            </td>
-
-                            {/* Col 2: Nexus Direct Audit (Directly under Nexus Direct Column) */}
-                            <td className="p-2.5 sm:p-3 align-top bg-[#FAF8F3] border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
-                              <div className="bg-white rounded-xl p-3 border border-emerald-900/10 h-full"> {/* taste-skill-ignore */}
-                                <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-800 mb-1 font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                                  <span className="w-2 h-2 rounded-full bg-emerald-600 shrink-0" />
-                                  <span>Nexus Direct</span>
-                                </div>
-                                <p className="text-xs text-neutral-700 leading-relaxed italic font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                                  {item.nexus.audit}
-                                </p>
-                              </div>
-                            </td>
-
-                            {/* Col 3: Upwork Audit (Directly under Upwork Column) */}
-                            <td className="p-2.5 sm:p-3 align-top border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
-                              <div className="bg-white rounded-xl p-3 border border-neutral-200 h-full"> {/* taste-skill-ignore */}
-                                <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-800 mb-1 font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                                  <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
-                                  <span>Upwork Toll</span>
-                                </div>
-                                <p className="text-xs text-neutral-600 leading-relaxed italic font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                                  {item.upwork.audit}
-                                </p>
-                              </div>
-                            </td>
-
-                            {/* Col 4: Agency Audit (Directly under Talent Agencies Column) */}
-                            <td className="p-2.5 sm:p-3 align-top">
-                              <div className="bg-white rounded-xl p-3 border border-neutral-200 h-full"> {/* taste-skill-ignore */}
-                                <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-800 mb-1 font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                                  <span className="w-2 h-2 rounded-full bg-neutral-400 shrink-0" />
-                                  <span>Agency Cut</span>
-                                </div>
-                                <p className="text-xs text-neutral-600 leading-relaxed italic font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                                  {item.agency.audit}
-                                </p>
-                              </div>
-                            </td>
-                          </tr>
-                        )}
-                      </React.Fragment>
-                    );
-                  })}
-                </tbody>
-              </table>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold mt-1 mb-6">
+              <span>+$</span>
+              <RollingPrice value={upworkToll} format={(v) => v.toLocaleString("en-US")} reduced={reducedMotion} />
+              <span>Retained</span>
             </div>
 
-            {/* Matrix Card Bottom Status & Action */}
-            <div className="mt-5 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-neutral-500 font-['Times_New_Roman',_Times,_Georgia,_serif]">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-600 shrink-0" />
-                <span className="text-xs sm:text-sm italic">Every dollar negotiated is 100% retained by the creator.</span>
-              </div>
-              <button 
-                type="button" 
-                onClick={() => handleSelect("Commercial Audit")}
-                className="inline-flex items-center gap-1 font-semibold text-slate-900 hover:text-[#C55221] transition-colors cursor-pointer text-xs sm:text-sm font-['Times_New_Roman',_Times,_Georgia,_serif]"
-              >
-                <span>Inspect membership terms</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
+            <p className={`${TNR} text-xs text-neutral-400 italic leading-relaxed`}>
+              Drag the precision slider to preview your retained earnings and
+              platform savings. Zero extraction.
+            </p>
+          </div>
+
+          <div className="mt-6 rounded-xl bg-[#F9F7F2] p-4">
+            <p className={`${TNR} text-[11px] font-bold uppercase tracking-wider text-neutral-500 mb-1`}>
+              ⚡ Retained Purchasing Power
+            </p>
+            <p className={`${TNR} text-xs text-neutral-600 leading-relaxed italic`}>
+              {getPerkText(upworkToll)}
+            </p>
           </div>
         </div>
 
-        {/* ── RIGHT: Retained Revenue Simulator Card (5 cols, Craftwork Sticky Pinning) ── */}
-        <div data-ui="revenue-simulator" className="lg:col-span-5 bg-white rounded-2xl p-5 sm:p-7 flex flex-col justify-between border border-slate-900/[0.06] font-['Times_New_Roman',_Times,_Georgia,_serif] lg:sticky lg:top-8">
+        {/* Right: slider + histogram + presets */}
+        <div className="bg-white rounded-2xl border border-slate-900/[0.06] p-7 flex flex-col justify-between">
           <div>
-            {/* Simulator Header */}
-            <div className="mb-4">
-              <h3 className="font-['Times_New_Roman',_Times,_Georgia,_serif] text-xl sm:text-2xl font-semibold text-[#0F1115] tracking-tight">
-                Retained revenue simulator
-              </h3>
-              <p className="text-xs text-neutral-500 mt-0.5 italic">
-                Simulate annual take-home across billing volume
-              </p>
-            </div>
-
-            {/* Hero Price Rolling Box */}
-            <div className="text-center py-5 bg-[#F9F7F2] rounded-xl my-4">
-              <div className="inline-flex items-baseline justify-center font-['Times_New_Roman',_Times,_Georgia,_serif] text-4xl sm:text-5xl font-bold tracking-tight text-[#0F1115] leading-none">
-                <span className="text-2xl sm:text-3xl font-medium text-neutral-400 mr-1.5">$</span>
-                <RollingPrice 
-                  value={billings} 
-                  format={(v) => v.toLocaleString("en-US")} 
-                  reduced={reducedMotion} 
-                />
-                <span className="text-xs sm:text-sm font-medium text-neutral-500 ml-2 font-['Times_New_Roman',_Times,_Georgia,_serif]">/ yr</span>
-              </div>
-
-              {/* Retained Surplus Badge */}
-              <div className="mt-3 flex justify-center">
-                <div className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                  <span>+ $</span>
-                  <RollingPrice 
-                    value={upworkToll} 
-                    format={(v) => v.toLocaleString("en-US")} 
-                    reduced={reducedMotion} 
+            {/* Gaussian histogram */}
+            <div className="flex items-end justify-between h-10 mb-1 gap-[1.5px]" aria-hidden="true">
+              {Array.from({ length: TOTAL_BARS }).map((_, idx) => {
+                const dist  = Math.abs(idx - activeBar);
+                let scale   = 0.12;
+                const isAct = dist <= 3.5;
+                if (dist < 10) {
+                  const g = Math.exp(-(dist * dist) / 18);
+                  scale   = 0.12 + g * 0.88;
+                }
+                return (
+                  <span
+                    key={idx}
+                    style={{
+                      height: "100%",
+                      transform: `scaleY(${scale.toFixed(3)})`,
+                      transformOrigin: "bottom",
+                      transition: reducedMotion ? "none" : "transform 0.08s ease",
+                    }}
+                    className={`inline-block flex-1 rounded-[1px] ${isAct ? "bg-[#C55221]" : "bg-neutral-200"}`}
                   />
-                  <span> retained vs 20% toll</span>
-                </div>
-              </div>
+                );
+              })}
             </div>
 
-            <p className="text-xs text-neutral-500 text-center max-w-sm mx-auto leading-relaxed mb-5 font-['Times_New_Roman',_Times,_Georgia,_serif] italic">
-              Drag the precision slider to preview your retained earnings and platform savings. Zero extraction.
-            </p>
-
-            {/* Precision Interactive Slider & Gaussian Equalizer */}
-            <div className="relative pt-6 pb-2" ref={containerRef}>
-              
-              {/* Floating Tooltip Pill */}
-              <div 
-                className="absolute top-0 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-[#0F1115] text-white text-[11px] font-bold whitespace-nowrap pointer-events-none transition-transform duration-75 font-['Times_New_Roman',_Times,_Georgia,_serif]"
-                style={{ left: `${bubbleX}px` }}
-              >
-                ${fmt(billings)}
-              </div>
-
-              {/* Native Precision Slider */}
-              <label htmlFor="impeccable-range" className="sr-only">
-                Simulate annual billings volume
-              </label>
-              <input 
-                id="impeccable-range"
+            {/* Precision slider */}
+            <div className="relative mt-1 mb-1">
+              <input
                 type="range"
                 min={minVal}
                 max={maxVal}
                 step={5000}
                 value={billings}
                 onChange={(e) => setBillings(Number(e.target.value))}
-                className="impeccable-slider relative z-20 w-full"
+                className="impeccable-slider w-full"
+                aria-label="Simulate annual billings"
               />
-
-              {/* 60 Gaussian Proximity Histogram Bars */}
-              <div className="flex items-end justify-between h-8 mt-2 px-1 gap-[1px]" aria-hidden="true">
-                {Array.from({ length: TOTAL_BARS }).map((_, idx) => {
-                  const dist = Math.abs(idx - activeBarIndex);
-                  let scale = 0.16;
-                  const isActive = dist <= 3.5;
-                  if (dist < 10) {
-                    const gauss = Math.exp(-(dist * dist) / 18);
-                    scale = 0.16 + gauss * 0.84;
-                  }
-                  return (
-                    <span 
-                      key={idx}
-                      style={{ 
-                        height: "100%",
-                        transform: `scaleY(${scale.toFixed(3)})`,
-                        transformOrigin: "bottom",
-                        transition: reducedMotion ? "none" : "transform 0.08s ease"
-                      }}
-                      className={`inline-block flex-1 rounded-[1px] ${isActive ? "bg-[#0F1115]" : "bg-neutral-200"}`}
-                    />
-                  );
-                })}
-              </div>
-
-              {/* Ruler Labels */}
-              <div className="flex justify-between text-[11px] text-neutral-400 mt-2 px-0.5 font-['Times_New_Roman',_Times,_Georgia,_serif]" aria-hidden="true">
-                <span>$20,000</span>
-                <span>$65,000</span>
-                <span>$110,000</span>
-                <span>$155,000</span>
-                <span>$200,000+</span>
-              </div>
             </div>
 
-            {/* 5 Preset Pill Buttons */}
-            <div className="grid grid-cols-5 gap-1.5 mt-4" role="group" aria-label="Preset billing amounts">
-              {PRESET_APERTURES.map((preset) => {
-                const isActive = billings === preset.value;
+            {/* Ruler labels */}
+            <div className={`${TNR} flex justify-between text-[11px] text-neutral-300 mt-1 mb-6`} aria-hidden="true">
+              <span>$20,000</span>
+              <span>$65,000</span>
+              <span>$110,000</span>
+              <span>$155,000</span>
+              <span>$200,000+</span>
+            </div>
+
+            {/* Preset pills */}
+            <div className="grid grid-cols-5 gap-1.5" role="group" aria-label="Preset billing amounts">
+              {PRESET_APERTURES.map((p) => {
+                const isActive = billings === p.value;
                 return (
                   <button
-                    key={preset.value}
+                    key={p.value}
                     type="button"
-                    onClick={() => setBillings(preset.value)}
-                    className={`py-2 px-1 rounded-xl text-center transition-colors duration-150 cursor-pointer font-['Times_New_Roman',_Times,_Georgia,_serif] ${
-                      isActive 
-                        ? "bg-[#0F1115] text-white" 
-                        : "bg-[#F8F7F4] text-neutral-700 hover:bg-[#EFECE6]"
+                    onClick={() => setBillings(p.value)}
+                    className={`${TNR} py-2 px-1 rounded-xl text-center transition-colors duration-150 cursor-pointer ${
+                      isActive ? "bg-[#14110F] text-white" : "bg-[#F8F7F4] text-neutral-600 hover:bg-[#EFECE6]"
                     }`}
                   >
-                    <div className="text-[10px] sm:text-[11px] font-bold leading-tight">{preset.label}</div>
-                    <div className="text-[9px] opacity-75 truncate mt-0.5 italic">{preset.sub}</div>
+                    <div className="text-[10px] sm:text-[11px] font-bold leading-tight">{p.label}</div>
+                    <div className="text-[9px] opacity-60 truncate mt-0.5 italic">{p.sub}</div>
                   </button>
                 );
               })}
             </div>
-
-            {/* Dynamic Retained Purchasing Power Callout */}
-            <div className="rounded-xl bg-[#F9F7F2] p-4 text-left mt-5 font-['Times_New_Roman',_Times,_Georgia,_serif]">
-              <div className="text-[11px] font-bold text-neutral-700 tracking-wider mb-1 font-['Times_New_Roman',_Times,_Georgia,_serif]">
-                Retained purchasing power
-              </div>
-              <p className="text-xs text-neutral-700 leading-relaxed font-['Times_New_Roman',_Times,_Georgia,_serif] italic">
-                {getPerkText(upworkToll)}
-              </p>
-            </div>
           </div>
 
-          {/* Primary CTA Button */}
+          {/* CTA */}
           <button
             type="button"
             onClick={() => handleSelect("nexus")}
-            className="w-full mt-6 py-4 px-6 rounded-full bg-[#0F1115] hover:bg-black text-white text-sm font-semibold tracking-wide flex items-center justify-center gap-2 transition-colors duration-150 cursor-pointer font-['Times_New_Roman',_Times,_Georgia,_serif]"
+            className={`${TNR} w-full mt-6 py-4 px-6 rounded-full bg-[#14110F] hover:bg-black text-white text-sm font-semibold tracking-wide flex items-center justify-center gap-2 transition-colors cursor-pointer`}
           >
             <span>Apply for curated membership</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
-
       </div>
 
     </div>

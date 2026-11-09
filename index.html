@@ -5773,7 +5773,211 @@
       }
     }
 
-  </style>
+  
+    /* ── PRICING: Times New Roman editorial redesign ── */
+    #fees {
+      --pt-ink:    #14110F;
+      --pt-ink-2:  #57514B;
+      --pt-ink-3:  #8C857D;
+      --pt-line:   rgba(20,17,15,.07);
+      --pt-card:   #FFFFFF;
+      --pt-zebra:  #F9F7F3;
+      --pt-hero-bg:#FAF7F2;
+      --pt-hot-1:  #C55221;
+      --pt-hot-2:  #E07040;
+      --pt-ok:     #22A06B;
+      --pt-no:     #C9C3BA;
+      --pt-display:'Times New Roman', Times, Georgia, serif;
+      --pt-text:   'Times New Roman', Times, Georgia, serif;
+      font-family: var(--pt-text); color: var(--pt-ink);
+      background: #F6F4EF;
+    }
+    #fees .pt { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+    /* Header */
+    #fees .pt-head { text-align: center; margin-bottom: 32px; }
+    #fees .pt-title {
+      font-family: var(--pt-display); font-weight: 400;
+      font-size: clamp(2.8rem, 5.6vw, 5rem);
+      line-height: 1.0; letter-spacing: -.02em; text-transform: lowercase;
+      margin: 0 auto 16px; max-width: 18ch; overflow-wrap: break-word;
+      color: var(--pt-ink);
+    }
+    #fees .pt-sub {
+      font-family: var(--pt-text); font-size: 16px; line-height: 1.6;
+      color: var(--pt-ink-2); max-width: 42ch; margin: 0 auto;
+    }
+
+    /* Slider pill */
+    #fees .pt-calc {
+      display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: center; gap: 10px 16px;
+      margin: 0 auto 40px; padding: 13px 28px;
+      width: fit-content; max-width: 100%;
+      border-radius: 999px;
+      background: #FFFFFF;
+      border: 1px solid var(--pt-line);
+      box-shadow: 0 4px 20px -8px rgba(20,17,15,.12);
+      font-size: 15px; color: var(--pt-ink-2);
+      font-family: var(--pt-text);
+    }
+    #fees .pt-calc output {
+      font-family: var(--pt-display); font-size: 20px; font-weight: 700;
+      color: var(--pt-ink); min-width: 5ch; text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+    #fees .pt-calc input { width: 200px; accent-color: var(--pt-hot-1); }
+
+    /* Table wrapper — card */
+    #fees .pt-wrap {
+      overflow-x: auto;
+      padding: 0;
+      background: #FFFFFF;
+      border-radius: 20px;
+      border: 1px solid rgba(20,17,15,.07);
+      box-shadow: 0 2px 24px -8px rgba(20,17,15,.08);
+    }
+    #fees .pt-table {
+      width: 100%; min-width: 680px;
+      border-collapse: separate; border-spacing: 0;
+      font-size: 15px; font-family: var(--pt-text);
+    }
+
+    /* All cells base */
+    #fees .pt-table th, #fees .pt-table td {
+      padding: 17px 20px; text-align: center;
+      border-bottom: 1px solid var(--pt-line);
+      font-family: var(--pt-text);
+    }
+
+    /* Row label (th in tbody/tfoot) */
+    #fees .pt-table tbody th, #fees .pt-table tfoot th {
+      text-align: left; font-weight: 500;
+      font-family: var(--pt-text); font-size: 15px;
+      color: var(--pt-ink-2); background: transparent; width: 34%;
+      padding-left: 28px;
+    }
+    #fees .pt-table tbody tr:nth-child(even) th { background: var(--pt-zebra); }
+    #fees .pt-table tbody tr:nth-child(even) td { background: var(--pt-zebra); }
+    #fees .pt-table tbody tr:nth-child(even) td.is-hero { background: #F5F0E8; }
+
+    #fees .pt-table tbody tr:first-child th { border-top-left-radius: 0; }
+    #fees .pt-table tfoot th {
+      border-bottom-left-radius: 20px; border-bottom: 0;
+      vertical-align: top; padding-top: 24px; color: var(--pt-ink-3);
+      font-style: italic; font-weight: 400;
+    }
+
+    /* Column headers */
+    #fees .pt-table thead th {
+      border-bottom: 2px solid var(--pt-line); vertical-align: bottom;
+      padding: 24px 20px 20px; background: #FFFFFF; border-top: 0;
+      border-radius: 0;
+    }
+    #fees .pt-table thead th:first-child {
+      background: transparent; border-bottom-color: rgba(20,17,15,.12);
+      padding-left: 28px;
+    }
+
+    /* Data cells */
+    #fees .pt-table td { background: #FFFFFF; color: var(--pt-ink-2); }
+    #fees .pt-table td b {
+      font-weight: 700; color: var(--pt-ink);
+      font-variant-numeric: tabular-nums; font-family: var(--pt-display);
+      font-size: 17px;
+    }
+    #fees [data-keep] { font-variant-numeric: tabular-nums; font-family: var(--pt-display); font-weight: 700; font-size: 17px; color: var(--pt-ink); }
+
+    /* Hover */
+    #fees .pt-table tbody tr:hover > th { color: var(--pt-ink); }
+    #fees .pt-table tbody tr:hover > td { background: #F8F5EF; }
+    #fees .pt-table tbody tr:hover > td.is-hero { background: #EEE8DA; }
+
+    /* Plan labels */
+    #fees .pt-plan-kicker {
+      display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--pt-ink-3); margin-bottom: 6px; font-family: var(--pt-text);
+    }
+    #fees .pt-plan {
+      display: block; font-family: var(--pt-display); font-size: 22px;
+      font-weight: 700; text-transform: lowercase; color: var(--pt-ink);
+      letter-spacing: -.01em;
+    }
+
+    /* ── Featured Nexus column — warm editorial (no pink gradient) ── */
+    #fees .pt-table .is-hero {
+      position: relative;
+      border-left: 1px solid rgba(197,82,33,.18);
+      border-right: 1px solid rgba(197,82,33,.18);
+    }
+    #fees .pt-table td.is-hero { background: var(--pt-hero-bg); color: var(--pt-ink); }
+
+    #fees .pt-table thead .is-hero {
+      background: var(--pt-hero-bg);
+      border: 0;
+      border-left: 1px solid rgba(197,82,33,.18);
+      border-right: 1px solid rgba(197,82,33,.18);
+      border-top: 3px solid var(--pt-hot-1);
+      border-radius: 0;
+      padding: 24px 20px 20px;
+      transform: none;
+      box-shadow: none;
+    }
+    #fees .pt-table thead .is-hero .pt-plan-kicker {
+      color: var(--pt-hot-1); opacity: 1;
+      display: inline-flex; align-items: center; gap: 5px;
+    }
+    #fees .pt-table thead .is-hero .pt-plan-kicker::before {
+      content: ''; display: inline-block;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--pt-hot-1);
+    }
+    #fees .pt-table thead .is-hero .pt-plan { color: var(--pt-ink); }
+    #fees .pt-table tbody tr:first-child td.is-hero { border-top: 0; }
+    #fees .pt-table tfoot td.is-hero {
+      border-bottom: 0; border-radius: 0 0 0 0;
+      border-left: 1px solid rgba(197,82,33,.18);
+      border-right: 1px solid rgba(197,82,33,.18);
+      box-shadow: none;
+    }
+
+    /* Icons */
+    #fees .pt-ic { width: 20px; height: 20px; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
+    #fees .pt-ic.ok { stroke: var(--pt-ok); }
+    #fees .pt-ic.no { stroke: var(--pt-no); width: 15px; height: 15px; }
+
+    /* Footer row */
+    #fees .pt-table tfoot td { vertical-align: top; padding-top: 24px; padding-bottom: 28px; border-bottom: 0; }
+
+    /* Price + CTA */
+    #fees .pt-price {
+      display: block; font-family: var(--pt-display); font-size: 30px; font-weight: 700;
+      color: var(--pt-ink); font-variant-numeric: tabular-nums; letter-spacing: -.01em;
+    }
+    #fees .pt-price small { font-family: var(--pt-text); font-size: 13px; color: var(--pt-ink-3); margin-left: 3px; font-weight: 400; }
+    #fees .pt-price.is-muted { color: var(--pt-ink-2); font-size: 22px; font-weight: 500; }
+    #fees .pt-note { display: block; font-size: 13px; color: var(--pt-ink-3); margin-top: 5px; font-style: italic; }
+    #fees .pt-cta {
+      margin-top: 18px; height: 46px; padding: 0 26px; border: 0;
+      border-radius: 999px; color: #fff;
+      font-family: var(--pt-text); font-size: 14px; font-weight: 600;
+      cursor: pointer;
+      background: #14110F;
+      box-shadow: none;
+      transition: background .2s;
+    }
+    #fees .pt-cta:hover { background: #000; transform: none; }
+    #fees .pt-cta:focus-visible, #fees .pt-calc input:focus-visible, #fees .pt-learn a:focus-visible { outline: 2px solid var(--pt-ink); outline-offset: 3px; transition: none; }
+
+    /* Learn line */
+    #fees .pt-learn { text-align: center; margin: 24px auto 0; font-size: 15px; color: var(--pt-ink-2); font-style: italic; }
+    #fees .pt-learn a { color: var(--pt-ink); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+    /* SR utility */
+    #fees .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+    @media (prefers-reduced-motion: reduce) { #fees .pt-cta { transition: none; } }
+</style>
 </head>
 
 <body data-theme="sage">
@@ -6705,7 +6909,36 @@
 
       <!-- ── ZERO COMMISSION SECTION (02 / 04) ── -->
       <section class="nx-sec" id="fees">
-        <div id="nexus-pricing-root"></div>
+        <div class="pt">
+          <div class="pt-head">
+            <h2 class="pt-title nx-reveal">One flat price. Keep every dollar.</h2>
+            <p class="pt-sub nx-reveal">Creators and teachers pay a monthly membership. Clients book you directly, and we never take a cut.</p>
+          </div>
+          <div class="pt-calc nx-reveal">
+            <label for="ptAmount">If you book</label>
+            <output id="ptOut" for="ptAmount">$5,000</output>
+            <input id="ptAmount" type="range" min="500" max="20000" step="500" value="5000" aria-label="Amount booked per month">
+            <span class="pt-calc-note">of work a month</span>
+          </div>
+          <div class="pt-wrap nx-reveal">
+            <table class="pt-table">
+              <thead><tr>
+                <th scope="col"><span class="sr">Feature</span></th>
+                <th scope="col" class="is-hero"><span class="pt-plan-kicker">Creator membership</span><span class="pt-plan">Nexus</span></th>
+                <th scope="col"><span class="pt-plan-kicker">Freelance sites</span><span class="pt-plan">Upwork, Fiverr</span></th>
+                <th scope="col"><span class="pt-plan-kicker">Representation</span><span class="pt-plan">Agencies</span></th>
+              </tr></thead>
+              <tbody><tr><th scope="row">Commission on your bookings</th><td class="is-hero"><b>0%</b></td><td>20%</td><td>25–35%</td></tr><tr><th scope="row">You keep</th><td class="is-hero"><b data-keep="nx">$5,000</b></td><td><span data-keep="up">$4,000</span></td><td><span data-keep="ag">$3,500</span></td></tr><tr><th scope="row">Clients pay you directly</th><td class="is-hero"><svg class="pt-ic ok" viewBox="0 0 24 24" aria-label="Yes"><path d="M20 6 9 17l-5-5"/></svg></td><td><svg class="pt-ic no" viewBox="0 0 24 24" aria-label="No"><path d="M18 6 6 18M6 6l12 12"/></svg></td><td><svg class="pt-ic no" viewBox="0 0 24 24" aria-label="No"><path d="M18 6 6 18M6 6l12 12"/></svg></td></tr><tr><th scope="row">Get paid the same day</th><td class="is-hero"><svg class="pt-ic ok" viewBox="0 0 24 24" aria-label="Yes"><path d="M20 6 9 17l-5-5"/></svg></td><td><svg class="pt-ic no" viewBox="0 0 24 24" aria-label="No"><path d="M18 6 6 18M6 6l12 12"/></svg></td><td><svg class="pt-ic no" viewBox="0 0 24 24" aria-label="No"><path d="M18 6 6 18M6 6l12 12"/></svg></td></tr><tr><th scope="row">Talk to clients anywhere</th><td class="is-hero"><svg class="pt-ic ok" viewBox="0 0 24 24" aria-label="Yes"><path d="M20 6 9 17l-5-5"/></svg></td><td><svg class="pt-ic no" viewBox="0 0 24 24" aria-label="No"><path d="M18 6 6 18M6 6l12 12"/></svg></td><td><svg class="pt-ic no" viewBox="0 0 24 24" aria-label="No"><path d="M18 6 6 18M6 6l12 12"/></svg></td></tr><tr><th scope="row">Portfolio, reel and photos</th><td class="is-hero"><svg class="pt-ic ok" viewBox="0 0 24 24" aria-label="Yes"><path d="M20 6 9 17l-5-5"/></svg></td><td><svg class="pt-ic ok" viewBox="0 0 24 24" aria-label="Yes"><path d="M20 6 9 17l-5-5"/></svg></td><td><svg class="pt-ic no" viewBox="0 0 24 24" aria-label="No"><path d="M18 6 6 18M6 6l12 12"/></svg></td></tr><tr><th scope="row">Listed in search by craft and city</th><td class="is-hero"><svg class="pt-ic ok" viewBox="0 0 24 24" aria-label="Yes"><path d="M20 6 9 17l-5-5"/></svg></td><td><svg class="pt-ic ok" viewBox="0 0 24 24" aria-label="Yes"><path d="M20 6 9 17l-5-5"/></svg></td><td><svg class="pt-ic no" viewBox="0 0 24 24" aria-label="No"><path d="M18 6 6 18M6 6l12 12"/></svg></td></tr><tr><th scope="row">Verified badge after review</th><td class="is-hero"><svg class="pt-ic ok" viewBox="0 0 24 24" aria-label="Yes"><path d="M20 6 9 17l-5-5"/></svg></td><td><svg class="pt-ic ok" viewBox="0 0 24 24" aria-label="Yes"><path d="M20 6 9 17l-5-5"/></svg></td><td><svg class="pt-ic ok" viewBox="0 0 24 24" aria-label="Yes"><path d="M20 6 9 17l-5-5"/></svg></td></tr><tr><th scope="row">Post classes and workshops</th><td class="is-hero"><svg class="pt-ic ok" viewBox="0 0 24 24" aria-label="Yes"><path d="M20 6 9 17l-5-5"/></svg></td><td><svg class="pt-ic no" viewBox="0 0 24 24" aria-label="No"><path d="M18 6 6 18M6 6l12 12"/></svg></td><td><svg class="pt-ic no" viewBox="0 0 24 24" aria-label="No"><path d="M18 6 6 18M6 6l12 12"/></svg></td></tr></tbody>
+              <tfoot><tr>
+                <th scope="row">What it costs</th>
+                <td class="is-hero"><span class="pt-price">$19.99<small>/month</small></span><span class="pt-note">First 100 creators get 90 days free</span><button type="button" class="pt-cta is-hero" onclick="window.openInquiryModal && openInquiryModal('Founding Creator', 'Creator membership')">Join the Founding 100</button></td>
+                <td><span class="pt-price is-muted" data-cost="up">$1,000<small>/month</small></span><span class="pt-note">20% of what you book</span></td>
+                <td><span class="pt-price is-muted" data-cost="ag">$1,500<small>/month</small></span><span class="pt-note">Around 30% of what you book</span></td>
+              </tr></tfoot>
+            </table>
+          </div>
+          <p class="pt-learn nx-reveal">Here to learn? A learner membership for all classes is coming at $11.99 a month. <a href="#founding">Join the waitlist</a></p>
+        </div>
       </section>
 
       <!-- ── PROTOCOL SECTION (03 / 04) ── -->
@@ -9618,7 +9851,19 @@
       if (grid) new MutationObserver(runRoster).observe(grid, { childList: true });
     })();
   </script>
-  <script src="assets/react-pricing/nexus-pricing-section.js" defer></script>
+<script>
+(function(){
+  const r=document.getElementById('ptAmount'); if(!r) return;
+  const f=n=>'$'+Math.round(n).toLocaleString('en-US');
+  const set=(k,v)=>document.querySelectorAll('[data-'+k[0]+'="'+k[1]+'"]').forEach(e=>{e.firstChild.nodeValue=f(v);});
+  function up(){ const v=+r.value; document.getElementById('ptOut').value=f(v);
+    document.querySelector('[data-keep="nx"]').textContent=f(v);
+    document.querySelector('[data-keep="up"]').textContent=f(v*.8);
+    document.querySelector('[data-keep="ag"]').textContent=f(v*.7);
+    set(['cost','up'],v*.2); set(['cost','ag'],v*.3); }
+  r.addEventListener('input',up); up();
+})();
+</script>
 </body>
 
 </html>
