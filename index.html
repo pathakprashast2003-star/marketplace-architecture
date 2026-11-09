@@ -1883,6 +1883,7 @@
       margin-bottom: 20px;
       position: relative;
       transition: box-shadow 0.24s ease, border-color 0.24s ease;
+      white-space: nowrap;
     }
 
     .nx-odometer-hero-box:hover {
@@ -1890,10 +1891,17 @@
       box-shadow: var(--shadow-fees-hero-hover);
     }
 
+    .nx-odo-price-group {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
     .nx-odo-currency {
-      font-family: var(--font-display);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-display);
       font-size: clamp(34px, 4.4vw, 48px);
-      font-weight: 900;
+      font-weight: 850;
       color: var(--color-fees-ink);
       line-height: 1;
       letter-spacing: -0.02em;
@@ -1902,43 +1910,52 @@
     .nx-odo-reel-wrap {
       display: inline-flex;
       align-items: center;
-      font-family: var(--font-display);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-display);
       font-size: clamp(40px, 5.2vw, 56px);
-      font-weight: 900;
+      font-weight: 850;
       color: var(--color-fees-ink);
       line-height: 1;
       letter-spacing: -0.03em;
       font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1, "cv05" 1;
     }
 
     /* Bi-Directional Digit Cell with Vertical Edge Gradient Mask */
     .nx-digit-col {
       display: inline-block;
-      width: 0.61em;
+      width: 0.62em;
       height: 1.15em;
       overflow: hidden;
       position: relative;
       vertical-align: middle;
-      mask-image: linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
     }
 
-    .nx-digit-col span {
+    .nx-reel-track {
       position: absolute;
-      top: 0;
+      top: -1.15em;
       left: 0;
       width: 100%;
+      height: 3.45em;
+      display: flex;
+      flex-direction: column;
+      will-change: transform;
+    }
+
+    .nx-reel-track span {
       height: 1.15em;
       display: flex;
       align-items: center;
       justify-content: center;
-      will-change: transform;
+      line-height: 1.15em;
+      font-variant-numeric: tabular-nums;
     }
 
     .nx-digit-comma {
       display: inline-block;
       margin: 0 2px;
-      font-size: 0.9em;
+      font-size: 0.88em;
       line-height: 1;
       color: var(--color-fees-ink);
       vertical-align: middle;
@@ -1962,7 +1979,7 @@
     .nx-odo-surplus-badge {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       background: var(--color-fees-win-tint);
       color: var(--color-fees-win);
       border: 1px solid var(--color-fees-win-border);
@@ -1975,6 +1992,9 @@
       box-shadow: var(--shadow-fees-badge);
       transition: transform 0.24s ease, background-color 0.24s ease;
       font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1, "cv05" 1;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .nx-odo-surplus-badge.is-pulsing {
@@ -1991,22 +2011,12 @@
     .nx-badge-digit-col {
       display: inline-block;
       width: 0.62em;
-      height: 1.2em;
+      height: 1.15em;
       overflow: hidden;
       position: relative;
       vertical-align: middle;
-    }
-
-    .nx-badge-digit-col span {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 1.2em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      will-change: transform;
+      mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
     }
 
     .nx-scrubber-subtext {
@@ -2039,7 +2049,7 @@
       background: var(--color-fees-card);
       border: 1.5px solid var(--color-fees-ink);
       color: var(--color-fees-ink);
-      font-family: var(--font-display);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-display);
       font-size: 13.5px;
       font-weight: 800;
       padding: 8px 12px;
@@ -2049,6 +2059,7 @@
       white-space: nowrap;
       transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 10;
+      font-variant-numeric: tabular-nums;
     }
 
     .nx-slider-bubble::after {
@@ -2137,6 +2148,7 @@
       color: var(--color-fees-muted);
       margin-top: 12px;
       padding: 0 4px;
+      font-variant-numeric: tabular-nums;
     }
 
     /* 5 Aperture Presets */
@@ -2151,6 +2163,7 @@
     .nx-aperture-stop {
       padding: 8px 16px;
       border-radius: 12px;
+      white-space: nowrap;
       border: 1px solid var(--color-fees-card-border);
       background: var(--color-fees-card);
       color: var(--color-fees-sub);
@@ -2164,6 +2177,7 @@
       gap: 4px;
       transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
       box-shadow: var(--shadow-fees-stop);
+      font-variant-numeric: tabular-nums;
     }
 
     .nx-aperture-stop small {
@@ -2198,10 +2212,11 @@
       outline-offset: 2px;
     }
 
-    /* ── ANNOT COMPARISON TABLE (IMAGE 2: 4 BALANCED COLUMNS) ── */
+    /* ── ANNOT COMPARISON TABLE (IMAGE 2: PURE TABULAR ARCHITECTURE) ── */
     .nx-annot-table-wrap {
       padding: clamp(24px, 4vw, 48px);
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
     .nx-annot-table {
@@ -2209,7 +2224,10 @@
       border-collapse: separate;
       border-spacing: 0;
       text-align: left;
-      min-width: 780px;
+      min-width: 760px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", var(--font-body);
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1, "cv05" 1;
     }
 
     .nx-annot-table th {
@@ -2225,7 +2243,7 @@
       width: 32%;
     }
 
-    /* Highlighted Nexus Pillar (Image 2: Annot Red Column Card Reference) */
+    /* Highlighted Nexus Pillar (Image 2: Annot Pillar Reference) */
     .nx-th-nexus {
       width: 28%;
       background: var(--color-fees-accent-tint);
@@ -2253,7 +2271,7 @@
       gap: 8px;
     }
 
-    /* Annot-style Brand Square Logo (Image 2) */
+    /* Minimalist Logo Badges (No Emojis) */
     .nx-col-logo-badge {
       display: inline-flex;
       align-items: center;
@@ -2263,7 +2281,7 @@
       border-radius: 12px;
       background: var(--color-fees-accent);
       color: var(--color-fees-card);
-      font-family: var(--font-display);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-display);
       font-size: 18px;
       font-weight: 900;
       box-shadow: var(--shadow-fees-logo);
@@ -2278,8 +2296,6 @@
       border-radius: 12px;
       background: var(--color-fees-gray-bg);
       color: var(--color-fees-gray-text);
-      font-size: 16px;
-      font-weight: 800;
       border: 1px solid var(--color-fees-track);
     }
 
@@ -2291,7 +2307,7 @@
     }
 
     .nx-col-take-rate {
-      font-family: var(--font-display);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-display);
       font-size: 19px;
       font-weight: 900;
       color: var(--color-fees-ink);
@@ -2305,7 +2321,7 @@
     }
 
     .nx-col-muted-rate {
-      font-family: var(--font-display);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-display);
       font-size: 15px;
       font-weight: 700;
       color: var(--color-fees-muted);
@@ -2321,15 +2337,18 @@
     .nx-td-feat {
       font-weight: 600;
       color: var(--color-fees-ink);
+    }
+
+    .nx-feat-content {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .nx-feat-icon {
-      font-size: 16px;
-      width: 24px;
-      text-align: center;
+    .nx-feat-svg {
+      width: 18px;
+      height: 18px;
+      color: var(--color-fees-muted);
       flex-shrink: 0;
     }
 
@@ -2371,9 +2390,7 @@
       height: 22px;
       border-radius: 50%;
       background: var(--color-fees-win);
-      color: var(--color-fees-card);
-      font-size: 11px;
-      font-weight: 900;
+      color: #FFFFFF;
       flex-shrink: 0;
       box-shadow: var(--shadow-fees-check);
     }
@@ -2387,9 +2404,8 @@
       border-radius: 50%;
       background: var(--color-fees-gray-bg);
       color: var(--color-fees-gray-text);
-      font-size: 10px;
-      font-weight: 900;
       flex-shrink: 0;
+      border: 1px solid var(--color-fees-gray-border);
     }
 
     .nx-loss-figure {
@@ -2402,6 +2418,20 @@
       color: var(--color-fees-win);
       font-weight: 800;
       font-variant-numeric: tabular-nums;
+    }
+
+    @media (max-width: 680px) {
+      .nx-odometer-hero-box {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px 20px;
+      }
+      .nx-odo-surplus-badge {
+        margin-left: 0;
+      }
+      .nx-annot-table-wrap {
+        padding: 16px 12px 24px;
+      }
     }
 
     /* ── TANGIBLE REINVESTMENT DECK (LIGHT EDITORIAL) ── */
@@ -6746,7 +6776,7 @@
       <!-- ── ZERO COMMISSION SECTION (02 / 04) ── -->
       <section class="nx-sec" id="fees">
         <div class="nx-monolith-header nx-reveal">
-          <div class="nx-compare-kicker-pill">
+          <div class="nx-compare-kicker-pill" aria-hidden="true">
             <span>Compare platforms</span>
           </div>
           <h2 class="nx-monolith-h2">How does Nexus compare to traditional platforms?</h2>
@@ -6764,12 +6794,14 @@
             
             <!-- Centered Odometer Hero Card (Tima King & Image 1 Spec) -->
             <div class="nx-odometer-hero-box">
-              <span class="nx-odo-currency">$</span>
-              <div class="nx-odo-reel-wrap" id="nxOdometerReel">
-                <!-- Rendered dynamically by BiDirectionalOdometer Engine -->
+              <div class="nx-odo-price-group">
+                <span class="nx-odo-currency">$</span>
+                <div class="nx-odo-reel-wrap" id="nxOdometerReel">
+                  <!-- Rendered dynamically by BiDirectionalOdometer Engine -->
+                </div>
+                <span id="nxEarnVal" style="display:none;">80,000</span>
+                <span class="nx-odo-unit">/ yr</span>
               </div>
-              <span id="nxEarnVal" style="display:none;">80,000</span>
-              <span class="nx-odo-unit">/ yr</span>
               <span class="nx-odo-surplus-badge" id="nxSave">
                 <span>+ $</span><span class="nx-badge-reel-wrap" id="nxSaveReel"></span><span> Retained</span>
               </span>
@@ -6853,7 +6885,7 @@
             </div>
           </div>
 
-          <!-- Comparison Table (Image 2: 4-Column Annot Architecture) -->
+          <!-- Comparison Table (Image 2: Pure Tabular Architecture, No Emojis) -->
           <div class="nx-annot-table-wrap">
             <table class="nx-annot-table" aria-label="Nexus vs Traditional Marketplaces comparison">
               <thead>
@@ -6861,23 +6893,41 @@
                   <th class="nx-th-feat">Commercial terms</th>
                   <th class="nx-th-nexus">
                     <div class="nx-col-brand-header">
-                      <div class="nx-col-logo-badge">N</div>
+                      <div class="nx-col-logo-badge" aria-hidden="true">N</div>
                       <div class="nx-col-logo">Nexus Direct</div>
                       <div class="nx-col-take-rate">0% Take Rate</div>
                     </div>
                   </th>
                   <th class="nx-th-trad">
                     <div class="nx-col-brand-header">
-                      <div class="nx-col-logo-muted">⚡</div>
-                      <div class="nx-col-muted-title">Upwork / Fiverr</div>
+                      <div class="nx-col-logo-muted" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="3" y="3" width="6" height="6" rx="1.5"></rect>
+                          <rect x="11" y="3" width="6" height="6" rx="1.5"></rect>
+                          <rect x="3" y="11" width="6" height="6" rx="1.5"></rect>
+                          <rect x="11" y="11" width="6" height="6" rx="1.5"></rect>
+                        </svg>
+                      </div>
+                      <div class="nx-col-muted-title">Upwork / Freelance</div>
                       <div class="nx-col-muted-rate">20% Escrow Toll</div>
                     </div>
                   </th>
                   <th class="nx-th-agency">
                     <div class="nx-col-brand-header">
-                      <div class="nx-col-logo-muted">🏛️</div>
+                      <div class="nx-col-logo-muted" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M3 17.5h14"></path>
+                          <path d="M5 17.5v-12a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v12"></path>
+                          <path d="M8 8h1"></path>
+                          <path d="M11 8h1"></path>
+                          <path d="M8 11h1"></path>
+                          <path d="M11 11h1"></path>
+                          <path d="M8 14h1"></path>
+                          <path d="M11 14h1"></path>
+                        </svg>
+                      </div>
                       <div class="nx-col-muted-title">Talent Agencies</div>
-                      <div class="nx-col-muted-rate">25–35% Markup</div>
+                      <div class="nx-col-muted-rate">25 to 35% Markup</div>
                     </div>
                   </th>
                 </tr>
@@ -6885,192 +6935,329 @@
               <tbody>
                 <tr>
                   <td class="nx-td-feat">
-                    <span class="nx-feat-icon">⚡</span>
-                    <span>Platform commission</span>
+                    <div class="nx-feat-content">
+                      <svg class="nx-feat-svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="6.5" cy="6.5" r="2.5"></circle>
+                        <circle cx="13.5" cy="13.5" r="2.5"></circle>
+                        <line x1="15.5" y1="4.5" x2="4.5" y2="15.5"></line>
+                      </svg>
+                      <span>Platform commission</span>
+                    </div>
                   </td>
                   <td class="nx-td-nexus">
                     <div class="nx-cell-content">
-                      <span class="nx-check-circle" aria-label="Included">✔</span>
+                      <span class="nx-check-circle" aria-label="Included">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M2.5 6.2L4.6 8.3L9.5 3.5"></path>
+                        </svg>
+                      </span>
                       <strong class="nx-win-figure">0% (Zero toll)</strong>
                     </div>
                   </td>
                   <td class="nx-td-trad">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
                       <span class="nx-loss-figure">20% on milestones</span>
                     </div>
                   </td>
                   <td class="nx-td-agency">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
-                      <span class="nx-loss-figure">25–35% agency cut</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
+                      <span class="nx-loss-figure">25 to 35% agency cut</span>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td class="nx-td-feat">
-                    <span class="nx-feat-icon">💰</span>
-                    <span>Annual creator take-home</span>
+                    <div class="nx-feat-content">
+                      <svg class="nx-feat-svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="2.5" y="5.5" width="15" height="10" rx="2"></rect>
+                        <path d="M14.5 10.5h.01"></path>
+                        <path d="M5.5 5.5v-1a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v1"></path>
+                      </svg>
+                      <span>Annual creator take-home</span>
+                    </div>
                   </td>
                   <td class="nx-td-nexus">
                     <div class="nx-cell-content">
-                      <span class="nx-check-circle" aria-label="Included">✔</span>
+                      <span class="nx-check-circle" aria-label="Included">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M2.5 6.2L4.6 8.3L9.5 3.5"></path>
+                        </svg>
+                      </span>
                       <strong class="nx-win-figure" id="nxUsBarVal">Keep $80,000 (100% Retained)</strong>
                     </div>
                   </td>
                   <td class="nx-td-trad">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
                       <span class="nx-loss-figure" id="nxThemRetainedVal">Creator keeps $64,000 (80%)</span>
                     </div>
                   </td>
                   <td class="nx-td-agency">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
                       <span class="nx-loss-figure" id="nxAgencyRetainedVal">Creator keeps $56,000 (70%)</span>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td class="nx-td-feat">
-                    <span class="nx-feat-icon">📉</span>
-                    <span>Annual platform extraction</span>
+                    <div class="nx-feat-content">
+                      <svg class="nx-feat-svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="16.5 13.5 11 8 7.5 11.5 3.5 7.5"></polyline>
+                        <polyline points="12.5 13.5 16.5 13.5 16.5 9.5"></polyline>
+                      </svg>
+                      <span>Annual platform extraction</span>
+                    </div>
                   </td>
                   <td class="nx-td-nexus">
                     <div class="nx-cell-content">
-                      <span class="nx-check-circle" aria-label="Included">✔</span>
+                      <span class="nx-check-circle" aria-label="Included">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M2.5 6.2L4.6 8.3L9.5 3.5"></path>
+                        </svg>
+                      </span>
                       <strong class="nx-win-figure">$0.00 Platform Fee</strong>
                     </div>
                   </td>
                   <td class="nx-td-trad">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
                       <span class="nx-loss-figure" id="nxThem">−$16,000 toll / yr</span>
                     </div>
                   </td>
                   <td class="nx-td-agency">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
                       <span class="nx-loss-figure" id="nxAgencyToll">−$24,000 markup / yr</span>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td class="nx-td-feat">
-                    <span class="nx-feat-icon">⏳</span>
-                    <span>5-Year compounded loss</span>
+                    <div class="nx-feat-content">
+                      <svg class="nx-feat-svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="10" cy="10" r="7.5"></circle>
+                        <polyline points="10 6 10 10 13 11.5"></polyline>
+                      </svg>
+                      <span>5-Year compounded loss</span>
+                    </div>
                   </td>
                   <td class="nx-td-nexus">
                     <div class="nx-cell-content">
-                      <span class="nx-check-circle" aria-label="Included">✔</span>
+                      <span class="nx-check-circle" aria-label="Included">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M2.5 6.2L4.6 8.3L9.5 3.5"></path>
+                        </svg>
+                      </span>
                       <strong class="nx-win-figure">$0 Lost (100% Retained)</strong>
                     </div>
                   </td>
                   <td class="nx-td-trad">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
                       <span class="nx-loss-figure" id="nxUpwork5Yr">−$80,000 Lost</span>
                     </div>
                   </td>
                   <td class="nx-td-agency">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
                       <span class="nx-loss-figure" id="nxAgency5Yr">−$120,000 Lost</span>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td class="nx-td-feat">
-                    <span class="nx-feat-icon">⏱️</span>
-                    <span>Payout velocity and escrow</span>
+                    <div class="nx-feat-content">
+                      <svg class="nx-feat-svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polygon points="11 2.5 4.5 11 9.5 11 8.5 17.5 15.5 9 10.5 9 11 2.5"></polygon>
+                      </svg>
+                      <span>Payout velocity and escrow</span>
+                    </div>
                   </td>
                   <td class="nx-td-nexus">
                     <div class="nx-cell-content">
-                      <span class="nx-check-circle" aria-label="Included">✔</span>
+                      <span class="nx-check-circle" aria-label="Included">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M2.5 6.2L4.6 8.3L9.5 3.5"></path>
+                        </svg>
+                      </span>
                       <span>Same-day wire &amp; ACH</span>
                     </div>
                   </td>
                   <td class="nx-td-trad">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
-                      <span>14–21 day escrow lockup</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
+                      <span>14 to 21 day escrow lockup</span>
                     </div>
                   </td>
                   <td class="nx-td-agency">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
-                      <span>NET 60–90 payment delays</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
+                      <span>NET 60 to 90 payment delays</span>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td class="nx-td-feat">
-                    <span class="nx-feat-icon">🤝</span>
-                    <span>Direct client ownership</span>
+                    <div class="nx-feat-content">
+                      <svg class="nx-feat-svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="10" cy="6" r="3.5"></circle>
+                        <path d="M3.5 16.5c0-3.5 3-5.5 6.5-5.5s6.5 2 6.5 5.5"></path>
+                      </svg>
+                      <span>Direct client ownership</span>
+                    </div>
                   </td>
                   <td class="nx-td-nexus">
                     <div class="nx-cell-content">
-                      <span class="nx-check-circle" aria-label="Included">✔</span>
+                      <span class="nx-check-circle" aria-label="Included">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M2.5 6.2L4.6 8.3L9.5 3.5"></path>
+                        </svg>
+                      </span>
                       <span>100% direct client ownership</span>
                     </div>
                   </td>
                   <td class="nx-td-trad">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
                       <span>Platform gates &amp; monitors chat</span>
                     </div>
                   </td>
                   <td class="nx-td-agency">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
                       <span>Agency holds client contract</span>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td class="nx-td-feat">
-                    <span class="nx-feat-icon">📜</span>
-                    <span>Master IP and raw deliverables</span>
+                    <div class="nx-feat-content">
+                      <svg class="nx-feat-svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M4 4.5v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-8l-5-5H6a2 2 0 0 0-2 2z"></path>
+                        <polyline points="11 2.5 11 7.5 16 7.5"></polyline>
+                      </svg>
+                      <span>Master IP and raw deliverables</span>
+                    </div>
                   </td>
                   <td class="nx-td-nexus">
                     <div class="nx-cell-content">
-                      <span class="nx-check-circle" aria-label="Included">✔</span>
+                      <span class="nx-check-circle" aria-label="Included">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M2.5 6.2L4.6 8.3L9.5 3.5"></path>
+                        </svg>
+                      </span>
                       <span>You retain 100% master IP</span>
                     </div>
                   </td>
                   <td class="nx-td-trad">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
                       <span>Standard platform TOS terms</span>
                     </div>
                   </td>
                   <td class="nx-td-agency">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
                       <span>Work-for-hire rights to agency</span>
                     </div>
                   </td>
                 </tr>
                 <tr>
                   <td class="nx-td-feat">
-                    <span class="nx-feat-icon">🏷️</span>
-                    <span>Commercial billing model</span>
+                    <div class="nx-feat-content">
+                      <svg class="nx-feat-svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M16.5 8.5l-6-6-8 8v6h6l8-8z"></path>
+                        <circle cx="6.5" cy="13.5" r="1"></circle>
+                      </svg>
+                      <span>Commercial billing model</span>
+                    </div>
                   </td>
                   <td class="nx-td-nexus">
                     <div class="nx-cell-content">
-                      <span class="nx-check-circle" aria-label="Included">✔</span>
+                      <span class="nx-check-circle" aria-label="Included">
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <path d="M2.5 6.2L4.6 8.3L9.5 3.5"></path>
+                        </svg>
+                      </span>
                       <span>Flat verified membership</span>
                     </div>
                   </td>
                   <td class="nx-td-trad">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
                       <span>20% toll on every client $</span>
                     </div>
                   </td>
                   <td class="nx-td-agency">
                     <div class="nx-cell-content">
-                      <span class="nx-cross-circle" aria-label="Excluded">✕</span>
+                      <span class="nx-cross-circle" aria-label="Excluded">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                          <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5"></path>
+                        </svg>
+                      </span>
                       <span>Heavy agency markup on labor</span>
                     </div>
                   </td>
@@ -7078,7 +7265,6 @@
               </tbody>
             </table>
           </div>
-
           <!-- Dynamic Reinvestment Deck: What Your Retained Capital Buys -->
           <div class="nx-reinvest-deck">
             <div class="nx-reinvest-header">
@@ -7094,13 +7280,10 @@
           <!-- Elevated Monolith Footer Bar -->
           <div class="nx-compare-footer">
             <div class="nx-footer-purchasing-power">
-              <span class="nx-bolt-badge">⚡</span>
+              <span class="nx-bolt-badge" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 2.5 4.5 11 9.5 11 8.5 17.5 15.5 9 10.5 9 11 2.5"/></svg></span>
               <span id="nxSavePerk">Equivalent to 8 commercial shoot flights + 2 master anamorphic prime lens rentals.</span>
             </div>
-            <a class="nx-monolith-cta-btn" href="#roster">
-              <span>Apply for curated membership</span>
-              <span aria-hidden="true">→</span>
-            </a>
+            <a class="nx-monolith-cta-btn" href="#roster"><span>Apply for curated membership</span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
           </div>
         </div>
       </section>
@@ -8268,37 +8451,37 @@
         {
           threshold: 55000,
           items: [
-            { cat: '🎥 Cine Camera', name: 'Sony FX6 Cinema Kit', val: '$3,200', desc: 'Full-frame 4K camera body, V-mount batteries & monitor for 2nd unit ops' },
-            { cat: '✈️ Travel & Crew', name: '4× Location Flights', val: '$2,400', desc: 'Roundtrip commercial scouting flights with heavy pelican case baggage' },
-            { cat: '🖥️ Post Storage', name: '12TB NVMe RAID Array', val: '$1,400', desc: 'Blazing fast Thunderbolt 4 working volume for 6K ProRes RAW dailies' },
-            { cat: '🛡️ Annual Shield', name: 'Gear Floater Policy', val: '$1,000', desc: 'Worldwide camera & lens loss/theft protection with zero deductible' }
+            { cat: 'Cinema Camera', name: 'Sony FX6 Cinema Kit', val: '$3,200', desc: 'Full-frame 4K camera body, V-mount batteries & monitor for 2nd unit ops' },
+            { cat: 'Travel & Crew', name: '4× Location Flights', val: '$2,400', desc: 'Roundtrip commercial scouting flights with heavy pelican case baggage' },
+            { cat: 'Post Storage', name: '12TB NVMe RAID Array', val: '$1,400', desc: 'Blazing fast Thunderbolt 4 working volume for 6K ProRes RAW dailies' },
+            { cat: 'Equipment Shield', name: 'Gear Floater Policy', val: '$1,000', desc: 'Worldwide camera & lens loss/theft protection with zero deductible' }
           ]
         },
         {
           threshold: 105000,
           items: [
-            { cat: '🎥 Cine Camera', name: 'RED Komodo 6K Package', val: '$6,800', desc: 'Global shutter cinema body, cage, breakout box & RF mount cine lenses' },
-            { cat: '✈️ Travel & Crew', name: '8× Commercial Flights', val: '$4,800', desc: 'Cross-country production scout flights + 2nd unit DP travel accommodation' },
-            { cat: '🖥️ Studio Compute', name: 'M3 Max 128GB Workstation', val: '$3,200', desc: 'Real-time 8K playback, color grading & DaVinci Resolve Studio surface' },
-            { cat: '🛡️ Annual Shield', name: 'Comprehensive E&O Insurance', val: '$1,200', desc: 'Errors and omissions liability policy for national commercial distribution' }
+            { cat: 'Cinema Camera', name: 'RED Komodo 6K Package', val: '$6,800', desc: 'Global shutter cinema body, cage, breakout box & RF mount cine lenses' },
+            { cat: 'Travel & Crew', name: '8× Commercial Flights', val: '$4,800', desc: 'Cross-country production scout flights + 2nd unit DP travel accommodation' },
+            { cat: 'Studio Compute', name: 'M3 Max 128GB Workstation', val: '$3,200', desc: 'Real-time 8K playback, color grading & DaVinci Resolve Studio surface' },
+            { cat: 'Equipment Shield', name: 'Comprehensive E&O Policy', val: '$1,200', desc: 'Errors and omissions liability policy for national commercial distribution' }
           ]
         },
         {
           threshold: 155000,
           items: [
-            { cat: '🎥 Cine Optics', name: 'Atlas Orion Anamorphic Set', val: '$11,500', desc: '2× anamorphic prime lenses for cinematic commercial look & oval bokeh' },
-            { cat: '💡 Lighting Rig', name: 'Aputure Electro Storm Kit', val: '$7,200', desc: 'Point-source BLAIR LED fixtures for commercial daylight simulation' },
-            { cat: '🖥️ Post Compute', name: 'Mac Studio Ultra 192GB', val: '$4,500', desc: 'Dual ProRes engines running uncompressed open-gate raw workflows' },
-            { cat: '🏢 Studio Lease', name: 'Production Loft Space', val: '$8,800', desc: 'Dedicated downtown edit suite & client review screening lounge' }
+            { cat: 'Cinema Optics', name: 'Atlas Orion Anamorphic Set', val: '$11,500', desc: '2× anamorphic prime lenses for cinematic commercial look & oval bokeh' },
+            { cat: 'Lighting Kit', name: 'Aputure Electro Storm Kit', val: '$7,200', desc: 'Point-source BLAIR LED fixtures for commercial daylight simulation' },
+            { cat: 'Studio Compute', name: 'Mac Studio Ultra 192GB', val: '$4,500', desc: 'Dual ProRes engines running uncompressed open-gate raw workflows' },
+            { cat: 'Studio Space', name: 'Production Loft Space', val: '$8,800', desc: 'Dedicated downtown edit suite & client review screening lounge' }
           ]
         },
         {
           threshold: Infinity,
           items: [
-            { cat: '🎥 Flagship Cine', name: 'ARRI Alexa Mini LF Package', val: '$18,000', desc: 'Large format cinema package rental for premium global fashion & auto spots' },
-            { cat: '💡 High-End G&E', name: 'Complete 3-Ton Grip Van', val: '$8,500', desc: 'Full commercial grip truck rental with dana dolly & modern rigging gear' },
-            { cat: '🏢 Studio Lease', name: 'Annual Loft Lease Deposit', val: '$9,500', desc: 'High-ceiling industrial studio space in Brooklyn or Los Angeles Arts District' },
-            { cat: '🛡️ Legal Retainer', name: 'Production Legal Shield', val: '$4,000', desc: 'Retained commercial entertainment attorney for contract & buy-out review' }
+            { cat: 'Flagship Camera', name: 'ARRI Alexa Mini LF Package', val: '$18,000', desc: 'Large format cinema package rental for premium global fashion & auto spots' },
+            { cat: 'Grip & Electric', name: 'Complete 3-Ton Grip Van', val: '$8,500', desc: 'Full commercial grip truck rental with dana dolly & modern rigging gear' },
+            { cat: 'Studio Space', name: 'Annual Loft Lease Deposit', val: '$9,500', desc: 'High-ceiling industrial studio space in Brooklyn or Los Angeles Arts District' },
+            { cat: 'Legal Counsel', name: 'Production Legal Retainer', val: '$4,000', desc: 'Retained commercial entertainment attorney for contract & buy-out review' }
           ]
         }
       ];
@@ -8321,13 +8504,14 @@
         `).join('');
       };
 
-      // ── Advanced Bi-Directional Odometer Reel Engine (Tima King Pinterest Specification) ──
+      // ── Rock-Solid Bi-Directional Odometer Reel Engine (Tima King Pinterest Specification) ──
       class BiDirectionalOdometer {
         constructor(containerEl, colClass = 'nx-digit-col', commaClass = 'nx-digit-comma') {
           this.container = containerEl;
           this.colClass = colClass;
           this.commaClass = commaClass;
           this.prevVal = null;
+          this.columns = []; // list of { colEl, trackEl, spanPrev, spanCurr, spanNext, currentDigit, timeoutId }
         }
 
         render(val, isScrubbing = false) {
@@ -8338,79 +8522,131 @@
           const digits = chars.filter(c => c !== ',');
           const totalDigits = digits.length;
 
-          // Rebuild columns only when total character count changes
-          let cols = this.container.querySelectorAll('.' + this.colClass);
-          if (cols.length !== totalDigits) {
-            let html = '';
-            chars.forEach(ch => {
-              if (ch === ',') {
-                html += `<span class="${this.commaClass}">,</span>`;
-              } else {
-                html += `<span class="${this.colClass}"><span>0</span></span>`;
-              }
-            });
-            this.container.innerHTML = html;
-            cols = this.container.querySelectorAll('.' + this.colClass);
+          // Rebuild columns only when total digit count changes (e.g. 5 digits to 6 digits)
+          if (this.columns.length !== totalDigits) {
+            this.rebuild(chars);
           }
 
-          // Reverse-order staggered animation: rightmost digit starts first!
-          cols.forEach((col, idx) => {
+          // Reverse-order staggered animation: rightmost digit animates first (delay 0)
+          this.columns.forEach((colObj, idx) => {
             const targetDigit = digits[idx];
-            const reverseDelay = (totalDigits - 1 - idx) * (isScrubbing ? 14 : 35);
-            const duration = isScrubbing ? 0.20 : 0.46;
-            this.animateDigit(col, targetDigit, isIncrease, reverseDelay, duration, this.prevVal === null);
+            const reverseDelay = (totalDigits - 1 - idx) * (isScrubbing ? 0 : 35);
+            const duration = isScrubbing ? 0.08 : 0.44;
+            this.rollColumn(colObj, targetDigit, isIncrease, reverseDelay, duration, this.prevVal === null, isScrubbing);
           });
 
           this.prevVal = val;
         }
 
-        animateDigit(col, targetDigit, isIncrease, delay, duration, isInstant) {
-          let currentSpan = col.querySelector('span.current') || col.querySelector('span');
-          const currentVal = currentSpan ? currentSpan.textContent : '';
+        rebuild(chars) {
+          // Clear any running timeouts before rebuilding
+          this.columns.forEach(c => {
+            if (c.timeoutId) clearTimeout(c.timeoutId);
+          });
+          this.container.innerHTML = '';
+          this.columns = [];
 
-          if (currentVal === targetDigit && !isInstant) {
-            return; // Already in place
+          chars.forEach(ch => {
+            if (ch === ',') {
+              const comma = document.createElement('span');
+              comma.className = this.commaClass;
+              comma.textContent = ',';
+              this.container.appendChild(comma);
+            } else {
+              const col = document.createElement('span');
+              col.className = this.colClass;
+              
+              const track = document.createElement('span');
+              track.className = 'nx-reel-track';
+              
+              const sPrev = document.createElement('span');
+              const sCurr = document.createElement('span');
+              const sNext = document.createElement('span');
+              sCurr.textContent = ch;
+              
+              track.appendChild(sPrev);
+              track.appendChild(sCurr);
+              track.appendChild(sNext);
+              col.appendChild(track);
+              this.container.appendChild(col);
+
+              this.columns.push({
+                colEl: col,
+                trackEl: track,
+                spanPrev: sPrev,
+                spanCurr: sCurr,
+                spanNext: sNext,
+                currentDigit: ch,
+                timeoutId: null
+              });
+            }
+          });
+        }
+
+        rollColumn(colObj, targetDigit, isIncrease, delay, duration, isInstant, isScrubbing) {
+          if (colObj.currentDigit === targetDigit && !isInstant) return;
+
+          if (colObj.timeoutId) {
+            clearTimeout(colObj.timeoutId);
+            colObj.timeoutId = null;
           }
 
-          if (isInstant) {
-            col.innerHTML = `<span class="current" style="transform: translateY(0);">${targetDigit}</span>`;
+          if (isInstant || isScrubbing) {
+            colObj.trackEl.style.transition = 'none';
+            colObj.trackEl.style.transform = 'translateY(0)';
+            colObj.spanCurr.textContent = targetDigit;
+            colObj.spanPrev.textContent = '';
+            colObj.spanNext.textContent = '';
+            colObj.currentDigit = targetDigit;
             return;
           }
 
-          // Directional coordinates:
-          // Increasing billings -> Motion goes DOWNWARD (incoming enters from top: -100% -> 0%)
-          // Decreasing billings -> Motion goes UPWARD (incoming enters from bottom: +100% -> 0%)
-          const startY = isIncrease ? -100 : 100;
-          const exitY = isIncrease ? 100 : -100;
+          // Tima King Directional Physics:
+          // Increasing billings -> Motion goes DOWNWARD (incoming enters from top: translateY(33.333%))
+          // Decreasing billings -> Motion goes UPWARD (incoming enters from bottom: translateY(-33.333%))
+          const track = colObj.trackEl;
 
-          const incomingSpan = document.createElement('span');
-          incomingSpan.textContent = targetDigit;
-          incomingSpan.className = 'incoming';
-          incomingSpan.style.transform = `translateY(${startY}%)`;
-          incomingSpan.style.transition = `transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`;
+          if (isIncrease) {
+            colObj.spanPrev.textContent = targetDigit;
+            track.style.transition = 'none';
+            track.style.transform = 'translateY(0)';
+            void track.offsetHeight; // force reflow
 
-          if (currentSpan) {
-            currentSpan.className = 'exiting';
-            currentSpan.style.transition = `transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`;
+            colObj.timeoutId = setTimeout(() => {
+              track.style.transition = `transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1)`;
+              track.style.transform = 'translateY(33.333%)';
+
+              colObj.timeoutId = setTimeout(() => {
+                track.style.transition = 'none';
+                track.style.transform = 'translateY(0)';
+                colObj.spanCurr.textContent = targetDigit;
+                colObj.spanPrev.textContent = '';
+                colObj.spanNext.textContent = '';
+                colObj.currentDigit = targetDigit;
+                colObj.timeoutId = null;
+              }, duration * 1000 + 20);
+            }, delay);
+          } else {
+            colObj.spanNext.textContent = targetDigit;
+            track.style.transition = 'none';
+            track.style.transform = 'translateY(0)';
+            void track.offsetHeight; // force reflow
+
+            colObj.timeoutId = setTimeout(() => {
+              track.style.transition = `transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1)`;
+              track.style.transform = 'translateY(-33.333%)';
+
+              colObj.timeoutId = setTimeout(() => {
+                track.style.transition = 'none';
+                track.style.transform = 'translateY(0)';
+                colObj.spanCurr.textContent = targetDigit;
+                colObj.spanPrev.textContent = '';
+                colObj.spanNext.textContent = '';
+                colObj.currentDigit = targetDigit;
+                colObj.timeoutId = null;
+              }, duration * 1000 + 20);
+            }, delay);
           }
-
-          col.appendChild(incomingSpan);
-
-          // Force reflow and start GPU transform
-          requestAnimationFrame(() => {
-            incomingSpan.style.transform = 'translateY(0%)';
-            if (currentSpan) {
-              currentSpan.style.transform = `translateY(${exitY}%)`;
-            }
-          });
-
-          // Clean up old DOM node once animation ends
-          setTimeout(() => {
-            if (currentSpan && currentSpan.parentNode === col) {
-              col.removeChild(currentSpan);
-            }
-            incomingSpan.className = 'current';
-          }, (duration * 1000) + delay + 40);
         }
       }
 
@@ -8427,9 +8663,6 @@
         'nx-digit-comma'
       );
 
-      // ── Smooth Perk Crossfade ──
-      const perkEl = document.getElementById('nxSavePerk');
-      let perkAnimTimeout = null;
       const updatePerkSmoothly = (newText) => {
         if (!perkEl || perkEl.textContent === newText) return;
         clearTimeout(perkAnimTimeout);
