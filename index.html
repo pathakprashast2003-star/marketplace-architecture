@@ -5885,14 +5885,14 @@
       box-shadow: 0 20px 45px -12px rgba(20, 17, 15, 0.10);
     }
 
-    /* ── Center Elevated Hero Card (Nexus Direct) ── */
+    /* ── Center Elevated Hero Card (Vibrant Royal Electric Cobalt) ── */
     #fees .ct-card.is-hero {
-      background: linear-gradient(165deg, #1E3A8A 0%, #1D4ED8 42%, #0F172A 100%);
+      background: linear-gradient(180deg, #4F6AF8 0%, #3B54EE 50%, #2A44E0 100%);
       border: 1.5px solid rgba(255, 255, 255, 0.35);
       border-radius: 32px;
-      padding: 32px 24px 32px;
+      padding: 34px 24px 34px;
       color: #FFFFFF;
-      box-shadow: 0 32px 80px -15px rgba(29, 78, 216, 0.45),
+      box-shadow: 0 32px 80px -15px rgba(59, 84, 238, 0.50),
                   0 0 0 1px rgba(255, 255, 255, 0.20),
                   inset 0 1px 2px rgba(255, 255, 255, 0.45);
       z-index: 10;
@@ -5946,7 +5946,7 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    /* ── Animated Character Illustration Vignettes (Reference 1:1) ── */
+    /* ── Editorial Character Artwork (Reference Matching 1:1) ── */
     #fees .ct-card-artwork {
       width: 100%;
       height: 140px;
@@ -5957,73 +5957,26 @@
       border: none;
       box-shadow: none;
       margin-bottom: 12px;
-      overflow: visible;
+      overflow: hidden;
     }
 
-    #fees .ct-card.is-hero .ct-card-artwork {
-      height: 145px;
-      background: transparent;
-      border: none;
-      box-shadow: none;
-    }
-
-    #fees .ct-vignette-svg {
-      width: 195px;
-      height: 140px;
-      overflow: visible;
+    #fees .ct-art-img {
+      height: 135px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
       display: block;
     }
 
-    /* CSS Micro-Animations */
-    @keyframes ctCloudSlow {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(10px); }
+    #fees .ct-card:hover .ct-art-img {
+      transform: scale(1.05);
     }
 
-    @keyframes ctCloudFast {
-      0%, 100% { transform: translateX(-10px); }
-      50% { transform: translateX(12px); }
+    #fees .ct-card.is-hero .ct-art-img {
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
-
-    @keyframes ctWalkBounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-3px); }
-    }
-
-    @keyframes ctSprintBounce {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-4.5px) rotate(1.5deg); }
-    }
-
-    @keyframes ctSpeedTrail {
-      0% { opacity: 0; transform: translateX(16px); }
-      50% { opacity: 0.95; }
-      100% { opacity: 0; transform: translateX(-24px); }
-    }
-
-    @keyframes ctWheelSpin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes ctPedalBob {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-2px); }
-    }
-
-    #fees .ct-anim-cloud-slow { animation: ctCloudSlow 6s ease-in-out infinite; }
-    #fees .ct-anim-cloud-fast { animation: ctCloudFast 3.5s ease-in-out infinite; }
-    #fees .ct-anim-walk { animation: ctWalkBounce 1.4s ease-in-out infinite; transform-origin: bottom center; }
-    #fees .ct-anim-sprint { animation: ctSprintBounce 0.75s ease-in-out infinite; transform-origin: bottom center; }
-    #fees .ct-anim-speed-1 { animation: ctSpeedTrail 1.1s linear infinite; }
-    #fees .ct-anim-speed-2 { animation: ctSpeedTrail 1.1s linear infinite 0.55s; }
-    #fees .ct-anim-wheel { animation: ctWheelSpin 2.4s linear infinite; transform-origin: center; }
-    #fees .ct-anim-pedal { animation: ctPedalBob 1.2s ease-in-out infinite; transform-origin: bottom center; }
-
-    /* Interactive Hover Acceleration (Apple Fluidity) */
-    #fees .ct-card:hover .ct-anim-walk { animation-duration: 0.9s; }
-    #fees .ct-card.is-hero:hover .ct-anim-sprint { animation-duration: 0.5s; }
-    #fees .ct-card:hover .ct-anim-wheel { animation-duration: 1.2s; }
 
     #fees .ct-card-name {
       font-size: 22px;
@@ -7191,61 +7144,8 @@
               <!-- ── CARD 1: Freelance Platforms (Upwork / Fiverr) ── -->
               <div class="ct-card is-freelance">
                 <div class="ct-card-head">
-                  <div class="ct-card-artwork" aria-label="Freelance Platforms Slow Walking Character Illustration">
-                    <svg class="ct-vignette-svg" viewBox="0 0 195 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <!-- Soft Pastel Dome Silhouette -->
-                      <path d="M 28 132 C 28 50, 168 50, 168 132 Z" fill="#E2E8F0" opacity="0.75"/>
-                      <circle cx="98" cy="85" r="56" fill="#EEF2F6"/>
-                      
-                      <!-- Distant Tower Silhouette -->
-                      <rect x="62" y="58" width="12" height="42" rx="2" fill="#CBD5E1" opacity="0.5"/>
-                      <polygon points="62,58 68,48 74,58" fill="#94A3B8" opacity="0.5"/>
-
-                      <!-- Animated Floating Clouds -->
-                      <g class="ct-anim-cloud-slow">
-                        <path d="M 112 60 Q 122 52 132 60 Q 142 60 148 66 Q 152 72 142 74 L 112 74 Q 105 72 112 60 Z" fill="#FFFFFF" opacity="0.95"/>
-                        <path d="M 42 74 Q 52 68 62 74 L 42 74 Z" fill="#FFFFFF" opacity="0.75"/>
-                      </g>
-
-                      <!-- Ground Foliage -->
-                      <path d="M 38 132 C 43 112, 50 112, 56 132" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"/>
-                      <path d="M 48 132 C 52 116, 56 116, 60 132" stroke="#CBD5E1" stroke-width="2" stroke-linecap="round"/>
-                      <path d="M 142 132 C 147 116, 152 116, 157 132" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"/>
-                      <ellipse cx="98" cy="132" rx="58" ry="6" fill="#CBD5E1" opacity="0.4"/>
-
-                      <!-- Animated Character: Walking with Slow Heavy Stride -->
-                      <g class="ct-anim-walk">
-                        <!-- Back Leg -->
-                        <path d="M 96 98 L 90 125" stroke="#2563EB" stroke-width="7" stroke-linecap="round"/>
-                        <path d="M 90 125 L 82 127" stroke="#0F172A" stroke-width="4" stroke-linecap="round"/>
-                        
-                        <!-- Front Leg -->
-                        <path d="M 102 98 L 110 125" stroke="#2563EB" stroke-width="7" stroke-linecap="round"/>
-                        <path d="M 110 125 L 120 127" stroke="#0F172A" stroke-width="4" stroke-linecap="round"/>
-
-                        <!-- Dark Blazer -->
-                        <rect x="90" y="68" width="22" height="32" rx="6" fill="#0F172A"/>
-                        <path d="M 99 68 L 103 76 L 107 68" fill="#FFFFFF"/>
-
-                        <!-- Head & Hair -->
-                        <circle cx="101" cy="56" r="7.5" fill="#FDBA74"/>
-                        <path d="M 95 54 C 95 47, 107 47, 107 54 C 107 56, 103 57, 101 57 C 98 57, 95 56, 95 54 Z" fill="#0F172A"/>
-                        <path d="M 97 57 C 97 61, 103 62, 105 59" stroke="#0F172A" stroke-width="2" stroke-linecap="round" fill="none"/>
-
-                        <!-- Heavy Briefcase with 20% Fee Tag -->
-                        <g transform="translate(78, 88)">
-                          <rect x="0" y="0" width="18" height="14" rx="2.5" fill="#1E293B" stroke="#0F172A" stroke-width="1"/>
-                          <line x1="5" y1="-3" x2="13" y2="-3" stroke="#1E293B" stroke-width="2" stroke-linecap="round"/>
-                          <text x="9" y="10" font-family="system-ui, -apple-system, sans-serif" font-size="7.5" font-weight="900" fill="#EF4444" text-anchor="middle">20%</text>
-                        </g>
-                        
-                        <!-- Left Arm holding briefcase -->
-                        <path d="M 93 75 L 86 88" stroke="#0F172A" stroke-width="5" stroke-linecap="round"/>
-                        
-                        <!-- Right Arm swinging forward -->
-                        <path d="M 108 75 L 116 86" stroke="#0F172A" stroke-width="4.5" stroke-linecap="round"/>
-                      </g>
-                    </svg>
+                  <div class="ct-card-artwork">
+                    <img src="assets/pricing_art_freelance.png" alt="Freelance Platforms Illustration" class="ct-art-img" loading="lazy" />
                   </div>
                   <h3 class="ct-card-name">Freelance Platforms</h3>
                   <div class="ct-card-sub">Upwork / Fiverr</div>
@@ -7308,66 +7208,8 @@
                 <div class="ct-hero-top-badge">Most Popular</div>
 
                 <div class="ct-card-head">
-                  <div class="ct-card-artwork" aria-label="Nexus Direct Dynamic Sprinting Director Illustration">
-                    <svg class="ct-vignette-svg" viewBox="0 0 195 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <!-- Frosted Arch Dome Vignette on Deep Indigo Stage -->
-                      <path d="M 28 132 C 28 45, 168 45, 168 132 Z" fill="rgba(255, 255, 255, 0.22)" stroke="rgba(255, 255, 255, 0.45)" stroke-width="1.5"/>
-                      <circle cx="98" cy="85" r="58" fill="rgba(255, 255, 255, 0.16)"/>
-
-                      <!-- Distant Architectural Tower -->
-                      <rect x="52" y="54" width="14" height="44" rx="2" fill="rgba(255, 255, 255, 0.35)"/>
-                      <polygon points="52,54 59,44 66,54" fill="rgba(255, 255, 255, 0.45)"/>
-
-                      <!-- Fast Clouds -->
-                      <g class="ct-anim-cloud-fast">
-                        <path d="M 120 54 Q 132 46 144 54 Q 154 54 160 61 Q 165 68 155 70 L 120 70 Q 112 68 120 54 Z" fill="#FFFFFF" opacity="0.9"/>
-                        <path d="M 44 68 Q 56 62 66 68 L 44 68 Z" fill="#FFFFFF" opacity="0.65"/>
-                      </g>
-
-                      <!-- Speed streaks -->
-                      <line x1="166" y1="84" x2="136" y2="84" stroke="#60A5FA" stroke-width="2.2" stroke-linecap="round" class="ct-anim-speed-1"/>
-                      <line x1="156" y1="102" x2="130" y2="102" stroke="#93C5FD" stroke-width="2.2" stroke-linecap="round" class="ct-anim-speed-2"/>
-
-                      <!-- Ground Foliage & Shadow -->
-                      <path d="M 38 132 C 43 108, 51 108, 58 132" stroke="#60A5FA" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
-                      <path d="M 140 132 C 147 110, 155 110, 163 132" stroke="#93C5FD" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
-                      <ellipse cx="98" cy="132" rx="64" ry="6" fill="rgba(0, 0, 0, 0.28)"/>
-
-                      <!-- Character: Full Sprint Stride with Cinema Camera -->
-                      <g class="ct-anim-sprint">
-                        <!-- Back Leg (Extended high behind in sprint) -->
-                        <path d="M 86 96 L 66 112 L 56 108" stroke="#38BDF8" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M 56 108 L 48 112" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round"/>
-
-                        <!-- Front Leg (Bent high forward in full sprint stride) -->
-                        <path d="M 98 96 L 116 114 L 130 128" stroke="#38BDF8" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M 130 128 L 140 128" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round"/>
-
-                        <!-- Torso / Dark Blazer (Tilted forward in speed) -->
-                        <g transform="rotate(12 94 80)">
-                          <rect x="84" y="64" width="24" height="34" rx="6" fill="#0F172A" stroke="#FFFFFF" stroke-width="1"/>
-                          <path d="M 93 64 L 98 74 L 103 64" fill="#FFFFFF"/>
-                        </g>
-
-                        <!-- Head & Wind-Swept Hair -->
-                        <circle cx="106" cy="52" r="7.5" fill="#FDBA74"/>
-                        <path d="M 98 49 C 98 42, 112 42, 112 49 C 112 52, 108 53, 106 53 C 102 53, 98 52, 98 49 Z" fill="#0F172A"/>
-                        <path d="M 101 54 C 101 58, 108 59, 110 55" stroke="#0F172A" stroke-width="2" stroke-linecap="round" fill="none"/>
-
-                        <!-- Handheld Cinema Camera Rig -->
-                        <g transform="translate(116, 66)">
-                          <rect x="0" y="2" width="16" height="12" rx="2" fill="#0F172A" stroke="#FFFFFF" stroke-width="1"/>
-                          <rect x="16" y="4" width="6" height="8" rx="1.5" fill="#38BDF8"/>
-                          <line x1="2" y1="0" x2="12" y2="0" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round"/>
-                        </g>
-
-                        <!-- Front Arm holding Camera -->
-                        <path d="M 102 72 L 118 74" stroke="#0F172A" stroke-width="5.5" stroke-linecap="round"/>
-                        
-                        <!-- Back Arm pumping back in speed -->
-                        <path d="M 86 72 L 74 82" stroke="#0F172A" stroke-width="5" stroke-linecap="round"/>
-                      </g>
-                    </svg>
+                  <div class="ct-card-artwork">
+                    <img src="assets/pricing_art_nexus.png" alt="Nexus Direct Creator Membership Illustration" class="ct-art-img" loading="lazy" />
                   </div>
                   <h3 class="ct-card-name">Nexus Direct</h3>
                   <div class="ct-card-sub">Creator Membership</div>
@@ -7430,80 +7272,8 @@
               <!-- ── CARD 3: Talent Agencies (Traditional Representatives) ── -->
               <div class="ct-card is-agency">
                 <div class="ct-card-head">
-                  <div class="ct-card-artwork" aria-label="Talent Agencies Bicycle Commute Illustration">
-                    <svg class="ct-vignette-svg" viewBox="0 0 195 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <!-- Dome Vignette -->
-                      <path d="M 28 132 C 28 50, 168 50, 168 132 Z" fill="#E2E8F0" opacity="0.75"/>
-                      <circle cx="98" cy="85" r="56" fill="#EEF2F6"/>
-
-                      <!-- Clouds -->
-                      <g class="ct-anim-cloud-slow">
-                        <path d="M 118 56 Q 128 48 138 56 Q 148 56 153 62 Q 158 68 148 70 L 118 70 Q 111 68 118 56 Z" fill="#FFFFFF" opacity="0.9"/>
-                        <path d="M 46 70 Q 56 64 66 70 L 46 70 Z" fill="#FFFFFF" opacity="0.7"/>
-                      </g>
-
-                      <!-- Ground Shadow -->
-                      <ellipse cx="98" cy="132" rx="58" ry="6" fill="#CBD5E1" opacity="0.4"/>
-
-                      <!-- Bicycle Scene -->
-                      <g transform="translate(32, 32)">
-                        <!-- Back Wheel (Spinning with Spoke Animation) -->
-                        <g transform="translate(35, 84)">
-                          <circle cx="0" cy="0" r="16" stroke="#2563EB" stroke-width="2.5" fill="none"/>
-                          <circle cx="0" cy="0" r="2.2" fill="#0F172A"/>
-                          <g class="ct-anim-wheel">
-                            <line x1="-15" y1="0" x2="15" y2="0" stroke="#94A3B8" stroke-width="1"/>
-                            <line x1="0" y1="-15" x2="0" y2="15" stroke="#94A3B8" stroke-width="1"/>
-                            <line x1="-10" y1="-10" x2="10" y2="10" stroke="#94A3B8" stroke-width="1"/>
-                            <line x1="-10" y1="10" x2="10" y2="-10" stroke="#94A3B8" stroke-width="1"/>
-                          </g>
-                        </g>
-
-                        <!-- Front Wheel (Spinning with Spoke Animation) -->
-                        <g transform="translate(95, 84)">
-                          <circle cx="0" cy="0" r="16" stroke="#2563EB" stroke-width="2.5" fill="none"/>
-                          <circle cx="0" cy="0" r="2.2" fill="#0F172A"/>
-                          <g class="ct-anim-wheel">
-                            <line x1="-15" y1="0" x2="15" y2="0" stroke="#94A3B8" stroke-width="1"/>
-                            <line x1="0" y1="-15" x2="0" y2="15" stroke="#94A3B8" stroke-width="1"/>
-                            <line x1="-10" y1="-10" x2="10" y2="10" stroke="#94A3B8" stroke-width="1"/>
-                            <line x1="-10" y1="10" x2="10" y2="-10" stroke="#94A3B8" stroke-width="1"/>
-                          </g>
-                        </g>
-
-                        <!-- Bike Frame -->
-                        <path d="M 35 84 L 62 84 L 52 64 L 35 84 Z" stroke="#0F172A" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
-                        <path d="M 62 84 L 85 64 L 52 64" stroke="#0F172A" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
-                        <path d="M 85 64 L 95 84" stroke="#0F172A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                        
-                        <!-- Handlebar -->
-                        <path d="M 83 60 L 86 52 L 92 52" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-                        <!-- Saddle Seat -->
-                        <path d="M 48 60 L 56 60" stroke="#0F172A" stroke-width="3.5" stroke-linecap="round"/>
-
-                        <!-- Heavy Agency Luggage (NET 90) on rear rack -->
-                        <rect x="22" y="60" width="16" height="14" rx="2" fill="#E2E8F0" stroke="#64748B" stroke-width="1.5"/>
-                        <text x="30" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="6" font-weight="800" fill="#64748B" text-anchor="middle">NET 90</text>
-
-                        <!-- Cyclist Character with subtle pedaling bob -->
-                        <g class="ct-anim-pedal" transform="translate(5, 0)">
-                          <!-- Legs Pedaling -->
-                          <path d="M 48 62 L 56 74 L 52 84" stroke="#2563EB" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M 52 84 L 58 86" stroke="#0F172A" stroke-width="3.5" stroke-linecap="round"/>
-
-                          <!-- Torso -->
-                          <path d="M 48 62 L 58 40 L 72 44" stroke="#0F172A" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-                          <rect x="54" y="36" width="14" height="20" rx="4" fill="#0F172A" transform="rotate(18 54 36)"/>
-
-                          <!-- Arms to Handlebar -->
-                          <path d="M 66 42 L 82 52" stroke="#0F172A" stroke-width="4.5" stroke-linecap="round"/>
-
-                          <!-- Head -->
-                          <circle cx="66" cy="28" r="6.5" fill="#FDBA74"/>
-                          <path d="M 61 26 C 61 20, 72 20, 72 26 C 72 28, 68 29, 66 29 Z" fill="#0F172A"/>
-                        </g>
-                      </g>
-                    </svg>
+                  <div class="ct-card-artwork">
+                    <img src="assets/pricing_art_agency.png" alt="Talent Agencies Representation Illustration" class="ct-art-img" loading="lazy" />
                   </div>
                   <h3 class="ct-card-name">Talent Agencies</h3>
                   <div class="ct-card-sub">Traditional Representatives</div>
