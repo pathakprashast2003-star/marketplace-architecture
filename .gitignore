@@ -11,3 +11,4 @@ node_modules/
 *.dunes
 *.ninjax_master
 .taste-skill/
+archive_rejected/

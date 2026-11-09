@@ -24,6 +24,7 @@ export type UsagePricingPlan = {
 
 export type UsagePricingAxis = {
   key: "seats" | "requests";
+  unit?: string;
   min: number;
   max: number;
   step: number;
@@ -76,7 +77,7 @@ const DEFAULT_ROWS: UsagePricingRow[] = [
   { label: "Pooled storage", values: (_, quote) => ({ amount: quote.includedStorage, unit: "GB" }) },
 ];
 const DIGITS = Array.from({ length: 10 }, (_, index) => index);
-const usageUnit = (key: UsagePricingAxis["key"], value: number) => key === "seats" && value === 1 ? "seat" : key;
+const usageUnit = (axis: UsagePricingAxis, value: number) => axis.unit !== undefined ? axis.unit : (axis.key === "seats" && value === 1 ? "seat" : axis.key);
 const nonnegative = (value: number | undefined) => Math.max(0, Number.isFinite(value) ? value! : 0);
 
 /** Pure monthly estimate, in currency units. Request overage rounds UP to a 1k block. */
@@ -155,7 +156,7 @@ function Count({ amount, unit, format, reduced, locale }: UsagePricingMetric & {
   return <span data-count-target={amount} className="tabular-nums"><span className="sr-only">{render(amount)}{unit && ` ${unit}`}</span><span aria-hidden="true" data-count-value={reduced ? amount : display}>{render(reduced ? amount : display)}{unit && <span className="ml-1 text-[10px] text-muted-foreground">{unit}</span>}</span></span>;
 }
 
-function RollingPrice({ value, format, reduced }: { value: number; format: (value: number) => string; reduced: boolean }) {
+export function RollingPrice({ value, format, reduced }: { value: number; format: (value: number) => string; reduced: boolean }) {
   const text = format(value);
   return <span data-price={value} className="inline-flex items-baseline whitespace-nowrap font-semibold tabular-nums tracking-tight"><span className="sr-only">{text}</span><span aria-hidden="true" className="inline-flex items-baseline">{Array.from(text).map((character, index) => /\d/.test(character)
     ? <span key={text.length - index} className="relative inline-block h-[1em] w-[0.62em] overflow-hidden"><span data-digit style={{ transform: `translateY(-${Number(character)}em)`, transition: reduced ? "none" : "transform 320ms cubic-bezier(0.22, 1, 0.36, 1)" }} className="block">{DIGITS.map((digit) => <span key={digit} className="block h-[1em] text-center leading-none">{digit}</span>)}</span></span>
@@ -173,12 +174,12 @@ function UsageSlider({ axis, value, onChange, onInteraction }: { axis: UsagePric
     <div className="relative mt-1 h-[56px]">
       <div aria-hidden="true" data-thumb-tooltip style={{ left }} className="pointer-events-none absolute top-0 -translate-x-1/2 whitespace-nowrap rounded-md bg-primary px-2 py-1 text-[11px] font-medium tabular-nums text-primary-foreground shadow-sm">{format(value)}<span className="absolute -bottom-1 left-1/2 size-2 -translate-x-1/2 rotate-45 bg-primary" /></div>
       <div aria-hidden="true" className="absolute inset-x-[10px] top-[39px] h-1.5 rounded-full bg-muted"><div style={{ width: `${fraction * 100}%` }} className="h-full rounded-full bg-primary" /></div>
-      <input id={id} type="range" data-usage-slider={axis.key} min={axis.min} max={axis.max} step={axis.step} value={value} aria-valuetext={`${format(value)} ${usageUnit(axis.key, value)}`} disabled={axis.max === axis.min}
+      <input id={id} type="range" data-usage-slider={axis.key} min={axis.min} max={axis.max} step={axis.step} value={value} aria-valuetext={`${format(value)} ${usageUnit(axis, value)}`} disabled={axis.max === axis.min}
         onPointerDown={onInteraction} onKeyDown={onInteraction} onFocus={onInteraction}
         onChange={(event) => onChange(clampValue(Number(event.target.value), axis))}
         className="absolute inset-x-0 top-[28px] h-7 w-full cursor-ew-resize appearance-none rounded-md bg-transparent outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card disabled:cursor-default [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-[5px] [&::-webkit-slider-thumb]:border-primary [&::-webkit-slider-thumb]:bg-card [&::-webkit-slider-thumb]:shadow-sm [&::-moz-range-thumb]:h-[10px] [&::-moz-range-thumb]:w-[10px] [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-[5px] [&::-moz-range-thumb]:border-primary [&::-moz-range-thumb]:bg-card" />
     </div>
-    <div aria-hidden="true" className="flex justify-between px-1 text-[10px] tabular-nums text-muted-foreground"><span>{format(axis.min)} {usageUnit(axis.key, axis.min)}</span><span>{format(axis.max)} {usageUnit(axis.key, axis.max)}</span></div>
+    <div aria-hidden="true" className="flex justify-between px-1 text-[10px] tabular-nums text-muted-foreground"><span>{format(axis.min)} {usageUnit(axis, axis.min)}</span><span>{format(axis.max)} {usageUnit(axis, axis.max)}</span></div>
   </div>;
 }
 
@@ -212,7 +213,7 @@ export function UsageSliderPricingTable({
   const formatPrice = (amount: number) => money.format(amount);
   const formatUsage = axis.format?.(actual) ?? actual.toLocaleString(locale);
   const summary = activePlan && activeQuote
-    ? `${customIndex >= 0 ? "Recommended" : "Best value"} at ${formatUsage} ${usageUnit(axis.key, actual)}: ${activePlan.name} · ${formatPrice(activeQuote.price)}/mo`
+    ? `${customIndex >= 0 ? "Recommended" : "Best value"} at ${formatUsage} ${usageUnit(axis, actual)}: ${activePlan.name} · ${formatPrice(activeQuote.price)}/mo`
     : "No plan fits this usage. Try a smaller estimate.";
   // Coalesce slider events so screen readers hear one settled quote, not every frame.
   const [announcement, setAnnouncement] = React.useState(summary);
