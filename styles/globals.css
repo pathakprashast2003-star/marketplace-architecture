@@ -26,14 +26,27 @@
 }
 
 #nexus-pricing-root {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", system-ui, sans-serif;
+  font-family: 'Times New Roman', Times, Georgia, serif;
   color: hsl(var(--foreground));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nexus-pricing-root * {
+#nexus-pricing-root *,
+#nexus-pricing-root *::before,
+#nexus-pricing-root *::after {
   box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+[data-ui="comparison-matrix"] .border-r {
+  border-right-width: 1px !important;
+}
+
+[data-ui="comparison-matrix"] .border-b {
+  border-bottom-width: 1px !important;
 }
 
 /* Precision Slider (Apple Style, Zero Slop) */

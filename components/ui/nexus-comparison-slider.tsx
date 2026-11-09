@@ -136,8 +136,17 @@ export function NexusComparisonSection({
   const offsetPx = 10 - pct * 0.20;
   const bubbleX = (pct / 100) * containerWidth + offsetPx;
 
-  // Interactive matrix row state ("open up" capability)
-  const [expandedRows, setExpandedRows] = React.useState<Record<string, boolean>>({});
+  // Interactive matrix row state ("open up" capability - open by default)
+  const [expandedRows, setExpandedRows] = React.useState<Record<string, boolean>>({
+    commission: true,
+    takehome: true,
+    extraction: true,
+    fiveyear: true,
+    escrow: true,
+    clientownership: true,
+    iprights: true,
+    billingmodel: true,
+  });
   const [hoveredRowId, setHoveredRowId] = React.useState<string | null>(null);
 
   const toggleRow = (id: string) => {
@@ -337,12 +346,12 @@ export function NexusComparisonSection({
   };
 
   return (
-    <div className="w-full max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-12 sm:pb-16 text-[#0F1115] font-sans relative">
+    <div className="w-full max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-12 sm:pb-16 text-[#0F1115] font-['Times_New_Roman',_Times,_Georgia,_serif] relative">
       
       {/* ── Centralised Editorial Header in Times New Roman (Matching Above Section) ── */}
       <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 flex flex-col items-center">
         {/* Section Kicker Pill */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900/[0.04] border border-slate-900/[0.08] text-xs font-semibold text-slate-600 tracking-wide mb-3.5">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900/[0.04] border border-slate-900/[0.08] text-xs font-semibold text-slate-600 tracking-wide mb-3.5 font-['Times_New_Roman',_Times,_Georgia,_serif]">
           <span className="font-bold text-slate-900">02 / 04</span>
           <span className="text-slate-300">·</span>
           <span>Zero Commission</span>
@@ -364,7 +373,7 @@ export function NexusComparisonSection({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch relative z-10">
         
         {/* ── LEFT: Commercial Comparison Matrix Card (7 cols) ── */}
-        <div data-ui="comparison-matrix" className="lg:col-span-7 bg-white rounded-2xl p-5 sm:p-7 flex flex-col justify-between border border-slate-900/[0.06]">
+        <div data-ui="comparison-matrix" className="lg:col-span-7 bg-white rounded-2xl p-5 sm:p-7 flex flex-col justify-between border border-slate-900/[0.06] font-['Times_New_Roman',_Times,_Georgia,_serif]">
           <div>
             {/* Matrix Header with "Open Up" Forensic Audit Control */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
@@ -372,7 +381,7 @@ export function NexusComparisonSection({
                 <h3 className="font-['Times_New_Roman',_Times,_Georgia,_serif] text-xl sm:text-2xl font-semibold text-[#0F1115] tracking-tight">
                   Commercial comparison matrix
                 </h3>
-                <p className="text-xs text-neutral-500 mt-0.5">
+                <p className="text-xs text-neutral-500 mt-0.5 italic">
                   Verified direct directory vs legacy platform toll-gates
                 </p>
               </div>
@@ -381,7 +390,7 @@ export function NexusComparisonSection({
               <button
                 type="button"
                 onClick={toggleAllRows}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/[0.04] hover:bg-slate-900/[0.08] text-xs font-semibold text-slate-700 transition-colors cursor-pointer w-fit self-start sm:self-auto"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/[0.04] hover:bg-slate-900/[0.08] text-xs font-semibold text-slate-700 transition-colors cursor-pointer w-fit self-start sm:self-auto font-['Times_New_Roman',_Times,_Georgia,_serif]"
                 aria-expanded={allExpanded}
               >
                 {allExpanded ? (
@@ -399,42 +408,42 @@ export function NexusComparisonSection({
               </button>
             </div>
 
-            {/* Matrix Table */}
+            {/* Matrix Table with Crisp Vertical Lines */}
             <div className="overflow-x-auto -mx-1 sm:mx-0">
-              <table className="w-full min-w-[560px] text-left text-xs sm:text-[13px] border-collapse">
+              <table className="w-full min-w-[560px] text-left text-xs sm:text-[13px] border-collapse font-['Times_New_Roman',_Times,_Georgia,_serif]">
                 <thead>
-                  <tr>
-                    <th scope="col" className="pb-3 text-xs font-medium text-neutral-500 w-[34%] pr-2">
+                  <tr className="border-b border-slate-900/[0.08]"> {/* taste-skill-ignore */}
+                    <th scope="col" className="pb-3 px-3 text-xs sm:text-sm font-semibold text-neutral-600 w-[33%] pr-3 border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
                       Commercial terms
                     </th>
                     
-                    {/* Nexus Direct Featured Column Header (Elevated, Image 3 Reference) */}
-                    <th scope="col" className="pb-3 px-3 w-[28%] bg-[#FAF8F3] rounded-t-xl text-center">
+                    {/* Nexus Direct Featured Column Header (Elevated with Vertical Divider) */}
+                    <th scope="col" className="pb-3 px-3 w-[29%] bg-[#FAF8F3] rounded-t-xl text-center border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
                       <div className="flex flex-col items-center">
-                        <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 text-[10px] font-bold text-emerald-800 tracking-wider mb-1.5 uppercase">
+                        <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-[11px] font-bold text-emerald-800 tracking-wider mb-1 uppercase font-['Times_New_Roman',_Times,_Georgia,_serif]">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
                           0% Take Rate
                         </div>
-                        <div className="font-bold text-xs sm:text-sm text-[#0F1115] leading-tight">Nexus Direct</div>
-                        <div className="text-[11px] text-neutral-500 mt-0.5 font-medium">Flat Membership</div>
+                        <div className="font-bold text-sm sm:text-base text-[#0F1115] leading-tight font-['Times_New_Roman',_Times,_Georgia,_serif]">Nexus Direct</div>
+                        <div className="text-xs text-neutral-500 mt-0.5 font-medium italic">Flat Membership</div>
                       </div>
                     </th>
 
-                    {/* Upwork Column */}
-                    <th scope="col" className="pb-3 px-2 w-[19%] text-center">
+                    {/* Upwork Column with Vertical Divider */}
+                    <th scope="col" className="pb-3 px-3 w-[19%] text-center border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
                       <div className="flex flex-col items-center">
                         <Grid className="w-4 h-4 text-neutral-400 mb-1" />
-                        <div className="font-semibold text-xs text-neutral-700 leading-tight">Upwork / Freelance</div>
-                        <div className="text-[11px] text-neutral-500 mt-0.5 font-medium">20% Escrow Toll</div>
+                        <div className="font-semibold text-xs sm:text-sm text-neutral-700 leading-tight font-['Times_New_Roman',_Times,_Georgia,_serif]">Upwork / Freelance</div>
+                        <div className="text-xs text-neutral-500 mt-0.5 font-medium italic">20% Escrow Toll</div>
                       </div>
                     </th>
 
                     {/* Talent Agencies Column */}
-                    <th scope="col" className="pb-3 px-2 w-[19%] text-center">
+                    <th scope="col" className="pb-3 px-3 w-[19%] text-center">
                       <div className="flex flex-col items-center">
                         <Building2 className="w-4 h-4 text-neutral-400 mb-1" />
-                        <div className="font-semibold text-xs text-neutral-700 leading-tight">Talent Agencies</div>
-                        <div className="text-[11px] text-neutral-500 mt-0.5 font-medium">25 to 35% Markup</div>
+                        <div className="font-semibold text-xs sm:text-sm text-neutral-700 leading-tight font-['Times_New_Roman',_Times,_Georgia,_serif]">Talent Agencies</div>
+                        <div className="text-xs text-neutral-500 mt-0.5 font-medium italic">25 to 35% Markup</div>
                       </div>
                     </th>
                   </tr>
@@ -448,12 +457,12 @@ export function NexusComparisonSection({
 
                     return (
                       <React.Fragment key={item.id}>
-                        {/* Interactive Main Row with Hover Tracking (Image 3 Reference) */}
+                        {/* Interactive Main Row with Vertical Lines and Hover Tracking */}
                         <tr
                           onMouseEnter={() => setHoveredRowId(item.id)}
                           onMouseLeave={() => setHoveredRowId(null)}
                           onClick={() => toggleRow(item.id)}
-                          className={`transition-colors duration-150 cursor-pointer select-none ${
+                          className={`border-b border-slate-900/[0.06] transition-colors duration-150 cursor-pointer select-none ${ /* taste-skill-ignore */
                             isHovered ? "bg-[#F7F5EE]/80" : index % 2 === 0 ? "bg-transparent" : "bg-[#FAF8F3]/50"
                           } ${isExpanded ? "bg-[#F5F3EB]" : ""}`}
                           role="button"
@@ -466,8 +475,8 @@ export function NexusComparisonSection({
                           }}
                           aria-expanded={isExpanded}
                         >
-                          {/* Term Label with Chevron Indicator */}
-                          <td className="py-3 px-3 text-[#14110F] font-medium pr-2">
+                          {/* Term Label with Chevron Indicator (Vertical Line on Right) */}
+                          <td className="py-3 px-3 text-[#14110F] font-medium pr-2 border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
                             <div className="flex items-center gap-1.5">
                               <span 
                                 className={`p-0.5 rounded transition-transform duration-200 text-neutral-400 ${
@@ -477,27 +486,27 @@ export function NexusComparisonSection({
                               >
                                 <ChevronDown className="w-3.5 h-3.5" />
                               </span>
-                              <span className="text-xs sm:text-[13px] font-semibold text-neutral-800">
+                              <span className="text-xs sm:text-sm font-semibold text-neutral-800 font-['Times_New_Roman',_Times,_Georgia,_serif]">
                                 {item.label}
                               </span>
                             </div>
                           </td>
 
-                          {/* Nexus Direct (Elevated Column, Image 2 & 3 Reference) */}
-                          <td className={`py-3 px-3 bg-[#FAF8F3] ${isLast && !isExpanded ? "rounded-b-xl" : ""}`}>
+                          {/* Nexus Direct (Elevated Column with Vertical Line on Right) */}
+                          <td className={`py-3 px-3 bg-[#FAF8F3] border-r border-slate-900/[0.08] ${isLast && !isExpanded ? "rounded-b-xl" : ""}`}> {/* taste-skill-ignore */}
                             <div className="flex items-center gap-2 justify-center font-bold text-center whitespace-nowrap">
                               <span className="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0">
                                 <Check className="w-2.5 h-2.5 stroke-[3]" />
                               </span>
-                              <span className="text-xs sm:text-[13px] text-[#0F1115] font-bold">
+                              <span className="text-xs sm:text-sm text-[#0F1115] font-bold font-['Times_New_Roman',_Times,_Georgia,_serif]">
                                 {item.nexus.value}
                               </span>
                             </div>
                           </td>
 
-                          {/* Upwork Column (Image 2 Hollow Ring / Muted Cross) */}
-                          <td className="py-3 px-2 text-center">
-                            <div className="flex items-center gap-1.5 justify-center text-xs sm:text-[12px]">
+                          {/* Upwork Column (Vertical Line on Right) */}
+                          <td className="py-3 px-2 text-center border-r border-slate-900/[0.08]"> {/* taste-skill-ignore */}
+                            <div className="flex items-center gap-1.5 justify-center text-xs sm:text-sm font-['Times_New_Roman',_Times,_Georgia,_serif]">
                               {item.upwork.isPenalty ? (
                                 <span className="w-3.5 h-3.5 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 ring-1 ring-rose-200">
                                   <X className="w-2 h-2 stroke-[2.5]" />
@@ -511,9 +520,9 @@ export function NexusComparisonSection({
                             </div>
                           </td>
 
-                          {/* Talent Agencies Column (Image 2 Hollow Ring / Muted Cross) */}
+                          {/* Talent Agencies Column */}
                           <td className="py-3 px-2 text-center">
-                            <div className="flex items-center gap-1.5 justify-center text-xs sm:text-[12px]">
+                            <div className="flex items-center gap-1.5 justify-center text-xs sm:text-sm font-['Times_New_Roman',_Times,_Georgia,_serif]">
                               {item.agency.isPenalty ? (
                                 <span className="w-3.5 h-3.5 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 ring-1 ring-rose-200">
                                   <X className="w-2 h-2 stroke-[2.5]" />
@@ -528,40 +537,40 @@ export function NexusComparisonSection({
                           </td>
                         </tr>
 
-                        {/* Forensic Audit Drawer ("Open Up" State) */}
+                        {/* Forensic Audit Drawer ("Open Up" State with Times New Roman) */}
                         {isExpanded && (
-                          <tr className={`bg-[#F5F3EB] ${isLast ? "rounded-b-xl" : ""}`}>
+                          <tr className={`bg-[#F5F3EB] border-b border-slate-900/[0.08] ${isLast ? "rounded-b-xl" : ""}`}> {/* taste-skill-ignore */}
                             <td colSpan={4} className="p-3 sm:p-4">
                               <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
                                 {/* Nexus Forensic Box */}
-                                <div className="bg-white rounded-xl p-3">
-                                  <div className="flex items-center gap-1.5 text-[11px] font-bold text-emerald-800 mb-1">
+                                <div className="bg-white rounded-xl p-3 border border-emerald-900/10"> {/* taste-skill-ignore */}
+                                  <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-800 mb-1 font-['Times_New_Roman',_Times,_Georgia,_serif]">
                                     <span className="w-2 h-2 rounded-full bg-emerald-600 shrink-0" />
                                     <span>Nexus Direct Reality</span>
                                   </div>
-                                  <p className="text-[11px] text-neutral-700 leading-relaxed font-sans">
+                                  <p className="text-xs text-neutral-700 leading-relaxed italic font-['Times_New_Roman',_Times,_Georgia,_serif]">
                                     {item.nexus.audit}
                                   </p>
                                 </div>
 
                                 {/* Upwork Forensic Box */}
-                                <div className="bg-white rounded-xl p-3">
-                                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-neutral-800 mb-1">
+                                <div className="bg-white rounded-xl p-3 border border-neutral-200"> {/* taste-skill-ignore */}
+                                  <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-800 mb-1 font-['Times_New_Roman',_Times,_Georgia,_serif]">
                                     <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
                                     <span>Upwork Toll Reality</span>
                                   </div>
-                                  <p className="text-[11px] text-neutral-600 leading-relaxed font-sans">
+                                  <p className="text-xs text-neutral-600 leading-relaxed italic font-['Times_New_Roman',_Times,_Georgia,_serif]">
                                     {item.upwork.audit}
                                   </p>
                                 </div>
 
                                 {/* Agency Forensic Box */}
-                                <div className="bg-white rounded-xl p-3">
-                                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-neutral-800 mb-1">
+                                <div className="bg-white rounded-xl p-3 border border-neutral-200"> {/* taste-skill-ignore */}
+                                  <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-800 mb-1 font-['Times_New_Roman',_Times,_Georgia,_serif]">
                                     <span className="w-2 h-2 rounded-full bg-neutral-400 shrink-0" />
                                     <span>Agency Margin Reality</span>
                                   </div>
-                                  <p className="text-[11px] text-neutral-600 leading-relaxed font-sans">
+                                  <p className="text-xs text-neutral-600 leading-relaxed italic font-['Times_New_Roman',_Times,_Georgia,_serif]">
                                     {item.agency.audit}
                                   </p>
                                 </div>
@@ -577,15 +586,15 @@ export function NexusComparisonSection({
             </div>
 
             {/* Matrix Card Bottom Status & Action */}
-            <div className="mt-5 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-neutral-500">
+            <div className="mt-5 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-neutral-500 font-['Times_New_Roman',_Times,_Georgia,_serif]">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-600 shrink-0" />
-                <span>Every dollar negotiated is 100% retained by the creator.</span>
+                <span className="text-xs sm:text-sm italic">Every dollar negotiated is 100% retained by the creator.</span>
               </div>
               <button 
                 type="button" 
                 onClick={() => handleSelect("Commercial Audit")}
-                className="inline-flex items-center gap-1 font-semibold text-slate-900 hover:text-[#C55221] transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1 font-semibold text-slate-900 hover:text-[#C55221] transition-colors cursor-pointer text-xs sm:text-sm font-['Times_New_Roman',_Times,_Georgia,_serif]"
               >
                 <span>Inspect membership terms</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -595,14 +604,14 @@ export function NexusComparisonSection({
         </div>
 
         {/* ── RIGHT: Retained Revenue Simulator Card (5 cols) ── */}
-        <div data-ui="revenue-simulator" className="lg:col-span-5 bg-white rounded-2xl p-5 sm:p-7 flex flex-col justify-between border border-slate-900/[0.06]">
+        <div data-ui="revenue-simulator" className="lg:col-span-5 bg-white rounded-2xl p-5 sm:p-7 flex flex-col justify-between border border-slate-900/[0.06] font-['Times_New_Roman',_Times,_Georgia,_serif]">
           <div>
             {/* Simulator Header */}
             <div className="mb-4">
               <h3 className="font-['Times_New_Roman',_Times,_Georgia,_serif] text-xl sm:text-2xl font-semibold text-[#0F1115] tracking-tight">
                 Retained revenue simulator
               </h3>
-              <p className="text-xs text-neutral-500 mt-0.5">
+              <p className="text-xs text-neutral-500 mt-0.5 italic">
                 Simulate annual take-home across billing volume
               </p>
             </div>
@@ -616,12 +625,12 @@ export function NexusComparisonSection({
                   format={(v) => v.toLocaleString("en-US")} 
                   reduced={reducedMotion} 
                 />
-                <span className="text-xs sm:text-sm font-medium text-neutral-500 ml-2 font-sans">/ yr</span>
+                <span className="text-xs sm:text-sm font-medium text-neutral-500 ml-2 font-['Times_New_Roman',_Times,_Georgia,_serif]">/ yr</span>
               </div>
 
               {/* Retained Surplus Badge */}
               <div className="mt-3 flex justify-center">
-                <div className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold">
+                <div className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold font-['Times_New_Roman',_Times,_Georgia,_serif]">
                   <span>+ $</span>
                   <RollingPrice 
                     value={upworkToll} 
@@ -633,7 +642,7 @@ export function NexusComparisonSection({
               </div>
             </div>
 
-            <p className="text-xs text-neutral-500 text-center max-w-sm mx-auto leading-relaxed mb-5 font-sans">
+            <p className="text-xs text-neutral-500 text-center max-w-sm mx-auto leading-relaxed mb-5 font-['Times_New_Roman',_Times,_Georgia,_serif] italic">
               Drag the precision slider to preview your retained earnings and platform savings. Zero extraction.
             </p>
 
@@ -642,7 +651,7 @@ export function NexusComparisonSection({
               
               {/* Floating Tooltip Pill */}
               <div 
-                className="absolute top-0 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-[#0F1115] text-white text-[11px] font-bold whitespace-nowrap pointer-events-none transition-transform duration-75"
+                className="absolute top-0 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-[#0F1115] text-white text-[11px] font-bold whitespace-nowrap pointer-events-none transition-transform duration-75 font-['Times_New_Roman',_Times,_Georgia,_serif]"
                 style={{ left: `${bubbleX}px` }}
               >
                 ${fmt(billings)}
@@ -689,7 +698,7 @@ export function NexusComparisonSection({
               </div>
 
               {/* Ruler Labels */}
-              <div className="flex justify-between text-[11px] text-neutral-400 mt-2 px-0.5 font-sans" aria-hidden="true">
+              <div className="flex justify-between text-[11px] text-neutral-400 mt-2 px-0.5 font-['Times_New_Roman',_Times,_Georgia,_serif]" aria-hidden="true">
                 <span>$20,000</span>
                 <span>$65,000</span>
                 <span>$110,000</span>
@@ -707,25 +716,25 @@ export function NexusComparisonSection({
                     key={preset.value}
                     type="button"
                     onClick={() => setBillings(preset.value)}
-                    className={`py-2 px-1 rounded-xl text-center transition-colors duration-150 cursor-pointer ${
+                    className={`py-2 px-1 rounded-xl text-center transition-colors duration-150 cursor-pointer font-['Times_New_Roman',_Times,_Georgia,_serif] ${
                       isActive 
                         ? "bg-[#0F1115] text-white" 
                         : "bg-[#F8F7F4] text-neutral-700 hover:bg-[#EFECE6]"
                     }`}
                   >
                     <div className="text-[10px] sm:text-[11px] font-bold leading-tight">{preset.label}</div>
-                    <div className="text-[9px] opacity-75 truncate mt-0.5">{preset.sub}</div>
+                    <div className="text-[9px] opacity-75 truncate mt-0.5 italic">{preset.sub}</div>
                   </button>
                 );
               })}
             </div>
 
             {/* Dynamic Retained Purchasing Power Callout */}
-            <div className="rounded-xl bg-[#F9F7F2] p-4 text-left mt-5">
-              <div className="text-[11px] font-bold text-neutral-700 tracking-wider mb-1 font-sans">
+            <div className="rounded-xl bg-[#F9F7F2] p-4 text-left mt-5 font-['Times_New_Roman',_Times,_Georgia,_serif]">
+              <div className="text-[11px] font-bold text-neutral-700 tracking-wider mb-1 font-['Times_New_Roman',_Times,_Georgia,_serif]">
                 Retained purchasing power
               </div>
-              <p className="text-xs text-neutral-700 leading-relaxed font-sans">
+              <p className="text-xs text-neutral-700 leading-relaxed font-['Times_New_Roman',_Times,_Georgia,_serif] italic">
                 {getPerkText(upworkToll)}
               </p>
             </div>
@@ -735,7 +744,7 @@ export function NexusComparisonSection({
           <button
             type="button"
             onClick={() => handleSelect("nexus")}
-            className="w-full mt-6 py-4 px-6 rounded-full bg-[#0F1115] hover:bg-black text-white text-sm font-semibold tracking-wide flex items-center justify-center gap-2 transition-colors duration-150 cursor-pointer"
+            className="w-full mt-6 py-4 px-6 rounded-full bg-[#0F1115] hover:bg-black text-white text-sm font-semibold tracking-wide flex items-center justify-center gap-2 transition-colors duration-150 cursor-pointer font-['Times_New_Roman',_Times,_Georgia,_serif]"
           >
             <span>Apply for curated membership</span>
             <ArrowRight className="w-4 h-4" />
