@@ -9,12 +9,48 @@ import {
   SlidersHorizontal 
 } from "lucide-react";
 import { 
-  RollingPrice,
   UsageSliderPricingTable, 
   type UsagePricingPlan, 
   type UsagePricingRow, 
   type UsagePricingAxis
 } from "./usage-slider-pricing-table";
+
+const DIGITS = Array.from({ length: 10 }, (_, index) => index);
+
+function RollingPrice({ value, format, reduced }: { value: number; format: (value: number) => string; reduced: boolean }) {
+  const text = format(value);
+  return (
+    <span data-price={value} className="inline-flex items-baseline whitespace-nowrap font-semibold tabular-nums tracking-tight">
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true" className="inline-flex items-baseline">
+        {Array.from(text).map((character, index) =>
+          /\d/.test(character) ? (
+            <span key={text.length - index} className="relative inline-block h-[1em] w-[0.62em] overflow-hidden">
+              <span
+                data-digit
+                style={{
+                  transform: `translateY(-${Number(character)}em)`,
+                  transition: reduced ? "none" : "transform 320ms cubic-bezier(0.22, 1, 0.36, 1)",
+                }}
+                className="block"
+              >
+                {DIGITS.map((digit) => (
+                  <span key={digit} className="block h-[1em] text-center leading-none">
+                    {digit}
+                  </span>
+                ))}
+              </span>
+            </span>
+          ) : (
+            <span key={text.length - index} className="leading-none">
+              {character}
+            </span>
+          )
+        )}
+      </span>
+    </span>
+  );
+}
 
 // ── 1. Plan Definitions tailored to the Nexus Commercial Comparison Section ──
 export const NEXUS_COMPARISON_PLANS: UsagePricingPlan[] = [
@@ -43,7 +79,6 @@ export const NEXUS_COMPARISON_PLANS: UsagePricingPlan[] = [
 // ── 2. Billings Volume Axis ($20,000 to $200,000 in $5,000 steps) ──
 export const BILLINGS_AXIS: UsagePricingAxis = {
   key: "seats",
-  unit: "",
   min: 20000,
   max: 200000,
   step: 5000,
@@ -573,7 +608,7 @@ export function NexusComparisonSection({
                 <div className="nx-odo-reel-wrap">
                   <RollingPrice 
                     value={billings} 
-                    format={(v) => v.toLocaleString("en-US")} 
+                    format={(v: number) => v.toLocaleString("en-US")} 
                     reduced={reducedMotion} 
                   />
                 </div>
@@ -586,7 +621,7 @@ export function NexusComparisonSection({
                   <span>+ $</span>
                   <RollingPrice 
                     value={upworkToll} 
-                    format={(v) => v.toLocaleString("en-US")} 
+                    format={(v: number) => v.toLocaleString("en-US")} 
                     reduced={reducedMotion} 
                   />
                   <span> Retained</span>
@@ -611,7 +646,7 @@ export function NexusComparisonSection({
                 <span>$</span>
                 <RollingPrice 
                   value={billings} 
-                  format={(v) => v.toLocaleString("en-US")} 
+                  format={(v: number) => v.toLocaleString("en-US")} 
                   reduced={reducedMotion} 
                 />
               </div>

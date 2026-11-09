@@ -12,6 +12,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Playfair+Display:ital,wght@0,500..900;1,500..900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="assets/react-pricing/marketplace-architecture.css">
 
   <style>
     /* Hallmark · shape: workbench · genre: modern-minimal · theme: brand · redesign: polish
@@ -6019,7 +6020,7 @@
       <section class="nx-sec" id="roster">
         <p class="nx-kicker nx-reveal">
           <span class="nx-kicker-lead">
-            <span class="nx-kicker-index">01 / 03</span>
+            <span class="nx-kicker-index">01 / 04</span>
             <span class="nx-kicker-divider">·</span>
             <span class="nx-kicker-title">Curated Roster</span>
           </span>
@@ -6702,9 +6703,14 @@
         </div>
       </section>
 
-      <!-- ── PROTOCOL SECTION (02 / 03) ── -->
+      <!-- ── ZERO COMMISSION SECTION (02 / 04) ── -->
+      <section class="nx-sec" id="fees">
+        <div id="nexus-pricing-root"></div>
+      </section>
+
+      <!-- ── PROTOCOL SECTION (03 / 04) ── -->
       <section class="nx-sec" id="how">
-        <p class="nx-kicker nx-reveal">02 / 03 · Protocol</p>
+        <p class="nx-kicker nx-reveal">03 / 04 · Protocol</p>
         <h2 class="nx-h2 nx-reveal">Hire direct in three steps.</h2>
         <div class="nx-steps">
           <div class="nx-card nx-step nx-reveal"><span class="nx-step-n">1</span>
@@ -6726,7 +6732,7 @@
       <!-- ── FOR CREATORS SECTION (04 / 04) ── -->
       <section class="nx-sec" id="founding">
         <div class="nx-found nx-reveal">
-          <p class="nx-kicker">03 / 03 · For Creators</p>
+          <p class="nx-kicker">04 / 04 · For Creators</p>
           <h2 class="nx-h2">Join the Founding Roster.</h2>
           <p class="nx-lead">The first 100 approved creators get founding perks for good.</p>
           <ul class="nx-perks">
@@ -6746,10 +6752,10 @@
             visual talent. Zero platform markups.</p>
         </div>
         <div>
-          <h4>Clients</h4><a href="#roster">Curated roster</a>
+          <h4>Clients</h4><a href="#roster">Curated roster</a><a href="#fees">Fee calculator</a>
         </div>
         <div>
-          <h4>Creators</h4><a href="#founding" onclick="openFoundingModal();return false;">Apply as founding</a>
+          <h4>Creators</h4><a href="#founding" onclick="openFoundingModal();return false;">Apply as founding</a><a href="#fees">Fee calculator</a>
         </div>
         <div>
           <h4>Company</h4><a href="#">Zero-escrow terms</a><a href="#">Privacy</a>
@@ -9612,6 +9618,7 @@
       if (grid) new MutationObserver(runRoster).observe(grid, { childList: true });
     })();
   </script>
+  <script src="assets/react-pricing/nexus-pricing-section.js" defer></script>
 </body>
 
 </html>
