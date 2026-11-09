@@ -3,6 +3,9 @@
 import * as React from "react";
 import { 
   Check, 
+  X,
+  ChevronDown,
+  ChevronUp,
   ArrowRight,
   Building2,
   Grid
@@ -133,6 +136,198 @@ export function NexusComparisonSection({
   const offsetPx = 10 - pct * 0.20;
   const bubbleX = (pct / 100) * containerWidth + offsetPx;
 
+  // Interactive matrix row state ("open up" capability)
+  const [expandedRows, setExpandedRows] = React.useState<Record<string, boolean>>({});
+  const [hoveredRowId, setHoveredRowId] = React.useState<string | null>(null);
+
+  const toggleRow = (id: string) => {
+    setExpandedRows((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  const rowsList = [
+    "commission",
+    "takehome",
+    "extraction",
+    "fiveyear",
+    "escrow",
+    "clientownership",
+    "iprights",
+    "billingmodel",
+  ];
+
+  const allExpanded = rowsList.every((id) => !!expandedRows[id]);
+
+  const toggleAllRows = () => {
+    const nextState = !allExpanded;
+    const next: Record<string, boolean> = {};
+    rowsList.forEach((id) => {
+      next[id] = nextState;
+    });
+    setExpandedRows(next);
+  };
+
+  const comparisonItems = [
+    {
+      id: "commission",
+      label: "Platform commission",
+      nexus: {
+        value: "0% (Zero toll)",
+        badge: "Zero Toll",
+        isWinner: true,
+        audit: "Nexus Direct operates as a verified direct directory. 0% cut taken on invoices, milestones, or wires. 100% of client payout is received.",
+      },
+      upwork: {
+        value: "20% on milestones",
+        isPenalty: true,
+        audit: "Upwork extracts 10% to 20% on milestone billing, plus 3% to 5% client payment processing and foreign exchange conversion deductions.",
+      },
+      agency: {
+        value: "25 to 35% agency cut",
+        isPenalty: true,
+        audit: "Traditional creative representation agencies deduct 25% to 35% mandatory commission, or apply marked-up labor rates undisclosed to creators.",
+      },
+    },
+    {
+      id: "takehome",
+      label: "Annual creator take-home",
+      nexus: {
+        value: `Keep $${fmt(billings)} (100%)`,
+        badge: "Full Retention",
+        isWinner: true,
+        audit: `At $${fmt(billings)} annual production volume, you retain exactly $${fmt(billings)}. Zero intermediary deductions or holding accounts.`,
+      },
+      upwork: {
+        value: `Creator keeps $${fmt(upworkRetained)} (80%)`,
+        isPenalty: true,
+        audit: `At $${fmt(billings)} billing, Upwork automatically strips $${fmt(upworkToll)} from your gross milestone payouts each year.`,
+      },
+      agency: {
+        value: `Creator keeps $${fmt(agencyRetained)} (70%)`,
+        isPenalty: true,
+        audit: `Traditional agency commissions strip $${fmt(agencyToll)} from your annual earnings before sending you net settlement checks.`,
+      },
+    },
+    {
+      id: "extraction",
+      label: "Annual platform extraction",
+      nexus: {
+        value: "$0.00 Platform Fee",
+        badge: "Flat Membership",
+        isWinner: true,
+        audit: "Predictable, flat verified membership. Nexus never taxes career scaling or penalizes higher-value commercial projects.",
+      },
+      upwork: {
+        value: `−$${fmt(upworkToll)} toll / yr`,
+        isPenalty: true,
+        audit: "Tolls compound indefinitely on every milestone. The more value you generate, the more dollars the platform extracts from your craft.",
+      },
+      agency: {
+        value: `−$${fmt(agencyToll)} markup / yr`,
+        isPenalty: true,
+        audit: "Agency partner cuts and administrative overhead siphon creative gross profit, depressing your day-rate ceiling.",
+      },
+    },
+    {
+      id: "fiveyear",
+      label: "5-Year compounded toll",
+      nexus: {
+        value: "$0 Lost (100% Retained)",
+        badge: "Wealth Compounding",
+        isWinner: true,
+        audit: `Over five active production years at current volume, zero toll preserves an extra $${fmt(upwork5Yr)} to $${fmt(agency5Yr)} in creator wealth.`,
+      },
+      upwork: {
+        value: `−$${fmt(upwork5Yr)} Lost`,
+        isPenalty: true,
+        audit: `Five years of milestone extraction costs $${fmt(upwork5Yr)} in unrecoverable platform tolling that could fund an entire camera package.`,
+      },
+      agency: {
+        value: `−$${fmt(agency5Yr)} Lost`,
+        isPenalty: true,
+        audit: `Five years of agency representation extracts $${fmt(agency5Yr)} in creative labor capital that goes to corporate overhead.`,
+      },
+    },
+    {
+      id: "escrow",
+      label: "Payout velocity & escrow",
+      nexus: {
+        value: "Same-day wire & ACH",
+        isWinner: true,
+        audit: "Direct client wire, ACH, or credit card settlement directly to your business checking. Zero intermediary holding periods.",
+      },
+      upwork: {
+        value: "14 to 21 day escrow lockup",
+        isPenalty: true,
+        audit: "Mandatory security holds: 5-day client review, followed by 10-day platform clearing cycles before funds become withdrawable.",
+      },
+      agency: {
+        value: "NET 60 to 90 payment delays",
+        isPenalty: true,
+        audit: "Agencies standardly pay creators only after their own client invoices clear, forcing creators to float production cash for months.",
+      },
+    },
+    {
+      id: "clientownership",
+      label: "Direct client ownership",
+      nexus: {
+        value: "100% direct client ownership",
+        isWinner: true,
+        audit: "You own the client relationship. Message via Slack, email, cell, or in-person. Direct repeat bookings with zero restrictions.",
+      },
+      upwork: {
+        value: "Platform gates chat",
+        isPenalty: true,
+        audit: "Strict platform non-circumvention rules threaten account suspension or legal action for off-platform communication or payments.",
+      },
+      agency: {
+        value: "Agency holds client contract",
+        isPenalty: true,
+        audit: "Non-compete and exclusivity agreements legally prevent creators from contacting or signing direct contracts with agency clients.",
+      },
+    },
+    {
+      id: "iprights",
+      label: "Master IP & deliverables",
+      nexus: {
+        value: "You retain 100% master IP",
+        isWinner: true,
+        audit: "Creator retains master files and grants license upon full payment. Full rights to use footage in personal portfolio and showreels.",
+      },
+      upwork: {
+        value: "Standard platform TOS terms",
+        isPenalty: true,
+        audit: "Work subject to standardized platform TOS and automated dispute adjudication systems run by algorithm.",
+      },
+      agency: {
+        value: "Work-for-hire rights to agency",
+        isPenalty: true,
+        audit: "Extensive work-for-hire agreements grant broad rights and raw assets to the agency and brand, restricting director reel usage.",
+      },
+    },
+    {
+      id: "billingmodel",
+      label: "Commercial billing model",
+      nexus: {
+        value: "Flat verified membership",
+        isWinner: true,
+        audit: "Single verified membership fee. Predictable overhead. Grow your commercial rate from $800/day to $2,500/day without higher tolls.",
+      },
+      upwork: {
+        value: "20% toll on every client $",
+        isPenalty: true,
+        audit: "Toll structure taxes creator growth. High-billing creators subsidize the infrastructure without proportional benefits.",
+      },
+      agency: {
+        value: "Heavy agency markup on labor",
+        isPenalty: true,
+        audit: "Agencies inflate client invoice prices with heavy margins, often pricing senior directors out of nimble, high-craft brand budgets.",
+      },
+    },
+  ];
+
   const handleSelect = (plan: string) => {
     if (onSelectPlan) {
       onSelectPlan(plan);
@@ -171,32 +366,57 @@ export function NexusComparisonSection({
         {/* ── LEFT: Commercial Comparison Matrix Card (7 cols) ── */}
         <div data-ui="comparison-matrix" className="lg:col-span-7 bg-white rounded-2xl p-5 sm:p-7 flex flex-col justify-between border border-slate-900/[0.06]">
           <div>
-            <div className="mb-5">
-              <h3 className="font-['Times_New_Roman',_Times,_Georgia,_serif] text-xl sm:text-2xl font-semibold text-[#0F1115] tracking-tight">
-                Commercial comparison matrix
-              </h3>
-              <p className="text-xs text-neutral-500 mt-0.5">
-                Verified direct directory vs legacy platform toll-gates
-              </p>
+            {/* Matrix Header with "Open Up" Forensic Audit Control */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
+              <div>
+                <h3 className="font-['Times_New_Roman',_Times,_Georgia,_serif] text-xl sm:text-2xl font-semibold text-[#0F1115] tracking-tight">
+                  Commercial comparison matrix
+                </h3>
+                <p className="text-xs text-neutral-500 mt-0.5">
+                  Verified direct directory vs legacy platform toll-gates
+                </p>
+              </div>
+
+              {/* Master Open Up Button */}
+              <button
+                type="button"
+                onClick={toggleAllRows}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/[0.04] hover:bg-slate-900/[0.08] text-xs font-semibold text-slate-700 transition-colors cursor-pointer w-fit self-start sm:self-auto"
+                aria-expanded={allExpanded}
+              >
+                {allExpanded ? (
+                  <>
+                    <ChevronUp className="w-3.5 h-3.5 text-slate-500" />
+                    <span>Collapse details</span>
+                  </>
+                ) : (
+                  <>
+                    <ChevronDown className="w-3.5 h-3.5 text-slate-500" />
+                    <span>Open forensic audit</span>
+                  </>
+                )}
+                <span className="text-[10px] text-slate-400 font-semibold">8/8</span>
+              </button>
             </div>
 
             {/* Matrix Table */}
             <div className="overflow-x-auto -mx-1 sm:mx-0">
-              <table className="w-full min-w-[560px] text-left text-xs sm:text-[13px]">
+              <table className="w-full min-w-[560px] text-left text-xs sm:text-[13px] border-collapse">
                 <thead>
                   <tr>
-                    <th scope="col" className="pb-3 text-xs font-medium text-neutral-500 w-[35%] pr-2">
+                    <th scope="col" className="pb-3 text-xs font-medium text-neutral-500 w-[34%] pr-2">
                       Commercial terms
                     </th>
                     
-                    {/* Nexus Direct Featured Column Header */}
-                    <th scope="col" className="pb-3 px-3 w-[27%] bg-[#F9F7F2] rounded-t-xl text-center">
+                    {/* Nexus Direct Featured Column Header (Elevated, Image 3 Reference) */}
+                    <th scope="col" className="pb-3 px-3 w-[28%] bg-[#FAF8F3] rounded-t-xl text-center">
                       <div className="flex flex-col items-center">
-                        <div className="w-6 h-6 rounded-md bg-[#0F1115] text-white flex items-center justify-center font-bold text-xs mb-1">
-                          N
+                        <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 text-[10px] font-bold text-emerald-800 tracking-wider mb-1.5 uppercase">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+                          0% Take Rate
                         </div>
                         <div className="font-bold text-xs sm:text-sm text-[#0F1115] leading-tight">Nexus Direct</div>
-                        <div className="text-[11px] font-bold text-emerald-700 mt-0.5">0% Take Rate</div>
+                        <div className="text-[11px] text-neutral-500 mt-0.5 font-medium">Flat Membership</div>
                       </div>
                     </th>
 
@@ -205,7 +425,7 @@ export function NexusComparisonSection({
                       <div className="flex flex-col items-center">
                         <Grid className="w-4 h-4 text-neutral-400 mb-1" />
                         <div className="font-semibold text-xs text-neutral-700 leading-tight">Upwork / Freelance</div>
-                        <div className="text-[11px] text-neutral-500 mt-0.5">20% Escrow Toll</div>
+                        <div className="text-[11px] text-neutral-500 mt-0.5 font-medium">20% Escrow Toll</div>
                       </div>
                     </th>
 
@@ -214,182 +434,162 @@ export function NexusComparisonSection({
                       <div className="flex flex-col items-center">
                         <Building2 className="w-4 h-4 text-neutral-400 mb-1" />
                         <div className="font-semibold text-xs text-neutral-700 leading-tight">Talent Agencies</div>
-                        <div className="text-[11px] text-neutral-500 mt-0.5">25 to 35% Markup</div>
+                        <div className="text-[11px] text-neutral-500 mt-0.5 font-medium">25 to 35% Markup</div>
                       </div>
                     </th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  {/* Row 1: Commission */}
-                  <tr className="odd:bg-transparent even:bg-[#FAFAF8]">
-                    <td className="py-2.5 text-neutral-700 font-medium pr-2 whitespace-nowrap">
-                      Platform commission
-                    </td>
-                    <td className="py-2.5 px-3 bg-[#F9F7F2]">
-                      <div className="flex items-center gap-1.5 justify-center font-bold text-emerald-800 text-center whitespace-nowrap">
-                        <span className="w-4 h-4 rounded-full bg-emerald-700 text-white flex items-center justify-center shrink-0">
-                          <Check className="w-2.5 h-2.5 stroke-[3]" />
-                        </span>
-                        <span>0% (Zero toll)</span>
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-500 text-xs">
-                      20% on milestones
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-500 text-xs">
-                      25 to 35% agency cut
-                    </td>
-                  </tr>
+                  {comparisonItems.map((item, index) => {
+                    const isExpanded = !!expandedRows[item.id];
+                    const isHovered = hoveredRowId === item.id;
+                    const isLast = index === comparisonItems.length - 1;
 
-                  {/* Row 2: Annual Creator Take-Home */}
-                  <tr className="odd:bg-transparent even:bg-[#FAFAF8]">
-                    <td className="py-2.5 text-neutral-700 font-medium pr-2 whitespace-nowrap">
-                      Annual creator take-home
-                    </td>
-                    <td className="py-2.5 px-3 bg-[#F9F7F2]">
-                      <div className="flex items-center gap-1.5 justify-center font-bold text-[#0F1115] text-center whitespace-nowrap">
-                        <span className="w-4 h-4 rounded-full bg-[#0F1115] text-white flex items-center justify-center shrink-0">
-                          <Check className="w-2.5 h-2.5 stroke-[3]" />
-                        </span>
-                        <span>Keep ${fmt(billings)} (100%)</span>
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-500 text-xs">
-                      Creator keeps ${fmt(upworkRetained)} (80%)
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-500 text-xs">
-                      Creator keeps ${fmt(agencyRetained)} (70%)
-                    </td>
-                  </tr>
+                    return (
+                      <React.Fragment key={item.id}>
+                        {/* Interactive Main Row with Hover Tracking (Image 3 Reference) */}
+                        <tr
+                          onMouseEnter={() => setHoveredRowId(item.id)}
+                          onMouseLeave={() => setHoveredRowId(null)}
+                          onClick={() => toggleRow(item.id)}
+                          className={`transition-colors duration-150 cursor-pointer select-none ${
+                            isHovered ? "bg-[#F7F5EE]/80" : index % 2 === 0 ? "bg-transparent" : "bg-[#FAF8F3]/50"
+                          } ${isExpanded ? "bg-[#F5F3EB]" : ""}`}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              toggleRow(item.id);
+                            }
+                          }}
+                          aria-expanded={isExpanded}
+                        >
+                          {/* Term Label with Chevron Indicator */}
+                          <td className="py-3 px-3 text-[#14110F] font-medium pr-2">
+                            <div className="flex items-center gap-1.5">
+                              <span 
+                                className={`p-0.5 rounded transition-transform duration-200 text-neutral-400 ${
+                                  isExpanded ? "rotate-180 text-slate-700" : ""
+                                }`}
+                                aria-hidden="true"
+                              >
+                                <ChevronDown className="w-3.5 h-3.5" />
+                              </span>
+                              <span className="text-xs sm:text-[13px] font-semibold text-neutral-800">
+                                {item.label}
+                              </span>
+                            </div>
+                          </td>
 
-                  {/* Row 3: Annual Platform Extraction */}
-                  <tr className="odd:bg-transparent even:bg-[#FAFAF8]">
-                    <td className="py-2.5 text-neutral-700 font-medium pr-2 whitespace-nowrap">
-                      Annual platform extraction
-                    </td>
-                    <td className="py-2.5 px-3 bg-[#F9F7F2]">
-                      <div className="flex items-center gap-1.5 justify-center font-bold text-[#0F1115] text-center whitespace-nowrap">
-                        <span className="w-4 h-4 rounded-full bg-[#0F1115] text-white flex items-center justify-center shrink-0">
-                          <Check className="w-2.5 h-2.5 stroke-[3]" />
-                        </span>
-                        <span>$0.00 Platform Fee</span>
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-600 font-medium text-xs">
-                      −${fmt(upworkToll)} toll / yr
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-600 font-medium text-xs">
-                      −${fmt(agencyToll)} markup / yr
-                    </td>
-                  </tr>
+                          {/* Nexus Direct (Elevated Column, Image 2 & 3 Reference) */}
+                          <td className={`py-3 px-3 bg-[#FAF8F3] ${isLast && !isExpanded ? "rounded-b-xl" : ""}`}>
+                            <div className="flex items-center gap-2 justify-center font-bold text-center whitespace-nowrap">
+                              <span className="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0">
+                                <Check className="w-2.5 h-2.5 stroke-[3]" />
+                              </span>
+                              <span className="text-xs sm:text-[13px] text-[#0F1115] font-bold">
+                                {item.nexus.value}
+                              </span>
+                            </div>
+                          </td>
 
-                  {/* Row 4: 5-Year Compounded Loss */}
-                  <tr className="odd:bg-transparent even:bg-[#FAFAF8]">
-                    <td className="py-2.5 text-neutral-700 font-medium pr-2 whitespace-nowrap">
-                      5-Year compounded toll
-                    </td>
-                    <td className="py-2.5 px-3 bg-[#F9F7F2]">
-                      <div className="flex items-center gap-1.5 justify-center font-bold text-[#0F1115] text-center whitespace-nowrap">
-                        <span className="w-4 h-4 rounded-full bg-[#0F1115] text-white flex items-center justify-center shrink-0">
-                          <Check className="w-2.5 h-2.5 stroke-[3]" />
-                        </span>
-                        <span>$0 Lost (100% Retained)</span>
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-600 font-medium text-xs">
-                      −${fmt(upwork5Yr)} Lost
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-600 font-medium text-xs">
-                      −${fmt(agency5Yr)} Lost
-                    </td>
-                  </tr>
+                          {/* Upwork Column (Image 2 Hollow Ring / Muted Cross) */}
+                          <td className="py-3 px-2 text-center">
+                            <div className="flex items-center gap-1.5 justify-center text-xs sm:text-[12px]">
+                              {item.upwork.isPenalty ? (
+                                <span className="w-3.5 h-3.5 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 ring-1 ring-rose-200">
+                                  <X className="w-2 h-2 stroke-[2.5]" />
+                                </span>
+                              ) : (
+                                <span className="w-3.5 h-3.5 rounded-full border border-neutral-300 flex items-center justify-center shrink-0" />
+                              )}
+                              <span className={item.upwork.isPenalty ? "text-neutral-700 font-medium" : "text-neutral-500"}>
+                                {item.upwork.value}
+                              </span>
+                            </div>
+                          </td>
 
-                  {/* Row 5: Payout Velocity & Escrow */}
-                  <tr className="odd:bg-transparent even:bg-[#FAFAF8]">
-                    <td className="py-2.5 text-neutral-700 font-medium pr-2 whitespace-nowrap">
-                      Payout velocity &amp; escrow
-                    </td>
-                    <td className="py-2.5 px-3 bg-[#F9F7F2]">
-                      <div className="flex items-center gap-1.5 justify-center font-bold text-[#0F1115] text-center whitespace-nowrap">
-                        <span className="w-4 h-4 rounded-full bg-[#0F1115] text-white flex items-center justify-center shrink-0">
-                          <Check className="w-2.5 h-2.5 stroke-[3]" />
-                        </span>
-                        <span>Same-day wire &amp; ACH</span>
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-500 text-xs">
-                      14 to 21 day escrow lockup
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-500 text-xs">
-                      NET 60 to 90 payment delays
-                    </td>
-                  </tr>
+                          {/* Talent Agencies Column (Image 2 Hollow Ring / Muted Cross) */}
+                          <td className="py-3 px-2 text-center">
+                            <div className="flex items-center gap-1.5 justify-center text-xs sm:text-[12px]">
+                              {item.agency.isPenalty ? (
+                                <span className="w-3.5 h-3.5 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 ring-1 ring-rose-200">
+                                  <X className="w-2 h-2 stroke-[2.5]" />
+                                </span>
+                              ) : (
+                                <span className="w-3.5 h-3.5 rounded-full border border-neutral-300 flex items-center justify-center shrink-0" />
+                              )}
+                              <span className={item.agency.isPenalty ? "text-neutral-700 font-medium" : "text-neutral-500"}>
+                                {item.agency.value}
+                              </span>
+                            </div>
+                          </td>
+                        </tr>
 
-                  {/* Row 6: Direct Client Ownership */}
-                  <tr className="odd:bg-transparent even:bg-[#FAFAF8]">
-                    <td className="py-2.5 text-neutral-700 font-medium pr-2 whitespace-nowrap">
-                      Direct client ownership
-                    </td>
-                    <td className="py-2.5 px-3 bg-[#F9F7F2]">
-                      <div className="flex items-center gap-1.5 justify-center font-bold text-[#0F1115] text-center whitespace-nowrap">
-                        <span className="w-4 h-4 rounded-full bg-[#0F1115] text-white flex items-center justify-center shrink-0">
-                          <Check className="w-2.5 h-2.5 stroke-[3]" />
-                        </span>
-                        <span>100% direct client ownership</span>
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-500 text-xs">
-                      Platform gates chat
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-500 text-xs">
-                      Agency holds client contract
-                    </td>
-                  </tr>
+                        {/* Forensic Audit Drawer ("Open Up" State) */}
+                        {isExpanded && (
+                          <tr className={`bg-[#F5F3EB] ${isLast ? "rounded-b-xl" : ""}`}>
+                            <td colSpan={4} className="p-3 sm:p-4">
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+                                {/* Nexus Forensic Box */}
+                                <div className="bg-white rounded-xl p-3">
+                                  <div className="flex items-center gap-1.5 text-[11px] font-bold text-emerald-800 mb-1">
+                                    <span className="w-2 h-2 rounded-full bg-emerald-600 shrink-0" />
+                                    <span>Nexus Direct Reality</span>
+                                  </div>
+                                  <p className="text-[11px] text-neutral-700 leading-relaxed font-sans">
+                                    {item.nexus.audit}
+                                  </p>
+                                </div>
 
-                  {/* Row 7: Master IP & Raw Deliverables */}
-                  <tr className="odd:bg-transparent even:bg-[#FAFAF8]">
-                    <td className="py-2.5 text-neutral-700 font-medium pr-2 whitespace-nowrap">
-                      Master IP &amp; deliverables
-                    </td>
-                    <td className="py-2.5 px-3 bg-[#F9F7F2]">
-                      <div className="flex items-center gap-1.5 justify-center font-bold text-[#0F1115] text-center whitespace-nowrap">
-                        <span className="w-4 h-4 rounded-full bg-[#0F1115] text-white flex items-center justify-center shrink-0">
-                          <Check className="w-2.5 h-2.5 stroke-[3]" />
-                        </span>
-                        <span>You retain 100% master IP</span>
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-500 text-xs">
-                      Standard platform TOS terms
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-500 text-xs">
-                      Work-for-hire rights to agency
-                    </td>
-                  </tr>
+                                {/* Upwork Forensic Box */}
+                                <div className="bg-white rounded-xl p-3">
+                                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-neutral-800 mb-1">
+                                    <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
+                                    <span>Upwork Toll Reality</span>
+                                  </div>
+                                  <p className="text-[11px] text-neutral-600 leading-relaxed font-sans">
+                                    {item.upwork.audit}
+                                  </p>
+                                </div>
 
-                  {/* Row 8: Commercial Billing Model */}
-                  <tr className="odd:bg-transparent even:bg-[#FAFAF8]">
-                    <td className="py-2.5 text-neutral-700 font-medium pr-2 whitespace-nowrap">
-                      Commercial billing model
-                    </td>
-                    <td className="py-2.5 px-3 bg-[#F9F7F2] rounded-b-xl">
-                      <div className="flex items-center gap-1.5 justify-center font-bold text-[#0F1115] text-center whitespace-nowrap">
-                        <span className="w-4 h-4 rounded-full bg-[#0F1115] text-white flex items-center justify-center shrink-0">
-                          <Check className="w-2.5 h-2.5 stroke-[3]" />
-                        </span>
-                        <span>Flat verified membership</span>
-                      </div>
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-500 text-xs">
-                      20% toll on every client $
-                    </td>
-                    <td className="py-2.5 px-2 text-center text-neutral-500 text-xs">
-                      Heavy agency markup on labor
-                    </td>
-                  </tr>
+                                {/* Agency Forensic Box */}
+                                <div className="bg-white rounded-xl p-3">
+                                  <div className="flex items-center gap-1.5 text-[11px] font-semibold text-neutral-800 mb-1">
+                                    <span className="w-2 h-2 rounded-full bg-neutral-400 shrink-0" />
+                                    <span>Agency Margin Reality</span>
+                                  </div>
+                                  <p className="text-[11px] text-neutral-600 leading-relaxed font-sans">
+                                    {item.agency.audit}
+                                  </p>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                      </React.Fragment>
+                    );
+                  })}
                 </tbody>
               </table>
+            </div>
+
+            {/* Matrix Card Bottom Status & Action */}
+            <div className="mt-5 pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-neutral-500">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-600 shrink-0" />
+                <span>Every dollar negotiated is 100% retained by the creator.</span>
+              </div>
+              <button 
+                type="button" 
+                onClick={() => handleSelect("Commercial Audit")}
+                className="inline-flex items-center gap-1 font-semibold text-slate-900 hover:text-[#C55221] transition-colors cursor-pointer"
+              >
+                <span>Inspect membership terms</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
             </div>
           </div>
         </div>
