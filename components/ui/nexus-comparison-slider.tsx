@@ -78,9 +78,8 @@ const PRESET_APERTURES = [
 const TOTAL_BARS = 60;
 
 /**
- * Editorial Commercial Console: Comparison Matrix & Retained Revenue Simulator
- * Built to strict design-taste-frontend standards: zero ornament slop, quiet surfaces,
- * full-ink typography, and real browser verification.
+ * Editorial Commercial Console: Centralised Times New Roman Header & Architectural Vertical Lines
+ * Section 02 / 04: Commercial Comparison Matrix & Retained Revenue Simulator
  */
 export function NexusComparisonSection({
   initialBillings = 105000,
@@ -143,27 +142,37 @@ export function NexusComparisonSection({
   };
 
   return (
-    <div className="w-full max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-[#0F1115] font-sans">
+    <div className="w-full max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-12 sm:pb-16 text-[#0F1115] font-sans relative">
       
-      {/* ── Section Header: Confident Editorial Authority ── */}
-      <div className="max-w-3xl mb-10 sm:mb-14">
-        <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold tracking-tight text-[#0F1115] leading-[1.12]">
-          Commercial terms without platform extraction.
+      {/* ── Centralised Editorial Header in Times New Roman (Matching Above Section) ── */}
+      <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 flex flex-col items-center">
+        {/* Section Kicker Pill */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900/[0.04] border border-slate-900/[0.08] text-xs font-semibold text-slate-600 tracking-wide mb-3.5">
+          <span className="font-bold text-slate-900">02 / 04</span>
+          <span className="text-slate-300">·</span>
+          <span>Zero Commission</span>
+        </div>
+
+        {/* Centralised Title in Times New Roman */}
+        <h2 className="font-['Times_New_Roman',_Times,_Georgia,_serif] text-4xl sm:text-5xl md:text-[56px] font-normal tracking-tight text-[#14110F] leading-[1.06] text-balance">
+          Find the right plan for your <span className="italic text-[#C55221]">production.</span>
         </h2>
-        <p className="text-neutral-600 text-base sm:text-lg mt-3 leading-relaxed">
-          Traditional platforms take 20% on milestones plus mandatory escrow holds. Agencies mark up 25% to 35%. 
-          Nexus Direct is a verified commercial directory: 100% day-rate retention, direct client wire, and zero intermediary tolls.
+
+        {/* Centralised Lead in Times New Roman Italic */}
+        <p className="font-['Times_New_Roman',_Times,_Georgia,_serif] italic text-base sm:text-lg text-neutral-600 mt-3.5 max-w-2xl mx-auto leading-relaxed text-balance">
+          Transparent commercial terms. Traditional freelance platforms take 20% on milestones plus escrow holds. 
+          Nexus Direct is verified and direct: 100% day-rate retention and same-day client wire.
         </p>
       </div>
 
       {/* ── Two-Card Split Console: Matrix on Left, Simulator on Right ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch relative z-10">
         
         {/* ── LEFT: Commercial Comparison Matrix Card (7 cols) ── */}
-        <div data-ui="comparison-matrix" className="lg:col-span-7 bg-white rounded-2xl p-5 sm:p-7 flex flex-col justify-between">
+        <div data-ui="comparison-matrix" className="lg:col-span-7 bg-white rounded-2xl p-5 sm:p-7 flex flex-col justify-between border border-slate-900/[0.06]">
           <div>
             <div className="mb-5">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#0F1115] tracking-tight">
+              <h3 className="font-['Times_New_Roman',_Times,_Georgia,_serif] text-xl sm:text-2xl font-semibold text-[#0F1115] tracking-tight">
                 Commercial comparison matrix
               </h3>
               <p className="text-xs text-neutral-500 mt-0.5">
@@ -386,11 +395,11 @@ export function NexusComparisonSection({
         </div>
 
         {/* ── RIGHT: Retained Revenue Simulator Card (5 cols) ── */}
-        <div data-ui="revenue-simulator" className="lg:col-span-5 bg-white rounded-2xl p-5 sm:p-7 flex flex-col justify-between">
+        <div data-ui="revenue-simulator" className="lg:col-span-5 bg-white rounded-2xl p-5 sm:p-7 flex flex-col justify-between border border-slate-900/[0.06]">
           <div>
             {/* Simulator Header */}
             <div className="mb-4">
-              <h3 className="text-xl sm:text-2xl font-bold text-[#0F1115] tracking-tight">
+              <h3 className="font-['Times_New_Roman',_Times,_Georgia,_serif] text-xl sm:text-2xl font-semibold text-[#0F1115] tracking-tight">
                 Retained revenue simulator
               </h3>
               <p className="text-xs text-neutral-500 mt-0.5">
@@ -400,14 +409,14 @@ export function NexusComparisonSection({
 
             {/* Hero Price Rolling Box */}
             <div className="text-center py-5 bg-[#F9F7F2] rounded-xl my-4">
-              <div className="inline-flex items-baseline justify-center text-4xl sm:text-5xl font-bold tracking-tight text-[#0F1115] leading-none">
+              <div className="inline-flex items-baseline justify-center font-['Times_New_Roman',_Times,_Georgia,_serif] text-4xl sm:text-5xl font-bold tracking-tight text-[#0F1115] leading-none">
                 <span className="text-2xl sm:text-3xl font-medium text-neutral-400 mr-1.5">$</span>
                 <RollingPrice 
                   value={billings} 
                   format={(v) => v.toLocaleString("en-US")} 
                   reduced={reducedMotion} 
                 />
-                <span className="text-xs sm:text-sm font-medium text-neutral-500 ml-2">/ yr</span>
+                <span className="text-xs sm:text-sm font-medium text-neutral-500 ml-2 font-sans">/ yr</span>
               </div>
 
               {/* Retained Surplus Badge */}
@@ -424,7 +433,7 @@ export function NexusComparisonSection({
               </div>
             </div>
 
-            <p className="text-xs text-neutral-500 text-center max-w-sm mx-auto leading-relaxed mb-5">
+            <p className="text-xs text-neutral-500 text-center max-w-sm mx-auto leading-relaxed mb-5 font-sans">
               Drag the precision slider to preview your retained earnings and platform savings. Zero extraction.
             </p>
 
@@ -480,7 +489,7 @@ export function NexusComparisonSection({
               </div>
 
               {/* Ruler Labels */}
-              <div className="flex justify-between text-[11px] text-neutral-400 mt-2 px-0.5" aria-hidden="true">
+              <div className="flex justify-between text-[11px] text-neutral-400 mt-2 px-0.5 font-sans" aria-hidden="true">
                 <span>$20,000</span>
                 <span>$65,000</span>
                 <span>$110,000</span>
@@ -513,10 +522,10 @@ export function NexusComparisonSection({
 
             {/* Dynamic Retained Purchasing Power Callout */}
             <div className="rounded-xl bg-[#F9F7F2] p-4 text-left mt-5">
-              <div className="text-[11px] font-bold text-neutral-700 tracking-wider mb-1">
+              <div className="text-[11px] font-bold text-neutral-700 tracking-wider mb-1 font-sans">
                 Retained purchasing power
               </div>
-              <p className="text-xs text-neutral-700 leading-relaxed">
+              <p className="text-xs text-neutral-700 leading-relaxed font-sans">
                 {getPerkText(upworkToll)}
               </p>
             </div>
