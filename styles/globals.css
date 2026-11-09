@@ -9,7 +9,7 @@
   --card-foreground: 222.2 84% 4.9%;
   --popover: 0 0% 100%;
   --popover-foreground: 222.2 84% 4.9%;
-  --primary: 24.6 95% 53.1%;
+  --primary: 222.2 47.4% 11.2%;
   --primary-foreground: 0 0% 100%;
   --secondary: 210 40% 96.1%;
   --secondary-foreground: 222.2 47.4% 11.2%;
@@ -21,7 +21,7 @@
   --destructive-foreground: 210 40% 98%;
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
-  --ring: 24.6 95% 53.1%;
+  --ring: 222.2 47.4% 11.2%;
   --radius: 0.75rem;
 }
 
@@ -36,14 +36,14 @@
   box-sizing: border-box;
 }
 
-/* Impeccable Custom Precision Slider (Apple Style) */
+/* Precision Slider (Apple Style, Zero Slop) */
 .impeccable-slider {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
   height: 4px;
   border-radius: 9999px;
-  background: #E8E2D9;
+  background: #E5E5E0;
   outline: none;
   cursor: ew-resize;
   margin: 10px 0;
@@ -55,16 +55,14 @@
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: #C55221;
+  background: #0F1115;
   border: 3.5px solid #FFFFFF;
-  box-shadow: 0 2px 8px rgba(197, 82, 33, 0.42), 0 1px 3px rgba(0, 0, 0, 0.15);
   cursor: ew-resize;
-  transition: transform 0.12s cubic-bezier(0.2, 0.8, 0.4, 1), box-shadow 0.12s ease;
+  transition: transform 0.12s cubic-bezier(0.2, 0.8, 0.4, 1);
 }
 
 .impeccable-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.14);
-  box-shadow: 0 4px 12px rgba(197, 82, 33, 0.55);
+  transform: scale(1.15);
 }
 
 .impeccable-slider::-webkit-slider-thumb:active {
@@ -75,8 +73,7 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #C55221;
+  background: #0F1115;
   border: 3.5px solid #FFFFFF;
-  box-shadow: 0 2px 8px rgba(197, 82, 33, 0.42);
   cursor: ew-resize;
 }
