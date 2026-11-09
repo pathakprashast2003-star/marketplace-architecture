@@ -2314,16 +2314,19 @@
       align-items: flex-end;
       justify-content: space-between;
       height: 32px;
-      padding: 0 4px;
+      padding: 0 11px;
       margin-top: 10px;
-      gap: 3px;
+      gap: 2.5px;
     }
 
     .nx-hist-bar {
       flex: 1;
+      height: 32px;
+      transform-origin: bottom;
+      transform: scaleY(0.18);
       background: var(--color-fees-track);
       border-radius: 2px;
-      transition: background-color 0.16s ease, opacity 0.16s ease;
+      transition: transform 0.06s ease, background-color 0.12s ease;
       min-width: 2px;
     }
 
@@ -7136,53 +7139,68 @@
                 <label for="nxEarn" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Adjust yearly billings</label>
                 <input class="nx-precision-slider" id="nxEarn" type="range" min="20000" max="200000" step="5000" value="80000">
                 
-                <!-- 45 Tactile Gaussian Histogram Bars (Image 1) -->
+                <!-- 60 Tactile Dynamic Gaussian Proximity Histogram Bars (Pinterest 1GDhWpi74) -->
                 <div class="nx-histogram-bars" id="nxHistogram" aria-hidden="true">
-                  <span class="nx-hist-bar" style="height: 25%;"></span>
-                  <span class="nx-hist-bar" style="height: 32%;"></span>
-                  <span class="nx-hist-bar" style="height: 38%;"></span>
-                  <span class="nx-hist-bar" style="height: 46%;"></span>
-                  <span class="nx-hist-bar" style="height: 55%;"></span>
-                  <span class="nx-hist-bar" style="height: 68%;"></span>
-                  <span class="nx-hist-bar" style="height: 78%;"></span>
-                  <span class="nx-hist-bar" style="height: 90%;"></span>
-                  <span class="nx-hist-bar" style="height: 100%;"></span>
-                  <span class="nx-hist-bar" style="height: 94%;"></span>
-                  <span class="nx-hist-bar" style="height: 88%;"></span>
-                  <span class="nx-hist-bar" style="height: 82%;"></span>
-                  <span class="nx-hist-bar" style="height: 76%;"></span>
-                  <span class="nx-hist-bar" style="height: 70%;"></span>
-                  <span class="nx-hist-bar" style="height: 65%;"></span>
-                  <span class="nx-hist-bar" style="height: 62%;"></span>
-                  <span class="nx-hist-bar" style="height: 68%;"></span>
-                  <span class="nx-hist-bar" style="height: 74%;"></span>
-                  <span class="nx-hist-bar" style="height: 85%;"></span>
-                  <span class="nx-hist-bar" style="height: 92%;"></span>
-                  <span class="nx-hist-bar" style="height: 96%;"></span>
-                  <span class="nx-hist-bar" style="height: 88%;"></span>
-                  <span class="nx-hist-bar" style="height: 80%;"></span>
-                  <span class="nx-hist-bar" style="height: 72%;"></span>
-                  <span class="nx-hist-bar" style="height: 65%;"></span>
-                  <span class="nx-hist-bar" style="height: 58%;"></span>
-                  <span class="nx-hist-bar" style="height: 52%;"></span>
-                  <span class="nx-hist-bar" style="height: 48%;"></span>
-                  <span class="nx-hist-bar" style="height: 44%;"></span>
-                  <span class="nx-hist-bar" style="height: 50%;"></span>
-                  <span class="nx-hist-bar" style="height: 58%;"></span>
-                  <span class="nx-hist-bar" style="height: 68%;"></span>
-                  <span class="nx-hist-bar" style="height: 75%;"></span>
-                  <span class="nx-hist-bar" style="height: 80%;"></span>
-                  <span class="nx-hist-bar" style="height: 72%;"></span>
-                  <span class="nx-hist-bar" style="height: 62%;"></span>
-                  <span class="nx-hist-bar" style="height: 54%;"></span>
-                  <span class="nx-hist-bar" style="height: 46%;"></span>
-                  <span class="nx-hist-bar" style="height: 40%;"></span>
-                  <span class="nx-hist-bar" style="height: 35%;"></span>
-                  <span class="nx-hist-bar" style="height: 30%;"></span>
-                  <span class="nx-hist-bar" style="height: 28%;"></span>
-                  <span class="nx-hist-bar" style="height: 25%;"></span>
-                  <span class="nx-hist-bar" style="height: 22%;"></span>
-                  <span class="nx-hist-bar" style="height: 20%;"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
+                  <span class="nx-hist-bar"></span>
                 </div>
 
                 <div class="nx-ruler-labels" aria-hidden="true">
@@ -8644,11 +8662,20 @@
           bubble.style.setProperty('--bubble-x', `${targetX}px`);
         }
 
-        // Update Histogram vertical bars (Image 1)
+        // Update Dynamic Gaussian Proximity Wave Histogram (Pinterest 1GDhWpi74)
         const bars = document.querySelectorAll('.nx-histogram-bars .nx-hist-bar');
-        const activeBarLimit = Math.round((pct / 100) * bars.length);
+        const activeIdx = (pct / 100) * (bars.length - 1);
         bars.forEach((bar, idx) => {
-          bar.classList.toggle('is-active', idx <= activeBarLimit);
+          const dist = Math.abs(idx - activeIdx);
+          if (dist < 10) {
+            // GPU-accelerated Gaussian bell curve: scaleY swells from 0.18 base up to 1.0 peak
+            const gauss = Math.exp(-(dist * dist) / 18);
+            bar.style.transform = `scaleY(${(0.18 + gauss * 0.82).toFixed(3)})`;
+            bar.classList.toggle('is-active', dist <= 3.5);
+          } else {
+            bar.style.transform = 'scaleY(0.18)';
+            bar.classList.remove('is-active');
+          }
         });
 
         // 1. Update Main Billings Odometer (Tima King Directional Reel Engine)
