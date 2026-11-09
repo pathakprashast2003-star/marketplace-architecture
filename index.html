@@ -5775,17 +5775,17 @@
 
   
     /* ══════════════════════════════════════════════════════════════
-       PRICING DECK — Apple-Grade Elevated Plan Comparison (Sage & Forest)
-       Matches the "Choose the Best Plan" Deck with Elevated Hero Card
+       PRICING DECK — Apple-Grade Elevated Plan Comparison (Option B)
+       apple-design fluid motion + craftwork-design marketplace elegance
        ══════════════════════════════════════════════════════════════ */
     #fees {
-      padding-top: 100px;
-      padding-bottom: 120px;
+      padding-top: 110px;
+      padding-bottom: 130px;
       position: relative;
     }
 
     #fees .pt-deck-container {
-      max-width: 1240px;
+      max-width: 1260px;
       margin: 0 auto;
       padding: 0 24px;
     }
@@ -5793,8 +5793,8 @@
     /* ── Section Header (Harmonized with Verified Directors on Deck) ── */
     #fees .pt-deck-head {
       text-align: center;
-      max-width: 760px;
-      margin: 0 auto 36px;
+      max-width: 820px;
+      margin: 0 auto 32px;
     }
 
     #fees .pt-deck-kicker {
@@ -5816,13 +5816,14 @@
       height: 7px;
       border-radius: 50%;
       background: #0A3219;
+      box-shadow: 0 0 8px rgba(10, 50, 25, 0.4);
     }
 
     #fees .pt-deck-title {
       font-family: var(--font-display, 'Plus Jakarta Sans', system-ui, sans-serif);
       font-weight: 750;
-      font-size: clamp(2.4rem, 5vw, 4.2rem);
-      line-height: 1.04;
+      font-size: clamp(2.5rem, 5.2vw, 4.4rem);
+      line-height: 1.03;
       letter-spacing: -0.025em;
       color: #0F172A;
       margin-bottom: 16px;
@@ -5842,27 +5843,29 @@
 
     #fees .pt-deck-sub {
       font-family: var(--font-body, 'Plus Jakarta Sans', system-ui, sans-serif);
-      font-size: 16px;
+      font-size: 16.5px;
       line-height: 1.6;
       color: #475569;
-      max-width: 52ch;
+      max-width: 54ch;
       margin: 0 auto;
+      text-wrap: pretty;
     }
 
-    /* ── Live Interactive Billing Slider Pill ── */
+    /* ── Live Interactive Billing Slider Pill (Apple Frosted Glass) ── */
     #fees .pt-calc {
       display: inline-flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 10px 16px;
-      margin: 28px auto 44px;
-      padding: 12px 26px;
+      gap: 12px 18px;
+      margin: 30px auto 46px;
+      padding: 13px 28px;
       border-radius: 999px;
       background: #FFFFFF;
       border: 1px solid rgba(10, 50, 25, 0.12);
-      box-shadow: 0 10px 30px -10px rgba(10, 50, 25, 0.08);
-      font-size: 14.5px;
+      box-shadow: 0 10px 30px -10px rgba(10, 50, 25, 0.08),
+                  0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+      font-size: 15px;
       font-weight: 500;
       color: #475569;
       font-family: var(--font-body, 'Plus Jakarta Sans', system-ui, sans-serif);
@@ -5870,132 +5873,141 @@
 
     #fees .pt-calc output {
       font-family: var(--font-display, 'Plus Jakarta Sans', system-ui, sans-serif);
-      font-size: 20px;
-      font-weight: 750;
+      font-size: 21px;
+      font-weight: 800;
       color: #0A3219;
-      min-width: 5.2ch;
+      min-width: 5.4ch;
       text-align: center;
       font-variant-numeric: tabular-nums;
     }
 
     #fees .pt-calc input {
-      width: 200px;
+      width: 220px;
       accent-color: #0A3219;
       cursor: pointer;
     }
 
     #fees .pt-calc-note {
-      font-size: 13.5px;
+      font-size: 14px;
       color: #64748B;
     }
 
-    /* ── Grand Rounded Outer Card Stage ── */
+    /* ── Grand Rounded Outer Card Stage (Concentric R: 36px) ── */
     #fees .pt-outer-stage {
       background: linear-gradient(180deg, #F3F8EE 0%, #E9F4E4 100%);
       border: 1.5px solid rgba(54, 114, 38, 0.18);
       border-radius: 36px;
-      padding: 48px 36px 56px;
-      box-shadow: 0 25px 70px -20px rgba(10, 50, 25, 0.07);
+      padding: 52px 38px 60px;
+      box-shadow: 0 30px 85px -25px rgba(10, 50, 25, 0.08),
+                  0 1px 2px rgba(0, 0, 0, 0.03);
     }
 
-    /* ── 3-Card Deck Grid ── */
+    /* ── 3-Card Symmetrical Grid ── */
     #fees .pt-cards-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 28px;
+      gap: 32px;
       align-items: center;
     }
 
     @media (min-width: 1024px) {
       #fees .pt-cards-grid {
-        grid-template-columns: 1fr 1.08fr 1fr;
-        gap: 22px;
+        grid-template-columns: 1fr 1.14fr 1fr;
+        gap: 26px;
       }
     }
 
-    /* ── Individual Plan Card Base ── */
+    /* ── Individual Plan Card Base (Concentric R: 24px) ── */
     #fees .pt-plan-card {
       background: #FFFFFF;
       border: 1px solid rgba(10, 50, 25, 0.08);
       border-radius: 26px;
-      padding: 34px 26px 30px;
-      box-shadow: 0 10px 30px -10px rgba(10, 50, 25, 0.05);
+      padding: 38px 24px 34px;
+      box-shadow: 0 10px 30px -10px rgba(10, 50, 25, 0.06),
+                  0 1px 3px rgba(0, 0, 0, 0.02);
       display: flex;
       flex-direction: column;
       position: relative;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
     }
 
     #fees .pt-plan-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 45px -12px rgba(10, 50, 25, 0.10);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px -12px rgba(10, 50, 25, 0.12);
     }
 
-    /* ── ELEVATED HERO CARD (Nexus Direct) ── */
+    #fees .pt-plan-card:active {
+      transform: scale(0.99);
+      transition: transform 100ms ease-out;
+    }
+
+    /* ── ELEVATED HERO CARD (Nexus Direct - Center Stage) ── */
     #fees .pt-plan-card.is-hero {
       background: linear-gradient(165deg, #0A3219 0%, #124322 55%, #18532B 100%);
-      border: 1.5px solid rgba(52, 211, 153, 0.35);
+      border: 1.5px solid rgba(52, 211, 153, 0.40);
       border-radius: 30px;
-      padding: 46px 28px 38px;
+      padding: 50px 32px 42px;
       color: #FFFFFF;
-      box-shadow: 0 30px 80px -15px rgba(10, 50, 25, 0.40),
-                  0 0 0 1px rgba(52, 211, 153, 0.25);
+      box-shadow: 0 35px 85px -15px rgba(10, 50, 25, 0.45),
+                  0 0 0 1px rgba(52, 211, 153, 0.25),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.25); /* Apple specular top light */
       z-index: 5;
     }
 
     @media (min-width: 1024px) {
       #fees .pt-plan-card.is-hero {
-        margin-top: -24px;
-        margin-bottom: -24px;
+        margin-top: -26px;
+        margin-bottom: -26px;
       }
     }
 
     #fees .pt-plan-card.is-hero:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 38px 90px -15px rgba(10, 50, 25, 0.50),
-                  0 0 0 2px rgba(52, 211, 153, 0.45);
+      transform: translateY(-6px);
+      box-shadow: 0 45px 95px -15px rgba(10, 50, 25, 0.55),
+                  0 0 0 2px rgba(52, 211, 153, 0.45),
+                  inset 0 1px 2px rgba(255, 255, 255, 0.35);
     }
 
-    /* Hero Top Pill */
+    /* Hero Top Floating Pill */
     #fees .pt-hero-top-pill {
       position: absolute;
-      top: -14px;
+      top: -15px;
       left: 50%;
       transform: translateX(-50%);
       background: #0F172A;
       color: #F8FAFC;
       border: 1px solid rgba(52, 211, 153, 0.45);
-      box-shadow: 0 6px 18px -4px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.35);
       font-size: 11px;
       font-weight: 750;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      padding: 5px 16px;
+      padding: 6px 18px;
       border-radius: 999px;
       white-space: nowrap;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
     }
 
     #fees .pt-hero-top-pill-dot {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: #34D399;
-      box-shadow: 0 0 8px #34D399;
+      box-shadow: 0 0 10px #34D399;
     }
 
     /* ── Card Header & Illustrated Avatar Circle ── */
     #fees .pt-card-header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     #fees .pt-card-tier-tag {
       font-size: 11.5px;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #64748B;
       margin-bottom: 4px;
@@ -6007,7 +6019,7 @@
 
     #fees .pt-card-name {
       font-family: var(--font-display, 'Plus Jakarta Sans', system-ui, sans-serif);
-      font-size: 24px;
+      font-size: 25px;
       font-weight: 750;
       color: #0F172A;
       letter-spacing: -0.02em;
@@ -6016,15 +6028,15 @@
 
     #fees .pt-plan-card.is-hero .pt-card-name {
       color: #FFFFFF;
-      font-size: 26px;
+      font-size: 28px;
     }
 
     /* Avatar Illustration Circle */
     #fees .pt-card-avatar-wrap {
-      width: 76px;
-      height: 76px;
+      width: 82px;
+      height: 82px;
       border-radius: 50%;
-      margin: 16px auto 18px;
+      margin: 18px auto 20px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -6032,36 +6044,50 @@
     }
 
     #fees .pt-plan-card:not(.is-hero) .pt-card-avatar-wrap {
-      background: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%);
-      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%);
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.04);
     }
 
     #fees .pt-plan-card.is-hero .pt-card-avatar-wrap {
-      background: linear-gradient(135deg, rgba(52, 211, 153, 0.25) 0%, rgba(16, 185, 129, 0.10) 100%);
-      border: 1.5px solid rgba(52, 211, 153, 0.45);
-      box-shadow: 0 0 25px -5px rgba(52, 211, 153, 0.4);
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.28) 0%, rgba(16, 185, 129, 0.12) 100%);
+      border: 1.5px solid rgba(52, 211, 153, 0.50);
+      box-shadow: 0 0 30px -4px rgba(52, 211, 153, 0.45);
     }
 
     /* ── Price Block ── */
     #fees .pt-card-price-block {
       text-align: center;
-      padding: 14px 0 16px;
-      border-top: 1px solid rgba(10, 50, 25, 0.07);
-      border-bottom: 1px solid rgba(10, 50, 25, 0.07);
+      padding: 16px 0 18px;
+      border-top: 1px solid rgba(10, 50, 25, 0.08);
+      border-bottom: 1px solid rgba(10, 50, 25, 0.08);
     }
 
     #fees .pt-plan-card.is-hero .pt-card-price-block {
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.03);
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.04);
       border-radius: 16px;
       margin: 0 -8px 0;
-      padding: 16px 8px;
+      padding: 18px 8px;
+    }
+
+    #fees .pt-card-price-label {
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #94A3B8;
+      margin-bottom: 6px;
+    }
+
+    #fees .pt-plan-card.is-hero .pt-card-price-label {
+      color: rgba(255, 255, 255, 0.70);
     }
 
     #fees .pt-card-price-headline {
       font-family: var(--font-display, 'Plus Jakarta Sans', system-ui, sans-serif);
-      font-size: 34px;
+      font-size: 36px;
       font-weight: 800;
       line-height: 1;
       letter-spacing: -0.03em;
@@ -6071,7 +6097,7 @@
 
     #fees .pt-plan-card.is-hero .pt-card-price-headline {
       color: #FFFFFF;
-      font-size: 38px;
+      font-size: 40px;
     }
 
     #fees .pt-card-price-headline small {
@@ -6082,11 +6108,11 @@
     }
 
     #fees .pt-plan-card.is-hero .pt-card-price-headline small {
-      color: rgba(255, 255, 255, 0.65);
+      color: rgba(255, 255, 255, 0.70);
     }
 
     #fees .pt-card-price-caption {
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 600;
       color: #64748B;
       margin-top: 6px;
@@ -6097,26 +6123,77 @@
       font-weight: 700;
     }
 
-    /* ── SLA / Payout Velocity Rating Row ── */
-    #fees .pt-card-sla-row {
+    /* ── Middle Metric Box (SLA Specification Box - As in Reference Image) ── */
+    #fees .pt-card-metrics-box {
+      margin: 18px 0 16px;
+      border-radius: 14px;
+      padding: 12px 14px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: #475569;
-      padding: 14px 0 10px;
+      flex-direction: column;
+      gap: 9px;
+      font-size: 12px;
     }
 
-    #fees .pt-plan-card.is-hero .pt-card-sla-row {
-      color: #E2E8F0;
+    #fees .pt-plan-card:not(.is-hero) .pt-card-metrics-box {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+    }
+
+    #fees .pt-plan-card.is-hero .pt-card-metrics-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+    }
+
+    #fees .pt-card-metric-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    #fees .pt-plan-card:not(.is-hero) .pt-card-metric-label {
+      font-weight: 600;
+      color: #64748B;
+      font-size: 11.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    #fees .pt-plan-card.is-hero .pt-card-metric-label {
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 11.5px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    #fees .pt-plan-card:not(.is-hero) .pt-card-metric-value {
+      font-weight: 700;
+      color: #1E293B;
+      text-align: right;
+      font-size: 11.5px;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    #fees .pt-plan-card.is-hero .pt-card-metric-value {
+      font-weight: 700;
+      color: #FFFFFF;
+      text-align: right;
+      font-size: 11.5px;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
 
     #fees .pt-card-stars {
       color: #F59E0B;
-      letter-spacing: 2px;
-      font-size: 13px;
+      letter-spacing: 0.5px;
+      font-size: 11px;
     }
 
     /* ── Features Checklist ── */
@@ -6126,7 +6203,7 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 13px;
       flex-grow: 1;
     }
 
@@ -6163,7 +6240,7 @@
       color: #94A3B8;
     }
 
-    /* ── Card Action CTA Buttons ── */
+    /* ── Card Action CTA Buttons (Apple Haptic Micro-Depression) ── */
     #fees .pt-card-btn {
       width: 100%;
       height: 48px;
@@ -6179,6 +6256,11 @@
       cursor: pointer;
       text-decoration: none;
       margin-top: auto;
+    }
+
+    #fees .pt-card-btn:active {
+      transform: scale(0.97);
+      transition: transform 80ms ease-out;
     }
 
     #fees .pt-card-btn.is-secondary {
@@ -6202,6 +6284,10 @@
       box-shadow: 0 16px 32px -6px rgba(0, 0, 0, 0.35);
     }
 
+    #fees .pt-card-btn.is-hero-cta:active {
+      transform: scale(0.97);
+    }
+
     /* ── Bottom Learner Note ── */
     #fees .pt-learn {
       text-align: center;
@@ -6219,6 +6305,42 @@
 
     #fees .pt-learn a:hover {
       color: #F97316;
+    }
+
+    @media (max-width: 768px) {
+      #fees {
+        padding-top: 70px;
+        padding-bottom: 80px;
+      }
+
+      #fees .pt-deck-container {
+        padding: 0 16px;
+      }
+
+      #fees .pt-outer-stage {
+        padding: 36px 14px 44px;
+        border-radius: 26px;
+      }
+
+      #fees .pt-cards-grid {
+        gap: 28px;
+      }
+
+      #fees .pt-plan-card {
+        padding: 32px 18px 28px;
+        border-radius: 22px;
+      }
+
+      #fees .pt-plan-card.is-hero {
+        padding: 44px 20px 34px;
+        border-radius: 24px;
+      }
+
+      #fees .pt-calc {
+        margin: 22px auto 32px;
+        padding: 10px 18px;
+        font-size: 14px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -7200,6 +7322,7 @@
                 </div>
 
                 <div class="pt-card-price-block">
+                  <div class="pt-card-price-label">Net Take-Home</div>
                   <div class="pt-card-price-headline">
                     <span data-keep="up">$4,000</span><small>/mo</small>
                   </div>
@@ -7208,9 +7331,19 @@
                   </div>
                 </div>
 
-                <div class="pt-card-sla-row">
-                  <span class="pt-card-stars">★★☆☆☆</span>
-                  <span>14–21 Day Escrow Hold</span>
+                <div class="pt-card-metrics-box">
+                  <div class="pt-card-metric-row">
+                    <span class="pt-card-metric-label">Payout Terms</span>
+                    <span class="pt-card-metric-value"><span class="pt-card-stars">★★☆☆☆</span> 14–21d Escrow</span>
+                  </div>
+                  <div class="pt-card-metric-row">
+                    <span class="pt-card-metric-label">Client Chat</span>
+                    <span class="pt-card-metric-value">Platform Gated</span>
+                  </div>
+                  <div class="pt-card-metric-row">
+                    <span class="pt-card-metric-label">Master IP</span>
+                    <span class="pt-card-metric-value">Standard Platform TOS</span>
+                  </div>
                 </div>
 
                 <ul class="pt-card-features-list">
@@ -7264,6 +7397,7 @@
                 </div>
 
                 <div class="pt-card-price-block">
+                  <div class="pt-card-price-label">Net Take-Home</div>
                   <div class="pt-card-price-headline">
                     <b data-keep="nx">$5,000</b><small>/mo</small>
                   </div>
@@ -7272,9 +7406,19 @@
                   </div>
                 </div>
 
-                <div class="pt-card-sla-row">
-                  <span class="pt-card-stars">★★★★★</span>
-                  <span>Same-Day Wire &amp; Direct ACH</span>
+                <div class="pt-card-metrics-box">
+                  <div class="pt-card-metric-row">
+                    <span class="pt-card-metric-label">Payout Terms</span>
+                    <span class="pt-card-metric-value"><span class="pt-card-stars">★★★★★</span> Same-Day Wire</span>
+                  </div>
+                  <div class="pt-card-metric-row">
+                    <span class="pt-card-metric-label">Client Chat</span>
+                    <span class="pt-card-metric-value">100% Direct (Slack/Cell)</span>
+                  </div>
+                  <div class="pt-card-metric-row">
+                    <span class="pt-card-metric-label">Master IP</span>
+                    <span class="pt-card-metric-value">100% Creator Owned</span>
+                  </div>
                 </div>
 
                 <ul class="pt-card-features-list">
@@ -7334,6 +7478,7 @@
                 </div>
 
                 <div class="pt-card-price-block">
+                  <div class="pt-card-price-label">Net Take-Home</div>
                   <div class="pt-card-price-headline">
                     <span data-keep="ag">$3,500</span><small>/mo</small>
                   </div>
@@ -7342,9 +7487,19 @@
                   </div>
                 </div>
 
-                <div class="pt-card-sla-row">
-                  <span class="pt-card-stars">★☆☆☆☆</span>
-                  <span>NET 60–90 Day Delays</span>
+                <div class="pt-card-metrics-box">
+                  <div class="pt-card-metric-row">
+                    <span class="pt-card-metric-label">Payout Terms</span>
+                    <span class="pt-card-metric-value"><span class="pt-card-stars">★☆☆☆☆</span> NET 60–90 Delays</span>
+                  </div>
+                  <div class="pt-card-metric-row">
+                    <span class="pt-card-metric-label">Client Chat</span>
+                    <span class="pt-card-metric-value">Agency Contract Lock</span>
+                  </div>
+                  <div class="pt-card-metric-row">
+                    <span class="pt-card-metric-label">Master IP</span>
+                    <span class="pt-card-metric-value">Agency Work-for-Hire</span>
+                  </div>
                 </div>
 
                 <ul class="pt-card-features-list">
