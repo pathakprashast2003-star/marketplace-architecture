@@ -333,6 +333,15 @@
       margin-top: 4px;
     }
 
+    .hero-subheadline {
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      margin: 0 0 1.25rem 0;
+      max-width: 440px;
+      font-weight: 500;
+    }
+
     .action-row {
       display: flex;
       align-items: center;
@@ -560,13 +569,12 @@
         height: 100dvh;
         max-height: 100dvh;
         overflow: hidden;
-        padding: 44px 0 14px;
+        padding: calc(56px + env(safe-area-inset-top)) 0 12px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
-        overflow: hidden;
       }
 
       /* Compact top pill dock for layout switcher */
@@ -604,14 +612,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         width: 100%;
         height: 100%;
         max-width: 410px;
         margin: 0 auto;
         gap: 6px;
         overflow: visible;
-        padding-top: 64px;
+        padding-top: 8px;
       }
 
       /* Flatten left container so headline prefix sits at top, actions sit at bottom */
@@ -627,18 +635,18 @@
         display: inline-block !important;
       }
 
-      /* Centralized headline prefix: elevated a bit above */
+      /* Centralized headline prefix above centered hero composition */
       .headline-stack {
         order: 1;
         width: 100%;
-        margin: -8px 0 2px;
+        margin: 0;
         text-align: center;
         display: block;
         line-height: 1;
         padding: 0 16px;
       }
 
-      /* Bolder, bigger, pure white prefix with atmospheric blue shadow */
+      /* Bolder, bigger prefix matching finalized Dunes mobile typography */
       .title-wefind-mobile {
         font-size: clamp(1.85rem, 8.2vw, 2.65rem);
         font-weight: 900;
@@ -651,7 +659,7 @@
       .title-creative,
       .title-edge {
         display: none;
-        /* Rendered in 3D monumental backdrop behind child */
+        /* Rendered in 3D monumental backdrop behind subject */
       }
 
       /* ── 3D CENTER HERO STAGE (CHARACTER + BACKDROP "CREATIVE EDGE") ── */
@@ -662,24 +670,20 @@
         flex: 1;
         min-height: 0;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
         margin: 0;
         overflow: visible;
       }
 
-      /*
-       * KEY FIX: image-container-slot is now full-height and the image
-       * is anchored TOP so the boy's head/drone appear in the upper third.
-       * The CREATIVE EDGE backdrop is positioned absolutely at top:0
-       * so it falls exactly behind the hair and face.
-       */
+      /* Reset desktop right/bottom padding so character + CREATIVE EDGE backdrop center accurately */
       .image-container-slot {
         position: relative;
         height: 100%;
         width: 100%;
+        padding: 0;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
         transform: none;
         overflow: visible;
@@ -691,11 +695,11 @@
         align-items: flex-start;
         justify-content: flex-start;
         position: absolute;
-        /* Left-edge anchor, deliberate right bleed (magazine-style) */
-        top: 8%;
+        /* Left-edge anchor behind centered character's head/shoulders */
+        top: 50%;
         left: 0;
         width: auto;
-        transform: none;
+        transform: translateY(-68%);
         pointer-events: none;
         z-index: 1;
         user-select: none;
@@ -704,24 +708,24 @@
 
       .mb-word {
         font-family: var(--font-display);
-        font-weight: 750;
-        line-height: 0.88;
+        font-weight: 900;
+        line-height: 0.85;
         color: var(--text-dark, #0A3219);
         text-transform: uppercase;
-        opacity: 0.28;
+        opacity: 1;
         letter-spacing: -0.02em;
         text-shadow: none;
       }
 
-      /* CREATIVE: fills full viewport width behind drone + hair */
+      /* CREATIVE: fills full viewport width behind character head */
       .mb-creative {
-        font-size: clamp(3.0rem, 16vw, 4.8rem);
+        font-size: clamp(3.2rem, 17.5vw, 5.2rem);
         letter-spacing: -0.02em;
       }
 
       /* EDGE: bigger, fills behind face + chest */
       .mb-edge {
-        font-size: clamp(3.4rem, 19vw, 5.6rem);
+        font-size: clamp(3.6rem, 21vw, 6.2rem);
         letter-spacing: -0.02em;
         margin-top: -0.07em;
       }
@@ -729,19 +733,20 @@
       #heroCharacterSlot {
         position: relative;
         z-index: 2;
-        height: 84%;
-        max-height: 84%;
+        height: auto;
+        max-height: 90%;
         width: auto;
-        max-width: 88%;
+        max-width: 92%;
         object-fit: contain;
-        object-position: top center;
+        object-position: center;
       }
 
-      body[data-theme="sage"] #heroCharacterSlot {
-        height: 86%;
-        max-height: 86%;
-        max-width: 90%;
-        scale: 1.0;
+      body[data-theme="sage"] #heroCharacterSlot,
+      body[data-theme="lilac"] #heroCharacterSlot {
+        max-height: 92%;
+        max-width: 96%;
+        scale: 1.03;
+        transform-origin: center center;
       }
 
       /* ── EDITORIAL CONVERSION GROUP (ELEVATED APPLE TACTILE DOCK) ── */
@@ -752,11 +757,19 @@
         flex-direction: column;
         align-items: center;
         gap: 9px;
-        /* Lift dock upwards further into comfortable lower-third thumb zone */
-        margin: 0 0 62px;
+        /* Sits cleanly above mobile Drag & Edit button without leaving middle void */
+        margin: 0 0 58px;
         padding: 0 16px;
         position: relative;
         z-index: 10;
+      }
+
+      .hero-subheadline {
+        font-size: 14px;
+        line-height: 1.42;
+        max-width: 332px;
+        text-align: center;
+        margin: 0 0 3px 0;
       }
 
       .action-row {
@@ -867,25 +880,55 @@
       }
     }
 
+    @media (min-width: 560px) and (max-width: 900px) {
+      .hero-grid {
+        max-width: 520px;
+      }
+
+      .mb-creative {
+        font-size: clamp(3.6rem, 12vw, 5.2rem);
+      }
+
+      .mb-edge {
+        font-size: clamp(4.2rem, 14vw, 6.2rem);
+      }
+    }
+
     @media (max-width: 900px) and (max-height: 700px) {
       .hero-viewport {
-        padding: 36px 0 10px;
+        padding: 52px 0 10px;
       }
 
       .hero-grid {
-        padding-top: 48px;
+        padding-top: 4px;
         gap: 4px;
       }
 
+      .mb-creative {
+        font-size: clamp(2.8rem, 15.5vw, 4.4rem);
+      }
+
+      .mb-edge {
+        font-size: clamp(3.1rem, 18.5vw, 5.2rem);
+      }
+
       #heroCharacterSlot,
-      body[data-theme="sage"] #heroCharacterSlot {
-        height: 68%;
-        max-height: 68%;
+      body[data-theme="sage"] #heroCharacterSlot,
+      body[data-theme="lilac"] #heroCharacterSlot {
+        max-height: 82%;
+        max-width: 84%;
+        scale: 1;
       }
 
       .hero-editorial-chunk {
-        margin: 0 0 54px;
+        margin: 0 0 52px;
         gap: 6px;
+      }
+
+      .hero-subheadline {
+        font-size: 13px;
+        line-height: 1.35;
+        margin-bottom: 2px;
       }
 
       .btn-discover,
@@ -7211,8 +7254,7 @@
 
         <!-- ── EDITORIAL CONVERSION GROUP (APPLE TACTILE BUTTONS + BADGING CAPSULE) ── -->
         <div class="hero-editorial-chunk theme-fader">
-          <p class="hero-subheadline theme-fader" data-edit-key="hero-subheadline"
-            style="font-size: 1.05rem; line-height: 1.5; color: var(--text-secondary); margin: 0 0 1.25rem 0; max-width: 440px; font-weight: 500;">
+          <p class="hero-subheadline theme-fader" data-edit-key="hero-subheadline">
             A curated network of 3D artists, digital craftspeople, and visual visionaries.
           </p>
           <div class="action-row">
