@@ -333,15 +333,6 @@
       margin-top: 4px;
     }
 
-    .hero-subheadline {
-      font-size: 1.05rem;
-      line-height: 1.5;
-      color: var(--text-secondary);
-      margin: 0 0 1.25rem 0;
-      max-width: 440px;
-      font-weight: 500;
-    }
-
     .action-row {
       display: flex;
       align-items: center;
@@ -647,7 +638,7 @@
         padding: 0 16px;
       }
 
-      /* Bolder, bigger prefix matching finalized Dunes mobile typography */
+      /* Bolder, bigger, pure white prefix with atmospheric blue shadow */
       .title-wefind-mobile {
         font-size: clamp(1.85rem, 8.2vw, 2.65rem);
         font-weight: 900;
@@ -660,7 +651,7 @@
       .title-creative,
       .title-edge {
         display: none;
-        /* Rendered in 3D monumental backdrop behind subject */
+        /* Rendered in 3D monumental backdrop behind child */
       }
 
       /* ── 3D CENTER HERO STAGE (CHARACTER + BACKDROP "CREATIVE EDGE") ── */
@@ -746,12 +737,11 @@
         object-position: top center;
       }
 
-      body[data-theme="sage"] #heroCharacterSlot,
-      body[data-theme="lilac"] #heroCharacterSlot {
-        max-height: 92%;
-        max-width: 96%;
-        scale: 1.03;
-        transform-origin: center center;
+      body[data-theme="sage"] #heroCharacterSlot {
+        height: 86%;
+        max-height: 86%;
+        max-width: 90%;
+        scale: 1.0;
       }
 
       /* ── EDITORIAL CONVERSION GROUP (ELEVATED APPLE TACTILE DOCK) ── */
@@ -762,19 +752,11 @@
         flex-direction: column;
         align-items: center;
         gap: 9px;
-        /* Sits cleanly above mobile Drag & Edit button without leaving middle void */
-        margin: 0 0 58px;
+        /* Lift dock upwards further into comfortable lower-third thumb zone */
+        margin: 0 0 62px;
         padding: 0 16px;
         position: relative;
         z-index: 10;
-      }
-
-      .hero-subheadline {
-        font-size: 14px;
-        line-height: 1.42;
-        max-width: 332px;
-        text-align: center;
-        margin: 0 0 3px 0;
       }
 
       .action-row {
@@ -885,55 +867,25 @@
       }
     }
 
-    @media (min-width: 560px) and (max-width: 900px) {
-      .hero-grid {
-        max-width: 520px;
-      }
-
-      .mb-creative {
-        font-size: clamp(3.6rem, 12vw, 5.2rem);
-      }
-
-      .mb-edge {
-        font-size: clamp(4.2rem, 14vw, 6.2rem);
-      }
-    }
-
     @media (max-width: 900px) and (max-height: 700px) {
       .hero-viewport {
-        padding: 52px 0 10px;
+        padding: 36px 0 10px;
       }
 
       .hero-grid {
-        padding-top: 4px;
+        padding-top: 48px;
         gap: 4px;
       }
 
-      .mb-creative {
-        font-size: clamp(2.8rem, 15.5vw, 4.4rem);
-      }
-
-      .mb-edge {
-        font-size: clamp(3.1rem, 18.5vw, 5.2rem);
-      }
-
       #heroCharacterSlot,
-      body[data-theme="sage"] #heroCharacterSlot,
-      body[data-theme="lilac"] #heroCharacterSlot {
-        max-height: 82%;
-        max-width: 84%;
-        scale: 1;
+      body[data-theme="sage"] #heroCharacterSlot {
+        height: 68%;
+        max-height: 68%;
       }
 
       .hero-editorial-chunk {
-        margin: 0 0 52px;
+        margin: 0 0 54px;
         gap: 6px;
-      }
-
-      .hero-subheadline {
-        font-size: 13px;
-        line-height: 1.35;
-        margin-bottom: 2px;
       }
 
       .btn-discover,
@@ -7259,7 +7211,8 @@
 
         <!-- ── EDITORIAL CONVERSION GROUP (APPLE TACTILE BUTTONS + BADGING CAPSULE) ── -->
         <div class="hero-editorial-chunk theme-fader">
-          <p class="hero-subheadline theme-fader" data-edit-key="hero-subheadline">
+          <p class="hero-subheadline theme-fader" data-edit-key="hero-subheadline"
+            style="font-size: 1.05rem; line-height: 1.5; color: var(--text-secondary); margin: 0 0 1.25rem 0; max-width: 440px; font-weight: 500;">
             A curated network of 3D artists, digital craftspeople, and visual visionaries.
           </p>
           <div class="action-row">
