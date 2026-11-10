@@ -6737,37 +6737,57 @@
     }
 
     /* ══════════════════════════════════════════════════════════════
-       ARCHITECTURAL EDITORIAL FOOTER (footer.nx-foot)
-       Times New Roman · Structured Columns · Zero Underlines
+       APPLE-DESIGN ARCHITECTURAL FOOTER (footer.nx-foot)
+       Frosted Glass Panel · Concentric Radii · Tactile Spring Physics
+       Aligned Spine (1160px) · Times New Roman High Contrast
        ══════════════════════════════════════════════════════════════ */
     footer.nx-foot {
-      border-top: 1px solid rgba(20, 17, 15, 0.10);
-      padding: 64px 24px 48px;
-      max-width: 1220px;
+      max-width: 1160px;
       margin: 0 auto;
-      display: flex !important;
-      flex-direction: column;
+      padding: 0 24px 64px;
+      display: block !important;
       background: transparent;
     }
 
     footer.nx-foot,
     footer.nx-foot * {
       font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif) !important;
+      font-variant-numeric: tabular-nums;
       box-sizing: border-box;
     }
 
-    footer.nx-foot .nx-foot-top {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr 1fr 1fr;
-      gap: 44px;
-      align-items: start;
-      width: 100%;
-    }
-
-    footer.nx-foot .nx-foot-brand {
+    /* Outer Frosted Material Panel matching Section 04 (1112px inner alignment, 30px concentric radius) */
+    footer.nx-foot .nx-foot-panel {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(20, 17, 15, 0.09);
+      border-top: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 30px;
+      padding: 40px 44px 32px;
+      box-shadow: 0 24px 60px -15px rgba(20, 17, 15, 0.08),
+                  0 2px 10px rgba(79, 70, 229, 0.04),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.85);
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      gap: 36px;
+    }
+
+    /* Top Interactive Action Header Bar */
+    footer.nx-foot .nx-foot-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(20, 17, 15, 0.08);
+      flex-wrap: wrap;
+    }
+
+    footer.nx-foot .nx-foot-brand-lockup {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
 
     footer.nx-foot .nx-foot-logo {
@@ -6777,6 +6797,7 @@
       color: #14110F;
       line-height: 1;
       text-decoration: none;
+      display: inline-block;
     }
 
     footer.nx-foot .nx-foot-logo span {
@@ -6784,40 +6805,151 @@
     }
 
     footer.nx-foot .nx-foot-tagline {
-      margin-top: 14px;
       font-size: 15px;
-      line-height: 1.6;
+      line-height: 1.5;
       color: #1E293B;
-      max-width: 30ch;
+      margin: 0;
     }
 
-    footer.nx-foot .nx-foot-pill {
-      margin-top: 18px;
+    /* Tactile Apple Action Pill Buttons */
+    footer.nx-foot .nx-foot-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    footer.nx-foot .nx-foot-btn-sec {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 20px;
+      border-radius: 999px;
+      background: #FFFFFF;
+      border: 1px solid rgba(20, 17, 15, 0.14);
+      color: #14110F;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.2s ease,
+                  background-color 0.2s ease;
+    }
+
+    footer.nx-foot .nx-foot-btn-sec:hover {
+      transform: translateY(-1px);
+      border-color: rgba(79, 70, 229, 0.35);
+      background: #F8FAFC;
+    }
+
+    footer.nx-foot .nx-foot-btn-sec:active {
+      transform: scale(0.97);
+      transition: transform 100ms ease-out;
+    }
+
+    footer.nx-foot .nx-foot-btn-pri {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 11px 22px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #14110F 0%, #1E1B4B 100%);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 8px 20px -4px rgba(30, 27, 75, 0.28),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.25);
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.2s ease;
+    }
+
+    footer.nx-foot .nx-foot-btn-pri:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px -4px rgba(79, 70, 229, 0.36);
+    }
+
+    footer.nx-foot .nx-foot-btn-pri:active {
+      transform: scale(0.97);
+      transition: transform 100ms ease-out;
+    }
+
+    /* Structured 4-Column Navigation & System Architecture Grid */
+    footer.nx-foot .nx-foot-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+      width: 100%;
+    }
+
+    /* Col 1: System Status & Direct Trade Specs Box */
+    footer.nx-foot .nx-foot-status-card {
+      background: #F8FAFC;
+      border: 1px solid rgba(20, 17, 15, 0.08);
+      border-radius: 18px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    footer.nx-foot .nx-foot-live {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 5px 12px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(20, 17, 15, 0.10);
       font-size: 11.5px;
       font-weight: 700;
-      color: #14110F;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #065F46;
     }
 
     footer.nx-foot .nx-foot-dot {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: #10B981;
+      box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
     }
 
+    footer.nx-foot .nx-foot-specs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13px;
+      color: #1E293B;
+    }
+
+    footer.nx-foot .nx-foot-spec-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px dashed rgba(20, 17, 15, 0.10);
+      padding-bottom: 5px;
+    }
+
+    footer.nx-foot .nx-foot-spec-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    footer.nx-foot .nx-foot-spec-val {
+      font-weight: 700;
+      color: #14110F;
+    }
+
+    /* Col 2–4: Tactile Link Lists */
     footer.nx-foot .nx-foot-col {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 11px;
+      gap: 6px;
     }
 
     footer.nx-foot .nx-foot-col h4 {
@@ -6826,38 +6958,77 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: #4F46E5;
-      margin: 0 0 6px;
+      margin: 0 0 8px;
+      padding-left: 8px;
     }
 
     footer.nx-foot .nx-foot-col a {
-      font-size: 15px;
+      font-size: 14.5px;
       color: #14110F;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.18s ease, transform 0.18s ease;
+      padding: 6px 10px;
+      border-radius: 10px;
+      transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
       display: inline-block;
+      width: 100%;
     }
 
     footer.nx-foot .nx-foot-col a:hover {
-      color: #4F46E5;
+      background: rgba(79, 70, 229, 0.07);
+      color: #3730A3;
       transform: translateX(2px);
     }
 
+    footer.nx-foot .nx-foot-col a:active {
+      transform: scale(0.98);
+      transition: transform 80ms ease-out;
+    }
+
+    /* Bottom Governance Bar with Wayfinding Back-to-Top */
     footer.nx-foot .nx-foot-bottom {
-      margin-top: 52px;
       padding-top: 22px;
       border-top: 1px solid rgba(20, 17, 15, 0.08);
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 16px;
       font-size: 13px;
       color: #1E293B;
     }
 
+    footer.nx-foot .nx-foot-top-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: #F8FAFC;
+      border: 1px solid rgba(20, 17, 15, 0.10);
+      color: #14110F;
+      font-size: 12.5px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.2s ease,
+                  background-color 0.2s ease;
+    }
+
+    footer.nx-foot .nx-foot-top-pill:hover {
+      transform: translateY(-1px);
+      background: #FFFFFF;
+      border-color: rgba(79, 70, 229, 0.30);
+      color: #4F46E5;
+    }
+
+    footer.nx-foot .nx-foot-top-pill:active {
+      transform: scale(0.96);
+    }
+
     footer.nx-foot .nx-foot-bottom-right {
-      font-weight: 600;
+      font-weight: 700;
       color: #14110F;
     }
 
@@ -6877,9 +7048,17 @@
         align-items: center;
       }
 
-      footer.nx-foot .nx-foot-top {
+      footer.nx-foot .nx-foot-panel {
+        padding: 32px 26px 28px;
+      }
+
+      footer.nx-foot .nx-foot-grid {
         grid-template-columns: 1fr 1fr;
-        gap: 32px;
+        gap: 28px;
+      }
+
+      footer.nx-foot .nx-foot-status-card {
+        grid-column: span 2;
       }
     }
 
@@ -6899,9 +7078,13 @@
         padding: 14px 20px;
       }
 
-      footer.nx-foot .nx-foot-top {
+      footer.nx-foot .nx-foot-grid {
         grid-template-columns: 1fr;
-        gap: 28px;
+        gap: 24px;
+      }
+
+      footer.nx-foot .nx-foot-status-card {
+        grid-column: span 1;
       }
 
       footer.nx-foot .nx-foot-bottom {
@@ -6914,19 +7097,22 @@
       #founding .nx-perk-tile,
       #founding .nx-found-btn,
       #founding .nx-found-pass-img,
-      footer.nx-foot .nx-foot-col a {
+      footer.nx-foot .nx-foot-col a,
+      footer.nx-foot .nx-foot-btn-sec,
+      footer.nx-foot .nx-foot-btn-pri,
+      footer.nx-foot .nx-foot-top-pill {
         transition: opacity 200ms ease !important;
         transform: none !important;
       }
     }
 
     @media (prefers-reduced-transparency: reduce) {
-      #founding .nx-found-showcase {
+      #founding .nx-found-showcase,
+      footer.nx-foot .nx-foot-panel {
         background: #FFFFFF !important;
         backdrop-filter: none !important;
       }
     }
-
 </style>
 </head>
 
@@ -8288,44 +8474,81 @@
       </section>
 
       <footer class="nx-foot">
-        <div class="nx-foot-top">
-          <div class="nx-foot-brand">
-            <a href="#" class="nx-foot-logo">nexus<span>.</span></a>
-            <p class="nx-foot-tagline">Direct access to vetted commercial directors and visual craftspeople. Zero platform markups.</p>
-            <div class="nx-foot-pill">
-              <span class="nx-foot-dot" aria-hidden="true"></span>
-              <span>0% Commission · Direct Settlement</span>
+        <div class="nx-foot-panel nx-reveal">
+          <!-- Header Row: Wordmark + Tactile Quick Actions -->
+          <div class="nx-foot-header">
+            <div class="nx-foot-brand-lockup">
+              <a href="#" class="nx-foot-logo">nexus<span>.</span></a>
+              <p class="nx-foot-tagline">Direct commercial production infrastructure. Zero platform markups.</p>
+            </div>
+            <div class="nx-foot-actions">
+              <button type="button" class="nx-foot-btn-sec" onclick="openInquiryModal('Curated Director', 'Commercial Roster')">
+                Dispatch 30s Brief
+              </button>
+              <button type="button" class="nx-foot-btn-pri" onclick="openFoundingModal()">
+                <span>Apply as Founding</span>
+                <span aria-hidden="true">→</span>
+              </button>
             </div>
           </div>
 
-          <div class="nx-foot-col">
-            <h4>Clients</h4>
-            <a href="#roster">Curated Roster</a>
-            <a href="#fees">Fee Calculator</a>
-            <a href="#how">How It Works</a>
-            <a href="#how" onclick="openInquiryModal('Curated Director', 'Commercial Roster');return false;">Direct 30-Sec Inquiry</a>
+          <!-- 4-Column Architectural Directory -->
+          <div class="nx-foot-grid">
+            <div class="nx-foot-status-card">
+              <div class="nx-foot-live">
+                <span class="nx-foot-dot" aria-hidden="true"></span>
+                <span>Marketplace Active · Cohort I</span>
+              </div>
+              <div class="nx-foot-specs-list">
+                <div class="nx-foot-spec-item">
+                  <span>Commission Cut</span>
+                  <span class="nx-foot-spec-val">0% Forever</span>
+                </div>
+                <div class="nx-foot-spec-item">
+                  <span>Settlement Rail</span>
+                  <span class="nx-foot-spec-val">Direct Wire / ACH</span>
+                </div>
+                <div class="nx-foot-spec-item">
+                  <span>Ownership</span>
+                  <span class="nx-foot-spec-val">100% Master IP</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="nx-foot-col">
+              <h4>Clients</h4>
+              <a href="#roster">Curated Roster</a>
+              <a href="#fees">Fee Calculator</a>
+              <a href="#how">How It Works</a>
+              <a href="#how" onclick="openInquiryModal('Curated Director', 'Commercial Roster');return false;">Direct 30-Sec Inquiry</a>
+            </div>
+
+            <div class="nx-foot-col">
+              <h4>Creators</h4>
+              <a href="#founding" onclick="openFoundingModal();return false;">Apply as Founding</a>
+              <a href="#founding">Founding Privileges</a>
+              <a href="#roster" onclick="openCriteriaModal();return false;">Curation Criteria</a>
+              <a href="#fees">Retain 100% Model</a>
+            </div>
+
+            <div class="nx-foot-col">
+              <h4>Governance</h4>
+              <a href="#fees">Zero-Escrow Terms</a>
+              <a href="#how">AICP Deal Standards</a>
+              <a href="#how">Conditional Chain-of-Title</a>
+              <a href="#founding">NDA &amp; Privacy</a>
+            </div>
           </div>
 
-          <div class="nx-foot-col">
-            <h4>Creators</h4>
-            <a href="#founding" onclick="openFoundingModal();return false;">Apply as Founding</a>
-            <a href="#founding">Founding Perks</a>
-            <a href="#roster" onclick="openCriteriaModal();return false;">Curation Criteria</a>
-            <a href="#fees">Retain 100% Calculator</a>
+          <!-- Closing Baseline Bar with Wayfinding -->
+          <div class="nx-foot-bottom">
+            <span>© 2026 Nexus Direct. Built for independent commercial filmmaking.</span>
+            <button type="button" class="nx-foot-top-pill" onclick="window.scrollTo({top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'})">
+              <span>↑</span>
+              <span>Back to Top</span>
+            </button>
+            <span class="nx-foot-bottom-right">Flat $19.99/mo · Zero Middleman</span>
           </div>
-
-          <div class="nx-foot-col">
-            <h4>Company</h4>
-            <a href="#fees">Zero-Escrow Terms</a>
-            <a href="#how">AICP Deal Standards</a>
-            <a href="#fees">Master IP Ownership</a>
-            <a href="#founding">Privacy &amp; Terms</a>
-          </div>
-        </div>
-
-        <div class="nx-foot-bottom">
-          <span>© 2026 Nexus Direct. Built for independent commercial filmmaking.</span>
-          <span class="nx-foot-bottom-right">100% Creator-Owned IP · Flat $19.99/mo</span>
         </div>
       </footer>
     </div>
