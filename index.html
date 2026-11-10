@@ -6275,7 +6275,7 @@
     #how .nx-how-sub {
       font-size: 18px;
       line-height: 1.6;
-      color: #57514B;
+      color: #1E293B;
       max-width: 58ch;
       margin: 0 auto 52px;
       text-align: center;
@@ -6405,7 +6405,7 @@
     #how .nx-step-card-desc {
       font-size: 14.5px;
       line-height: 1.55;
-      color: #57514B;
+      color: #14110F;
       max-width: 295px;
       margin: 0 auto 16px;
       text-align: center;
@@ -6431,6 +6431,29 @@
     #how .nx-step-card-cta:hover {
       color: #3730A3;
       transform: translateX(3px);
+    }
+
+    
+    #how .nx-step-card:active {
+      transform: scale(0.985);
+      transition: transform 100ms ease-out;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #how .nx-step-card,
+      #how .nx-card-step-img,
+      #how .nx-step-card-cta {
+        transition: opacity 200ms ease !important;
+        transform: none !important;
+      }
+    }
+
+    @media (prefers-reduced-transparency: reduce) {
+      #how .nx-step-card,
+      #how .nx-how-badge {
+        background: #FFFFFF !important;
+        backdrop-filter: none !important;
+      }
     }
 
     /* ── Responsive Behavior ── */
@@ -7635,7 +7658,7 @@
                 </div>
                 <div class="nx-step-card">
                   <div class="nx-card-img-stage">
-                    <img src="assets/nexus_step1_roster_v2.png" alt="Browse curated director roster" class="nx-card-step-img" />
+                    <img src="assets/nexus_step1_roster_v3.png" alt="Browse curated director roster" class="nx-card-step-img" />
                   </div>
                   <div class="nx-card-text-area">
                     <h3 class="nx-step-card-title">Browse Curated Roster</h3>
@@ -7679,7 +7702,7 @@
                 </div>
                 <div class="nx-step-card">
                   <div class="nx-card-img-stage">
-                    <img src="assets/nexus_step3_settle_v2.png" alt="Direct Wire settlement and 100% IP ownership" class="nx-card-step-img" />
+                    <img src="assets/nexus_step3_settle_v3.png" alt="Direct Wire settlement and 100% IP ownership" class="nx-card-step-img" />
                   </div>
                   <div class="nx-card-text-area">
                     <h3 class="nx-step-card-title">Direct Settle &amp; 100% IP</h3>
