@@ -12,7 +12,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Playfair+Display:ital,wght@0,500..900;1,500..900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="assets/react-pricing/marketplace-architecture.css">
+  <link rel="stylesheet" href="assets/react-footer/marketplace-architecture.css">
 
   <style>
     /* Hallmark · shape: workbench · genre: modern-minimal · theme: brand · redesign: polish
@@ -8472,86 +8472,9 @@
 
         </div>
       </section>
-
-      <footer class="nx-foot">
-        <div class="nx-foot-panel nx-reveal">
-          <!-- Header Row: Wordmark + Tactile Quick Actions -->
-          <div class="nx-foot-header">
-            <div class="nx-foot-brand-lockup">
-              <a href="#" class="nx-foot-logo">nexus<span>.</span></a>
-              <p class="nx-foot-tagline">Direct commercial production infrastructure. Zero platform markups.</p>
-            </div>
-            <div class="nx-foot-actions">
-              <button type="button" class="nx-foot-btn-sec" onclick="openInquiryModal('Curated Director', 'Commercial Roster')">
-                Dispatch 30s Brief
-              </button>
-              <button type="button" class="nx-foot-btn-pri" onclick="openFoundingModal()">
-                <span>Apply as Founding</span>
-                <span aria-hidden="true">→</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- 4-Column Architectural Directory -->
-          <div class="nx-foot-grid">
-            <div class="nx-foot-status-card">
-              <div class="nx-foot-live">
-                <span class="nx-foot-dot" aria-hidden="true"></span>
-                <span>Marketplace Active · Cohort I</span>
-              </div>
-              <div class="nx-foot-specs-list">
-                <div class="nx-foot-spec-item">
-                  <span>Commission Cut</span>
-                  <span class="nx-foot-spec-val">0% Forever</span>
-                </div>
-                <div class="nx-foot-spec-item">
-                  <span>Settlement Rail</span>
-                  <span class="nx-foot-spec-val">Direct Wire / ACH</span>
-                </div>
-                <div class="nx-foot-spec-item">
-                  <span>Ownership</span>
-                  <span class="nx-foot-spec-val">100% Master IP</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="nx-foot-col">
-              <h4>Clients</h4>
-              <a href="#roster">Curated Roster</a>
-              <a href="#fees">Fee Calculator</a>
-              <a href="#how">How It Works</a>
-              <a href="#how" onclick="openInquiryModal('Curated Director', 'Commercial Roster');return false;">Direct 30-Sec Inquiry</a>
-            </div>
-
-            <div class="nx-foot-col">
-              <h4>Creators</h4>
-              <a href="#founding" onclick="openFoundingModal();return false;">Apply as Founding</a>
-              <a href="#founding">Founding Privileges</a>
-              <a href="#roster" onclick="openCriteriaModal();return false;">Curation Criteria</a>
-              <a href="#fees">Retain 100% Model</a>
-            </div>
-
-            <div class="nx-foot-col">
-              <h4>Governance</h4>
-              <a href="#fees">Zero-Escrow Terms</a>
-              <a href="#how">AICP Deal Standards</a>
-              <a href="#how">Conditional Chain-of-Title</a>
-              <a href="#founding">NDA &amp; Privacy</a>
-            </div>
-          </div>
-
-          <!-- Closing Baseline Bar with Wayfinding -->
-          <div class="nx-foot-bottom">
-            <span>© 2026 Nexus Direct. Built for independent commercial filmmaking.</span>
-            <button type="button" class="nx-foot-top-pill" onclick="window.scrollTo({top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'})">
-              <span>↑</span>
-              <span>Back to Top</span>
-            </button>
-            <span class="nx-foot-bottom-right">Flat $19.99/mo · Zero Middleman</span>
-          </div>
-        </div>
-      </footer>
     </div>
+
+    <div id="nexus-footer-root"></div>
   </div>
 
   <script>
@@ -11421,6 +11344,7 @@
   r.addEventListener('input',up); up();
 })();
 </script>
+<script src="assets/react-footer/nexus-footer-section.js"></script>
 </body>
 
 </html>
