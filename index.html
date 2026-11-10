@@ -4579,9 +4579,7 @@
 
     #roster .nx-talent-card:hover,
     #roster .nx-talent-card[data-craft]:hover {
-      transform: none;
-      box-shadow: none;
-      background: transparent;
+      background: #FFFFFF;
     }
 
     #roster .nx-talent-card.is-hidden {
@@ -4887,9 +4885,9 @@
       display: flex;
       flex-direction: column;
       background: #FFFFFF;
-      border: 1px solid rgba(20, 17, 15, 0.08);
+      border: 0;
       border-radius: 34px;
-      padding: 12px 12px 20px 12px;
+      padding: 0;
       height: 600px;
       min-height: 600px;
       max-height: 600px;
@@ -4897,14 +4895,63 @@
       overflow: visible !important;
       position: relative;
       isolation: isolate;
-      transition: transform 0.5s var(--r-spring), box-shadow 0.5s var(--r-spring), border-color 0.3s;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       cursor: pointer;
     }
 
-    #roster .nx-talent-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 16px -2px rgba(20, 17, 15, 0.04), 0 38px 68px -18px rgba(20, 17, 15, 0.22);
-      border-color: rgba(20, 17, 15, 0.16);
+    /* Crisp Apple Multi-Color Edge Ring & Ambient Halo (Hover / Focus) */
+    #roster .nx-talent-card::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 36px;
+      background: linear-gradient(135deg, #3B82F6 0%, #6366F1 32%, #EC4899 68%, #F97316 100%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+      transition: opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #roster .nx-talent-card::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 37px;
+      background: linear-gradient(135deg,
+                  rgba(59, 130, 246, 0.36) 0%,
+                  rgba(99, 102, 241, 0.34) 32%,
+                  rgba(236, 72, 153, 0.30) 68%,
+                  rgba(249, 115, 22, 0.32) 100%);
+      filter: blur(14px);
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1;
+      transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #roster .nx-talent-card:hover,
+    #roster .nx-talent-card[data-craft]:hover {
+      background: #FFFFFF;
+      transform: translateY(-6px);
+      box-shadow: 0 20px 44px -12px rgba(20, 17, 15, 0.14),
+                  0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    #roster .nx-talent-card:hover::before,
+    #roster .nx-talent-card:focus-visible::before {
+      opacity: 1;
+    }
+
+    #roster .nx-talent-card:hover::after,
+    #roster .nx-talent-card:focus-visible::after {
+      opacity: 1;
+    }
+
+    #roster .nx-talent-card:active,
+    #roster .nx-talent-card[data-craft]:active {
+      transform: translateY(-2px) scale(0.985);
+      transition: transform 100ms ease-out;
     }
 
     #roster .nx-talent-card> :not(.pc) {
@@ -4914,9 +4961,22 @@
     #roster .pc {
       display: flex;
       flex-direction: column;
+      width: 100%;
       height: 100%;
+      padding: 12px 12px 20px 12px;
+      box-sizing: border-box;
+      background: #FFFFFF;
+      border: 1px solid rgba(20, 17, 15, 0.08);
+      border-radius: 34px;
       position: relative;
+      z-index: 2;
       overflow: visible;
+      transition: border-color 0.25s ease;
+    }
+
+    #roster .nx-talent-card:hover .pc,
+    #roster .nx-talent-card:focus-visible .pc {
+      border-color: rgba(255, 255, 255, 0.55);
     }
 
     /* ── STAGE: HERO 3D BREAKOUT CANVAS ── */
@@ -5570,12 +5630,12 @@
     }
 
     #roster .nx-talent-card:hover .pc-book {
-      background: #2D091D; /* Oat & Mill deep cherry / vintage wine */
-      box-shadow: 0 8px 22px -4px rgba(45, 9, 29, 0.40), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      background: #000000;
+      box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.22);
     }
 
     #roster .pc-book:hover {
-      background: #3B0A24 !important;
+      background: #1D1D1F !important;
       transform: translateY(-1px);
     }
 
