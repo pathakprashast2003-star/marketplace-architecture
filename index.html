@@ -6187,20 +6187,28 @@
     }
 
     /* ══════════════════════════════════════════════════════════════
-       PROTOCOL SECTION (03 / 04) — Apple-Grade 3D Bento Masterpiece
-       Direct Reverse-Engineering of User Reference (Integrations / Collab / Execution)
+       PROTOCOL SECTION (03 / 04) — Enterprise Commercial Protocol
+       Tactile Skeuomorphic Micro-Stages with Real Nexus Commercial Context
+       Curved Handwritten Step Annotations · Enterprise Production Safeguards
        ══════════════════════════════════════════════════════════════ */
     #how {
       padding-top: 100px;
-      padding-bottom: 140px;
+      padding-bottom: 150px;
       scroll-margin-top: 90px;
       position: relative;
       background: transparent;
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif) !important;
       overflow: visible;
     }
 
+    #how,
+    #how * {
+      box-sizing: border-box;
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif) !important;
+    }
+
     #how .nx-how-container {
-      max-width: 1220px;
+      max-width: 1260px;
       margin: 0 auto;
       padding: 0 24px;
       position: relative;
@@ -6212,34 +6220,32 @@
       align-items: center;
       justify-content: center;
       gap: 16px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     #how .nx-how-line {
-      width: 44px;
+      width: 48px;
       height: 1px;
-      background: rgba(20, 17, 15, 0.12);
+      background: rgba(20, 17, 15, 0.14);
     }
 
     #how .nx-how-badge {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 5px 16px;
+      padding: 6px 18px;
       border-radius: 999px;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif !important;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: #64748B;
       background: #FFFFFF;
-      border: 1px solid rgba(20, 17, 15, 0.09);
+      border: 1px solid rgba(20, 17, 15, 0.10);
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
     }
 
     #how .nx-how-title {
-      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif) !important;
       font-size: clamp(2.4rem, 4.4vw, 3.8rem);
       font-weight: 700;
       line-height: 1.1;
@@ -6250,7 +6256,6 @@
     }
 
     #how .nx-how-title .nx-deck-accent {
-      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif) !important;
       font-style: italic !important;
       font-weight: 400 !important;
       background: linear-gradient(135deg, #F97316 0%, #EA580C 50%, #C2410C 100%) !important;
@@ -6261,39 +6266,38 @@
     }
 
     #how .nx-how-sub {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif !important;
-      font-size: 17px;
+      font-size: 18px;
       line-height: 1.6;
       color: #57514B;
-      max-width: 62ch;
-      margin: 0 auto 52px;
+      max-width: 64ch;
+      margin: 0 auto 64px;
       text-align: center;
       font-style: normal;
     }
 
-    /* ── 3-Card Bento Stage Area ── */
+    /* ── 3-Card Stage Area with Handwritten Annotations ── */
     #how .nx-how-stage-wrapper {
       position: relative;
-      max-width: 1200px;
+      max-width: 1220px;
       margin: 0 auto;
     }
 
     #how .nx-how-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 32px;
       align-items: stretch;
       position: relative;
       z-index: 2;
     }
 
-    /* ── Pure White Apple Bento Cards ── */
+    /* ── The Clean White Cards (Matching Reference) ── */
     #how .nx-how-card {
       background: #FFFFFF;
-      border: 1px solid rgba(20, 17, 15, 0.07);
-      border-radius: 30px;
-      padding: 26px 24px 34px;
-      box-shadow: 0 18px 45px -12px rgba(20, 17, 15, 0.06),
+      border: 1px solid rgba(20, 17, 15, 0.08);
+      border-radius: 34px;
+      padding: 38px 26px 32px;
+      box-shadow: 0 25px 65px -15px rgba(20, 17, 15, 0.07),
                   0 2px 6px rgba(0, 0, 0, 0.02);
       display: flex;
       flex-direction: column;
@@ -6302,255 +6306,555 @@
       justify-content: space-between;
       min-height: 500px;
       position: relative;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                  box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                  border-color 0.25s ease;
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  border-color 0.3s ease;
       cursor: default;
-      overflow: hidden;
     }
 
     #how .nx-how-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 30px 70px -15px rgba(20, 17, 15, 0.12),
-                  0 4px 12px rgba(0, 0, 0, 0.03);
-      border-color: rgba(20, 17, 15, 0.15);
+      box-shadow: 0 34px 85px -15px rgba(20, 17, 15, 0.12);
+      border-color: rgba(20, 17, 15, 0.16);
     }
 
-    /* ── Card Top Row ── */
-    #how .nx-card-top-row {
+    #how .nx-how-card:active {
+      transform: scale(0.985);
+      transition: transform 100ms ease-out;
+    }
+
+    /* Card Top Title */
+    #how .nx-how-card-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: #14110F;
+      margin: 0;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+
+    /* Center Visual Stage (Fixed 220px height for rich tactile depth) */
+    #how .nx-how-visual-stage {
+      width: 100%;
+      height: 220px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      position: relative;
+      margin: 14px 0;
+    }
+
+    /* Card Bottom Description */
+    #how .nx-how-card-desc {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #57514B;
+      max-width: 290px;
+      margin: 0 auto 12px;
+    }
+
+    /* Card Bottom Action Link */
+    #how .nx-how-card-link {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1E3A8A;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    #how .nx-how-card-link:hover {
+      color: #EA580C;
+      background: #FFF7ED;
+      transform: translateX(2px);
+    }
+
+    /* ── Micro-Stage 1: Real Commercial Director Storefront Card ── */
+    #how .nx-stage-sub-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(20, 17, 15, 0.08);
+      border-radius: 18px;
+      padding: 14px 16px;
+      box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.06),
+                  0 2px 6px rgba(0, 0, 0, 0.03);
+      width: 230px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    #how .nx-sub-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       width: 100%;
-      margin-bottom: 6px;
-      padding: 0 4px;
+    }
+
+    #how .nx-director-avatar-mini {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1E293B, #0F172A);
+      color: #F8FAFC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1.5px solid #FFFFFF;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      flex-shrink: 0;
+    }
+
+    #how .nx-sub-card-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      flex-grow: 1;
+      min-width: 0;
+    }
+
+    #how .nx-director-mini-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #14110F;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    #how .nx-verified-badge-tiny {
+      width: 12px;
+      height: 12px;
+      background: #2563EB;
+      color: #FFFFFF;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+    }
+
+    #how .nx-director-mini-craft {
+      font-size: 10px;
+      color: #78716C;
+      font-style: italic;
+    }
+
+    #how .nx-sub-card-tags {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    #how .nx-mini-chip {
+      font-size: 9px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: #F1F5F9;
+      color: #334155;
+      border: 1px solid rgba(20, 17, 15, 0.05);
+      white-space: nowrap;
+    }
+
+    #how .nx-mini-chip.is-shield {
+      background: #ECFDF5;
+      color: #065F46;
+      border-color: rgba(5, 150, 105, 0.2);
+      font-weight: 700;
+    }
+
+    #how .nx-sub-btn-dark {
+      background: linear-gradient(180deg, #374151 0%, #1F2937 60%, #111827 100%);
+      color: #FFFFFF;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      border-radius: 999px;
+      padding: 6px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      transition: all 0.2s ease;
+    }
+
+    #how .nx-sub-btn-dark:hover {
+      background: #000000;
+      transform: translateY(-1px);
+    }
+
+    #how .nx-stage-track {
+      position: absolute;
+      bottom: 6px;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
       z-index: 3;
     }
 
-    #how .nx-card-category-tag {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif !important;
-      font-size: 11px;
+    #how .nx-track-item {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #F8FAFC;
+      border: 1px solid rgba(20, 17, 15, 0.08);
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #94A3B8;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
 
-    #how .nx-card-accent-bars {
+    #how .nx-track-item.is-active {
+      background: #FFF7ED;
+      border-color: #EA580C;
+      color: #C2410C;
+      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+      transform: scale(1.06);
+    }
+
+    #how .nx-track-tooltip {
+      position: absolute;
+      bottom: -18px;
+      right: -12px;
+      background: #0F172A;
+      color: #FFFFFF;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 999px;
       display: flex;
       align-items: center;
       gap: 3px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      white-space: nowrap;
     }
 
-    #how .nx-accent-bar {
-      width: 2.5px;
-      height: 13px;
-      border-radius: 999px;
+    #how .nx-track-pointer-icon {
+      width: 8px;
+      height: 8px;
+      fill: #FFFFFF;
+      transform: rotate(-45deg);
     }
 
-    /* Card 1 Accent Bars (Orange) */
-    #how .nx-how-card.is-card-1 .nx-accent-bar:first-child {
-      background: #EA580C;
-    }
-    #how .nx-how-card.is-card-1 .nx-accent-bar:last-child {
-      background: #FDBA74;
-    }
-
-    /* Card 2 Accent Bars (Cyan) */
-    #how .nx-how-card.is-card-2 .nx-accent-bar:first-child {
-      background: #0284C7;
-    }
-    #how .nx-how-card.is-card-2 .nx-accent-bar:last-child {
-      background: #38BDF8;
-    }
-
-    /* Card 3 Accent Bars (Emerald) */
-    #how .nx-how-card.is-card-3 .nx-accent-bar:first-child {
-      background: #10B981;
-    }
-    #how .nx-how-card.is-card-3 .nx-accent-bar:last-child {
-      background: #6EE7B7;
-    }
-
-    /* ── Center Visual Stage Container ── */
-    #how .nx-how-visual-stage {
-      width: 100%;
-      height: 240px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      margin: 4px 0 14px;
-      overflow: visible;
-    }
-
-    /* Stage 1 & 3: Seamless 3D Images with Subtle Floating Dynamics */
-    #how .nx-bento-3d-img {
-      width: 100%;
-      height: 100%;
-      max-height: 236px;
-      object-fit: contain;
-      pointer-events: none;
-      background: #FFFFFF;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    #how .nx-how-card:hover .nx-bento-3d-img {
-      transform: scale(1.05);
-    }
-
-    /* Subtle Label Under Arch in Card 1 (Matching Reference Exact Layout) */
-    #how .nx-arc-under-caption {
+    #how .nx-branch-svg {
       position: absolute;
-      bottom: 24px;
+      top: 60px;
       left: 50%;
       transform: translateX(-50%);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif !important;
-      font-size: 11.5px;
-      font-weight: 600;
-      color: #78716C;
-      letter-spacing: -0.01em;
-      white-space: nowrap;
+      width: 190px;
+      height: 95px;
       pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── Micro-Stage 2: Real Commercial Chat Stream + Glowing Blue Button ── */
+    #how .nx-chat-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      max-width: 275px;
+      position: relative;
+    }
+
+    #how .nx-chat-bubble-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #how .nx-chat-bubble-row.is-left {
+      justify-content: flex-start;
+    }
+
+    #how .nx-chat-bubble-row.is-right {
+      justify-content: flex-end;
+    }
+
+    #how .nx-chat-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10.5px;
+      font-weight: 700;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    #how .nx-chat-avatar.is-blue {
+      background: #0F172A;
+      color: #FFFFFF;
+      border: 1.5px solid #FFFFFF;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+
+    #how .nx-chat-avatar.is-photo {
+      background: linear-gradient(135deg, #F97316, #EA580C);
+      color: #FFFFFF;
+      border: 1.5px solid #FFFFFF;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    #how .nx-chat-emoji {
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      font-size: 10px;
+    }
+
+    #how .nx-chat-bubble {
+      background: #F1F5F9;
+      border-radius: 14px;
+      padding: 6px 12px;
+      display: inline-flex;
+      flex-direction: column;
+      text-align: left;
+      font-size: 10.5px;
+      color: #334155;
+      line-height: 1.35;
+      max-width: 215px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    #how .nx-chat-bubble.is-director {
+      background: #EFF6FF;
+      color: #1E3A8A;
+      border: 1px solid rgba(37, 99, 235, 0.15);
+    }
+
+    #how .nx-chat-bubble-time {
+      font-size: 8.5px;
+      color: #94A3B8;
+      margin-top: 2px;
+      align-self: flex-end;
+    }
+
+    /* Glowing 3D Electric Blue Pill Button (Exact Match to Reference) */
+    #how .nx-glowing-blue-btn {
+      background: linear-gradient(180deg, #3B82F6 0%, #2563EB 100%);
+      color: #FFFFFF;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      border-radius: 999px;
+      padding: 9px 22px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 14px 30px -4px rgba(37, 99, 235, 0.65),
+                  inset 0 1px 2px rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      justify-content: center;
+      margin-top: 6px;
+      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.2s ease;
+    }
+
+    #how .nx-glowing-blue-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px -4px rgba(37, 99, 235, 0.8);
+    }
+
+    #how .nx-glowing-blue-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* ── Micro-Stage 3: Real Commercial Deal Sheet + Glowing Green Check ── */
+    #how .nx-docs-stage {
+      position: relative;
+      width: 200px;
+      height: 165px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #how .nx-doc-sheet {
+      position: absolute;
+      width: 155px;
+      height: 150px;
+      background: #FFFFFF;
+      border: 1px solid rgba(20, 17, 15, 0.09);
+      border-radius: 14px;
+      box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.08);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    #how .nx-doc-sheet.sheet-1 {
+      transform: rotate(-10deg) translate(-14px, 4px);
+      opacity: 0.65;
+      z-index: 1;
+    }
+
+    #how .nx-doc-sheet.sheet-2 {
+      transform: rotate(8deg) translate(14px, 2px);
+      opacity: 0.85;
       z-index: 2;
     }
 
-    /* Stage 2: Flawless Glassmorphic Collab Card Stack */
-    #how .nx-collab-glass-panel {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(145deg, rgba(224, 242, 254, 0.70) 0%, rgba(240, 249, 255, 0.38) 100%);
-      border: 1px solid rgba(186, 230, 253, 0.55);
-      border-radius: 22px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 14px 16px;
-      position: relative;
-      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8),
-                  0 8px 24px -6px rgba(2, 132, 199, 0.08);
+    #how .nx-doc-sheet.sheet-main {
+      transform: rotate(0deg);
+      z-index: 3;
     }
 
-    #how .nx-collab-msg {
-      width: 100%;
+    #how .nx-doc-head-line {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 14px;
-      border-radius: 14px;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+      border-bottom: 1px solid rgba(20, 17, 15, 0.08);
+      padding-bottom: 4px;
+      margin-bottom: 3px;
     }
 
-    #how .nx-collab-msg.is-white {
-      background: #FFFFFF;
-      border: 1px solid rgba(20, 17, 15, 0.07);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
-    }
-
-    #how .nx-collab-msg.is-hero-blue {
-      background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
-      color: #FFFFFF;
-      border: 1px solid rgba(255, 255, 255, 0.40);
-      box-shadow: 0 14px 30px -4px rgba(2, 132, 199, 0.55), inset 0 1px 2px rgba(255, 255, 255, 0.45);
-      transform: scale(1.03);
-      z-index: 2;
-    }
-
-    #how .nx-how-card:hover .nx-collab-msg.is-hero-blue {
-      transform: scale(1.06);
-      box-shadow: 0 18px 36px -4px rgba(2, 132, 199, 0.65);
-    }
-
-    #how .nx-collab-msg-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-align: left;
-    }
-
-    #how .nx-collab-avatar {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
-    }
-
-    #how .nx-collab-msg.is-hero-blue .nx-collab-avatar {
-      border: 1.5px solid #FFFFFF;
-    }
-
-    #how .nx-collab-text-wrap {
-      display: flex;
-      flex-direction: column;
-    }
-
-    #how .nx-collab-name {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif !important;
-      font-size: 12.5px;
+    #how .nx-doc-tag-mini {
+      font-size: 8px;
       font-weight: 700;
-      line-height: 1.25;
-      letter-spacing: -0.01em;
-    }
-
-    #how .nx-collab-sub {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif !important;
-      font-size: 11px;
-      opacity: 0.82;
-      line-height: 1.25;
-      white-space: nowrap;
-    }
-
-    #how .nx-collab-time {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif !important;
-      font-size: 10px;
-      opacity: 0.65;
-      white-space: nowrap;
-      flex-shrink: 0;
-      padding-left: 8px;
-    }
-
-    /* ── Card Bottom Content (Clean Apple Sans Typography) ── */
-    #how .nx-card-bottom-content {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    #how .nx-how-card-title {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif !important;
-      font-size: 21px;
-      font-weight: 700;
-      color: #0F172A;
-      margin: 0 0 8px;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-      text-align: center;
-    }
-
-    #how .nx-how-card-desc {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif !important;
-      font-size: 14px;
-      line-height: 1.55;
       color: #64748B;
-      max-width: 275px;
-      margin: 0 auto;
-      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
-    /* ── Enterprise Production Safeguards Strip (Pillars) ── */
+    #how .nx-doc-amount-mini {
+      font-size: 10px;
+      font-weight: 700;
+      color: #14110F;
+    }
+
+    #how .nx-doc-row-mini {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 8.5px;
+      color: #64748B;
+    }
+
+    #how .nx-doc-row-mini strong {
+      color: #16A34A;
+      font-weight: 700;
+    }
+
+    #how .nx-doc-logo-mark {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 8.5px;
+      color: #94A3B8;
+      font-style: italic;
+    }
+
+    /* Glowing 3D Green Checkmark Badge (Exact Match to Reference) */
+    #how .nx-glowing-green-check {
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #22C55E 0%, #16A34A 100%);
+      border: 2.5px solid #FFFFFF;
+      box-shadow: 0 12px 28px -4px rgba(34, 197, 94, 0.70),
+                  inset 0 1px 2px rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      z-index: 5;
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    #how .nx-how-card:hover .nx-glowing-green-check {
+      transform: translateX(-50%) scale(1.1);
+    }
+
+    /* ── Alternating Handwriting Step Annotations & Curved Arrows ── */
+    #how .nx-step-annotation {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      color: #94A3B8;
+      font-weight: 600;
+      font-style: italic;
+      pointer-events: none;
+      user-select: none;
+      z-index: 10;
+    }
+
+    /* Step 1: Top Left of Card 1 */
+    #how .nx-step-annotation.step-1-anno {
+      top: -38px;
+      left: 80px;
+    }
+
+    /* Step 2: Bottom of Card 2 (Below) */
+    #how .nx-step-annotation.step-2-anno {
+      bottom: -46px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Step 3: Top Right of Card 3 */
+    #how .nx-step-annotation.step-3-anno {
+      top: -38px;
+      right: 80px;
+    }
+
+    #how .nx-step-arrow-svg {
+      width: 34px;
+      height: 34px;
+      stroke: #CBD5E1;
+      stroke-width: 1.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── Enterprise Production Safeguards Strip (Directly Below Deck) ── */
     #how .nx-safeguards-bar {
-      margin-top: 52px;
+      margin-top: 60px;
       background: #FFFFFF;
       border: 1px solid rgba(20, 17, 15, 0.08);
-      border-radius: 26px;
-      padding: 24px 30px;
-      box-shadow: 0 16px 45px -12px rgba(20, 17, 15, 0.05),
+      border-radius: 28px;
+      padding: 24px 32px;
+      box-shadow: 0 16px 45px -12px rgba(20, 17, 15, 0.06),
                   0 2px 6px rgba(0, 0, 0, 0.02);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -6576,6 +6880,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 17px;
       flex-shrink: 0;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
     }
@@ -6586,17 +6891,14 @@
     }
 
     #how .nx-safeguard-title {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif !important;
       font-size: 13.5px;
       font-weight: 700;
-      color: #0F172A;
+      color: #14110F;
       margin: 0 0 3px;
       line-height: 1.25;
-      letter-spacing: -0.01em;
     }
 
     #how .nx-safeguard-sub {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif !important;
       font-size: 11.5px;
       color: #64748B;
       line-height: 1.4;
@@ -6607,9 +6909,12 @@
     @media (max-width: 1040px) {
       #how .nx-how-grid {
         grid-template-columns: 1fr;
-        max-width: 440px;
-        margin: 0 auto;
-        gap: 28px;
+        max-width: 460px;
+        gap: 36px;
+      }
+
+      #how .nx-step-annotation {
+        display: none;
       }
 
       #how .nx-safeguards-bar {
@@ -6624,6 +6929,15 @@
         grid-template-columns: 1fr;
         gap: 16px;
         padding: 18px 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #how .nx-how-card,
+      #how .nx-glowing-blue-btn,
+      #how .nx-glowing-green-check {
+        transition: none !important;
+        transform: none !important;
       }
     }
 </style>
@@ -7796,131 +8110,215 @@
               Hire direct in <span class="nx-deck-accent">three steps.</span>
             </h2>
             <p class="nx-how-sub">
-              A transparent, friction-free commercial workflow engineered for commercial directors and modern production teams.
+              A transparent, friction-free commercial workflow engineered for commercial directors and production teams. Zero middleman.
             </p>
           </div>
 
-          <!-- 3-Card Bento Stage Area (Matching Reference Layout) -->
+          <!-- 3-Card Stage Area with Delicate Curved Arrow Annotations -->
           <div class="nx-how-stage-wrapper nx-reveal">
+
+            <!-- Step 1 Annotation (Top Left) -->
+            <div class="nx-step-annotation step-1-anno" aria-hidden="true">
+              <span>Step 1</span>
+              <svg class="nx-step-arrow-svg" viewBox="0 0 40 40">
+                <path d="M 6 12 C 16 10, 28 14, 30 28" />
+                <polyline points="24 26 30 29 33 22" />
+              </svg>
+            </div>
+
+            <!-- Step 3 Annotation (Top Right) -->
+            <div class="nx-step-annotation step-3-anno" aria-hidden="true">
+              <svg class="nx-step-arrow-svg" viewBox="0 0 40 40">
+                <path d="M 34 12 C 24 10, 12 14, 10 28" />
+                <polyline points="16 26 10 29 7 22" />
+              </svg>
+              <span>Step 3</span>
+            </div>
+
+            <!-- ── 3 Symmetrical Cards ── -->
             <div class="nx-how-grid">
 
-              <!-- ── CARD 1: INTEGRATIONS (Curate Your Stack) ── -->
+              <!-- ── CARD 1: Browse Storefronts ── -->
               <div class="nx-how-card is-card-1">
-                <div class="nx-card-top-row">
-                  <span class="nx-card-category-tag">INTEGRATIONS</span>
-                  <div class="nx-card-accent-bars" aria-hidden="true">
-                    <span class="nx-accent-bar"></span>
-                    <span class="nx-accent-bar"></span>
+                <h3 class="nx-how-card-title">Browse Curated Storefronts</h3>
+
+                <!-- Center Stage: 3D Mini Director Storefront + Craft Selector Track -->
+                <div class="nx-how-visual-stage">
+                  <!-- Floating 3D Mini Director Card -->
+                  <div class="nx-stage-sub-card">
+                    <div class="nx-sub-card-header">
+                      <div class="nx-director-avatar-mini">EV</div>
+                      <div class="nx-sub-card-meta">
+                        <div class="nx-director-mini-name">
+                          <span>Elias Vance</span>
+                          <span class="nx-verified-badge-tiny" title="Hand-Vetted Director">✓</span>
+                        </div>
+                        <div class="nx-director-mini-craft">Automotive &amp; Tech</div>
+                      </div>
+                    </div>
+                    <div class="nx-sub-card-tags">
+                      <span class="nx-mini-chip is-shield">🛡️ $2M COI</span>
+                      <span class="nx-mini-chip">ARRI 35</span>
+                      <span class="nx-mini-chip" style="color:#C2410C;font-weight:700">$3.5k/d</span>
+                    </div>
+                    <button class="nx-sub-btn-dark" type="button" onclick="location.href='#roster'">Reserve 1st Hold</button>
+                  </div>
+
+                  <!-- Dashed Branch Connectors (SVG) -->
+                  <svg class="nx-branch-svg" viewBox="0 0 190 95">
+                    <path d="M 95 0 C 95 28, 28 32, 28 72" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="3 3" fill="none" />
+                    <path d="M 95 0 C 95 28, 76 32, 76 72" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="3 3" fill="none" />
+                    <path d="M 95 0 C 95 28, 122 32, 122 72" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="3 3" fill="none" />
+                    <path d="M 95 0 C 95 28, 165 32, 165 72" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="3 3" fill="none" />
+                  </svg>
+
+                  <!-- Horizontal Craft Track -->
+                  <div class="nx-stage-track">
+                    <div class="nx-track-item">Commercial</div>
+                    <div class="nx-track-item is-active">
+                      <span>Director</span>
+                      <!-- "You" Pointer Tooltip -->
+                      <div class="nx-track-tooltip">
+                        <svg class="nx-track-pointer-icon" viewBox="0 0 24 24">
+                          <polygon points="3 3 10 21 14 14 21 10 3 3" />
+                        </svg>
+                        <span>You</span>
+                      </div>
+                    </div>
+                    <div class="nx-track-item">DP</div>
+                    <div class="nx-track-item">Pursuit</div>
                   </div>
                 </div>
 
-                <!-- Center Visual Stage: Photorealistic 3D Coral Arc Bridge Render -->
-                <div class="nx-how-visual-stage">
-                  <img src="assets/bento_coral_arc_3d_clean.jpg" alt="3D Cinema &amp; Production Stack Integrations" class="nx-bento-3d-img" />
-                  <span class="nx-arc-under-caption">100+ Apps &amp; Rig Integrations</span>
-                </div>
-
-                <div class="nx-card-bottom-content">
-                  <h3 class="nx-how-card-title">Plug Into Your Stack</h3>
+                <div>
                   <p class="nx-how-card-desc">
-                    Connect seamlessly with vetted directors, pursuit operators, and cinema gear packages ready on active standby.
+                    Filter by craft, gear, city and day rate. Pre-verified COI insurance and AICP deal specs ready for immediate soundstage reservation.
                   </p>
+                  <a href="#roster" class="nx-how-card-link">Browse Active Roster →</a>
                 </div>
               </div>
 
-              <!-- ── CARD 2: COLLABORATION (Built for Team Flow) ── -->
+              <!-- ── CARD 2: Direct 30-Sec Dispatch ── -->
               <div class="nx-how-card is-card-2" onclick="openInquiryModal('Curated Director', 'Commercial Roster')" style="cursor:pointer" title="Click to test inquiry flow">
-                <div class="nx-card-top-row">
-                  <span class="nx-card-category-tag">COLLABORATION</span>
-                  <div class="nx-card-accent-bars" aria-hidden="true">
-                    <span class="nx-accent-bar"></span>
-                    <span class="nx-accent-bar"></span>
-                  </div>
-                </div>
+                <h3 class="nx-how-card-title">Direct 30-Sec Dispatch</h3>
 
-                <!-- Center Visual Stage: Apple-Grade Glassmorphic Message Stack -->
+                <!-- Center Stage: Real Commercial Brief Message + Glowing Blue Pill Button -->
                 <div class="nx-how-visual-stage">
-                  <div class="nx-collab-glass-panel">
-                    <!-- Layer 1 (White): Agency Brief -->
-                    <div class="nx-collab-msg is-white">
-                      <div class="nx-collab-msg-left">
-                        <img src="assets/kai_bust.webp" alt="Agency Creative" class="nx-collab-avatar" />
-                        <div class="nx-collab-text-wrap">
-                          <span class="nx-collab-name">Agency Creative</span>
-                          <span class="nx-collab-sub">Shared Nike brief &amp; soundstage dates</span>
-                        </div>
+                  <div class="nx-chat-stream">
+                    <!-- Client Chat Bubble (Left) -->
+                    <div class="nx-chat-bubble-row is-left">
+                      <div class="nx-chat-avatar is-blue">AC</div>
+                      <div class="nx-chat-bubble">
+                        <div><strong>Nike Shoot · Nov 24–26</strong></div>
+                        <div style="color:#64748B;font-size:9.5px">$45k allocation · Soundstage NYC · 1st Hold</div>
+                        <div class="nx-chat-bubble-time">09:41 AM · Dispatched</div>
                       </div>
-                      <span class="nx-collab-time">Just Now</span>
                     </div>
 
-                    <!-- Layer 2 (Hero Electric Blue): Director Treatment -->
-                    <div class="nx-collab-msg is-hero-blue">
-                      <div class="nx-collab-msg-left">
-                        <img src="assets/marcus_bust.webp" alt="Elias Vance" class="nx-collab-avatar" />
-                        <div class="nx-collab-text-wrap">
-                          <span class="nx-collab-name">Elias Vance · Director</span>
-                          <span class="nx-collab-sub">Treatment &amp; Moodboard locked</span>
-                        </div>
+                    <!-- Creator Chat Bubble (Right) with Heart/Film Emoji -->
+                    <div class="nx-chat-bubble-row is-right">
+                      <div class="nx-chat-bubble is-director">
+                        <div><strong>Treatment &amp; Moodboard in 24h.</strong></div>
+                        <div style="font-size:9.5px">Alexa 35 &amp; Cooke lenses confirmed.</div>
+                        <div class="nx-chat-bubble-time" style="color:#2563EB">09:42 AM · Instant</div>
                       </div>
-                      <span class="nx-collab-time">3 mins ago</span>
+                      <div class="nx-chat-avatar is-photo">
+                        <span class="nx-chat-emoji" aria-hidden="true">🎬</span>
+                        <span>EV</span>
+                      </div>
                     </div>
 
-                    <!-- Layer 3 (White): Producer Approval -->
-                    <div class="nx-collab-msg is-white">
-                      <div class="nx-collab-msg-left">
-                        <img src="assets/elena_bust.webp" alt="Lead Producer" class="nx-collab-avatar" />
-                        <div class="nx-collab-text-wrap">
-                          <span class="nx-collab-name">Lead Producer</span>
-                          <span class="nx-collab-sub">Manhattan shoot schedule approved</span>
-                        </div>
-                      </div>
-                      <span class="nx-collab-time">10 mins</span>
+                    <!-- Glowing 3D Electric Blue Pill Button (Exact Match to Reference) -->
+                    <div>
+                      <button class="nx-glowing-blue-btn" type="button" onclick="event.stopPropagation(); openInquiryModal('Curated Director', 'Commercial Roster')">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        <span>Treatment Pitch in 24h</span>
+                      </button>
                     </div>
                   </div>
                 </div>
 
-                <div class="nx-card-bottom-content">
-                  <h3 class="nx-how-card-title">Built for Team Flow</h3>
+                <div>
                   <p class="nx-how-card-desc">
-                    Keep conversations, treatments, and locked shoot dates moving together directly. Zero agency lag.
+                    Share your shoot dates, budget and project scope in 30 seconds. Dispatched directly to the creator's private line with NDA protection.
                   </p>
+                  <button type="button" class="nx-how-card-link" onclick="event.stopPropagation(); openInquiryModal('Curated Director', 'Commercial Roster')">Test 30-Sec Dispatch Flow →</button>
                 </div>
               </div>
 
-              <!-- ── CARD 3: EXECUTION (Move Work Forward) ── -->
+              <!-- ── CARD 3: Approval & Zero-Toll Settle ── -->
               <div class="nx-how-card is-card-3">
-                <div class="nx-card-top-row">
-                  <span class="nx-card-category-tag">EXECUTION</span>
-                  <div class="nx-card-accent-bars" aria-hidden="true">
-                    <span class="nx-accent-bar"></span>
-                    <span class="nx-accent-bar"></span>
+                <h3 class="nx-how-card-title">Approval &amp; Zero-Toll Settle</h3>
+
+                <!-- Center Stage: 3D Stacked Commercial Deal Sheet + Glowing Green Check -->
+                <div class="nx-how-visual-stage">
+                  <div class="nx-docs-stage">
+                    <!-- Sheet 1 (Angled Left) -->
+                    <div class="nx-doc-sheet sheet-1">
+                      <div class="nx-doc-head-line">
+                        <span class="nx-doc-tag-mini">AICP Deal Memo</span>
+                        <span class="nx-doc-amount-mini">Pre-Cleared</span>
+                      </div>
+                      <div class="nx-doc-row-mini"><span>Day Rate</span><span>$3,500</span></div>
+                    </div>
+
+                    <!-- Sheet 2 (Angled Right) -->
+                    <div class="nx-doc-sheet sheet-2">
+                      <div class="nx-doc-head-line">
+                        <span class="nx-doc-tag-mini">Master RAW</span>
+                        <span class="nx-doc-amount-mini">ProRes 4444</span>
+                      </div>
+                      <div class="nx-doc-row-mini"><span>Chain-of-Title</span><span>Cleared ✓</span></div>
+                    </div>
+
+                    <!-- Main Sheet (Centered Front) -->
+                    <div class="nx-doc-sheet sheet-main">
+                      <div class="nx-doc-head-line">
+                        <span class="nx-doc-tag-mini">Deal #NX-8820</span>
+                        <span class="nx-doc-amount-mini">$45,000</span>
+                      </div>
+                      <div class="nx-doc-row-mini"><span>Milestone 1 (Prep)</span><span>$22,500 (50%)</span></div>
+                      <div class="nx-doc-row-mini"><span>Milestone 2 (Wrap)</span><span>$22,500 (50%)</span></div>
+                      <div class="nx-doc-row-mini"><span>Platform Toll</span><strong>$0.00 (0% Cut)</strong></div>
+                      <div class="nx-doc-logo-mark">
+                        <span>Conditional IP Transfer</span>
+                        <span style="font-weight:700;color:#16A34A">Direct Wire ✓</span>
+                      </div>
+                    </div>
+
+                    <!-- Glowing 3D Green Checkmark Badge (Exact Match to Reference) -->
+                    <div class="nx-glowing-green-check" aria-hidden="true">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Center Visual Stage: Photorealistic 3D Glass Dock & Emerald Sphere Render -->
-                <div class="nx-how-visual-stage">
-                  <img src="assets/bento_dock_status_3d_clean.jpg" alt="3D Real-time Execution &amp; Direct Settle Dock" class="nx-bento-3d-img" />
-                </div>
-
-                <div class="nx-card-bottom-content">
-                  <h3 class="nx-how-card-title">Move Work Forward</h3>
+                <div>
                   <p class="nx-how-card-desc">
-                    Take action, transfer master RAW files, and settle directly with 100% IP ownership and zero middleman delay.
+                    Structured 50/50 milestone settlement. Zero escrow lockup, zero percentage toll, and 100% conditional chain-of-title transfer.
                   </p>
+                  <a href="#fees" class="nx-how-card-link">View Fee Transparency →</a>
                 </div>
               </div>
 
             </div>
 
-            <!-- ── Enterprise Production Safeguards Strip (Pillars with Apple Micro-Badges) ── -->
+            <!-- Step 2 Annotation (Bottom Center) -->
+            <div class="nx-step-annotation step-2-anno" aria-hidden="true">
+              <span>Step 2</span>
+              <svg class="nx-step-arrow-svg" viewBox="0 0 40 40">
+                <path d="M 8 26 C 18 28, 28 24, 30 10" />
+                <polyline points="24 12 30 9 33 16" />
+              </svg>
+            </div>
+
+            <!-- ── Enterprise Production Safeguards Strip (Pillars) ── -->
             <div class="nx-safeguards-bar nx-reveal">
               <!-- Pillar 1 -->
               <div class="nx-safeguard-item">
-                <div class="nx-safeguard-icon-box" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                  </svg>
-                </div>
+                <div class="nx-safeguard-icon-box" aria-hidden="true">🛡️</div>
                 <div class="nx-safeguard-text">
                   <div class="nx-safeguard-title">$2M Production Liability</div>
                   <div class="nx-safeguard-sub">Pre-verified Certificates of Insurance (COI) &amp; equipment floaters.</div>
@@ -7929,15 +8327,7 @@
 
               <!-- Pillar 2 -->
               <div class="nx-safeguard-item">
-                <div class="nx-safeguard-icon-box" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="16" y1="13" x2="8" y2="13"></line>
-                    <line x1="16" y1="17" x2="8" y2="17"></line>
-                    <polyline points="10 9 9 9 8 9"></polyline>
-                  </svg>
-                </div>
+                <div class="nx-safeguard-icon-box" aria-hidden="true">📜</div>
                 <div class="nx-safeguard-text">
                   <div class="nx-safeguard-title">AICP-Standard Deal Memos</div>
                   <div class="nx-safeguard-sub">Standard commercial agreements, 1st/2nd hold rules &amp; overtime specs.</div>
@@ -7946,12 +8336,7 @@
 
               <!-- Pillar 3 -->
               <div class="nx-safeguard-item">
-                <div class="nx-safeguard-icon-box" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                  </svg>
-                </div>
+                <div class="nx-safeguard-icon-box" aria-hidden="true">🔒</div>
                 <div class="nx-safeguard-text">
                   <div class="nx-safeguard-title">Conditional Chain-of-Title</div>
                   <div class="nx-safeguard-sub">100% worldwide broadcast rights transferred upon cleared payment.</div>
@@ -7960,11 +8345,7 @@
 
               <!-- Pillar 4 -->
               <div class="nx-safeguard-item">
-                <div class="nx-safeguard-icon-box" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                  </svg>
-                </div>
+                <div class="nx-safeguard-icon-box" aria-hidden="true">⚡</div>
                 <div class="nx-safeguard-text">
                   <div class="nx-safeguard-title">50/50 Milestone Settle</div>
                   <div class="nx-safeguard-sub">Direct wire/ACH with 50% prep &amp; 50% delivery wrap. Zero platform toll.</div>
