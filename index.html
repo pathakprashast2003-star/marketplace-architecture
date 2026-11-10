@@ -659,11 +659,11 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-        font-size: clamp(2.45rem, 11.4vw, 3.2rem);
+        font-size: clamp(2.9rem, 15.73vw, 3.85rem);
         line-height: 0.90;
         letter-spacing: -0.025em;
         font-weight: 800;
-        margin: 0 0 10px 0;
+        margin: 0 0 25px 0;
         padding: 0;
         position: relative;
         z-index: 10;
@@ -675,6 +675,11 @@
       .title-wefind,
       .title-the {
         display: block;
+      }
+
+      .title-wefind,
+      .title-edge {
+        font-size: clamp(3.1rem, 16.8vw, 4.1rem);
       }
 
       /* ── LOWER CENTERED FOREGROUND CHARACTER STAGE ── */
@@ -697,7 +702,7 @@
         position: relative;
         height: 100%;
         width: 100%;
-        padding: 6px 0 24px 0;
+        padding: 4px 0 26px 0;
         display: flex;
         align-items: flex-end;
         justify-content: center;
@@ -714,7 +719,7 @@
         z-index: 6;
         height: auto;
         width: auto;
-        max-height: 94%;
+        max-height: 98%;
         max-width: 88vw;
         object-fit: contain;
         object-position: bottom center;
@@ -730,28 +735,28 @@
       }
 
       body[data-theme="sage"] #heroCharacterSlot {
-        max-height: 88%;
+        max-height: 92%;
         max-width: 96vw;
         scale: 1;
       }
 
       body[data-theme="cobalt"] #heroCharacterSlot {
-        max-height: 96%;
+        max-height: 99%;
         max-width: 88vw;
       }
 
       body[data-theme="lilac"] #heroCharacterSlot {
-        max-height: 88%;
+        max-height: 92%;
         max-width: 92vw;
       }
 
       body[data-theme="amber"] #heroCharacterSlot {
-        max-height: 98%;
+        max-height: 99%;
         max-width: 84vw;
       }
 
       body[data-theme="coral"] #heroCharacterSlot {
-        max-height: 92%;
+        max-height: 96%;
         max-width: 88vw;
       }
 
@@ -778,7 +783,7 @@
         text-align: center;
         max-width: 295px;
         min-width: 0;
-        margin: 0 auto 13px;
+        margin: 0 auto 14px;
         position: relative;
         z-index: 10;
         pointer-events: auto;
@@ -793,7 +798,7 @@
         gap: 10px;
         width: 100%;
         max-width: 344px;
-        margin: 0 auto 11px;
+        margin: 0 auto 12px;
         position: relative;
         z-index: 12;
         pointer-events: auto;
@@ -805,8 +810,8 @@
         flex: 0 1 auto;
         justify-content: center;
         text-align: center;
-        padding: 10.5px 18px;
-        font-size: 12.25px;
+        padding: 9px 17px;
+        font-size: 12px;
         font-weight: 600;
         letter-spacing: -0.015em;
         border-radius: 9999px;
@@ -855,7 +860,7 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        padding: 6px 10px;
+        padding: 5px 9px;
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.88);
         backdrop-filter: blur(18px);
@@ -871,7 +876,7 @@
 
       .spec-item {
         gap: 0;
-        padding: 1px 7px;
+        padding: 1px 6.5px;
         flex: 0 1 auto;
         min-width: 0;
         justify-content: center;
@@ -884,7 +889,7 @@
       }
 
       .spec-value {
-        font-size: 8.6px;
+        font-size: 8.5px;
         line-height: 1.2;
         font-weight: 700;
         color: #1A100B;
@@ -935,30 +940,35 @@
       }
 
       .headline-stack {
-        font-size: clamp(2.05rem, 9.6vw, 2.55rem);
-        margin-bottom: 7px;
+        font-size: clamp(2.35rem, 11.8vw, 2.75rem);
+        margin-bottom: 16px;
+      }
+
+      .title-wefind,
+      .title-edge {
+        font-size: clamp(2.55rem, 12.8vw, 2.95rem);
       }
 
       .hero-subheadline {
         font-size: 11px;
         line-height: 1.32;
-        margin-bottom: 9px;
+        margin-bottom: 10px;
         max-width: 270px;
       }
 
       .action-row {
         gap: 8px;
-        margin-bottom: 8px;
+        margin-bottom: 9px;
       }
 
       .btn-discover,
       .btn-join {
-        padding: 8.5px 15px;
-        font-size: 11.6px;
+        padding: 8px 15px;
+        font-size: 11.5px;
       }
 
       .apple-spec-bar {
-        padding: 5px 8px;
+        padding: 4.5px 8px;
       }
 
       .spec-item {
@@ -966,7 +976,7 @@
       }
 
       .spec-value {
-        font-size: 8.2px;
+        font-size: 8.1px;
       }
 
       .image-container-slot,
@@ -976,32 +986,32 @@
       }
 
       #heroCharacterSlot {
-        max-height: 92%;
+        max-height: 94%;
         max-width: 84vw;
       }
 
       body[data-theme="sage"] #heroCharacterSlot {
-        max-height: 86%;
+        max-height: 88%;
         max-width: 92vw;
       }
 
       body[data-theme="lilac"] #heroCharacterSlot {
-        max-height: 86%;
+        max-height: 88%;
         max-width: 88vw;
       }
 
       body[data-theme="cobalt"] #heroCharacterSlot {
-        max-height: 94%;
+        max-height: 97%;
         max-width: 82vw;
       }
 
       body[data-theme="amber"] #heroCharacterSlot {
-        max-height: 96%;
+        max-height: 97%;
         max-width: 78vw;
       }
 
       body[data-theme="coral"] #heroCharacterSlot {
-        max-height: 90%;
+        max-height: 94%;
         max-width: 82vw;
       }
     }
@@ -8917,11 +8927,11 @@
       let initialLeft = 0, initialTop = 0;
       let hasMoved = false;
 
-      // Strictly mobile-only viewport editing guard (<= 900px); v10 isolates centered layout edits from legacy v7-v9 positions
-      const STORAGE_PREFIX = 'dunes_custom_edits_v10_';
+      // Strictly mobile-only viewport editing guard (<= 900px); v11 isolates unified mobile proportion edits from legacy v7-v10 keys
+      const STORAGE_PREFIX = 'dunes_custom_edits_v11_';
       try {
         for (const k of Object.keys(localStorage)) {
-          if (k.startsWith('dunes_custom_edits_v9_') || k.startsWith('dunes_custom_edits_v8_') || k.startsWith('dunes_custom_edits_v7_')) {
+          if (k.startsWith('dunes_custom_edits_v10_') || k.startsWith('dunes_custom_edits_v9_') || k.startsWith('dunes_custom_edits_v8_') || k.startsWith('dunes_custom_edits_v7_')) {
             localStorage.removeItem(k);
           }
         }
