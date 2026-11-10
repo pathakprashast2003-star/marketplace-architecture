@@ -50,7 +50,7 @@ export const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
       <div
         ref={ref}
         role="contentinfo"
-        className={cn("bg-white text-[#09090B] pt-20 pb-10", className)}
+        className={cn("bg-white text-[#09090B] pt-14 pb-8 md:pt-20 md:pb-10", className)}
         {...props}
       >
         <div className="max-w-screen-xl mx-auto px-6 lg:px-10">
@@ -102,13 +102,13 @@ export const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
                   <h3 className="mb-4 text-sm font-bold text-[#09090B]">
                     {title}
                   </h3>
-                  <ul className="space-y-3 list-none p-0 m-0">
+                  <ul className="space-y-1.5 md:space-y-3 list-none p-0 m-0">
                     {links.map(({ name, Icon, href, onClick }) => (
                       <li key={name}>
                         <a
                           href={href || "#"}
                           onClick={onClick}
-                          className="text-sm font-medium text-[#3F3F46] hover:text-[#09090B] transition-colors inline-flex items-center gap-1.5 no-underline"
+                          className="text-sm font-medium text-[#3F3F46] hover:text-[#09090B] transition-colors inline-flex items-center gap-1.5 py-1.5 md:py-0 no-underline"
                         >
                           {Icon && (
                             <Icon className="h-4 w-4 stroke-[1.8] shrink-0" />
