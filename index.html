@@ -6187,58 +6187,75 @@
     }
 
     /* ══════════════════════════════════════════════════════════════
-       PROTOCOL SECTION (03 / 04) — Apple-Grade 3-Step Flow
-       Times New Roman Editorial Typography · Tactile Materials & Depth
-       Physics-Inspired Transitions · Interactive Micro-Cards
+       PROTOCOL SECTION (03 / 04) — "Fast & Direct" 3-Card Architecture
+       Direct Reverse-Engineering of Reference UI: Tactile Skeuomorphic Micro-Stages
+       Curved Handwriting Annotations (Step 1, Step 2, Step 3) · Soft Apple Shadows
        ══════════════════════════════════════════════════════════════ */
     #how {
-      padding-top: 100px;
+      padding-top: 90px;
       padding-bottom: 140px;
       scroll-margin-top: 90px;
       position: relative;
       background: transparent;
-      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif) !important;
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
       overflow: visible;
     }
 
     #how,
     #how * {
-      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif) !important;
       box-sizing: border-box;
     }
 
-    #how .nx-proto-container {
-      max-width: 1360px;
+    #how .nx-how-container {
+      max-width: 1240px;
       margin: 0 auto;
       padding: 0 24px;
       position: relative;
     }
 
-    /* ── Section Header (Harmonized 1:1 with Section 01 & 02) ── */
-    #how .nx-proto-head {
-      text-align: center;
-      max-width: 920px;
-      margin: 0 auto 56px;
+    /* ── Header Badge Row (Hairline Lines + Capsule Pill) ── */
+    #how .nx-how-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 16px;
     }
 
-    #how .nx-proto-head .nx-kicker {
+    #how .nx-how-line {
+      width: 48px;
+      height: 1px;
+      background: rgba(20, 17, 15, 0.12);
+    }
+
+    #how .nx-how-badge {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 14px;
+      padding: 5px 16px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #64748B;
+      background: #FFFFFF;
+      border: 1px solid rgba(20, 17, 15, 0.10);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
     }
 
-    #how .nx-proto-title {
-      font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+    #how .nx-how-title {
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif) !important;
+      font-size: clamp(2.4rem, 4.2vw, 3.6rem);
       font-weight: 700;
       line-height: 1.1;
       letter-spacing: -0.02em;
       color: #14110F;
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       text-align: center;
     }
 
-    #how .nx-proto-title .nx-deck-accent {
+    #how .nx-how-title .nx-deck-accent {
       font-style: italic !important;
       font-weight: 400 !important;
       background: linear-gradient(135deg, #F97316 0%, #EA580C 50%, #C2410C 100%) !important;
@@ -6248,278 +6265,481 @@
       display: inline-block;
     }
 
-    #how .nx-proto-sub {
-      font-size: 18.5px;
-      line-height: 1.6;
-      color: #57514B;
-      max-width: 66ch;
-      margin: 0 auto;
+    #how .nx-how-sub {
+      font-size: 16.5px;
+      line-height: 1.55;
+      color: #64748B;
+      max-width: 58ch;
+      margin: 0 auto 60px;
       text-align: center;
       font-style: normal;
     }
 
-    /* ── 3-Card Protocol Grid ── */
-    #how .nx-proto-grid {
+    /* ── 3-Card Stage Area with Handwritten Annotations ── */
+    #how .nx-how-stage-wrapper {
+      position: relative;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    #how .nx-how-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 32px;
       align-items: stretch;
-      max-width: 1280px;
-      margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
 
-    /* ── Apple-Grade Step Card ── */
-    #how .nx-proto-card {
+    /* ── The Clean White Cards (Matching Reference) ── */
+    #how .nx-how-card {
       background: #FFFFFF;
-      border: 1px solid rgba(20, 17, 15, 0.08);
-      border-radius: 34px;
-      padding: 38px 30px 34px;
-      box-shadow: 0 16px 45px -12px rgba(20, 17, 15, 0.06),
+      border: 1px solid rgba(20, 17, 15, 0.07);
+      border-radius: 32px;
+      padding: 34px 24px 30px;
+      box-shadow: 0 25px 65px -15px rgba(20, 17, 15, 0.07),
                   0 2px 6px rgba(0, 0, 0, 0.02);
       display: flex;
       flex-direction: column;
+      align-items: center;
+      text-align: center;
       justify-content: space-between;
+      min-height: 440px;
       position: relative;
       transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-                  box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-                  border-color 0.3s ease;
+                  box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
       cursor: default;
     }
 
-    #how .nx-proto-card:hover {
+    #how .nx-how-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 28px 60px -12px rgba(20, 17, 15, 0.12);
-      border-color: rgba(20, 17, 15, 0.15);
+      box-shadow: 0 32px 80px -15px rgba(20, 17, 15, 0.12);
     }
 
-    #how .nx-proto-card:active {
+    #how .nx-how-card:active {
       transform: scale(0.985);
       transition: transform 100ms ease-out;
     }
 
-    /* ── Card Header (Step Index + Meta) ── */
-    #how .nx-proto-card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    #how .nx-proto-step-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 5px 14px;
-      border-radius: 999px;
-      font-size: 11.5px;
+    /* Card Top Title */
+    #how .nx-how-card-title {
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+      font-size: 17.5px;
       font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: #F8F9FA;
       color: #14110F;
-      border: 1px solid rgba(20, 17, 15, 0.08);
+      margin: 0;
+      letter-spacing: -0.01em;
     }
 
-    #how .nx-proto-step-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #F97316;
-      box-shadow: 0 0 6px rgba(249, 115, 22, 0.6);
-    }
-
-    #how .nx-proto-card.is-step-2 .nx-proto-step-dot {
-      background: #3B82F6;
-      box-shadow: 0 0 6px rgba(59, 130, 246, 0.6);
-    }
-
-    #how .nx-proto-card.is-step-3 .nx-proto-step-dot {
-      background: #22C55E;
-      box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
-    }
-
-    #how .nx-proto-icon-wrap {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: #FBFAF7;
-      border: 1px solid rgba(20, 17, 15, 0.06);
+    /* Center Visual Stage (Fixed 180px height) */
+    #how .nx-how-visual-stage {
+      width: 100%;
+      height: 195px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #14110F;
-      transition: transform 0.25s ease;
+      position: relative;
+      margin: 12px 0;
     }
 
-    #how .nx-proto-card:hover .nx-proto-icon-wrap {
-      transform: scale(1.1);
+    /* Card Bottom Description */
+    #how .nx-how-card-desc {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: #64748B;
+      max-width: 260px;
+      margin: 0 auto;
     }
 
-    #how .nx-proto-card-h3 {
-      font-size: 25px;
-      font-weight: 700;
-      line-height: 1.2;
-      color: #14110F;
-      margin: 0 0 10px;
-    }
-
-    #how .nx-proto-card-desc {
-      font-size: 14.5px;
-      line-height: 1.55;
-      color: #57514B;
-      margin: 0 0 22px;
-      min-height: 44px;
-    }
-
-    /* ── Apple-Grade Subsurface Interactive Stage ── */
-    #how .nx-proto-stage {
-      background: #F8F9FA;
-      border: 1px solid rgba(20, 17, 15, 0.06);
-      border-radius: 24px;
-      padding: 20px;
-      margin-bottom: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      flex-grow: 1;
-      justify-content: center;
-      transition: background 0.25s ease, border-color 0.25s ease;
-    }
-
-    #how .nx-proto-card:hover .nx-proto-stage {
-      background: #FAF9F6;
-      border-color: rgba(20, 17, 15, 0.10);
-    }
-
-    /* Stage Item Micro-Rows */
-    #how .nx-proto-tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    #how .nx-proto-micro-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 4px 10px;
-      background: #FFFFFF;
-      border: 1px solid rgba(20, 17, 15, 0.08);
-      border-radius: 999px;
-      font-size: 11px;
-      font-weight: 600;
-      color: #292524;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-    }
-
-    #how .nx-proto-preview-box {
+    /* ── Micro-Stage 1: Browse / Match (3D Mini Card + Dashed Selector Track) ── */
+    #how .nx-stage-sub-card {
       background: #FFFFFF;
       border: 1px solid rgba(20, 17, 15, 0.08);
       border-radius: 16px;
-      padding: 12px 14px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      padding: 14px 18px;
+      box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.06),
+                  0 1px 3px rgba(0, 0, 0, 0.04);
+      width: 175px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      z-index: 2;
     }
 
-    #how .nx-proto-preview-title {
-      font-size: 12.5px;
-      font-weight: 700;
-      color: #14110F;
+    #how .nx-sub-card-header {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 4px;
-    }
-
-    #how .nx-proto-preview-sub {
-      font-size: 11px;
-      color: #78716C;
-      font-style: italic;
-    }
-
-    #how .nx-proto-status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11.5px;
-      font-weight: 600;
-      color: #16A34A;
-      background: #F0FDF4;
-      border: 1px solid rgba(22, 163, 74, 0.2);
-      padding: 4px 10px;
-      border-radius: 999px;
-    }
-
-    #how .nx-proto-status-pill.is-alert {
-      color: #2563EB;
-      background: #EFF6FF;
-      border-color: rgba(37, 99, 235, 0.2);
-    }
-
-    #how .nx-proto-status-pill.is-gold {
-      color: #B45309;
-      background: #FFFBEB;
-      border-color: rgba(180, 83, 9, 0.2);
-    }
-
-    /* ── Card Action Buttons ── */
-    #how .nx-proto-btn {
+      gap: 8px;
       width: 100%;
-      height: 48px;
+    }
+
+    #how .nx-sub-card-logo {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      background: #E2E8F0;
+      display: inline-block;
+    }
+
+    #how .nx-sub-card-bar {
+      height: 8px;
       border-radius: 999px;
-      font-size: 14.5px;
+      background: #E2E8F0;
+      flex-grow: 1;
+    }
+
+    #how .nx-sub-btn-dark {
+      background: linear-gradient(180deg, #374151 0%, #1F2937 60%, #111827 100%);
+      color: #FFFFFF;
+      font-size: 12px;
       font-weight: 700;
+      letter-spacing: 0.02em;
+      border-radius: 999px;
+      padding: 7px 22px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.3);
+      cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
-    #how .nx-proto-btn.is-outline {
-      background: #FFFFFF;
-      border: 1.5px solid #D6D3D1;
-      color: #292524;
+    #how .nx-stage-track {
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      z-index: 3;
     }
 
-    #how .nx-proto-btn.is-outline:hover {
-      background: #F5F5F4;
-      border-color: #A8A29E;
-      color: #0F172A;
+    #how .nx-track-item {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: #F8FAFC;
+      border: 1px solid rgba(20, 17, 15, 0.08);
+      font-size: 12px;
+      font-weight: 700;
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
 
-    #how .nx-proto-btn.is-primary {
-      background: #14110F;
-      border: 1.5px solid #14110F;
+    #how .nx-track-item.is-active {
+      background: #FFF7ED;
+      border-color: #EA580C;
+      color: #C2410C;
+      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+      transform: scale(1.06);
+    }
+
+    #how .nx-track-tooltip {
+      position: absolute;
+      bottom: -18px;
+      right: -16px;
+      background: #0F172A;
       color: #FFFFFF;
-      box-shadow: 0 4px 14px rgba(20, 17, 15, 0.15);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      white-space: nowrap;
     }
 
-    #how .nx-proto-btn.is-primary:hover {
-      background: #000000;
-      border-color: #000000;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+    #how .nx-track-pointer-icon {
+      width: 9px;
+      height: 9px;
+      fill: #FFFFFF;
+      transform: rotate(-45deg);
     }
 
-    #how .nx-proto-btn:active {
-      transform: scale(0.975);
+    #how .nx-branch-svg {
+      position: absolute;
+      top: 52px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 170px;
+      height: 90px;
+      pointer-events: none;
+      z-index: 1;
     }
 
-    /* ── Mobile & Tablet Responsiveness ── */
+    /* ── Micro-Stage 2: 30-Sec Inquiry Chat & Glowing Blue Pill Button ── */
+    #how .nx-chat-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 250px;
+      position: relative;
+    }
+
+    #how .nx-chat-bubble-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #how .nx-chat-bubble-row.is-left {
+      justify-content: flex-start;
+    }
+
+    #how .nx-chat-bubble-row.is-right {
+      justify-content: flex-end;
+    }
+
+    #how .nx-chat-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    #how .nx-chat-avatar.is-blue {
+      background: #1E3A8A;
+      color: #FFFFFF;
+    }
+
+    #how .nx-chat-avatar.is-photo {
+      background: #FDBA74;
+      color: #7C2D12;
+      border: 1.5px solid #FFFFFF;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    #how .nx-chat-emoji {
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      font-size: 11px;
+    }
+
+    #how .nx-chat-bubble {
+      background: #F1F5F9;
+      border-radius: 999px;
+      padding: 7px 14px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    #how .nx-chat-pill-bar {
+      width: 58px;
+      height: 8px;
+      border-radius: 999px;
+      background: #CBD5E1;
+    }
+
+    #how .nx-chat-pill-bar.is-short {
+      width: 38px;
+    }
+
+    /* The Glowing 3D Electric Blue Pill Button (Key Reference Element) */
+    #how .nx-glowing-blue-btn {
+      background: linear-gradient(180deg, #3B82F6 0%, #2563EB 100%);
+      color: #FFFFFF;
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      border-radius: 999px;
+      padding: 11px 26px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 14px 30px -4px rgba(37, 99, 235, 0.65),
+                  inset 0 1px 2px rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 14px;
+      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.2s ease;
+    }
+
+    #how .nx-glowing-blue-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px -4px rgba(37, 99, 235, 0.8);
+    }
+
+    #how .nx-glowing-blue-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* ── Micro-Stage 3: 3D Stacked Fanned Contracts & Glowing Green Check Badge ── */
+    #how .nx-docs-stage {
+      position: relative;
+      width: 170px;
+      height: 145px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #how .nx-doc-sheet {
+      position: absolute;
+      width: 115px;
+      height: 130px;
+      background: #FFFFFF;
+      border: 1px solid rgba(20, 17, 15, 0.09);
+      border-radius: 12px;
+      box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.08);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    #how .nx-doc-sheet.sheet-1 {
+      transform: rotate(-10deg) translate(-14px, 4px);
+      opacity: 0.65;
+      z-index: 1;
+    }
+
+    #how .nx-doc-sheet.sheet-2 {
+      transform: rotate(8deg) translate(14px, 2px);
+      opacity: 0.85;
+      z-index: 2;
+    }
+
+    #how .nx-doc-sheet.sheet-main {
+      transform: rotate(0deg);
+      z-index: 3;
+    }
+
+    #how .nx-doc-line {
+      height: 7px;
+      border-radius: 999px;
+      background: #E2E8F0;
+      width: 80%;
+    }
+
+    #how .nx-doc-line.is-full {
+      width: 100%;
+    }
+
+    #how .nx-doc-line.is-short {
+      width: 50%;
+    }
+
+    #how .nx-doc-logo-mark {
+      margin-top: auto;
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: #94A3B8;
+      font-weight: 700;
+    }
+
+    /* The Glowing 3D Green Checkmark Badge (Key Reference Element) */
+    #how .nx-glowing-green-check {
+      position: absolute;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #22C55E 0%, #16A34A 100%);
+      border: 2.5px solid #FFFFFF;
+      box-shadow: 0 12px 28px -4px rgba(34, 197, 94, 0.70),
+                  inset 0 1px 2px rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      z-index: 5;
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    #how .nx-how-card:hover .nx-glowing-green-check {
+      transform: translateX(-50%) scale(1.1);
+    }
+
+    /* ── The Alternating Handwriting Step Annotations & Curved Arrows ── */
+    #how .nx-step-annotation {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      color: #94A3B8;
+      font-weight: 500;
+      font-style: italic;
+      pointer-events: none;
+      user-select: none;
+      z-index: 10;
+    }
+
+    /* Step 1: Top Left of Card 1 */
+    #how .nx-step-annotation.step-1-anno {
+      top: -38px;
+      left: 80px;
+    }
+
+    /* Step 2: Bottom of Card 2 (Below) */
+    #how .nx-step-annotation.step-2-anno {
+      bottom: -46px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Step 3: Top Right of Card 3 */
+    #how .nx-step-annotation.step-3-anno {
+      top: -38px;
+      right: 80px;
+    }
+
+    #how .nx-step-arrow-svg {
+      width: 32px;
+      height: 32px;
+      stroke: #CBD5E1;
+      stroke-width: 1.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── Responsive Behavior ── */
     @media (max-width: 1040px) {
-      #how .nx-proto-grid {
+      #how .nx-how-grid {
         grid-template-columns: 1fr;
-        max-width: 520px;
-        gap: 28px;
+        max-width: 440px;
+        gap: 36px;
+      }
+
+      #how .nx-step-annotation {
+        display: none;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      #how .nx-proto-card,
-      #how .nx-proto-btn,
-      #how .nx-proto-icon-wrap {
+      #how .nx-how-card,
+      #how .nx-glowing-blue-btn,
+      #how .nx-glowing-green-check {
         transition: none !important;
         transform: none !important;
       }
@@ -7681,157 +7901,185 @@
 
       <!-- ── PROTOCOL SECTION (03 / 04) ── -->
       <section class="nx-sec" id="how">
-        <div class="nx-proto-container">
-          <!-- Section Header Harmonized with Section 01 & 02 -->
-          <div class="nx-proto-head nx-reveal">
-            <p class="nx-kicker">
-              <span class="nx-kicker-lead">
-                <span class="nx-kicker-index">03 / 04</span>
-                <span class="nx-kicker-divider">·</span>
-                <span class="nx-kicker-title">Protocol</span>
-              </span>
-            </p>
-            <h2 class="nx-proto-title">
-              Hire direct in <span class="nx-deck-accent">three steps.</span>
+        <div class="nx-how-container">
+
+          <!-- Section Header (Matching Reference Capsule + Elegant Headline) -->
+          <div class="nx-how-head nx-reveal">
+            <div class="nx-how-badge-row">
+              <span class="nx-how-line"></span>
+              <span class="nx-how-badge">HOW IT WORKS</span>
+              <span class="nx-how-line"></span>
+            </div>
+            <h2 class="nx-how-title">
+              Fast &amp; <span class="nx-deck-accent">Direct.</span>
             </h2>
-            <p class="nx-proto-sub">
-              A transparent, friction-free commercial workflow designed for commercial directors and modern production teams.
+            <p class="nx-how-sub">
+              Hire verified commercial directors in three frictionless steps. Zero middleman, 100% IP retained.
             </p>
           </div>
 
-          <!-- Symmetrical 3-Step Protocol Grid -->
-          <div class="nx-proto-grid nx-reveal">
+          <!-- 3-Card Stage Area with Delicate Curved Arrow Annotations -->
+          <div class="nx-how-stage-wrapper nx-reveal">
 
-            <!-- ── STEP 1: Browse ── -->
-            <div class="nx-proto-card is-step-1">
-              <div>
-                <div class="nx-proto-card-top">
-                  <div class="nx-proto-step-pill">
-                    <span class="nx-proto-step-dot"></span>
-                    <span>Step 01</span>
-                  </div>
-                  <div class="nx-proto-icon-wrap" aria-hidden="true">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                  </div>
-                </div>
-                <h3 class="nx-proto-card-h3">Browse</h3>
-                <p class="nx-proto-card-desc">Filter by craft, city, gear and day rate. Every storefront is reviewed and verified before it goes live.</p>
-              </div>
-
-              <!-- Interactive Subsurface Stage -->
-              <div class="nx-proto-stage">
-                <div class="nx-proto-tag-row">
-                  <span class="nx-proto-micro-tag">🎬 Commercial</span>
-                  <span class="nx-proto-micro-tag">📍 NYC &amp; LA</span>
-                  <span class="nx-proto-micro-tag">🎥 ARRI 35</span>
-                </div>
-                <div class="nx-proto-preview-box">
-                  <div class="nx-proto-preview-title">
-                    <span>Elias Vance</span>
-                    <span style="color:#C2410C;font-size:11.5px;font-weight:700">$3,500/day</span>
-                  </div>
-                  <div class="nx-proto-preview-sub">Commercial Director · Automotive &amp; Tech</div>
-                </div>
-                <div class="nx-proto-status-pill">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Hand-Vetted Storefront &amp; Reel</span>
-                </div>
-              </div>
-
-              <div class="nx-proto-card-foot">
-                <a href="#roster" class="nx-proto-btn is-outline">
-                  <span>Browse Roster</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-              </div>
+            <!-- Step 1 Annotation (Top Left) -->
+            <div class="nx-step-annotation step-1-anno" aria-hidden="true">
+              <span>Step 1</span>
+              <svg class="nx-step-arrow-svg" viewBox="0 0 40 40">
+                <path d="M 6 12 C 16 10, 28 14, 30 28" />
+                <polyline points="24 26 30 29 33 22" />
+              </svg>
             </div>
 
-            <!-- ── STEP 2: Send an Inquiry ── -->
-            <div class="nx-proto-card is-step-2" onclick="openInquiryModal('Curated Director', 'Commercial Roster')" style="cursor:pointer" title="Click to test inquiry flow">
-              <div>
-                <div class="nx-proto-card-top">
-                  <div class="nx-proto-step-pill">
-                    <span class="nx-proto-step-dot"></span>
-                    <span>Step 02</span>
-                  </div>
-                  <div class="nx-proto-icon-wrap" aria-hidden="true" style="color:#2563EB">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                  </div>
-                </div>
-                <h3 class="nx-proto-card-h3">Send an inquiry</h3>
-                <p class="nx-proto-card-desc">Share your date, budget and scope in about 30 seconds. The creator hears from you instantly.</p>
-              </div>
-
-              <!-- Interactive Subsurface Stage -->
-              <div class="nx-proto-stage">
-                <div class="nx-proto-tag-row">
-                  <span class="nx-proto-micro-tag" style="background:#EFF6FF;color:#1D4ED8;border-color:rgba(29,78,216,0.15)">⚡ ~30s Dispatch</span>
-                  <span class="nx-proto-micro-tag">📅 Nov 24 – 26</span>
-                  <span class="nx-proto-micro-tag">💼 $35,000</span>
-                </div>
-                <div class="nx-proto-preview-box">
-                  <div class="nx-proto-preview-title">
-                    <span>Direct Message Stream</span>
-                    <span style="color:#2563EB;font-size:11px;font-weight:700">Encrypted</span>
-                  </div>
-                  <div class="nx-proto-preview-sub">Direct ping to creator's verified WhatsApp &amp; SMS</div>
-                </div>
-                <div class="nx-proto-status-pill is-alert">
-                  <span style="width:6px;height:6px;border-radius:50%;background:#2563EB;display:inline-block"></span>
-                  <span>Instant Creator Notification</span>
-                </div>
-              </div>
-
-              <div class="nx-proto-card-foot">
-                <button type="button" class="nx-proto-btn is-primary" onclick="event.stopPropagation(); openInquiryModal('Curated Director', 'Commercial Roster')">
-                  <span>Send an Inquiry</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </button>
-              </div>
+            <!-- Step 3 Annotation (Top Right) -->
+            <div class="nx-step-annotation step-3-anno" aria-hidden="true">
+              <svg class="nx-step-arrow-svg" viewBox="0 0 40 40">
+                <path d="M 34 12 C 24 10, 12 14, 10 28" />
+                <polyline points="16 26 10 29 7 22" />
+              </svg>
+              <span>Step 3</span>
             </div>
 
-            <!-- ── STEP 3: Work direct ── -->
-            <div class="nx-proto-card is-step-3">
-              <div>
-                <div class="nx-proto-card-top">
-                  <div class="nx-proto-step-pill">
-                    <span class="nx-proto-step-dot"></span>
-                    <span>Step 03</span>
+            <!-- ── 3 Symmetrical Cards ── -->
+            <div class="nx-how-grid">
+
+              <!-- ── CARD 1: Pick a plan & subscribe ── -->
+              <div class="nx-how-card is-card-1">
+                <h3 class="nx-how-card-title">Pick a director &amp; reserve</h3>
+
+                <!-- Center Stage: 3D Mini Card + Dashed Selector Track -->
+                <div class="nx-how-visual-stage">
+                  <!-- Floating 3D Mini Card -->
+                  <div class="nx-stage-sub-card">
+                    <div class="nx-sub-card-header">
+                      <span class="nx-sub-card-logo"></span>
+                      <span class="nx-sub-card-bar"></span>
+                    </div>
+                    <button class="nx-sub-btn-dark" type="button" onclick="location.href='#roster'">Reserve</button>
                   </div>
-                  <div class="nx-proto-icon-wrap" aria-hidden="true" style="color:#16A34A">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+
+                  <!-- Dashed Branch Connectors (SVG) -->
+                  <svg class="nx-branch-svg" viewBox="0 0 170 90">
+                    <path d="M 85 0 C 85 24, 22 28, 22 68" stroke="#E2E8F0" stroke-width="1.5" stroke-dasharray="3 3" fill="none" />
+                    <path d="M 85 0 C 85 24, 68 28, 68 68" stroke="#E2E8F0" stroke-width="1.5" stroke-dasharray="3 3" fill="none" />
+                    <path d="M 85 0 C 85 24, 114 28, 114 68" stroke="#E2E8F0" stroke-width="1.5" stroke-dasharray="3 3" fill="none" />
+                    <path d="M 85 0 C 85 24, 152 28, 152 68" stroke="#E2E8F0" stroke-width="1.5" stroke-dasharray="3 3" fill="none" />
+                  </svg>
+
+                  <!-- Horizontal Selector Track -->
+                  <div class="nx-stage-track">
+                    <div class="nx-track-item">A</div>
+                    <div class="nx-track-item is-active">
+                      <span>B</span>
+                      <!-- "You" Pointer Tooltip -->
+                      <div class="nx-track-tooltip">
+                        <svg class="nx-track-pointer-icon" viewBox="0 0 24 24">
+                          <polygon points="3 3 10 21 14 14 21 10 3 3" />
+                        </svg>
+                        <span>You</span>
+                      </div>
+                    </div>
+                    <div class="nx-track-item">C</div>
+                    <div class="nx-track-item">D</div>
                   </div>
                 </div>
-                <h3 class="nx-proto-card-h3">Work direct</h3>
-                <p class="nx-proto-card-desc">Agree terms and pay the creator yourself. No escrow lockup, no percentage markup, no middleman.</p>
+
+                <p class="nx-how-card-desc">
+                  Filter by craft, city, gear and day rate. Direct verified storefronts ready on active standby.
+                </p>
               </div>
 
-              <!-- Interactive Subsurface Stage -->
-              <div class="nx-proto-stage">
-                <div class="nx-proto-tag-row">
-                  <span class="nx-proto-micro-tag" style="background:#F0FDF4;color:#15803D;border-color:rgba(21,128,61,0.15)">0% Platform Fee</span>
-                  <span class="nx-proto-micro-tag">Same-Day ACH</span>
-                  <span class="nx-proto-micro-tag">100% IP Retained</span>
-                </div>
-                <div class="nx-proto-preview-box">
-                  <div class="nx-proto-preview-title">
-                    <span>Direct Commercial Settlement</span>
-                    <span style="color:#16A34A;font-size:11px;font-weight:700">Zero Toll</span>
+              <!-- ── CARD 2: 48-Hours Updates (Chat + Glowing Blue Pill) ── -->
+              <div class="nx-how-card is-card-2" onclick="openInquiryModal('Curated Director', 'Commercial Roster')" style="cursor:pointer" title="Click to test inquiry flow">
+                <h3 class="nx-how-card-title">Direct 30-Sec Inquiry</h3>
+
+                <!-- Center Stage: Chat Bubbles + Glowing Blue Pill Button -->
+                <div class="nx-how-visual-stage">
+                  <div class="nx-chat-stream">
+                    <!-- Client Chat Bubble (Left) -->
+                    <div class="nx-chat-bubble-row is-left">
+                      <div class="nx-chat-avatar is-blue">N</div>
+                      <div class="nx-chat-bubble">
+                        <span class="nx-chat-pill-bar"></span>
+                      </div>
+                    </div>
+
+                    <!-- Creator Chat Bubble (Right) with Heart Emoji -->
+                    <div class="nx-chat-bubble-row is-right">
+                      <div class="nx-chat-bubble">
+                        <span class="nx-chat-pill-bar is-short"></span>
+                      </div>
+                      <div class="nx-chat-avatar is-photo">
+                        <span class="nx-chat-emoji" aria-hidden="true">🎬</span>
+                        <span>EV</span>
+                      </div>
+                    </div>
+
+                    <!-- The Glowing 3D Electric Blue Pill Button (Exact Match to Reference) -->
+                    <div>
+                      <button class="nx-glowing-blue-btn" type="button" onclick="event.stopPropagation(); openInquiryModal('Curated Director', 'Commercial Roster')">
+                        30 - Second Dispatch
+                      </button>
+                    </div>
                   </div>
-                  <div class="nx-proto-preview-sub">100% Creator owned master files &amp; raw deliverables</div>
                 </div>
-                <div class="nx-proto-status-pill">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Direct Terms Confirmed</span>
-                </div>
+
+                <p class="nx-how-card-desc">
+                  Share your date, budget and scope in 30 seconds. The creator hears from you directly.
+                </p>
               </div>
 
-              <div class="nx-proto-card-foot">
-                <a href="#fees" class="nx-proto-btn is-outline">
-                  <span>View Transparency</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
+              <!-- ── CARD 3: Approval & Repeat (3D Stacked Documents + Green Check) ── -->
+              <div class="nx-how-card is-card-3">
+                <h3 class="nx-how-card-title">Approval &amp; Settle</h3>
+
+                <!-- Center Stage: 3D Stacked Fanned Contracts + Glowing Green Badge -->
+                <div class="nx-how-visual-stage">
+                  <div class="nx-docs-stage">
+                    <!-- Sheet 1 (Angled Left) -->
+                    <div class="nx-doc-sheet sheet-1">
+                      <span class="nx-doc-line is-full"></span>
+                      <span class="nx-doc-line"></span>
+                    </div>
+
+                    <!-- Sheet 2 (Angled Right) -->
+                    <div class="nx-doc-sheet sheet-2">
+                      <span class="nx-doc-line is-full"></span>
+                      <span class="nx-doc-line"></span>
+                      <span class="nx-doc-line is-short"></span>
+                    </div>
+
+                    <!-- Main Sheet (Centered Front) -->
+                    <div class="nx-doc-sheet sheet-main">
+                      <span class="nx-doc-line is-full" style="height:8px;background:#CBD5E1"></span>
+                      <span class="nx-doc-line is-full"></span>
+                      <span class="nx-doc-line"></span>
+                      <span class="nx-doc-line is-short"></span>
+                      <div class="nx-doc-logo-mark">✓</div>
+                    </div>
+
+                    <!-- Glowing 3D Green Checkmark Badge (Exact Match to Reference) -->
+                    <div class="nx-glowing-green-check" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="nx-how-card-desc">
+                  We're not done until you say, 'yep, that's perfect.' Zero escrow, zero markup, 100% IP retained.
+                </p>
               </div>
+
+            </div>
+
+            <!-- Step 2 Annotation (Bottom Center) -->
+            <div class="nx-step-annotation step-2-anno" aria-hidden="true">
+              <span>Step 2</span>
+              <svg class="nx-step-arrow-svg" viewBox="0 0 40 40">
+                <path d="M 8 26 C 18 28, 28 24, 30 10" />
+                <polyline points="24 12 30 9 33 16" />
+              </svg>
             </div>
 
           </div>
