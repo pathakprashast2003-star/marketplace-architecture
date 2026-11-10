@@ -4253,41 +4253,63 @@
       display: none;
     }
 
-    #roster .nx-filter-btn {
-      font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
+    #roster .nx-filter-btn,
+    #roster .nx-filter-btn.filter-scenarios {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', var(--font-body, 'Plus Jakarta Sans'), sans-serif;
       font-size: 13px;
-      font-weight: 650;
+      font-weight: 500;
+      letter-spacing: -0.01em;
       padding: 8px 16px;
       border-radius: 999px;
-      border: 1px solid rgba(20, 17, 15, 0.12);
-      background: #FFFFFF;
-      color: #57534E;
+      border: 1px solid rgba(15, 23, 42, 0.09);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px) saturate(180%);
+      -webkit-backdrop-filter: blur(12px) saturate(180%);
+      color: #3A3A3C;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 7.5px;
       white-space: nowrap;
-      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 1px 2px rgba(20, 17, 15, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      transition: background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.2s ease,
+                  color 0.2s ease,
+                  transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.2s ease;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
     }
 
-    #roster .nx-filter-btn:hover {
-      background: #FDFCFB;
-      color: #14110F;
-      border-color: rgba(20, 17, 15, 0.24);
-      transform: translateY(-1.5px);
-      box-shadow: 0 3px 8px rgba(20, 17, 15, 0.06), inset 0 1px 0 rgba(255, 255, 255, 1);
+    #roster .nx-filter-btn:hover,
+    #roster .nx-filter-btn.filter-cinema:hover,
+    #roster .nx-filter-btn.filter-aerial:hover,
+    #roster .nx-filter-btn.filter-art:hover,
+    #roster .nx-filter-btn.filter-spatial:hover,
+    #roster .nx-filter-btn.filter-action:hover,
+    #roster .nx-filter-btn.filter-scenarios:hover {
+      background: #FFFFFF;
+      color: #1D1D1F;
+      border-color: rgba(15, 23, 42, 0.18);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.06);
     }
 
-    #roster .nx-filter-btn:active {
-      transform: translateY(0.5px) scale(0.98);
+    #roster .nx-filter-btn:active,
+    #roster .nx-filter-btn.filter-scenarios:active {
+      transform: scale(0.975);
+      transition: transform 100ms ease-out;
     }
 
-    #roster .nx-filter-btn.is-active {
-      background: #14110F;
+    #roster .nx-filter-btn.is-active,
+    #roster .nx-filter-btn.filter-cinema.is-active,
+    #roster .nx-filter-btn.filter-aerial.is-active,
+    #roster .nx-filter-btn.filter-art.is-active,
+    #roster .nx-filter-btn.filter-spatial.is-active,
+    #roster .nx-filter-btn.filter-action.is-active,
+    #roster .nx-filter-btn.filter-scenarios.is-active {
+      background: #1D1D1F;
       color: #FFFFFF;
-      border-color: #14110F;
-      box-shadow: 0 3px 12px rgba(20, 17, 15, 0.25);
+      border-color: #1D1D1F;
+      box-shadow: 0 2px 10px rgba(29, 29, 31, 0.18);
     }
 
     #roster .nx-filter-btn::after {
@@ -4295,102 +4317,34 @@
     }
 
     #roster .nx-filter-count {
-      background: #C55221; /* Warm terracotta highlight badge */
+      background: rgba(255, 255, 255, 0.22);
       color: #FFFFFF;
       font-size: 11px;
-      font-weight: 750;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
       min-width: 19px;
       height: 19px;
       border-radius: 999px;
       display: inline-grid;
       place-items: center;
-      padding: 0 5.5px;
-      box-shadow: 0 0 8px rgba(197, 82, 33, 0.45);
-    }
-
-    #roster .nx-filter-btn:not(.is-active) .nx-filter-count {
-      background: rgba(20, 17, 15, 0.08);
-      color: #57534E;
+      padding: 0 6px;
       box-shadow: none;
     }
 
-    /* Craft Discipline Filter Micro-Dots */
-    #roster .nx-filter-dot {
-      width: 6.5px;
-      height: 6.5px;
-      border-radius: 50%;
-      flex: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    #roster .nx-filter-btn:not(.is-active) .nx-filter-count {
+      background: rgba(118, 118, 128, 0.11);
+      color: #3A3A3C;
+      box-shadow: none;
     }
 
-    #roster .nx-filter-btn:hover .nx-filter-dot {
-      transform: scale(1.3);
-    }
-
-    /* Cinema: Warm Amber */
-    #roster .dot-cinema { background: #D97706; box-shadow: 0 0 5px rgba(217, 119, 6, 0.6); }
-    #roster .nx-filter-btn.filter-cinema:hover,
-    #roster .nx-filter-btn.filter-cinema.is-active {
-      background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
-      border-color: rgba(217, 119, 6, 0.45);
-      color: #92400E;
-      box-shadow: 0 2px 10px rgba(217, 119, 6, 0.18);
-    }
-
-    /* Aerial: Alpine Azure */
-    #roster .dot-aerial { background: #0284C7; box-shadow: 0 0 5px rgba(2, 132, 199, 0.6); }
-    #roster .nx-filter-btn.filter-aerial:hover,
-    #roster .nx-filter-btn.filter-aerial.is-active {
-      background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
-      border-color: rgba(2, 132, 199, 0.45);
-      color: #0369A1;
-      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.18);
-    }
-
-    /* Illustration: Royal Orchid */
-    #roster .dot-art { background: #9333EA; box-shadow: 0 0 5px rgba(147, 51, 234, 0.6); }
-    #roster .nx-filter-btn.filter-art:hover,
-    #roster .nx-filter-btn.filter-art.is-active {
-      background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 100%);
-      border-color: rgba(147, 51, 234, 0.45);
-      color: #6B21A8;
-      box-shadow: 0 2px 10px rgba(147, 51, 234, 0.18);
-    }
-
-    /* Spatial 3D: VisionOS Emerald */
-    #roster .dot-spatial { background: #059669; box-shadow: 0 0 5px rgba(5, 150, 105, 0.6); }
-    #roster .nx-filter-btn.filter-spatial:hover,
-    #roster .nx-filter-btn.filter-spatial.is-active {
-      background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
-      border-color: rgba(5, 150, 105, 0.45);
-      color: #065F46;
-      box-shadow: 0 2px 10px rgba(5, 150, 105, 0.18);
-    }
-
-    /* Action: Vermilion Coral */
-    #roster .dot-action { background: #E11D48; box-shadow: 0 0 5px rgba(225, 29, 72, 0.6); }
-    #roster .nx-filter-btn.filter-action:hover,
-    #roster .nx-filter-btn.filter-action.is-active {
-      background: linear-gradient(135deg, #FFF1F2 0%, #FFE4E6 100%);
-      border-color: rgba(225, 29, 72, 0.45);
-      color: #9F1239;
-      box-shadow: 0 2px 10px rgba(225, 29, 72, 0.18);
-    }
-
-    /* Scenarios: High-Voltage Saffron */
-    #roster .nx-filter-btn.filter-scenarios {
-      background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
-      border: 1px solid rgba(234, 88, 12, 0.35);
-      color: #9A3412;
-      font-weight: 750;
-      box-shadow: 0 1px 3px rgba(234, 88, 12, 0.10);
-    }
-    #roster .nx-filter-btn.filter-scenarios:hover,
-    #roster .nx-filter-btn.filter-scenarios.is-active {
-      background: linear-gradient(135deg, #FFEDD5 0%, #FED7AA 100%);
-      border-color: rgba(234, 88, 12, 0.60);
-      color: #7C2D12;
-      box-shadow: 0 3px 12px rgba(234, 88, 12, 0.22);
+    /* Hide decorative craft dots for monochrome Apple filter pills */
+    #roster .nx-filter-dot,
+    #roster .dot-cinema,
+    #roster .dot-aerial,
+    #roster .dot-art,
+    #roster .dot-spatial,
+    #roster .dot-action {
+      display: none;
     }
 
     /* ── 1. Elongated Full-Width Search Command Bar (Placed on Top) ── */
@@ -5297,140 +5251,96 @@
     #roster .pc-craft-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 4.5px 11px 4.5px 9px;
+      gap: 5px;
+      padding: 4.5px 11px;
       border-radius: 999px;
-      font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', var(--font-body, 'Plus Jakarta Sans'), sans-serif;
       font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      box-shadow: 0 1px 2px rgba(20, 17, 15, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.70);
-      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
+      background: rgba(118, 118, 128, 0.085);
+      border: 1px solid rgba(15, 23, 42, 0.075);
+      color: #1D1D1F;
+      box-shadow: none;
+      transition: background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.2s ease,
+                  transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     #roster .nx-talent-card:hover .pc-craft-badge {
-      transform: translateY(-1px);
-      box-shadow: 0 2px 6px rgba(20, 17, 15, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+      background: rgba(118, 118, 128, 0.13);
+      border-color: rgba(15, 23, 42, 0.11);
+      transform: none;
+      box-shadow: none;
     }
 
     #roster .pc-craft-dot {
-      width: 5.5px;
-      height: 5.5px;
-      border-radius: 50%;
-      flex: none;
+      display: none;
     }
 
-    /* Craft-Specific High-Chroma Signature Palettes */
-    #roster .pc-craft-badge.is-cinema {
-      background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
-      border: 1px solid rgba(245, 158, 11, 0.38);
-      color: #92400E;
-    }
-    #roster .pc-craft-badge.is-cinema .pc-craft-dot {
-      background: #D97706;
-      box-shadow: 0 0 6px rgba(217, 119, 6, 0.60);
-    }
-
-    #roster .pc-craft-badge.is-aerial {
-      background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
-      border: 1px solid rgba(14, 165, 233, 0.38);
-      color: #0369A1;
-    }
-    #roster .pc-craft-badge.is-aerial .pc-craft-dot {
-      background: #0284C7;
-      box-shadow: 0 0 6px rgba(2, 132, 199, 0.60);
-    }
-
-    #roster .pc-craft-badge.is-character {
-      background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 100%);
-      border: 1px solid rgba(168, 85, 247, 0.38);
-      color: #6B21A8;
-    }
-    #roster .pc-craft-badge.is-character .pc-craft-dot {
-      background: #9333EA;
-      box-shadow: 0 0 6px rgba(147, 51, 234, 0.60);
-    }
-
-    #roster .pc-craft-badge.is-2ndunit {
-      background: linear-gradient(135deg, #FEFCE8 0%, #FEF9C3 100%);
-      border: 1px solid rgba(234, 179, 8, 0.42);
-      color: #854D0E;
-    }
-    #roster .pc-craft-badge.is-2ndunit .pc-craft-dot {
-      background: #CA8A04;
-      box-shadow: 0 0 6px rgba(202, 138, 4, 0.60);
-    }
-
-    #roster .pc-craft-badge.is-spatial {
-      background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
-      border: 1px solid rgba(16, 185, 129, 0.38);
-      color: #065F46;
-    }
-    #roster .pc-craft-badge.is-spatial .pc-craft-dot {
-      background: #059669;
-      box-shadow: 0 0 6px rgba(5, 150, 105, 0.60);
-    }
-
+    /* Unified Neutral Monochrome Apple Badges */
+    #roster .pc-craft-badge.is-cinema,
+    #roster .pc-craft-badge.is-aerial,
+    #roster .pc-craft-badge.is-character,
+    #roster .pc-craft-badge.is-2ndunit,
+    #roster .pc-craft-badge.is-spatial,
     #roster .pc-craft-badge.is-pursuit {
-      background: linear-gradient(135deg, #FFF1F2 0%, #FFE4E6 100%);
-      border: 1px solid rgba(244, 63, 94, 0.38);
-      color: #9F1239;
-    }
-    #roster .pc-craft-badge.is-pursuit .pc-craft-dot {
-      background: #E11D48;
-      box-shadow: 0 0 6px rgba(225, 29, 72, 0.60);
+      background: rgba(118, 118, 128, 0.085);
+      border: 1px solid rgba(15, 23, 42, 0.075);
+      color: #1D1D1F;
     }
 
     /* Porcelain Location Badge */
     #roster .pc-loc-badge {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 4.5px 10px 4.5px 8px;
+      gap: 4.5px;
+      padding: 4.5px 10.5px 4.5px 8.5px;
       border-radius: 999px;
       background: #FFFFFF;
-      border: 1px solid rgba(20, 17, 15, 0.11);
-      color: #57534E;
-      font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+      border: 1px solid rgba(15, 23, 42, 0.09);
+      color: #515154;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', var(--font-body, 'Plus Jakarta Sans'), sans-serif;
       font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      box-shadow: 0 1px 2px rgba(20, 17, 15, 0.03), inset 0 1px 0 rgba(255, 255, 255, 0.85);
-      transition: border-color 0.2s, color 0.2s;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      box-shadow: none;
+      transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
     }
 
     #roster .pc-loc-pin {
-      color: #9CA3AF;
+      color: #86868B;
       flex: none;
     }
 
     #roster .nx-talent-card:hover .pc-loc-badge {
-      border-color: rgba(20, 17, 15, 0.20);
-      color: #14110F;
+      border-color: rgba(15, 23, 42, 0.16);
+      color: #1D1D1F;
     }
     #roster .nx-talent-card:hover .pc-loc-pin {
-      color: #4B5563;
+      color: #515154;
     }
 
-    /* Luxury Enameled Emerald Verified Seal (in kicker row on right) */
+    /* Monochrome Obsidian Apple Verified Seal */
     #roster .pc-verified-seal {
       display: inline-grid;
       place-items: center;
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: #10B981;
+      background: #1D1D1F;
       color: #FFFFFF;
       margin-left: auto;
       flex: none;
-      box-shadow: 0 1px 4px rgba(16, 185, 129, 0.35);
-      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14);
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s ease;
     }
 
     #roster .nx-talent-card:hover .pc-verified-seal {
-      transform: scale(1.12);
-      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.50);
+      transform: scale(1.06);
+      background: #000000;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
     }
 
     #roster .pc-name {
@@ -5475,7 +5385,7 @@
       text-overflow: ellipsis;
     }
 
-    /* ── CHROMATIC ATELIER SPEC TAGS (EQUIPMENT & FORMAT) ── */
+    /* ── APPLE MONOCHROME SPECIFICATION CHIPS (EQUIPMENT & FORMAT) ── */
     #roster .pc-notes-list {
       display: flex;
       flex-wrap: wrap;
@@ -5491,62 +5401,47 @@
     }
 
     #roster .pc-note-tag {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 4.5px 12px;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', var(--font-body, 'Plus Jakarta Sans'), sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
       border-radius: 999px;
       display: inline-flex;
       align-items: center;
-      gap: 6.5px;
-      letter-spacing: 0;
-      line-height: 1.25;
-      box-shadow: 0 1px 2px rgba(20, 17, 15, 0.03);
-      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
+      gap: 6px;
+      letter-spacing: -0.008em;
+      line-height: 1.3;
+      background: rgba(118, 118, 128, 0.08);
+      border: 1px solid rgba(15, 23, 42, 0.07);
+      color: #1D1D1F;
+      box-shadow: none;
+      transition: background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.2s ease,
+                  transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     #roster .pc-note-tag:hover {
-      transform: translateY(-1.5px);
+      background: rgba(118, 118, 128, 0.13);
+      border-color: rgba(15, 23, 42, 0.11);
+      transform: none;
+    }
+
+    #roster .pc-note-tag:active {
+      transform: scale(0.985);
+      transition: transform 100ms ease-out;
     }
 
     #roster .pc-note-bullet {
-      width: 5.5px;
-      height: 5.5px;
-      border-radius: 50%;
-      flex: none;
+      display: none;
     }
 
-    /* Tone 1: Amber / Terracotta */
-    #roster .pc-note-tone-amber {
-      background: #FFF7ED;
-      border: 1px solid rgba(249, 115, 22, 0.35);
-      color: #9A3412;
-    }
-    #roster .pc-note-tone-amber .pc-note-bullet {
-      background: #F97316;
-      box-shadow: 0 0 5px rgba(249, 115, 22, 0.50);
-    }
-
-    /* Tone 2: Iris / Electric Cobalt */
-    #roster .pc-note-tone-iris {
-      background: #EEF2FF;
-      border: 1px solid rgba(99, 102, 241, 0.35);
-      color: #3730A3;
-    }
-    #roster .pc-note-tone-iris .pc-note-bullet {
-      background: #4F46E5;
-      box-shadow: 0 0 5px rgba(79, 70, 229, 0.50);
-    }
-
-    /* Tone 3: Emerald Mint / Fresh Jade */
+    /* Neutralized tones — identical clean Apple specification fill */
+    #roster .pc-note-tone-amber,
+    #roster .pc-note-tone-iris,
     #roster .pc-note-tone-emerald {
-      background: #ECFDF5;
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      color: #065F46;
-    }
-    #roster .pc-note-tone-emerald .pc-note-bullet {
-      background: #10B981;
-      box-shadow: 0 0 5px rgba(16, 185, 129, 0.50);
+      background: rgba(118, 118, 128, 0.08);
+      border: 1px solid rgba(15, 23, 42, 0.07);
+      color: #1D1D1F;
     }
 
     /* ── UNIFIED EDITORIAL SPEC & TIMING STRIP (APPLE 3-COLUMN STRUCTURED GRID) ── */
@@ -5588,31 +5483,31 @@
     }
 
     #roster .pc-spec-star {
-      color: #F59E0B;
-      font-size: 12px;
+      color: #1D1D1F;
+      font-size: 11.5px;
       line-height: 1;
     }
 
     #roster .pc-spec-score {
-      font-weight: 700;
-      color: #14110F;
+      font-weight: 600;
+      color: #1D1D1F;
     }
 
     #roster .pc-spec-sub {
-      color: #78716C;
+      color: #86868B;
       font-weight: 500;
       font-size: 11px;
     }
 
     #roster .pc-spec-main {
-      font-weight: 700;
-      color: #14110F;
+      font-weight: 600;
+      color: #1D1D1F;
     }
 
     #roster .pc-spec-divider {
       width: 1px;
-      height: 16px;
-      background: rgba(20, 17, 15, 0.22);
+      height: 15px;
+      background: rgba(15, 23, 42, 0.14);
       flex: none;
       margin: 0;
     }
@@ -5622,18 +5517,19 @@
       align-items: center;
       justify-content: center;
       gap: 5.5px;
-      color: #15803D;
-      font-weight: 650;
+      color: #1D1D1F;
+      font-weight: 600;
       font-size: 11px;
       letter-spacing: -0.01em;
       white-space: nowrap;
     }
 
     #roster .pc-spec-pulse {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      background: #10B981;
+      background: #1D1D1F;
+      opacity: 0.65;
       flex: none;
     }
 
@@ -6041,13 +5937,15 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 6px 20px;
+      padding: 5.5px 16px;
       border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-      background: #FFF7ED;
-      color: #C2410C;
-      border: 1px solid rgba(194, 65, 12, 0.20);
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', var(--font-body, 'Plus Jakarta Sans'), sans-serif !important;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      background: rgba(118, 118, 128, 0.085);
+      color: #1D1D1F;
+      border: 1px solid rgba(15, 23, 42, 0.075);
     }
 
     #fees .ct-card-pill.is-hero-pill {
@@ -6276,11 +6174,11 @@
     #how .nx-how-line {
       width: 72px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.28));
+      background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.16));
     }
 
     #how .nx-how-line:last-child {
-      background: linear-gradient(270deg, transparent, rgba(79, 70, 229, 0.28));
+      background: linear-gradient(270deg, transparent, rgba(15, 23, 42, 0.16));
     }
 
     #how .nx-how-badge {
@@ -6289,17 +6187,18 @@
       gap: 6px;
       padding: 6px 18px;
       border-radius: 999px;
-      font-size: 11.5px;
-      font-weight: 700;
-      letter-spacing: 0.10em;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', var(--font-body, 'Plus Jakarta Sans'), sans-serif !important;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
       white-space: nowrap;
       text-transform: uppercase;
-      color: #4F46E5;
+      color: #1D1D1F;
       background: rgba(255, 255, 255, 0.80);
       backdrop-filter: blur(16px) saturate(180%);
       -webkit-backdrop-filter: blur(16px) saturate(180%);
-      border: 1px solid rgba(99, 102, 241, 0.22);
-      box-shadow: 0 2px 10px rgba(79, 70, 229, 0.07);
+      border: 1px solid rgba(15, 23, 42, 0.085);
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
     }
 
     #how .nx-how-title {
@@ -6565,25 +6464,27 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 5px 14px;
+      padding: 5.5px 14px;
       border-radius: 999px;
-      background: #ECFDF5;
-      border: 1px solid rgba(16, 185, 129, 0.28);
-      color: #065F46;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.09em;
+      background: rgba(118, 118, 128, 0.085);
+      border: 1px solid rgba(15, 23, 42, 0.075);
+      color: #1D1D1F;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', var(--font-body, 'Plus Jakarta Sans'), sans-serif !important;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
       margin-bottom: 14px;
       white-space: nowrap;
     }
 
     #founding .nx-cohort-dot {
-      width: 7px;
-      height: 7px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      background: #10B981;
-      box-shadow: 0 0 6px #10B981;
+      background: #1D1D1F;
+      opacity: 0.5;
+      box-shadow: none;
     }
 
     #founding .nx-found-title {
@@ -7174,9 +7075,14 @@
                   <span>Tabular View</span>
                 </button>
                 <a href="artisan_experience.html" class="nx-view-btn"
-                  style="text-decoration: none; border-color: rgba(246, 154, 100, 0.4); color: #3B0A24; background: #FFF4EC;"
+                  style="text-decoration: none;"
                   title="View 3D Mobile Studio">
-                  <span style="font-size: 12px;">🍦</span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2 3 7l9 5 9-5-9-5Z" />
+                    <path d="m3 17 9 5 9-5" />
+                    <path d="m3 12 9 5 9-5" />
+                  </svg>
                   <span>3D Mobile Studio</span>
                 </a>
               </div>
