@@ -569,12 +569,13 @@
         height: 100dvh;
         max-height: 100dvh;
         overflow: hidden;
-        padding: calc(56px + env(safe-area-inset-top)) 0 12px;
+        padding: 44px 0 14px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
+        overflow: hidden;
       }
 
       /* Compact top pill dock for layout switcher */
@@ -612,14 +613,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         width: 100%;
         height: 100%;
         max-width: 410px;
         margin: 0 auto;
         gap: 6px;
         overflow: visible;
-        padding-top: 8px;
+        padding-top: 64px;
       }
 
       /* Flatten left container so headline prefix sits at top, actions sit at bottom */
@@ -635,11 +636,11 @@
         display: inline-block !important;
       }
 
-      /* Centralized headline prefix above centered hero composition */
+      /* Centralized headline prefix: elevated a bit above */
       .headline-stack {
         order: 1;
         width: 100%;
-        margin: 0;
+        margin: -8px 0 2px;
         text-align: center;
         display: block;
         line-height: 1;
@@ -670,20 +671,24 @@
         flex: 1;
         min-height: 0;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         margin: 0;
         overflow: visible;
       }
 
-      /* Reset desktop right/bottom padding so character + CREATIVE EDGE backdrop center accurately */
+      /*
+       * KEY FIX: image-container-slot is now full-height and the image
+       * is anchored TOP so the boy's head/drone appear in the upper third.
+       * The CREATIVE EDGE backdrop is positioned absolutely at top:0
+       * so it falls exactly behind the hair and face.
+       */
       .image-container-slot {
         position: relative;
         height: 100%;
         width: 100%;
-        padding: 0;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         transform: none;
         overflow: visible;
@@ -695,11 +700,11 @@
         align-items: flex-start;
         justify-content: flex-start;
         position: absolute;
-        /* Left-edge anchor behind centered character's head/shoulders */
-        top: 50%;
+        /* Left-edge anchor, deliberate right bleed (magazine-style) */
+        top: 8%;
         left: 0;
         width: auto;
-        transform: translateY(-68%);
+        transform: none;
         pointer-events: none;
         z-index: 1;
         user-select: none;
@@ -708,24 +713,24 @@
 
       .mb-word {
         font-family: var(--font-display);
-        font-weight: 900;
-        line-height: 0.85;
+        font-weight: 750;
+        line-height: 0.88;
         color: var(--text-dark, #0A3219);
         text-transform: uppercase;
-        opacity: 1;
+        opacity: 0.28;
         letter-spacing: -0.02em;
         text-shadow: none;
       }
 
-      /* CREATIVE: fills full viewport width behind character head */
+      /* CREATIVE: fills full viewport width behind drone + hair */
       .mb-creative {
-        font-size: clamp(3.2rem, 17.5vw, 5.2rem);
+        font-size: clamp(3.0rem, 16vw, 4.8rem);
         letter-spacing: -0.02em;
       }
 
       /* EDGE: bigger, fills behind face + chest */
       .mb-edge {
-        font-size: clamp(3.6rem, 21vw, 6.2rem);
+        font-size: clamp(3.4rem, 19vw, 5.6rem);
         letter-spacing: -0.02em;
         margin-top: -0.07em;
       }
@@ -733,12 +738,12 @@
       #heroCharacterSlot {
         position: relative;
         z-index: 2;
-        height: auto;
-        max-height: 90%;
+        height: 84%;
+        max-height: 84%;
         width: auto;
-        max-width: 92%;
+        max-width: 88%;
         object-fit: contain;
-        object-position: center;
+        object-position: top center;
       }
 
       body[data-theme="sage"] #heroCharacterSlot,
