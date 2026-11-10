@@ -442,6 +442,7 @@
       height: auto;
       object-fit: contain;
       object-position: bottom center;
+      transform-origin: bottom center;
       filter: none;
       user-select: none;
       pointer-events: none;
@@ -915,27 +916,28 @@
       }
     }
 
-    /* ── DRAG & EDIT STUDIO (MOBILE ONLY) ── */
+    /* ── DRAG & EDIT STUDIO (MOBILE & LAPTOP) ── */
     .editor-toggle-btn {
       position: fixed;
-      top: 16px;
-      left: 20px;
+      top: 24px;
+      left: 24px;
       z-index: 10001;
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.8);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.24);
       border-radius: 999px;
-      padding: 6px 14px;
+      padding: 7px 15px;
+      min-height: 36px;
       color: #FFFFFF;
       font-family: inherit;
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
-      display: none;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.24);
       transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
       user-select: none;
     }
@@ -951,15 +953,30 @@
       box-shadow: 0 0 20px rgba(37, 99, 235, 0.55);
     }
 
+    @media (min-width: 901px) and (max-width: 1180px) {
+      .editor-toggle-btn {
+        top: auto;
+        bottom: 20px;
+        left: 24px;
+      }
+
+      .editor-hud {
+        max-width: 540px;
+      }
+    }
+
     @media (min-width: 901px) {
-      .editor-toggle-btn,
-      .editor-hud,
-      body.is-editing .editor-hud,
       .mobile-hero-header,
       .mobile-nav-drawer,
       .mobile-share-btn,
       .bg-wave-svg-mobile {
         display: none !important;
+      }
+
+      .editor-hud {
+        bottom: 18px;
+        max-width: min(580px, calc(100vw - 32px));
+        width: calc(100% - 32px);
       }
     }
 
@@ -993,6 +1010,23 @@
       cursor: grab;
       pointer-events: auto !important;
       touch-action: none;
+    }
+
+    body.is-editing .ct-art-img,
+    body.is-editing .nx-card-step-img,
+    body.is-editing #roster .nx-stage-img,
+    body.is-editing #roster .pc-stage.mode-persona .pc-breakout-fig,
+    body.is-editing #roster .nx-talent-grid:not(.is-reels) .pc-stage:not(.mode-media) .pc-breakout-fig,
+    body.is-editing #roster .pc-stage.mode-media .pc-media-wrap img.is-active,
+    body.is-editing #roster .nx-talent-grid.is-reels .pc-stage:not(.mode-persona) .pc-media-wrap img.is-active {
+      pointer-events: auto !important;
+      cursor: pointer !important;
+    }
+
+    body.is-editing .nx-film-sticker,
+    body.is-editing .nx-film-sticker * {
+      pointer-events: auto !important;
+      cursor: grab !important;
     }
 
     body.is-editing [contenteditable="true"] {
@@ -1246,6 +1280,57 @@
 
     .hud-btn-primary:hover {
       background: #1D4ED8;
+    }
+
+    .hud-img-size-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+
+    .hud-size-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #CBD5E1;
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+
+    .hud-size-step {
+      min-width: 26px;
+      height: 24px;
+      padding: 0 7px;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .hud-size-slider {
+      flex: 1;
+      min-width: 80px;
+      height: 5px;
+      accent-color: #3B82F6;
+      cursor: pointer !important;
+    }
+
+    .hud-size-val {
+      min-width: 44px;
+      height: 24px;
+      padding: 0 7px;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #60A5FA;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
     }
 
     /* ── DYNAMIC THEME & SLIDESHOW CAPSULES ── */
@@ -6251,7 +6336,7 @@
       border: none;
       box-shadow: none;
       margin-bottom: 18px;
-      overflow: hidden;
+      overflow: visible;
     }
 
     #fees .ct-art-img {
@@ -7151,7 +7236,7 @@
     </a>
   </div>
 
-  <!-- ── DRAG & EDIT STUDIO (MOBILE ONLY <= 900px) ── -->
+  <!-- ── DRAG & EDIT STUDIO (MOBILE & LAPTOP) ── -->
   <button id="editorToggle" class="editor-toggle-btn" type="button" aria-label="Toggle Drag and Edit Mode">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -7164,14 +7249,21 @@
   <aside id="editorHud" class="editor-hud" aria-label="Editor Controls">
     <div class="hud-header">
       <div style="display: flex; align-items: center; gap: 7px;">
-        <span class="hud-mode-badge" title="Editing enabled strictly on mobile (&lt;= 900px)">Mobile</span>
+        <span class="hud-mode-badge" title="Editing enabled on mobile and laptop">Laptop</span>
         <span>Target: <span id="hudTargetName" class="hud-target-name">CREATIVE EDGE</span></span>
         <span id="hudSaveToast" class="hud-save-toast">✓ Saved</span>
       </div>
       <span id="hudCoords" class="hud-coords">Drag on screen to reposition</span>
     </div>
     <div class="hud-chips">
-      <!-- Dynamically generated for mobile hero editing -->
+      <!-- Dynamically generated for hero editing -->
+    </div>
+    <div class="hud-img-size-row" id="hudImgSizeRow">
+      <span class="hud-size-label">Img Size</span>
+      <button class="hud-btn hud-size-step" type="button" id="hudImgMinus" title="Reduce Image Size (−6%)">−</button>
+      <input type="range" id="hudImgRange" class="hud-size-slider" min="40" max="200" step="2" value="100" aria-label="Adjust selected image size" />
+      <button class="hud-btn hud-size-step" type="button" id="hudImgPlus" title="Increase Image Size (+6%)">+</button>
+      <button class="hud-btn hud-size-val" type="button" id="hudImgScaleVal" title="Click to reset image size to 100%">100%</button>
     </div>
     <div class="hud-actions">
       <div style="display: flex; gap: 4px; flex-wrap: wrap;">
@@ -7179,8 +7271,6 @@
         <button class="hud-btn" type="button" id="hudDockDown" title="Nudge Action Dock Down">Dock ↓</button>
         <button class="hud-btn" type="button" id="hudColorCycle"
           title="Cycle Color between Dark, Blue, and White">Color</button>
-        <button class="hud-btn" type="button" id="hudImgMinus" title="Reduce Character Size by 5%">Img -</button>
-        <button class="hud-btn" type="button" id="hudImgPlus" title="Increase Character Size by 5%">Img +</button>
         <button class="hud-btn" type="button" id="hudPickImage" title="Upload or choose image for this character">Upload
           Img</button>
         <input type="file" id="hudFileInput" accept="image/*" style="display:none;" />
@@ -8499,7 +8589,8 @@
       // Decode the next image before any motion starts, so the swap never stalls mid-animation
       if (!switchTheme.decoded) {
         switchTheme.latest = themeKey;
-        const src = (window.innerWidth <= 900 ? localStorage.getItem('custom_img_' + themeKey + '_mobile') : null) || THEME_PRESETS[themeKey].imgSrc;
+        const vpKey = window.innerWidth <= 900 ? 'mobile' : 'desktop';
+        const src = localStorage.getItem('custom_img_' + themeKey + '_' + vpKey) || THEME_PRESETS[themeKey].imgSrc;
         const pre = new Image(); pre.src = src;
         decodedImages[pre.src] = decodedImages[pre.src] || pre.decode().catch(() => { });
         decodedImages[pre.src].then(() => requestAnimationFrame(() => {
@@ -8542,9 +8633,13 @@
         const r = img.getBoundingClientRect();
         document.querySelectorAll('.wheel-ghost').forEach(g => g.remove());
         const ghost = img.cloneNode();
-        // bare copy: only the picture. Cloned edit markers (data-dragged etc.) made the editor's reset wipe its position
+        // bare copy: only the picture. Cloned edit markers (data-dragged etc.) and custom scale must not carry onto ghost
         [...ghost.attributes].forEach(a => { if (a.name !== 'src' && a.name !== 'alt') ghost.removeAttribute(a.name); });
         // keep the picture's own proportions inside a box that may be larger than the picture
+        ghost.style.scale = '';
+        ghost.style.maxWidth = '';
+        ghost.style.maxHeight = '';
+        ghost.style.transformOrigin = '';
         ghost.style.objectFit = getComputedStyle(img).objectFit; ghost.style.objectPosition = getComputedStyle(img).objectPosition;
         ghost.removeAttribute('id');
         ghost.className = 'wheel-ghost';
@@ -8573,7 +8668,8 @@
       (() => {
         body.setAttribute('data-theme', themeKey);
         if (img) {
-          const customImg = window.innerWidth <= 900 ? localStorage.getItem('custom_img_' + themeKey + '_mobile') : null;
+          const vpKey = window.innerWidth <= 900 ? 'mobile' : 'desktop';
+          const customImg = localStorage.getItem('custom_img_' + themeKey + '_' + vpKey);
           img.src = customImg || data.imgSrc;
           img.alt = data.imgAlt;
         }
@@ -8695,10 +8791,11 @@
       }
     })();
 
-    /* ── DRAG & EDIT STUDIO ENGINE (STRICTLY MOBILE <= 900px) ── */
+    /* ── DRAG & EDIT STUDIO ENGINE (MOBILE & LAPTOP) ── */
     (function initDragAndEdit() {
       const toggleBtn = document.getElementById('editorToggle');
       const hud = document.getElementById('editorHud');
+      const hudModeBadge = hud ? hud.querySelector('.hud-mode-badge') : null;
       const hudTargetName = document.getElementById('hudTargetName');
       const hudCoords = document.getElementById('hudCoords');
       const hudClose = document.getElementById('hudClose');
@@ -8710,6 +8807,8 @@
       const hudColorCycle = document.getElementById('hudColorCycle');
       const hudImgMinus = document.getElementById('hudImgMinus');
       const hudImgPlus = document.getElementById('hudImgPlus');
+      const hudImgRange = document.getElementById('hudImgRange');
+      const hudImgScaleVal = document.getElementById('hudImgScaleVal');
       const hudDockUp = document.getElementById('hudDockUp');
       const hudDockDown = document.getElementById('hudDockDown');
       const hudSaveToast = document.getElementById('hudSaveToast');
@@ -8721,7 +8820,7 @@
       let initialLeft = 0, initialTop = 0;
       let hasMoved = false;
 
-      // Strictly mobile-only viewport editing guard (<= 900px); v12 isolates Times New Roman subtitle + pill-free mobile edits
+      // Viewport-isolated storage keys (dunes_custom_edits_v12_mobile_* vs dunes_custom_edits_v12_desktop_*)
       const STORAGE_PREFIX = 'dunes_custom_edits_v12_';
       try {
         for (const k of Object.keys(localStorage)) {
@@ -8730,6 +8829,36 @@
           }
         }
       } catch (e) { }
+
+      // Register section images below the hero for in-place resizing
+      function registerSectionImages() {
+        document.querySelectorAll('#fees .ct-art-img').forEach((imgEl, idx) => {
+          if (!imgEl.dataset.editKey) imgEl.dataset.editKey = `pricing-img-${idx}`;
+          imgEl.dataset.editSectionImg = 'true';
+        });
+        document.querySelectorAll('#how .nx-card-step-img').forEach((imgEl, idx) => {
+          if (!imgEl.dataset.editKey) imgEl.dataset.editKey = `step-img-${idx}`;
+          imgEl.dataset.editSectionImg = 'true';
+        });
+        document.querySelectorAll('#roster .nx-talent-card').forEach((cardEl, cardIdx) => {
+          const slug = (cardEl.dataset.name || `card-${cardIdx}`).replace(/[^a-z0-9]+/gi, '-');
+          const fig = cardEl.querySelector('.pc-breakout-fig');
+          if (fig) {
+            if (!fig.dataset.editKey) fig.dataset.editKey = `roster-persona-${slug}`;
+            fig.dataset.editSectionImg = 'true';
+          }
+          cardEl.querySelectorAll('.pc-media-wrap img').forEach((reelImg, rIdx) => {
+            if (!reelImg.dataset.editKey) reelImg.dataset.editKey = `roster-reel-${slug}-${rIdx}`;
+            reelImg.dataset.editSectionImg = 'true';
+          });
+        });
+        document.querySelectorAll('#roster .nx-stage-img').forEach((imgEl, idx) => {
+          if (!imgEl.dataset.editKey) imgEl.dataset.editKey = `roster-img-${idx}`;
+          imgEl.dataset.editSectionImg = 'true';
+        });
+      }
+      registerSectionImages();
+
       function isMobileViewport() {
         return window.innerWidth <= 900;
       }
@@ -8737,7 +8866,10 @@
         return isMobileViewport() ? 'mobile' : 'desktop';
       }
       function getStorageKey() {
-        return STORAGE_PREFIX + 'mobile';
+        return STORAGE_PREFIX + getActiveViewport();
+      }
+      function getSectionStorageKey() {
+        return STORAGE_PREFIX + getActiveViewport() + '_sections';
       }
 
       function showSavedToast() {
@@ -8756,7 +8888,7 @@
         return 'Character Image';
       }
 
-      // Unified mobile hero editable targets
+      // Unified hero editable targets (mobile & laptop)
       const targetMap = {
         'heroCharacterSlot': { el: () => document.getElementById('heroCharacterSlot'), name: 'Character Image', getDisplayName: getCharacterDisplayName, viewport: 'both' },
         'headline-stack': { el: () => document.querySelector('.headline-stack'), name: 'Headline Stack', viewport: 'both' },
@@ -8778,6 +8910,12 @@
       };
 
       function updateHudModeBadge() {
+        const isMob = isMobileViewport();
+        if (hudModeBadge) {
+          hudModeBadge.textContent = isMob ? 'Mobile' : 'Laptop';
+          hudModeBadge.classList.toggle('is-desktop', !isMob);
+          hudModeBadge.title = isMob ? 'Editing Mobile Layout (<= 900px)' : 'Editing Laptop / Desktop Layout (>= 901px)';
+        }
         document.body.classList.remove('preview-as-mobile');
       }
 
@@ -8786,11 +8924,9 @@
         if (!chipsContainer) return;
         chipsContainer.innerHTML = '';
 
-        if (!isMobileViewport()) return;
-
         Object.keys(targetMap).forEach(key => {
           const item = targetMap[key];
-          if (item.viewport === 'both' || item.viewport === 'mobile') {
+          if (item.viewport === 'both' || (isMobileViewport() ? item.viewport === 'mobile' : item.viewport === 'desktop')) {
             const btn = document.createElement('button');
             const isActive = activeTarget && getTargetKey(activeTarget) === key;
             btn.className = 'hud-chip' + (isActive ? ' active' : '');
@@ -8806,41 +8942,37 @@
         });
       }
 
-      function clearAllInlineStyles() {
+      function resetElementInline(el) {
+        if (!el || el.closest('.nx-film-sticker')) return;
+        el.style.left = '';
+        el.style.top = '';
+        el.style.position = '';
+        el.style.fontSize = '';
+        el.style.zIndex = '';
+        el.style.color = '';
+        el.style.scale = '';
+        el.style.transformOrigin = '';
+        el.style.maxHeight = '';
+        el.style.height = '';
+        el.style.maxWidth = '';
+        el.style.marginBottom = '';
+        el.style.marginTop = '';
+        el.style.right = '';
+        el.style.bottom = '';
+        el.removeAttribute('data-dragged');
+      }
+
+      function clearAllInlineStyles(includeSections = false) {
         document.querySelectorAll('[data-dragged="true"]').forEach(el => {
-          if (el.closest('#roster')) return; // Never touch roster elements or stickers
-          el.style.left = '';
-          el.style.top = '';
-          el.style.position = '';
-          el.style.fontSize = '';
-          el.style.zIndex = '';
-          el.style.color = '';
-          el.style.maxHeight = '';
-          el.style.height = '';
-          el.style.maxWidth = '';
-          el.style.marginBottom = '';
-          el.style.marginTop = '';
-          el.style.right = '';
-          el.style.bottom = '';
-          el.removeAttribute('data-dragged');
+          if (el.closest('.nx-film-sticker')) return;
+          if (!includeSections && el.dataset.editSectionImg === 'true') return;
+          resetElementInline(el);
         });
 
         Object.keys(targetMap).forEach(key => {
           const el = targetMap[key].el ? targetMap[key].el() : null;
-          if (!el || el.closest('#roster')) return;
-          el.style.left = '';
-          el.style.top = '';
-          el.style.position = '';
-          el.style.fontSize = '';
-          el.style.zIndex = '';
-          el.style.color = '';
-          el.style.maxHeight = '';
-          el.style.height = '';
-          el.style.maxWidth = '';
-          el.style.marginBottom = '';
-          el.style.marginTop = '';
-          el.style.right = '';
-          el.style.bottom = '';
+          if (!el) return;
+          resetElementInline(el);
           el.querySelectorAll('*').forEach(child => {
             child.style.color = '';
           });
@@ -8855,7 +8987,7 @@
       function getTargetKey(el) {
         if (!el) return null;
         if (el.id === 'heroCharacterSlot') return 'heroCharacterSlot';
-        if (el.dataset.editKey) return el.dataset.editKey;
+        if (el.dataset && el.dataset.editKey) return el.dataset.editKey;
         for (const k of Object.keys(targetMap)) {
           if (targetMap[k].el && targetMap[k].el() === el) return k;
         }
@@ -8870,14 +9002,49 @@
           return typeof targetMap[key].getDisplayName === 'function' ? targetMap[key].getDisplayName() : targetMap[key].name;
         }
         if (el.id === 'heroCharacterSlot') return getCharacterDisplayName();
+        if (el.closest('.nx-film-sticker')) return '35mm Camera Sticker';
+        if (el.classList.contains('pc-breakout-fig')) return el.alt || 'Roster 3D Character';
+        if (el.closest('.pc-media-wrap')) return el.alt || 'Roster Reel Photo';
+        if (el.classList.contains('ct-art-img')) return el.alt || 'Pricing Illustration';
+        if (el.classList.contains('nx-card-step-img')) return el.alt || 'Step Illustration';
+        if (el.classList.contains('nx-stage-img')) return el.alt || 'Roster Image';
         if (el.classList.contains('btn-discover')) return 'Button: Discover Talent';
         if (el.classList.contains('btn-join')) return 'Button: Join as Creator';
         if (el.classList.contains('hero-subheadline')) return 'Subtitle Copy';
         return el.tagName.toLowerCase() + (key ? ` (${key})` : '');
       }
 
+      function resolveImageTarget(el) {
+        const sticker = el ? el.closest('.nx-film-sticker') : null;
+        if (sticker) return sticker;
+        if (el && (el.tagName === 'IMG' || el.id === 'heroCharacterSlot')) return el;
+        return document.getElementById('heroCharacterSlot');
+      }
+
+      function getImageScalePct(el) {
+        const imgTarget = resolveImageTarget(el);
+        if (!imgTarget) return 100;
+        if (imgTarget.classList && imgTarget.classList.contains('nx-film-sticker')) {
+          return Math.round((parseFloat(imgTarget.dataset.scale || '1') || 1) * 100);
+        }
+        const s = parseFloat(imgTarget.style.scale || '1');
+        if (!isNaN(s) && s > 0) return Math.round(s * 100);
+        return 100;
+      }
+
+      function syncImgSizeUI(el) {
+        const pct = Math.min(200, Math.max(40, getImageScalePct(el || activeTarget)));
+        if (hudImgRange) hudImgRange.value = String(pct);
+        if (hudImgScaleVal) hudImgScaleVal.textContent = pct + '%';
+      }
+
       function selectTarget(keyOrEl) {
-        const el = typeof keyOrEl === 'string' ? (targetMap[keyOrEl] ? targetMap[keyOrEl].el() : document.getElementById(keyOrEl) || document.querySelector(`.${keyOrEl}`)) : keyOrEl;
+        let el = null;
+        if (typeof keyOrEl === 'string') {
+          el = targetMap[keyOrEl] ? targetMap[keyOrEl].el() : document.querySelector(`[data-edit-key="${keyOrEl}"]`) || document.getElementById(keyOrEl) || document.querySelector(`.${keyOrEl}`);
+        } else {
+          el = keyOrEl;
+        }
         if (!el) return;
         document.querySelectorAll('.drag-selected').forEach(n => n.classList.remove('drag-selected'));
         activeTarget = el;
@@ -8898,6 +9065,7 @@
           hudZToggle.textContent = z >= 12 ? 'Layer: In Front' : 'Layer: Behind';
         }
 
+        syncImgSizeUI(el);
         updateCoordsDisplay();
       }
 
@@ -8906,24 +9074,30 @@
         const left = activeTarget.style.left || 'default';
         const top = activeTarget.style.top || 'default';
         const font = activeTarget.style.fontSize ? ` • ${activeTarget.style.fontSize}` : '';
-        hudCoords.textContent = `X: ${left} | Y: ${top}${font}`;
+        const isImg = activeTarget.tagName === 'IMG' || activeTarget.classList.contains('nx-film-sticker');
+        const sizeNote = isImg ? ` • ${getImageScalePct(activeTarget)}%` : '';
+        if (activeTarget.dataset && activeTarget.dataset.editSectionImg === 'true') {
+          hudCoords.textContent = `Section Image • ${getImageScalePct(activeTarget)}%`;
+        } else {
+          hudCoords.textContent = `X: ${left} | Y: ${top}${font}${sizeNote}`;
+        }
       }
 
       function updateContentEditable(enabled) {
-        const allowEdit = Boolean(enabled && isMobileViewport());
+        const allowEdit = Boolean(enabled);
         const textElements = document.querySelectorAll(
           '.hero-viewport h1, .hero-viewport h2, .hero-viewport p, .hero-viewport span, .hero-viewport a, .hero-viewport button, .title-row, .hero-subheadline'
         );
         textElements.forEach(el => {
-          if (el.closest('#editorHud, #editorToggle, .character-theme-capsules, .preview-layout-switcher, .mobile-hero-header, #mobileShareBtn, .desktop-only')) return;
+          if (el.closest('#editorHud, #editorToggle, .character-theme-capsules, .preview-layout-switcher, .mobile-hero-header, #mobileShareBtn')) return;
+          if (isMobileViewport() && el.closest('.desktop-only')) return;
           el.contentEditable = allowEdit ? 'true' : 'false';
           el.spellcheck = false;
         });
       }
 
       function setEditMode(state) {
-        if (state && !isMobileViewport()) state = false;
-        isEditing = Boolean(state && isMobileViewport());
+        isEditing = Boolean(state);
         document.body.classList.toggle('is-editing', isEditing);
         if (toggleBtn) {
           toggleBtn.classList.toggle('active', isEditing);
@@ -8931,6 +9105,7 @@
           if (lbl) lbl.textContent = isEditing ? 'Editing ON' : 'Edit';
         }
 
+        updateHudModeBadge();
         updateContentEditable(isEditing);
 
         if (isEditing) {
@@ -8948,7 +9123,6 @@
       if (toggleBtn) {
         toggleBtn.addEventListener('click', (e) => {
           e.stopPropagation();
-          if (!isMobileViewport()) return;
           setEditMode(!isEditing);
         });
       }
@@ -8957,14 +9131,48 @@
         hudClose.addEventListener('click', () => setEditMode(false));
       }
 
-      // Universal click & pointer drag handling (Mobile Only)
+      // Prevent navigation or modal triggers while selecting/editing elements in Edit Mode
+      document.addEventListener('click', (e) => {
+        if (!isEditing) return;
+        if (e.target.closest('#editorToggle, #editorHud, .character-theme-capsules, #mobileShareBtn, .nx-sticker-resizer, .pc-mode-btn, .pc-carousel-arrow')) return;
+        if (e.target.closest('.hero-viewport a, .hero-viewport button, #how .nx-step-card, #roster .nx-talent-card, #fees a, #fees button')) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, true);
+
+      // Keep HUD slider synced if user clicks inline camera sticker + / - buttons
+      document.addEventListener('click', (e) => {
+        if (!isEditing) return;
+        if (e.target.closest('.nx-sticker-resizer')) {
+          const sticker = e.target.closest('.nx-film-sticker');
+          if (sticker) {
+            setTimeout(() => {
+              selectTarget(sticker);
+              showSavedToast();
+            }, 0);
+          }
+        }
+      });
+
+      // Universal click & pointer drag handling (Mobile & Laptop)
       document.addEventListener('pointerdown', (e) => {
-        if (!isEditing || !isMobileViewport()) return;
-        if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher, .character-theme-capsules, .mobile-hero-header, #mobileNavDrawer, #mobileShareBtn, #roster')) return;
+        if (!isEditing) return;
+        if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher, .character-theme-capsules, .mobile-hero-header, #mobileNavDrawer, #mobileShareBtn, .nx-sticker-resizer, .pc-mode-btn, .pc-carousel-arrow')) return;
+
+        // Allow selecting sticker or section images for size adjustments
+        const sectionImg = e.target.closest('.nx-film-sticker, #fees .ct-art-img, #how .nx-card-step-img, #roster .pc-breakout-fig, #roster .pc-media-wrap img, #roster .nx-stage-img');
+        if (sectionImg) {
+          registerSectionImages();
+          selectTarget(sectionImg);
+          return;
+        }
+
+        if (e.target.closest('#roster, #fees, #how, #founding')) return;
 
         const clickedTarget = e.target.closest(
           '#heroCharacterSlot, .title-row, .headline-stack, .hero-subheadline, .btn-discover, .btn-join, .action-row'
-        ) || e.target;
+        ) || (e.target.closest('.hero-viewport') ? e.target : null);
 
         if (!clickedTarget || clickedTarget === document.body || clickedTarget === document.documentElement) return;
 
@@ -9025,7 +9233,7 @@
 
       // Adjustments (Font, Scale, Dock, Color, Layer)
       function adjustFontSize(factor) {
-        if (!activeTarget || !isMobileViewport()) return;
+        if (!activeTarget || activeTarget.tagName === 'IMG' || activeTarget.classList.contains('nx-film-sticker')) return;
         const cur = parseFloat(window.getComputedStyle(activeTarget).fontSize);
         const next = Math.round(cur * factor);
         activeTarget.style.fontSize = next + 'px';
@@ -9034,30 +9242,62 @@
         saveEdits();
       }
 
-      function adjustImgScale(factor) {
-        if (!isMobileViewport()) return;
-        const sticker = activeTarget ? activeTarget.closest('.nx-film-sticker') : null;
-        if (sticker && typeof sticker._setScale === 'function') {
-          const cur = parseFloat(sticker.dataset.scale || 1);
-          sticker._setScale(cur * factor);
-          if (hudCoords) hudCoords.textContent = `Sticker Scale: ${Math.round(parseFloat(sticker.dataset.scale) * 100)}%`;
-          showSavedToast();
+      function getImgTransformOrigin(el) {
+        if (!el) return 'center center';
+        if (el.id === 'heroCharacterSlot') return 'bottom center';
+        if (el.classList && el.classList.contains('pc-breakout-fig')) return '50% 95%';
+        return 'center center';
+      }
+
+      function setElementScalePct(targetEl, rawPct, shouldSave = true) {
+        const imgTarget = resolveImageTarget(targetEl);
+        if (!imgTarget) return;
+        if (activeTarget !== imgTarget) {
+          selectTarget(imgTarget);
+        }
+
+        if (imgTarget.classList && imgTarget.classList.contains('nx-film-sticker') && typeof imgTarget._setScale === 'function') {
+          const clamped = Math.min(200, Math.max(40, Math.round(rawPct)));
+          imgTarget._setScale(clamped / 100);
+          syncImgSizeUI(imgTarget);
+          updateCoordsDisplay();
+          if (shouldSave) showSavedToast();
           return;
         }
 
-        const slot = (activeTarget && activeTarget.tagName === 'IMG') ? activeTarget : document.getElementById('heroCharacterSlot');
-        if (!slot) return;
-        const rectH = slot.getBoundingClientRect().height || 300;
-        const curDvh = parseFloat(slot.style.maxHeight) || Math.round((rectH / Math.max(window.innerHeight, 1)) * 100);
-        const nextDvh = Math.min(82, Math.max(18, Math.round(curDvh * factor)));
-        slot.style.maxHeight = nextDvh + 'dvh';
-        slot.style.maxWidth = '92vw';
-        slot.setAttribute('data-dragged', 'true');
-        saveEdits();
+        const pct = Math.min(200, Math.max(40, Math.round(rawPct)));
+        const scaleVal = (pct / 100).toFixed(2);
+        if (pct === 100) {
+          imgTarget.style.scale = '';
+          imgTarget.style.transformOrigin = '';
+          if (!imgTarget.style.left && !imgTarget.style.top && !imgTarget.style.maxHeight && !imgTarget.style.zIndex) {
+            imgTarget.removeAttribute('data-dragged');
+          }
+        } else {
+          imgTarget.style.transformOrigin = getImgTransformOrigin(imgTarget);
+          imgTarget.style.scale = scaleVal;
+          imgTarget.setAttribute('data-dragged', 'true');
+        }
+
+        syncImgSizeUI(imgTarget);
+        updateCoordsDisplay();
+        if (shouldSave) {
+          if (imgTarget.dataset && imgTarget.dataset.editSectionImg === 'true') {
+            saveSectionImageEdits();
+          } else {
+            saveEdits();
+          }
+        }
+      }
+
+      function nudgeImgScale(deltaPct) {
+        const imgTarget = resolveImageTarget(activeTarget);
+        if (!imgTarget) return;
+        const cur = getImageScalePct(imgTarget);
+        setElementScalePct(imgTarget, cur + deltaPct, true);
       }
 
       function nudgeDock(deltaPx) {
-        if (!isMobileViewport()) return;
         const actionRow = document.querySelector('.action-row');
         if (!actionRow) return;
         const curMargin = parseFloat(window.getComputedStyle(actionRow).marginBottom) || 0;
@@ -9071,11 +9311,9 @@
       const hudFileInput = document.getElementById('hudFileInput');
       if (hudPickImage && hudFileInput) {
         hudPickImage.addEventListener('click', () => {
-          if (!isMobileViewport()) return;
           hudFileInput.click();
         });
         hudFileInput.addEventListener('change', (e) => {
-          if (!isMobileViewport()) return;
           const file = e.target.files && e.target.files[0];
           if (!file) return;
           const reader = new FileReader();
@@ -9084,7 +9322,9 @@
             const slot = (activeTarget && activeTarget.tagName === 'IMG') ? activeTarget : document.getElementById('heroCharacterSlot');
             if (slot) slot.src = dataUrl;
             try {
-              localStorage.setItem('custom_img_' + currentThemeKey + '_mobile', dataUrl);
+              if (slot && slot.id === 'heroCharacterSlot') {
+                localStorage.setItem('custom_img_' + currentThemeKey + '_' + getActiveViewport(), dataUrl);
+              }
             } catch (e) { }
             showSavedToast();
           };
@@ -9094,14 +9334,21 @@
 
       if (hudFontPlus) hudFontPlus.addEventListener('click', () => adjustFontSize(1.08));
       if (hudFontMinus) hudFontMinus.addEventListener('click', () => adjustFontSize(0.92));
-      if (hudImgMinus) hudImgMinus.addEventListener('click', () => adjustImgScale(0.92));
-      if (hudImgPlus) hudImgPlus.addEventListener('click', () => adjustImgScale(1.08));
+      if (hudImgMinus) hudImgMinus.addEventListener('click', () => nudgeImgScale(-6));
+      if (hudImgPlus) hudImgPlus.addEventListener('click', () => nudgeImgScale(6));
+      if (hudImgRange) {
+        hudImgRange.addEventListener('input', () => setElementScalePct(activeTarget, +hudImgRange.value, false));
+        hudImgRange.addEventListener('change', () => setElementScalePct(activeTarget, +hudImgRange.value, true));
+      }
+      if (hudImgScaleVal) {
+        hudImgScaleVal.addEventListener('click', () => setElementScalePct(activeTarget, 100, true));
+      }
       if (hudDockUp) hudDockUp.addEventListener('click', () => nudgeDock(6));
       if (hudDockDown) hudDockDown.addEventListener('click', () => nudgeDock(-6));
 
       if (hudZToggle) {
         hudZToggle.addEventListener('click', () => {
-          if (!activeTarget || !isMobileViewport()) return;
+          if (!activeTarget) return;
           const curZ = parseInt(window.getComputedStyle(activeTarget).zIndex, 10) || 6;
           const nextZ = curZ >= 12 ? 3 : 16;
           activeTarget.style.zIndex = nextZ;
@@ -9113,7 +9360,7 @@
 
       if (hudColorCycle) {
         hudColorCycle.addEventListener('click', () => {
-          if (!activeTarget || !isMobileViewport()) return;
+          if (!activeTarget) return;
           const colors = ['#0F172A', '#E9520D', '#FF384D', '#FFFFFF', '#0B132B'];
           const cur = activeTarget.style.color || window.getComputedStyle(activeTarget).color;
           const next = colors[(colors.indexOf(cur) + 1) % colors.length] || colors[0];
@@ -9125,13 +9372,14 @@
         });
       }
 
-      // Responsive Copy CSS (Mobile Only)
+      // Responsive Copy CSS (adapts cleanly to active viewport)
       if (hudCopyCss) {
         hudCopyCss.addEventListener('click', () => {
-          if (!activeTarget || !isMobileViewport()) return;
+          if (!activeTarget) return;
           const key = getTargetKey(activeTarget);
           let sel = '.' + key;
           if (activeTarget.id) sel = '#' + activeTarget.id;
+          else if (activeTarget.dataset && activeTarget.dataset.editKey) sel = `[data-edit-key="${key}"]`;
 
           const top = activeTarget.style.top || 'auto';
           const left = activeTarget.style.left || 'auto';
@@ -9141,16 +9389,21 @@
           const mb = activeTarget.style.marginBottom || '';
           const mt = activeTarget.style.marginTop || '';
           const maxH = activeTarget.style.maxHeight || '';
+          const sc = activeTarget.style.scale || (activeTarget.dataset && activeTarget.dataset.scale && activeTarget.dataset.scale !== '1' ? activeTarget.dataset.scale : '');
 
-          let rules = `  top: ${top};\n  left: ${left};\n`;
+          let rules = '';
+          if (activeTarget.style.top || activeTarget.style.left) rules += `  top: ${top};\n  left: ${left};\n`;
+          if (sc) rules += `  scale: ${sc};\n`;
           if (font) rules += `  font-size: ${font};\n`;
           if (col) rules += `  color: ${col};\n`;
           if (mb) rules += `  margin-bottom: ${mb};\n`;
           if (mt) rules += `  margin-top: ${mt};\n`;
           if (maxH) rules += `  max-height: ${maxH};\n`;
           if (z) rules += `  z-index: ${z};\n`;
+          if (!rules) rules = `  /* Default sizing (scale: 1) */\n`;
 
-          const css = `/* Mobile (<900px) Overrides */\n@media (max-width: 900px) {\n  ${sel} {\n${rules}  }\n}`;
+          const mediaRule = isMobileViewport() ? '@media (max-width: 900px)' : '@media (min-width: 901px)';
+          const css = `/* ${isMobileViewport() ? 'Mobile' : 'Laptop'} Overrides (${currentThemeKey}) */\n${mediaRule} {\n  ${sel} {\n${rules}  }\n}`;
 
           if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(css).then(showCopiedNotice);
@@ -9167,24 +9420,28 @@
       }
 
       function showCopiedNotice() {
-        const orig = hudCopyCss.textContent;
-        hudCopyCss.textContent = '✓ Copied!';
+        const label = hudCopyCss.querySelector('span');
+        const orig = label ? label.textContent : hudCopyCss.textContent;
+        if (label) label.textContent = '✓ Copied!';
+        else hudCopyCss.textContent = '✓ Copied!';
         hudCopyCss.style.background = '#059669';
         setTimeout(() => {
-          hudCopyCss.textContent = orig;
+          if (label) label.textContent = orig;
+          else hudCopyCss.textContent = orig;
           hudCopyCss.style.background = '';
         }, 1500);
       }
 
-      // Reset active mobile adjustments
+      // Reset active adjustments for current viewport
       if (hudReset) {
         hudReset.addEventListener('click', () => {
-          if (!isMobileViewport()) return;
-          if (confirm('Reset custom adjustments for Mobile (<900px) on this character?')) {
+          const vpName = isMobileViewport() ? 'Mobile (<= 900px)' : 'Laptop (>= 901px)';
+          if (confirm(`Reset custom size & position adjustments for ${vpName} on this theme?`)) {
             try {
               localStorage.removeItem(getStorageKey() + '_' + currentThemeKey);
               localStorage.removeItem(getStorageKey() + '_' + currentThemeKey + '_texts');
-              localStorage.removeItem('custom_img_' + currentThemeKey + '_mobile');
+              localStorage.removeItem(getSectionStorageKey());
+              localStorage.removeItem('custom_img_' + currentThemeKey + '_' + getActiveViewport());
             } catch (e) { }
             const slot = document.getElementById('heroCharacterSlot');
             if (slot && THEME_PRESETS[currentThemeKey]) {
@@ -9194,8 +9451,9 @@
             if (subEl && THEME_PRESETS[currentThemeKey]) {
               subEl.textContent = THEME_PRESETS[currentThemeKey].subText;
             }
-            clearAllInlineStyles();
-            restoreEdits();
+            clearAllInlineStyles(true);
+            restoreEdits(true);
+            syncImgSizeUI(activeTarget);
             updateCoordsDisplay();
             showSavedToast();
           }
@@ -9203,7 +9461,6 @@
       }
 
       function saveTextEdits(el) {
-        if (!isMobileViewport()) return;
         const tKey = currentThemeKey;
         const key = getTargetKey(el);
         if (!key) return;
@@ -9220,7 +9477,6 @@
       }
 
       function restoreTextEdits() {
-        if (!isMobileViewport()) return;
         const tKey = currentThemeKey;
         try {
           const raw = localStorage.getItem(getStorageKey() + '_' + tKey + '_texts');
@@ -9239,18 +9495,47 @@
         } catch (e) { }
       }
 
-      // Universal Persistence per Mobile Viewport & Character
+      function saveSectionImageEdits() {
+        const data = {};
+        document.querySelectorAll('[data-edit-section-img="true"]').forEach(imgEl => {
+          const k = imgEl.dataset.editKey;
+          if (k && imgEl.style.scale) {
+            data[k] = { scale: imgEl.style.scale, transformOrigin: imgEl.style.transformOrigin || getImgTransformOrigin(imgEl) };
+          }
+        });
+        try {
+          if (Object.keys(data).length > 0) {
+            localStorage.setItem(getSectionStorageKey(), JSON.stringify(data));
+          } else {
+            localStorage.removeItem(getSectionStorageKey());
+          }
+        } catch (e) { }
+        showSavedToast();
+      }
+
+      function restoreSectionImageEdits() {
+        try {
+          const raw = localStorage.getItem(getSectionStorageKey());
+          if (!raw) return;
+          const data = JSON.parse(raw);
+          Object.keys(data).forEach(key => {
+            const el = document.querySelector(`[data-edit-key="${key}"]`);
+            if (el && data[key] && data[key].scale) {
+              el.style.transformOrigin = data[key].transformOrigin || getImgTransformOrigin(el);
+              el.style.scale = data[key].scale;
+              el.setAttribute('data-dragged', 'true');
+            }
+          });
+        } catch (e) { }
+      }
+
+      // Universal Persistence per Active Viewport (Mobile / Laptop) & Character Theme
       function saveEdits() {
-        if (!isMobileViewport()) return;
         const tKey = currentThemeKey;
         let data = {};
-        try {
-          const raw = localStorage.getItem(getStorageKey() + '_' + tKey);
-          if (raw) data = JSON.parse(raw);
-        } catch (e) { }
 
         document.querySelectorAll('[data-dragged="true"]').forEach(el => {
-          if (el.closest('#roster')) return;
+          if (el.closest('.nx-film-sticker') || el.dataset.editSectionImg === 'true') return;
           const key = getTargetKey(el);
           if (key && !key.includes('roster') && !key.includes('sticker')) {
             data[key] = {
@@ -9259,6 +9544,8 @@
               fontSize: el.style.fontSize || '',
               zIndex: el.style.zIndex || '',
               color: el.style.color || '',
+              scale: el.style.scale || '',
+              transformOrigin: el.style.transformOrigin || '',
               maxHeight: el.style.maxHeight || '',
               maxWidth: el.style.maxWidth || '',
               marginBottom: el.style.marginBottom || '',
@@ -9268,11 +9555,13 @@
         });
 
         const charSlot = document.getElementById('heroCharacterSlot');
-        if (charSlot && (charSlot.hasAttribute('data-dragged') || charSlot.style.left || charSlot.style.top || charSlot.style.maxHeight || charSlot.style.zIndex)) {
+        if (charSlot && (charSlot.hasAttribute('data-dragged') || charSlot.style.left || charSlot.style.top || charSlot.style.scale || charSlot.style.maxHeight || charSlot.style.zIndex)) {
           data['heroCharacterSlot'] = {
             left: charSlot.style.left || '',
             top: charSlot.style.top || '',
             bottom: charSlot.style.bottom || '',
+            scale: charSlot.style.scale || '',
+            transformOrigin: charSlot.style.transformOrigin || '',
             maxHeight: charSlot.style.maxHeight || '',
             maxWidth: charSlot.style.maxWidth || '',
             zIndex: charSlot.style.zIndex || ''
@@ -9280,32 +9569,31 @@
         }
 
         try {
-          localStorage.setItem(getStorageKey() + '_' + tKey, JSON.stringify(data));
+          if (Object.keys(data).length > 0) {
+            localStorage.setItem(getStorageKey() + '_' + tKey, JSON.stringify(data));
+          } else {
+            localStorage.removeItem(getStorageKey() + '_' + tKey);
+          }
         } catch (e) { }
         showSavedToast();
       }
 
-      function restoreEdits() {
-        clearAllInlineStyles();
+      function restoreEdits(includeSections = false) {
+        clearAllInlineStyles(includeSections);
         const tKey = currentThemeKey;
         const charSlot = document.getElementById('heroCharacterSlot');
 
-        // Laptop/Desktop (>900px) never receives mobile or legacy desktop edits
-        if (!isMobileViewport()) {
-          if (charSlot && THEME_PRESETS[tKey]) {
-            charSlot.src = THEME_PRESETS[tKey].imgSrc;
-          }
-          return;
-        }
-
         try {
-          let customImg = localStorage.getItem('custom_img_' + tKey + '_mobile');
+          let customImg = localStorage.getItem('custom_img_' + tKey + '_' + getActiveViewport());
           if (customImg && (customImg.includes('_bust.webp') || customImg.includes('character_drone_operator'))) customImg = null;
           if (charSlot) {
             charSlot.src = customImg || (THEME_PRESETS[tKey] ? THEME_PRESETS[tKey].imgSrc : charSlot.src);
           }
 
           restoreTextEdits();
+          if (includeSections) {
+            restoreSectionImageEdits();
+          }
 
           const raw = localStorage.getItem(getStorageKey() + '_' + tKey);
           if (raw) {
@@ -9318,7 +9606,7 @@
               if (!el) el = document.querySelector(`[data-edit-key="${key}"], .${key}`);
               if (el && data[key] && !el.closest('#roster')) {
                 const d = data[key];
-                const hasCustom = Boolean(d.left || d.top || d.bottom || d.fontSize || d.zIndex || d.color || d.maxHeight || d.maxWidth || d.marginBottom || d.marginTop);
+                const hasCustom = Boolean(d.left || d.top || d.bottom || d.fontSize || d.zIndex || d.color || d.scale || d.maxHeight || d.maxWidth || d.marginBottom || d.marginTop);
                 if (!hasCustom) return;
                 if (d.left) el.style.left = d.left;
                 if (d.top) el.style.top = d.top;
@@ -9329,9 +9617,11 @@
                   el.style.color = d.color;
                   el.querySelectorAll('*').forEach(n => n.style.color = d.color);
                 }
-                if (d.maxHeight) {
-                  el.style.maxHeight = d.maxHeight;
+                if (d.scale) {
+                  el.style.transformOrigin = d.transformOrigin || getImgTransformOrigin(el);
+                  el.style.scale = d.scale;
                 }
+                if (d.maxHeight) el.style.maxHeight = d.maxHeight;
                 if (d.maxWidth) el.style.maxWidth = d.maxWidth;
                 if (d.marginBottom) el.style.marginBottom = d.marginBottom;
                 if (d.marginTop) el.style.marginTop = d.marginTop;
@@ -9346,44 +9636,57 @@
         } catch (err) {
           console.warn('Failed restoring edits', err);
         }
+        if (isEditing) syncImgSizeUI(activeTarget);
       }
-      window.restoreCharacterImageEdits = restoreEdits;
+      window.restoreCharacterImageEdits = () => restoreEdits(false);
       window.refreshHudForThemeSwitch = function () {
-        if (!isMobileViewport() || !isEditing) return;
+        if (!isEditing) return;
         updateHudChipsForMode();
         if (activeTarget) selectTarget(activeTarget);
+        else selectTarget('heroCharacterSlot');
       };
 
-      // Live universal text editing listener (Mobile Only)
+      // Live universal text editing listener (Mobile & Laptop)
       document.addEventListener('input', (e) => {
-        if (!isEditing || !isMobileViewport()) return;
+        if (!isEditing) return;
         if (e.target.closest('#editorToggle, #editorHud, .preview-layout-switcher, .character-theme-capsules, .mobile-hero-header, #mobileShareBtn')) return;
         saveTextEdits(e.target);
       });
 
-      // Viewport crossover / resize watcher: auto-exit & strip edits on laptop
+      // Viewport crossover / resize watcher: swap isolated mobile <-> laptop layout state cleanly
       let lastViewport = getActiveViewport();
       window.addEventListener('resize', () => {
         const currentViewport = getActiveViewport();
-        if (!isMobileViewport() && isEditing) {
-          setEditMode(false);
-        }
         if (currentViewport !== lastViewport) {
           lastViewport = currentViewport;
-          clearAllInlineStyles();
-          restoreEdits();
-          updateHudChipsForMode();
           updateHudModeBadge();
-          if (isEditing && isMobileViewport()) {
+          restoreEdits(true);
+          updateHudChipsForMode();
+          if (isEditing) {
+            updateContentEditable(true);
             selectTarget('heroCharacterSlot');
           }
         }
       });
 
-      // Initial boot
+      // Initial boot & keep dynamically rendered roster cards registered/restored
       updateHudModeBadge();
       updateHudChipsForMode();
-      restoreEdits();
+      restoreEdits(true);
+
+      const syncDynamicRosterImages = () => {
+        registerSectionImages();
+        restoreSectionImageEdits();
+      };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', syncDynamicRosterImages);
+      } else {
+        setTimeout(syncDynamicRosterImages, 0);
+      }
+      const rosterGridEl = document.querySelector('#roster .nx-talent-grid');
+      if (rosterGridEl) {
+        new MutationObserver(syncDynamicRosterImages).observe(rosterGridEl, { childList: true });
+      }
     })();
   </script>
 
