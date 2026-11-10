@@ -603,158 +603,9 @@
         height: 100%;
       }
 
-      /* Mobile Header: Brand Left + Circular Hamburger Right */
-      .mobile-hero-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 440px;
-        margin: 0 auto;
-        padding: 0 18px;
-        height: 38px;
-        flex-shrink: 0;
-        position: relative;
-        z-index: 95;
-      }
-
-      .mobile-brand-lockup {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        text-decoration: none;
-        color: #1A100B;
-        font-family: var(--font-display);
-        font-size: 16.5px;
-        font-weight: 700;
-        letter-spacing: -0.025em;
-        line-height: 1;
-      }
-
-      .mobile-brand-mark {
-        width: 26px;
-        height: 20px;
-        display: block;
-        flex-shrink: 0;
-      }
-
-      .mobile-menu-btn {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.94);
-        border: 1px solid rgba(255, 255, 255, 0.98);
-        box-shadow: 0 6px 18px -2px rgba(15, 23, 42, 0.12);
-        color: #1A100B;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        flex-shrink: 0;
-        transition: transform 0.18s ease, box-shadow 0.18s ease;
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      .mobile-menu-btn:active {
-        transform: scale(0.94);
-      }
-
-      /* Mobile Navigation Drawer */
+      .mobile-hero-header,
       .mobile-nav-drawer {
-        display: none;
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        background: rgba(15, 10, 8, 0.36);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
-        padding: calc(max(12px, env(safe-area-inset-top)) + 50px) 18px 20px;
-        align-items: flex-start;
-        justify-content: flex-end;
-      }
-
-      .mobile-nav-drawer.is-open {
-        display: flex;
-      }
-
-      .mobile-nav-sheet {
-        width: min(320px, calc(100vw - 36px));
-        background: rgba(255, 255, 255, 0.96);
-        backdrop-filter: blur(22px);
-        -webkit-backdrop-filter: blur(22px);
-        border: 1px solid rgba(255, 255, 255, 0.95);
-        border-radius: 24px;
-        padding: 18px;
-        box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.24);
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        animation: dnSlideDown 0.24s cubic-bezier(0.16, 1, 0.3, 1) both;
-      }
-
-      .mobile-nav-sheet-head {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 2px 4px 10px;
-        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-        margin-bottom: 4px;
-      }
-
-      .mobile-nav-sheet-title {
-        font-family: var(--font-display);
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: #64748B;
-      }
-
-      .mobile-nav-close {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        border: 1px solid rgba(15, 23, 42, 0.1);
-        background: #F8FAFC;
-        color: #0F172A;
-        font-size: 14px;
-        font-weight: 700;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .mobile-nav-link {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 11px 12px;
-        border-radius: 14px;
-        text-decoration: none;
-        color: #1A100B;
-        font-size: 14.5px;
-        font-weight: 600;
-        transition: background-color 0.16s ease;
-      }
-
-      .mobile-nav-link:hover,
-      .mobile-nav-link:active {
-        background: rgba(15, 23, 42, 0.05);
-      }
-
-      .mobile-nav-link.is-accent {
-        background: #FFF4EC;
-        color: #9A3412;
-      }
-
-      .mobile-nav-cta-row {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        margin-top: 8px;
-        padding-top: 10px;
-        border-top: 1px solid rgba(15, 23, 42, 0.08);
+        display: none !important;
       }
 
       /* Compact top pill dock for layout switcher */
@@ -766,27 +617,28 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
         justify-content: flex-start;
         width: 100%;
         max-width: 440px;
         flex: 1;
         min-height: 0;
         margin: 0 auto;
-        padding: 46px 18px 0;
+        padding: 50px 16px 0;
         overflow: visible;
       }
 
       .hero-left-content {
-        position: static;
+        position: relative;
+        z-index: 10;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         justify-content: flex-start;
-        flex: 1;
-        min-height: 0;
+        flex: none;
         width: 100%;
         max-width: none;
+        text-align: center;
         pointer-events: none;
       }
 
@@ -800,18 +652,18 @@
         display: none !important;
       }
 
-      /* Full-opacity 4-row stacked display headline left-aligned using exact desktop theme colors */
+      /* Full-opacity 4-row stacked display headline centered using exact desktop theme colors */
       .headline-stack {
         width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-        font-size: clamp(2.75rem, 12.8vw, 3.45rem);
-        line-height: 0.92;
+        align-items: center;
+        text-align: center;
+        font-size: clamp(2.45rem, 11.4vw, 3.2rem);
+        line-height: 0.90;
         letter-spacing: -0.025em;
         font-weight: 800;
-        margin: 0 0 12px 0;
+        margin: 0 0 10px 0;
         padding: 0;
         position: relative;
         z-index: 10;
@@ -825,91 +677,96 @@
         display: block;
       }
 
-      /* ── RIGHT / LOWER-RIGHT FOREGROUND CHARACTER STAGE ── */
+      /* ── LOWER CENTERED FOREGROUND CHARACTER STAGE ── */
       .hero-right-stage {
-        position: absolute;
-        inset: 0;
+        position: relative;
+        flex: 1;
+        min-height: 0;
         width: 100%;
-        height: 100%;
+        height: auto;
         margin: 0;
         overflow: visible;
         pointer-events: none;
-        z-index: auto;
+        z-index: 6;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
       }
 
       .image-container-slot {
         position: relative;
         height: 100%;
         width: 100%;
-        padding: 0;
-        display: block;
+        padding: 6px 0 24px 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
         transform: none;
         overflow: visible;
       }
 
       #heroCharacterSlot {
-        position: absolute;
-        right: -12px;
-        bottom: 80px;
+        position: relative;
+        right: auto;
+        left: auto;
+        bottom: auto;
+        top: auto;
         z-index: 6;
         height: auto;
         width: auto;
-        max-height: 49dvh;
-        max-width: 74vw;
+        max-height: 94%;
+        max-width: 88vw;
         object-fit: contain;
-        object-position: bottom right;
+        object-position: bottom center;
         pointer-events: none;
       }
 
+      body[data-theme="sage"] .image-container-slot {
+        padding-bottom: 52px;
+      }
+
+      body[data-theme="lilac"] .image-container-slot {
+        padding-bottom: 42px;
+      }
+
       body[data-theme="sage"] #heroCharacterSlot {
-        max-height: 36dvh;
-        max-width: 94vw;
-        right: -6px;
-        bottom: 80px;
+        max-height: 88%;
+        max-width: 96vw;
         scale: 1;
       }
 
       body[data-theme="cobalt"] #heroCharacterSlot {
-        max-height: 49dvh;
-        max-width: 78vw;
-        right: -6px;
-        bottom: 80px;
+        max-height: 96%;
+        max-width: 88vw;
       }
 
       body[data-theme="lilac"] #heroCharacterSlot {
-        max-height: 37dvh;
-        max-width: 88vw;
-        right: -6px;
-        bottom: 80px;
+        max-height: 88%;
+        max-width: 92vw;
       }
 
       body[data-theme="amber"] #heroCharacterSlot {
-        max-height: 46.5dvh;
-        max-width: 69vw;
-        right: -14px;
-        bottom: 80px;
+        max-height: 98%;
+        max-width: 84vw;
       }
 
       body[data-theme="coral"] #heroCharacterSlot {
-        max-height: 42.5dvh;
-        max-width: 70vw;
-        right: -6px;
-        bottom: 80px;
+        max-height: 92%;
+        max-width: 88vw;
       }
 
-      /* ── EDITORIAL CONVERSION GROUP (LEFT SUBTITLE & STACKED CTAS + BOTTOM SPEC BAR) ── */
+      /* ── EDITORIAL CONVERSION GROUP (CENTERED SUBTITLE, DUAL CTAS + COMPACT PROOF PILL BELOW) ── */
       .hero-editorial-chunk {
         width: 100%;
-        flex: 1;
-        min-height: 0;
+        flex: none;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         justify-content: flex-start;
         gap: 0;
         margin: 0;
         padding: 0;
-        position: static;
+        position: relative;
         pointer-events: none;
       }
 
@@ -918,10 +775,10 @@
         line-height: 1.38;
         font-weight: 500;
         color: var(--text-secondary);
-        text-align: left;
-        max-width: 65%;
-        min-width: 175px;
-        margin: 0 0 14px 0;
+        text-align: center;
+        max-width: 295px;
+        min-width: 0;
+        margin: 0 auto 13px;
         position: relative;
         z-index: 10;
         pointer-events: auto;
@@ -929,13 +786,14 @@
 
       .action-row {
         display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: flex-start;
-        gap: 8px;
-        width: 148px;
-        max-width: 48%;
-        margin: 0;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 10px;
+        width: 100%;
+        max-width: 344px;
+        margin: 0 auto 11px;
         position: relative;
         z-index: 12;
         pointer-events: auto;
@@ -943,11 +801,12 @@
 
       .btn-discover,
       .btn-join {
-        width: 100%;
+        width: auto;
+        flex: 0 1 auto;
         justify-content: center;
         text-align: center;
-        padding: 11px 16px;
-        font-size: 12.75px;
+        padding: 10.5px 18px;
+        font-size: 12.25px;
         font-weight: 600;
         letter-spacing: -0.015em;
         border-radius: 9999px;
@@ -975,7 +834,7 @@
 
       /* Apple Frosted Acrylic Glass Secondary Button */
       .btn-join {
-        background: rgba(255, 255, 255, 0.92);
+        background: rgba(255, 255, 255, 0.94);
         color: #1A100B;
         border: 1px solid rgba(255, 255, 255, 0.98);
         box-shadow:
@@ -987,34 +846,33 @@
         transform: scale(0.96);
       }
 
-      /* Bottom Floating Spec Bar */
+      /* Centered Compact Spec Pill Below CTAs */
       .apple-spec-bar {
-        margin-top: auto;
-        margin-bottom: 38px;
-        align-self: stretch;
-        width: 100%;
-        max-width: none;
-        display: flex;
-        justify-content: space-between;
+        margin: 0 auto;
+        align-self: center;
+        width: fit-content;
+        max-width: calc(100vw - 24px);
+        display: inline-flex;
+        justify-content: center;
         align-items: center;
-        padding: 8px 8px;
-        border-radius: 22px;
-        background: rgba(255, 255, 255, 0.86);
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.88);
         backdrop-filter: blur(18px);
         -webkit-backdrop-filter: blur(18px);
-        border: 1px solid rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.96);
         box-shadow:
-          0 10px 26px -6px rgba(15, 23, 42, 0.16),
+          0 8px 20px -6px rgba(15, 23, 42, 0.12),
           inset 0 1px 1px rgba(255, 255, 255, 0.95);
         position: relative;
-        z-index: 14;
+        z-index: 12;
         pointer-events: auto;
       }
 
       .spec-item {
-        gap: 5px;
-        padding: 2px 3px;
-        flex: 1;
+        gap: 0;
+        padding: 1px 7px;
+        flex: 0 1 auto;
         min-width: 0;
         justify-content: center;
         display: inline-flex;
@@ -1022,26 +880,22 @@
       }
 
       .spec-icon {
-        width: 16px;
-        height: 16px;
-        color: #1A100B;
-        opacity: 0.92;
-        flex-shrink: 0;
+        display: none;
       }
 
       .spec-value {
-        font-size: 8.9px;
-        line-height: 1.15;
+        font-size: 8.6px;
+        line-height: 1.2;
         font-weight: 700;
         color: #1A100B;
-        letter-spacing: -0.012em;
-        white-space: normal;
-        text-align: left;
+        letter-spacing: 0.005em;
+        white-space: nowrap;
+        text-align: center;
       }
 
       .spec-divider {
         width: 1px;
-        height: 22px;
+        height: 11px;
         background: rgba(15, 23, 42, 0.14);
         margin: 0;
         flex-shrink: 0;
@@ -1051,7 +905,7 @@
       .mobile-share-btn {
         display: inline-flex;
         position: absolute;
-        bottom: max(10px, env(safe-area-inset-bottom));
+        bottom: max(12px, env(safe-area-inset-bottom));
         right: 16px;
         width: 32px;
         height: 32px;
@@ -1077,74 +931,78 @@
 
     @media (max-width: 900px) and (max-height: 740px) {
       .hero-grid {
-        padding: 46px 16px 0;
+        padding: 45px 14px 0;
       }
 
       .headline-stack {
-        font-size: clamp(2.2rem, 10.6vw, 2.7rem);
-        margin-bottom: 8px;
+        font-size: clamp(2.05rem, 9.6vw, 2.55rem);
+        margin-bottom: 7px;
       }
 
       .hero-subheadline {
-        font-size: 11.2px;
-        margin-bottom: 10px;
-        max-width: 64%;
+        font-size: 11px;
+        line-height: 1.32;
+        margin-bottom: 9px;
+        max-width: 270px;
       }
 
       .action-row {
-        width: 142px;
-        gap: 7px;
+        gap: 8px;
+        margin-bottom: 8px;
       }
 
       .btn-discover,
       .btn-join {
-        padding: 9px 14px;
-        font-size: 11.8px;
+        padding: 8.5px 15px;
+        font-size: 11.6px;
       }
 
       .apple-spec-bar {
-        margin-bottom: 36px;
-        padding: 7px 7px;
+        padding: 5px 8px;
+      }
+
+      .spec-item {
+        padding: 1px 5.5px;
+      }
+
+      .spec-value {
+        font-size: 8.2px;
+      }
+
+      .image-container-slot,
+      body[data-theme="sage"] .image-container-slot,
+      body[data-theme="lilac"] .image-container-slot {
+        padding: 4px 0 22px 0;
       }
 
       #heroCharacterSlot {
-        max-height: 42dvh;
-        bottom: 72px;
+        max-height: 92%;
+        max-width: 84vw;
       }
 
       body[data-theme="sage"] #heroCharacterSlot {
-        max-height: 29dvh;
-        max-width: 82vw;
-        right: -4px;
-        bottom: 72px;
+        max-height: 86%;
+        max-width: 92vw;
       }
 
       body[data-theme="lilac"] #heroCharacterSlot {
-        max-height: 30dvh;
-        max-width: 78vw;
-        right: -4px;
-        bottom: 72px;
+        max-height: 86%;
+        max-width: 88vw;
       }
 
       body[data-theme="cobalt"] #heroCharacterSlot {
-        max-height: 41dvh;
-        max-width: 66vw;
-        right: -4px;
-        bottom: 72px;
+        max-height: 94%;
+        max-width: 82vw;
       }
 
       body[data-theme="amber"] #heroCharacterSlot {
-        max-height: 41dvh;
-        max-width: 59vw;
-        right: -10px;
-        bottom: 72px;
+        max-height: 96%;
+        max-width: 78vw;
       }
 
       body[data-theme="coral"] #heroCharacterSlot {
-        max-height: 35dvh;
-        max-width: 60vw;
-        right: -4px;
-        bottom: 72px;
+        max-height: 90%;
+        max-width: 82vw;
       }
     }
 
@@ -1201,7 +1059,7 @@
         display: inline-flex;
         top: auto;
         right: auto;
-        bottom: max(10px, env(safe-area-inset-bottom));
+        bottom: max(12px, env(safe-area-inset-bottom));
         left: 16px;
         font-size: 11px;
         font-weight: 600;
@@ -1698,23 +1556,23 @@
 
     @media (max-width: 900px) {
       .character-theme-capsules {
-        top: calc(max(10px, env(safe-area-inset-top)) + 44px);
-        left: 14px;
-        right: 14px;
+        top: max(10px, env(safe-area-inset-top));
+        left: 12px;
+        right: 12px;
         width: fit-content;
-        max-width: calc(100vw - 28px);
+        max-width: calc(100vw - 24px);
         margin: 0 auto;
         transform: none !important;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        padding: 4px 5px;
+        padding: 3.5px 5px;
         gap: 3px;
-        background: rgba(255, 255, 255, 0.62);
+        background: rgba(255, 255, 255, 0.72);
         backdrop-filter: blur(18px);
         -webkit-backdrop-filter: blur(18px);
-        border: 1px solid rgba(255, 255, 255, 0.90);
-        box-shadow: 0 8px 22px -6px rgba(15, 23, 42, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(255, 255, 255, 0.92);
+        box-shadow: 0 8px 20px -6px rgba(15, 23, 42, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.95);
       }
 
       .character-theme-capsules::-webkit-scrollbar {
@@ -1722,13 +1580,13 @@
       }
 
       .theme-capsule-btn {
-        padding: 5px 10px;
-        font-size: 11px;
+        padding: 4.5px 9px;
+        font-size: 10.5px;
         font-weight: 600;
         color: rgba(26, 16, 11, 0.74);
         flex-shrink: 0;
         white-space: nowrap;
-        gap: 5px;
+        gap: 4.5px;
       }
 
       .theme-capsule-btn:hover {
@@ -1889,6 +1747,7 @@
     /* ── WHEEL SWITCH: characters ride a giant hidden wheel (pivot 1.6 heights below the feet) ── */
     .wheel-ghost {
       position: absolute !important;
+      z-index: 6;
       margin: 0 !important;
       max-width: none !important;
       max-height: none !important;
@@ -7515,33 +7374,7 @@
       </svg>
     </div>
 
-    <!-- ── MOBILE HERO HEADER BAR (HIDDEN ON DESKTOP) ── -->
-    <header class="mobile-hero-header">
-      <a href="#" class="mobile-brand-lockup" aria-label="Nexus Direct Home">
-        <svg class="mobile-brand-mark" viewBox="0 0 32 24" fill="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="nxBrandGrad" x1="4" y1="20" x2="28" y2="4" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#FF6B2B" />
-              <stop offset="100%" stop-color="#E9520D" />
-            </linearGradient>
-          </defs>
-          <path d="M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2" stroke="url(#nxBrandGrad)" stroke-width="4.8"
-            stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <span>Nexus Direct</span>
-      </a>
-      <button type="button" id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open navigation menu"
-        aria-expanded="false" aria-controls="mobileNavDrawer">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-          stroke-linecap="round" aria-hidden="true">
-          <line x1="4" y1="7" x2="20" y2="7" />
-          <line x1="4" y1="12" x2="20" y2="12" />
-          <line x1="4" y1="17" x2="20" y2="17" />
-        </svg>
-      </button>
-    </header>
-
-    <!-- ── TWO-COLUMN HERO GRID (DESKTOP) / ASYMMETRIC SPLIT COMPOSITION (MOBILE) ── -->
+    <!-- ── TWO-COLUMN HERO GRID (DESKTOP) / CENTERED COMPOSITION (MOBILE) ── -->
     <div class="hero-grid">
 
       <!-- LEFT: TWO-TONE HEADLINE & ACTIONS -->
@@ -7634,42 +7467,6 @@
     </button>
 
   </main>
-
-  <!-- ── MOBILE NAVIGATION DRAWER (HIDDEN ON DESKTOP) ── -->
-  <div id="mobileNavDrawer" class="mobile-nav-drawer" role="dialog" aria-modal="true"
-    aria-label="Mobile Navigation" aria-hidden="true">
-    <div class="mobile-nav-sheet">
-      <div class="mobile-nav-sheet-head">
-        <span class="mobile-nav-sheet-title">Nexus Direct</span>
-        <button type="button" id="mobileNavClose" class="mobile-nav-close" aria-label="Close navigation menu">✕</button>
-      </div>
-      <a href="#roster" class="mobile-nav-link" data-mobile-nav>
-        <span>Curated Roster</span>
-        <span aria-hidden="true">01</span>
-      </a>
-      <a href="#fees" class="mobile-nav-link" data-mobile-nav>
-        <span>0% Commission Economics</span>
-        <span aria-hidden="true">02</span>
-      </a>
-      <a href="#how" class="mobile-nav-link" data-mobile-nav>
-        <span>How Nexus Works</span>
-        <span aria-hidden="true">03</span>
-      </a>
-      <a href="#founding" class="mobile-nav-link" data-mobile-nav>
-        <span>Founding Roster</span>
-        <span aria-hidden="true">04</span>
-      </a>
-      <a href="artisan_experience.html" class="mobile-nav-link is-accent">
-        <span>🍦 3D Mobile Studio</span>
-        <span aria-hidden="true">↗</span>
-      </a>
-      <div class="mobile-nav-cta-row">
-        <a href="#roster" class="btn-discover" data-mobile-nav>Discover Talent →</a>
-        <button type="button" class="btn-join" id="mobileNavJoinBtn" style="border-width: 1px; cursor: pointer;">Join as
-          Creator</button>
-      </div>
-    </div>
-  </div>
 
   <!-- ── KINETIC ARCHITECTURAL TICKER RIBBON (PINTEREST / GODLY INSPO) ── -->
   <aside class="nx-ticker-strip" aria-label="Live Platform Spec Ticker">
@@ -9065,69 +8862,9 @@
     startAutoRotation();
     resetProgressBar();
 
-    /* ── MOBILE NAVIGATION DRAWER & QUICK SHARE CONTROL ── */
+    /* ── MOBILE QUICK SHARE CONTROL ── */
     (function initMobileChrome() {
-      const menuBtn = document.getElementById('mobileMenuBtn');
-      const drawer = document.getElementById('mobileNavDrawer');
-      const closeBtn = document.getElementById('mobileNavClose');
-      const joinBtn = document.getElementById('mobileNavJoinBtn');
       const shareBtn = document.getElementById('mobileShareBtn');
-
-      function setDrawerOpen(open) {
-        if (!drawer) return;
-        drawer.classList.toggle('is-open', open);
-        drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
-        if (menuBtn) menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      }
-
-      if (menuBtn && drawer) {
-        menuBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          setDrawerOpen(!drawer.classList.contains('is-open'));
-        });
-        drawer.addEventListener('click', (e) => {
-          if (e.target === drawer) setDrawerOpen(false);
-        });
-      }
-
-      if (closeBtn) {
-        closeBtn.addEventListener('click', () => setDrawerOpen(false));
-      }
-
-      document.querySelectorAll('[data-mobile-nav]').forEach(link => {
-        link.addEventListener('click', (e) => {
-          const href = link.getAttribute('href');
-          setDrawerOpen(false);
-          if (href && href.startsWith('#')) {
-            const target = document.querySelector(href);
-            if (target) {
-              e.preventDefault();
-              target.scrollIntoView({ behavior: 'smooth' });
-            }
-          }
-        });
-      });
-
-      if (joinBtn) {
-        joinBtn.addEventListener('click', () => {
-          setDrawerOpen(false);
-          if (typeof window.openFoundingModal === 'function') {
-            window.openFoundingModal();
-          }
-        });
-      }
-
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && drawer && drawer.classList.contains('is-open')) {
-          setDrawerOpen(false);
-        }
-      });
-
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 900 && drawer && drawer.classList.contains('is-open')) {
-          setDrawerOpen(false);
-        }
-      });
 
       if (shareBtn) {
         shareBtn.addEventListener('click', async () => {
@@ -9180,11 +8917,11 @@
       let initialLeft = 0, initialTop = 0;
       let hasMoved = false;
 
-      // Strictly mobile-only viewport editing guard (<= 900px); v9 isolates post-redesign edits from legacy v8 positions
-      const STORAGE_PREFIX = 'dunes_custom_edits_v9_';
+      // Strictly mobile-only viewport editing guard (<= 900px); v10 isolates centered layout edits from legacy v7-v9 positions
+      const STORAGE_PREFIX = 'dunes_custom_edits_v10_';
       try {
         for (const k of Object.keys(localStorage)) {
-          if (k.startsWith('dunes_custom_edits_v8_') || k.startsWith('dunes_custom_edits_v7_')) {
+          if (k.startsWith('dunes_custom_edits_v9_') || k.startsWith('dunes_custom_edits_v8_') || k.startsWith('dunes_custom_edits_v7_')) {
             localStorage.removeItem(k);
           }
         }
