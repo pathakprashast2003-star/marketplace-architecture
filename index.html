@@ -1696,17 +1696,19 @@
       }
     }
 
-    /* ── BELOW-HERO: Architectural Off-White Board with Drafting Grid ── */
+    /* ── BELOW-HERO: Warm Off-White Architectural Drafting Canvas ── */
     .nx-page {
       position: relative;
-      background-color: #F8F9FA;
+      background-color: #F4F2EC;
       background-image:
-        linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
-      background-size: 48px 48px;
+        linear-gradient(to right, rgba(20, 17, 15, 0.075) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(20, 17, 15, 0.075) 1px, transparent 1px),
+        linear-gradient(to right, rgba(20, 17, 15, 0.048) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(20, 17, 15, 0.048) 1px, transparent 1px);
+      background-size: 140px 140px, 140px 140px, 28px 28px, 28px 28px;
       color: #0F172A;
       padding: 100px 0 0;
-      border-top: 1px solid rgba(15, 23, 42, 0.08);
+      border-top: 1px solid rgba(20, 17, 15, 0.09);
     }
 
     .nx-wrap {
@@ -6197,12 +6199,12 @@
        ══════════════════════════════════════════════════════════════ */
     #how {
       padding-top: 100px;
-      padding-bottom: 120px;
+      padding-bottom: 64px;
       scroll-margin-top: 90px;
       position: relative;
-      background: radial-gradient(circle at 18% 22%, rgba(224, 231, 255, 0.42) 0%, transparent 45%),
-                  radial-gradient(circle at 82% 20%, rgba(238, 242, 255, 0.52) 0%, transparent 45%),
-                  radial-gradient(circle at 50% 85%, rgba(243, 232, 255, 0.30) 0%, transparent 50%),
+      background: radial-gradient(circle at 18% 22%, rgba(224, 231, 255, 0.22) 0%, transparent 45%),
+                  radial-gradient(circle at 82% 20%, rgba(238, 242, 255, 0.26) 0%, transparent 45%),
+                  radial-gradient(circle at 50% 85%, rgba(243, 232, 255, 0.14) 0%, transparent 50%),
                   transparent;
       overflow: visible;
     }
@@ -6467,11 +6469,11 @@
     }
 
     /* ══════════════════════════════════════════════════════════════
-       FOUNDING ROSTER SECTION (04 / 04) — Compact Closing CTA Band
-       Times New Roman · Restrained Hierarchy · Zero Redundancy
+       FOUNDING ROSTER SECTION (04 / 04) — Grid-Aligned Closing Strip
+       Matches #how 1220px Rails · Times New Roman · Editorial Contrast
        ══════════════════════════════════════════════════════════════ */
     #founding {
-      padding-top: 24px;
+      padding-top: 0;
       padding-bottom: 84px;
       scroll-margin-top: 90px;
       position: relative;
@@ -6486,24 +6488,29 @@
     }
 
     #founding .nx-found-container {
-      max-width: 920px;
+      max-width: 1220px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
     #founding .nx-found-banner {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: #FFFFFF;
       border: 1px solid rgba(20, 17, 15, 0.09);
-      border-radius: 30px;
-      padding: 52px 40px;
-      box-shadow: 0 24px 60px -14px rgba(79, 70, 229, 0.10),
-                  0 4px 14px rgba(0, 0, 0, 0.02);
+      border-radius: 26px;
+      padding: 40px 44px;
+      box-shadow: 0 20px 48px -14px rgba(20, 17, 15, 0.08),
+                  0 2px 10px rgba(0, 0, 0, 0.025);
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) auto;
+      align-items: center;
+      gap: 36px;
+    }
+
+    #founding .nx-found-copy {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
+      align-items: flex-start;
+      text-align: left;
     }
 
     #founding .nx-cohort-pill {
@@ -6519,7 +6526,7 @@
       font-weight: 700;
       letter-spacing: 0.09em;
       text-transform: uppercase;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
       white-space: nowrap;
     }
 
@@ -6532,13 +6539,13 @@
     }
 
     #founding .nx-found-title {
-      font-size: clamp(2.1rem, 4vw, 3.2rem);
+      font-size: clamp(1.95rem, 3.1vw, 2.75rem);
       font-weight: 700;
       line-height: 1.1;
       letter-spacing: -0.02em;
       color: #14110F;
-      margin: 0 0 12px;
-      text-align: center;
+      margin: 0 0 10px;
+      text-align: left;
     }
 
     #founding .nx-found-title .nx-deck-accent {
@@ -6552,21 +6559,29 @@
     }
 
     #founding .nx-found-sub {
-      font-size: 17.5px;
+      font-size: 16.5px;
       line-height: 1.55;
       color: #1E293B;
-      max-width: 52ch;
-      margin: 0 auto 28px;
-      text-align: center;
+      max-width: 50ch;
+      margin: 0;
+      text-align: left;
+    }
+
+    #founding .nx-found-cta-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-self: end;
+      gap: 12px;
     }
 
     #founding .nx-found-actions {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 16px;
+      gap: 12px;
+      margin: 0;
     }
 
     #founding .nx-found-btn {
@@ -6574,14 +6589,14 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 14px 28px;
+      padding: 14px 26px;
       border-radius: 999px;
       background: linear-gradient(135deg, #14110F 0%, #1E1B4B 100%);
       color: #FFFFFF;
-      font-size: 15.5px;
+      font-size: 15px;
       font-weight: 700;
       border: 1px solid rgba(255, 255, 255, 0.16);
-      box-shadow: 0 12px 28px -6px rgba(30, 27, 75, 0.32),
+      box-shadow: 0 12px 28px -6px rgba(30, 27, 75, 0.30),
                   inset 0 1px 1px rgba(255, 255, 255, 0.25);
       cursor: pointer;
       white-space: nowrap;
@@ -6633,6 +6648,42 @@
       color: #1E293B;
       font-style: italic;
       margin: 0;
+      text-align: right;
+    }
+
+    #nexus-footer-root {
+      border-top: 1px solid rgba(20, 17, 15, 0.08);
+      background: #FFFFFF;
+    }
+
+    @media (max-width: 980px) {
+      #founding .nx-found-banner {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 36px 28px;
+        text-align: center;
+      }
+
+      #founding .nx-found-copy {
+        align-items: center;
+        text-align: center;
+      }
+
+      #founding .nx-found-title,
+      #founding .nx-found-sub,
+      #founding .nx-found-note {
+        text-align: center;
+      }
+
+      #founding .nx-found-cta-col {
+        justify-self: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      #founding .nx-found-actions {
+        justify-content: center;
+      }
     }
 
     @media (max-width: 600px) {
@@ -6641,8 +6692,8 @@
       }
 
       #founding .nx-found-banner {
-        padding: 36px 20px;
-        border-radius: 24px;
+        padding: 32px 20px;
+        border-radius: 22px;
       }
 
       #founding .nx-cohort-pill {
@@ -6675,7 +6726,6 @@
     @media (prefers-reduced-transparency: reduce) {
       #founding .nx-found-banner {
         background: #FFFFFF !important;
-        backdrop-filter: none !important;
       }
     }
 </style>
@@ -7936,32 +7986,36 @@
       <section class="nx-sec" id="founding">
         <div class="nx-found-container">
           <div class="nx-found-banner nx-reveal">
-            <div class="nx-cohort-pill">
-              <span class="nx-cohort-dot" aria-hidden="true"></span>
-              <span>04 / 04 · Cohort I · First 100 Creators</span>
+            <div class="nx-found-copy">
+              <div class="nx-cohort-pill">
+                <span class="nx-cohort-dot" aria-hidden="true"></span>
+                <span>04 / 04 · Cohort I · First 100 Creators</span>
+              </div>
+
+              <h2 class="nx-found-title">
+                Join the <span class="nx-deck-accent">Founding Roster.</span>
+              </h2>
+
+              <p class="nx-found-sub">
+                First 100 approved commercial directors lock in 90 days free and 0% commission for life.
+              </p>
             </div>
 
-            <h2 class="nx-found-title">
-              Join the <span class="nx-deck-accent">Founding Roster.</span>
-            </h2>
+            <div class="nx-found-cta-col">
+              <div class="nx-found-actions">
+                <button class="nx-found-btn" type="button" onclick="openFoundingModal()">
+                  <span>Apply for the Founding Roster</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+                <button class="nx-found-sec-btn" type="button" onclick="openCriteriaModal()">
+                  View Curation Criteria
+                </button>
+              </div>
 
-            <p class="nx-found-sub">
-              First 100 approved commercial directors lock in 90 days free and 0% commission for life.
-            </p>
-
-            <div class="nx-found-actions">
-              <button class="nx-found-btn" type="button" onclick="openFoundingModal()">
-                <span>Apply for the Founding Roster</span>
-                <span aria-hidden="true">→</span>
-              </button>
-              <button class="nx-found-sec-btn" type="button" onclick="openCriteriaModal()">
-                View Curation Criteria
-              </button>
+              <p class="nx-found-note">
+                Portfolio reviewed within 48 hours · Flat $19.99/mo after trial
+              </p>
             </div>
-
-            <p class="nx-found-note">
-              Portfolio reviewed within 48 hours · Flat $19.99/mo after trial
-            </p>
           </div>
         </div>
       </section>
