@@ -10,7 +10,7 @@ if (mountEl) {
   const root = ReactDOM.createRoot(mountEl);
   root.render(
     <React.StrictMode>
-      <NexusFooter className="border-t border-slate-900/15 bg-white pt-16" />
+      <NexusFooter className="border-t border-slate-200 bg-white pt-16 pb-10" />
     </React.StrictMode>
   );
 }

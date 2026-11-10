@@ -7,12 +7,13 @@ import type { LucideIcon } from "lucide-react";
 export interface SocialLink {
   name: string;
   href: string;
+  Icon?: LucideIcon | React.FC<React.SVGProps<SVGSVGElement>>;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
 export interface FooterLink {
   name: string;
-  Icon: LucideIcon | React.FC<React.SVGProps<SVGSVGElement>>;
+  Icon?: LucideIcon | React.FC<React.SVGProps<SVGSVGElement>>;
   href?: string;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
@@ -22,73 +23,97 @@ export interface FooterColumn {
   links: FooterLink[];
 }
 
+export interface FooterLegalLink {
+  name: string;
+  href: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+}
+
 export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
   brand: {
     name: string;
     description: string;
+    logo?: React.ReactNode;
   };
   socialLinks: SocialLink[];
   columns: FooterColumn[];
   copyright?: string;
+  legalLinks?: FooterLegalLink[];
 }
 
 export const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
-  ({ className, brand, socialLinks, columns, copyright, ...props }, ref) => {
+  (
+    { className, brand, socialLinks, columns, copyright, legalLinks, ...props },
+    ref
+  ) => {
     return (
       <div
         ref={ref}
         role="contentinfo"
-        className={cn("pt-24 bg-white text-foreground", className)}
+        className={cn("bg-white text-[#09090B] pt-20 pb-10", className)}
         {...props}
       >
-        <div className="max-w-screen-xl mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12">
-            <div className="lg:col-span-4">
+        <div className="max-w-screen-xl mx-auto px-6 lg:px-10">
+          <div className="flex flex-col justify-between gap-12 lg:flex-row lg:items-start">
+            {/* Brand Identity + Channel Icon Strip */}
+            <div className="flex w-full flex-col gap-5 lg:max-w-sm">
               <a
                 href="#"
-                className="text-xl font-bold text-foreground no-underline"
+                className="inline-flex items-center gap-2.5 text-xl font-bold tracking-tight text-[#09090B] no-underline w-fit"
               >
-                {brand.name}
+                {brand.logo}
+                <span>{brand.name}</span>
               </a>
-              <p className="mt-2 text-sm text-foreground leading-relaxed">
+              <p className="text-sm leading-relaxed text-[#3F3F46] max-w-xs">
                 {brand.description}
               </p>
 
-              <p className="text-sm font-semibold text-foreground mt-3.5">
-                {socialLinks.map((link, index) => {
+              <ul className="flex items-center gap-5 list-none p-0 m-0 text-[#27272A]">
+                {socialLinks.map((link) => {
                   const isExternal = link.href.startsWith("http");
+                  const Icon = link.Icon;
                   return (
-                    <React.Fragment key={link.name}>
+                    <li key={link.name}>
                       <a
-                        className="text-foreground hover:text-[#4F46E5] transition-colors no-underline"
-                        target={isExternal ? "_blank" : undefined}
+                        aria-label={link.name}
+                        title={link.name}
                         href={link.href}
                         onClick={link.onClick}
+                        target={isExternal ? "_blank" : undefined}
                         rel={isExternal ? "noopener noreferrer" : undefined}
+                        className="inline-flex items-center text-sm font-medium text-[#27272A] hover:text-[#09090B] transition-colors no-underline"
                       >
-                        {link.name}
+                        {Icon ? (
+                          <Icon className="h-[18px] w-[18px] stroke-[1.9]" />
+                        ) : (
+                          link.name
+                        )}
                       </a>
-                      {index < socialLinks.length - 1 && " • "}
-                    </React.Fragment>
+                    </li>
                   );
                 })}
-              </p>
+              </ul>
             </div>
 
-            <div className="grid grid-cols-2 mt-16 md:grid-cols-3 lg:col-span-8 lg:justify-items-end lg:mt-0 gap-y-10 gap-x-8">
+            {/* Clean 3-Column Navigation Grid */}
+            <div className="grid w-full grid-cols-2 gap-10 md:grid-cols-3 lg:gap-16 lg:w-auto">
               {columns.map(({ title, links }) => (
-                <div key={title} className="last:mt-12 md:last:mt-0">
-                  <h3 className="text-sm font-bold text-foreground">{title}</h3>
-                  <ul className="mt-4 space-y-2.5 list-none p-0 m-0">
+                <div key={title}>
+                  <h3 className="mb-4 text-sm font-bold text-[#09090B]">
+                    {title}
+                  </h3>
+                  <ul className="space-y-3 list-none p-0 m-0">
                     {links.map(({ name, Icon, href, onClick }) => (
                       <li key={name}>
                         <a
                           href={href || "#"}
                           onClick={onClick}
-                          className="text-sm font-medium transition-all text-foreground hover:text-[#4F46E5] group inline-flex items-center no-underline"
+                          className="text-sm font-medium text-[#3F3F46] hover:text-[#09090B] transition-colors inline-flex items-center gap-1.5 no-underline"
                         >
-                          <Icon className="inline stroke-2 h-4 w-4 mr-1.5 transition-all stroke-foreground group-hover:stroke-[#4F46E5] shrink-0" />
-                          {name}
+                          {Icon && (
+                            <Icon className="h-4 w-4 stroke-[1.8] shrink-0" />
+                          )}
+                          <span>{name}</span>
                         </a>
                       </li>
                     ))}
@@ -98,9 +123,25 @@ export const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
             </div>
           </div>
 
-          {copyright && (
-            <div className="mt-20 border-t border-slate-900/15 pt-6 pb-8">
-              <p className="text-xs font-semibold text-foreground">{copyright}</p>
+          {/* Bottom Hairline Legal & Attribution Bar */}
+          {(copyright || (legalLinks && legalLinks.length > 0)) && (
+            <div className="mt-16 flex flex-col justify-between gap-4 border-t border-slate-200 pt-7 text-xs font-medium text-[#52525B] md:flex-row md:items-center">
+              {copyright && <p className="m-0 text-[#3F3F46]">{copyright}</p>}
+              {legalLinks && legalLinks.length > 0 && (
+                <ul className="flex flex-wrap items-center gap-6 list-none p-0 m-0">
+                  {legalLinks.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        onClick={item.onClick}
+                        className="text-[#3F3F46] hover:text-[#09090B] transition-colors no-underline"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           )}
         </div>

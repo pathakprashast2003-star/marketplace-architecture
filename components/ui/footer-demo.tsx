@@ -1,20 +1,13 @@
 "use client";
 
 import * as React from "react";
+import { Aperture, Film, Globe, Instagram, Twitter } from "lucide-react";
 import {
-  Award,
-  Blocks,
-  CreditCard,
-  FileCheck2,
-  Handshake,
-  Layers,
-  Scale,
-  Send,
-  ShieldCheck,
-  Sparkles,
-  Users,
-} from "lucide-react";
-import { Footer, type FooterColumn, type SocialLink } from "@/components/ui/footer";
+  Footer,
+  type FooterColumn,
+  type FooterLegalLink,
+  type SocialLink,
+} from "@/components/ui/footer";
 
 declare global {
   interface Window {
@@ -30,42 +23,56 @@ export interface NexusFooterProps {
 
 export function NexusFooter({ className }: NexusFooterProps) {
   const triggerInquiry = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (typeof window !== "undefined" && typeof window.openInquiryModal === "function") {
+    if (
+      typeof window !== "undefined" &&
+      typeof window.openInquiryModal === "function"
+    ) {
       e.preventDefault();
       window.openInquiryModal("Curated Director", "Commercial Roster");
     }
   };
 
   const triggerFounding = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (typeof window !== "undefined" && typeof window.openFoundingModal === "function") {
+    if (
+      typeof window !== "undefined" &&
+      typeof window.openFoundingModal === "function"
+    ) {
       e.preventDefault();
       window.openFoundingModal();
     }
   };
 
   const triggerCriteria = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (typeof window !== "undefined" && typeof window.openCriteriaModal === "function") {
+    if (
+      typeof window !== "undefined" &&
+      typeof window.openCriteriaModal === "function"
+    ) {
       e.preventDefault();
       window.openCriteriaModal();
     }
   };
 
   const socialLinks: SocialLink[] = [
-    { name: "Curated Roster", href: "#roster" },
-    { name: "Direct Protocol", href: "#how" },
-    { name: "Apply Founding", href: "#founding", onClick: triggerFounding },
+    { name: "Showreels", href: "#roster", Icon: Film },
+    { name: "Instagram", href: "#roster", Icon: Instagram },
+    { name: "X / Twitter", href: "#how", Icon: Twitter },
+    {
+      name: "Direct Dispatch",
+      href: "#how",
+      Icon: Globe,
+      onClick: triggerInquiry,
+    },
   ];
 
   const columns: FooterColumn[] = [
     {
       title: "Clients",
       links: [
-        { name: "Curated Roster", Icon: Users, href: "#roster" },
-        { name: "Economics & Fees", Icon: CreditCard, href: "#fees" },
-        { name: "3-Step Protocol", Icon: Layers, href: "#how" },
+        { name: "Curated Roster", href: "#roster" },
+        { name: "Fee Calculator", href: "#fees" },
+        { name: "3-Step Protocol", href: "#how" },
         {
-          name: "Direct 30s Dispatch",
-          Icon: Send,
+          name: "Direct Dispatch",
           href: "#how",
           onClick: triggerInquiry,
         },
@@ -75,29 +82,33 @@ export function NexusFooter({ className }: NexusFooterProps) {
       title: "Creators",
       links: [
         {
-          name: "Apply as Founding",
-          Icon: Sparkles,
+          name: "Apply Founding",
           href: "#founding",
           onClick: triggerFounding,
         },
-        { name: "Founding Cohort I", Icon: Award, href: "#founding" },
+        { name: "Cohort I Perks", href: "#founding" },
         {
           name: "Curation Criteria",
-          Icon: ShieldCheck,
           href: "#roster",
           onClick: triggerCriteria,
         },
-        { name: "0% Commission Model", Icon: Blocks, href: "#fees" },
+        { name: "Zero-Cut Model", href: "#fees" },
       ],
     },
     {
       title: "Governance",
       links: [
-        { name: "Zero-Escrow Terms", Icon: Handshake, href: "#fees" },
-        { name: "AICP Deal Standards", Icon: FileCheck2, href: "#how" },
-        { name: "Privacy & NDA", Icon: Scale, href: "#founding" },
+        { name: "Zero-Escrow Terms", href: "#fees" },
+        { name: "AICP Standards", href: "#how" },
+        { name: "Master IP Rights", href: "#how" },
+        { name: "Support & Review", href: "#founding" },
       ],
     },
+  ];
+
+  const legalLinks: FooterLegalLink[] = [
+    { name: "Terms and Conditions", href: "#fees" },
+    { name: "Privacy Policy", href: "#founding" },
   ];
 
   return (
@@ -105,16 +116,22 @@ export function NexusFooter({ className }: NexusFooterProps) {
       className={className}
       brand={{
         name: "nexus.",
+        logo: (
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#09090B] text-[#FFFFFF]">
+            <Aperture className="h-[18px] w-[18px] stroke-[2] stroke-[#FFFFFF]" />
+          </span>
+        ),
         description:
-          "Direct access to hand-vetted commercial directors and visual craftspeople. Zero platform markups.",
+          "Direct access to vetted commercial directors and visual craftspeople. Zero platform markups.",
       }}
       socialLinks={socialLinks}
       columns={columns}
-      copyright="nexus. Direct Commercial Production © 2026 · 100% Creator-Owned IP"
+      copyright="© 2026 Nexus Direct. All rights reserved."
+      legalLinks={legalLinks}
     />
   );
 }
 
 export function FooterDemo() {
-  return <NexusFooter className="mt-10" />;
+  return <NexusFooter className="border-t border-slate-200 bg-white" />;
 }
