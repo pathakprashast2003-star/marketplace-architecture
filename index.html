@@ -8401,7 +8401,7 @@
       cobalt: {
         themeKey: 'cobalt',
         name: 'Aero Cloud',
-        imgSrc: 'assets/upward_flight_pilot_drone.webp',
+        imgSrc: 'assets/upward_flight_pilot_drone.png',
         imgAlt: 'Upward Flight: Pilot and Drone',
         creativeWord: 'CREATIVE',
         edgeWord: 'EDGE',
@@ -9291,9 +9291,9 @@
         const mode = getActiveViewport();
         const tKey = currentThemeKey;
         try {
-          // Restore custom image for this character & viewport (busts belong to roster, not hero)
+          // Restore custom image for this character & viewport (busts & stale cutouts belong outside hero)
           let customImg = localStorage.getItem('custom_img_' + tKey + '_' + mode) || localStorage.getItem('custom_image_' + tKey);
-          if (customImg && customImg.includes('_bust.webp')) customImg = null;
+          if (customImg && (customImg.includes('_bust.webp') || customImg.includes('character_drone_operator'))) customImg = null;
           const charSlot = document.getElementById('heroCharacterSlot');
           if (charSlot) {
             charSlot.src = customImg || (THEME_PRESETS[tKey] ? THEME_PRESETS[tKey].imgSrc : charSlot.src);
@@ -10613,12 +10613,12 @@
       rating: '4.9',
       rate: '$550',
       unit: '/day',
-      personaImg: 'assets/character_drone_operator_final.png',
+      personaImg: 'assets/upward_flight_pilot_drone.png',
       stageBg: 'radial-gradient(135% 100% at 50% 15%, #F0F6FD 0%, #DCE9F6 100%)',
       craftPill: '🚁 FPV Reel · 0:30',
       video: 'assets/reels/reel_1_drone.mp4',
       duration: '0:30',
-      photos: [P + 'poster_1_drone.jpg', 'assets/upward_flight_pilot_drone.webp'],
+      photos: [P + 'poster_1_drone.jpg', 'assets/upward_flight_pilot_drone.png'],
       verifiedLabel: 'FAA Part 107 Captain',
       reviews: '42 reviews',
       earned: '$185k+',
