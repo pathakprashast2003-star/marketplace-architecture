@@ -12,3 +12,7 @@ node_modules/
 *.ninjax_master
 .taste-skill/
 archive_rejected/
+.agent/
+.agents/
+.claude/
+

@@ -1,0 +1,234 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE LAYOUT — one place for every phone/tablet rule.
+   Loaded last, so anything here wins over the section files.
+   Breakpoints:  ≤900px tablet & phone (bottom nav shows)
+                 ≤640px phone
+                 ≤400px small phone
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── GLOBAL ─────────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  /* Room at the end of the page so the floating bottom nav never covers content */
+  body { padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+
+  /* Edit button sits above the bottom nav instead of on top of it */
+  .editor-toggle-btn { bottom: calc(86px + env(safe-area-inset-bottom, 0px)) !important; }
+}
+
+/* ── JOIN ───────────────────────────────────────────────────────────────── */
+@media (max-width: 820px) {
+  /* The four ticks: one tidy left-aligned column, centred as a block, instead of a ragged centred list */
+  .jn-head-attrs {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    width: max-content;
+    max-width: 100%;
+    margin: 4px auto 0;
+    padding: 0;
+    text-align: left;
+    justify-items: start;
+  }
+  .jn-head-attrs li { display: flex; align-items: flex-start; gap: 7px; white-space: normal; min-width: 0; line-height: 1.35; font-size: 14px; }
+  .jn-head-attrs .jn-tick-ic { margin-top: 2px; flex: none; }
+  .jn-sub { max-width: 34ch; margin-left: auto; margin-right: auto; }
+}
+
+/* ── PRICING ────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  #fees .ct-calc-bar { gap: 12px; }
+
+  /* Comparison cards: shorter and easier to scan */
+  #fees .ct-card.is-freelance .ct-card-artwork,
+  #fees .ct-card.is-agency .ct-card-artwork { display: none; }
+  #fees .ct-card.is-freelance,
+  #fees .ct-card.is-agency { padding: 24px 18px 18px; }
+  #fees .ct-card.is-hero .ct-card-artwork { height: 112px; }
+  #fees .ct-card.is-hero .ct-art-img { height: 108px; }
+  #fees .ct-card-head { gap: 6px; padding-bottom: 14px; }
+  #fees .ct-row { min-height: 0; padding: 9px 2px; font-size: 14px; line-height: 1.35; }
+  #fees .ct-card.is-hero .ct-row { padding: 10px 2px; }
+}
+
+/* ── HOW IT WORKS ───────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  /* Drop the outer grey frame: cards get the full width instead of a box in a box */
+  #how .nx-how-monolith {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  /* Steps: one swipeable row instead of a squeezed 2×2 */
+  #how .nx-pipe-conduit {
+    display: flex !important;
+    grid-template-columns: none;
+    gap: 8px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 6px;
+    margin: 0 -2px;
+  }
+  #how .nx-pipe-conduit::-webkit-scrollbar { display: none; }
+  #how .nx-pipe-step { flex: 0 0 auto; min-width: 128px; scroll-snap-align: start; }
+  #how .nx-pipe-status { display: none; }
+
+  /* Book card: the $ switcher goes under the 0% instead of squeezing beside it */
+  #how #nxCobaltCard > div:nth-child(2) > div { flex-wrap: wrap; gap: 16px; }
+  #how .nx-glass-sub { max-width: none; }
+  #how .nx-glass-status-row { flex-wrap: wrap; gap: 6px 14px; }
+
+  #how .nx-how-card { padding: 22px 20px; }
+  #how .nx-mono-discover { min-height: 0; }
+}
+@media (max-width: 400px) {
+  #how .nx-radar-stage { width: 232px; height: 232px; }
+}
+
+/* ── FOUNDING ───────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  #founding .nx-seat-top { font-size: 9.5px; letter-spacing: 0.04em; gap: 10px; text-align: left; }
+  #founding .nx-seat-top > span:first-child { min-width: 0; }
+  #founding .nx-seat-left { white-space: nowrap; flex: none; }
+}
+
+/* ── JOIN on phones: wider, bigger, evenly laid out ─────────────────────── */
+@media (max-width: 640px) {
+  .jn { padding: 48px 0 56px; }
+  .jn-in { padding-inline: 0; }          /* the page wrapper already gives 20px each side */
+
+  /* Heading block */
+  .jn-title { font-size: clamp(1.85rem, 8.4vw, 2.6rem); line-height: 1.06; }
+  .jn-title .nx-deck-accent { display: block; }
+  .jn-head { margin-bottom: 22px; }
+  .jn-sub { font-size: 17px; line-height: 1.5; max-width: 36ch; }
+  .jn-head-attrs li { font-size: 15.5px; gap: 9px; }
+  .jn-head-attrs .jn-tick-ic { width: 18px; height: 18px; background-size: 11px; margin-top: 2px; }
+
+  /* Tabs: full width, three equal buttons */
+  .jn-tabs { width: 100%; margin-bottom: 18px; }
+  .jn-tab { flex: 1 1 0; height: 44px; padding: 0 8px; font-size: 16px; }
+
+  /* Card: full width, compact inside */
+  .jn-grid { border-radius: 22px; }
+  .jn-grid .jn-card { padding: 22px 16px 20px; gap: 11px; }
+  .jn-k { font-size: 10.5px; }
+  .jn-card h3 { font-size: 1.75rem; }
+  .jn-p { font-size: 15.5px; }
+
+  /* Craft chips: compact 3-across grid, two tidy rows */
+  .jn-chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .jn-chips label { display: block; min-width: 0; }
+  .jn-chips span { width: 100%; justify-content: center; height: 38px; padding: 0 4px; font-size: 14px; white-space: nowrap; }
+
+  /* Form fields: still 16px text so iPhones don't zoom in when you tap */
+  .jn-l { font-size: 14px; }
+  .jn input, .jn select, .jn textarea { font-size: 16px !important; height: 46px; }
+  .jn-btn { height: 50px; font-size: 16px; }
+  .jn-card ul.jn-ticks li { font-size: 14px; }
+  .jn-live-line { font-size: 13px; }
+}
+
+/* ── JOIN on phones: same card + blue panel as the laptop, stacked ─────────
+   Laptop: form on one half, blue panel over the other half, panel slides across.
+   Phone:  form on top, blue panel below it; switching sides moves the panel above
+           the new form (js/mobile-join.js animates the move). */
+@media (max-width: 820px) {
+  .jn-grid { display: flex; flex-direction: column; }
+  .jn-grid .jn-card { order: 1; }
+
+  .jn-panel {
+    display: block;
+    position: relative;
+    top: auto; bottom: auto; left: auto;
+    width: auto;
+    order: 2;
+    transform: none !important;
+    transition: none;
+    border-radius: 22px;
+    box-shadow: 0 -10px 30px -16px rgba(35, 55, 198, 0.35);
+  }
+  .jn-grid[data-side="be"] .jn-panel { order: 0; box-shadow: 0 10px 30px -16px rgba(35, 55, 198, 0.35); }
+  .jn-grid[data-login="open"] .jn-panel { display: none; }
+
+  .jn-stage { position: relative; left: 0; width: 100%; height: auto; transform: none !important; transition: none; }
+  .jn-face {
+    position: relative;
+    width: 100%; height: auto;
+    display: none;
+    opacity: 1 !important; transform: none !important;
+    padding: 26px 22px 24px;
+    gap: 10px;
+  }
+  /* show the face for the side you're NOT on, like the laptop */
+  .jn-grid[data-side="hire"] .jn-face-be,
+  .jn-grid[data-side="be"] .jn-face-hire { display: flex; }
+
+  .jn-face h3 { font-size: 1.7rem; }
+  .jn-face p:not(.jn-k) { font-size: 15px; max-width: 30ch; }
+  .jn-face .jn-glass-pill { font-size: 12px; padding: 5px 12px; }
+  .jn-flip { height: 42px; padding: 0 24px; font-size: 12.5px; }
+}
+
+/* ── JOIN heading on phones: shorter ───────────────────────────────────── */
+.jn-sub-short { display: none; }
+@media (max-width: 640px) {
+  .jn-sub-long { display: none; }
+  .jn-sub-short { display: inline; }
+  .jn-sub { font-size: 16.5px; margin-bottom: 0; text-wrap: balance; max-width: 24ch; }
+  .jn-head-attrs { display: none !important; }   /* the form card already lists these */
+  .jn { padding-top: 36px; }
+  .jn-head { margin-bottom: 18px; }
+}
+
+/* ── JOIN creator view + blue panel on phones: compact ─────────────────── */
+@media (max-width: 640px) {
+  /* Blue panel: just the label, title and button */
+  .jn-face { padding: 20px 20px 22px; gap: 8px; }
+  .jn-face p:not(.jn-k), .jn-face .jn-glass-pill { display: none; }
+  .jn-face h3 { font-size: 1.5rem; }
+  .jn-flip { margin-top: 6px; height: 40px; }
+
+  /* Creator card */
+  .jn-creator .jn-p { font-size: 15.5px; }
+  .jn-count { font-size: 14.5px; margin: 2px 0 0; }
+  .jn-count b { font-size: 26px; }
+  .jn-track { margin-bottom: 4px; }
+  .jn-creator .jn-ticks { gap: 4px; padding-top: 10px; }
+  .jn-fine { font-size: 13.5px; margin-top: 2px; }
+}
+
+/* ── HOW IT WORKS on phones: full width, shorter, steps in one row ─────── */
+@media (max-width: 640px) {
+  #how .nx-how-container { padding-inline: 0; }
+  #how .nx-how-title { font-size: clamp(1.9rem, 8.6vw, 2.4rem); line-height: 1.06; text-wrap: balance; }
+  #how .nx-how-sub { font-size: 16px; max-width: 26ch; margin-left: auto; margin-right: auto; text-wrap: balance; }
+
+  /* Steps: four equal segments, all visible, no sideways scrolling */
+  #how .nx-pipe-conduit {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    overflow: visible;
+    padding: 10px 10px 12px;
+    margin: 0;
+  }
+  #how .nx-pipe-step { min-width: 0; padding: 4px 2px; }
+  #how .nx-pipe-meta { justify-content: center; }
+  #how .nx-pipe-left { gap: 4px; }
+  #how .nx-pipe-num { font-size: 9.5px; }
+  #how .nx-pipe-label { font-size: 12.5px; white-space: nowrap; }
+
+  /* Cards */
+  #how .nx-how-grid { gap: 12px; }
+  #how .nx-how-card { padding: 20px 18px; border-radius: 20px; }
+  #how .nx-radar-stage { width: 236px; height: 236px; margin: 4px auto 0; }
+  #how .nx-bento-title { font-size: 1.45rem; }
+  #how .nx-mono-inquire { min-height: 0; }
+  #how .nx-dialog-stage { height: auto; min-height: 0; justify-content: flex-start; gap: 12px; padding: 12px; }
+  #how .nx-mono-book { min-height: 0; justify-content: flex-start; gap: 18px; }
+}

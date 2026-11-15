@@ -1,0 +1,564 @@
+    #fees {
+      padding-top: clamp(72px, 6.5vw, 108px);
+      padding-bottom: clamp(76px, 7vw, 114px);
+      scroll-margin-top: 64px;
+      position: relative;
+      isolation: isolate;
+      background: transparent;
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif) !important;
+      overflow: visible;
+    }
+    #fees::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 -36px 0;
+      left: 50%;
+      width: 100vw;
+      transform: translateX(-50%);
+      background: #FFFFFF;
+      border-radius: 30px 30px 0 0;
+      z-index: -1;
+      pointer-events: none;
+    }
+    #fees,
+    #fees * {
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif) !important;
+      box-sizing: border-box;
+    }
+    #fees .ct-stage-container {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0;
+      position: relative;
+    }
+    #fees .ct-deck-head {
+      text-align: center;
+      max-width: 920px;
+      margin: 0 auto 30px;
+    }
+    #fees .ct-title {
+      font-family: 'Times New Roman', Times, Georgia, serif;
+      font-size: clamp(2.8rem, 5.2vw, 4.75rem);
+      font-weight: 600;
+      line-height: 1.03;
+      letter-spacing: -0.028em;
+      color: #0F172A;
+      margin: 0 auto 14px;
+      text-align: center;
+      max-width: 19ch;
+      text-wrap: balance;
+    }
+    #fees .ct-title .nx-deck-accent {
+      font-style: italic !important;
+      font-weight: 500 !important;
+      background: linear-gradient(135deg, #4F6AF8 0%, #3B54EE 55%, #1E3A8A 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+      display: inline-block;
+    }
+    #fees .ct-sub {
+      font-family: 'Times New Roman', Times, Georgia, serif;
+      font-size: 18px;
+      line-height: 1.5;
+      color: #64748B;
+      max-width: 48ch;
+      margin: 0 auto;
+      text-align: center;
+      font-style: italic;
+    }
+    #fees .ct-calc-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 12px 16px 12px 20px;
+      max-width: 860px;
+      margin: 0 auto 34px;
+      border-radius: 999px;
+      background: #F6F7F9;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+    }
+    #fees .ct-calc-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    #fees .ct-calc-label {
+      font-family: var(--font-mono, ui-monospace, monospace);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #475569;
+      white-space: nowrap;
+    }
+    #fees .ct-calc-pills {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px;
+      border-radius: 999px;
+      background: #FFFFFF;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+    }
+    #fees .ct-calc-pill {
+      border: 0;
+      background: transparent;
+      color: #64748B;
+      font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+      font-size: 12.5px;
+      font-weight: 650;
+      font-variant-numeric: tabular-nums;
+      padding: 6px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+    #fees .ct-calc-pill:hover {
+      color: #0F172A;
+    }
+    #fees .ct-calc-pill.is-active {
+      background: #0F172A;
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.16);
+    }
+    #fees .ct-calc-savings {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: #EEF2FF;
+      border: 1px solid rgba(59, 84, 238, 0.16);
+    }
+    #fees .ct-calc-savings strong {
+      color: #2A44E0;
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+    }
+    #fees .ct-budget-impact {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+      font-size: 12px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      transition: transform 0.25s ease, background-color 0.25s ease;
+    }
+    #fees .ct-budget-impact.is-loss {
+      background: rgba(220, 38, 38, 0.06);
+      color: #BE123C;
+      border: 1px solid rgba(220, 38, 38, 0.12);
+    }
+    #fees .ct-budget-impact.is-win {
+      background: rgba(255, 255, 255, 0.16);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+    }
+    @media (max-width: 768px) {
+      #fees .ct-calc-bar {
+        border-radius: 22px;
+        padding: 14px;
+      }
+      #fees .ct-calc-savings {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    @keyframes nxPricingFloat {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, -5px, 0); }
+    }
+    @keyframes nxHeroCardSheen {
+      0%, 100% { opacity: 0.42; }
+      50% { opacity: 0.90; }
+    }
+    #fees .ct-card.is-hero {
+      overflow: visible;
+    }
+    #fees .ct-card.is-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(75% 55% at 22% 14%, rgba(255, 255, 255, 0.20), transparent 65%),
+                  radial-gradient(65% 50% at 82% 85%, rgba(147, 197, 253, 0.16), transparent 60%);
+      animation: nxHeroCardSheen 7.5s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    #fees .ct-matrix-wrapper.is-fees-settled .ct-card.is-hero:not(:hover) .ct-art-img {
+      animation: nxPricingFloat 4.6s ease-in-out infinite;
+    }
+    #fees .ct-card.is-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 28%), rgba(255, 255, 255, 0.18), transparent 70%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      z-index: 1;
+    }
+    #fees .ct-card.is-hero:hover::after {
+      opacity: 1;
+    }
+    #fees .ct-card.is-hero> :not(.ct-hero-top-badge) {
+      position: relative;
+      z-index: 2;
+    }
+    #fees .ct-matrix-wrapper {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 16px 0 8px;
+      box-shadow: none;
+      position: relative;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    #fees .ct-matrix-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.18fr 1fr;
+      gap: 28px;
+      align-items: center;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    #fees .ct-card {
+      background: #F7F8FA;
+      border: 1px solid rgba(15, 23, 42, 0.055);
+      border-radius: 32px;
+      padding: 42px 32px 38px;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, border-color 0.25s ease, background-color 0.25s ease;
+    }
+    #fees .ct-card:hover {
+      background: #FFFFFF;
+      border-color: rgba(15, 23, 42, 0.09);
+      transform: translateY(-5px);
+      box-shadow: 0 24px 48px -16px rgba(15, 23, 42, 0.09);
+    }
+    #fees .ct-card.is-hero {
+      background: linear-gradient(180deg, #4F6AF8 0%, #3B54EE 50%, #2A44E0 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      border-radius: 38px;
+      padding: 54px 36px 46px;
+      color: #FFFFFF;
+      box-shadow: 0 38px 95px -15px rgba(59, 84, 238, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.20),
+        inset 0 1px 2px rgba(255, 255, 255, 0.45);
+      z-index: 10;
+    }
+    @media (min-width: 1024px) {
+      #fees .ct-card.is-hero {
+        margin-top: -16px;
+        margin-bottom: -16px;
+      }
+    }
+    #fees .ct-card.is-hero:hover {
+      border-color: rgba(255, 255, 255, 0.55);
+      transform: translateY(-8px);
+      box-shadow: 0 50px 110px -15px rgba(59, 84, 238, 0.65),
+        0 0 0 2px rgba(255, 255, 255, 0.40),
+        inset 0 1px 2px rgba(255, 255, 255, 0.55);
+    }
+    #fees .ct-hero-top-badge {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0F172A;
+      color: #F8FAFC;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 6px 18px -2px rgba(0, 0, 0, 0.35);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 22px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    #fees .ct-card-head {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 22px;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+      margin-bottom: 20px;
+    }
+    #fees .ct-card.is-hero .ct-card-head {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+    }
+    #fees .ct-card-artwork {
+      width: 100%;
+      height: 175px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      margin-bottom: 18px;
+      overflow: visible;
+    }
+    #fees .ct-art-img {
+      height: 170px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+      display: block;
+    }
+    #fees .ct-card:hover .ct-art-img {
+      transform: scale(1.05);
+    }
+    #fees .ct-card.is-hero .ct-art-img {
+      filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.28));
+    }
+    #fees .ct-card-name {
+      font-family: 'Times New Roman', Times, Georgia, serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      color: #0F172A;
+      margin: 0 0 6px;
+    }
+    #fees .ct-card.is-hero .ct-card-name {
+      color: #FFFFFF;
+      font-size: 32px;
+    }
+    #fees .ct-card-sub {
+      font-family: 'Times New Roman', Times, Georgia, serif;
+      font-size: 16px;
+      color: #64748B;
+      margin: 0 0 16px;
+      font-style: italic;
+    }
+    #fees .ct-card.is-hero .ct-card-sub {
+      color: rgba(255, 255, 255, 0.92);
+    }
+    #fees .ct-card-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 5.5px 17px;
+      border-radius: 999px;
+      font-family: 'Times New Roman', Times, Georgia, serif !important;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      background: #EDEEF2;
+      color: #334155;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      box-shadow: none;
+    }
+    #fees .ct-card-pill.is-hero-pill {
+      background: rgba(255, 255, 255, 0.24);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.38);
+    }
+    #fees .ct-card.is-hero .nx-count.is-rolling {
+      color: #FEF08A;
+    }
+    #fees .ct-card-rows {
+      display: flex;
+      flex-direction: column;
+    }
+    #fees .ct-row {
+      height: 58px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 8px;
+      font-size: 14.5px;
+      color: #334155;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+      text-align: left;
+      line-height: 1.35;
+    }
+    #fees .ct-row:last-child {
+      border-bottom: none;
+    }
+    #fees .ct-card.is-hero .ct-row {
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    #fees .ct-card.is-hero .ct-row:last-child {
+      border-bottom: none;
+    }
+    #fees .ct-cross-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #FEE2E2;
+      color: #DC2626;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(220, 38, 38, 0.15);
+    }
+    #fees .ct-check-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #22C55E;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.65);
+    }
+    #fees .ct-card-foot {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #fees .ct-btn {
+      width: 100%;
+      height: 52px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s ease, color 0.2s ease, transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+    }
+    #fees .ct-btn:active {
+      transform: scale(0.97);
+    }
+    #fees .ct-btn.is-outline {
+      background: #FFFFFF;
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      color: #0F172A;
+    }
+    #fees .ct-btn.is-outline:hover {
+      background: #F1F5F9;
+      border-color: rgba(59, 84, 238, 0.28);
+      color: #0F172A;
+    }
+    #fees .ct-btn.is-hero-cta {
+      background: #FFFFFF;
+      border: 1px solid #FFFFFF;
+      color: #1E3A8A;
+      box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.35);
+    }
+    #fees .ct-btn.is-hero-cta:hover {
+      background: #F8FAFC;
+      color: #1E3A8A;
+      transform: translateY(-1px);
+      box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.45);
+    }
+    #fees .ct-btn.is-hero-cta:active {
+      transform: scale(0.97);
+    }
+    #fees .ct-learn {
+      text-align: center;
+      margin: 32px auto 0;
+      padding: 10px 22px;
+      width: fit-content;
+      max-width: 100%;
+      border-radius: 999px;
+      background: #F8FAFC;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border: 1px solid rgba(15, 23, 42, 0.07);
+      box-shadow: none;
+      font-size: 15.5px;
+      color: #475569;
+    }
+    #fees .ct-learn a {
+      color: #3B54EE;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    #fees .ct-learn a:hover {
+      color: #1D4ED8;
+    }
+    @media (max-width: 1040px) {
+      #fees .ct-matrix-grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+        gap: 32px;
+      }
+      #fees .ct-card.is-hero {
+        margin-top: 0;
+        margin-bottom: 0;
+        order: -1;
+      }
+      #fees .ct-matrix-wrapper {
+        padding: 16px 0;
+      }
+    }
+    @media (max-width: 640px) {
+      #fees {
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+      #fees .ct-deck-head {
+        margin-bottom: 24px;
+      }
+      #fees .ct-card {
+        padding: 28px 20px 24px;
+        border-radius: 26px;
+      }
+      #fees .ct-card.is-hero {
+        padding: 36px 20px 28px;
+        border-radius: 28px;
+      }
+      #fees .ct-card-artwork {
+        height: 140px;
+      }
+      #fees .ct-art-img {
+        height: 136px;
+      }
+      #fees .ct-row {
+        height: auto;
+        min-height: 46px;
+        padding: 11px 4px;
+      }
+      #fees .ct-learn {
+        border-radius: 20px;
+        padding: 12px 18px;
+        font-size: 14.5px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #fees .ct-card,
+      #fees .ct-calc-bar,
+      #fees .ct-hero-top-badge,
+      #fees .ct-card.is-hero .ct-row,
+      #fees .ct-matrix-wrapper::before,
+      #fees .ct-btn,
+      #fees .ct-art-img {
+        transition: none !important;
+        transform: none !important;
+      }
+    }

@@ -28,7 +28,7 @@ export function NexusFooter({ className }: NexusFooterProps) {
       typeof window.openInquiryModal === "function"
     ) {
       e.preventDefault();
-      window.openInquiryModal("Curated Director", "Commercial Roster");
+      window.openInquiryModal("", "");
     }
   };
 
@@ -52,64 +52,41 @@ export function NexusFooter({ className }: NexusFooterProps) {
     }
   };
 
-  const socialLinks: SocialLink[] = [
-    { name: "Showreels", href: "#roster", Icon: Film },
-    { name: "Instagram", href: "#roster", Icon: Instagram },
-    { name: "X / Twitter", href: "#how", Icon: Twitter },
-    {
-      name: "Direct Dispatch",
-      href: "#how",
-      Icon: Globe,
-      onClick: triggerInquiry,
-    },
-  ];
+  const openLogin = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const tab = document.querySelector<HTMLButtonElement>(".jn-tab[data-side=login]");
+    if (tab) {
+      e.preventDefault();
+      tab.click();
+      document.getElementById("join")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  // No social accounts yet; add them here when they exist.
+  const socialLinks: SocialLink[] = [];
 
   const columns: FooterColumn[] = [
     {
       title: "Clients",
       links: [
-        { name: "Curated Roster", href: "#roster" },
-        { name: "Fee Calculator", href: "#fees" },
-        { name: "3-Step Protocol", href: "#how" },
-        {
-          name: "Direct Dispatch",
-          href: "#how",
-          onClick: triggerInquiry,
-        },
+        { name: "Browse creators", href: "#showcase" },
+        { name: "How it works", href: "#how" },
+        { name: "Fee comparison", href: "#fees" },
+        { name: "Post a request", href: "#join", onClick: triggerInquiry },
       ],
     },
     {
       title: "Creators",
       links: [
-        {
-          name: "Apply Founding",
-          href: "#founding",
-          onClick: triggerFounding,
-        },
-        { name: "Cohort I Perks", href: "#founding" },
-        {
-          name: "Curation Criteria",
-          href: "#roster",
-          onClick: triggerCriteria,
-        },
-        { name: "Zero-Cut Model", href: "#fees" },
-      ],
-    },
-    {
-      title: "Governance",
-      links: [
-        { name: "Zero-Escrow Terms", href: "#fees" },
-        { name: "AICP Standards", href: "#how" },
-        { name: "Master IP Rights", href: "#how" },
-        { name: "Support & Review", href: "#founding" },
+        { name: "Claim a founding spot", href: "#founding", onClick: triggerFounding },
+        { name: "What we look for", href: "#founding" },
+        { name: "Pricing", href: "#fees" },
+        { name: "Log in", href: "#join", onClick: openLogin },
       ],
     },
   ];
 
-  const legalLinks: FooterLegalLink[] = [
-    { name: "Terms and Conditions", href: "#fees" },
-    { name: "Privacy Policy", href: "#founding" },
-  ];
+  // Add Terms and Privacy here once those pages exist.
+  const legalLinks: FooterLegalLink[] = [];
 
   return (
     <Footer
@@ -122,11 +99,11 @@ export function NexusFooter({ className }: NexusFooterProps) {
           </span>
         ),
         description:
-          "Direct access to vetted commercial directors and visual craftspeople. Zero platform markups.",
+          "Hire reviewed creators and learn from real teachers. Contact them directly. 0% commission.",
       }}
       socialLinks={socialLinks}
       columns={columns}
-      copyright="© 2026 Nexus Direct. All rights reserved."
+      copyright="© 2026 Nexus. All rights reserved."
       legalLinks={legalLinks}
     />
   );

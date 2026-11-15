@@ -1,0 +1,9 @@
+{
+  "crons": [
+    { "path": "/api/cron/outbox", "schedule": "*/5 * * * *" },
+    { "path": "/api/cron/grace", "schedule": "7 * * * *" },
+    { "path": "/api/cron/reconcile", "schedule": "23 8 * * *" },
+    { "path": "/api/cron/nightly", "schedule": "41 8 * * *" },
+    { "path": "/api/cron/weekly", "schedule": "5 15 * * 1" }
+  ]
+}

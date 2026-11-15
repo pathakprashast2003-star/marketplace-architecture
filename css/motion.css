@@ -1,0 +1,118 @@
+    /* Respect user preference for reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-viewport,
+      #showcase,
+      #join,
+      #fees,
+      #how,
+      #founding,
+      .cr-head,
+      .jn-head,
+      .ct-head,
+      .nx-how-head,
+      .nx-found-banner,
+      .headline-stack,
+      .hero-left-content {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #showcase.is-section-entered,
+      #join.is-section-entered,
+      #fees.is-section-entered,
+      #how.is-section-entered,
+      #founding.is-section-entered,
+      #showcase.is-section-entered *,
+      #join.is-section-entered *,
+      #fees.is-section-entered *,
+      #how.is-section-entered *,
+      #founding.is-section-entered * {
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+    #how .nx-blip-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);
+      background: #E2E8F0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      flex-shrink: 0;
+    }
+    #how .nx-blip-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    #how .nx-blip-pill {
+      background: #FFFFFF;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 999px;
+      padding: 2px 7px;
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif);
+      font-size: 11px;
+      font-weight: 600;
+      color: #1E293B;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+      white-space: nowrap;
+      transition: background 0.2s ease, color 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    #how .nx-blip-rate {
+      color: #3B54EE;
+      font-style: italic;
+      font-weight: 700;
+    }
+    #how .nx-radar-blip.is-correlated .nx-blip-avatar {
+      transform: scale(1.15);
+      box-shadow: 0 0 0 3px #3B54EE, 0 4px 14px rgba(59, 84, 238, 0.4);
+    }
+    #how .nx-radar-blip.is-correlated .nx-blip-pill {
+      background: #0F172A;
+      color: #FFFFFF;
+      border-color: #0F172A;
+    }
+    #how .nx-radar-blip.b1 { top: 6px; left: 50%; transform: translateX(-50%); flex-direction: column; gap: 3px; }
+    #how .nx-radar-blip.b2 { top: 50%; right: 6px; transform: translateY(-50%); flex-direction: column; gap: 3px; }
+    #how .nx-radar-blip.b3 { bottom: 6px; left: 50%; transform: translateX(-50%); flex-direction: column-reverse; gap: 3px; }
+    #how .nx-radar-blip.b4 { top: 50%; left: 6px; transform: translateY(-50%); flex-direction: column; gap: 3px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nx-scroll-progress {
+        display: none !important;
+      }
+      .nx-reveal,
+      .nx-scrub-word,
+      #fees .ct-card,
+      #fees .ct-calc-bar,
+      #fees .ct-art-img,
+      #fees .ct-hero-top-badge,
+      #fees .ct-card.is-hero .ct-row,
+      #fees .ct-matrix-wrapper::before,
+      #founding .nx-found-banner,
+      #founding .nx-found-cta-col,
+      .hero-viewport,
+      .character-theme-capsules,
+      .hero-left-content,
+      .hero-right-stage,
+      .bg-wave-layer,
+      #fees .ct-stage-container,
+      #how .nx-how-head,
+      #how .nx-deck-wrapper {
+        position: static !important;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        transition: none !important;
+        will-change: auto !important;
+      }
+    }

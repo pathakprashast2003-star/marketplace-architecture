@@ -1,0 +1,452 @@
+    #founding *,
+    #founding *::before,
+    #founding *::after {
+      box-sizing: border-box;
+      font-variant-numeric: tabular-nums;
+    }
+    /* Container: strictly aligned to 1160px to match #how monolith! */
+    #founding .nx-found-container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding-inline: clamp(18px, 3.8vw, 36px);
+      position: relative;
+    }
+    /* ── 3D FLIP CARD ARCHITECTURE FOR FOUNDING ROSTER ── */
+    #founding .nx-found-banner {
+      position: relative;
+      perspective: 1600px;
+      -webkit-perspective: 1600px;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      border: none;
+      background: transparent;
+      padding: 0;
+      box-shadow: none;
+      overflow: visible;
+      width: 100%;
+    }
+    #founding .nx-found-flipper {
+      position: relative;
+      width: 100%;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      transition: transform 0.72s cubic-bezier(0.16, 1, 0.3, 1), min-height 0.35s ease;
+    }
+    #founding .nx-found-banner.is-flipped .nx-found-flipper {
+      transform: rotateY(180deg);
+    }
+    /* Highlighted Boundaries on both Faces */
+    #founding .nx-found-face {
+      position: relative;
+      width: 100%;
+      background: #FFFFFF;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 28px;
+      padding: 38px 46px;
+      box-shadow: 0 16px 40px -16px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      transform-style: preserve-3d;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      overflow: hidden;
+    }
+    #founding .nx-found-face:hover {
+      border-color: rgba(15, 23, 42, 0.16);
+      box-shadow: 0 24px 50px -16px rgba(15, 23, 42, 0.10), 0 2px 6px rgba(15, 23, 42, 0.06);
+    }
+    #founding .nx-found-face::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at 85% 25%, rgba(59, 84, 238, 0.03), transparent 60%);
+      pointer-events: none;
+    }
+    #founding .nx-found-face > * {
+      position: relative;
+      z-index: 2;
+    }
+    #founding .nx-found-front {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      align-items: center;
+      gap: 40px;
+      transform: rotateY(0deg);
+      z-index: 2;
+    }
+    #founding .nx-found-back {
+      position: absolute;
+      inset: 0;
+      transform: rotateY(180deg);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    /* Back Face Header */
+    #founding .nx-flip-back-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+    #founding .nx-flip-back-intro {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+    #founding .nx-flip-back-title {
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif) !important;
+      font-size: clamp(1.6rem, 2.3vw, 2.15rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #0F172A;
+      margin: 0 0 4px;
+      text-align: left;
+    }
+    #founding .nx-flip-back-sub {
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif);
+      font-style: italic;
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: #475569;
+      margin: 0;
+      max-width: 54ch;
+      text-align: left;
+    }
+    #founding .nx-flip-return-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      font-size: 13px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      cursor: pointer;
+      background: #0F172A;
+      color: #FFFFFF;
+      border: 1px solid #0F172A;
+      border-radius: 999px;
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif);
+      font-weight: 700;
+    }
+    /* Back Face Criteria Grid */
+    #founding .nx-criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px 16px;
+    }
+    #founding .nx-crit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 13px;
+      border-radius: 12px;
+      background: #F8FAFC;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    #founding .nx-crit-item:hover {
+      background: #F1F5F9;
+      border-color: rgba(15, 23, 42, 0.12);
+    }
+    #founding .nx-crit-num {
+      font-family: var(--font-mono, 'SF Mono', monospace);
+      font-size: 11px;
+      font-weight: 800;
+      color: #3B54EE;
+      background: rgba(59, 84, 238, 0.08);
+      border-radius: 6px;
+      padding: 2px 6px;
+      line-height: 1.3;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    #founding .nx-crit-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+    }
+    #founding .nx-crit-title {
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif);
+      font-size: 13px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.25;
+    }
+    #founding .nx-crit-desc {
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+      font-size: 11.5px;
+      line-height: 1.35;
+      color: #64748B;
+      margin: 0;
+    }
+    #founding .nx-crit-item-wide {
+      grid-column: span 2;
+    }
+    #founding .nx-found-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+    /* Refined Cohort Pill */
+    #founding .nx-cohort-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4.5px 13px;
+      border-radius: 999px;
+      background: rgba(59, 84, 238, 0.08);
+      border: 1px solid rgba(59, 84, 238, 0.22);
+      color: #3B54EE;
+      font-family: var(--font-mono, 'SF Mono', monospace);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      white-space: nowrap;
+    }
+    #founding .nx-cohort-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+    }
+    #founding .nx-found-title {
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif) !important;
+      font-size: clamp(2rem, 3.2vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: #0F172A;
+      margin: 0 0 10px;
+      text-align: left;
+    }
+    #founding .nx-found-title .nx-deck-accent {
+      font-style: italic !important;
+      font-weight: 600 !important;
+      background: linear-gradient(135deg, #1D4ED8 0%, #3B54EE 55%, #60A5FA 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+      display: inline-block;
+    }
+    #founding .nx-found-sub {
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif);
+      font-style: italic;
+      font-size: 15.5px;
+      line-height: 1.55;
+      color: #475569;
+      max-width: 44ch;
+      margin: 0 0 18px;
+      text-align: left;
+    }
+    /* Minimalist Spot Meter */
+    #founding .nx-seat-meter {
+      width: 100%;
+      max-width: 380px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: #F8FAFC;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+    }
+    #founding .nx-seat-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+      font-family: var(--font-mono, 'SF Mono', monospace);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #334155;
+    }
+    #founding .nx-seat-left {
+      color: #059669;
+      font-weight: 700;
+    }
+    #founding .nx-seat-track {
+      width: 100%;
+      height: 4px;
+      border-radius: 999px;
+      background: #E2E8F0;
+      overflow: hidden;
+    }
+    #founding .nx-seat-fill {
+      width: 12%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #3B54EE 0%, #10B981 100%);
+    }
+    #founding .nx-found-cta-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-self: end;
+      gap: 12px;
+    }
+    #founding .nx-found-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 0;
+    }
+    #founding .nx-found-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      background: #0F172A;
+      color: #FFFFFF;
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif);
+      font-size: 14.5px;
+      font-weight: 700;
+      border: 1px solid #0F172A;
+      box-shadow: 0 6px 18px -4px rgba(15, 23, 42, 0.18);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.25s ease,
+                  background-color 0.2s ease;
+    }
+    #founding .nx-found-btn:hover {
+      background: #1E293B;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px -6px rgba(15, 23, 42, 0.25);
+    }
+    #founding .nx-found-sec-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      background: #FFFFFF;
+      border: 1px solid rgba(15, 23, 42, 0.14);
+      color: #0F172A;
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+    #founding .nx-found-sec-btn:hover {
+      background: #F8FAFC;
+      border-color: rgba(15, 23, 42, 0.24);
+      transform: translateY(-1px);
+    }
+    #founding .nx-found-note {
+      font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif);
+      font-style: italic;
+      font-size: 12.5px;
+      color: #64748B;
+      margin: 0;
+      text-align: right;
+    }
+    /* Responsive Flip Faces */
+    @media (max-width: 960px) {
+      #founding .nx-found-face {
+        padding: 32px 24px;
+      }
+      #founding .nx-found-front {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        text-align: center;
+      }
+      #founding .nx-found-copy {
+        align-items: center;
+        text-align: center;
+      }
+      #founding .nx-found-title,
+      #founding .nx-found-sub,
+      #founding .nx-found-note {
+        text-align: center;
+      }
+      #founding .nx-seat-meter {
+        margin: 0 auto 16px;
+      }
+      #founding .nx-found-cta-col {
+        justify-self: center;
+        align-items: center;
+        width: 100%;
+      }
+      #founding .nx-found-actions {
+        justify-content: center;
+      }
+      #founding .nx-flip-back-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 14px;
+      }
+      #founding .nx-flip-back-intro {
+        align-items: center;
+        text-align: center;
+      }
+      #founding .nx-flip-back-title,
+      #founding .nx-flip-back-sub {
+        text-align: center;
+      }
+      #founding .nx-criteria-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      #founding .nx-crit-item-wide {
+        grid-column: span 1;
+      }
+    }
+    @media (max-width: 600px) {
+      #founding .nx-found-face {
+        padding: 26px 18px;
+        border-radius: 20px;
+      }
+      #founding .nx-cohort-pill {
+        font-size: 9.5px;
+        padding: 4px 10px;
+      }
+      #founding .nx-found-btn,
+      #founding .nx-found-sec-btn,
+      #founding .nx-flip-return-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 13px 18px;
+      }
+    }
+    .nx-scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0F172A 0%, #3B54EE 55%, #76B762 100%);
+      box-shadow: 0 1px 8px rgba(59, 84, 238, 0.28);
+      transform-origin: 0 50%;
+      transform: scaleX(var(--scroll-p, 0));
+      pointer-events: none;
+      z-index: 950;
+      opacity: calc(min(1, var(--scroll-p, 0) * 35));
+    }
+    .nx-count {
+      font-variant-numeric: tabular-nums;
+      display: inline;
+      transition: color 360ms ease;
+    }
+    .nx-count.is-rolling {
+      color: #3B54EE;
+    }
+    .nx-reveal {
+      opacity: 1;
+    }

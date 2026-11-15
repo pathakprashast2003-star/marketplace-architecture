@@ -1,0 +1,18 @@
+/* ── SECTION MOTION support (see js/section-motion.js) ───────────────────── */
+
+/* Words become small boxes so they can move; spaces between them stay real text,
+   so lines still wrap exactly as before. */
+.sm-w { display: inline-block; }
+
+/* While an element is being animated, the page's own transitions are paused,
+   otherwise CSS would ease every frame anime.js sets and smear the motion. */
+.sm-anim { transition: none !important; }
+
+/* If someone prefers less motion, nothing is ever hidden or moved. */
+@media (prefers-reduced-motion: reduce) {
+  .sm-anim { opacity: 1 !important; transform: none !important; filter: none !important; letter-spacing: inherit !important; }
+}
+
+/* 3D flip for the "How it works" cards */
+.sm-persp { perspective: 1400px; }
+.sm-w { transform-origin: 50% 80%; }
