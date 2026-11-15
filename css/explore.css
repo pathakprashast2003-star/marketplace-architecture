@@ -669,121 +669,124 @@ body {
 
 .ws-foot {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: 14px;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
   padding-top: 14px;
   border-top: 1px solid rgba(15, 23, 42, 0.065);
-  min-height: 44px;
+  width: 100%;
 }
 
-.ws-meta {
+.ws-foot-stats {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2px;
-  min-width: 0;
-  font-family: 'Times New Roman', Times, Georgia, serif;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 12.5px;
+  line-height: 1.2;
 }
 
-.ws-meta-line {
+.ws-stat-cred {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-size: 13px;
-  font-weight: 500;
-  font-variant-numeric: lining-nums tabular-nums;
-  color: #475569;
-  white-space: nowrap;
+  gap: 5px;
+  color: #64748B;
+  font-variant-numeric: tabular-nums;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  min-width: 0;
-  line-height: 1.25;
+  white-space: nowrap;
 }
 
-.ws-star {
-  color: #D97706;
+.ws-star-ic {
+  color: #F59E0B;
   display: inline-flex;
   align-items: center;
   flex: none;
 }
 
-.ws-score {
+.ws-stat-rating {
   font-weight: 700;
   color: #0F172A;
+  font-size: 13px;
 }
 
-.ws-sep {
+.ws-stat-sep {
+  color: #CBD5E1;
+  font-weight: 400;
+}
+
+.ws-stat-track {
   color: #64748B;
-  opacity: 0.75;
+  font-weight: 500;
+  font-size: 12.5px;
 }
 
-.ws-track {
-  color: #475569;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.ws-sla {
+.ws-foot-sla-pill {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-family: 'Times New Roman', Times, Georgia, serif;
-  font-style: italic;
-  font-size: 12px;
-  color: #64748B;
-  line-height: 1.25;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #15803D;
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.22);
+  padding: 3px 8.5px;
+  border-radius: 999px;
+  letter-spacing: -0.01em;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex: none;
 }
 
-.ws-dot {
+.ws-dot-live {
   width: 5.5px;
   height: 5.5px;
   border-radius: 50%;
   background: #16A34A;
-  box-shadow: 0 0 0 2.5px rgba(22, 163, 74, 0.14);
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.22);
   flex: none;
 }
 
 .ws-actions {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 5px;
-  flex: none;
+  gap: 8px;
+  width: 100%;
 }
 
 .ws-book {
-  height: 36px;
-  padding: 0 13px;
+  flex: 1 1 auto;
+  height: 40px;
+  padding: 0 16px;
   border: 0;
   border-radius: 999px;
   background: #0F172A;
   color: #FFFFFF;
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
   font-weight: 600;
-  font-size: 12.5px;
-  letter-spacing: -0.005em;
+  font-size: 13px;
+  letter-spacing: -0.01em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 6px;
   cursor: pointer;
   white-space: nowrap;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
-  transition: background-color 0.2s ease, transform 0.14s ease;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.10);
+  transition: background-color 0.2s ease, transform 0.14s ease, box-shadow 0.2s ease;
 }
 
 .ws-book:hover {
   background: #3B54EE;
   transform: translateY(-1px);
+  box-shadow: 0 6px 16px -2px rgba(59, 84, 238, 0.35);
 }
 
 .ws-save {
-  width: 36px;
-  height: 36px;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 1px solid rgba(15, 23, 42, 0.10);
   background: #FFFFFF;
@@ -791,8 +794,8 @@ body {
   display: grid;
   place-items: center;
   cursor: pointer;
-  flex: none;
   transition: background-color 0.2s, border-color 0.2s, transform 0.14s, color 0.2s;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
 }
 
 .ws-save:hover,
