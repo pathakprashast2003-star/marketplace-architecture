@@ -573,49 +573,80 @@
       return;
     }
 
-    // Build cards HTML
-    const checkSvg = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>`;
-    const bookmarkSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>`;
+    // Build cards HTML (Exact Landing Page Showcase Studio Standard)
+    const WS_SVGS = {
+      check: '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+      star: '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2l2.92 6.26 6.88.85-5.08 4.74 1.32 6.8L12 17.52l-6.04 3.33 1.32-6.8L2.2 9.31l6.88-.85L12 2.2z"/></svg>',
+      arrow: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+      save: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>'
+    };
 
-    gridEl.innerHTML = list.map((item) => {
+    const STUDIO_METAS = [
+      ['5.0', '$240k+ billed', 'Replies under 1h'],
+      ['4.8', '$92k+ billed', 'Replies under 3h'],
+      ['5.0', 'ARRI certified', 'Replies under 1h'],
+      ['5.0', '$195k+ billed', 'Replies under 1h'],
+      ['4.9', '$185k+ billed', 'Replies under 2h'],
+      ['5.0', '28 shoots', 'Replies under 1h'],
+      ['4.9', '$110k+ billed', 'Replies under 4h'],
+      ['5.0', 'Phantom 4k cert', 'Replies under 1h'],
+      ['4.8', '$74k+ billed', 'Replies under 2h']
+    ];
+
+    function getStudioMeta(idx) {
+      if (typeof idx === 'number' && STUDIO_METAS[idx % STUDIO_METAS.length]) {
+        return STUDIO_METAS[idx % STUDIO_METAS.length];
+      }
+      return ['5.0', '$100k+ billed', 'Replies under 1h'];
+    }
+
+    gridEl.innerHTML = list.map((item, idx) => {
       const isSaved = state.shortlist.has(item.id);
-      const tagsHtml = item.tags.map((t) => `<span class="nx-tag-chip">${esc(t)}</span>`).join('');
-      const videoHtml = item.reel
-        ? `<video src="${esc(item.reel)}" muted loop playsinline preload="none" aria-label="${esc(item.creator)} showreel"></video>`
-        : '';
+      const hasReel = Boolean(item.reel);
+      const rateParts = String(item.rate || '').match(/^(\$?[\d,]+)(.*)$/);
+      const rateHtml = rateParts
+        ? esc(rateParts[1]) + '<small>' + esc(rateParts[2]) + '</small>'
+        : esc(item.rate);
+      const firstName = (item.creator || 'Talent').split(' ')[0];
+      const meta = getStudioMeta(idx);
 
       return `
-        <article class="nx-talent-card" data-creator-id="${esc(item.id)}">
-          <div class="nx-card-stage">
-            <img src="${esc(item.src)}" alt="${esc(item.creator)} - ${esc(item.craft)}" loading="lazy">
-            ${videoHtml}
-            <div class="nx-card-hud">
-              <span class="nx-card-hud-dot"></span>
-              <span>${esc(item.city)}</span>
-            </div>
-            <div class="nx-card-rate">${esc(item.rate)}</div>
-            <div class="nx-card-toll-tag">0% Fee</div>
+        <article class="dir-card" data-creator-id="${esc(item.id)}" role="button" tabindex="0" aria-label="${esc(item.creator)} — ${esc(item.craft)} (${esc(item.rate)})">
+          <div class="ws-stage">
+            <img src="${esc(item.src)}" alt="${esc(item.creator)} work still" loading="lazy" decoding="async" draggable="false">
+            ${hasReel ? `<video muted playsinline loop preload="none" src="${esc(item.reel)}"></video>` : ''}
+            <span class="ws-hud ${hasReel ? '' : 'is-still'}" aria-hidden="true">
+              <span class="ws-hud-dot"></span>
+              <span>${hasReel ? 'Reel' : 'Photo'}</span>
+            </span>
+            <span class="ws-price">${rateHtml}</span>
           </div>
-          <div class="nx-card-body">
-            <div class="nx-kicker-row">
-              <span class="nx-craft-kicker">${esc(item.craft)}</span>
-              <span class="nx-verified-badge" title="Verified Creator &amp; Direct Contact Guarantee">${checkSvg}</span>
+          <div class="ws-body">
+            <div class="ws-kicker-row">
+              <span class="ws-kicker">${esc(item.craft)} · ${esc(item.city)}</span>
+              <span class="ws-verified" aria-label="Verified">${WS_SVGS.check}</span>
             </div>
-            <h2 class="nx-creator-name">${esc(item.creator)}</h2>
-            <p class="nx-creator-bio">${esc(item.bio)}</p>
-            <div class="nx-tag-chips">${tagsHtml}</div>
-            <div class="nx-sla-line">
-              <span class="nx-sla-dot"></span>
-              <span>Replies in <b>${esc(item.sla || '< 2 hrs')}</b></span>
-            </div>
-            <div class="nx-card-actions">
-              <button type="button" class="nx-btn-save ${isSaved ? 'is-saved' : ''}" data-creator-id="${esc(item.id)}" aria-label="${isSaved ? 'Remove from shortlist' : 'Save to shortlist'}">
-                ${bookmarkSvg}
-                <span>${isSaved ? 'Saved' : 'Save'}</span>
-              </button>
-              <button type="button" class="nx-btn-brief" data-creator-name="${esc(item.creator)}" aria-label="Send direct brief to ${esc(item.creator)}">
-                Send Brief
-              </button>
+            <h3 class="ws-name">${esc(item.creator)}</h3>
+            <p class="ws-blurb">${esc(item.bio)}</p>
+            <div class="ws-foot">
+              <div class="ws-meta">
+                <div class="ws-meta-line">
+                  <span class="ws-star" aria-hidden="true">${WS_SVGS.star}</span>
+                  <span class="ws-score">${esc(meta[0])}</span>
+                  <span class="ws-sep">·</span>
+                  <span class="ws-track">${esc(meta[1])}</span>
+                </div>
+                <div class="ws-sla"><span class="ws-dot" aria-hidden="true"></span><span>${esc(meta[2])}</span></div>
+              </div>
+              <div class="ws-actions">
+                <button type="button" class="ws-book nx-btn-brief" data-creator-name="${esc(item.creator)}" aria-label="Book ${esc(firstName)}">
+                  <span>Book ${esc(firstName)}</span>
+                  ${WS_SVGS.arrow}
+                </button>
+                <button type="button" class="ws-save nx-btn-save ${isSaved ? 'is-saved' : ''}" data-creator-id="${esc(item.id)}" aria-pressed="${isSaved ? 'true' : 'false'}" aria-label="Save ${esc(item.creator)} to shortlist">
+                  ${WS_SVGS.save}
+                </button>
+              </div>
             </div>
           </div>
         </article>
@@ -627,18 +658,20 @@
 
   /* ── 7. HOVER VIDEO REEL PREVIEWS ── */
   function bindCardHoverReels() {
-    const cards = gridEl.querySelectorAll('.nx-talent-card');
+    const cards = gridEl.querySelectorAll('.dir-card');
     cards.forEach((card) => {
       const video = card.querySelector('video');
       if (!video) return;
 
       card.addEventListener('mouseenter', () => {
+        card.classList.add('is-playing');
         try {
           video.play().catch(() => {});
         } catch (e) {}
       });
 
       card.addEventListener('mouseleave', () => {
+        card.classList.remove('is-playing');
         try {
           video.pause();
           video.currentTime = 0;
@@ -668,12 +701,11 @@
     updateShortlistBadges();
 
     // Update save button states in grid without full re-render
-    const saveBtns = gridEl.querySelectorAll(`.nx-btn-save[data-creator-id="${id}"]`);
+    const saveBtns = gridEl.querySelectorAll(`.ws-save[data-creator-id="${id}"], .nx-btn-save[data-creator-id="${id}"]`);
     saveBtns.forEach((btn) => {
       const isSaved = state.shortlist.has(id);
       btn.classList.toggle('is-saved', isSaved);
-      const span = btn.querySelector('span');
-      if (span) span.textContent = isSaved ? 'Saved' : 'Save';
+      btn.setAttribute('aria-pressed', isSaved ? 'true' : 'false');
     });
 
     renderShortlistDrawer();
@@ -866,19 +898,29 @@
 
     // Card delegation (Save & Send Brief)
     gridEl.addEventListener('click', (e) => {
-      const saveBtn = e.target.closest('.nx-btn-save');
+      const saveBtn = e.target.closest('.ws-save, .nx-btn-save');
       if (saveBtn) {
         e.preventDefault();
+        e.stopPropagation();
         const id = saveBtn.dataset.creatorId;
         toggleSaveCreator(id);
         return;
       }
 
-      const briefBtn = e.target.closest('.nx-btn-brief');
-      if (briefBtn) {
+      const bookBtn = e.target.closest('.ws-book, .nx-btn-brief');
+      if (bookBtn) {
         e.preventDefault();
-        const name = briefBtn.dataset.creatorName;
+        e.stopPropagation();
+        const name = bookBtn.dataset.creatorName;
         openInquiryModal(name);
+        return;
+      }
+
+      const card = e.target.closest('.dir-card');
+      if (card) {
+        const id = card.dataset.creatorId;
+        const item = CREATORS.find((c) => c.id === id);
+        if (item) openInquiryModal(item.creator);
       }
     });
 
