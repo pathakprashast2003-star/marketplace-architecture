@@ -5,12 +5,13 @@
 
 ---
 
-## 🎯 Current Sprint Focus: Page #2 (Directory & Search Explorer)
+## 🎯 Current Sprint Focus: Page #3 (Creator Storefront Profile)
 
 ```
 [x] Completed:   Page 1 — Homepage & Curated Talent Showcase (/) -> Running on http://localhost:3000
-[ ] Next Up:     Page 2 — Directory & Search Explorer (/explore)
-[ ] Queued:      Page 3 — Creator Storefront Profile (/[slug])
+[x] Completed:   Page 2 — Directory & Search Explorer (/explore) -> Running on http://localhost:3000/explore
+[ ] Next Up:     Page 3 — Creator Storefront Profile (/storefront/[slug])
+[ ] Queued:      Page 4 — Structured Lead Intake Modal (Storefront Overlay)
 ```
 
 ---
@@ -27,9 +28,9 @@
   - *30-Second Lead Modal:* Structured intake modal with live Resend relay simulation.
   - *Footer:* Clean minimalist footer with legal, directory hubs, and seller apply links.
 
-- [ ] **2. Directory & Talent Explorer (`/explore`)**
-  - *Route:* `/explore` or `/search`
-  - *Components:* Real-time debounced search bar, faceted filter drawer (City, Category, Price, Equipment tags, Travel radius), responsive masonry card grid, fast-responder badges (`< 2 hrs`).
+- [x] **2. Directory & Talent Explorer (`/explore`)** `[COMPLETED & LIVE ON LOCALHOST:3000/explore]`
+  - *Route:* `/explore` or `/explore.html`
+  - *Components:* Real-time debounced omnibox search bar, discipline filter tabs (Film, Aerial, 3D, Art, Action), faceted secondary filters (City, Day Rate brackets, Curated sorting, Gear quick chips), responsive talent card grid with hover showreel video previews, shortlist slide-over drawer with `localStorage` persistence, direct project brief inquiry modal with `/api/inquiries` integration, fast-responder SLA badges (`< 2 hrs`), 0 console errors.
 
 - [ ] **3. Programmatic Local SEO Pages (`/[city]/[category]`)**
   - *Route:* `/[city]/[category]` (e.g. `/austin/videography`, `/atlanta/brand-photography`)

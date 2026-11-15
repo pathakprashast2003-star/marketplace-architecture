@@ -2,9 +2,18 @@ import http.server
 import socketserver
 
 class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
-    def do_GET(self):
+    def _rewrite_path(self):
         if self.path == '/index-v2.html' or self.path.startswith('/index-v2.html?'):
             self.path = '/index.html'
+        elif self.path == '/explore' or self.path.startswith('/explore?'):
+            self.path = '/explore.html'
+
+    def do_HEAD(self):
+        self._rewrite_path()
+        super().do_HEAD()
+
+    def do_GET(self):
+        self._rewrite_path()
         super().do_GET()
 
     def do_POST(self):
@@ -30,4 +39,3 @@ if __name__ == '__main__':
     socketserver.TCPServer.allow_reuse_address = True
     with socketserver.TCPServer(('', 3000), NoCacheHandler) as httpd:
         httpd.serve_forever()
-
