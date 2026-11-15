@@ -600,51 +600,53 @@
       return ['5.0', '$100k+ billed', 'Replies under 1h'];
     }
 
-    gridEl.innerHTML = list.map((item) => {
+    gridEl.innerHTML = list.map((item, idx) => {
       const isSaved = state.shortlist.has(item.id);
       const hasReel = Boolean(item.reel);
       const rateParts = String(item.rate || '').match(/^(\$?[\d,]+)(.*)$/);
       const rateHtml = rateParts
         ? esc(rateParts[1]) + '<small>' + esc(rateParts[2]) + '</small>'
         : esc(item.rate);
-      const tagsHtml = (item.tags && item.tags.length)
-        ? `<div class="ws-tag-chips">${item.tags.slice(0, 3).map((t) => `<span class="ws-tag-chip">${esc(t)}</span>`).join('')}</div>`
-        : '';
-      const slaText = item.sla || '< 1 hr';
+      const firstName = (item.creator || 'Talent').split(' ')[0];
+      const meta = getStudioMeta(idx);
 
       return `
         <article class="dir-card" data-creator-id="${esc(item.id)}" role="button" tabindex="0" aria-label="${esc(item.creator)} — ${esc(item.craft)} (${esc(item.rate)})">
           <div class="ws-stage">
             <img src="${esc(item.src)}" alt="${esc(item.creator)} work still" loading="lazy" decoding="async" draggable="false">
             ${hasReel ? `<video muted playsinline loop preload="none" src="${esc(item.reel)}"></video>` : ''}
-            <span class="ws-city-badge" aria-hidden="true">
-              <span class="ws-city-dot"></span>
-              <span>${esc(item.city)}</span>
+            <span class="ws-hud ${hasReel ? '' : 'is-still'}" aria-hidden="true">
+              <span class="ws-hud-dot"></span>
+              <span>${hasReel ? 'Reel' : 'Photo'}</span>
             </span>
-            <span class="ws-rate-badge">${rateHtml}</span>
-            <span class="ws-toll-badge">0% Fee</span>
+            <span class="ws-price">${rateHtml}</span>
           </div>
           <div class="ws-body">
             <div class="ws-kicker-row">
-              <span class="ws-craft-kicker">${esc(item.craft)}</span>
-              <span class="ws-verified-badge" aria-label="Verified Creator & Direct Contact Guarantee">${WS_SVGS.check}</span>
+              <span class="ws-kicker">${esc(item.craft)} · ${esc(item.city)}</span>
+              <span class="ws-verified" aria-label="Verified">${WS_SVGS.check}</span>
             </div>
             <h3 class="ws-name">${esc(item.creator)}</h3>
             <p class="ws-blurb">${esc(item.bio)}</p>
-            ${tagsHtml}
-            <div class="ws-sla-line">
-              <span class="ws-sla-dot" aria-hidden="true"></span>
-              <span>Replies in <b>${esc(slaText)}</b></span>
-            </div>
-            <div class="ws-card-actions">
-              <button type="button" class="ws-btn-save nx-btn-save ${isSaved ? 'is-saved' : ''}" data-creator-id="${esc(item.id)}" aria-pressed="${isSaved ? 'true' : 'false'}" aria-label="${isSaved ? 'Remove from shortlist' : 'Save ' + esc(item.creator) + ' to shortlist'}">
-                ${WS_SVGS.save}
-                <span>${isSaved ? 'Saved' : 'Save'}</span>
-              </button>
-              <button type="button" class="ws-btn-brief nx-btn-brief" data-creator-name="${esc(item.creator)}" aria-label="Send brief to ${esc(item.creator)}">
-                <span>Send Brief</span>
-                ${WS_SVGS.arrow}
-              </button>
+            <div class="ws-foot">
+              <div class="ws-meta">
+                <div class="ws-meta-line">
+                  <span class="ws-star" aria-hidden="true">${WS_SVGS.star}</span>
+                  <span class="ws-score">${esc(meta[0])}</span>
+                  <span class="ws-sep">·</span>
+                  <span class="ws-track">${esc(meta[1])}</span>
+                </div>
+                <div class="ws-sla"><span class="ws-dot" aria-hidden="true"></span><span>${esc(meta[2])}</span></div>
+              </div>
+              <div class="ws-actions">
+                <button type="button" class="ws-book nx-btn-brief" data-creator-name="${esc(item.creator)}" aria-label="Book ${esc(firstName)}">
+                  <span>Book ${esc(firstName)}</span>
+                  ${WS_SVGS.arrow}
+                </button>
+                <button type="button" class="ws-save nx-btn-save ${isSaved ? 'is-saved' : ''}" data-creator-id="${esc(item.id)}" aria-pressed="${isSaved ? 'true' : 'false'}" aria-label="Save ${esc(item.creator)} to shortlist">
+                  ${WS_SVGS.save}
+                </button>
+              </div>
             </div>
           </div>
         </article>
@@ -699,13 +701,11 @@
     updateShortlistBadges();
 
     // Update save button states in grid without full re-render
-    const saveBtns = gridEl.querySelectorAll(`.ws-btn-save[data-creator-id="${id}"], .nx-btn-save[data-creator-id="${id}"]`);
+    const saveBtns = gridEl.querySelectorAll(`.ws-save[data-creator-id="${id}"], .nx-btn-save[data-creator-id="${id}"]`);
     saveBtns.forEach((btn) => {
       const isSaved = state.shortlist.has(id);
       btn.classList.toggle('is-saved', isSaved);
       btn.setAttribute('aria-pressed', isSaved ? 'true' : 'false');
-      const span = btn.querySelector('span');
-      if (span) span.textContent = isSaved ? 'Saved' : 'Save';
     });
 
     renderShortlistDrawer();
@@ -898,7 +898,7 @@
 
     // Card delegation (Save & Send Brief)
     gridEl.addEventListener('click', (e) => {
-      const saveBtn = e.target.closest('.ws-btn-save, .nx-btn-save');
+      const saveBtn = e.target.closest('.ws-save, .nx-btn-save');
       if (saveBtn) {
         e.preventDefault();
         e.stopPropagation();
@@ -907,11 +907,11 @@
         return;
       }
 
-      const briefBtn = e.target.closest('.ws-btn-brief, .nx-btn-brief');
-      if (briefBtn) {
+      const bookBtn = e.target.closest('.ws-book, .nx-btn-brief');
+      if (bookBtn) {
         e.preventDefault();
         e.stopPropagation();
-        const name = briefBtn.dataset.creatorName;
+        const name = bookBtn.dataset.creatorName;
         openInquiryModal(name);
         return;
       }

@@ -468,16 +468,16 @@ body {
   flex-direction: column;
   padding: 12px 12px 18px;
   box-sizing: border-box;
-  border: 1px solid rgba(15, 23, 42, 0.07);
+  border: 1px solid rgba(15, 23, 42, 0.065);
   border-radius: 30px;
   overflow: hidden;
-  background: #FFFFFF;
-  box-shadow: 0 2px 10px -4px rgba(15, 23, 42, 0.04), 0 12px 28px -10px rgba(15, 23, 42, 0.05);
+  background: #F7F8FA;
+  box-shadow: 0 2px 10px -4px rgba(15, 23, 42, 0.04);
   cursor: pointer;
   text-align: left;
   user-select: none;
   -webkit-user-select: none;
-  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.24s ease;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.24s ease, border-color 0.24s ease;
 }
 
 .dir-card:hover {
@@ -530,8 +530,7 @@ body {
   transform: scale(1.04);
 }
 
-/* 1. Top-Left: City & Location Badge */
-.ws-city-badge {
+.ws-hud {
   position: absolute;
   top: 11px;
   left: 11px;
@@ -539,87 +538,63 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4.5px 10px;
+  padding: 4px 9px;
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.82);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(15, 23, 42, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   color: #FFFFFF;
-  font-family: var(--font-mono, monospace);
-  font-size: 10px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 9.5px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   pointer-events: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 1;
 }
 
-.ws-city-dot {
+.ws-hud-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #38BDF8;
-  box-shadow: 0 0 6px rgba(56, 189, 248, 0.85);
-  flex: none;
+  background: #22C55E;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.85);
 }
 
-/* 2. Bottom-Left: Day Rate Badge */
-.ws-rate-badge {
+.ws-hud.is-still .ws-hud-dot {
+  background: #93C5FD;
+  box-shadow: none;
+}
+
+.ws-price {
   position: absolute;
-  bottom: 11px;
-  left: 11px;
+  top: 11px;
+  right: 11px;
   z-index: 5;
   display: inline-flex;
   align-items: baseline;
-  padding: 5px 12px;
+  padding: 4.5px 11px;
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.84);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  font-family: var(--font-sans, sans-serif);
-  font-weight: 700;
-  font-size: 13.5px;
-  letter-spacing: -0.01em;
-  color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: -0.015em;
+  color: #0F172A;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
   font-variant-numeric: tabular-nums;
   pointer-events: none;
 }
 
-.ws-rate-badge small {
+.ws-price small {
   font-size: 11px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.75);
-  margin-left: 2px;
+  color: #64748B;
+  margin-left: 1.5px;
 }
 
-/* 3. Bottom-Right: 0% Fee Badge */
-.ws-toll-badge {
-  position: absolute;
-  bottom: 11px;
-  right: 11px;
-  z-index: 5;
-  display: inline-flex;
-  align-items: center;
-  padding: 4.5px 9.5px;
-  border-radius: 999px;
-  background: #059669;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: #FFFFFF;
-  font-family: var(--font-mono, monospace);
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.4);
-  pointer-events: none;
-}
-
-/* Card Body */
 .ws-body {
-  padding: 14px 4px 0;
+  padding: 14px 6px 0;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -631,14 +606,14 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
-.ws-craft-kicker {
-  font-family: var(--font-mono, monospace);
+.ws-kicker {
+  font-family: 'Times New Roman', Times, Georgia, serif;
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #64748B;
   white-space: nowrap;
@@ -646,7 +621,7 @@ body {
   text-overflow: ellipsis;
 }
 
-.ws-verified-badge {
+.ws-verified {
   display: inline-grid;
   place-items: center;
   width: 18px;
@@ -658,32 +633,33 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.dir-card:hover .ws-verified-badge {
+.dir-card:hover .ws-verified {
   background: #3B54EE;
   color: #FFFFFF;
 }
 
 .ws-name {
-  font-family: var(--font-serif);
-  font-weight: 700;
-  font-size: 24px;
-  letter-spacing: -0.015em;
-  line-height: 1.18;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  font-weight: 600;
+  font-size: 25px;
+  letter-spacing: -0.02em;
+  line-height: 1.16;
   color: #0F172A;
-  margin: 0 0 6px;
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .ws-blurb {
-  font-family: var(--font-sans);
-  font-size: 13.5px;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 1.48;
+  line-height: 1.44;
   color: #475569;
-  margin: 0 0 10px;
-  min-height: 40px;
+  margin: 6px 0 0;
+  height: 41px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -691,129 +667,145 @@ body {
   text-overflow: ellipsis;
 }
 
-/* Gear Tags */
-.ws-tag-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 12px;
-}
-
-.ws-tag-chip {
-  padding: 3.5px 9px;
-  border-radius: 6px;
-  background: #F8FAFC;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 500;
-  color: #475569;
-  white-space: nowrap;
-  transition: all 0.15s ease;
-}
-
-.ws-tag-chip:hover {
-  background: #FFFFFF;
-  border-color: rgba(59, 84, 238, 0.35);
-  color: #0F172A;
-}
-
-/* SLA Status Line */
-.ws-sla-line {
+.ws-foot {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-family: var(--font-sans);
-  font-size: 12px;
-  color: #64748B;
-  margin-bottom: 14px;
-}
-
-.ws-sla-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #10B981;
-  box-shadow: 0 0 0 2.5px rgba(16, 185, 129, 0.18);
-  flex: none;
-}
-
-.ws-sla-line b {
-  color: #0F172A;
-  font-weight: 600;
-}
-
-/* Card Actions */
-.ws-card-actions {
-  display: flex;
-  align-items: center;
+  justify-content: space-between;
   gap: 8px;
   margin-top: auto;
   padding-top: 12px;
-  border-top: 1px solid rgba(15, 23, 42, 0.07);
+  border-top: 1px solid rgba(15, 23, 42, 0.065);
+  min-height: 42px;
 }
 
-.ws-btn-save {
-  height: 38px;
-  padding: 0 16px;
-  border-radius: 999px;
-  background: #FFFFFF;
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  color: #0F172A;
-  font-family: var(--font-sans);
+.ws-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+}
+
+.ws-meta-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   font-size: 13px;
+  font-weight: 500;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: #475569;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.ws-star {
+  color: #D97706;
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+}
+
+.ws-score {
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.ws-sep {
+  color: #64748B;
+  opacity: 0.75;
+}
+
+.ws-track {
+  color: #475569;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ws-sla {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  font-style: italic;
+  font-size: 12px;
+  color: #64748B;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ws-dot {
+  width: 5.5px;
+  height: 5.5px;
+  border-radius: 50%;
+  background: #16A34A;
+  box-shadow: 0 0 0 2.5px rgba(22, 163, 74, 0.14);
+  flex: none;
+}
+
+.ws-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: none;
+}
+
+.ws-book {
+  height: 36px;
+  padding: 0 13px;
+  border: 0;
+  border-radius: 999px;
+  background: #0F172A;
+  color: #FFFFFF;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
   font-weight: 600;
+  font-size: 12.5px;
   letter-spacing: -0.005em;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-}
-
-.ws-btn-save:hover {
-  background: #EEF2FF;
-  border-color: rgba(59, 84, 238, 0.35);
-  color: #3B54EE;
-}
-
-.ws-btn-save.is-saved {
-  background: #EEF2FF;
-  border-color: rgba(59, 84, 238, 0.45);
-  color: #3B54EE;
-}
-
-.ws-btn-save.is-saved svg {
-  fill: currentColor;
-}
-
-.ws-btn-brief {
-  height: 38px;
-  flex: 1;
-  padding: 0 18px;
-  border-radius: 999px;
-  background: #0F172A;
-  border: 0;
-  color: #FFFFFF;
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: -0.01em;
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
   cursor: pointer;
   white-space: nowrap;
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.2s ease, transform 0.14s ease;
 }
 
-.ws-btn-brief:hover {
+.ws-book:hover {
   background: #3B54EE;
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(59, 84, 238, 0.35);
+}
+
+.ws-save {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(15, 23, 42, 0.10);
+  background: #FFFFFF;
+  color: #0F172A;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex: none;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.14s, color 0.2s;
+}
+
+.ws-save:hover,
+.ws-save.is-saved,
+.ws-save[aria-pressed="true"] {
+  background: #EEF2FF;
+  border-color: rgba(59, 84, 238, 0.30);
+  color: #3B54EE;
+}
+
+.ws-save.is-saved svg,
+.ws-save[aria-pressed="true"] svg {
+  fill: currentColor;
 }
 
 /* Empty State */
