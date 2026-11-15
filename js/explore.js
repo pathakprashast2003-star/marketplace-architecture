@@ -629,17 +629,14 @@
             <h3 class="ws-name">${esc(item.creator)}</h3>
             <p class="ws-blurb">${esc(item.bio)}</p>
             <div class="ws-foot">
-              <div class="ws-foot-stats">
-                <div class="ws-stat-cred">
-                  <span class="ws-star-ic" aria-hidden="true">${WS_SVGS.star}</span>
-                  <strong class="ws-stat-rating">${esc(meta[0])}</strong>
-                  <span class="ws-stat-sep">·</span>
-                  <span class="ws-stat-track">${esc(meta[1])}</span>
+              <div class="ws-meta">
+                <div class="ws-meta-line">
+                  <span class="ws-star" aria-hidden="true">${WS_SVGS.star}</span>
+                  <span class="ws-score">${esc(meta[0])}</span>
+                  <span class="ws-sep">·</span>
+                  <span class="ws-track">${esc(meta[1])}</span>
                 </div>
-                <div class="ws-foot-sla-pill">
-                  <span class="ws-dot-live" aria-hidden="true"></span>
-                  <span>${esc(meta[2])}</span>
-                </div>
+                <div class="ws-sla"><span class="ws-dot" aria-hidden="true"></span><span>${esc(meta[2])}</span></div>
               </div>
               <div class="ws-actions">
                 <button type="button" class="ws-book nx-btn-brief" data-creator-name="${esc(item.creator)}" aria-label="Book ${esc(firstName)}">
