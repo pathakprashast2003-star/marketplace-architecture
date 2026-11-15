@@ -496,7 +496,7 @@ body {
 
 .dir-card .ws-stage {
   position: relative;
-  height: 228px;
+  height: 280px;
   border-radius: 18px;
   overflow: hidden;
   background: #0F172A;
@@ -594,7 +594,7 @@ body {
 }
 
 .ws-body {
-  padding: 14px 6px 0;
+  padding: 16px 8px 0;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -606,7 +606,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-bottom: 6px;
+  margin-bottom: 7px;
 }
 
 .ws-kicker {
@@ -654,12 +654,12 @@ body {
 .ws-blurb {
   font-family: 'Times New Roman', Times, Georgia, serif;
   font-style: italic;
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 400;
-  line-height: 1.44;
+  line-height: 1.48;
   color: #475569;
-  margin: 6px 0 0;
-  height: 41px;
+  margin: 7px 0 0;
+  min-height: 43px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -672,10 +672,10 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  margin-top: auto;
-  padding-top: 12px;
+  margin-top: 14px;
+  padding-top: 14px;
   border-top: 1px solid rgba(15, 23, 42, 0.065);
-  min-height: 42px;
+  min-height: 44px;
 }
 
 .ws-meta {
@@ -1142,6 +1142,9 @@ body {
   .nx-creator-grid {
     grid-template-columns: 1fr;
     gap: 18px;
+  }
+  .dir-card .ws-stage {
+    height: 250px;
   }
   .nx-secondary-filters {
     flex-direction: column;
