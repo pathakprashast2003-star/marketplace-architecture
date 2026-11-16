@@ -1163,3 +1163,19 @@
     }
     .jn-tab[data-side="login"].is-active { color: #3B54EE; }
     .jn-tab:active { transform: scale(0.97); }
+
+/* "Explore all creators" in the showcase controls (Nov 16) */
+.lz-explore-btn {
+  display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 18px; border-radius: 999px;
+  background: #3B54EE; color: #FFFFFF; text-decoration: none;
+  font-family: 'Times New Roman', Times, serif; font-size: 16px; font-weight: 700;
+  box-shadow: 0 10px 22px -12px rgba(59, 84, 238, 0.85);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.lz-explore-btn span { transition: transform 0.2s ease; }
+.lz-explore-btn:hover { background: #2337C6; transform: translateY(-1px); }
+.lz-explore-btn:hover span { transform: translateX(3px); }
+@media (max-width: 640px) {
+  .lz-controls { flex-wrap: wrap; justify-content: center; row-gap: 10px; }
+  .lz-explore-btn { order: 10; flex-basis: 100%; justify-content: center; height: 44px; font-size: 17px; }
+}

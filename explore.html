@@ -6,15 +6,15 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <meta name="description" content="Explore verified cinematographers, drone pilots, 3D artists, and creative directors. Contact directly with guaranteed fast response times. 0% commission.">
-  <title>Nexus · Explore Top Creative Talent</title>
+  <meta name="description" content="Browse filmmakers, drone pilots, photographers, 3D artists and teachers, each reviewed by a person. Contact them directly. 0% commission.">
+  <title>Nexus · Explore creators</title>
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%233B54EE' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&family=JetBrains+Mono:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="assets/react-footer/marketplace-architecture.css?v=18">
-  <link rel="stylesheet" href="css/explore.css?v=longer2">
+  <link rel="stylesheet" href="css/explore.css?v=20">
 </head>
 <body>
 
@@ -26,21 +26,21 @@
         <span>nexus.</span>
       </a>
       <div class="nx-nav-links">
-        <a href="/" class="nx-nav-link">Overview</a>
+        <a href="/" class="nx-nav-link">Home</a>
         <a href="/explore" class="nx-nav-link is-active">Explore</a>
         <a href="/#fees" class="nx-nav-link">Pricing</a>
         <a href="/#how" class="nx-nav-link">How it works</a>
       </div>
       <div class="nx-nav-actions">
-        <button type="button" id="shortlistToggleBtn" class="nx-shortlist-btn" aria-label="View shortlist drawer">
+        <button type="button" id="shortlistToggleBtn" class="nx-shortlist-btn" aria-label="Saved creators">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
           </svg>
-          <span>Shortlist</span>
+          <span>Saved</span>
           <span class="badge" id="shortlistBadgeCount">0</span>
         </button>
         <a href="/#join" class="nx-nav-apply-btn">
-          <span>Apply as Creator</span>
+          <span>Join as a creator</span>
           <span aria-hidden="true">→</span>
         </a>
       </div>
@@ -51,16 +51,15 @@
   <section class="nx-explore-hero">
     <div class="nx-hero-kicker">
       <span class="nx-hero-kicker-dot" aria-hidden="true"></span>
-      <span>Curated Talent Directory · 0% Commission</span>
+      <span>Sample profiles · real ones at launch</span>
     </div>
-    <h1 class="nx-explore-title">Direct access to the top <em>1% independent</em> visual artists.</h1>
-    <p class="nx-explore-sub">Browse verified cinematographers, drone pilots, 3D artists, and creative directors. Contact directly with guaranteed fast response times.</p>
-    <div class="nx-hero-stat-row">
-      <span class="nx-stat-pill"><b id="statTotalCreators">34</b> Curated creators</span>
-      <span class="nx-stat-pill"><b>100%</b> Direct contact</span>
-      <span class="nx-stat-pill"><b>&lt; 2 hrs</b> Avg response SLA</span>
-      <span class="nx-stat-pill"><b>0%</b> Platform markup</span>
-    </div>
+    <h1 class="nx-explore-title">Find your <em>creative.</em></h1>
+    <p class="nx-explore-sub">Filmmakers, drone pilots, photographers, 3D artists and teachers. Contact them directly.</p>
+    <ul class="xh-ticks" aria-label="Why Nexus">
+      <li>Reviewed by a person</li>
+      <li>Free for clients</li>
+      <li>0% commission</li>
+    </ul>
   </section>
 
   <!-- Search & Filter Controls -->
@@ -71,7 +70,11 @@
         <circle cx="11" cy="11" r="8"/>
         <line x1="21" y1="21" x2="16.65" y2="16.65"/>
       </svg>
-      <input type="text" id="exploreSearchInput" class="nx-search-input" placeholder="Search by name, camera gear (e.g. Alexa 35), craft, or city..." autocomplete="off" spellcheck="false" aria-label="Search talent directory">
+      <input type="text" id="exploreSearchInput" class="nx-search-input" placeholder="Search a craft, name or gear…" autocomplete="off" spellcheck="false" aria-label="Search creators">
+      <span class="xs-divider" aria-hidden="true"></span>
+      <select id="cityFilter" class="xs-city" aria-label="City">
+        <option value="all">Any city</option>
+      </select>
       <button type="button" id="exploreSearchClear" class="nx-search-clear" aria-label="Clear search query">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"/>
@@ -83,69 +86,53 @@
     <!-- Discipline Filter Tabs -->
     <div class="nx-discipline-tabs" id="craftTabs" role="tablist" aria-label="Filter by discipline">
       <button type="button" class="nx-disc-tab is-active" data-craft="all" role="tab" aria-selected="true">
-        <span>All Disciplines</span>
+        <span>All</span>
         <span class="tab-count" id="count-all">34</span>
       </button>
       <button type="button" class="nx-disc-tab" data-craft="film" role="tab" aria-selected="false">
-        <span>Film &amp; Commercial</span>
+        <span>Film &amp; Video</span>
         <span class="tab-count" id="count-film">10</span>
       </button>
       <button type="button" class="nx-disc-tab" data-craft="aerial" role="tab" aria-selected="false">
-        <span>Drone &amp; FPV</span>
+        <span>Drone</span>
         <span class="tab-count" id="count-aerial">5</span>
       </button>
       <button type="button" class="nx-disc-tab" data-craft="d3" role="tab" aria-selected="false">
-        <span>3D &amp; Virtual Prod</span>
+        <span>3D &amp; Virtual</span>
         <span class="tab-count" id="count-d3">7</span>
       </button>
       <button type="button" class="nx-disc-tab" data-craft="art" role="tab" aria-selected="false">
-        <span>Art &amp; Lookdev</span>
+        <span>Art &amp; Photo</span>
         <span class="tab-count" id="count-art">6</span>
       </button>
       <button type="button" class="nx-disc-tab" data-craft="action" role="tab" aria-selected="false">
-        <span>Action &amp; Pursuit</span>
+        <span>Action &amp; Rigs</span>
         <span class="tab-count" id="count-action">6</span>
       </button>
     </div>
 
     <!-- Secondary Filter Bar: City, Rate, Sort, and Status -->
-    <div class="nx-secondary-filters">
+    <div class="nx-secondary-filters xt">
+      <div class="xt-left">
+        <div class="nx-filter-summary" id="filterSummary">Showing <b>34</b> creators</div>
+        <button type="button" id="resetFiltersBtn" class="nx-reset-btn" style="display: none;">Reset</button>
+      </div>
       <div class="nx-filter-select-group">
-        <select id="cityFilter" class="nx-select" aria-label="Filter by City">
-          <option value="all">All Cities</option>
-        </select>
         <select id="rateFilter" class="nx-select" aria-label="Filter by Day Rate">
-          <option value="all">Any Day Rate</option>
-          <option value="under-550">&lt; $550 / day</option>
-          <option value="550-700">$550 – $700 / day</option>
-          <option value="over-700">&gt; $700 / day</option>
+          <option value="all">Any day rate</option>
+          <option value="under-550">Under $550/day</option>
+          <option value="550-700">$550 to $700/day</option>
+          <option value="over-700">Over $700/day</option>
         </select>
         <select id="sortFilter" class="nx-select" aria-label="Sort creators">
-          <option value="recommended">Curated Order</option>
-          <option value="rate-asc">Rate: Low to High</option>
-          <option value="rate-desc">Rate: High to Low</option>
-          <option value="name-asc">Name: A to Z</option>
+          <option value="recommended">Suggested</option>
+          <option value="rate-asc">Lowest rate</option>
+          <option value="rate-desc">Highest rate</option>
+          <option value="name-asc">Name, A to Z</option>
         </select>
-      </div>
-      <div style="display: flex; align-items: center; gap: 14px;">
-        <div class="nx-filter-summary" id="filterSummary">Showing <b>34</b> creators</div>
-        <button type="button" id="resetFiltersBtn" class="nx-reset-btn" style="display: none;">Reset filters</button>
       </div>
     </div>
 
-    <!-- Gear Quick Chips -->
-    <div class="nx-gear-chips-row" id="gearChips" aria-label="Filter by camera &amp; rig gear">
-      <button type="button" class="nx-gear-chip" data-gear="ARRI Alexa 35">ARRI Alexa 35</button>
-      <button type="button" class="nx-gear-chip" data-gear="DJI Inspire 3">DJI Inspire 3</button>
-      <button type="button" class="nx-gear-chip" data-gear="Sony VENICE 2">Sony VENICE 2</button>
-      <button type="button" class="nx-gear-chip" data-gear="Cooke 2x">Cooke 2x</button>
-      <button type="button" class="nx-gear-chip" data-gear="Unreal 5.4">Unreal 5.4</button>
-      <button type="button" class="nx-gear-chip" data-gear="Steadicam M2">Steadicam M2</button>
-      <button type="button" class="nx-gear-chip" data-gear="RED V-Raptor XL">RED V-Raptor XL</button>
-      <button type="button" class="nx-gear-chip" data-gear="Hasselblad">Hasselblad</button>
-      <button type="button" class="nx-gear-chip" data-gear="Preston FIZ">Preston FIZ</button>
-      <button type="button" class="nx-gear-chip" data-gear="Panavision Primo">Panavision Primo</button>
-    </div>
   </section>
 
   <!-- Creator Directory Grid Container -->
@@ -155,18 +142,34 @@
     </div>
   </main>
 
+  <!-- Below the grid: what to do next -->
+  <section class="xb" aria-label="Next steps">
+    <div class="xb-card xb-client">
+      <p class="xb-k">Can't find the right person?</p>
+      <h2 class="xb-t">Tell us who you <em>need.</em></h2>
+      <p class="xb-p">Describe the job once. We'll email you as matching creators go live. Free, no account needed.</p>
+      <button type="button" class="xb-btn" id="generalRequestBtn">Send a request <span aria-hidden="true">→</span></button>
+    </div>
+    <div class="xb-card xb-creator">
+      <p class="xb-k">Creator or teacher?</p>
+      <h2 class="xb-t">Get <em>listed here.</em></h2>
+      <p class="xb-p">$19.99 a month, 0% commission. The first 100 approved get 90 days free.</p>
+      <a class="xb-btn is-light" href="/#founding">Claim a founding spot <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
   <!-- Shortlist Slide-Over Drawer -->
   <div class="nx-drawer-backdrop" id="shortlistBackdrop" aria-hidden="true">
     <aside class="nx-shortlist-drawer" id="shortlistDrawer" role="dialog" aria-modal="true" aria-labelledby="shortlistDrawerTitle">
       <div class="nx-drawer-head">
-        <h2 class="nx-drawer-title" id="shortlistDrawerTitle">Saved Shortlist (<span id="shortlistDrawerCount">0</span>)</h2>
+        <h2 class="nx-drawer-title" id="shortlistDrawerTitle">Saved (<span id="shortlistDrawerCount">0</span>)</h2>
         <button type="button" class="nx-drawer-close" id="closeDrawerBtn" aria-label="Close shortlist drawer">&times;</button>
       </div>
       <div class="nx-drawer-list" id="shortlistList">
         <!-- Shortlisted creator items injected dynamically -->
       </div>
       <div class="nx-drawer-foot">
-        <button type="button" class="nx-btn-inquire-all" id="inquireShortlistBtn">Send Brief to Shortlist</button>
+        <button type="button" class="nx-btn-inquire-all" id="inquireShortlistBtn">Send one request to all saved</button>
       </div>
     </aside>
   </div>
@@ -174,41 +177,46 @@
   <!-- Direct Inquiry Modal -->
   <div class="nx-modal-backdrop" id="inquiryModal" aria-hidden="true">
     <div class="nx-modal-box" role="dialog" aria-modal="true" aria-labelledby="inquiryModalTitle">
-      <button type="button" class="nx-modal-close" id="closeModalBtn" aria-label="Close brief modal">&times;</button>
+      <button type="button" class="nx-modal-close" id="closeModalBtn" aria-label="Close">&times;</button>
       <div class="nx-modal-header">
-        <h3 class="nx-modal-title" id="inquiryModalTitle">Direct Project Brief</h3>
-        <p class="nx-modal-sub" id="inquiryModalSub">Send brief to Marcus Vance · 0% commission direct hire</p>
+        <h3 class="nx-modal-title" id="inquiryModalTitle">Send a request</h3>
+        <p class="nx-modal-sub" id="inquiryModalSub"></p>
       </div>
       <form class="nx-modal-form" id="inquiryForm">
         <input type="hidden" id="inquiryCreatorName" name="creator_name">
         <div class="nx-form-field">
-          <label for="inqClientName">Your Name / Company</label>
-          <input type="text" id="inqClientName" class="nx-form-input" required placeholder="e.g. Sarah Jenkins (Acme Studios)">
+          <label for="inqScope">What do you need?</label>
+          <textarea id="inqScope" class="nx-form-textarea" required minlength="3" maxlength="300" placeholder="e.g. a DP for a 2-day brand shoot"></textarea>
         </div>
-        <div class="nx-form-field">
-          <label for="inqClientEmail">Work Email</label>
-          <input type="email" id="inqClientEmail" class="nx-form-input" required placeholder="sarah@acmestudios.com">
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="nx-form-row2">
           <div class="nx-form-field">
-            <label for="inqDates">Target Dates</label>
-            <input type="text" id="inqDates" class="nx-form-input" placeholder="e.g. Oct 14 - 18">
+            <label for="inqCity">City</label>
+            <input type="text" id="inqCity" class="nx-form-input" required minlength="2" maxlength="80" placeholder="City, or Online" autocomplete="address-level2">
           </div>
           <div class="nx-form-field">
-            <label for="inqBudget">Estimated Budget</label>
+            <label for="inqClientEmail">Email</label>
+            <input type="email" id="inqClientEmail" class="nx-form-input" required maxlength="254" placeholder="you@email.com" autocomplete="email" inputmode="email">
+          </div>
+        </div>
+        <div class="nx-form-row2">
+          <div class="nx-form-field">
+            <label for="inqDates">When <span class="nx-opt">(optional)</span></label>
+            <input type="text" id="inqDates" class="nx-form-input" maxlength="80" placeholder="e.g. mid-December">
+          </div>
+          <div class="nx-form-field">
+            <label for="inqBudget">Budget <span class="nx-opt">(optional)</span></label>
             <select id="inqBudget" class="nx-form-input">
-              <option value="1k-3k">$1,000 – $3,000</option>
-              <option value="3k-7k" selected>$3,000 – $7,000</option>
-              <option value="7k-15k">$7,000 – $15,000</option>
-              <option value="15k+">$15,000+</option>
+              <option value="">Not sure yet</option>
+              <option value="under-1k">Under $1,000</option>
+              <option value="1k-2.5k">$1,000 – $2,500</option>
+              <option value="2.5k-5k">$2,500 – $5,000</option>
+              <option value="5k+">$5,000+</option>
             </select>
           </div>
         </div>
-        <div class="nx-form-field">
-          <label for="inqScope">Project Scope &amp; Brief</label>
-          <textarea id="inqScope" class="nx-form-textarea" required placeholder="Describe the shoot location, gear requirements, deliverables, and timeline..."></textarea>
-        </div>
-        <button type="submit" class="nx-modal-submit-btn" id="inquirySubmitBtn">Send Direct Inquiry</button>
+        <p class="nx-form-note">These are sample profiles for now. We'll email you as soon as matching creators are live. No account needed, free for clients.</p>
+        <button type="submit" class="nx-modal-submit-btn" id="inquirySubmitBtn">Notify me when matched</button>
+        <p class="nx-form-error" id="inquiryError" role="alert" hidden></p>
       </form>
     </div>
   </div>
@@ -221,6 +229,7 @@
 
   <!-- Scripts -->
   <script src="assets/react-footer/nexus-footer-section.js?v=copy1" defer></script>
-  <script src="js/explore.js?v=longer2" defer></script>
+  <script src="js/creators-data.js?v=1" defer></script>
+  <script src="js/explore.js?v=12" defer></script>
 </body>
 </html>

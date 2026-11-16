@@ -110,7 +110,8 @@
       bookBtn.addEventListener('click', e => {
         e.stopPropagation();
         if (isCarousel && (window.__lzMovedPx || 0) > 8) return;
-        card.click();   // open the full profile
+        // the full profile page: /c/<slug>
+        window.location.href = '/c/' + item.creator.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
       });
     }
     const saveBtn = card.querySelector('.ws-save');

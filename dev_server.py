@@ -7,6 +7,9 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
             self.path = '/index.html'
         elif self.path == '/explore' or self.path.startswith('/explore?'):
             self.path = '/explore.html'
+        elif self.path.startswith('/c/'):
+            # creator profile pages: /c/<slug> -> creator.html (the page reads the slug from the address)
+            self.path = '/creator.html'
 
     def do_HEAD(self):
         self._rewrite_path()
