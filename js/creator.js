@@ -295,6 +295,8 @@
     vid.addEventListener('playing', () => vid.classList.add('is-on'));
     vid.addEventListener('error', () => {
       vid.remove();
+      const audioBtn = document.getElementById('cpAudioToggle');
+      if (audioBtn) audioBtn.remove();
       const tag = main.querySelector('.cp-media-tag');
       if (tag) {
         tag.classList.remove('is-reel');
@@ -376,12 +378,16 @@
     if (lbCounter) lbCounter.textContent = `${currentLbIndex + 1} / ${galleryItems.length}`;
   }
 
+  let lastFocusedEl = null;
+
   function openLightbox(idx) {
     if (!lbModal) return;
+    lastFocusedEl = document.activeElement;
     showLightboxImage(idx);
     lbModal.classList.add('is-open');
     lbModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    if (lbCloseBtn) setTimeout(() => lbCloseBtn.focus(), 60);
   }
 
   function closeLightbox() {
@@ -389,6 +395,9 @@
     lbModal.classList.remove('is-open');
     lbModal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
+      lastFocusedEl.focus();
+    }
   }
 
   const galleryEl = document.getElementById('cpGallery');
@@ -476,7 +485,7 @@
         body: JSON.stringify({
           role: 'client',
           email: document.getElementById('inqClientEmail').value.trim(),
-          need: need.value.trim(),
+          need: need.value.trim().slice(0, 300),
           craft: c.craft,
           city: document.getElementById('inqCity').value.trim(),
           ref: c.slug,

@@ -946,6 +946,17 @@ body.cp-body {
 }
 
 @media (max-width: 900px) {
+  .cp-work {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 240px 180px 180px;
+  }
+  .cp-shot.is-lead {
+    grid-column: span 2;
+    grid-row: auto;
+  }
+  .cp-shot:nth-child(4) {
+    grid-column: span 2;
+  }
   .cp-services {
     grid-template-columns: 1fr;
   }
@@ -956,6 +967,18 @@ body.cp-body {
 @media (max-width: 640px) {
   .cp {
     padding-bottom: 140px;
+  }
+  .cp-work {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 14px;
+  }
+  .cp-shot,
+  .cp-shot.is-lead,
+  .cp-shot:nth-child(4) {
+    grid-column: span 1;
+    grid-row: auto;
+    height: 220px;
   }
   .cp-dock {
     left: 14px;

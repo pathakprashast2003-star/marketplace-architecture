@@ -7,6 +7,8 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
             self.path = '/index.html'
         elif self.path == '/explore' or self.path.startswith('/explore?'):
             self.path = '/explore.html'
+        elif self.path == '/c' or self.path == '/c/':
+            self.path = '/explore.html'
         elif self.path.startswith('/c/'):
             # creator profile pages: /c/<slug> -> creator.html (the page reads the slug from the address)
             self.path = '/creator.html'
@@ -31,6 +33,9 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
             return
         self.send_response(404)
         self.end_headers()
+
+    def do_PATCH(self):
+        return self.do_POST()
 
     def end_headers(self):
         self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
