@@ -7,6 +7,7 @@
   const ALL = window.NEXUS_CREATORS || [];
   const esc = (t) => String(t == null ? '' : t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const abs = (p) => (/^(https?:)?\//.test(p) ? p : '/' + p);     // page lives at /c/<slug>, so asset paths must start at the root
+  const cardSrc = (p) => (!p ? '' : p.startsWith('assets/') ? 'assets/card/' + p.slice(7) : p);
   const money = (n) => '$' + Math.round(n).toLocaleString('en-US');
   const CAT_NAME = { film: 'Film & Video', aerial: 'Drone', d3: '3D & Virtual', art: 'Art & Photo', action: 'Action & Rigs' };
 
@@ -250,7 +251,7 @@
       <div class="cp-more">
         ${more.map((x) => `
           <a class="cp-mini" href="/c/${esc(x.slug)}">
-            <span class="cp-mini-img"><img src="${esc(abs(x.src))}" alt="" decoding="async"></span>
+            <span class="cp-mini-img"><img src="${esc(abs(cardSrc(x.src)))}" alt="" decoding="async"></span>
             <span class="cp-mini-k">${esc(x.craft)} · ${esc(x.city)}</span>
             <span class="cp-mini-n">${esc(x.creator)}</span>
             <span class="cp-mini-r">${esc(money(x.numericRate))}<small>/day</small></span>
@@ -267,7 +268,7 @@
     const dockRate = document.getElementById('cpDockRate');
     const dockFirstName = document.getElementById('cpDockFirstName');
 
-    if (dockAvatar) dockAvatar.src = abs(c.src);
+    if (dockAvatar) dockAvatar.src = abs(cardSrc(c.src));
     if (dockName) dockName.textContent = c.creator;
     if (dockCraft) dockCraft.textContent = c.craft + ' · ' + c.city;
     if (dockRate) dockRate.innerHTML = `<b>${esc(money(rate))}</b><span>/day</span>`;
