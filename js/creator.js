@@ -161,14 +161,41 @@
       </aside>
     </section>
 
-    <section class="cp-sec">
-      <h2 class="cp-h">Specialties</h2>
-      <div class="cp-tags">${(c.tags || []).map((t) => `<span class="cp-tag">${esc(t)}</span>`).join('')}<span class="cp-tag is-soft">${esc(CAT_NAME[c.cat] || '')}</span></div>
+    <section class="cp-sec" id="cpGearSection">
+      <div class="cp-h-row">
+        <h2 class="cp-h">Verified Gear & Tech Stack</h2>
+        <span class="cp-note">Verified owner-operator package</span>
+      </div>
+      <div class="cp-gear-rack">
+        ${(c.gear || []).map(g => `
+          <div class="cp-gear-chip">
+            <span class="cp-gear-icon" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </span>
+            <span class="cp-gear-name">${esc(g)}</span>
+            <span class="cp-gear-check" title="Verified kit">✓</span>
+          </div>
+        `).join('')}
+      </div>
     </section>
 
-    <section class="cp-sec">
-      <div class="cp-h-row"><h2 class="cp-h">Work</h2><span class="cp-note">Sample images</span></div>
-      <div class="cp-work">${work.map((src, i) => `<figure class="cp-shot${i === 0 ? ' is-lead' : ''}"><img src="${esc(abs(src))}" alt="" decoding="async"></figure>`).join('')}</div>
+    <section class="cp-sec" id="cpGallerySection">
+      <div class="cp-h-row">
+        <h2 class="cp-h">Featured Commercial Work</h2>
+        <span class="cp-note">Click any frame to view in cinema lightbox</span>
+      </div>
+      <div class="cp-work" id="cpGallery">
+        ${(c.gallery || []).map((item, i) => `
+          <figure class="cp-shot${i === 0 ? ' is-lead' : ''}" data-index="${i}" tabindex="0" role="button" aria-label="Enlarge still: ${esc(item.caption)}">
+            <img src="${esc(abs(item.src))}" alt="${esc(item.caption)}" decoding="async" loading="lazy">
+            <div class="cp-shot-overlay">
+              <span class="cp-shot-tag">${esc(item.tag || 'Still')}</span>
+              <p class="cp-shot-caption">${esc(item.caption)}</p>
+              <span class="cp-shot-credit">${esc(item.credit)}</span>
+            </div>
+          </figure>
+        `).join('')}
+      </div>
     </section>
 
     <section class="cp-sec">
@@ -272,6 +299,84 @@
       updateBadge();
     });
   }
+
+  /* ── Lightbox Controller ── */
+  const lbModal = document.getElementById('cpLightbox');
+  const lbImg = document.getElementById('lightboxImg');
+  const lbCaption = document.getElementById('lightboxCaption');
+  const lbCredit = document.getElementById('lightboxCredit');
+  const lbCounter = document.getElementById('lightboxCounter');
+  const lbCloseBtn = document.getElementById('lightboxCloseBtn');
+  const lbPrevBtn = document.getElementById('lightboxPrevBtn');
+  const lbNextBtn = document.getElementById('lightboxNextBtn');
+
+  let currentLbIndex = 0;
+  const galleryItems = c.gallery || [];
+
+  function showLightboxImage(idx) {
+    if (!galleryItems.length) return;
+    currentLbIndex = (idx + galleryItems.length) % galleryItems.length;
+    const item = galleryItems[currentLbIndex];
+    if (lbImg) {
+      lbImg.src = abs(item.src);
+      lbImg.alt = item.caption;
+    }
+    if (lbCaption) lbCaption.textContent = item.caption;
+    if (lbCredit) lbCredit.textContent = item.credit ? 'Client: ' + item.credit : '';
+    if (lbCounter) lbCounter.textContent = `${currentLbIndex + 1} / ${galleryItems.length}`;
+  }
+
+  function openLightbox(idx) {
+    if (!lbModal) return;
+    showLightboxImage(idx);
+    lbModal.classList.add('is-open');
+    lbModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    if (!lbModal) return;
+    lbModal.classList.remove('is-open');
+    lbModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  const galleryEl = document.getElementById('cpGallery');
+  if (galleryEl) {
+    galleryEl.addEventListener('click', (e) => {
+      const shot = e.target.closest('.cp-shot');
+      if (shot) {
+        const idx = parseInt(shot.dataset.index, 10) || 0;
+        openLightbox(idx);
+      }
+    });
+    galleryEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const shot = e.target.closest('.cp-shot');
+        if (shot) {
+          e.preventDefault();
+          const idx = parseInt(shot.dataset.index, 10) || 0;
+          openLightbox(idx);
+        }
+      }
+    });
+  }
+
+  if (lbCloseBtn) lbCloseBtn.addEventListener('click', closeLightbox);
+  if (lbPrevBtn) lbPrevBtn.addEventListener('click', () => showLightboxImage(currentLbIndex - 1));
+  if (lbNextBtn) lbNextBtn.addEventListener('click', () => showLightboxImage(currentLbIndex + 1));
+  if (lbModal) {
+    lbModal.addEventListener('click', (e) => {
+      if (e.target === lbModal || e.target.classList.contains('cp-lightbox-stage')) closeLightbox();
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (!lbModal || !lbModal.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') showLightboxImage(currentLbIndex - 1);
+    else if (e.key === 'ArrowRight') showLightboxImage(currentLbIndex + 1);
+  });
 
   /* ── Request form (same fields and backend route as Explore) ── */
   const modal = document.getElementById('inquiryModal');

@@ -460,16 +460,235 @@ body.cp-body {
 }
 
 
-.cp-tags { display: flex; flex-wrap: wrap; gap: 10px; }
-.cp-tag { padding: 9px 18px; border-radius: 999px; background: #fff; border: 1px solid rgba(15, 23, 42, 0.12); font-size: 17px; color: var(--cp-ink); }
-.cp-tag.is-soft { background: #F5F7FF; border-color: rgba(59, 84, 238, 0.18); color: var(--cp-blue); font-style: italic; }
+/* ── Verified Gear Rack ── */
+.cp-gear-rack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.cp-gear-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #FFFFFF;
+  border: 1px solid var(--cp-border);
+  box-shadow: 0 4px 12px -4px rgba(15, 23, 42, 0.05);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--cp-ink);
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.cp-gear-chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--cp-border-hover);
+  box-shadow: 0 8px 18px -6px rgba(15, 23, 42, 0.09);
+}
+.cp-gear-icon {
+  color: var(--cp-blue);
+  display: flex;
+  align-items: center;
+}
+.cp-gear-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--cp-blue-subtle);
+  color: var(--cp-blue);
+  font-size: 10.5px;
+  font-weight: 800;
+}
 
-.cp-work { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 220px 220px; gap: 14px; }
-.cp-shot { margin: 0; border-radius: 22px; overflow: hidden; background: #E8ECF3; }
-.cp-shot.is-lead { grid-row: span 2; }
-.cp-shot:nth-child(4) { grid-column: span 2; }
-.cp-shot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
-.cp-shot:hover img { transform: scale(1.04); }
+/* ── Featured Commercial Work Gallery ── */
+.cp-work {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 240px 240px;
+  gap: 16px;
+}
+.cp-shot {
+  margin: 0;
+  border-radius: var(--cp-radius-lg);
+  overflow: hidden;
+  background: #0B0F19;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 8px 24px -10px rgba(15, 23, 42, 0.1);
+}
+.cp-shot.is-lead {
+  grid-row: span 2;
+}
+.cp-shot:nth-child(4) {
+  grid-column: span 2;
+}
+.cp-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cp-shot:hover img {
+  transform: scale(1.05);
+}
+.cp-shot-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7, 11, 20, 0.9) 0%, rgba(7, 11, 20, 0.3) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+.cp-shot:hover .cp-shot-overlay,
+.cp-shot:focus-visible .cp-shot-overlay {
+  opacity: 1;
+}
+.cp-shot-tag {
+  align-self: flex-start;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  font-family: var(--cp-font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.cp-shot-caption {
+  font-size: 15px;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0 0 4px;
+  line-height: 1.35;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+.cp-shot-credit {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ── Lightbox Modal ── */
+.cp-lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(7, 11, 20, 0.96);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-in-out;
+}
+.cp-lightbox-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.cp-lightbox-stage {
+  max-width: 1100px;
+  width: 100%;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cp-lightbox-figure {
+  margin: 0;
+  position: relative;
+  max-height: 72vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cp-lightbox-img {
+  max-width: 100%;
+  max-height: 68vh;
+  border-radius: var(--cp-radius-lg);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.8);
+  object-fit: contain;
+}
+.cp-lightbox-caption {
+  margin-top: 16px;
+  font-family: var(--cp-font-serif);
+  font-size: 19px;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-align: center;
+}
+.cp-lightbox-meta {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.65);
+}
+.cp-lightbox-counter {
+  font-family: var(--cp-font-mono);
+  font-weight: 600;
+}
+.cp-lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.cp-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+.cp-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.cp-lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-50%) scale(1.08);
+}
+.cp-lightbox-prev {
+  left: 32px;
+}
+.cp-lightbox-next {
+  right: 32px;
+}
 
 .cp-services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .cp-service { border: 1px solid var(--cp-line); border-radius: 24px; padding: 24px 24px 22px; background: #fff; }
