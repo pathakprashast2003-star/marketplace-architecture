@@ -50,11 +50,25 @@
     <!-- filled by js/creator.js -->
   </main>
 
-  <!-- Phone: rate + request always in reach -->
-  <div class="cp-dock" id="cpDock" hidden>
-    <div class="cp-dock-rate" id="cpDockRate"></div>
-    <button type="button" class="cp-btn cp-btn-primary" data-request>Send request <span aria-hidden="true">→</span></button>
-  </div>
+  <!-- Floating Action Dock (Desktop capsule & Mobile bottom-bar) -->
+  <aside class="cp-dock" id="cpDock" aria-label="Quick booking dock" aria-hidden="true">
+    <div class="cp-dock-inner">
+      <div class="cp-dock-creator">
+        <img src="" alt="" class="cp-dock-avatar" id="cpDockAvatar">
+        <div class="cp-dock-info">
+          <span class="cp-dock-name" id="cpDockName"></span>
+          <span class="cp-dock-craft" id="cpDockCraft"></span>
+        </div>
+      </div>
+      <div class="cp-dock-actions">
+        <div class="cp-dock-rate" id="cpDockRate"></div>
+        <button type="button" class="cp-btn cp-btn-primary cp-dock-book-btn" data-request id="cpDockBookBtn">
+          <span>Book <span id="cpDockFirstName">Talent</span></span>
+          <span class="cp-btn-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </div>
+  </aside>
 
   <!-- Fullscreen Lightbox Modal -->
   <div class="cp-lightbox-backdrop" id="cpLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Portfolio Image Lightbox">

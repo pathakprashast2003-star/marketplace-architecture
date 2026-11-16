@@ -71,9 +71,28 @@
   }
 
   const services = [
-    { name: 'Half day', note: 'Up to 5 hours on set', price: money(rate * 0.6) },
-    { name: 'Full day', note: 'Up to 10 hours on set', price: money(rate), main: true },
-    { name: 'Three days or more', note: 'Price per day', price: money(rate * 0.9) }
+    {
+      name: 'Half Day Shoot',
+      note: 'Up to 5 hours on set. Ideal for quick turnaround, interview setups, or insert pickups.',
+      price: money(rate * 0.6),
+      unit: '/half-day',
+      main: false
+    },
+    {
+      name: 'Full Day Commercial',
+      note: 'Up to 10 hours on set. Complete commercial day rate including standard cinema kit.',
+      price: money(rate),
+      unit: '/day',
+      main: true,
+      badge: 'Popular Choice'
+    },
+    {
+      name: 'Multi-Day / Project Buyout',
+      note: '3+ shooting days. Narrative features, multi-city brand campaigns, volume discount.',
+      price: money(rate * 0.9),
+      unit: '/day',
+      main: false
+    }
   ];
 
   const isSaved = () => loadSaved().has(c.slug);
@@ -198,15 +217,22 @@
       </div>
     </section>
 
-    <section class="cp-sec">
-      <div class="cp-h-row"><h2 class="cp-h">Services</h2><span class="cp-note">Example prices. Each creator sets their own.</span></div>
+    <section class="cp-sec" id="cpServicesSection">
+      <div class="cp-h-row">
+        <h2 class="cp-h">Day Rate & Transparent Packages</h2>
+        <span class="cp-note">Direct hire · 0% commission markup</span>
+      </div>
       <div class="cp-services">
         ${services.map((s) => `
           <div class="cp-service${s.main ? ' is-main' : ''}">
-            <p class="cp-service-name">${esc(s.name)}</p>
+            ${s.badge ? `<span class="cp-service-badge">${esc(s.badge)}</span>` : ''}
+            <h3 class="cp-service-name">${esc(s.name)}</h3>
             <p class="cp-service-note">${esc(s.note)}</p>
-            <p class="cp-service-price">${esc(s.price)}</p>
-            <button type="button" class="cp-link" data-request data-service="${esc(s.name)}">Ask about this <span aria-hidden="true">→</span></button>
+            <div class="cp-service-price"><b>${esc(s.price)}</b><small>${esc(s.unit)}</small></div>
+            <button type="button" class="cp-btn ${s.main ? 'cp-btn-primary' : 'cp-btn-ghost'}" data-request data-service="${esc(s.name)}">
+              <span>Inquire about this tier</span>
+              <span class="cp-btn-arrow" aria-hidden="true">→</span>
+            </button>
           </div>`).join('')}
       </div>
     </section>
@@ -233,10 +259,34 @@
     </section>
   `;
 
-  // phone dock
+  // Action Dock (Desktop & Mobile)
   if (dock) {
-    document.getElementById('cpDockRate').innerHTML = `<b>${esc(money(rate))}</b><span>/day</span>`;
-    dock.hidden = false;
+    const dockAvatar = document.getElementById('cpDockAvatar');
+    const dockName = document.getElementById('cpDockName');
+    const dockCraft = document.getElementById('cpDockCraft');
+    const dockRate = document.getElementById('cpDockRate');
+    const dockFirstName = document.getElementById('cpDockFirstName');
+
+    if (dockAvatar) dockAvatar.src = abs(c.src);
+    if (dockName) dockName.textContent = c.creator;
+    if (dockCraft) dockCraft.textContent = c.craft + ' · ' + c.city;
+    if (dockRate) dockRate.innerHTML = `<b>${esc(money(rate))}</b><span>/day</span>`;
+    if (dockFirstName) dockFirstName.textContent = first;
+
+    function checkDockVisibility() {
+      const hero = document.querySelector('.cp-hero');
+      if (!hero) return;
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      if (heroBottom < 120) {
+        dock.classList.add('is-visible');
+        dock.setAttribute('aria-hidden', 'false');
+      } else {
+        dock.classList.remove('is-visible');
+        dock.setAttribute('aria-hidden', 'true');
+      }
+    }
+    window.addEventListener('scroll', checkDockVisibility, { passive: true });
+    checkDockVisibility();
   }
 
   // a reel that can't play just leaves the photo showing
@@ -387,9 +437,9 @@
   const errEl = document.getElementById('inquiryError');
 
   function openRequest(service) {
-    title.textContent = 'Find someone like ' + first;
-    sub.textContent = c.craft + ' · ' + c.city + ' · around ' + money(rate) + '/day';
-    if (need && !need.value) need.value = c.craft + (service ? ' · ' + service : '') + ' ';
+    title.textContent = 'Book ' + c.creator;
+    sub.textContent = c.craft + ' · ' + c.city + ' · Standard ' + money(rate) + '/day (0% Commission)';
+    if (need) need.value = c.craft + (service ? ' — ' + service : ' — Full Day Commercial') + ' ';
     if (errEl) errEl.hidden = true;
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
