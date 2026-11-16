@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="description" content="Browse filmmakers, drone pilots, photographers, 3D artists and teachers, each reviewed by a person. Contact them directly. 0% commission.">
+  <title>Nexus · Creator</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%233B54EE' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&family=JetBrains+Mono:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="/assets/react-footer/marketplace-architecture.css?v=18">
+  <link rel="stylesheet" href="/css/explore.css?v=20">
+  <link rel="stylesheet" href="/css/creator.css?v=1">
+</head>
+<body class="cp-body">
+  <header>
+    <nav class="nx-explore-nav" aria-label="Main Navigation">
+      <a href="/" class="nx-nav-brand">
+        <span class="nx-nav-brand-dot" aria-hidden="true"></span>
+        <span>nexus.</span>
+      </a>
+      <div class="nx-nav-links">
+        <a href="/" class="nx-nav-link">Home</a>
+        <a href="/explore" class="nx-nav-link is-active">Explore</a>
+        <a href="/#fees" class="nx-nav-link">Pricing</a>
+        <a href="/#how" class="nx-nav-link">How it works</a>
+      </div>
+      <div class="nx-nav-actions">
+        <button type="button" id="shortlistToggleBtn" class="nx-shortlist-btn" aria-label="Saved creators">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>Saved</span>
+          <span class="badge" id="shortlistBadgeCount">0</span>
+        </button>
+        <a href="/#join" class="nx-nav-apply-btn">
+          <span>Join as a creator</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="cp" id="cp" aria-live="polite">
+    <!-- filled by js/creator.js -->
+  </main>
+
+  <!-- Phone: rate + request always in reach -->
+  <div class="cp-dock" id="cpDock" hidden>
+    <div class="cp-dock-rate" id="cpDockRate"></div>
+    <button type="button" class="cp-btn cp-btn-primary" data-request>Send request <span aria-hidden="true">→</span></button>
+  </div>
+
+  <div class="nx-modal-backdrop" id="inquiryModal" aria-hidden="true">
+    <div class="nx-modal-box" role="dialog" aria-modal="true" aria-labelledby="inquiryModalTitle">
+      <button type="button" class="nx-modal-close" id="closeModalBtn" aria-label="Close">&times;</button>
+      <div class="nx-modal-header">
+        <h3 class="nx-modal-title" id="inquiryModalTitle">Send a request</h3>
+        <p class="nx-modal-sub" id="inquiryModalSub"></p>
+      </div>
+      <form class="nx-modal-form" id="inquiryForm">
+        <input type="hidden" id="inquiryCreatorName" name="creator_name">
+        <div class="nx-form-field">
+          <label for="inqScope">What do you need?</label>
+          <textarea id="inqScope" class="nx-form-textarea" required minlength="3" maxlength="300" placeholder="e.g. a DP for a 2-day brand shoot"></textarea>
+        </div>
+        <div class="nx-form-row2">
+          <div class="nx-form-field">
+            <label for="inqCity">City</label>
+            <input type="text" id="inqCity" class="nx-form-input" required minlength="2" maxlength="80" placeholder="City, or Online" autocomplete="address-level2">
+          </div>
+          <div class="nx-form-field">
+            <label for="inqClientEmail">Email</label>
+            <input type="email" id="inqClientEmail" class="nx-form-input" required maxlength="254" placeholder="you@email.com" autocomplete="email" inputmode="email">
+          </div>
+        </div>
+        <div class="nx-form-row2">
+          <div class="nx-form-field">
+            <label for="inqDates">When <span class="nx-opt">(optional)</span></label>
+            <input type="text" id="inqDates" class="nx-form-input" maxlength="80" placeholder="e.g. mid-December">
+          </div>
+          <div class="nx-form-field">
+            <label for="inqBudget">Budget <span class="nx-opt">(optional)</span></label>
+            <select id="inqBudget" class="nx-form-input">
+              <option value="">Not sure yet</option>
+              <option value="under-1k">Under $1,000</option>
+              <option value="1k-2.5k">$1,000 – $2,500</option>
+              <option value="2.5k-5k">$2,500 – $5,000</option>
+              <option value="5k+">$5,000+</option>
+            </select>
+          </div>
+        </div>
+        <p class="nx-form-note">These are sample profiles for now. We'll email you as soon as matching creators are live. No account needed, free for clients.</p>
+        <button type="submit" class="nx-modal-submit-btn" id="inquirySubmitBtn">Notify me when matched</button>
+        <p class="nx-form-error" id="inquiryError" role="alert" hidden></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="nx-toast" id="exploreToast" role="status" aria-live="polite"></div>
+
+  <div id="nexus-footer-root"></div>
+
+  <script src="/assets/react-footer/nexus-footer-section.js?v=copy1" defer></script>
+  <script src="/js/creators-data.js?v=1" defer></script>
+  <script src="/js/creator.js?v=1" defer></script>
+</body>
+</html>
