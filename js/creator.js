@@ -66,25 +66,30 @@
 
   const ic = {
     save: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>',
-    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+    pin: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>',
+    clock: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>',
+    globe: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>',
+    bolt: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>',
+    wifi: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>'
   };
 
   const specFacts = [
-    { label: 'LOCATION', val: c.city },
-    p.years ? { label: 'TENURE', val: p.years + ' Years Active' } : null,
-    p.languages && p.languages.length ? { label: 'LANGUAGES', val: p.languages.join(', ') } : null,
-    p.travel ? { label: 'MOBILITY', val: p.travel } : null,
-    p.remote ? { label: 'REMOTE WORK', val: 'Available Worldwide' } : null
+    { label: 'LOCATION', val: c.city, icon: ic.pin },
+    p.years ? { label: 'TENURE', val: p.years + ' Years Active', icon: ic.clock } : null,
+    p.languages && p.languages.length ? { label: 'LANGUAGES', val: p.languages.join(', '), icon: ic.globe } : null,
+    p.travel ? { label: 'MOBILITY', val: p.travel, icon: ic.bolt } : null,
+    p.remote ? { label: 'REMOTE WORK', val: 'Available Worldwide', icon: ic.wifi } : null
   ].filter(Boolean);
 
   const sec = (id, idx, title, body, note) => body ? `
     <section class="cpx-sec" id="${id}" data-reveal>
       <div class="cpx-sec-head">
         <div class="cpx-sec-head-left">
-          <span class="cpx-sec-idx">${idx}</span>
+          <span class="cpx-badge-pill"><span class="cpx-pill-dot is-live" aria-hidden="true"></span>${idx}</span>
           <h2 class="cpx-h">${title}</h2>
         </div>
-        ${note ? `<span class="cpx-note">${note}</span>` : ''}
+        ${note ? `<span class="cpx-note-pill">${note}</span>` : ''}
       </div>
       <div class="cpx-sec-body">
         ${body}
@@ -100,14 +105,37 @@
       <b>${esc(c.creator)}</b>
     </nav>
 
-    <!-- TOP DOSSIER LEDGER BAR -->
-    <div class="cpx-ledger-bar" data-reveal>
-      <div class="cpx-ledger-cell"><span class="cpx-ledger-k">DOSSIER REF</span><span class="cpx-ledger-v">CR-${esc(c.slug.toUpperCase())}</span></div>
-      <div class="cpx-ledger-cell"><span class="cpx-ledger-k">DISCIPLINE</span><span class="cpx-ledger-v">${esc(c.craft)}</span></div>
-      <div class="cpx-ledger-cell"><span class="cpx-ledger-k">LOCATION</span><span class="cpx-ledger-v">${esc(c.city)}</span></div>
-      <div class="cpx-ledger-cell"><span class="cpx-ledger-k">COMMISSION</span><span class="cpx-ledger-v">0.00% DIRECT</span></div>
-      <div class="cpx-ledger-cell"><span class="cpx-ledger-k">BASE RATE</span><span class="cpx-ledger-v">${esc(money(rate))}/DAY</span></div>
-      <div class="cpx-ledger-cell"><span class="cpx-ledger-k">RECORD STATUS</span><span class="cpx-ledger-v is-status">● VERIFIED</span></div>
+    <!-- TOP SKÍPER UI STATUS RIBBON -->
+    <div class="cpx-pill-ribbon" data-reveal>
+      <div class="cpx-pill-cluster">
+        <div class="cpx-pill cpx-pill-ref">
+          <span class="cpx-pill-k">REF</span>
+          <span class="cpx-pill-v">CR-${esc(c.slug.toUpperCase())}</span>
+        </div>
+        <div class="cpx-pill cpx-pill-status">
+          <span class="cpx-pill-dot is-live" aria-hidden="true"></span>
+          <span class="cpx-pill-v">Verified Creator</span>
+        </div>
+        <div class="cpx-pill">
+          <span class="cpx-pill-k">CRAFT</span>
+          <span class="cpx-pill-v">${esc(c.craft)}</span>
+        </div>
+        <div class="cpx-pill">
+          <span class="cpx-pill-k">CITY</span>
+          <span class="cpx-pill-v">${esc(c.city)}</span>
+        </div>
+      </div>
+      <div class="cpx-pill-cluster">
+        <div class="cpx-pill cpx-pill-highlight">
+          <span class="cpx-pill-dot is-live" aria-hidden="true"></span>
+          <span class="cpx-pill-k">COMMISSION</span>
+          <span class="cpx-pill-v">0% Direct</span>
+        </div>
+        <div class="cpx-pill cpx-pill-rate">
+          <span class="cpx-pill-k">FROM</span>
+          <span class="cpx-pill-v">${esc(money(rate))}<small>/day</small></span>
+        </div>
+      </div>
     </div>
 
     <!-- INTRO DOSSIER -->
@@ -117,33 +145,34 @@
           <span class="cpx-avatar"><img src="${esc(abs(cardSrc(c.src)))}" alt=""></span>
           <div>
             <p class="cpx-eyebrow">${esc(c.craft)}</p>
-            <p class="cpx-where">${esc(c.city)}${p.sample ? ' · <span class="cpx-sample">Sample Dossier</span>' : ''}</p>
+            <p class="cpx-where">${esc(c.city)}${p.sample ? ' · <span class="cpx-sample">Sample Profile</span>' : ''}</p>
           </div>
         </div>
         <h1 class="cpx-title">${esc(c.creator)}</h1>
         <p class="cpx-headline">${esc(p.headline || c.bio)}</p>
-        <div class="cpx-facts-grid">
+        <div class="cpx-facts-grid cpx-facts-pills">
           ${specFacts.map((f) => `
-            <div class="cpx-fact-cell">
-              <span class="cpx-fact-lbl">${esc(f.label)}</span>
-              <span class="cpx-fact-val">${esc(f.val)}</span>
+            <div class="cpx-fact-cell cpx-fact-pill">
+              <span class="cpx-fact-pill-icon" aria-hidden="true">${f.icon}</span>
+              <span class="cpx-fact-lbl cpx-fact-pill-lbl">${esc(f.label)}</span>
+              <span class="cpx-fact-val cpx-fact-pill-val">${esc(f.val)}</span>
             </div>`).join('')}
         </div>
       </div>
       <div class="cpx-cover-wrap" data-reveal>
         <div class="cpx-cover-meta">
-          <span>FIG 01 // PRINCIPAL REEL</span>
-          <span>4K RESOLUTION</span>
+          <span class="cpx-meta-pill"><span class="cpx-pill-dot is-live" aria-hidden="true"></span>FIG 01 // PRINCIPAL REEL</span>
+          <span class="cpx-meta-pill">4K RESOLUTION</span>
         </div>
         <div class="cpx-cover">
           <img src="${esc(abs(c.src))}" alt="${esc(c.creator)}, ${esc(c.craft)}" fetchpriority="high" decoding="async">
           ${c.reel && !reduce ? `<video src="${esc(abs(c.reel))}" muted loop playsinline autoplay preload="metadata"></video>
           <button type="button" class="cpx-play" id="cpxPlay" aria-label="Pause reel"><span class="cpx-play-ic is-pause"></span></button>` : ''}
-          <span class="cpx-cover-tag">${c.reel ? '4K REEL' : 'STILL'}</span>
+          <span class="cpx-cover-tag"><span class="cpx-pill-dot is-live" aria-hidden="true"></span>${c.reel ? '4K REEL' : 'STILL'}</span>
         </div>
         <div class="cpx-cover-footer">
-          <span>ARCHIVE REF: ${esc(c.slug.toUpperCase())}</span>
-          <span>ASPECT: 4 / 3</span>
+          <span class="cpx-meta-pill">REF: ${esc(c.slug.toUpperCase())}</span>
+          <span class="cpx-meta-pill">ASPECT 4:3</span>
         </div>
       </div>
     </header>
@@ -214,19 +243,23 @@
               ${p.credentials.map((x) => `
                 <li class="cpx-cred-row">
                   <span class="cpx-cred-n">${esc(x.name)}</span>
-                  <span class="cpx-cred-b ${x.checked ? 'is-ok' : ''}">${x.checked ? ic.check + 'Checked by Nexus' : 'Self-reported'}</span>
+                  <span class="cpx-cred-b cpx-status-pill ${x.checked ? 'is-ok' : ''}">
+                    <span class="cpx-pill-dot ${x.checked ? 'is-live' : ''}" aria-hidden="true"></span>
+                    ${x.checked ? 'Verified by Nexus' : 'Self-Reported'}
+                  </span>
                 </li>`).join('')}
             </ul>
           </div>` : '', sampleNote)}
 
         ${sec('kit', '06.0', 'Hardware Manifest', gear.length ? `
-          <div class="cpx-kit-grid">
+          <div class="cpx-kit-grid cpx-kit-pills">
             ${gear.map((g, i) => `
-              <div class="cpx-kit-cell">
+              <div class="cpx-kit-cell cpx-kit-pill">
                 <span class="cpx-kit-idx">ITEM ${String(i + 1).padStart(2, '0')}</span>
                 <span class="cpx-kit-name">${esc(g)}</span>
+                <span class="cpx-kit-badge">Owner-Operator</span>
               </div>`).join('')}
-          </div>` : '', 'OWNER-OPERATOR')}
+          </div>` : '', 'VERIFIED GEAR')}
 
         ${sec('how', '07.0', 'Operating Terms & Conditions', p.how ? `
           <dl class="cpx-how-table">
@@ -257,7 +290,7 @@
       <aside class="cpx-card-wrap">
         <div class="cpx-card">
           <div class="cpx-card-head">
-            <span class="cpx-card-docket-tag">DOCKET // DIRECT INQUIRY</span>
+            <span class="cpx-docket-badge"><span class="cpx-pill-dot is-live" aria-hidden="true"></span>DIRECT BOOKING</span>
             <span class="cpx-card-docket-status">ID: ${esc(c.slug.toUpperCase())}</span>
           </div>
           <div class="cpx-card-table">
@@ -270,8 +303,8 @@
               <span class="cpx-card-val is-rate"><b>${esc(money(rate))}</b><small> / day</small></span>
             </div>
             <div class="cpx-card-row">
-              <span class="cpx-card-lbl">PLATFORM FEE</span>
-              <span class="cpx-card-val is-fee">0.00% (DIRECT BILLING)</span>
+              <span class="cpx-card-lbl">PLATFORM MARKUP</span>
+              <span class="cpx-card-val is-fee"><span class="cpx-pill-dot is-live" aria-hidden="true"></span>0.00% DIRECT</span>
             </div>
             ${p.how ? `
             <div class="cpx-card-row">
