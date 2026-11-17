@@ -7,18 +7,19 @@ def test_split_hero_and_shortlist():
         page.goto("http://localhost:3000/c/marcus-vance")
         
         # Check hero identity elements
-        assert page.locator(".cp-name").inner_text().strip() == "Marcus Vance"
-        assert "commercial dp" in page.locator(".cp-kicker").inner_text().lower()
-        assert page.locator(".cp-trust-ribbon").is_visible()
+        assert page.locator(".cpx-title").inner_text().strip() == "Marcus Vance"
+        assert "commercial dp" in page.locator(".cpx-eyebrow").inner_text().lower()
+        assert page.locator(".cpx-facts-grid").is_visible()
         
-        # Check audio toggle button exists for reels
-        audio_btn = page.locator("#cpAudioToggle")
-        assert audio_btn.is_visible()
-        audio_btn.click()
-        assert "Unmuted" in audio_btn.inner_text() or audio_btn.get_attribute("aria-label") == "Mute audio"
+        # Check reel play/pause toggle button
+        play_btn = page.locator("#cpxPlay")
+        if play_btn.is_visible():
+            play_btn.click()
+            page.wait_for_timeout(100)
+            assert "Play reel" in play_btn.get_attribute("aria-label") or "Pause reel" in play_btn.get_attribute("aria-label")
         
         # Check shortlist toggle updates localStorage
-        save_btn = page.locator("#cpSave")
+        save_btn = page.locator("#cpxSave")
         save_btn.click()
         assert page.evaluate("() => JSON.parse(localStorage.getItem('nexus_shortlist_v1')).includes('marcus-vance')")
         

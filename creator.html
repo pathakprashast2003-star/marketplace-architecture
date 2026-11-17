@@ -2,22 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <meta name="description" content="Browse filmmakers, drone pilots, photographers, 3D artists and teachers, each reviewed by a person. Contact them directly. 0% commission.">
-  <title>Nexus · Creator</title>
-  <link rel="icon" type="image/svg+xml"
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Creator · Nexus</title>
+  <meta name="description" content="A creator on Nexus. Contact them directly. 0% commission.">
+    <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%233B54EE' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&family=JetBrains+Mono:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
   <link rel="stylesheet" href="/assets/react-footer/marketplace-architecture.css?v=18">
   <link rel="stylesheet" href="/css/explore.css?v=20">
-  <link rel="stylesheet" href="/css/creator.css?v=1">
+  <link rel="stylesheet" href="/css/creator.css?v=apple2">
 </head>
-<body class="cp-body">
+<body class="cpx-body">
   <header>
     <nav class="nx-explore-nav" aria-label="Main Navigation">
       <a href="/" class="nx-nav-brand">
@@ -46,50 +43,9 @@
     </nav>
   </header>
 
-  <main class="cp" id="cp" aria-live="polite">
+  <main class="cpx" id="cpx">
     <!-- filled by js/creator.js -->
   </main>
-
-  <!-- Floating Action Dock (Desktop capsule & Mobile bottom-bar) -->
-  <aside class="cp-dock" id="cpDock" aria-label="Quick booking dock" aria-hidden="true">
-    <div class="cp-dock-inner">
-      <div class="cp-dock-creator">
-        <img src="" alt="" class="cp-dock-avatar" id="cpDockAvatar">
-        <div class="cp-dock-info">
-          <span class="cp-dock-name" id="cpDockName"></span>
-          <span class="cp-dock-craft" id="cpDockCraft"></span>
-        </div>
-      </div>
-      <div class="cp-dock-actions">
-        <div class="cp-dock-rate" id="cpDockRate"></div>
-        <button type="button" class="cp-btn cp-btn-primary cp-dock-book-btn" data-request id="cpDockBookBtn">
-          <span>Book <span id="cpDockFirstName">Talent</span></span>
-          <span class="cp-btn-arrow" aria-hidden="true">→</span>
-        </button>
-      </div>
-    </div>
-  </aside>
-
-  <!-- Fullscreen Lightbox Modal -->
-  <div class="cp-lightbox-backdrop" id="cpLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Portfolio Image Lightbox">
-    <button type="button" class="cp-lightbox-close" id="lightboxCloseBtn" aria-label="Close Lightbox">&times;</button>
-    <button type="button" class="cp-lightbox-nav cp-lightbox-prev" id="lightboxPrevBtn" aria-label="Previous image">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
-    </button>
-    <div class="cp-lightbox-stage">
-      <figure class="cp-lightbox-figure">
-        <img src="" alt="" id="lightboxImg" class="cp-lightbox-img">
-        <figcaption class="cp-lightbox-caption" id="lightboxCaption"></figcaption>
-      </figure>
-      <div class="cp-lightbox-meta">
-        <span class="cp-lightbox-counter" id="lightboxCounter">1 / 4</span>
-        <span class="cp-lightbox-credit" id="lightboxCredit"></span>
-      </div>
-    </div>
-    <button type="button" class="cp-lightbox-nav cp-lightbox-next" id="lightboxNextBtn" aria-label="Next image">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-    </button>
-  </div>
 
   <div class="nx-modal-backdrop" id="inquiryModal" aria-hidden="true">
     <div class="nx-modal-box" role="dialog" aria-modal="true" aria-labelledby="inquiryModalTitle">
@@ -137,12 +93,13 @@
     </div>
   </div>
 
+  <!-- Toast Notification Notification -->
   <div class="nx-toast" id="exploreToast" role="status" aria-live="polite"></div>
 
   <div id="nexus-footer-root"></div>
 
   <script src="/assets/react-footer/nexus-footer-section.js?v=copy1" defer></script>
-  <script src="/js/creators-data.js?v=1" defer></script>
-  <script src="/js/creator.js?v=1" defer></script>
+  <script src="/js/creators-data.js?v=3" defer></script>
+  <script src="/js/creator.js?v=apple2" defer></script>
 </body>
 </html>

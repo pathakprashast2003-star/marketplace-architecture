@@ -1,33 +1,31 @@
-/* ── Creator profile page: /c/<slug>  (served by creator.html) ──────────────
-   Reads the shared list in js/creators-data.js. Everything here is a SAMPLE
-   profile until real creators are live, and the page says so. */
+/* ── Creator profile: /c/<slug>  (creator.html) ─────────────────────────────
+   Layout: compact intro + cover, then main column (About, Work, Services,
+   Experience, Credentials, Kit, How they work, FAQ, Reviews, Links) beside a
+   sticky request card. Each section only shows when it has content, so a
+   teacher never sees "Kit". Data: js/creators-data.js (sample profiles). */
 (function () {
   'use strict';
 
   const ALL = window.NEXUS_CREATORS || [];
   const esc = (t) => String(t == null ? '' : t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const abs = (p) => (/^(https?:)?\//.test(p) ? p : '/' + p);     // page lives at /c/<slug>, so asset paths must start at the root
+  const abs = (p) => (/^(https?:)?\//.test(p) ? p : '/' + p);
   const cardSrc = (p) => (!p ? '' : p.startsWith('assets/') ? 'assets/card/' + p.slice(7) : p);
   const money = (n) => '$' + Math.round(n).toLocaleString('en-US');
-  const CAT_NAME = { film: 'Film & Video', aerial: 'Drone', d3: '3D & Virtual', art: 'Art & Photo', action: 'Action & Rigs' };
+  const CAT = { film: 'Film & Video', aerial: 'Drone', d3: '3D & Virtual', art: 'Art & Photo', action: 'Action & Rigs' };
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // slug from /c/<slug>, or ?slug= when opened as creator.html directly
   const fromPath = (location.pathname.match(/^\/c\/([^/?#]+)/) || [])[1];
   const slug = decodeURIComponent(fromPath || new URLSearchParams(location.search).get('slug') || '').toLowerCase();
   const c = ALL.find((x) => x.slug === slug);
 
-  const main = document.getElementById('cp');
-  const dock = document.getElementById('cpDock');
+  const main = document.getElementById('cpx');
   const toastEl = document.getElementById('exploreToast');
 
-  /* ── Saved (same storage as the Explore page) ── */
+  /* ── Saved (shared with Explore) ── */
   const KEY = 'nexus_shortlist_v1';
   const loadSaved = () => { try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); } catch (e) { return new Set(); } };
-  const storeSaved = (set) => { try { localStorage.setItem(KEY, JSON.stringify(Array.from(set))); } catch (e) {} };
-  function updateBadge() {
-    const b = document.getElementById('shortlistBadgeCount');
-    if (b) b.textContent = loadSaved().size;
-  }
+  const storeSaved = (s) => { try { localStorage.setItem(KEY, JSON.stringify(Array.from(s))); } catch (e) {} };
+  const badge = () => { const b = document.getElementById('shortlistBadgeCount'); if (b) b.textContent = loadSaved().size; };
   function toast(msg) {
     if (!toastEl) return;
     toastEl.textContent = msg;
@@ -35,421 +33,331 @@
     clearTimeout(toast.t);
     toast.t = setTimeout(() => toastEl.classList.remove('is-visible'), 2600);
   }
+  const savedNav = document.getElementById('shortlistToggleBtn');
+  if (savedNav) savedNav.addEventListener('click', () => { location.href = '/explore?saved=1'; });
+  badge();
 
-  const savedBtn = document.getElementById('shortlistToggleBtn');
-  if (savedBtn) savedBtn.addEventListener('click', () => { window.location.href = '/explore?saved=1'; });
-  updateBadge();
-
-  /* ── Not found ── */
   if (!c) {
     document.title = 'Creator not found · Nexus';
     main.innerHTML = `
-      <section class="cp-missing">
-        <p class="cp-kicker">Nothing here</p>
-        <h1 class="cp-name">We couldn't find that <em>creator.</em></h1>
-        <p class="cp-lead">The link may be old, or the profile isn't live yet.</p>
-        <a class="cp-btn cp-btn-primary" href="/explore">Browse all creators <span aria-hidden="true">→</span></a>
+      <section class="cpx-missing">
+        <p class="cpx-eyebrow">404 // NOT FOUND</p>
+        <h1 class="cpx-title">We couldn't find that creator.</h1>
+        <p class="cpx-sub">The profile link may be outdated or the creator is pending verification.</p>
+        <a class="cpx-btn" href="/explore">Browse Directory Index</a>
       </section>`;
     return;
   }
 
-  /* ── Page data ── */
-  document.title = c.creator + ' · ' + c.craft + ' · Nexus';
-  const meta = document.querySelector('meta[name="description"]');
-  if (meta) meta.setAttribute('content', c.creator + ', ' + c.craft + ' in ' + c.city + '. ' + c.bio + ' Sample profile on Nexus.');
-
+  /* ── Data ── */
+  const p = c.profile || {};
   const first = c.creator.split(' ')[0];
   const rate = c.numericRate;
-  const same = ALL.filter((x) => x.slug !== c.slug && x.cat === c.cat);
-  const others = ALL.filter((x) => x.slug !== c.slug && x.cat !== c.cat);
-  const more = same.concat(others).slice(0, 3);
-
-  // a small "work" strip: their photo plus distinct photos from the same craft
-  const work = [c.src];
-  for (const x of same.concat(others)) {
-    if (work.length >= 4) break;
-    if (!work.includes(x.src)) work.push(x.src);
-  }
-
-  const services = [
-    {
-      name: 'Half Day Shoot',
-      note: 'Up to 5 hours on set. Ideal for quick turnaround, interview setups, or insert pickups.',
-      price: money(rate * 0.6),
-      unit: '/half-day',
-      main: false
-    },
-    {
-      name: 'Full Day Commercial',
-      note: 'Up to 10 hours on set. Complete commercial day rate including standard cinema kit.',
-      price: money(rate),
-      unit: '/day',
-      main: true,
-      badge: 'Popular Choice'
-    },
-    {
-      name: 'Multi-Day / Project Buyout',
-      note: '3+ shooting days. Narrative features, multi-city brand campaigns, volume discount.',
-      price: money(rate * 0.9),
-      unit: '/day',
-      main: false
-    }
-  ];
-
+  const gear = c.gear || [];
+  const gallery = (c.gallery && c.gallery.length ? c.gallery : [{ src: c.src, caption: c.craft }]);
+  const work = gallery.concat(ALL.filter((x) => x.cat === c.cat && x.slug !== c.slug).map((x) => ({ src: x.src, caption: x.craft })))
+    .filter((g, i, arr) => arr.findIndex((y) => y.src === g.src) === i).slice(0, 5);   // 1 wide + 4 = full grid
+  const more = ALL.filter((x) => x.slug !== c.slug && x.cat === c.cat).concat(ALL.filter((x) => x.slug !== c.slug && x.cat !== c.cat)).slice(0, 3);
   const isSaved = () => loadSaved().has(c.slug);
-  const saveLabel = () => (isSaved() ? 'Saved' : 'Save');
+
+  document.title = c.creator + ' · ' + c.craft + ' · Nexus';
+  const md = document.querySelector('meta[name="description"]');
+  if (md) md.setAttribute('content', c.creator + ', ' + c.craft + ' in ' + c.city + '. ' + (p.headline || c.bio) + '. Sample profile on Nexus. 0% commission.');
+
+  const ic = {
+    save: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+  };
+
+  const specFacts = [
+    { label: 'LOCATION', val: c.city },
+    p.years ? { label: 'TENURE', val: p.years + ' Years Active' } : null,
+    p.languages && p.languages.length ? { label: 'LANGUAGES', val: p.languages.join(', ') } : null,
+    p.travel ? { label: 'MOBILITY', val: p.travel } : null,
+    p.remote ? { label: 'REMOTE WORK', val: 'Available Worldwide' } : null
+  ].filter(Boolean);
+
+  const sec = (id, idx, title, body, note) => body ? `
+    <section class="cpx-sec" id="${id}" data-reveal>
+      <div class="cpx-sec-head">
+        <div class="cpx-sec-head-left">
+          <span class="cpx-sec-idx">${idx}</span>
+          <h2 class="cpx-h">${title}</h2>
+        </div>
+        ${note ? `<span class="cpx-note">${note}</span>` : ''}
+      </div>
+      <div class="cpx-sec-body">
+        ${body}
+      </div>
+    </section>` : '';
+
+  const sampleNote = p.sample ? 'SAMPLE PROFILE' : 'VERIFIED';
 
   main.innerHTML = `
-    <nav class="cp-crumbs" aria-label="Breadcrumb">
-      <a href="/explore">← Explore Talent</a>
-      <span class="cp-crumb-sep" aria-hidden="true">/</span>
-      <a href="/explore?craft=${esc(c.cat)}">${esc(CAT_NAME[c.cat] || 'Visual Arts')}</a>
-      <span class="cp-crumb-sep" aria-hidden="true">/</span>
-      <span class="cp-crumb-cur">${esc(c.creator)}</span>
+    <nav class="cpx-crumbs" aria-label="Breadcrumb">
+      <a href="/explore">Directory</a><span class="cpx-crumb-sep">/</span>
+      <a href="/explore?craft=${esc(c.cat)}">${esc(CAT[c.cat] || 'Creators')}</a><span class="cpx-crumb-sep">/</span>
+      <b>${esc(c.creator)}</b>
     </nav>
 
-    <section class="cp-hero" aria-label="Creator Overview">
-      <div class="cp-media" id="cpHeroMedia">
-        <div class="cp-media-ambient" style="background-image: url('${esc(abs(c.src))}')" aria-hidden="true"></div>
-        <div class="cp-media-inner">
-          <img src="${esc(abs(c.src))}" alt="${esc(c.creator)}, ${esc(c.craft)}" fetchpriority="high" decoding="async" class="cp-media-poster">
-          ${c.reel ? `
-            <video src="${esc(abs(c.reel))}" muted loop playsinline autoplay preload="metadata" aria-label="${esc(c.creator)} reel" class="cp-media-video" id="cpHeroVideo"></video>
-            <button type="button" class="cp-audio-btn" id="cpAudioToggle" aria-label="Unmute audio">
-              <svg class="cp-icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-              <svg class="cp-icon-sound" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none;"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-              <span class="cp-audio-label">Muted</span>
-            </button>
-          ` : ''}
-          <div class="cp-media-hud">
-            <span class="cp-media-tag ${c.reel ? 'is-reel' : 'is-photo'}">
-              <span class="cp-media-dot" aria-hidden="true"></span>
-              <span>${c.reel ? 'REEL' : 'PHOTO'}</span>
-            </span>
-            <span class="cp-media-rate">${esc(money(rate))}<small>/day · 0% fee</small></span>
+    <!-- INTRO DOSSIER -->
+    <header class="cpx-intro">
+      <div class="cpx-intro-text" data-reveal>
+        <div class="cpx-who">
+          <span class="cpx-avatar"><img src="${esc(abs(cardSrc(c.src)))}" alt=""></span>
+          <div>
+            <p class="cpx-eyebrow">${esc(c.craft)}</p>
+            <p class="cpx-where">${esc(c.city)}${p.sample ? ' · <span class="cpx-sample">Sample Dossier</span>' : ''}</p>
           </div>
+        </div>
+        <h1 class="cpx-title">${esc(c.creator)}</h1>
+        <p class="cpx-headline">${esc(p.headline || c.bio)}</p>
+        <div class="cpx-facts-grid">
+          ${specFacts.map((f) => `
+            <div class="cpx-fact-cell">
+              <span class="cpx-fact-lbl">${esc(f.label)}</span>
+              <span class="cpx-fact-val">${esc(f.val)}</span>
+            </div>`).join('')}
         </div>
       </div>
-
-      <aside class="cp-panel" id="cpHeroPanel">
-        <div class="cp-kicker-row">
-          <span class="cp-kicker">${esc(c.craft)} · ${esc(c.city)}</span>
-          <span class="cp-verified-badge" title="Identity & portfolio verified by human curator">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Verified</span>
-          </span>
-        </div>
-        <h1 class="cp-name">${esc(c.creator)}</h1>
-        <p class="cp-lead">${esc(c.bio)}</p>
-
-        <div class="cp-trust-ribbon" aria-label="Verified creator trust metrics">
-          <div class="cp-trust-item cp-trust-stars">
-            <span class="cp-star-icon" aria-hidden="true">★</span>
-            <span class="cp-trust-val">${esc(c.trust ? c.trust.rating.toFixed(1) : '5.0')}</span>
-            <span class="cp-trust-sub">(${esc(c.trust ? c.trust.billed : '$200k+ billed')})</span>
-          </div>
-          <div class="cp-trust-item cp-trust-sla">
-            <span class="cp-live-dot" aria-hidden="true"></span>
-            <span class="cp-trust-val">${esc(c.trust ? c.trust.sla : 'Replies under 1h')}</span>
-          </div>
-          <div class="cp-trust-item cp-trust-direct">
-            <span class="cp-direct-badge">100% Direct · 0% Fee</span>
-          </div>
-        </div>
-
-        <div class="cp-rate-hero">
-          <div class="cp-rate-amount"><b>${esc(money(rate))}</b><span>/day</span></div>
-          <div class="cp-rate-meta">Standard Day Rate · Direct Booking</div>
-        </div>
-
-        <div class="cp-actions">
-          <button type="button" class="cp-btn cp-btn-primary" data-request>
-            <span>Book ${esc(first)}</span>
-            <span class="cp-btn-arrow" aria-hidden="true">→</span>
-          </button>
-          <button type="button" class="cp-btn cp-btn-ghost" id="cpSave" aria-pressed="${isSaved()}" aria-label="Save ${esc(c.creator)} to shortlist">
-            <svg class="cp-btn-bookmark" width="16" height="16" viewBox="0 0 24 24" fill="${isSaved() ? '#3B54EE' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-            <span class="cp-save-txt">${saveLabel()}</span>
-          </button>
-        </div>
-
-        <ul class="cp-ticks">
-          <li><strong>0% commission</strong> — negotiate and pay ${esc(first)} directly.</li>
-          <li><strong>Zero spam guarantee</strong> — your project brief lands straight in their inbox.</li>
-          <li><strong>Curated roster</strong> — verified camera package & portfolio proof.</li>
-        </ul>
-      </aside>
-    </section>
-
-    <section class="cp-sec" id="cpGearSection">
-      <div class="cp-h-row">
-        <h2 class="cp-h">Verified Gear & Tech Stack</h2>
-        <span class="cp-note">Verified owner-operator package</span>
+      <div class="cpx-cover" data-reveal>
+        <img src="${esc(abs(c.src))}" alt="${esc(c.creator)}, ${esc(c.craft)}" fetchpriority="high" decoding="async">
+        ${c.reel && !reduce ? `<video src="${esc(abs(c.reel))}" muted loop playsinline autoplay preload="metadata"></video>
+        <button type="button" class="cpx-play" id="cpxPlay" aria-label="Pause reel"><span class="cpx-play-ic is-pause"></span></button>` : ''}
+        <span class="cpx-cover-tag">${c.reel ? '4K REEL' : 'STILL'}</span>
       </div>
-      <div class="cp-gear-rack">
-        ${(c.gear || []).map(g => `
-          <div class="cp-gear-chip">
-            <span class="cp-gear-icon" aria-hidden="true">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-            </span>
-            <span class="cp-gear-name">${esc(g)}</span>
-            <span class="cp-gear-check" title="Verified kit">✓</span>
-          </div>
-        `).join('')}
-      </div>
-    </section>
+    </header>
 
-    <section class="cp-sec" id="cpGallerySection">
-      <div class="cp-h-row">
-        <h2 class="cp-h">Featured Commercial Work</h2>
-        <span class="cp-note">Click any frame to view in cinema lightbox</span>
-      </div>
-      <div class="cp-work" id="cpGallery">
-        ${(c.gallery || []).map((item, i) => `
-          <figure class="cp-shot${i === 0 ? ' is-lead' : ''}" data-index="${i}" tabindex="0" role="button" aria-label="Enlarge still: ${esc(item.caption)}">
-            <img src="${esc(abs(item.src))}" alt="${esc(item.caption)}" decoding="async" loading="lazy">
-            <div class="cp-shot-overlay">
-              <span class="cp-shot-tag">${esc(item.tag || 'Still')}</span>
-              <p class="cp-shot-caption">${esc(item.caption)}</p>
-              <span class="cp-shot-credit">${esc(item.credit)}</span>
+    <div class="cpx-layout">
+      <div class="cpx-col">
+        ${sec('about', '01', 'About', `<div class="cpx-about">${(p.about || [c.bio]).map((t) => `<p>${esc(t)}</p>`).join('')}</div>`)}
+
+        ${sec('work', '02', 'Selected Repertoire', `
+          <div class="cpx-grid">${work.map((g, i) => `
+            <button type="button" class="cpx-thumb${i === 0 ? ' is-wide' : ''}" data-shot="${i}" aria-label="Open image ${i + 1}">
+              <img src="${esc(abs(g.src))}" alt="${esc(g.caption || '')}" loading="lazy" decoding="async">
+            </button>`).join('')}
+          </div>`, '5 EXHIBITS')}
+
+        ${sec('services', '03', 'Services & Rates', (p.services || []).length ? `
+          <div class="cpx-svc-table">
+            <div class="cpx-svc-thead">
+              <span class="cpx-th-idx">NO.</span>
+              <span class="cpx-th-service">SERVICE SPECIFICATION</span>
+              <span class="cpx-th-rate">RATE</span>
+              <span class="cpx-th-action">REQUEST</span>
             </div>
-          </figure>
-        `).join('')}
+            ${p.services.map((s, idx) => `
+              <div class="cpx-svc-row">
+                <span class="cpx-svc-idx">${String(idx + 1).padStart(2, '0')}</span>
+                <div class="cpx-svc-main">
+                  <p class="cpx-svc-t">${esc(s.title)}</p>
+                  <p class="cpx-svc-d">${esc(s.desc)}</p>
+                  ${s.includes ? `<p class="cpx-svc-i">${ic.check}<span>${esc(s.includes)}</span></p>` : ''}
+                </div>
+                <div class="cpx-svc-price-col">
+                  <span class="cpx-svc-p">${esc(money(s.price))}</span>
+                  <small class="cpx-svc-unit">${esc(s.unit)}</small>
+                </div>
+                <div class="cpx-svc-action-col">
+                  <button type="button" class="cpx-mini-btn" data-request data-service="${esc(s.title)}">Request</button>
+                </div>
+              </div>`).join('')}
+          </div>` : '', p.sample ? 'ESTIMATED RATES' : '')}
+
+        ${sec('experience', '04', 'Production Chronology', (p.experience || []).length ? `
+          <div class="cpx-exp-table">
+            <div class="cpx-exp-thead">
+              <span class="cpx-exp-th-year">YEAR</span>
+              <span class="cpx-exp-th-role">ROLE / DISCIPLINE</span>
+              <span class="cpx-exp-th-proj">PRODUCTION / ENGAGEMENT</span>
+            </div>
+            <ol class="cpx-exp">
+              ${p.experience.map((e) => `
+                <li class="cpx-exp-row">
+                  <span class="cpx-exp-y">${esc(e.year)}</span>
+                  <span class="cpx-exp-r">${esc(e.role)}</span>
+                  <span class="cpx-exp-p">${esc(e.project)}</span>
+                </li>`).join('')}
+            </ol>
+          </div>` : '', 'SELF-REPORTED')}
+
+        ${sec('credentials', '05', 'Licences & Verification', (p.credentials || []).length ? `
+          <div class="cpx-cred-table">
+            <div class="cpx-cred-thead">
+              <span>CREDENTIAL / POLICY</span>
+              <span>VERIFICATION STATUS</span>
+            </div>
+            <ul class="cpx-creds">
+              ${p.credentials.map((x) => `
+                <li class="cpx-cred-row">
+                  <span class="cpx-cred-n">${esc(x.name)}</span>
+                  <span class="cpx-cred-b ${x.checked ? 'is-ok' : ''}">${x.checked ? ic.check + 'Checked by Nexus' : 'Self-reported'}</span>
+                </li>`).join('')}
+            </ul>
+          </div>` : '', sampleNote)}
+
+        ${sec('kit', '06', 'Hardware Manifest', gear.length ? `
+          <div class="cpx-kit-grid">
+            ${gear.map((g, i) => `
+              <div class="cpx-kit-cell">
+                <span class="cpx-kit-idx">${String(i + 1).padStart(2, '0')}</span>
+                <span class="cpx-kit-name">${esc(g)}</span>
+              </div>`).join('')}
+          </div>` : '', 'OWNER-OPERATOR')}
+
+        ${sec('how', '07', 'Operating Terms', p.how ? `
+          <dl class="cpx-how-table">
+            <div class="cpx-how-row"><dt>01 // PAYMENT TERMS</dt><dd>${esc((p.how.payments || []).join(', '))}. Direct billing to creator (0% Nexus commission).</dd></div>
+            <div class="cpx-how-row"><dt>02 // DEPOSIT SCHEDULE</dt><dd>${esc(p.how.deposit)}</dd></div>
+            <div class="cpx-how-row"><dt>03 // CANCELLATION POLICY</dt><dd>${esc(p.how.cancel)}</dd></div>
+            <div class="cpx-how-row"><dt>04 // ADVANCE NOTICE</dt><dd>At least ${esc(p.how.notice)} required before shoot date</dd></div>
+            <div class="cpx-how-row"><dt>05 // TYPICAL AVAILABILITY</dt><dd>${esc(p.how.availability)}</dd></div>
+          </dl>` : '', sampleNote)}
+
+        ${sec('faq', '08', 'Policies & FAQ', (p.faq || []).length ? `
+          <div class="cpx-faq">${p.faq.map((f, i) => `
+            <details>
+              <summary><span class="cpx-faq-num">${String(i + 1).padStart(2, '0')}</span>${esc(f.q)}</summary>
+              <p>${esc(f.a)}</p>
+            </details>`).join('')}</div>` : '')}
+
+        ${sec('reviews', '09', 'Client Reviews', `
+          <div class="cpx-empty">
+            <p class="cpx-empty-t">No Client Reviews Recorded</p>
+            <p>Verified reviews appear after client engagements conclude through Nexus. Only clients who completed a booking request may submit an evaluation.</p>
+          </div>`)}
+
+        <p class="cpx-report"><button type="button" class="cpx-textbtn" id="cpxReport">Report profile irregularity</button></p>
+      </div>
+
+      <!-- STICKY REQUISITION DOCKET -->
+      <aside class="cpx-card-wrap">
+        <div class="cpx-card">
+          <div class="cpx-card-head">
+            <span class="cpx-card-docket-tag">DOCKET // 001</span>
+            <span class="cpx-card-docket-status">DIRECT INQUIRY</span>
+          </div>
+          <div class="cpx-card-price-block">
+            <span class="cpx-card-rate-lbl">STANDARD BASE RATE</span>
+            <div class="cpx-card-rate"><b>${esc(money(rate))}</b><span> / day</span></div>
+            <p class="cpx-card-from">Starting baseline · Itemized below</p>
+          </div>
+          <button type="button" class="cpx-btn cpx-btn-full" data-request>Send Booking Request</button>
+          <button type="button" class="cpx-btn-ghost" id="cpxSave" aria-pressed="${isSaved()}">
+            ${ic.save}<span>${isSaved() ? 'Saved to Shortlist' : 'Save to Shortlist'}</span>
+          </button>
+          <ul class="cpx-card-list">
+            <li><span class="cpx-chk-num">01</span><span>0% commission · Direct creator billing</span></li>
+            <li><span class="cpx-chk-num">02</span><span>Free direct inquiry · No account needed</span></li>
+            ${p.how ? `<li><span class="cpx-chk-num">03</span><span>Lead notice: At least ${esc(p.how.notice)} ahead</span></li>` : ''}
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <!-- MORE -->
+    <section class="cpx-more-sec" data-reveal>
+      <div class="cpx-sec-head">
+        <div class="cpx-sec-head-left">
+          <span class="cpx-sec-idx">INDEX</span>
+          <h2 class="cpx-h">Similar Repertoire</h2>
+        </div>
+        <a class="cpx-textlink" href="/explore">Directory Index ›</a>
+      </div>
+      <div class="cpx-more">${more.map((x) => `
+        <a class="cpx-mcard" href="/c/${esc(x.slug)}">
+          <span class="cpx-mcard-img"><img src="${esc(abs(cardSrc(x.src)))}" alt="" loading="lazy" decoding="async"></span>
+          <span class="cpx-mcard-k">${esc(x.craft)}</span>
+          <span class="cpx-mcard-n">${esc(x.creator)}</span>
+          <span class="cpx-mcard-r">${esc(x.city)} · ${esc(money(x.numericRate))}/day</span>
+        </a>`).join('')}
       </div>
     </section>
 
-    <section class="cp-sec" id="cpServicesSection">
-      <div class="cp-h-row">
-        <h2 class="cp-h">Day Rate & Transparent Packages</h2>
-        <span class="cp-note">Direct hire · 0% commission markup</span>
+    <!-- phone: rate + request in reach -->
+    <div class="cpx-dock">
+      <div class="cpx-dock-price">
+        <span class="cpx-dock-lbl">BASE RATE</span>
+        <p><b>${esc(money(rate))}</b><span> / day</span></p>
       </div>
-      <div class="cp-services">
-        ${services.map((s) => `
-          <div class="cp-service${s.main ? ' is-main' : ''}">
-            ${s.badge ? `<span class="cp-service-badge">${esc(s.badge)}</span>` : ''}
-            <h3 class="cp-service-name">${esc(s.name)}</h3>
-            <p class="cp-service-note">${esc(s.note)}</p>
-            <div class="cp-service-price"><b>${esc(s.price)}</b><small>${esc(s.unit)}</small></div>
-            <button type="button" class="cp-btn ${s.main ? 'cp-btn-primary' : 'cp-btn-ghost'}" data-request data-service="${esc(s.name)}">
-              <span>Inquire about this tier</span>
-              <span class="cp-btn-arrow" aria-hidden="true">→</span>
-            </button>
-          </div>`).join('')}
-      </div>
-    </section>
+      <button type="button" class="cpx-btn" data-request>Send request</button>
+    </div>
 
-    <section class="cp-sec">
-      <h2 class="cp-h">Reviews</h2>
-      <div class="cp-empty">
-        <p class="cp-empty-t">No reviews yet</p>
-        <p class="cp-empty-p">Reviews appear here after clients work with ${esc(first)} through Nexus.</p>
-      </div>
-    </section>
-
-    <section class="cp-sec">
-      <div class="cp-h-row"><h2 class="cp-h">More like <em>${esc(first)}</em></h2><a class="cp-link" href="/explore">See all <span aria-hidden="true">→</span></a></div>
-      <div class="cp-more">
-        ${more.map((x) => `
-          <a class="cp-mini" href="/c/${esc(x.slug)}">
-            <span class="cp-mini-img"><img src="${esc(abs(cardSrc(x.src)))}" alt="" decoding="async"></span>
-            <span class="cp-mini-k">${esc(x.craft)} · ${esc(x.city)}</span>
-            <span class="cp-mini-n">${esc(x.creator)}</span>
-            <span class="cp-mini-r">${esc(money(x.numericRate))}<small>/day</small></span>
-          </a>`).join('')}
-      </div>
-    </section>
+    <!-- lightbox -->
+    <div class="cpx-lb" id="cpxLb" hidden>
+      <button type="button" class="cpx-lb-x" aria-label="Close">×</button>
+      <button type="button" class="cpx-lb-nav" data-d="-1" aria-label="Previous">‹</button>
+      <figure><img alt=""><figcaption></figcaption></figure>
+      <button type="button" class="cpx-lb-nav" data-d="1" aria-label="Next">›</button>
+    </div>
   `;
 
-  // Action Dock (Desktop & Mobile)
-  if (dock) {
-    const dockAvatar = document.getElementById('cpDockAvatar');
-    const dockName = document.getElementById('cpDockName');
-    const dockCraft = document.getElementById('cpDockCraft');
-    const dockRate = document.getElementById('cpDockRate');
-    const dockFirstName = document.getElementById('cpDockFirstName');
+  /* ── Reveal ── */
+  const els = main.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window && !reduce) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -6% 0px' });
+    els.forEach((el) => io.observe(el));
+  } else els.forEach((el) => el.classList.add('is-in'));
 
-    if (dockAvatar) dockAvatar.src = abs(cardSrc(c.src));
-    if (dockName) dockName.textContent = c.creator;
-    if (dockCraft) dockCraft.textContent = c.craft + ' · ' + c.city;
-    if (dockRate) dockRate.innerHTML = `<b>${esc(money(rate))}</b><span>/day</span>`;
-    if (dockFirstName) dockFirstName.textContent = first;
-
-    function checkDockVisibility() {
-      const hero = document.querySelector('.cp-hero');
-      if (!hero) return;
-      const heroBottom = hero.getBoundingClientRect().bottom;
-      if (heroBottom < 120) {
-        dock.classList.add('is-visible');
-        dock.setAttribute('aria-hidden', 'false');
-      } else {
-        dock.classList.remove('is-visible');
-        dock.setAttribute('aria-hidden', 'true');
-      }
-    }
-    window.addEventListener('scroll', checkDockVisibility, { passive: true });
-    checkDockVisibility();
-  }
-
-  // a reel that can't play just leaves the photo showing
-  const vid = main.querySelector('.cp-media video');
+  /* ── Reel ── */
+  const vid = main.querySelector('.cpx-cover video');
+  const play = document.getElementById('cpxPlay');
   if (vid) {
     vid.addEventListener('playing', () => vid.classList.add('is-on'));
-    vid.addEventListener('error', () => {
-      vid.remove();
-      const audioBtn = document.getElementById('cpAudioToggle');
-      if (audioBtn) audioBtn.remove();
-      const tag = main.querySelector('.cp-media-tag');
-      if (tag) {
-        tag.classList.remove('is-reel');
-        tag.classList.add('is-photo');
-        tag.innerHTML = '<span class="cp-media-dot" aria-hidden="true"></span><span>PHOTO</span>';
-      }
+    vid.addEventListener('error', () => { vid.remove(); if (play) play.remove(); });
+    if (play) play.addEventListener('click', () => {
+      const i = play.querySelector('.cpx-play-ic');
+      if (vid.paused) { vid.play(); i.classList.add('is-pause'); play.setAttribute('aria-label', 'Pause reel'); }
+      else { vid.pause(); i.classList.remove('is-pause'); play.setAttribute('aria-label', 'Play reel'); }
     });
   }
 
-  // Audio toggle
-  const audioBtn = document.getElementById('cpAudioToggle');
-  if (audioBtn && vid) {
-    audioBtn.addEventListener('click', () => {
-      const isMuted = vid.muted;
-      vid.muted = !isMuted;
-      const soundIcon = audioBtn.querySelector('.cp-icon-sound');
-      const muteIcon = audioBtn.querySelector('.cp-icon-muted');
-      const label = audioBtn.querySelector('.cp-audio-label');
-      if (vid.muted) {
-        audioBtn.setAttribute('aria-label', 'Unmute audio');
-        if (label) label.textContent = 'Muted';
-        if (soundIcon) soundIcon.style.display = 'none';
-        if (muteIcon) muteIcon.style.display = 'inline-block';
-      } else {
-        audioBtn.setAttribute('aria-label', 'Mute audio');
-        if (label) label.textContent = 'Unmuted';
-        if (soundIcon) soundIcon.style.display = 'inline-block';
-        if (muteIcon) muteIcon.style.display = 'none';
-      }
-    });
+  /* ── Lightbox for Work ── */
+  const lb = document.getElementById('cpxLb');
+  const lbImg = lb.querySelector('img');
+  const lbCap = lb.querySelector('figcaption');
+  let at = 0;
+  function show(i) {
+    at = (i + work.length) % work.length;
+    lbImg.src = abs(work[at].src);
+    lbCap.textContent = (work[at].caption || '') + ' · ' + (at + 1) + ' of ' + work.length;
   }
-
-  /* ── Save ── */
-  const saveBtn = document.getElementById('cpSave');
-  if (saveBtn) {
-    saveBtn.addEventListener('click', () => {
-      const set = loadSaved();
-      const nowSaved = !set.has(c.slug);
-      if (nowSaved) {
-        set.add(c.slug);
-        toast('Saved ' + c.creator);
-      } else {
-        set.delete(c.slug);
-        toast('Removed ' + c.creator);
-      }
-      storeSaved(set);
-      saveBtn.setAttribute('aria-pressed', String(nowSaved));
-      const txt = saveBtn.querySelector('.cp-save-txt');
-      if (txt) txt.textContent = nowSaved ? 'Saved' : 'Save';
-      const bm = saveBtn.querySelector('.cp-btn-bookmark');
-      if (bm) bm.setAttribute('fill', nowSaved ? '#3B54EE' : 'none');
-      updateBadge();
-    });
-  }
-
-  /* ── Lightbox Controller ── */
-  const lbModal = document.getElementById('cpLightbox');
-  const lbImg = document.getElementById('lightboxImg');
-  const lbCaption = document.getElementById('lightboxCaption');
-  const lbCredit = document.getElementById('lightboxCredit');
-  const lbCounter = document.getElementById('lightboxCounter');
-  const lbCloseBtn = document.getElementById('lightboxCloseBtn');
-  const lbPrevBtn = document.getElementById('lightboxPrevBtn');
-  const lbNextBtn = document.getElementById('lightboxNextBtn');
-
-  let currentLbIndex = 0;
-  const galleryItems = c.gallery || [];
-
-  function showLightboxImage(idx) {
-    if (!galleryItems.length) return;
-    currentLbIndex = (idx + galleryItems.length) % galleryItems.length;
-    const item = galleryItems[currentLbIndex];
-    if (lbImg) {
-      lbImg.src = abs(item.src);
-      lbImg.alt = item.caption;
-    }
-    if (lbCaption) lbCaption.textContent = item.caption;
-    if (lbCredit) lbCredit.textContent = item.credit ? 'Client: ' + item.credit : '';
-    if (lbCounter) lbCounter.textContent = `${currentLbIndex + 1} / ${galleryItems.length}`;
-  }
-
-  let lastFocusedEl = null;
-
-  function openLightbox(idx) {
-    if (!lbModal) return;
-    lastFocusedEl = document.activeElement;
-    showLightboxImage(idx);
-    lbModal.classList.add('is-open');
-    lbModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    if (lbCloseBtn) setTimeout(() => lbCloseBtn.focus(), 60);
-  }
-
-  function closeLightbox() {
-    if (!lbModal) return;
-    lbModal.classList.remove('is-open');
-    lbModal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') {
-      lastFocusedEl.focus();
-    }
-  }
-
-  const galleryEl = document.getElementById('cpGallery');
-  if (galleryEl) {
-    galleryEl.addEventListener('click', (e) => {
-      const shot = e.target.closest('.cp-shot');
-      if (shot) {
-        const idx = parseInt(shot.dataset.index, 10) || 0;
-        openLightbox(idx);
-      }
-    });
-    galleryEl.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        const shot = e.target.closest('.cp-shot');
-        if (shot) {
-          e.preventDefault();
-          const idx = parseInt(shot.dataset.index, 10) || 0;
-          openLightbox(idx);
-        }
-      }
-    });
-  }
-
-  if (lbCloseBtn) lbCloseBtn.addEventListener('click', closeLightbox);
-  if (lbPrevBtn) lbPrevBtn.addEventListener('click', () => showLightboxImage(currentLbIndex - 1));
-  if (lbNextBtn) lbNextBtn.addEventListener('click', () => showLightboxImage(currentLbIndex + 1));
-  if (lbModal) {
-    lbModal.addEventListener('click', (e) => {
-      if (e.target === lbModal || e.target.classList.contains('cp-lightbox-stage')) closeLightbox();
-    });
-  }
-
-  window.addEventListener('keydown', (e) => {
-    if (!lbModal || !lbModal.classList.contains('is-open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    else if (e.key === 'ArrowLeft') showLightboxImage(currentLbIndex - 1);
-    else if (e.key === 'ArrowRight') showLightboxImage(currentLbIndex + 1);
+  main.querySelectorAll('[data-shot]').forEach((b) => b.addEventListener('click', () => { show(+b.dataset.shot); lb.hidden = false; document.body.style.overflow = 'hidden'; }));
+  const closeLb = () => { lb.hidden = true; document.body.style.overflow = ''; };
+  lb.querySelector('.cpx-lb-x').addEventListener('click', closeLb);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+  lb.querySelectorAll('.cpx-lb-nav').forEach((b) => b.addEventListener('click', () => show(at + Number(b.dataset.d))));
+  addEventListener('keydown', (e) => {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowRight') show(at + 1);
+    if (e.key === 'ArrowLeft') show(at - 1);
   });
 
-  /* ── Request form (same fields and backend route as Explore) ── */
+  /* ── Save ── */
+  const saveBtn = document.getElementById('cpxSave');
+  saveBtn.addEventListener('click', () => {
+    const s = loadSaved();
+    if (s.has(c.slug)) { s.delete(c.slug); toast('Removed ' + c.creator); } else { s.add(c.slug); toast('Saved ' + c.creator); }
+    storeSaved(s);
+    saveBtn.querySelector('span').textContent = isSaved() ? 'Saved' : 'Save';
+    saveBtn.setAttribute('aria-pressed', String(isSaved()));
+    badge();
+  });
+
+  /* ── Report (placeholder until the reports API is wired) ── */
+  document.getElementById('cpxReport').addEventListener('click', () => toast('Thanks. Reporting opens when real profiles go live.'));
+
+  /* ── Request form (same fields + backend route as Explore) ── */
   const modal = document.getElementById('inquiryModal');
   const form = document.getElementById('inquiryForm');
-  const title = document.getElementById('inquiryModalTitle');
-  const sub = document.getElementById('inquiryModalSub');
   const need = document.getElementById('inqScope');
   const errEl = document.getElementById('inquiryError');
-
   function openRequest(service) {
-    title.textContent = 'Book ' + c.creator;
-    sub.textContent = c.craft + ' · ' + c.city + ' · Standard ' + money(rate) + '/day (0% Commission)';
-    if (need) need.value = c.craft + (service ? ' — ' + service : ' — Full Day Commercial') + ' ';
+    document.getElementById('inquiryModalTitle').textContent = 'Find someone like ' + first;
+    document.getElementById('inquiryModalSub').textContent = c.craft + ' · ' + c.city + ' · from ' + money(rate) + '/day';
+    if (need) need.value = service ? service + ': ' : (need.value || c.craft + ' ');
     if (errEl) errEl.hidden = true;
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
@@ -467,15 +375,14 @@
   });
   document.getElementById('closeModalBtn').addEventListener('click', closeRequest);
   modal.addEventListener('click', (e) => { if (e.target === modal) closeRequest(); });
-  window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeRequest(); });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeRequest(); });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.reportValidity()) return;
     const btn = document.getElementById('inquirySubmitBtn');
     const orig = btn.textContent;
-    btn.disabled = true;
-    btn.textContent = 'Sending…';
+    btn.disabled = true; btn.textContent = 'Sending…';
     if (errEl) errEl.hidden = true;
     const date = document.getElementById('inqDates').value.trim();
     const budget = document.getElementById('inqBudget').value;
@@ -486,7 +393,7 @@
         body: JSON.stringify({
           role: 'client',
           email: document.getElementById('inqClientEmail').value.trim(),
-          need: need.value.trim().slice(0, 300),
+          need: need.value.trim(),
           craft: c.craft,
           city: document.getElementById('inqCity').value.trim(),
           ref: c.slug,
@@ -496,20 +403,14 @@
       if (!res.ok) throw new Error('status ' + res.status);
       const data = await res.json().catch(() => ({}));
       if ((date || budget) && data.edit_token) {
-        fetch('/api/waitlist', {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ edit_token: data.edit_token, date: date || undefined, budget: budget || undefined })
-        }).catch(() => {});
+        fetch('/api/waitlist', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ edit_token: data.edit_token, date: date || undefined, budget: budget || undefined }) }).catch(() => {});
       }
-      closeRequest();
-      form.reset();
+      closeRequest(); form.reset();
       toast("Got it. We'll email you when matching creators are live.");
     } catch (err) {
       if (errEl) { errEl.textContent = "Couldn't send that. Check your connection and try again."; errEl.hidden = false; }
     } finally {
-      btn.disabled = false;
-      btn.textContent = orig;
+      btn.disabled = false; btn.textContent = orig;
     }
   });
 })();

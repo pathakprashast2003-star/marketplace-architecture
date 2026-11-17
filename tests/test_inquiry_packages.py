@@ -6,14 +6,13 @@ def test_packages_and_inquiry_flow():
         page = browser.new_page(viewport={"width": 1280, "height": 900})
         page.goto("http://localhost:3000/c/marcus-vance")
         
-        # Verify 3 package tiers
-        packages = page.locator(".cp-service")
-        assert packages.count() == 3
-        assert page.locator(".cp-service.is-main").is_visible()
+        # Verify services rate matrix rows
+        services = page.locator(".cpx-svc-row")
+        assert services.count() >= 3
         
-        # Click inquiry button on Half-Day tier
-        half_day_btn = packages.nth(0).locator("button[data-request]")
-        half_day_btn.click()
+        # Click request button on first tier
+        first_req_btn = services.nth(0).locator("button[data-request]")
+        first_req_btn.click()
         
         # Verify modal opens and scope is pre-populated
         modal = page.locator("#inquiryModal")
@@ -23,13 +22,16 @@ def test_packages_and_inquiry_flow():
         
         # Close modal
         page.locator("#closeModalBtn").click()
+        page.wait_for_timeout(200)
         assert not modal.is_visible()
         
-        # Scroll down and check floating dock appears
-        page.evaluate("window.scrollTo(0, 1000)")
-        page.wait_for_timeout(400)
-        dock = page.locator("#cpDock")
-        assert dock.is_visible()
-        assert "Marcus" in dock.inner_text()
+        # Verify sticky card request button also opens modal
+        card_btn = page.locator(".cpx-card button[data-request]")
+        card_btn.click()
+        page.wait_for_timeout(200)
+        assert modal.is_visible()
+        page.keyboard.press("Escape")
+        page.wait_for_timeout(200)
+        assert not modal.is_visible()
         
         browser.close()

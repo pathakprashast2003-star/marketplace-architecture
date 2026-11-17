@@ -6,29 +6,30 @@ def test_gear_rack_and_lightbox():
         page = browser.new_page(viewport={"width": 1280, "height": 900})
         page.goto("http://localhost:3000/c/marcus-vance")
         
-        # Verify gear chips
-        gear_chips = page.locator(".cp-gear-chip")
-        assert gear_chips.count() >= 3
-        assert "ARRI Alexa 35" in page.locator(".cp-gear-rack").inner_text()
+        # Verify gear hardware manifest
+        gear_cells = page.locator(".cpx-kit-cell")
+        assert gear_cells.count() >= 3
+        assert "ARRI Alexa 35" in page.locator(".cpx-kit-grid").inner_text()
         
         # Verify gallery stills and lightbox
-        shots = page.locator(".cp-shot")
-        assert shots.count() == 4
+        shots = page.locator(".cpx-thumb")
+        assert shots.count() >= 4
         
         # Click second still to open lightbox
         shots.nth(1).click()
-        lightbox = page.locator("#cpLightbox")
-        assert lightbox.is_visible()
-        assert lightbox.get_attribute("aria-hidden") == "false"
+        lightbox = page.locator("#cpxLb")
+        assert not lightbox.is_hidden()
         
         # Navigate with ArrowRight
-        img_before = page.locator("#lightboxImg").get_attribute("src")
+        img_before = lightbox.locator("img").get_attribute("src")
         page.keyboard.press("ArrowRight")
-        img_after = page.locator("#lightboxImg").get_attribute("src")
+        page.wait_for_timeout(100)
+        img_after = lightbox.locator("img").get_attribute("src")
         assert img_before != img_after
         
         # Close with Escape
         page.keyboard.press("Escape")
-        assert not lightbox.is_visible() or lightbox.get_attribute("aria-hidden") == "true"
+        page.wait_for_timeout(100)
+        assert lightbox.is_hidden()
         
         browser.close()

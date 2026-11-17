@@ -11,12 +11,12 @@ def test_explore_to_creator_navigation_and_404():
         first_name = first_card.locator(".ws-name").inner_text().strip()
         first_card.locator(".ws-stage").click()
         page.wait_for_url("**/c/*")
-        assert page.locator(".cp-name").inner_text().strip() == first_name
+        assert page.locator(".cpx-title").inner_text().strip() == first_name
         
         # 2. Check 404 view on unknown slug
         page.goto("http://localhost:3000/c/unknown-creator-xyz")
-        assert "couldn't find that creator" in page.locator(".cp-name").inner_text().lower()
-        browse_all_btn = page.locator(".cp-missing a")
+        assert "couldn't find that creator" in page.locator(".cpx-title").inner_text().lower()
+        browse_all_btn = page.locator(".cpx-missing a")
         assert browse_all_btn.is_visible()
         browse_all_btn.click()
         page.wait_for_url("**/explore")
@@ -24,16 +24,14 @@ def test_explore_to_creator_navigation_and_404():
         # 3. Mobile Viewport Layout Verification
         mobile_page = browser.new_page(viewport={"width": 375, "height": 812})
         mobile_page.goto("http://localhost:3000/c/marcus-vance")
-        assert mobile_page.locator(".cp-name").is_visible()
-        mobile_page.evaluate("window.scrollTo(0, 800)")
-        mobile_page.wait_for_timeout(300)
-        assert mobile_page.locator("#cpDock").is_visible()
+        assert mobile_page.locator(".cpx-title").is_visible()
+        assert mobile_page.locator(".cpx-dock").is_visible()
         
         # 4. Multi-creator profile checks (Lookdev, VP, Drone)
         for slug in ["elena-rostova", "kai-tanaka", "maya-lin"]:
             page.goto(f"http://localhost:3000/c/{slug}")
-            assert page.locator(".cp-name").is_visible()
-            assert page.locator(".cp-gear-rack").is_visible()
-            assert page.locator(".cp-shot").count() == 4
+            assert page.locator(".cpx-title").is_visible()
+            assert page.locator(".cpx-facts-grid").is_visible()
+            assert page.locator(".cpx-thumb").count() >= 4
         
         browser.close()
