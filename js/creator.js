@@ -74,6 +74,8 @@
     wifi: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>'
   };
 
+  const icArr = '<svg class="skiper40-arr" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M1.004 9.166 9.337.833m0 0v8.333m0-8.333H1.004" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
   const specFacts = [
     { label: 'LOCATION', val: c.city, icon: ic.pin },
     p.years ? { label: 'TENURE', val: p.years + ' Years Active', icon: ic.clock } : null,
@@ -100,8 +102,8 @@
 
   main.innerHTML = `
     <nav class="cpx-crumbs" aria-label="Breadcrumb">
-      <a href="/explore">Directory</a><span class="cpx-crumb-sep">/</span>
-      <a href="/explore?craft=${esc(c.cat)}">${esc(CAT[c.cat] || 'Creators')}</a><span class="cpx-crumb-sep">/</span>
+      <a class="skiper40-link" href="/explore">Directory${icArr}</a><span class="cpx-crumb-sep">/</span>
+      <a class="skiper40-link" href="/explore?craft=${esc(c.cat)}">${esc(CAT[c.cat] || 'Creators')}${icArr}</a><span class="cpx-crumb-sep">/</span>
       <b>${esc(c.creator)}</b>
     </nav>
 
@@ -283,7 +285,7 @@
             <p>Verified reviews appear after client engagements conclude through Nexus. Only clients who completed a booking request may submit an evaluation.</p>
           </div>`)}
 
-        <p class="cpx-report"><button type="button" class="cpx-textbtn" id="cpxReport">Report profile irregularity</button></p>
+        <p class="cpx-report"><button type="button" class="cpx-textbtn skiper40-link" id="cpxReport">Report profile irregularity${icArr}</button></p>
       </div>
 
       <!-- STICKY REQUISITION DOCKET -->
@@ -332,7 +334,7 @@
           <span class="cpx-sec-idx">INDEX</span>
           <h2 class="cpx-h">Similar Repertoire</h2>
         </div>
-        <a class="cpx-textlink" href="/explore">Directory Index ›</a>
+        <a class="cpx-textlink skiper40-link" href="/explore">Directory Index${icArr}</a>
       </div>
       <div class="cpx-more">${more.map((x) => `
         <a class="cpx-mcard" href="/c/${esc(x.slug)}">
