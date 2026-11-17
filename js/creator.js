@@ -152,6 +152,9 @@
         </div>
         <h1 class="cpx-title">${esc(c.creator)}</h1>
         <p class="cpx-headline">${esc(p.headline || c.bio)}</p>
+        <div class="cpx-intro-bio">
+          <p>${esc(c.bio)}</p>
+        </div>
         <div class="cpx-facts-grid cpx-facts-pills">
           ${specFacts.map((f, i) => `
             <div class="cpx-fact-cell cpx-fact-pill" style="--i: ${i}">
@@ -159,6 +162,13 @@
               <span class="cpx-fact-lbl cpx-fact-pill-lbl">${esc(f.label)}</span>
               <span class="cpx-fact-val cpx-fact-pill-val">${esc(f.val)}</span>
             </div>`).join('')}
+        </div>
+        <div class="cpx-intro-footer">
+          <a href="#dock" class="cpx-btn cpx-intro-btn">Direct Inquiry${icArr}</a>
+          <div class="cpx-intro-tags">
+            <span class="cpx-intro-chip"><span class="cpx-pill-dot is-live" aria-hidden="true"></span> 0% Fee · Direct Payment</span>
+            <span class="cpx-intro-chip">Day Rate: <b>${esc(money(rate))}</b></span>
+          </div>
         </div>
       </div>
       <div class="cpx-cover-wrap" data-reveal>
