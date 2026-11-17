@@ -151,8 +151,8 @@
         <h1 class="cpx-title">${esc(c.creator)}</h1>
         <p class="cpx-headline">${esc(p.headline || c.bio)}</p>
         <div class="cpx-facts-grid cpx-facts-pills">
-          ${specFacts.map((f) => `
-            <div class="cpx-fact-cell cpx-fact-pill">
+          ${specFacts.map((f, i) => `
+            <div class="cpx-fact-cell cpx-fact-pill" style="--i: ${i}">
               <span class="cpx-fact-pill-icon" aria-hidden="true">${f.icon}</span>
               <span class="cpx-fact-lbl cpx-fact-pill-lbl">${esc(f.label)}</span>
               <span class="cpx-fact-val cpx-fact-pill-val">${esc(f.val)}</span>
