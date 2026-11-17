@@ -100,6 +100,16 @@
       <b>${esc(c.creator)}</b>
     </nav>
 
+    <!-- TOP DOSSIER LEDGER BAR -->
+    <div class="cpx-ledger-bar" data-reveal>
+      <div class="cpx-ledger-cell"><span class="cpx-ledger-k">DOSSIER REF</span><span class="cpx-ledger-v">CR-${esc(c.slug.toUpperCase())}</span></div>
+      <div class="cpx-ledger-cell"><span class="cpx-ledger-k">DISCIPLINE</span><span class="cpx-ledger-v">${esc(c.craft)}</span></div>
+      <div class="cpx-ledger-cell"><span class="cpx-ledger-k">LOCATION</span><span class="cpx-ledger-v">${esc(c.city)}</span></div>
+      <div class="cpx-ledger-cell"><span class="cpx-ledger-k">COMMISSION</span><span class="cpx-ledger-v">0.00% DIRECT</span></div>
+      <div class="cpx-ledger-cell"><span class="cpx-ledger-k">BASE RATE</span><span class="cpx-ledger-v">${esc(money(rate))}/DAY</span></div>
+      <div class="cpx-ledger-cell"><span class="cpx-ledger-k">RECORD STATUS</span><span class="cpx-ledger-v is-status">● VERIFIED</span></div>
+    </div>
+
     <!-- INTRO DOSSIER -->
     <header class="cpx-intro">
       <div class="cpx-intro-text" data-reveal>
@@ -120,32 +130,44 @@
             </div>`).join('')}
         </div>
       </div>
-      <div class="cpx-cover" data-reveal>
-        <img src="${esc(abs(c.src))}" alt="${esc(c.creator)}, ${esc(c.craft)}" fetchpriority="high" decoding="async">
-        ${c.reel && !reduce ? `<video src="${esc(abs(c.reel))}" muted loop playsinline autoplay preload="metadata"></video>
-        <button type="button" class="cpx-play" id="cpxPlay" aria-label="Pause reel"><span class="cpx-play-ic is-pause"></span></button>` : ''}
-        <span class="cpx-cover-tag">${c.reel ? '4K REEL' : 'STILL'}</span>
+      <div class="cpx-cover-wrap" data-reveal>
+        <div class="cpx-cover-meta">
+          <span>FIG 01 // PRINCIPAL REEL</span>
+          <span>4K RESOLUTION</span>
+        </div>
+        <div class="cpx-cover">
+          <img src="${esc(abs(c.src))}" alt="${esc(c.creator)}, ${esc(c.craft)}" fetchpriority="high" decoding="async">
+          ${c.reel && !reduce ? `<video src="${esc(abs(c.reel))}" muted loop playsinline autoplay preload="metadata"></video>
+          <button type="button" class="cpx-play" id="cpxPlay" aria-label="Pause reel"><span class="cpx-play-ic is-pause"></span></button>` : ''}
+          <span class="cpx-cover-tag">${c.reel ? '4K REEL' : 'STILL'}</span>
+        </div>
+        <div class="cpx-cover-footer">
+          <span>ARCHIVE REF: ${esc(c.slug.toUpperCase())}</span>
+          <span>ASPECT: 4 / 3</span>
+        </div>
       </div>
     </header>
 
     <div class="cpx-layout">
       <div class="cpx-col">
-        ${sec('about', '01', 'About', `<div class="cpx-about">${(p.about || [c.bio]).map((t) => `<p>${esc(t)}</p>`).join('')}</div>`)}
+        ${sec('about', '01.0', 'Artistic Profile & Biography', `<div class="cpx-about"><div class="cpx-about-box">${(p.about || [c.bio]).map((t) => `<p>${esc(t)}</p>`).join('')}</div></div>`, 'DOSSIER ARCHIVE')}
 
-        ${sec('work', '02', 'Selected Repertoire', `
+        ${sec('work', '02.0', 'Selected Repertoire', `
           <div class="cpx-grid">${work.map((g, i) => `
-            <button type="button" class="cpx-thumb${i === 0 ? ' is-wide' : ''}" data-shot="${i}" aria-label="Open image ${i + 1}">
+            <button type="button" class="cpx-thumb${i === 0 ? ' is-wide' : ''}" data-shot="${i}" aria-label="Open exhibit ${i + 1}">
+              <span class="cpx-thumb-tag">EXHIBIT ${String(i + 1).padStart(2, '0')}</span>
               <img src="${esc(abs(g.src))}" alt="${esc(g.caption || '')}" loading="lazy" decoding="async">
+              <span class="cpx-thumb-caption">${esc(g.caption || '')}</span>
             </button>`).join('')}
           </div>`, '5 EXHIBITS')}
 
-        ${sec('services', '03', 'Services & Rates', (p.services || []).length ? `
+        ${sec('services', '03.0', 'Services & Rate Matrix', (p.services || []).length ? `
           <div class="cpx-svc-table">
             <div class="cpx-svc-thead">
               <span class="cpx-th-idx">NO.</span>
-              <span class="cpx-th-service">SERVICE SPECIFICATION</span>
+              <span class="cpx-th-service">SERVICE SPECIFICATION & SCOPE</span>
               <span class="cpx-th-rate">RATE</span>
-              <span class="cpx-th-action">REQUEST</span>
+              <span class="cpx-th-action">REQUISITION</span>
             </div>
             ${p.services.map((s, idx) => `
               <div class="cpx-svc-row">
@@ -163,12 +185,12 @@
                   <button type="button" class="cpx-mini-btn" data-request data-service="${esc(s.title)}">Request</button>
                 </div>
               </div>`).join('')}
-          </div>` : '', p.sample ? 'ESTIMATED RATES' : '')}
+          </div>` : '', p.sample ? 'ESTIMATED RATES' : 'FIXED SCHEDULE')}
 
-        ${sec('experience', '04', 'Production Chronology', (p.experience || []).length ? `
+        ${sec('experience', '04.0', 'Production Chronology', (p.experience || []).length ? `
           <div class="cpx-exp-table">
             <div class="cpx-exp-thead">
-              <span class="cpx-exp-th-year">YEAR</span>
+              <span class="cpx-exp-th-year">PERIOD</span>
               <span class="cpx-exp-th-role">ROLE / DISCIPLINE</span>
               <span class="cpx-exp-th-proj">PRODUCTION / ENGAGEMENT</span>
             </div>
@@ -180,9 +202,9 @@
                   <span class="cpx-exp-p">${esc(e.project)}</span>
                 </li>`).join('')}
             </ol>
-          </div>` : '', 'SELF-REPORTED')}
+          </div>` : '', 'VERIFIED CREDITS')}
 
-        ${sec('credentials', '05', 'Licences & Verification', (p.credentials || []).length ? `
+        ${sec('credentials', '05.0', 'Licences & Verification', (p.credentials || []).length ? `
           <div class="cpx-cred-table">
             <div class="cpx-cred-thead">
               <span>CREDENTIAL / POLICY</span>
@@ -197,16 +219,16 @@
             </ul>
           </div>` : '', sampleNote)}
 
-        ${sec('kit', '06', 'Hardware Manifest', gear.length ? `
+        ${sec('kit', '06.0', 'Hardware Manifest', gear.length ? `
           <div class="cpx-kit-grid">
             ${gear.map((g, i) => `
               <div class="cpx-kit-cell">
-                <span class="cpx-kit-idx">${String(i + 1).padStart(2, '0')}</span>
+                <span class="cpx-kit-idx">ITEM ${String(i + 1).padStart(2, '0')}</span>
                 <span class="cpx-kit-name">${esc(g)}</span>
               </div>`).join('')}
           </div>` : '', 'OWNER-OPERATOR')}
 
-        ${sec('how', '07', 'Operating Terms', p.how ? `
+        ${sec('how', '07.0', 'Operating Terms & Conditions', p.how ? `
           <dl class="cpx-how-table">
             <div class="cpx-how-row"><dt>01 // PAYMENT TERMS</dt><dd>${esc((p.how.payments || []).join(', '))}. Direct billing to creator (0% Nexus commission).</dd></div>
             <div class="cpx-how-row"><dt>02 // DEPOSIT SCHEDULE</dt><dd>${esc(p.how.deposit)}</dd></div>
@@ -215,14 +237,14 @@
             <div class="cpx-how-row"><dt>05 // TYPICAL AVAILABILITY</dt><dd>${esc(p.how.availability)}</dd></div>
           </dl>` : '', sampleNote)}
 
-        ${sec('faq', '08', 'Policies & FAQ', (p.faq || []).length ? `
+        ${sec('faq', '08.0', 'Policies & FAQ', (p.faq || []).length ? `
           <div class="cpx-faq">${p.faq.map((f, i) => `
             <details>
               <summary><span class="cpx-faq-num">${String(i + 1).padStart(2, '0')}</span>${esc(f.q)}</summary>
               <p>${esc(f.a)}</p>
             </details>`).join('')}</div>` : '')}
 
-        ${sec('reviews', '09', 'Client Reviews', `
+        ${sec('reviews', '09.0', 'Client Reviews', `
           <div class="cpx-empty">
             <p class="cpx-empty-t">No Client Reviews Recorded</p>
             <p>Verified reviews appear after client engagements conclude through Nexus. Only clients who completed a booking request may submit an evaluation.</p>
@@ -235,13 +257,27 @@
       <aside class="cpx-card-wrap">
         <div class="cpx-card">
           <div class="cpx-card-head">
-            <span class="cpx-card-docket-tag">DOCKET // 001</span>
-            <span class="cpx-card-docket-status">DIRECT INQUIRY</span>
+            <span class="cpx-card-docket-tag">DOCKET // DIRECT INQUIRY</span>
+            <span class="cpx-card-docket-status">ID: ${esc(c.slug.toUpperCase())}</span>
           </div>
-          <div class="cpx-card-price-block">
-            <span class="cpx-card-rate-lbl">STANDARD BASE RATE</span>
-            <div class="cpx-card-rate"><b>${esc(money(rate))}</b><span> / day</span></div>
-            <p class="cpx-card-from">Starting baseline · Itemized below</p>
+          <div class="cpx-card-table">
+            <div class="cpx-card-row">
+              <span class="cpx-card-lbl">ENGAGEMENT SPEC</span>
+              <span class="cpx-card-val">${esc(c.craft)}</span>
+            </div>
+            <div class="cpx-card-row">
+              <span class="cpx-card-lbl">BASE DAY RATE</span>
+              <span class="cpx-card-val is-rate"><b>${esc(money(rate))}</b><small> / day</small></span>
+            </div>
+            <div class="cpx-card-row">
+              <span class="cpx-card-lbl">PLATFORM FEE</span>
+              <span class="cpx-card-val is-fee">0.00% (DIRECT BILLING)</span>
+            </div>
+            ${p.how ? `
+            <div class="cpx-card-row">
+              <span class="cpx-card-lbl">NOTICE REQUIRED</span>
+              <span class="cpx-card-val">≥ ${esc(p.how.notice)}</span>
+            </div>` : ''}
           </div>
           <button type="button" class="cpx-btn cpx-btn-full" data-request>Send Booking Request</button>
           <button type="button" class="cpx-btn-ghost" id="cpxSave" aria-pressed="${isSaved()}">
