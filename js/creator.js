@@ -9,7 +9,6 @@
   const ALL = window.NEXUS_CREATORS || [];
   const esc = (t) => String(t == null ? '' : t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const abs = (p) => (/^(https?:)?\//.test(p) ? p : '/' + p);
-  const cardSrc = (p) => (!p ? '' : p.startsWith('assets/') ? 'assets/card/' + p.slice(7) : p);
   const money = (n) => '$' + Math.round(n).toLocaleString('en-US');
   const CAT = { film: 'Film & Video', aerial: 'Drone', d3: '3D & Virtual', art: 'Art & Photo', action: 'Action & Rigs' };
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -41,10 +40,10 @@
     document.title = 'Creator not found · Nexus';
     main.innerHTML = `
       <section class="cpx-missing">
-        <p class="cpx-eyebrow">404 // NOT FOUND</p>
+        <p class="cpx-eyebrow">Nothing here</p>
         <h1 class="cpx-title">We couldn't find that creator.</h1>
-        <p class="cpx-sub">The profile link may be outdated or the creator is pending verification.</p>
-        <a class="cpx-btn" href="/explore">Browse Directory Index</a>
+        <p class="cpx-sub">The link may be old, or the profile isn't live yet.</p>
+        <a class="cpx-btn" href="/explore">Browse all creators</a>
       </section>`;
     return;
   }
@@ -55,8 +54,18 @@
   const rate = c.numericRate;
   const gear = c.gear || [];
   const gallery = (c.gallery && c.gallery.length ? c.gallery : [{ src: c.src, caption: c.craft }]);
-  const work = gallery.concat(ALL.filter((x) => x.cat === c.cat && x.slug !== c.slug).map((x) => ({ src: x.src, caption: x.craft })))
-    .filter((g, i, arr) => arr.findIndex((y) => y.src === g.src) === i).slice(0, 5);   // 1 wide + 4 = full grid
+  // Work grid: no repeats, and nothing that is already showing as the reel or cover
+  const SAME_PHOTO = { 'assets/cinema_still_crop.webp': 'assets/editorial_cinema_still.webp' };   // one photo saved under two names
+  const key = (src) => SAME_PHOTO[src] || src;
+  const reelStill = c.reel ? c.reel.replace(/^.*\/reel_/, '').replace(/\.\w+$/, '') : '';       // reel_0_director -> 0_director
+  const shown = (src) => src === c.src || (reelStill && src.indexOf('poster_' + reelStill) !== -1);
+  const pool = (list) => list.map((x) => ({ src: x.src, caption: x.craft }));
+  const work = gallery
+    .concat(pool(ALL.filter((x) => x.cat === c.cat && x.slug !== c.slug)))
+    .concat(pool(ALL.filter((x) => x.cat !== c.cat)))                      // top up so the grid is always full
+    .filter((g) => !shown(g.src))
+    .filter((g, i, arr) => arr.findIndex((y) => key(y.src) === key(g.src)) === i)
+    .slice(0, 5);   // 1 wide + 4 = a full grid
   const more = ALL.filter((x) => x.slug !== c.slug && x.cat === c.cat).concat(ALL.filter((x) => x.slug !== c.slug && x.cat !== c.cat)).slice(0, 3);
   const isSaved = () => loadSaved().has(c.slug);
 
@@ -65,290 +74,165 @@
   if (md) md.setAttribute('content', c.creator + ', ' + c.craft + ' in ' + c.city + '. ' + (p.headline || c.bio) + '. Sample profile on Nexus. 0% commission.');
 
   const ic = {
-    save: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>',
-    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
-    pin: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>',
-    clock: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>',
-    globe: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>',
-    bolt: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>',
-    wifi: '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>'
+    pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>',
+    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>',
+    plane: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M10 13 3 10l1-2 8 1 4-5h2l-2 6 5 2v2l-6-1-3 5h-2l1-5z"/></svg>',
+    wifi: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg>',
+    save: '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
   };
 
-  const icArr = '<svg class="skiper40-arr" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M1.004 9.166 9.337.833m0 0v8.333m0-8.333H1.004" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-  const specFacts = [
-    { label: 'LOCATION', val: c.city, icon: ic.pin },
-    p.years ? { label: 'TENURE', val: p.years + ' Years Active', icon: ic.clock } : null,
-    p.languages && p.languages.length ? { label: 'LANGUAGES', val: p.languages.join(', '), icon: ic.globe } : null,
-    p.travel ? { label: 'MOBILITY', val: p.travel, icon: ic.bolt } : null,
-    p.remote ? { label: 'REMOTE WORK', val: 'Available Worldwide', icon: ic.wifi } : null
+  const facts = [
+    [ic.pin, 'Based in ' + c.city],
+    p.years ? [ic.clock, p.years + ' years doing this'] : null,
+    p.languages && p.languages.length ? [ic.globe, p.languages.join(', ')] : null,
+    p.travel ? [ic.plane, p.travel] : null,
+    p.remote ? [ic.wifi, 'Works remotely too'] : null
   ].filter(Boolean);
 
-  const sec = (id, idx, title, body, note) => body ? `
+  const sec = (id, title, body, note) => body ? `
     <section class="cpx-sec" id="${id}" data-reveal>
-      <div class="cpx-sec-head">
-        <div class="cpx-sec-head-left">
-          <span class="cpx-badge-pill"><span class="cpx-pill-dot is-live" aria-hidden="true"></span>${idx}</span>
-          <h2 class="cpx-h">${title}</h2>
-        </div>
-        ${note ? `<span class="cpx-note-pill">${note}</span>` : ''}
-      </div>
-      <div class="cpx-sec-body">
-        ${body}
-      </div>
+      <div class="cpx-sec-head"><h2 class="cpx-h">${title}</h2>${note ? `<span class="cpx-note">${note}</span>` : ''}</div>
+      ${body}
     </section>` : '';
 
-  const sampleNote = p.sample ? 'SAMPLE PROFILE' : 'VERIFIED';
+  const sampleNote = p.sample ? 'Sample' : '';
 
   main.innerHTML = `
     <nav class="cpx-crumbs" aria-label="Breadcrumb">
-      <a class="skiper40-link" href="/explore">Directory${icArr}</a><span class="cpx-crumb-sep">/</span>
-      <a class="skiper40-link" href="/explore?craft=${esc(c.cat)}">${esc(CAT[c.cat] || 'Creators')}${icArr}</a><span class="cpx-crumb-sep">/</span>
+      <a href="/explore">Explore</a><span>›</span>
+      <a href="/explore?craft=${esc(c.cat)}">${esc(CAT[c.cat] || 'Creators')}</a><span>›</span>
       <b>${esc(c.creator)}</b>
     </nav>
 
-    <!-- TOP SKÍPER UI STATUS RIBBON -->
-    <div class="cpx-pill-ribbon" data-reveal>
-      <div class="cpx-pill-cluster">
-        <div class="cpx-pill cpx-pill-ref">
-          <span class="cpx-pill-k">REF</span>
-          <span class="cpx-pill-v">CR-${esc(c.slug.toUpperCase())}</span>
-        </div>
-        <div class="cpx-pill cpx-pill-status">
-          <span class="cpx-pill-dot is-live" aria-hidden="true"></span>
-          <span class="cpx-pill-v">Verified Creator</span>
-        </div>
-        <div class="cpx-pill">
-          <span class="cpx-pill-k">CRAFT</span>
-          <span class="cpx-pill-v">${esc(c.craft)}</span>
-        </div>
-        <div class="cpx-pill">
-          <span class="cpx-pill-k">CITY</span>
-          <span class="cpx-pill-v">${esc(c.city)}</span>
-        </div>
-      </div>
-      <div class="cpx-pill-cluster">
-        <div class="cpx-pill cpx-pill-highlight">
-          <span class="cpx-pill-dot is-live" aria-hidden="true"></span>
-          <span class="cpx-pill-k">COMMISSION</span>
-          <span class="cpx-pill-v">0% Direct</span>
-        </div>
-        <div class="cpx-pill cpx-pill-rate">
-          <span class="cpx-pill-k">FROM</span>
-          <span class="cpx-pill-v">${esc(money(rate))}<small>/day</small></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- INTRO DOSSIER -->
-    <header class="cpx-intro">
+    <div class="cpx-layout">
+      <div class="cpx-col">
+        <header class="cpx-intro">
       <div class="cpx-intro-text" data-reveal>
         <div class="cpx-who">
-          <span class="cpx-avatar"><img src="${esc(abs(cardSrc(c.src)))}" alt=""></span>
+          <span class="cpx-avatar"><img src="${esc(abs(c.src))}" alt=""></span>
           <div>
             <p class="cpx-eyebrow">${esc(c.craft)}</p>
-            <p class="cpx-where">${esc(c.city)}${p.sample ? ' · <span class="cpx-sample">Sample Profile</span>' : ''}</p>
+            <p class="cpx-where">${esc(c.city)}${p.sample ? ' · <span class="cpx-sample">Sample profile</span>' : ''}</p>
           </div>
         </div>
         <h1 class="cpx-title">${esc(c.creator)}</h1>
         <p class="cpx-headline">${esc(p.headline || c.bio)}</p>
-        <div class="cpx-intro-bio">
-          <p>${esc(c.bio)}</p>
-        </div>
-        <div class="cpx-facts-grid cpx-facts-pills">
-          ${specFacts.map((f, i) => `
-            <div class="cpx-fact-cell cpx-fact-pill" style="--i: ${i}">
-              <span class="cpx-fact-pill-icon" aria-hidden="true">${f.icon}</span>
-              <span class="cpx-fact-lbl cpx-fact-pill-lbl">${esc(f.label)}</span>
-              <span class="cpx-fact-val cpx-fact-pill-val">${esc(f.val)}</span>
-            </div>`).join('')}
-        </div>
-        <div class="cpx-intro-footer">
-          <a href="#dock" class="cpx-btn cpx-intro-btn">Direct Inquiry${icArr}</a>
-          <div class="cpx-intro-tags">
-            <span class="cpx-intro-chip"><span class="cpx-pill-dot is-live" aria-hidden="true"></span> 0% Fee · Direct Payment</span>
-            <span class="cpx-intro-chip">Day Rate: <b>${esc(money(rate))}</b></span>
-          </div>
+        <ul class="cpx-facts cpx-facts-grid">${facts.map((f, i) => `<li class="cpx-fact-cell" style="--i: ${i}">${f[0]}<span>${esc(f[1])}</span></li>`).join('')}</ul>
+        <div class="cpx-hero-cta">
+          <p class="cpx-hero-rate"><b>${esc(money(rate))}</b><span>/ day</span></p>
+          <button type="button" class="cpx-btn" data-request>Send request</button>
+          <button type="button" class="cpx-icon-btn" data-save aria-label="Save" aria-pressed="${isSaved()}">${ic.save}</button>
         </div>
       </div>
-      <div class="cpx-cover-wrap" data-reveal>
-        <div class="cpx-cover-meta">
-          <span class="cpx-meta-pill"><span class="cpx-pill-dot is-live" aria-hidden="true"></span>FIG 01 // PRINCIPAL REEL</span>
-          <span class="cpx-meta-pill">4K RESOLUTION</span>
-        </div>
-        <div class="cpx-cover">
-          <img src="${esc(abs(c.src))}" alt="${esc(c.creator)}, ${esc(c.craft)}" fetchpriority="high" decoding="async">
-          ${c.reel && !reduce ? `<video src="${esc(abs(c.reel))}" muted loop playsinline autoplay preload="metadata"></video>
-          <button type="button" class="cpx-play" id="cpxPlay" aria-label="Pause reel"><span class="cpx-play-ic is-pause"></span></button>` : ''}
-          <span class="cpx-cover-tag"><span class="cpx-pill-dot is-live" aria-hidden="true"></span>${c.reel ? '4K REEL' : 'STILL'}</span>
-        </div>
-        <div class="cpx-cover-footer">
-          <span class="cpx-meta-pill">REF: ${esc(c.slug.toUpperCase())}</span>
-          <span class="cpx-meta-pill">ASPECT 4:3</span>
-        </div>
-      </div>
-    </header>
+        </header>
+        ${sec('about', 'About', (() => {
+          const parts = p.about || [c.bio];
+          const WORKS_WITH = {
+            film: ['Brands', 'Musicians', 'Agencies', 'Indie filmmakers'],
+            aerial: ['Brands', 'Tourism', 'Real estate', 'Events'],
+            d3: ['Studios', 'Brands', 'Game teams', 'Agencies'],
+            art: ['Fashion labels', 'Magazines', 'Beauty brands', 'Agencies'],
+            action: ['Car brands', 'Sports', 'Productions', 'Agencies']
+          }[c.cat] || [];
+          return `
+          <div class="cpx-about">
+            <blockquote class="cpx-pull">${esc(parts[0])}</blockquote>
+            ${parts.slice(1).map((t) => `<p>${esc(t)}</p>`).join('')}
+            <div class="cpx-about-grid">
+              ${(c.tags || []).length ? `<div><p class="cpx-about-k">Specialties</p><div class="cpx-about-tags">${c.tags.map((t) => `<span>${esc(t)}</span>`).join('')}</div></div>` : ''}
+              ${WORKS_WITH.length ? `<div><p class="cpx-about-k">Usually works with</p><div class="cpx-about-tags">${WORKS_WITH.map((t) => `<span>${esc(t)}</span>`).join('')}</div></div>` : ''}
+            </div>
+          </div>`;
+        })())}
 
-    <div class="cpx-layout">
-      <div class="cpx-col">
-        ${sec('about', '01.0', 'Artistic Profile & Biography', `<div class="cpx-about"><div class="cpx-about-box">${(p.about || [c.bio]).map((t) => `<p>${esc(t)}</p>`).join('')}</div></div>`, 'DOSSIER ARCHIVE')}
-
-        ${sec('work', '02.0', 'Selected Repertoire', `
+        ${sec('work', 'Work', `
           <div class="cpx-grid">${work.map((g, i) => `
-            <button type="button" class="cpx-thumb${i === 0 ? ' is-wide' : ''}" data-shot="${i}" aria-label="Open exhibit ${i + 1}">
-              <span class="cpx-thumb-tag">EXHIBIT ${String(i + 1).padStart(2, '0')}</span>
+            <button type="button" class="cpx-thumb${i === 0 ? ' is-wide' : ''}" data-shot="${i}" aria-label="Open image ${i + 1}">
               <img src="${esc(abs(g.src))}" alt="${esc(g.caption || '')}" loading="lazy" decoding="async">
-              <span class="cpx-thumb-caption">${esc(g.caption || '')}</span>
             </button>`).join('')}
-          </div>`, '5 EXHIBITS')}
+          </div>`, 'Sample images')}
 
-        ${sec('services', '03.0', 'Services & Rate Matrix', (p.services || []).length ? `
-          <div class="cpx-svc-table">
-            <div class="cpx-svc-thead">
-              <span class="cpx-th-idx">NO.</span>
-              <span class="cpx-th-service">SERVICE SPECIFICATION & SCOPE</span>
-              <span class="cpx-th-rate">RATE</span>
-              <span class="cpx-th-action">REQUISITION</span>
-            </div>
-            ${p.services.map((s, idx) => `
-              <div class="cpx-svc-row">
-                <span class="cpx-svc-idx">${String(idx + 1).padStart(2, '0')}</span>
-                <div class="cpx-svc-main">
-                  <p class="cpx-svc-t">${esc(s.title)}</p>
-                  <p class="cpx-svc-d">${esc(s.desc)}</p>
-                  ${s.includes ? `<p class="cpx-svc-i">${ic.check}<span>${esc(s.includes)}</span></p>` : ''}
-                </div>
-                <div class="cpx-svc-price-col">
-                  <span class="cpx-svc-p">${esc(money(s.price))}</span>
-                  <small class="cpx-svc-unit">${esc(s.unit)}</small>
-                </div>
-                <div class="cpx-svc-action-col">
-                  <button type="button" class="cpx-mini-btn" data-request data-service="${esc(s.title)}">Request</button>
-                </div>
-              </div>`).join('')}
-          </div>` : '', p.sample ? 'ESTIMATED RATES' : 'FIXED SCHEDULE')}
+        ${sec('services', 'Services', (p.services || []).length ? `
+          <div class="cpx-table-wrap">
+            <table class="cpx-table cpx-svc-table">
+              <thead><tr><th scope="col">Service</th><th scope="col">Includes</th><th scope="col" class="is-num">Price</th><th scope="col"><span class="cpx-sr">Ask</span></th></tr></thead>
+              <tbody>${p.services.map((s) => `
+                <tr class="cpx-svc-row">
+                  <th scope="row"><span class="cpx-svc-t">${esc(s.title)}</span><span class="cpx-svc-d">${esc(s.desc)}</span></th>
+                  <td class="cpx-svc-inc">${s.includes ? esc(s.includes) : '—'}</td>
+                  <td class="is-num"><span class="cpx-svc-p">${esc(money(s.price))}</span><span class="cpx-svc-u">${esc(s.unit)}</span></td>
+                  <td class="is-act"><button type="button" class="cpx-mini-btn" data-request data-service="${esc(s.title)}">Ask</button></td>
+                </tr>`).join('')}
+              </tbody>
+            </table>
+          </div>` : '', p.sample ? 'Example prices' : '')}
 
-        ${sec('experience', '04.0', 'Production Chronology', (p.experience || []).length ? `
-          <div class="cpx-exp-table">
-            <div class="cpx-exp-thead">
-              <span class="cpx-exp-th-year">PERIOD</span>
-              <span class="cpx-exp-th-role">ROLE / DISCIPLINE</span>
-              <span class="cpx-exp-th-proj">PRODUCTION / ENGAGEMENT</span>
-            </div>
-            <ol class="cpx-exp">
-              ${p.experience.map((e) => `
-                <li class="cpx-exp-row">
-                  <span class="cpx-exp-y">${esc(e.year)}</span>
-                  <span class="cpx-exp-r">${esc(e.role)}</span>
-                  <span class="cpx-exp-p">${esc(e.project)}</span>
-                </li>`).join('')}
-            </ol>
-          </div>` : '', 'VERIFIED CREDITS')}
+        ${sec('experience', 'Experience', (p.experience || []).length ? `
+          <div class="cpx-table-wrap">
+            <table class="cpx-table cpx-exp-table">
+              <thead><tr><th scope="col">Year</th><th scope="col">Role</th><th scope="col">Project</th></tr></thead>
+              <tbody>${p.experience.map((e) => `
+                <tr><td class="cpx-exp-y">${esc(e.year)}</td><th scope="row">${esc(e.role)}</th><td>${esc(e.project)}</td></tr>`).join('')}
+              </tbody>
+            </table>
+          </div>` : '', 'Self-reported')}
 
-        ${sec('credentials', '05.0', 'Licences & Verification', (p.credentials || []).length ? `
-          <div class="cpx-cred-table">
-            <div class="cpx-cred-thead">
-              <span>CREDENTIAL / POLICY</span>
-              <span>VERIFICATION STATUS</span>
-            </div>
-            <ul class="cpx-creds">
-              ${p.credentials.map((x) => `
-                <li class="cpx-cred-row">
-                  <span class="cpx-cred-n">${esc(x.name)}</span>
-                  <span class="cpx-cred-b cpx-status-pill ${x.checked ? 'is-ok' : ''}">
-                    <span class="cpx-pill-dot ${x.checked ? 'is-live' : ''}" aria-hidden="true"></span>
-                    ${x.checked ? 'Verified by Nexus' : 'Self-Reported'}
-                  </span>
-                </li>`).join('')}
-            </ul>
-          </div>` : '', sampleNote)}
+        ${sec('credentials', 'Licences & insurance', (p.credentials || []).length ? `
+          <ul class="cpx-creds">${p.credentials.map((x) => `
+            <li><span class="cpx-cred-n">${esc(x.name)}</span><span class="cpx-cred-b ${x.checked ? 'is-ok' : ''}">${x.checked ? ic.check + 'Checked by Nexus' : 'Self-reported'}</span></li>`).join('')}
+          </ul>` : '', sampleNote)}
 
-        ${sec('kit', '06.0', 'Hardware Manifest', gear.length ? `
-          <div class="cpx-kit-grid cpx-kit-pills">
-            ${gear.map((g, i) => `
-              <div class="cpx-kit-cell cpx-kit-pill">
-                <span class="cpx-kit-idx">ITEM ${String(i + 1).padStart(2, '0')}</span>
-                <span class="cpx-kit-name">${esc(g)}</span>
-                <span class="cpx-kit-badge">Owner-Operator</span>
-              </div>`).join('')}
-          </div>` : '', 'VERIFIED GEAR')}
+        ${sec('kit', 'Kit', gear.length ? `<div class="cpx-kit cpx-kit-grid">${gear.map((g) => `<span class="cpx-kit-cell">${esc(g)}</span>`).join('')}</div>` : '', 'Self-reported')}
 
-        ${sec('how', '07.0', 'Operating Terms & Conditions', p.how ? `
-          <dl class="cpx-how-table">
-            <div class="cpx-how-row"><dt>01 // PAYMENT TERMS</dt><dd>${esc((p.how.payments || []).join(', '))}. Direct billing to creator (0% Nexus commission).</dd></div>
-            <div class="cpx-how-row"><dt>02 // DEPOSIT SCHEDULE</dt><dd>${esc(p.how.deposit)}</dd></div>
-            <div class="cpx-how-row"><dt>03 // CANCELLATION POLICY</dt><dd>${esc(p.how.cancel)}</dd></div>
-            <div class="cpx-how-row"><dt>04 // ADVANCE NOTICE</dt><dd>At least ${esc(p.how.notice)} required before shoot date</dd></div>
-            <div class="cpx-how-row"><dt>05 // TYPICAL AVAILABILITY</dt><dd>${esc(p.how.availability)}</dd></div>
+        ${sec('how', 'How ' + esc(first) + ' works', p.how ? `
+          <dl class="cpx-how">
+            <div><dt>Payment</dt><dd>${esc((p.how.payments || []).join(', '))}. You pay ${esc(first)} directly.</dd></div>
+            <div><dt>Deposit</dt><dd>${esc(p.how.deposit)}</dd></div>
+            <div><dt>Cancellation</dt><dd>${esc(p.how.cancel)}</dd></div>
+            <div><dt>Book ahead</dt><dd>At least ${esc(p.how.notice)}</dd></div>
+            <div><dt>Usually available</dt><dd>${esc(p.how.availability)}</dd></div>
           </dl>` : '', sampleNote)}
 
-        ${sec('faq', '08.0', 'Policies & FAQ', (p.faq || []).length ? `
-          <div class="cpx-faq">${p.faq.map((f, i) => `
-            <details>
-              <summary><span class="cpx-faq-num">${String(i + 1).padStart(2, '0')}</span>${esc(f.q)}</summary>
-              <p>${esc(f.a)}</p>
-            </details>`).join('')}</div>` : '')}
+        ${sec('faq', 'Questions', (p.faq || []).length ? `
+          <div class="cpx-faq">${p.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}</div>` : '')}
 
-        ${sec('reviews', '09.0', 'Client Reviews', `
-          <div class="cpx-empty">
-            <p class="cpx-empty-t">No Client Reviews Recorded</p>
-            <p>Verified reviews appear after client engagements conclude through Nexus. Only clients who completed a booking request may submit an evaluation.</p>
-          </div>`)}
+        ${sec('reviews', 'Reviews', `
+          <div class="cpx-empty"><p class="cpx-empty-t">No reviews yet</p><p>Reviews appear after clients work with ${esc(first)} through Nexus. Only people who sent a request can leave one.</p></div>`)}
 
-        <p class="cpx-report"><button type="button" class="cpx-textbtn skiper40-link" id="cpxReport">Report profile irregularity${icArr}</button></p>
+        <p class="cpx-report"><button type="button" class="cpx-textbtn" id="cpxReport">Report this profile</button></p>
       </div>
 
-      <!-- STICKY REQUISITION DOCKET -->
-      <aside class="cpx-card-wrap">
+      <aside class="cpx-side">
+      <div class="cpx-cover" data-reveal>
+        <img src="${esc(abs(c.src))}" alt="${esc(c.creator)}, ${esc(c.craft)}" fetchpriority="high" decoding="async">
+        ${c.reel && !reduce ? `<video src="${esc(abs(c.reel))}" muted loop playsinline autoplay preload="metadata"></video>
+        <button type="button" class="cpx-play" id="cpxPlay" aria-label="Pause reel"><span class="cpx-play-ic is-pause"></span></button>` : ''}
+        <span class="cpx-cover-tag">${c.reel ? 'Reel' : 'Photo'}</span>
+      </div>
+        <div class="cpx-card-wrap">
         <div class="cpx-card">
-          <div class="cpx-card-head">
-            <span class="cpx-docket-badge"><span class="cpx-pill-dot is-live" aria-hidden="true"></span>DIRECT BOOKING</span>
-            <span class="cpx-card-docket-status">ID: ${esc(c.slug.toUpperCase())}</span>
-          </div>
-          <div class="cpx-card-table">
-            <div class="cpx-card-row">
-              <span class="cpx-card-lbl">ENGAGEMENT SPEC</span>
-              <span class="cpx-card-val">${esc(c.craft)}</span>
-            </div>
-            <div class="cpx-card-row">
-              <span class="cpx-card-lbl">BASE DAY RATE</span>
-              <span class="cpx-card-val is-rate"><b>${esc(money(rate))}</b><small> / day</small></span>
-            </div>
-            <div class="cpx-card-row">
-              <span class="cpx-card-lbl">PLATFORM MARKUP</span>
-              <span class="cpx-card-val is-fee"><span class="cpx-pill-dot is-live" aria-hidden="true"></span>0.00% DIRECT</span>
-            </div>
-            ${p.how ? `
-            <div class="cpx-card-row">
-              <span class="cpx-card-lbl">NOTICE REQUIRED</span>
-              <span class="cpx-card-val">≥ ${esc(p.how.notice)}</span>
-            </div>` : ''}
-          </div>
-          <button type="button" class="cpx-btn cpx-btn-full" data-request>Send Booking Request</button>
-          <button type="button" class="cpx-btn-ghost" id="cpxSave" aria-pressed="${isSaved()}">
-            ${ic.save}<span>${isSaved() ? 'Saved to Shortlist' : 'Save to Shortlist'}</span>
-          </button>
+          <p class="cpx-card-rate"><b>${esc(money(rate))}</b><span> / day</span></p>
+          <p class="cpx-card-from">Starting price. Services below.</p>
+          <button type="button" class="cpx-btn cpx-btn-full" data-request>Send request</button>
+          <button type="button" class="cpx-btn-ghost" id="cpxSave" data-save aria-pressed="${isSaved()}">${ic.save}<span>${isSaved() ? 'Saved' : 'Save'}</span></button>
           <ul class="cpx-card-list">
-            <li><span class="cpx-chk-num">01</span><span>0% commission · Direct creator billing</span></li>
-            <li><span class="cpx-chk-num">02</span><span>Free direct inquiry · No account needed</span></li>
-            ${p.how ? `<li><span class="cpx-chk-num">03</span><span>Lead notice: At least ${esc(p.how.notice)} ahead</span></li>` : ''}
+            <li>${ic.check}<span>0% commission. Pay ${esc(first)} directly.</span></li>
+            <li>${ic.check}<span>Free to ask. No account needed.</span></li>
+            ${p.how ? `<li>${ic.check}<span>Book at least ${esc(p.how.notice)} ahead</span></li>` : ''}
           </ul>
+        </div>
         </div>
       </aside>
     </div>
 
     <!-- MORE -->
     <section class="cpx-more-sec" data-reveal>
-      <div class="cpx-sec-head">
-        <div class="cpx-sec-head-left">
-          <span class="cpx-sec-idx">INDEX</span>
-          <h2 class="cpx-h">Similar Repertoire</h2>
-        </div>
-        <a class="cpx-textlink skiper40-link" href="/explore">Directory Index${icArr}</a>
-      </div>
+      <div class="cpx-sec-head"><h2 class="cpx-h">More like ${esc(first)}</h2><a class="cpx-textlink" href="/explore">See all ›</a></div>
       <div class="cpx-more">${more.map((x) => `
         <a class="cpx-mcard" href="/c/${esc(x.slug)}">
-          <span class="cpx-mcard-img"><img src="${esc(abs(cardSrc(x.src)))}" alt="" loading="lazy" decoding="async"></span>
+          <span class="cpx-mcard-img"><img src="${esc(abs(x.src))}" alt="" loading="lazy" decoding="async"></span>
           <span class="cpx-mcard-k">${esc(x.craft)}</span>
           <span class="cpx-mcard-n">${esc(x.creator)}</span>
           <span class="cpx-mcard-r">${esc(x.city)} · ${esc(money(x.numericRate))}/day</span>
@@ -358,10 +242,7 @@
 
     <!-- phone: rate + request in reach -->
     <div class="cpx-dock">
-      <div class="cpx-dock-price">
-        <span class="cpx-dock-lbl">BASE RATE</span>
-        <p><b>${esc(money(rate))}</b><span> / day</span></p>
-      </div>
+      <p><b>${esc(money(rate))}</b><span>/day</span></p>
       <button type="button" class="cpx-btn" data-request>Send request</button>
     </div>
 
@@ -417,15 +298,21 @@
   });
 
   /* ── Save ── */
-  const saveBtn = document.getElementById('cpxSave');
-  saveBtn.addEventListener('click', () => {
-    const s = loadSaved();
-    if (s.has(c.slug)) { s.delete(c.slug); toast('Removed ' + c.creator); } else { s.add(c.slug); toast('Saved ' + c.creator); }
-    storeSaved(s);
-    saveBtn.querySelector('span').textContent = isSaved() ? 'Saved' : 'Save';
-    saveBtn.setAttribute('aria-pressed', String(isSaved()));
+  const saveBtns = main.querySelectorAll('[data-save]');
+  function paintSave() {
+    saveBtns.forEach((b) => {
+      b.setAttribute('aria-pressed', String(isSaved()));
+      const t = b.querySelector('span');
+      if (t) t.textContent = isSaved() ? 'Saved' : 'Save';
+    });
+  }
+  saveBtns.forEach((b) => b.addEventListener('click', () => {
+    const st = loadSaved();
+    if (st.has(c.slug)) { st.delete(c.slug); toast('Removed ' + c.creator); } else { st.add(c.slug); toast('Saved ' + c.creator); }
+    storeSaved(st);
+    paintSave();
     badge();
-  });
+  }));
 
   /* ── Report (placeholder until the reports API is wired) ── */
   document.getElementById('cpxReport').addEventListener('click', () => toast('Thanks. Reporting opens when real profiles go live.'));
