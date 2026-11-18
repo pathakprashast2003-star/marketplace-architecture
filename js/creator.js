@@ -157,13 +157,13 @@
         ${sec('services', 'Services', (p.services || []).length ? `
           <div class="cpx-table-wrap">
             <table class="cpx-table cpx-svc-table">
-              <thead><tr><th scope="col">Service</th><th scope="col">Includes</th><th scope="col" class="is-num">Price</th><th scope="col"><span class="cpx-sr">Ask</span></th></tr></thead>
+              <thead><tr><th scope="col">Service</th><th scope="col">Includes</th><th scope="col" class="is-num">Price</th><th scope="col"><span class="cpx-sr">Action</span></th></tr></thead>
               <tbody>${p.services.map((s) => `
                 <tr class="cpx-svc-row">
                   <th scope="row"><span class="cpx-svc-t">${esc(s.title)}</span><span class="cpx-svc-d">${esc(s.desc)}</span></th>
-                  <td class="cpx-svc-inc">${s.includes ? esc(s.includes) : '—'}</td>
+                  <td class="cpx-svc-inc">${s.includes ? `<span class="cpx-inc-item"><svg class="cpx-inc-check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.25 4.75 6 12 2.75 8.75"/></svg><span>${esc(s.includes)}</span></span>` : '—'}</td>
                   <td class="is-num"><span class="cpx-svc-p">${esc(money(s.price))}</span><span class="cpx-svc-u">${esc(s.unit)}</span></td>
-                  <td class="is-act"><button type="button" class="cpx-mini-btn" data-request data-service="${esc(s.title)}">Ask</button></td>
+                  <td class="is-act"><button type="button" class="cpx-mini-btn" data-request data-service="${esc(s.title)}"><span>Inquire</span><span class="cpx-btn-arrow" aria-hidden="true">→</span></button></td>
                 </tr>`).join('')}
               </tbody>
             </table>
@@ -174,7 +174,7 @@
             <table class="cpx-table cpx-exp-table">
               <thead><tr><th scope="col">Year</th><th scope="col">Role</th><th scope="col">Project</th></tr></thead>
               <tbody>${p.experience.map((e) => `
-                <tr><td class="cpx-exp-y">${esc(e.year)}</td><th scope="row">${esc(e.role)}</th><td>${esc(e.project)}</td></tr>`).join('')}
+                <tr><td class="cpx-exp-y"><span class="cpx-exp-badge">${esc(e.year)}</span></td><th scope="row">${esc(e.role)}</th><td>${esc(e.project)}</td></tr>`).join('')}
               </tbody>
             </table>
           </div>` : '', 'Self-reported')}

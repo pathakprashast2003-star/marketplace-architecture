@@ -411,10 +411,10 @@
 .cpx-table-wrap { border: 1px solid rgba(20, 22, 28, 0.08); border-radius: 20px; overflow: hidden; background: #fff; }
 .cpx-table { width: 100%; border-collapse: collapse; font-family: var(--sf); }
 .cpx-table thead th {
-  text-align: left; padding: 12px 20px; background: #F7F8FB; border-bottom: 1px solid rgba(20, 22, 28, 0.08);
-  font: italic 400 14px var(--serif); color: var(--blue);
+  text-align: left; padding: 13px 22px; background: #F8F9FD; border-bottom: 1px solid rgba(20, 22, 28, 0.08);
+  font: 700 11.5px var(--sf); text-transform: uppercase; letter-spacing: 0.06em; color: #64748B;
 }
-.cpx-table td, .cpx-table tbody th { padding: 16px 20px; text-align: left; vertical-align: top; border-top: 1px solid rgba(20, 22, 28, 0.06); font-weight: 400; }
+.cpx-table td, .cpx-table tbody th { padding: 18px 22px; text-align: left; vertical-align: top; border-top: 1px solid rgba(20, 22, 28, 0.06); font-weight: 400; }
 .cpx-table tbody tr:first-child td, .cpx-table tbody tr:first-child th { border-top: 0; }
 .cpx-table tbody tr { transition: background 0.2s ease; }
 .cpx-table tbody tr:hover { background: #FAFBFF; }
@@ -422,15 +422,15 @@
 .cpx-table .is-act { width: 1%; text-align: right; vertical-align: middle; }
 .cpx-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
-.cpx-svc-table .cpx-svc-t { display: block; font: 700 18px var(--serif); color: var(--ink); margin-bottom: 4px; }
+.cpx-svc-table .cpx-svc-t { display: block; font: 700 20px var(--serif); color: var(--ink); margin-bottom: 4px; }
 .cpx-svc-table .cpx-svc-d { display: block; font: 400 14px/1.45 var(--sf); color: var(--sub); max-width: 30em; }
-.cpx-svc-inc { font: 400 14px/1.45 var(--sf); color: var(--green); width: 26%; }
-.cpx-svc-table .cpx-svc-p { display: block; font: 700 22px var(--serif); color: var(--ink); }
-.cpx-svc-u { display: block; font: italic 400 13.5px var(--serif); color: var(--mute); margin-top: 2px; }
+.cpx-svc-inc { font: 500 14px/1.5 var(--sf); color: #334155; width: 28%; }
+.cpx-svc-table .cpx-svc-p { display: block; font: 700 26px var(--serif); color: var(--ink); }
+.cpx-svc-u { display: block; font: 500 13px var(--serif); color: var(--mute); margin-top: 2px; }
 
-.cpx-exp-table .cpx-exp-y { width: 70px; font: italic 400 16px var(--serif); color: var(--blue); }
-.cpx-exp-table tbody th { font: 700 16.5px var(--serif); color: var(--ink); }
-.cpx-exp-table td:last-child { font: 400 15px var(--sf); color: var(--sub); }
+.cpx-exp-table .cpx-exp-y { width: 96px; vertical-align: middle; }
+.cpx-exp-table tbody th { font: 600 15px var(--sf); color: #334155; vertical-align: middle; }
+.cpx-exp-table td:last-child { font: 700 18px var(--serif); color: var(--ink); vertical-align: middle; }
 
 /* phones: each row becomes a compact block */
 @media (max-width: 640px) {
@@ -538,12 +538,31 @@
   color: #0E0F12 !important;
 }
 
+.cpx-sec-head {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  margin-bottom: 22px !important;
+}
+
 .cpx-note {
-  font-family: var(--serif) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 26px !important;
+  padding: 0 12px !important;
+  border-radius: 999px !important;
+  background: rgba(20, 22, 28, 0.04) !important;
+  border: 1px solid rgba(20, 22, 28, 0.08) !important;
+  font-family: var(--sf) !important;
   font-style: normal !important;
-  font-size: 16px !important;
-  font-weight: 500 !important;
-  color: var(--mute) !important;
+  font-weight: 600 !important;
+  font-size: 11.5px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: #64748B !important;
+  white-space: nowrap !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
 }
 
 .cpx-pull {
@@ -785,17 +804,18 @@
   border-spacing: 0 !important;
 }
 
-/* Table Column Headers: Big, Non-Italic, Times New Roman */
+/* Table Column Headers: Swiss / Apple Architectural Uppercase Tracking */
 .cpx-table thead th {
-  padding: 15px 20px !important;
-  background: #F7F8FB !important;
+  padding: 14px 22px !important;
+  background: #F8F9FD !important;
   border-bottom: 1px solid rgba(20, 22, 28, 0.08) !important;
-  font-family: var(--serif) !important;
+  font-family: var(--sf) !important;
   font-style: normal !important;
   font-weight: 700 !important;
-  font-size: 16.5px !important;
-  color: var(--blue) !important;
-  letter-spacing: -0.01em !important;
+  font-size: 11.5px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: #64748B !important;
 }
 /* Hairline vertical divider lines in the table header */
 .cpx-table thead th:not(:last-child) {
@@ -804,7 +824,7 @@
 
 .cpx-table td,
 .cpx-table tbody th {
-  padding: 18px 20px !important;
+  padding: 18px 22px !important;
   text-align: left !important;
   vertical-align: top !important;
   border-top: 1px solid rgba(20, 22, 28, 0.06) !important;
@@ -839,22 +859,34 @@
 }
 .cpx-svc-table .cpx-svc-d {
   display: block !important;
-  font-family: var(--serif) !important;
+  font-family: var(--sf) !important;
   font-style: normal !important;
   font-weight: 400 !important;
-  font-size: 15.5px !important;
+  font-size: 14.5px !important;
   line-height: 1.5 !important;
-  color: #38383E !important;
+  color: #64748B !important;
   max-width: 32em !important;
 }
 .cpx-svc-inc {
   font-family: var(--sf) !important;
   font-style: normal !important;
   font-weight: 500 !important;
-  font-size: 14.5px !important;
-  line-height: 1.45 !important;
-  color: #047857 !important;
-  width: 26% !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: #334155 !important;
+  width: 28% !important;
+}
+.cpx-inc-item {
+  display: inline-flex !important;
+  align-items: flex-start !important;
+  gap: 7px !important;
+}
+.cpx-inc-check {
+  width: 14px !important;
+  height: 14px !important;
+  color: #059669 !important;
+  flex: none !important;
+  margin-top: 3px !important;
 }
 .cpx-svc-table .cpx-svc-p {
   display: block !important;
@@ -870,61 +902,105 @@
   font-family: var(--serif) !important;
   font-style: normal !important;
   font-weight: 500 !important;
-  font-size: 14px !important;
+  font-size: 13.5px !important;
   color: var(--mute) !important;
   margin-top: 3px !important;
 }
 
-/* Experience Table */
+.cpx-svc-table td.cpx-svc-inc,
+.cpx-svc-table td.is-num,
+.cpx-svc-table td.is-act {
+  vertical-align: middle !important;
+}
+
+/* Experience Table: Production Credit Ledger */
 .cpx-exp-table thead th {
-  font-family: var(--serif) !important;
+  padding: 14px 22px !important;
+  background: #F8F9FD !important;
+  border-bottom: 1px solid rgba(20, 22, 28, 0.08) !important;
+  font-family: var(--sf) !important;
   font-style: normal !important;
   font-weight: 700 !important;
-  font-size: 16.5px !important;
-  color: var(--blue) !important;
+  font-size: 11.5px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: #64748B !important;
 }
 .cpx-exp-table .cpx-exp-y {
-  width: 80px !important;
-  font-family: var(--serif) !important;
+  width: 96px !important;
+  vertical-align: middle !important;
+}
+.cpx-exp-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 4px 11px !important;
+  border-radius: 999px !important;
+  background: rgba(0, 113, 227, 0.08) !important;
+  border: 1px solid rgba(0, 113, 227, 0.22) !important;
+  font-family: 'JetBrains Mono', monospace !important;
   font-style: normal !important;
-  font-weight: 700 !important;
-  font-size: 17.5px !important;
-  color: var(--blue) !important;
+  font-weight: 600 !important;
+  font-size: 12.5px !important;
+  color: #0071E3 !important;
+  letter-spacing: 0.02em !important;
 }
 .cpx-exp-table tbody th {
-  font-family: var(--serif) !important;
+  font-family: var(--sf) !important;
   font-style: normal !important;
-  font-weight: 700 !important;
-  font-size: 18.5px !important;
-  color: #0E0F12 !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  color: #334155 !important;
   letter-spacing: -0.01em !important;
+  vertical-align: middle !important;
 }
 .cpx-exp-table td:last-child {
   font-family: var(--serif) !important;
   font-style: normal !important;
-  font-weight: 400 !important;
-  font-size: 16px !important;
-  color: #38383E !important;
+  font-weight: 700 !important;
+  font-size: 19px !important;
+  color: #0E0F12 !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.3 !important;
+  vertical-align: middle !important;
 }
 
 /* Interactive Apple Pill Button */
 .cpx-mini-btn {
-  height: 36px !important;
-  padding: 0 20px !important;
+  height: 38px !important;
+  padding: 0 18px !important;
   border-radius: 999px !important;
-  border: 1px solid rgba(59, 84, 238, 0.35) !important;
-  background: rgba(59, 84, 238, 0.05) !important;
-  color: var(--blue) !important;
-  font: 600 14.5px var(--sf) !important;
+  border: 1px solid rgba(59, 84, 238, 0.25) !important;
+  background: rgba(59, 84, 238, 0.08) !important;
+  color: #2438C7 !important;
+  font-family: var(--sf) !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 13.5px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
   cursor: pointer !important;
-  transition: background 0.2s ease, transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease !important;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+  white-space: nowrap !important;
 }
 .cpx-mini-btn:hover {
   background: var(--blue) !important;
   color: #FFFFFF !important;
   border-color: var(--blue) !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px rgba(59, 84, 238, 0.3) !important;
+  transform: translateY(-1.5px) !important;
+  box-shadow: 0 6px 16px rgba(59, 84, 238, 0.28) !important;
+}
+.cpx-mini-btn:active {
+  transform: scale(0.96) !important;
+  transition: transform 100ms ease-out !important;
+}
+.cpx-btn-arrow {
+  font-size: 14px !important;
+  display: inline-block !important;
+  transition: transform 0.2s ease !important;
+}
+.cpx-mini-btn:hover .cpx-btn-arrow {
+  transform: translateX(3px) !important;
 }
 .cpx-mini-btn:active {
   transform: scale(0.96) !important;
@@ -960,4 +1036,88 @@
 }
 .cpx-kit span:active {
   transform: scale(0.97) !important;
+}
+
+/* Mobile Responsive Overrides for Services & Experience Tables */
+@media (max-width: 640px) {
+  .cpx-table thead {
+    display: none !important;
+  }
+  .cpx-table,
+  .cpx-table tbody,
+  .cpx-table tr {
+    display: block !important;
+    width: 100% !important;
+  }
+  .cpx-table td,
+  .cpx-table tbody th,
+  .cpx-table tbody th:not(:last-child),
+  .cpx-table tbody td:not(:last-child) {
+    padding: 0 !important;
+    border: 0 !important;
+    border-right: 0 !important;
+    background: transparent !important;
+  }
+  
+  /* Services mobile card layout */
+  .cpx-svc-table tr {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding: 20px 18px !important;
+    border-top: 1px solid rgba(20, 22, 28, 0.07) !important;
+  }
+  .cpx-svc-table tr:first-child {
+    border-top: 0 !important;
+  }
+  .cpx-svc-inc {
+    width: 100% !important;
+    padding: 10px 14px !important;
+    background: #F8F9FD !important;
+    border-radius: 12px !important;
+  }
+  .cpx-svc-table .cpx-svc-p {
+    font-size: 24px !important;
+  }
+  .cpx-svc-table .is-num {
+    text-align: left !important;
+  }
+  .cpx-svc-table .is-act {
+    text-align: left !important;
+    width: 100% !important;
+    margin-top: 4px !important;
+  }
+  .cpx-svc-table .is-act .cpx-mini-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    height: 42px !important;
+  }
+
+  /* Experience mobile card layout */
+  .cpx-exp-table tr {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    padding: 18px !important;
+    border-top: 1px solid rgba(20, 22, 28, 0.07) !important;
+  }
+  .cpx-exp-table tr:first-child {
+    border-top: 0 !important;
+  }
+  .cpx-exp-table .cpx-exp-y {
+    width: auto !important;
+    margin-bottom: 4px !important;
+  }
+  .cpx-exp-table tbody th {
+    order: 2 !important;
+    font-size: 14.5px !important;
+    color: #64748B !important;
+    font-weight: 500 !important;
+  }
+  .cpx-exp-table td:last-child {
+    order: 1 !important;
+    font-size: 18.5px !important;
+    color: #0E0F12 !important;
+    font-weight: 700 !important;
+  }
 }
