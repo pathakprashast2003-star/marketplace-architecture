@@ -451,76 +451,131 @@
 .nx-modal-backdrop { visibility: hidden; }
 .nx-modal-backdrop.is-open { visibility: visible; }
 
-/* ═══ Apple Design System: Colored Badges, Times New Roman & Tabular Vertical Lines (/apple-design) ═══ */
+/* ═══ Apple Design System: Colored Badges, Big Times New Roman Headers & Non-Italic (/apple-design) ═══ */
 
-/* 1. Times New Roman Pervasive Editorial Typography */
+/* 1. Global Non-Italic & Times New Roman Rule */
+.cpx-title,
+.cpx-headline,
+.cpx-eyebrow,
+.cpx-h,
+.cpx-note,
+.cpx-pull,
+.cpx-about p,
+.cpx-about-k,
+.cpx-table thead th,
+.cpx-table tbody th,
+.cpx-table td,
+.cpx-svc-table .cpx-svc-t,
+.cpx-svc-table .cpx-svc-d,
+.cpx-svc-table .cpx-svc-p,
+.cpx-svc-table .cpx-svc-u,
+.cpx-svc-inc,
+.cpx-exp-table thead th,
+.cpx-exp-table .cpx-exp-y,
+.cpx-exp-table tbody th,
+.cpx-exp-table td,
+.cpx-how dt,
+.cpx-how dd,
+.cpx-faq summary,
+.cpx-faq details p,
+.cpx-empty-t,
+.cpx-empty p,
+.cpx-card-rate b,
+.cpx-card-rate span,
+.cpx-card-from,
+.cpx-cover-tag,
+.cpx-dock b,
+.cpx-dock span,
+.cpx-textlink,
+.cpx-mcard-k,
+.cpx-mcard-n,
+.cpx-mcard-r {
+  font-style: normal !important;
+}
+
+/* 2. Make Creator Title Stand Out */
 .cpx-title {
   font-family: var(--serif) !important;
-  font-weight: 400 !important;
-  font-size: clamp(2.8rem, 5.2vw, 4.3rem) !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+  font-size: clamp(3.2rem, 6.2vw, 4.6rem) !important;
   letter-spacing: -0.025em !important;
-  line-height: 1.02 !important;
-  color: var(--ink) !important;
-  margin-bottom: 12px !important;
+  line-height: 1.0 !important;
+  color: #0E0F12 !important;
+  margin-bottom: 14px !important;
 }
+
 .cpx-headline {
   font-family: var(--serif) !important;
-  font-style: italic !important;
+  font-style: normal !important;
   font-weight: 400 !important;
-  font-size: clamp(19.5px, 2vw, 23px) !important;
+  font-size: clamp(20px, 2vw, 23.5px) !important;
   line-height: 1.38 !important;
-  color: #4A4E5A !important;
+  color: #38383E !important;
   letter-spacing: -0.01em !important;
   max-width: 32em !important;
   margin-bottom: 22px !important;
 }
+
 .cpx-eyebrow {
   font-family: var(--serif) !important;
-  font-style: italic !important;
-  font-weight: 400 !important;
-  font-size: 21px !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 22px !important;
   color: var(--blue) !important;
+  letter-spacing: -0.01em !important;
 }
+
+/* 3. Section Headers Should Be Big (Times New Roman, Bold, Non-Italic) */
 .cpx-h {
   font-family: var(--serif) !important;
-  font-weight: 400 !important;
-  font-size: 32px !important;
-  line-height: 1.12 !important;
-  letter-spacing: -0.015em !important;
-  color: var(--ink) !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+  font-size: clamp(34px, 4vw, 44px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.02em !important;
+  color: #0E0F12 !important;
 }
+
 .cpx-note {
   font-family: var(--serif) !important;
-  font-style: italic !important;
-  font-size: 15px !important;
+  font-style: normal !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
   color: var(--mute) !important;
 }
+
 .cpx-pull {
   font-family: var(--serif) !important;
-  font-style: italic !important;
-  font-weight: 400 !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
   font-size: 22px !important;
   line-height: 1.5 !important;
-  color: var(--ink) !important;
+  color: #0E0F12 !important;
   border-left: 3.5px solid var(--blue) !important;
   padding-left: 20px !important;
   margin: 0 0 22px !important;
 }
+
 .cpx-about p {
   font-family: var(--serif) !important;
+  font-style: normal !important;
   font-size: 17.5px !important;
   line-height: 1.65 !important;
   color: #2D2F38 !important;
 }
+
 .cpx-about-k {
   font-family: var(--serif) !important;
-  font-style: italic !important;
-  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 17px !important;
   color: var(--blue) !important;
   margin-bottom: 10px !important;
+  letter-spacing: -0.01em !important;
 }
 
-/* 2. Apple Colored Badges & Tactile Spring Feedback */
+/* 4. Apple Colored Badges & Tactile Spring Feedback */
 .cpx-facts {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -615,7 +670,7 @@
   box-shadow: 0 6px 16px -2px rgba(6, 182, 212, 0.2) !important;
 }
 
-/* 3. About Section: Apple Vertical Line Divider & Tinted Capsule Badges */
+/* 5. About Section: Apple Vertical Line Divider & Tinted Capsule Badges */
 .cpx-about-grid {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
@@ -627,13 +682,12 @@
 .cpx-about-grid > div:first-child {
   padding-right: 28px !important;
 }
-/* Apple-style hairline vertical divider between Specialties and Usually Works With */
 .cpx-about-grid > div:last-child {
   border-left: 1px solid rgba(20, 22, 28, 0.09) !important;
   padding-left: 28px !important;
 }
 
-/* Specialties Badges: Apple System Indigo / Cobalt */
+/* Specialties Badges */
 .cpx-about-grid > div:first-child .cpx-about-tags span {
   display: inline-flex !important;
   align-items: center !important;
@@ -656,7 +710,7 @@
   transition: transform 100ms ease-out !important;
 }
 
-/* Usually Works With Badges: Apple System Emerald / Mint */
+/* Usually Works With Badges */
 .cpx-about-grid > div:last-child .cpx-about-tags span {
   display: inline-flex !important;
   align-items: center !important;
@@ -679,7 +733,7 @@
   transition: transform 100ms ease-out !important;
 }
 
-/* 4. Apple Style Tabular Vertical Divider Lines */
+/* 6. Apple Style Tabular Vertical Divider Lines & Big Non-Italic Headers */
 .cpx-table-wrap {
   border: 1px solid rgba(20, 22, 28, 0.08) !important;
   border-radius: 20px !important;
@@ -692,20 +746,27 @@
   border-collapse: separate !important;
   border-spacing: 0 !important;
 }
+
+/* Table Column Headers: Big, Non-Italic, Times New Roman */
 .cpx-table thead th {
-  padding: 13px 20px !important;
+  padding: 15px 20px !important;
   background: #F7F8FB !important;
   border-bottom: 1px solid rgba(20, 22, 28, 0.08) !important;
-  font: italic 400 15px var(--serif) !important;
+  font-family: var(--serif) !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 16.5px !important;
   color: var(--blue) !important;
+  letter-spacing: -0.01em !important;
 }
 /* Hairline vertical divider lines in the table header */
 .cpx-table thead th:not(:last-child) {
   border-right: 1px solid rgba(20, 22, 28, 0.08) !important;
 }
+
 .cpx-table td,
 .cpx-table tbody th {
-  padding: 16px 20px !important;
+  padding: 18px 20px !important;
   text-align: left !important;
   vertical-align: top !important;
   border-top: 1px solid rgba(20, 22, 28, 0.06) !important;
@@ -727,60 +788,96 @@
   background: rgba(59, 84, 238, 0.025) !important;
 }
 
+/* Service Titles: Stand Out, Big, Bold, Non-Italic */
 .cpx-svc-table .cpx-svc-t {
   display: block !important;
-  font: 700 18.5px var(--serif) !important;
-  color: var(--ink) !important;
-  letter-spacing: -0.01em !important;
-  margin-bottom: 4px !important;
+  font-family: var(--serif) !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 21.5px !important;
+  color: #0E0F12 !important;
+  letter-spacing: -0.015em !important;
+  margin-bottom: 5px !important;
 }
 .cpx-svc-table .cpx-svc-d {
   display: block !important;
-  font: 400 14.5px/1.45 var(--serif) !important;
-  color: var(--sub) !important;
-  max-width: 30em !important;
+  font-family: var(--serif) !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 15.5px !important;
+  line-height: 1.5 !important;
+  color: #38383E !important;
+  max-width: 32em !important;
 }
 .cpx-svc-inc {
-  font: 400 14px/1.45 var(--sf) !important;
+  font-family: var(--sf) !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 14.5px !important;
+  line-height: 1.45 !important;
   color: #047857 !important;
   width: 26% !important;
 }
 .cpx-svc-table .cpx-svc-p {
   display: block !important;
-  font: 700 24px var(--serif) !important;
-  color: var(--ink) !important;
+  font-family: var(--serif) !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 28px !important;
+  letter-spacing: -0.02em !important;
+  color: #0E0F12 !important;
 }
 .cpx-svc-u {
   display: block !important;
-  font: italic 400 13.5px var(--serif) !important;
+  font-family: var(--serif) !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
   color: var(--mute) !important;
-  margin-top: 2px !important;
+  margin-top: 3px !important;
 }
 
-/* Experience Table: Vertical Dividers and Times New Roman */
+/* Experience Table */
+.cpx-exp-table thead th {
+  font-family: var(--serif) !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 16.5px !important;
+  color: var(--blue) !important;
+}
 .cpx-exp-table .cpx-exp-y {
-  width: 75px !important;
-  font: italic 400 16.5px var(--serif) !important;
+  width: 80px !important;
+  font-family: var(--serif) !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 17.5px !important;
   color: var(--blue) !important;
 }
 .cpx-exp-table tbody th {
-  font: 700 17px var(--serif) !important;
-  color: var(--ink) !important;
+  font-family: var(--serif) !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 18.5px !important;
+  color: #0E0F12 !important;
+  letter-spacing: -0.01em !important;
 }
 .cpx-exp-table td:last-child {
-  font: 400 15.5px var(--serif) !important;
-  color: var(--sub) !important;
+  font-family: var(--serif) !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  color: #38383E !important;
 }
 
 /* Interactive Apple Pill Button */
 .cpx-mini-btn {
-  height: 34px !important;
-  padding: 0 18px !important;
+  height: 36px !important;
+  padding: 0 20px !important;
   border-radius: 999px !important;
   border: 1px solid rgba(59, 84, 238, 0.35) !important;
   background: rgba(59, 84, 238, 0.05) !important;
   color: var(--blue) !important;
-  font: 550 14px var(--sf) !important;
+  font: 600 14.5px var(--sf) !important;
   cursor: pointer !important;
   transition: background 0.2s ease, transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease !important;
 }
@@ -809,7 +906,10 @@
   border-radius: 999px !important;
   background: rgba(245, 245, 247, 0.9) !important;
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
-  font: 400 15px var(--serif) !important;
+  font-family: var(--serif) !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 15.5px !important;
   color: var(--ink) !important;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, background 0.2s ease !important;
 }
