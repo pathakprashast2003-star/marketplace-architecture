@@ -457,6 +457,7 @@
 .cpx-title,
 .cpx-headline,
 .cpx-eyebrow,
+.cpx-fact-label,
 .cpx-h,
 .cpx-note,
 .cpx-pull,
@@ -575,99 +576,136 @@
   letter-spacing: -0.01em !important;
 }
 
-/* 4. Apple Colored Badges & Tactile Spring Feedback */
+/* 4. Ultra-Premium Apple Pro Jewel Badges */
 .cpx-facts {
   display: flex !important;
   flex-wrap: wrap !important;
-  gap: 8.5px !important;
+  gap: 10px !important;
   list-style: none !important;
   padding: 0 !important;
-  margin: 0 0 24px !important;
+  margin: 0 0 28px !important;
 }
 .cpx-facts li {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 8px !important;
-  padding: 6.5px 14px 6.5px 10px !important;
+  gap: 0 !important;
+  padding: 5px 16px 5px 6px !important;
   border-radius: 999px !important;
-  font: 500 13.5px var(--sf) !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(20, 22, 28, 0.08) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 12px -2px rgba(20, 22, 28, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease !important;
   cursor: default !important;
 }
-.cpx-facts li svg {
-  width: 15px !important;
-  height: 15px !important;
-  padding-right: 6px !important;
-  border-right: 1px solid currentColor !important;
-  margin-right: 1px !important;
-  opacity: 0.85 !important;
-  flex: none !important;
-}
 .cpx-facts li:hover {
-  transform: translateY(-1.5px) scale(1.02) !important;
+  transform: translateY(-2px) scale(1.015) !important;
 }
 .cpx-facts li:active {
   transform: scale(0.97) !important;
   transition: transform 100ms ease-out !important;
 }
 
-/* Apple System Tints for Hero Badges */
-.cpx-facts li:nth-child(1) {
-  background: rgba(0, 113, 227, 0.08) !important;
-  border: 1px solid rgba(0, 113, 227, 0.25) !important;
-  color: #0055B3 !important;
+/* Jewel Icon Container */
+.cpx-fact-icon {
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: none !important;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
-.cpx-facts li:nth-child(1) svg { color: #0071E3 !important; }
+.cpx-facts li:hover .cpx-fact-icon {
+  transform: scale(1.1) !important;
+}
+.cpx-fact-icon svg {
+  width: 14px !important;
+  height: 14px !important;
+  stroke-width: 2.2 !important;
+  border-right: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: block !important;
+  flex: none !important;
+}
+
+/* Crisp Hairline Vertical Divider */
+.cpx-fact-divider {
+  display: block !important;
+  width: 1px !important;
+  height: 14px !important;
+  background: rgba(20, 22, 28, 0.1) !important;
+  margin: 0 10px 0 9px !important;
+  flex: none !important;
+}
+
+/* Premium Typography (Times New Roman, Bold, Upright, Deep Obsidian) */
+.cpx-fact-label {
+  font-family: var(--serif) !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 15.5px !important;
+  line-height: 1 !important;
+  letter-spacing: -0.015em !important;
+  color: #0E0F12 !important;
+  white-space: nowrap !important;
+}
+
+/* Apple Pro Jewel Colors */
+/* 1. Location: Apple Sapphire */
+.cpx-facts li:nth-child(1) .cpx-fact-icon {
+  background: linear-gradient(135deg, rgba(0, 113, 227, 0.14), rgba(0, 113, 227, 0.07)) !important;
+  color: #0071E3 !important;
+  border: 1px solid rgba(0, 113, 227, 0.24) !important;
+}
 .cpx-facts li:nth-child(1):hover {
-  border-color: rgba(0, 113, 227, 0.45) !important;
-  box-shadow: 0 6px 16px -2px rgba(0, 113, 227, 0.2) !important;
+  border-color: rgba(0, 113, 227, 0.4) !important;
+  box-shadow: 0 8px 20px -3px rgba(0, 113, 227, 0.18), 0 2px 4px rgba(0, 0, 0, 0.03) !important;
 }
 
-.cpx-facts li:nth-child(2) {
-  background: rgba(124, 58, 237, 0.08) !important;
-  border: 1px solid rgba(124, 58, 237, 0.25) !important;
-  color: #5B21B6 !important;
+/* 2. Tenure: Apple Royal Purple / Amethyst */
+.cpx-facts li:nth-child(2) .cpx-fact-icon {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.14), rgba(124, 58, 237, 0.07)) !important;
+  color: #7C3AED !important;
+  border: 1px solid rgba(124, 58, 237, 0.24) !important;
 }
-.cpx-facts li:nth-child(2) svg { color: #7C3AED !important; }
 .cpx-facts li:nth-child(2):hover {
-  border-color: rgba(124, 58, 237, 0.45) !important;
-  box-shadow: 0 6px 16px -2px rgba(124, 58, 237, 0.2) !important;
+  border-color: rgba(124, 58, 237, 0.4) !important;
+  box-shadow: 0 8px 20px -3px rgba(124, 58, 237, 0.18), 0 2px 4px rgba(0, 0, 0, 0.03) !important;
 }
 
-.cpx-facts li:nth-child(3) {
-  background: rgba(16, 185, 129, 0.08) !important;
-  border: 1px solid rgba(16, 185, 129, 0.25) !important;
-  color: #065F46 !important;
+/* 3. Language: Apple Emerald */
+.cpx-facts li:nth-child(3) .cpx-fact-icon {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.14), rgba(16, 185, 129, 0.07)) !important;
+  color: #059669 !important;
+  border: 1px solid rgba(16, 185, 129, 0.24) !important;
 }
-.cpx-facts li:nth-child(3) svg { color: #059669 !important; }
 .cpx-facts li:nth-child(3):hover {
-  border-color: rgba(16, 185, 129, 0.45) !important;
-  box-shadow: 0 6px 16px -2px rgba(16, 185, 129, 0.2) !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  box-shadow: 0 8px 20px -3px rgba(16, 185, 129, 0.18), 0 2px 4px rgba(0, 0, 0, 0.03) !important;
 }
 
-.cpx-facts li:nth-child(4) {
-  background: rgba(245, 158, 11, 0.09) !important;
-  border: 1px solid rgba(245, 158, 11, 0.25) !important;
-  color: #92400E !important;
+/* 4. Mobility: Apple Amber / Gold */
+.cpx-facts li:nth-child(4) .cpx-fact-icon {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.08)) !important;
+  color: #D97706 !important;
+  border: 1px solid rgba(245, 158, 11, 0.26) !important;
 }
-.cpx-facts li:nth-child(4) svg { color: #D97706 !important; }
 .cpx-facts li:nth-child(4):hover {
-  border-color: rgba(245, 158, 11, 0.45) !important;
-  box-shadow: 0 6px 16px -2px rgba(245, 158, 11, 0.2) !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+  box-shadow: 0 8px 20px -3px rgba(245, 158, 11, 0.18), 0 2px 4px rgba(0, 0, 0, 0.03) !important;
 }
 
-.cpx-facts li:nth-child(5) {
-  background: rgba(6, 182, 212, 0.08) !important;
-  border: 1px solid rgba(6, 182, 212, 0.25) !important;
-  color: #0E7490 !important;
+/* 5. Remote: Apple Cyan / Teal */
+.cpx-facts li:nth-child(5) .cpx-fact-icon {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.14), rgba(6, 182, 212, 0.07)) !important;
+  color: #0891B2 !important;
+  border: 1px solid rgba(6, 182, 212, 0.24) !important;
 }
-.cpx-facts li:nth-child(5) svg { color: #0891B2 !important; }
 .cpx-facts li:nth-child(5):hover {
-  border-color: rgba(6, 182, 212, 0.45) !important;
-  box-shadow: 0 6px 16px -2px rgba(6, 182, 212, 0.2) !important;
+  border-color: rgba(6, 182, 212, 0.4) !important;
+  box-shadow: 0 8px 20px -3px rgba(6, 182, 212, 0.18), 0 2px 4px rgba(0, 0, 0, 0.03) !important;
 }
 
 /* 5. About Section: Apple Vertical Line Divider & Tinted Capsule Badges */

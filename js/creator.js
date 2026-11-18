@@ -119,7 +119,7 @@
         </div>
         <h1 class="cpx-title">${esc(c.creator)}</h1>
         <p class="cpx-headline">${esc(p.headline || c.bio)}</p>
-        <ul class="cpx-facts cpx-facts-grid">${facts.map((f, i) => `<li class="cpx-fact-cell" style="--i: ${i}">${f[0]}<span>${esc(f[1])}</span></li>`).join('')}</ul>
+        <ul class="cpx-facts cpx-facts-grid">${facts.map((f, i) => `<li class="cpx-fact-cell" style="--i: ${i}"><span class="cpx-fact-icon">${f[0]}</span><span class="cpx-fact-divider"></span><span class="cpx-fact-label">${esc(f[1])}</span></li>`).join('')}</ul>
         <div class="cpx-hero-cta">
           <p class="cpx-hero-rate"><b>${esc(money(rate))}</b><span>/ day</span></p>
           <button type="button" class="cpx-btn" data-request>Send request</button>
