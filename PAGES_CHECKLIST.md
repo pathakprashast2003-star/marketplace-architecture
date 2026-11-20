@@ -5,13 +5,15 @@
 
 ---
 
-## 🎯 Current Sprint Focus: Page #3 (Creator Storefront Profile)
+## 🎯 Current Sprint Status & Roadmap Progress
 
 ```
-[x] Completed:   Page 1 — Homepage & Curated Talent Showcase (/) -> Running on http://localhost:3000
-[x] Completed:   Page 2 — Directory & Search Explorer (/explore) -> Running on http://localhost:3000/explore
-[ ] Next Up:     Page 3 — Creator Storefront Profile (/storefront/[slug])
-[ ] Queued:      Page 4 — Structured Lead Intake Modal (Storefront Overlay)
+[x] Completed:   Page 1 — Homepage & Curated Talent Showcase (/) -> http://localhost:3000
+[x] Completed:   Page 2 — Directory & Search Explorer (/explore) -> http://localhost:3000/explore
+[x] Completed:   Page 4 — Creator Storefront Profile (/c/[slug]) -> http://localhost:3000/c/marcus-vance
+[x] Completed:   Page 5 — Structured Lead Intake Modal (Storefront Overlay) -> Live in /c/[slug] & /explore
+[x] Completed:   Page 6 — Pricing & Membership Page (/pricing) -> http://localhost:3000/pricing
+[ ] Next Up:     Page 7 & 8 — Unified Authentication & Role Fork (/login, /signup)
 ```
 
 ---
@@ -36,17 +38,17 @@
   - *Route:* `/[city]/[category]` (e.g. `/austin/videography`, `/atlanta/brand-photography`)
   - *Components:* Server-rendered H1, localized Schema.org `LocalBusiness` JSON-LD, filtered creator grid for organic Google search traffic.
 
-- [ ] **4. Creator Storefront Profile (`/[slug]`)**
-  - *Route:* `/storefront/[slug]` (e.g. `/storefront/marcus-vance`)
-  - *Components:* Full-bleed 4K showreel hero player, identity strip (avatar, verified badge, location, SLA badge), tabbed portfolio (WebP gallery, service packages, client reviews, equipment list), sticky mobile action dock.
+- [x] **4. Creator Storefront Profile (`/c/[slug]`)** `[COMPLETED & LIVE ON LOCALHOST:3000/c/marcus-vance]`
+  - *Route:* `/c/[slug]` (e.g. `/c/marcus-vance`, `/c/elena-rostova`, `/c/kai-tanaka`)
+  - *Components:* Apple-grade spatial elegance, interactive 3D credential card with double-sided flip & gyroscope physics, editorial Times New Roman headlines, colorful glass attribute capsules, sticky Apple booking terminal with video reel, service packages tab with modal trigger, 4K WebP gallery with full lightbox, gear manifest table, and direct inquiry routing.
 
-- [ ] **5. Structured Lead Intake Modal (Storefront Overlay)**
-  - *Route:* Modal on `/storefront/[slug]`
-  - *Components:* 4-step progressive disclosure: (1) Select Service package or custom, (2) Target event date, (3) Budget bracket ($1k–$2.5k, $2.5k–$5k, $5k+), (4) Project scope + seamless 1-click Google OAuth conversion.
+- [x] **5. Structured Lead Intake Modal (Storefront Overlay)** `[COMPLETED & LIVE IN STOREFRONT & EXPLORE]`
+  - *Route:* Modal overlay on `/c/[slug]` and `/explore`
+  - *Components:* Progressive lead intake flow with service package pre-selection, date picker, budget bracket selectors, project scope requirements, and instant submission simulation via `/api/inquiries`.
 
-- [ ] **6. Pricing & For Creators Explainer (`/for-creators`)**
-  - *Route:* `/for-creators` or `/pricing`
-  - *Components:* Flat $49/mo membership pitch, 90-day free trial founding member hook, commission savings calculator, *"Apply as Founding Creator"* CTA.
+- [x] **6. Pricing & Membership Page (`/pricing`)** `[COMPLETED & LIVE ON LOCALHOST:3000/pricing]`
+  - *Route:* `/pricing` or `pricing.html`
+  - *Components:* Interactive Commission Savings Calculator comparing 20% broker fees vs Nexus $49/mo flat model, 3 Apple-calibrated membership tier cards (Producer/Client $0, Founding Member $0 for 90 days then $49/mo, Annual Patron $39/mo), transparent matrix comparison table (Nexus vs Upwork vs Agencies), interactive FAQ accordion, and Founding 100 spot counter.
 
 ---
 

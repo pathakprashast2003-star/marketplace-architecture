@@ -7,6 +7,8 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
             self.path = '/index.html'
         elif self.path == '/explore' or self.path.startswith('/explore?'):
             self.path = '/explore.html'
+        elif self.path == '/pricing' or self.path.startswith('/pricing?'):
+            self.path = '/pricing.html'
         elif self.path == '/c' or self.path == '/c/':
             self.path = '/explore.html'
         elif self.path.startswith('/c/'):

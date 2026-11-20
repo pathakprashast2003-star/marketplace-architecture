@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pricing & Membership · Nexus — 0% Commission Creator Marketplace</title>
+  <meta name="description" content="Flat $49/mo membership with 0% commission. Commercial DPs, lookdev artists, and drone pilots keep 100% of client project billings. Claim your 90-day Founding Member pass.">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%233B54EE' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="/assets/react-footer/marketplace-architecture.css?v=18">
+  <link rel="stylesheet" href="/css/explore.css?v=20">
+  <link rel="stylesheet" href="/css/pricing.css?v=1">
+</head>
+<body class="pr-body">
+  <header>
+    <nav class="nx-explore-nav" aria-label="Main Navigation">
+      <a href="/" class="nx-nav-brand">
+        <span class="nx-nav-brand-dot" aria-hidden="true"></span>
+        <span>nexus.</span>
+      </a>
+      <div class="nx-nav-links">
+        <a href="/" class="nx-nav-link">Home</a>
+        <a href="/explore" class="nx-nav-link">Explore</a>
+        <a href="/pricing" class="nx-nav-link is-active">Pricing</a>
+        <a href="/#how" class="nx-nav-link">How it works</a>
+      </div>
+      <div class="nx-nav-actions">
+        <a href="/explore" class="nx-shortlist-btn" id="shortlistToggleBtn" aria-label="Saved creators">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>Saved</span>
+          <span class="badge" id="shortlistBadgeCount">0</span>
+        </a>
+        <a href="/signup" class="nx-nav-apply-btn">
+          <span>Join as a creator</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="pr-main">
+    <!-- HERO -->
+    <section class="pr-hero">
+      <div class="pr-hero-badge">
+        <span class="pr-hero-badge-dot"></span>
+        <span>FOUNDING PASS • 42 / 100 SPOTS CLAIMED</span>
+      </div>
+      <h1 class="pr-title">Zero commission.<br>Keep 100% of what you earn.</h1>
+      <p class="pr-sub">Nexus is a zero-escrow directory built for independent directors of photography, lookdev artists, drone pilots, and virtual production studios. Chat directly, invoice directly, and never surrender a percentage of your day rate.</p>
+      <div class="pr-hero-actions">
+        <a href="#tiers" class="pr-btn-primary">View Membership Passes</a>
+        <a href="#calculator" class="pr-btn-secondary">Calculate Your Savings ↓</a>
+      </div>
+    </section>
+
+    <!-- SAVINGS CALCULATOR -->
+    <section class="pr-calc-sec" id="calculator">
+      <div class="pr-calc-card">
+        <div class="pr-calc-head">
+          <span class="pr-kicker">Interactive Commission Ledger</span>
+          <h2 class="pr-calc-title">How much does 20% commission cost you?</h2>
+          <p class="pr-calc-desc">Slide to your estimated annual billings to see what you keep with Nexus vs. platforms like Upwork or traditional agencies.</p>
+        </div>
+
+        <div class="pr-slider-box">
+          <div class="pr-slider-readout">
+            <span class="pr-slider-label">Annual Client Billings</span>
+            <span class="pr-slider-value" id="calcBillingsDisplay">$100,000</span>
+          </div>
+          <input type="range" id="calcSlider" min="20000" max="300000" step="5000" value="100000" aria-label="Annual client billings slider" class="pr-range">
+          <div class="pr-slider-ticks">
+            <span>$20k</span>
+            <span>$100k</span>
+            <span>$200k</span>
+            <span>$300k+</span>
+          </div>
+        </div>
+
+        <div class="pr-calc-grid">
+          <div class="pr-calc-col pr-calc-col-bad">
+            <span class="pr-col-tag">Traditional Freelance Platforms</span>
+            <div class="pr-col-amount" id="calcUpworkCut">-$20,000</div>
+            <p class="pr-col-note">20% commission fee taken out of your pocket every single year.</p>
+            <ul class="pr-col-list">
+              <li>14-day payment holding period</li>
+              <li>Filtered client messaging</li>
+              <li>Platform owns your client relationship</li>
+            </ul>
+          </div>
+
+          <div class="pr-calc-col pr-calc-col-good">
+            <div class="pr-badge-pill">Nexus Zero-Escrow Directory</div>
+            <div class="pr-col-amount pr-col-savings" id="calcNetSavings">+$19,412</div>
+            <p class="pr-col-note">Net dollars retained in your bank account every single year.</p>
+            <ul class="pr-col-list">
+              <li>Flat $49/mo membership ($588/yr)</li>
+              <li>Free for your first 90 days ($0 today)</li>
+              <li>100% direct client payments via your invoices</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING TIERS -->
+    <section class="pr-tiers-sec" id="tiers">
+      <div class="pr-sec-header">
+        <span class="pr-kicker">Fair-Market Pricing</span>
+        <h2 class="pr-h2">Transparent passes. Zero surprises.</h2>
+        <p class="pr-sec-sub">Clients browse and inquire 100% free. Creators pay a simple, flat monthly subscription to belong to a curated atelier.</p>
+      </div>
+
+      <div class="pr-cards-grid">
+        <!-- TIER 1: CLIENT -->
+        <article class="pr-card pr-card-client">
+          <div class="pr-card-head">
+            <span class="pr-tier-badge">CLIENTS &amp; BRANDS</span>
+            <h3 class="pr-tier-name">Producer / Client</h3>
+            <p class="pr-tier-desc">For commercial producers, creative directors, and brands seeking vetted talent.</p>
+          </div>
+          <div class="pr-card-price">
+            <span class="pr-currency">$</span>
+            <span class="pr-num">0</span>
+            <span class="pr-unit">forever</span>
+          </div>
+          <p class="pr-price-sub">Free to browse. Free to ask. No account needed.</p>
+          <a href="/explore" class="pr-card-btn pr-btn-ghost">Browse Directory</a>
+          <ul class="pr-features-list">
+            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Direct access to 34+ vetted commercial specialists</span></li>
+            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>0% commission markup or buyer booking fees</span></li>
+            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Full camera packages &amp; technical gear manifests</span></li>
+            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Direct email and phone outreach</span></li>
+          </ul>
+        </article>
+
+        <!-- TIER 2: FOUNDING CREATOR (FEATURED) -->
+        <article class="pr-card pr-card-featured">
+          <div class="pr-featured-banner">★ MOST POPULAR • FIRST 100 ATELIER CREATORS</div>
+          <div class="pr-card-head">
+            <span class="pr-tier-badge pr-badge-sapphire">FOUNDING PASS</span>
+            <h3 class="pr-tier-name">Founding Member</h3>
+            <p class="pr-tier-desc">For cinematographers, lookdev artists, and studios claiming early membership.</p>
+          </div>
+          <div class="pr-card-price">
+            <span class="pr-currency">$</span>
+            <span class="pr-num">0</span>
+            <span class="pr-unit">for 90 days</span>
+          </div>
+          <p class="pr-price-sub">Then $49 / month. Cancel anytime with 1 click.</p>
+          <a href="/signup" class="pr-card-btn pr-btn-spotlight">Claim 90-Day Free Pass →</a>
+          <ul class="pr-features-list pr-features-highlight">
+            <li><svg class="pr-ic pr-ic-green" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>0% commission</strong> on all client bookings forever</span></li>
+            <li><svg class="pr-ic pr-ic-green" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Founding Member porcelain badge</strong> on storefront</span></li>
+            <li><svg class="pr-ic pr-ic-green" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Verified credentials &amp; gear vetting</strong> by Tyrone</span></li>
+            <li><svg class="pr-ic pr-ic-green" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Dedicated 4K showreel player &amp; custom SEO link</span></li>
+            <li><svg class="pr-ic pr-ic-green" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>High-intent project inquiries routed to your inbox</span></li>
+            <li><svg class="pr-ic pr-ic-green" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Live SLA response badge ("Replies under 1h")</span></li>
+          </ul>
+        </article>
+
+        <!-- TIER 3: ANNUAL PATRON -->
+        <article class="pr-card pr-card-annual">
+          <div class="pr-card-head">
+            <span class="pr-tier-badge pr-badge-amber">SAVE 20% ANNUAL</span>
+            <h3 class="pr-tier-name">Annual Patron</h3>
+            <p class="pr-tier-desc">Commit annually to secure top algorithmic directory placement and extra reach.</p>
+          </div>
+          <div class="pr-card-price">
+            <span class="pr-currency">$</span>
+            <span class="pr-num">39</span>
+            <span class="pr-unit">/ month</span>
+          </div>
+          <p class="pr-price-sub">Billed as $470 / year. Save $118 vs monthly.</p>
+          <a href="/signup" class="pr-card-btn pr-btn-ghost">Get Annual Patron Pass</a>
+          <ul class="pr-features-list">
+            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Everything included in the Founding Member Pass</span></li>
+            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Priority directory placement</strong> in search and filters</span></li>
+            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Featured showcase spot on homepage rotation</span></li>
+            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Custom domain integration support</span></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAIR-MARKET COMPARISON MATRIX -->
+    <section class="pr-matrix-sec">
+      <div class="pr-sec-header">
+        <span class="pr-kicker">Transparent Economics</span>
+        <h2 class="pr-h2">Nexus vs. Extractive Platforms</h2>
+        <p class="pr-sec-sub">Why elite independent cinematographers are leaving escrow middlemen behind.</p>
+      </div>
+
+      <div class="pr-table-wrap">
+        <table class="pr-table">
+          <thead>
+            <tr>
+              <th scope="col" class="pr-th-feat">Core Attribute</th>
+              <th scope="col" class="pr-th-nexus">Nexus Directory</th>
+              <th scope="col" class="pr-th-comp">Upwork &amp; Fiverr</th>
+              <th scope="col" class="pr-th-comp">Traditional Agency</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Platform Commission</th>
+              <td class="pr-cell-highlight"><strong>0% (You keep 100%)</strong></td>
+              <td>10% – 20% on all billings</td>
+              <td>25% – 35% commission cut</td>
+            </tr>
+            <tr>
+              <th scope="row">Client Relationship</th>
+              <td class="pr-cell-highlight">Direct email, phone, and contracts</td>
+              <td>Locked inside platform chat</td>
+              <td>Agency gatekeeper mediates</td>
+            </tr>
+            <tr>
+              <th scope="row">Payment Payout</th>
+              <td class="pr-cell-highlight">Instant via your preferred invoicing</td>
+              <td>14-day security escrow hold</td>
+              <td>Net 60 to Net 90 day delay</td>
+            </tr>
+            <tr>
+              <th scope="row">Client Invoicing Fee</th>
+              <td class="pr-cell-highlight">0% fee for clients</td>
+              <td>Up to 5% client processing fee</td>
+              <td>Agency markup added to budget</td>
+            </tr>
+            <tr>
+              <th scope="row">Technical Portfolio</th>
+              <td class="pr-cell-highlight">4K Showreel + Gear Manifest + Services</td>
+              <td>Generic star rating box</td>
+              <td>PDF rate sheet only</td>
+            </tr>
+            <tr>
+              <th scope="row">Vetting &amp; Curation</th>
+              <td class="pr-cell-highlight">Hand-vetted by Tyrone Strickland Jr</td>
+              <td>Zero quality threshold</td>
+              <td>Exclusive contract lock-in</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE FAQ ACCORDION -->
+    <section class="pr-faq-sec" id="faq">
+      <div class="pr-sec-header">
+        <span class="pr-kicker">Frequently Asked Questions</span>
+        <h2 class="pr-h2">Everything you need to know.</h2>
+        <p class="pr-sec-sub">Clear answers on our membership model, trial duration, and direct payment workflow.</p>
+      </div>
+
+      <div class="pr-faq-grid">
+        <details class="pr-faq-item" open>
+          <summary class="pr-faq-summary">
+            <span>How does the 90-day Founding Member free trial work?</span>
+            <span class="pr-faq-chevron" aria-hidden="true">↓</span>
+          </summary>
+          <div class="pr-faq-answer">
+            <p>The first 100 approved creators receive a completely free 90-day VIP pass ($0.00 charged today). You get full storefront publishing, direct client inquiries, and verified status. If you choose to stay after 90 days, membership is a flat $49/mo. You can cancel with one click in your settings at any time before day 90 and never pay a cent.</p>
+          </div>
+        </details>
+
+        <details class="pr-faq-item">
+          <summary class="pr-faq-summary">
+            <span>Do you ever take a percentage cut of my client bookings?</span>
+            <span class="pr-faq-chevron" aria-hidden="true">↓</span>
+          </summary>
+          <div class="pr-faq-answer">
+            <p>Never. Nexus is strictly a discovery directory, not an extractive escrow broker. When a client books you for a $15,000 commercial shoot, all $15,000 goes directly into your bank account. We never touch your invoices or take a single cut.</p>
+          </div>
+        </details>
+
+        <details class="pr-faq-item">
+          <summary class="pr-faq-summary">
+            <span>How do clients contact and pay me?</span>
+            <span class="pr-faq-chevron" aria-hidden="true">↓</span>
+          </summary>
+          <div class="pr-faq-answer">
+            <p>When a producer clicks "Send request" on your storefront, their verified project brief (dates, budget bracket, scope) is routed straight to your email. You reply directly from your own email and issue invoices using your standard tools (Stripe, Quickbooks, bank wire).</p>
+          </div>
+        </details>
+
+        <details class="pr-faq-item">
+          <summary class="pr-faq-summary">
+            <span>What are the requirements to be approved by Tyrone?</span>
+            <span class="pr-faq-chevron" aria-hidden="true">↓</span>
+          </summary>
+          <div class="pr-faq-answer">
+            <p>Every creator is reviewed personally by Tyrone Strickland Jr. We require verified proof of professional commercial work, high-fidelity showreels, and actual technical production experience across Film, Drone, CGI/3D, Art, or Rigging. We cap the active roster to maintain unmatched quality for hiring clients.</p>
+          </div>
+        </details>
+
+        <details class="pr-faq-item">
+          <summary class="pr-faq-summary">
+            <span>I'm a hiring client or agency producer. Does Nexus cost anything for me?</span>
+            <span class="pr-faq-chevron" aria-hidden="true">↓</span>
+          </summary>
+          <div class="pr-faq-answer">
+            <p>Nexus is 100% free forever for clients, brands, and agencies. There are zero service fees, zero buyer markups, and no account is required to browse and contact talent. You negotiate terms directly with the creators.</p>
+          </div>
+        </details>
+
+        <details class="pr-faq-item">
+          <summary class="pr-faq-summary">
+            <span>Can I pause or cancel my membership at any time?</span>
+            <span class="pr-faq-chevron" aria-hidden="true">↓</span>
+          </summary>
+          <div class="pr-faq-answer">
+            <p>Yes. You can cancel your subscription with 1 click directly in your billing settings anytime. If you take a full-time role or go on an extended production, you can also toggle "Vacation Mode" to pause inquiries without losing your storefront configuration.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- BOTTOM CTA BANNER -->
+    <section class="pr-cta-sec">
+      <div class="pr-cta-card">
+        <h2 class="pr-cta-title">Ready to claim your founding spot?</h2>
+        <p class="pr-cta-desc">Join 34+ of the industry's top commercial DPs and visual artists. 90 days free, 0% commission, direct relationships.</p>
+        <div class="pr-cta-btns">
+          <a href="/signup" class="pr-btn-primary">Apply as a Creator →</a>
+          <a href="/explore" class="pr-btn-secondary">Explore Current Roster</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODULAR FOOTER -->
+  <div id="nexus-footer-root"></div>
+
+  <script src="/assets/react-footer/nexus-footer-section.js?v=copy1" defer></script>
+  <script src="/js/pricing.js?v=1" defer></script>
+</body>
+</html>
