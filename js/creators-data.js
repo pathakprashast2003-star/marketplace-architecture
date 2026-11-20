@@ -14,7 +14,15 @@
       src: P + 'pictura_cyan_director.webp',
       reel: 'assets/reels/reel_0_director.mp4',
       bio: 'ARRI Alexa 35 owner-operator with 12 years commercial DP experience across automotive and narrative.',
-      tags: ['ARRI Alexa 35', 'Cooke 2x', 'Commercial']
+      tags: ['ARRI Alexa 35', 'Cooke 2x', 'Commercial'],
+      years: 12,
+      founding: true,
+      approved: true,
+      studioName: 'Vance Films',
+      rateUnit: 'day',
+      availability: 'open',
+      links: { instagram: '#', vimeo: '#', website: '#' },
+      tagline: 'Every frame is a deliberate decision'
     },
     {
       creator: 'Elena Rostova',
@@ -24,7 +32,12 @@
       cat: 'art',
       src: P + 'pictura_emerald_bust.webp',
       bio: 'High-fashion lookdev, lighting architecture, and creative direction for editorial campaigns.',
-      tags: ['Lookdev', 'High Fashion', 'Art Direction']
+      tags: ['Lookdev', 'High Fashion', 'Art Direction'],
+      approved: true,
+      availability: 'not_available',
+      rateUnit: 'project',
+      links: { website: '#', instagram: '#' },
+      tagline: 'Light is the material and composition is the craft'
     },
     {
       creator: 'David Kim',
@@ -34,7 +47,8 @@
       cat: 'film',
       src: P + 'pictura_amber_silhouette.webp',
       bio: 'Anamorphic lens specialist and narrative DP focusing on high-contrast architectural cinema.',
-      tags: ['Cooke 2x', 'Anamorphic', 'Narrative']
+      tags: ['Cooke 2x', 'Anamorphic', 'Narrative'],
+      tagline: 'High contrast frames built with vintage glass'
     },
     {
       creator: 'Kai Tanaka',
@@ -42,20 +56,29 @@
       city: 'Tokyo, JP',
       rate: '$720/day',
       cat: 'd3',
+      rateUnit: 'project',
       src: P + 'poster_4_cgi.webp',
       bio: 'LED volume supervisor and real-time environment artist specializing in Unreal 5.4 VP stages.',
-      tags: ['Unreal 5.4', 'Chrome Spatial', 'Virtual Prod']
+      tags: ['Unreal 5.4', 'Chrome Spatial', 'Virtual Prod'],
+      tagline: 'Real time worlds built to hold up on the biggest screens'
     },
     {
       creator: 'Maya Lin',
       craft: 'FPV & Drone Cinema',
-      city: 'Denver, CO',
+      city: 'San Diego, CA',
       rate: '$580/day',
       cat: 'aerial',
       src: P + 'poster_1_drone.webp',
       reel: 'assets/reels/reel_1_drone.mp4',
       bio: 'Dual-op Inspire 3 and heavy-lift custom FPV cinema pilot for feature films and commercials.',
-      tags: ['DJI Inspire 3', 'Azure Coast', 'FPV Cinema']
+      tags: ['DJI Inspire 3', 'Coastal', 'FPV Cinema'],
+      founding: true,
+      approved: true,
+      availability: 'booked_until',
+      availableFrom: 'Jan 10',
+      rateUnit: 'day',
+      links: { instagram: '#', youtube: '#' },
+      tagline: 'Smooth cinematic flight lines close to the action'
     },
     {
       creator: 'Clara Moreau',
@@ -65,7 +88,8 @@
       cat: 'film',
       src: P + 'roster_clara_venice.webp',
       bio: '8K full-frame cinema specialist for global commercial brands and streaming originals.',
-      tags: ['Sony VENICE 2', 'Master Primes', 'Fashion']
+      tags: ['Sony VENICE 2', 'Master Primes', 'Fashion'],
+      tagline: 'Clean natural lighting that lets the subject speak'
     },
     {
       creator: 'Sora Takahashi',
@@ -76,7 +100,8 @@
       src: P + 'pictura_cyan_sunglasses.webp',
       reel: 'assets/reels/reel_1_drone.mp4',
       bio: 'Cinematic FPV pilot specializing in extreme mountain terrain and urban pursuit sequences.',
-      tags: ['RED Komodo FPV', 'Alpine Dusk', 'Action']
+      tags: ['RED Komodo FPV', 'Alpine Dusk', 'Action'],
+      tagline: 'Fast dynamic lines through tight urban and mountain spaces'
     },
     {
       creator: 'Nova Mercer',
@@ -86,7 +111,8 @@
       cat: 'action',
       src: P + 'pictura_fashion_model.webp',
       bio: 'Precision tracking vehicle operator and Black Arm technician for high-speed action cinema.',
-      tags: ['Pursuit Arm', 'Black Arm', 'High Speed']
+      tags: ['Pursuit Arm', 'Black Arm', 'High Speed'],
+      tagline: 'Precision tracking for high speed moments that cannot be faked'
     },
     {
       creator: 'Lucas Meyer',
@@ -96,7 +122,8 @@
       cat: 'film',
       src: P + 'pictura_blue_profile.webp',
       bio: 'Preston FIZ master and optical alignment technician with 80+ feature credits.',
-      tags: ['Preston FIZ', 'ARRI Hi-5', '1st AC']
+      tags: ['Preston FIZ', 'ARRI Hi-5', '1st AC'],
+      tagline: 'Sharp critical focus when there are no second takes'
     },
     {
       creator: 'Aisha Al-Mansoor',
@@ -106,7 +133,8 @@
       cat: 'art',
       src: 'assets/cinema_still_crop.webp',
       bio: 'Ultra-luxury architectural visualization, dawn-to-dusk lighting, and cinematic spatial flythroughs.',
-      tags: ['Golden Glow', 'Editorial', 'Art Direction']
+      tags: ['Golden Glow', 'Editorial', 'Art Direction'],
+      tagline: 'Architectural spaces revealed through calm deliberate movement'
     },
     {
       creator: 'Amara Nwosu',
@@ -116,7 +144,8 @@
       cat: 'film',
       src: 'assets/editorial_cinema_still.webp',
       bio: 'High-speed 8K 120fps wildlife and commercial cinematographer with global broadcast credits.',
-      tags: ['RED V-Raptor XL', '8K 120fps', 'Commercial']
+      tags: ['RED V-Raptor XL', '8K 120fps', 'Commercial'],
+      tagline: 'Patient observation at high speed and extreme resolution'
     },
     {
       creator: 'Leo Hartley',
@@ -127,7 +156,8 @@
       src: P + 'roster_maya_aerial.webp',
       reel: 'assets/reels/reel_1_drone.mp4',
       bio: 'Sub-zero high-altitude drone operations with thermal monitoring and dual transmission.',
-      tags: ['Freefly Alta X', 'Dual Op', 'Mountain Drone']
+      tags: ['Freefly Alta X', 'Dual Op', 'Mountain Drone'],
+      tagline: 'Steady aerial cinema in challenging subzero environments'
     },
     {
       creator: 'Kenji Sato',
@@ -137,7 +167,8 @@
       cat: 'action',
       src: P + 'roster_nova_pursuit.webp',
       bio: 'Ronin 2 / MōVI Pro chase specialist with custom motorcycle tracking rigs.',
-      tags: ['Ronin 2', 'Moto Rig', 'Chase Cam']
+      tags: ['Ronin 2', 'Moto Rig', 'Chase Cam'],
+      tagline: 'Low and tight camera movement that puts the viewer in the chase'
     },
     {
       creator: 'Jaxson Reed',
@@ -148,7 +179,8 @@
       src: P + 'poster_0_director.webp',
       reel: 'assets/reels/reel_1_drone.mp4',
       bio: 'FAA Part 107 and Transport Canada certified heavy-lift pilot flying Alexa Mini LF rigs.',
-      tags: ['Alexa Mini LF', 'Heavy-Lift', 'Aerial']
+      tags: ['Alexa Mini LF', 'Heavy-Lift', 'Aerial'],
+      tagline: 'Heavy lift cinema platforms carrying full scale sensor packages'
     },
     {
       creator: 'Felix Adler',
@@ -156,9 +188,11 @@
       city: 'Zurich, CH',
       rate: '$600/day',
       cat: 'd3',
+      rateUnit: 'project',
       src: P + 'poster_4_cgi.webp',
       bio: 'Sub-millimeter motion control shots for luxury optics, watches, and hardware.',
-      tags: ['Motion Control', 'Tabletop', 'Macro']
+      tags: ['Motion Control', 'Tabletop', 'Macro'],
+      tagline: 'Submillimeter camera motion for luxury timepieces and fine optics'
     },
     {
       creator: 'Julian Okafor',
@@ -168,7 +202,8 @@
       cat: 'film',
       src: 'assets/editorial_cinema_still.webp',
       bio: 'Award-winning cinematographer with Panavision Primo glass and Kodak 35mm film workflows.',
-      tags: ['Panavision Primo', '35mm Film', 'Narrative']
+      tags: ['Panavision Primo', '35mm Film', 'Narrative'],
+      tagline: 'Warm film texture and rich shadow tones for character stories'
     },
     {
       creator: 'Priya Patel',
@@ -176,9 +211,11 @@
       city: 'Mumbai, IN',
       rate: '$450/day',
       cat: 'd3',
+      rateUnit: 'project',
       src: P + 'poster_4_cgi.webp',
       bio: 'Precision hard-surface modeling, Marvelous Designer cloth simulations, and Octane rendering.',
-      tags: ['Sub-D', 'Marvelous Designer', 'Octane']
+      tags: ['Sub-D', 'Marvelous Designer', 'Octane'],
+      tagline: 'Hard surface precision and photorealistic material simulation'
     },
     {
       creator: 'Soren Lind',
@@ -186,9 +223,11 @@
       city: 'Copenhagen, DK',
       rate: '$640/day',
       cat: 'd3',
+      rateUnit: 'project',
       src: P + 'poster_2_design.webp',
       bio: 'Photorealistic fluid simulations, pyro dynamics, and procedural environments.',
-      tags: ['Houdini FX', 'Fluid Dynamics', 'Procedural']
+      tags: ['Houdini FX', 'Fluid Dynamics', 'Procedural'],
+      tagline: 'Complex physical simulations grounded in believable natural motion'
     },
     {
       creator: 'Tomas Varga',
@@ -198,7 +237,8 @@
       cat: 'film',
       src: P + 'poster_0_director.webp',
       bio: 'Nauticam housing specialist shooting Alexa 35 offshore, reef, and big-wave surf projects.',
-      tags: ['Nauticam', 'Marine Cinema', 'Water DP']
+      tags: ['Nauticam', 'Marine Cinema', 'Water DP'],
+      tagline: 'Submerged cinema capturing true color and light beneath the surface'
     },
     {
       creator: 'Chloe Dupuis',
@@ -208,7 +248,8 @@
       cat: 'art',
       src: P + 'poster_2_design.webp',
       bio: 'DaVinci Resolve Advanced Panel colorist handling high-end beauty, luxury, and car commercials.',
-      tags: ['DaVinci Resolve', 'ACES Workflow', 'Colorist']
+      tags: ['DaVinci Resolve', 'ACES Workflow', 'Colorist'],
+      tagline: 'Subtle color balance that honors skin tones and production design'
     },
     {
       creator: 'Liam Brooks',
@@ -218,7 +259,8 @@
       cat: 'action',
       src: P + 'roster_nova_pursuit.webp',
       bio: 'Steadicam M2 with Volt horizon stabilization for uninterrupted long-take sequences.',
-      tags: ['Steadicam M2', 'Volt Horizon', 'Long Take']
+      tags: ['Steadicam M2', 'Volt Horizon', 'Long Take'],
+      tagline: 'Fluid uninterrupted motion through complex dynamic choreography'
     },
     {
       creator: 'Oliver Scott',
@@ -228,7 +270,8 @@
       cat: 'film',
       src: 'assets/editorial_cinema_still.webp',
       bio: 'Laowa 24mm probe lens specialist with motorized slider and high-speed Phantom Flex rigs.',
-      tags: ['Laowa Probe', 'Phantom Flex', 'High Speed']
+      tags: ['Laowa Probe', 'Phantom Flex', 'High Speed'],
+      tagline: 'Intimate macro perspectives that bring miniature worlds to life'
     },
     {
       creator: 'Mei-Ling Zhou',
@@ -239,7 +282,8 @@
       src: P + 'roster_maya_aerial.webp',
       reel: 'assets/reels/reel_1_drone.mp4',
       bio: 'Sub-250g naked GoPro cinewhoop pilot flying tight interior architectural walkthroughs.',
-      tags: ['Cinewhoop', 'Naked GoPro', 'Indoor FPV']
+      tags: ['Cinewhoop', 'Naked GoPro', 'Indoor FPV'],
+      tagline: 'Acrobatic micro flight through narrow indoor corridors'
     },
     {
       creator: 'Santiago Morales',
@@ -247,9 +291,11 @@
       city: 'Madrid, ES',
       rate: '$690/day',
       cat: 'd3',
+      rateUnit: 'project',
       src: P + 'poster_4_cgi.webp',
       bio: 'In-camera VFX technical director, tracking sync, and real-time color grading.',
-      tags: ['ICVFX', 'Stype Tracking', 'Virtual Studio']
+      tags: ['ICVFX', 'Stype Tracking', 'Virtual Studio'],
+      tagline: 'Seamless real time integration between physical sets and virtual volumes'
     },
     {
       creator: 'Zara Eklund',
@@ -259,7 +305,8 @@
       cat: 'art',
       src: P + 'poster_2_design.webp',
       bio: 'Medium format Hasselblad H6D and 35mm Leica M6 editorial portraiture for global magazines.',
-      tags: ['Hasselblad', 'Leica M6', 'Medium Format']
+      tags: ['Hasselblad', 'Leica M6', 'Medium Format'],
+      tagline: 'Honest editorial portraiture on medium format analog film'
     },
     {
       creator: 'Dante Rossi',
@@ -269,7 +316,8 @@
       cat: 'action',
       src: P + 'roster_nova_pursuit.webp',
       bio: 'Technocrane 30 and Scorpio head operator for fluid multi-axis stadium and concert sweeps.',
-      tags: ['Technocrane', 'Scorpio Head', 'Jib & Crane']
+      tags: ['Technocrane', 'Scorpio Head', 'Jib & Crane'],
+      tagline: 'Sweeping multi axis crane trajectories over large scale stages'
     },
     {
       creator: 'Hana Becker',
@@ -279,7 +327,8 @@
       cat: 'film',
       src: P + 'roster_david_focus_rig.webp',
       bio: 'On-set DIT and live color grading technician with dual Pomfort Livegrade carts.',
-      tags: ['Livegrade', 'DIT Cart', 'Color Science']
+      tags: ['Livegrade', 'DIT Cart', 'Color Science'],
+      tagline: 'Disciplined color science and reliable data pipeline on set'
     },
     {
       creator: 'Tariq Hassan',
@@ -289,7 +338,8 @@
       cat: 'action',
       src: 'assets/cinema_still_crop.webp',
       bio: 'Modified electric tracking buggy pilot with gyro-stabilized carbon fiber cranes.',
-      tags: ['Electric Tracking', 'Gyro Stabilized', 'Desert High Speed']
+      tags: ['Electric Tracking', 'Gyro Stabilized', 'Desert High Speed'],
+      tagline: 'Gyro stabilized tracking vehicles built for punishing desert terrain'
     },
     {
       creator: 'Ingrid Holm',
@@ -297,9 +347,11 @@
       city: 'Oslo, NO',
       rate: '$540/day',
       cat: 'd3',
+      rateUnit: 'project',
       src: P + 'poster_4_cgi.webp',
       bio: 'Character lookdev, procedural hair grooming in XGen, and Arnold subsurface shaders.',
-      tags: ['XGen Grooming', 'Subsurface Shading', 'Arnold 3D']
+      tags: ['XGen Grooming', 'Subsurface Shading', 'Arnold 3D'],
+      tagline: 'Expressive digital characters shaped by careful silhouette and grooming'
     },
     {
       creator: 'Nina Kowalski',
@@ -309,7 +361,8 @@
       cat: 'art',
       src: 'assets/editorial_cinema_still.webp',
       bio: 'Precision frame-by-frame motion control with Dragonframe and custom miniature rigs.',
-      tags: ['Dragonframe', 'Stop Motion', 'Miniature Rig']
+      tags: ['Dragonframe', 'Stop Motion', 'Miniature Rig'],
+      tagline: 'Tactile physical motion control one frame at a time'
     },
     {
       creator: 'Emil Lindqvist',
@@ -317,9 +370,11 @@
       city: 'Helsinki, FI',
       rate: '$570/day',
       cat: 'd3',
+      rateUnit: 'project',
       src: P + 'poster_4_cgi.webp',
       bio: 'Kinetic 3D typography, title sequence direction, and brand motion systems.',
-      tags: ['Cinema 4D', 'Redshift', 'Kinetic Type']
+      tags: ['Cinema 4D', 'Redshift', 'Kinetic Type'],
+      tagline: 'Kinetic typography and graphic motion with architectural structure'
     },
     {
       creator: 'Sofia Reyes',
@@ -329,7 +384,8 @@
       cat: 'film',
       src: P + 'roster_sofia_gaffer.webp',
       bio: 'Complex truss rigging, helium balloon lights, and generator truck distribution.',
-      tags: ['Truss Rigging', 'Helium Balloon', 'Master Electrician']
+      tags: ['Truss Rigging', 'Helium Balloon', 'Master Electrician'],
+      tagline: 'Shaping shadow and texture with large format lighting distribution'
     },
     {
       creator: 'Axel Berg',
@@ -339,7 +395,8 @@
       cat: 'action',
       src: P + 'roster_axel_cablecam.webp',
       bio: 'Automated 1000m high-speed winch cable-cam systems for alpine and freeride sports.',
-      tags: ['Cable Cam', 'High-Speed Winch', 'Alpine Cinema']
+      tags: ['Cable Cam', 'High-Speed Winch', 'Alpine Cinema'],
+      tagline: 'Automated high speed cable flights over remote mountain terrain'
     },
     {
       creator: 'Valerie Laurent',
@@ -349,7 +406,8 @@
       cat: 'art',
       src: P + 'roster_valerie_couture.webp',
       bio: 'Luxury jewelry and haute-couture cinema still direction for international luxury houses.',
-      tags: ['Haute Couture', 'Jewelry Macro', 'Luxury Film']
+      tags: ['Haute Couture', 'Jewelry Macro', 'Luxury Film'],
+      tagline: 'Quiet luxury and sculptural light for international couture houses'
     }
   ];
 
@@ -472,41 +530,41 @@
       headline: (c) => `${c.craft} for brand, music and narrative films`,
       about: (c) => `I light and shoot moving pictures for brands, musicians and independent filmmakers, mostly around ${c.city.split(',')[0]}. I care about a calm set, a clear shot list and images that still hold up on a big screen. I usually work with a small crew and can bring a full camera package, or slot into yours.`,
       experience: [['Director of photography', 'Regional car commercial'], ['Camera operator', 'Independent feature film'], ['DP', 'Music video series'], ['Second unit DP', 'Documentary series']],
-      credentials: [['General liability insurance', true], ['Union eligible (self-reported)', false]],
-      services: [['Half day shoot', 'Up to 5 hours on set with my camera package.', 0.6, 'per half day', 'Camera, lenses, monitor'], ['Full day shoot', 'Up to 10 hours on set. The usual choice for commercials and music videos.', 1, 'per day', 'Camera package, 1st AC on request'], ['Camera package rental', 'My camera, lenses and monitor for your own operator.', 0.45, 'per day', 'Prep and check-out included']],
-      faq: [['Do you bring your own camera?', 'Yes. My camera package is included in the day rate. Extra lenses or lighting can be added.'], ['Can you travel?', 'Yes. Travel and accommodation are added at cost for shoots outside my city.'], ['How far ahead should I book?', 'Two weeks is ideal. I can sometimes take shoots on shorter notice.']]
+      credentials: [['General liability insurance, $2M cover', 'Hiscox', 'Mar 2027', true], ['Equipment insurance, full camera package', 'Athos Insurance', 'Jan 2027', true], ['Union eligible, camera department', 'IATSE Local 600', 'Ongoing', false]],
+      services: [['Half day shoot', 'Up to 5 hours on set with my camera package.', 0.6, 'per half day', 'Camera, lenses, monitor'], ['Full day shoot', 'Up to 10 hours on set. The usual choice for commercials and music videos.', 1, 'per day', 'Camera package, 1st AC on request'], ['Camera package rental', 'My camera, lenses and monitor for your own operator.', 0.45, 'per day', 'Prep and check-out included'], ['Music video package', 'Prep call, one shoot day and a shot list built with you.', 1.25, 'per project', 'Shot list, camera package']],
+      faq: [['Do you bring your own camera?', 'Yes. My camera package is included in the day rate. Extra lenses or lighting can be added.'], ['Can you travel?', 'Yes. Travel and accommodation are added at cost for shoots outside my city.'], ['How far ahead should I book?', 'Two weeks is ideal. I can sometimes take shoots on shorter notice.'], ['Do you edit too?', 'I can deliver a rough cut, or hand the footage to your editor the same day.'], ['What do you need from me?', 'A short brief, a location and a rough budget. We build the shot list together.']]
     },
     aerial: {
       headline: (c) => `${c.craft}: aerial and FPV shots for film and brands`,
       about: (c) => `I fly cinema drones and FPV rigs for car films, tourism, real estate and events. Every flight starts with an airspace check and a safety plan. I work as a pilot with a camera operator, or fly and shoot on my own for smaller jobs.`,
       experience: [['Drone pilot', 'Tourism board campaign'], ['FPV pilot', 'Car commercial chase sequence'], ['Aerial camera operator', 'Outdoor music festival'], ['Pilot', 'Luxury real estate series']],
-      credentials: [['FAA Part 107 remote pilot', false], ['Drone liability insurance', true]],
-      services: [['Aerial shoot day', 'Cinema drone, pilot and camera operator for up to 8 hours.', 1, 'per day', 'Drone, batteries, airspace check'], ['FPV chase day', 'Fast, close FPV shots for cars, sports and action.', 1.15, 'per day', 'FPV rig, spotter'], ['Location scout flight', 'A short flight to plan shots and check airspace.', 0.35, 'per visit', 'Test footage']],
-      faq: [['Do you handle permits?', 'I check airspace and apply for any approvals needed. Some locations need extra time.'], ['What if the weather is bad?', 'We move the flight to the next good day at no extra charge.'], ['Can you fly indoors?', 'Yes, with smaller FPV drones and a safety brief.']]
+      credentials: [['FAA Part 107 remote pilot certificate', 'Federal Aviation Administration', 'Aug 2027', true], ['Drone liability insurance, $1M cover', 'SkyWatch', 'Feb 2027', true], ['LAANC airspace access', 'FAA via Aloft', 'Per flight', false]],
+      services: [['Aerial shoot day', 'Cinema drone, pilot and camera operator for up to 8 hours.', 1, 'per day', 'Drone, batteries, airspace check'], ['FPV chase day', 'Fast, close FPV shots for cars, sports and action.', 1.15, 'per day', 'FPV rig, spotter'], ['Location scout flight', 'A short flight to plan shots and check airspace.', 0.35, 'per visit', 'Test footage'], ['Real estate flight', 'Exterior stills and a short video of one property.', 0.5, 'per visit', '20 stills, 60 second video']],
+      faq: [['Do you handle permits?', 'I check airspace and apply for any approvals needed. Some locations need extra time.'], ['What if the weather is bad?', 'We move the flight to the next good day at no extra charge.'], ['Can you fly indoors?', 'Yes, with smaller FPV drones and a safety brief.'], ['Are you licensed and insured?', 'Licence and insurance details are listed above. Ask for copies before booking.'], ['How do I get the footage?', 'Same-day download link, with edited clips within a week.']]
     },
     d3: {
       headline: (c) => `${c.craft}: 3D worlds, renders and virtual production`,
       about: (c) => `I build 3D environments, product renders and real-time scenes for brands, studios and virtual production stages. I like working early in a project, turning a rough idea into frames everyone can react to before anything is shot.`,
       experience: [['Real-time artist', 'Virtual production music video'], ['3D lead', 'Product launch film'], ['Environment artist', 'Indie game trailer'], ['Lookdev artist', 'Streaming series pilot']],
-      credentials: [['Bachelor of Fine Arts, 3D animation', false]],
-      services: [['Concept frames', 'Three still frames to set the look before production.', 0.9, 'per project', '2 rounds of changes'], ['Environment build', 'A finished real-time environment ready for camera.', 4, 'per project', 'Source files on request'], ['Stage day', 'On-set support for a virtual production day.', 1, 'per day', 'Scene tweaks on the day']],
-      faq: [['Which software do you use?', 'Mostly Unreal Engine and Houdini. I can match your studio pipeline.'], ['Do I get the source files?', 'Yes, if agreed up front. It is listed in the quote.'], ['Can you work remotely?', 'Yes. Most of my 3D work is remote with regular check-ins.']]
+      credentials: [['Bachelor of Fine Arts, 3D animation', 'School of Visual Arts', 'Completed 2016', false], ['Unreal Authorized Instructor', 'Epic Games', 'Dec 2026', true], ['Professional indemnity insurance', 'Hiscox', 'Apr 2027', true]],
+      services: [['Concept frames', 'Three still frames to set the look before production.', 0.9, 'per project', '2 rounds of changes'], ['Environment build', 'A finished real-time environment ready for camera.', 4, 'per project', 'Source files on request'], ['Look development pass', 'Look development and shader setup for your real-time assets.', 1.2, 'per project', 'Shader setup, lookdev frames'], ['Product render set', 'Six photoreal renders of one product from your CAD or model.', 1.5, 'per project', '6 renders, 2 rounds of changes']],
+      faq: [['Which software do you use?', 'Mostly Unreal Engine and Houdini. I can match your studio pipeline.'], ['Do I get the source files?', 'Yes, if agreed up front. It is listed in the quote.'], ['Can you work remotely?', 'Yes. Most of my 3D work is remote with regular check-ins.'], ['How many rounds of changes?', 'Two rounds are included. More can be added at an agreed price.'], ['How long does a project take?', 'Usually one to three weeks, depending on size. The timeline is agreed before starting.']]
     },
     art: {
       headline: (c) => `${c.craft} for fashion, beauty and editorial`,
       about: (c) => `I shoot and direct fashion, beauty and product stories with a strong sense of light and shape. I plan every set with a mood board and a shot list, and I am happy to work with your stylist or bring a team I trust.`,
       experience: [['Photographer', 'Fashion label lookbook'], ['Creative director', 'Jewellery campaign'], ['Photographer', 'Magazine editorial story'], ['Lighting director', 'Beauty product launch']],
-      credentials: [['Professional indemnity insurance', true]],
-      services: [['Editorial shoot day', 'A full day in the studio or on location.', 1, 'per day', 'Lighting, 20 retouched images'], ['Lookbook', 'Up to 25 looks shot on a clean backdrop.', 1.6, 'per project', 'Retouching included'], ['Retouching', 'High-end retouching for your existing images.', 0.08, 'per image', 'Skin, color, clean-up']],
-      faq: [['Do you provide a stylist?', 'I can bring a stylist and hair and makeup team, priced separately.'], ['How soon do I get the images?', 'Edited images arrive within 7 to 10 working days.'], ['Can I use the images for ads?', 'Usage is agreed in the quote. Advertising use may cost more.']]
+      credentials: [['Professional indemnity insurance, $1M cover', 'Hiscox', 'May 2027', true], ['General liability insurance for studio and location', 'Next Insurance', 'Feb 2027', true], ['Model release and usage contracts', 'Own template', 'Every shoot', false]],
+      services: [['Editorial shoot day', 'A full day in the studio or on location.', 1, 'per day', 'Lighting, 20 retouched images'], ['Lookbook', 'Up to 25 looks shot on a clean backdrop.', 1.6, 'per project', 'Retouching included'], ['Retouching', 'High-end retouching for your existing images.', 0.08, 'per image', 'Skin, color, clean-up'], ['Portrait session', 'Two hours of portraits for press, profiles or a team page.', 0.45, 'per session', '10 retouched images']],
+      faq: [['Do you provide a stylist?', 'I can bring a stylist and hair and makeup team, priced separately.'], ['How soon do I get the images?', 'Edited images arrive within 7 to 10 working days.'], ['Can I use the images for ads?', 'Usage is agreed in the quote. Advertising use may cost more.'], ['Can we shoot at our location?', 'Yes. I bring portable lighting and scout the space first if needed.'], ['Do you shoot on film?', 'On request. Film and scanning are priced separately.']]
     },
     action: {
       headline: (c) => `${c.craft}: moving camera rigs for action and cars`,
       about: (c) => `I run moving camera rigs for car films, sports and action scenes. Safety comes first on every shot, with a briefing before we roll. I bring a tested rig and a small team that has worked together for years.`,
       experience: [['Rig operator', 'Car commercial on closed roads'], ['Tracking vehicle driver', 'Sports documentary'], ['Cable cam operator', 'Mountain bike event film'], ['Rig technician', 'Action feature second unit']],
-      credentials: [['Advanced driving course (self-reported)', false], ['Equipment liability insurance', true]],
-      services: [['Rig day', 'Rig, operator and tech for up to 10 hours.', 1, 'per day', 'Rig, safety brief'], ['Prep and test day', 'Build and test the rig before the shoot.', 0.5, 'per day', 'Test footage'], ['Rig consult', 'A call to plan shots and pick the right rig.', 0.2, 'per call', 'Written shot plan']],
-      faq: [['Is the rig road-legal?', 'Yes, for closed or permitted roads. We plan the route together first.'], ['Do you bring a driver?', 'Yes, a trained driver is included on tracking vehicle days.'], ['What size crew do you need?', 'Usually two or three people for the rig, depending on the shot.']]
+      credentials: [['Equipment liability insurance, $2M cover', 'Athos Insurance', 'Jan 2027', true], ['Precision driving course', 'Bondurant Racing School', 'Completed 2021', false], ['Rigging and fall protection training', 'OSHA 30', 'Jun 2027', false]],
+      services: [['Rig day', 'Rig, operator and tech for up to 10 hours.', 1, 'per day', 'Rig, safety brief'], ['Prep and test day', 'Build and test the rig before the shoot.', 0.5, 'per day', 'Test footage'], ['Rig consult', 'A call to plan shots and pick the right rig.', 0.2, 'per call', 'Written shot plan'], ['Half day rig', 'Rig and operator for up to 5 hours.', 0.6, 'per half day', 'Rig, safety brief']],
+      faq: [['Is the rig road-legal?', 'Yes, for closed or permitted roads. We plan the route together first.'], ['Do you bring a driver?', 'Yes, a trained driver is included on tracking vehicle days.'], ['What size crew do you need?', 'Usually two or three people for the rig, depending on the shot.'], ['Can you work with our camera team?', 'Yes. I run the rig and work alongside your DP and camera crew.'], ['Is there a safety plan?', 'Every rig day starts with a written plan and a safety brief for the crew.']]
     }
   };
   const LANGS = [['English'], ['English', 'Spanish'], ['English', 'French'], ['English', 'Japanese'], ['English', 'German'], ['English', 'Italian']];
@@ -518,30 +576,39 @@
   function sampleProfile(c, i) {
     const t = PROFILE[c.cat] || PROFILE.film;
     const rate = parseInt(String(c.rate).replace(/[^0-9]/g, ''), 10) || 500;
-    const years = 4 + ((i * 3) % 10);
+    const years = c.years != null ? c.years : (4 + ((i * 3) % 10));
     const nowYear = 2026;
+    const bioText = c.bio ? c.bio.replace(/\b\d+\s+years\b/, `${years} years`) : '';
     return {
       sample: true,
       headline: t.headline(c),
-      about: [c.bio, t.about(c)],
+      tagline: c.tagline || '',
+      about: bioText ? [bioText, t.about(c)] : [t.about(c)],
       years,
       languages: LANGS[i % LANGS.length],
       travel: TRAVEL[i % TRAVEL.length],
       remote: c.cat === 'd3' || i % 3 === 0,
+      founding: c.founding || false,
+      approved: c.approved || false,
+      studioName: c.studioName || '',
+      rateUnit: c.rateUnit || 'day',
+      availability: c.availability || '',
+      availableFrom: c.availableFrom || '',
+      links: c.links || {},
       experience: t.experience.map((e, k) => ({ role: e[0], project: e[1], year: nowYear - 1 - k * 2 - (i % 2) })),
-      credentials: t.credentials.map((x) => ({ name: x[0], checked: x[1] })),
-      services: t.services.map((x) => ({ title: x[0], desc: x[1], price: Math.round(rate * x[2] / 5) * 5, unit: x[3], includes: x[4] })),
+      credentials: t.credentials.map((x) => ({ name: x[0], issuer: x[1], until: x[2], checked: x[3] })),
+      services: t.services.map((x) => ({ title: x[0], desc: x[1], price: Math.round(rate * x[2] / 5) * 5, unit: (c.rateUnit === 'project' ? 'per project' : x[3]), includes: x[4] })),
       how: { payments: PAY[i % PAY.length], deposit: i % 2 ? '30% to confirm the date' : '50% to confirm the date', cancel: i % 2 ? 'Free up to 7 days before' : 'Free up to 14 days before', notice: NOTICE[i % NOTICE.length], availability: AVAIL[i % AVAIL.length] },
       faq: t.faq.map((x) => ({ q: x[0], a: x[1] }))
     };
   }
 
   const TRUST_STATS = [
-    { completedProjects: 38, responseTime: '< 1 hr', rating: 4.98, reviewCount: 26, onTimeRate: 100 },
-    { completedProjects: 45, responseTime: '< 30 min', rating: 5.0, reviewCount: 31, onTimeRate: 100 },
-    { completedProjects: 29, responseTime: '< 2 hrs', rating: 4.95, reviewCount: 19, onTimeRate: 98 },
-    { completedProjects: 52, responseTime: '< 45 min', rating: 4.99, reviewCount: 42, onTimeRate: 100 },
-    { completedProjects: 34, responseTime: '< 1 hr', rating: 4.97, reviewCount: 24, onTimeRate: 100 }
+    { rating: 5.0, reviewsCount: 28, billed: '$240k+ billed', sla: 'Replies under 1h', direct: true },
+    { rating: 4.9, reviewsCount: 34, billed: '$195k+ billed', sla: 'Replies under 1h', direct: true },
+    { rating: 5.0, reviewsCount: 22, billed: '$310k+ billed', sla: 'Replies under 2h', direct: true },
+    { rating: 4.9, reviewsCount: 19, billed: '$145k+ billed', sla: 'Replies under 1h', direct: true },
+    { rating: 4.8, reviewsCount: 16, billed: '$92k+ billed',  sla: 'Replies under 3h', direct: true }
   ];
 
   window.NEXUS_CREATORS = RAW.map((c, i) => {

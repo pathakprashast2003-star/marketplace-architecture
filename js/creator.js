@@ -13,6 +13,80 @@
   const CAT = { film: 'Film & Video', aerial: 'Drone', d3: '3D & Virtual', art: 'Art & Photo', action: 'Action & Rigs' };
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ── Rate unit helpers ── */
+  function rateUnitLabel(unit, compact) {
+    const u = unit || 'day';
+    if (u === 'project') return ' per project';
+    if (u === 'hour') return compact ? '/hour' : ' / hour';
+    if (u === 'class') return compact ? '/class' : ' / class';
+    return compact ? '/day' : ' / day';
+  }
+
+  /* ── Availability pill ── */
+  function availabilityPill(status, from) {
+    if (!status) return '';
+    if (status === 'open') {
+      return '<p class="cpx-avail cpx-avail--open"><span class="cpx-avail-dot"></span>Taking bookings</p>';
+    }
+    if (status === 'booked_until') {
+      const label = from ? 'Booked until ' + from : 'Currently booked';
+      return `<p class="cpx-avail cpx-avail--amber"><span class="cpx-avail-dot"></span>${esc(label)}</p>`;
+    }
+    if (status === 'not_available') {
+      return `<p class="cpx-avail cpx-avail--grey"><span class="cpx-avail-dot"></span>Not taking bookings</p>`;
+    }
+    return '';
+  }
+
+  /* ── Combined status line (Approved by Nexus · Availability) ── */
+  function creatorMetaLine(approved, availability, from) {
+    const items = [];
+    if (approved) {
+      items.push('<span class="cpx-status-item cpx-status--approved"><span class="cpx-status-dot"></span>Approved by Nexus</span>');
+    }
+    if (availability === 'open') {
+      items.push('<span class="cpx-status-item cpx-status--open"><span class="cpx-status-dot"></span>Taking bookings</span>');
+    } else if (availability === 'booked_until') {
+      const label = from ? 'Booked until ' + from : 'Currently booked';
+      items.push(`<span class="cpx-status-item cpx-status--amber"><span class="cpx-status-dot"></span>${esc(label)}</span>`);
+    } else if (availability === 'not_available') {
+      items.push('<span class="cpx-status-item cpx-status--grey"><span class="cpx-status-dot"></span>Not taking bookings</span>');
+    }
+    if (!items.length) return '';
+    return `<div class="cpx-status-line">${items.join(' <span class="cpx-status-sep" aria-hidden="true">·</span> ')}</div>`;
+  }
+
+  /* ── Links row ── */
+  function kitType(g) {
+    const t = g.toLowerCase();
+    if (/unreal|houdini|resolve|capture one|aces|disguise/.test(t)) return 'Software';
+    if (/rtx|server|processor/.test(t)) return 'Hardware';
+    if (/led|stage/.test(t)) return 'LED stage';
+    if (/tracker|optitrack/.test(t)) return 'Tracking';
+    if (/inspire|alta|fpv|siccario/.test(t)) return 'Drone';
+    if (/goggles|crossfire|connex|teradek|bolt|link/.test(t)) return 'Wireless video';
+    if (/smallhd|monitor/.test(t)) return 'Monitor';
+    if (/fiz|hi-5|preston|wheels|remote/.test(t)) return 'Remote control';
+    if (/prime|cooke|atlas|angenieux|mm|summarit|digaron|hc 2|lens|optimo/.test(t)) return 'Lenses';
+    if (/profoto|broncolor|briese|k5600|para|light/.test(t)) return 'Lighting';
+    if (/steadicam|ronin|movi|tilta|oconnor|gimbal|stabili|shotover|flowcine|arm|motocrane|winch|cable|dactylcam|vaxis|c-stand|grid|cage/.test(t)) return 'Support and rigging';
+    return 'Camera';
+  }
+  const LINK_ICONS = {
+    instagram: '<svg viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="igG" cx="30%" cy="107%" r="150%"><stop offset="0" stop-color="#FDF497"/><stop offset=".05" stop-color="#FDF497"/><stop offset=".45" stop-color="#FD5949"/><stop offset=".6" stop-color="#D6249F"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" fill="url(#igG)"/><rect x="5.5" y="5.5" width="13" height="13" rx="4" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.2" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.3" cy="7.7" r="1" fill="#fff"/></svg>',
+    vimeo: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="#1AB7EA"/><path fill="#fff" d="M18.6 8.6c-.06 1.3-.97 3.08-2.73 5.35-1.82 2.36-3.36 3.55-4.62 3.55-.78 0-1.44-.72-1.98-2.16l-1.08-3.96c-.4-1.44-.83-2.16-1.29-2.16-.1 0-.45.21-1.05.63l-.63-.81 1.95-1.74c.88-.76 1.54-1.16 1.98-1.2 1.04-.1 1.68.61 1.92 2.14.26 1.65.44 2.67.54 3.07.3 1.36.63 2.04.99 2.04.28 0 .7-.44 1.26-1.32.56-.88.86-1.55.9-2.01.08-.76-.22-1.14-.9-1.14-.32 0-.65.07-.99.22.66-2.15 1.91-3.2 3.77-3.14 1.38.04 2.03.93 1.96 2.68z"/></svg>',
+    youtube: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="5" fill="#FF0000"/><path fill="#fff" d="M10 8.6v6.8l5.8-3.4z"/></svg>',
+    website: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="#3B54EE"/><g fill="none" stroke="#fff" stroke-width="1.6"><circle cx="12" cy="12" r="6.5"/><path d="M5.5 12h13M12 5.5c1.8 1.9 2.7 4 2.7 6.5s-.9 4.6-2.7 6.5c-1.8-1.9-2.7-4-2.7-6.5s.9-4.6 2.7-6.5z"/></g></svg>'
+  };
+  const LINK_LABELS = { instagram: 'Instagram', vimeo: 'Vimeo', youtube: 'YouTube', website: 'Website' };
+  function linksRow(links) {
+    if (!links) return '';
+    const items = Object.keys(links).filter((k) => links[k] && LINK_ICONS[k]);
+    if (!items.length) return '';
+    return `<div class="cpx-links" aria-label="Social and web links">${items.map((k) => `<a class="cpx-link-item" href="${esc(links[k])}" target="_blank" rel="noopener nofollow" aria-label="${esc(LINK_LABELS[k])}" title="${esc(LINK_LABELS[k])}">${LINK_ICONS[k]}</a>`).join('')}</div>`;
+  }
+
+
   const fromPath = (location.pathname.match(/^\/c\/([^/?#]+)/) || [])[1];
   const slug = decodeURIComponent(fromPath || new URLSearchParams(location.search).get('slug') || '').toLowerCase();
   const c = ALL.find((x) => x.slug === slug);
@@ -99,6 +173,13 @@
 
   const sampleNote = p.sample ? 'Sample' : '';
 
+  const isNotAvail = p.availability === 'not_available';
+  const isBookedUntil = p.availability === 'booked_until';
+  const reqBtnText = isNotAvail
+    ? 'Ask about future dates'
+    : (isBookedUntil ? `Request a date after ${esc(p.availableFrom || 'Jan 10')}` : 'Send request');
+  const reqBtnGhost = isNotAvail ? ' is-ghost' : '';
+
   main.innerHTML = `
     <nav class="cpx-crumbs" aria-label="Breadcrumb">
       <a href="/explore">Explore</a><span>›</span>
@@ -113,16 +194,25 @@
         <div class="cpx-who">
           <span class="cpx-avatar"><img src="${esc(abs(c.src))}" alt=""></span>
           <div>
-            <p class="cpx-eyebrow">${esc(c.craft)}</p>
+            <p class="cpx-eyebrow">${esc(CAT[c.cat] || c.craft)}<span class="cpx-sr"> · ${esc(c.craft)}</span></p>
+            ${p.studioName ? `<p class="cpx-studio">${esc(p.studioName)}</p>` : ''}
             <p class="cpx-where">${esc(c.city)}${p.sample ? ' · <span class="cpx-sample">Sample profile</span>' : ''}</p>
           </div>
         </div>
-        <h1 class="cpx-title">${esc(c.creator)}</h1>
+        <div class="cpx-title-wrap">
+          <h1 class="cpx-title">${esc(c.creator)}</h1>
+          ${p.founding ? '<span class="cpx-founding-badge">Founding member</span>' : ''}
+        </div>
         <p class="cpx-headline">${esc(p.headline || c.bio)}</p>
         <ul class="cpx-facts cpx-facts-grid">${facts.map((f, i) => `<li class="cpx-fact-cell" style="--i: ${i}"><span class="cpx-fact-icon">${f[0]}</span><span class="cpx-fact-divider"></span><span class="cpx-fact-label">${esc(f[1])}</span></li>`).join('')}</ul>
+        ${(p.approved || p.availability || (p.links && Object.keys(p.links).length)) ? `
+        <div class="cpx-meta-bar">
+          ${creatorMetaLine(p.approved, p.availability, p.availableFrom)}
+          ${linksRow(p.links)}
+        </div>` : ''}
         <div class="cpx-hero-cta">
-          <p class="cpx-hero-rate"><b>${esc(money(rate))}</b><span>/ day</span></p>
-          <button type="button" class="cpx-btn" data-request>Send request</button>
+          <p class="cpx-hero-rate"><b>${esc(money(rate))}</b><span>${rateUnitLabel(p.rateUnit)}</span></p>
+          <button type="button" class="cpx-btn${reqBtnGhost}" data-request>${reqBtnText}</button>
           <button type="button" class="cpx-icon-btn" data-save aria-label="Save" aria-pressed="${isSaved()}">${ic.save}</button>
         </div>
       </div>
@@ -138,8 +228,8 @@
           }[c.cat] || [];
           return `
           <div class="cpx-about">
-            <blockquote class="cpx-pull">${esc(parts[0])}</blockquote>
-            ${parts.slice(1).map((t) => `<p>${esc(t)}</p>`).join('')}
+            ${p.tagline ? `<blockquote class="cpx-pull">${esc(p.tagline)}</blockquote>` : ''}
+            ${parts.map((t) => `<p>${esc(t)}</p>`).join('')}
             <div class="cpx-about-grid">
               ${(c.tags || []).length ? `<div><p class="cpx-about-k">Specialties</p><div class="cpx-about-tags">${c.tags.map((t) => `<span>${esc(t)}</span>`).join('')}</div></div>` : ''}
               ${WORKS_WITH.length ? `<div><p class="cpx-about-k">Usually works with</p><div class="cpx-about-tags">${WORKS_WITH.map((t) => `<span>${esc(t)}</span>`).join('')}</div></div>` : ''}
@@ -180,20 +270,35 @@
           </div>` : '', 'Self-reported')}
 
         ${sec('credentials', 'Licences & insurance', (p.credentials || []).length ? `
-          <ul class="cpx-creds">${p.credentials.map((x) => `
-            <li><span class="cpx-cred-n">${esc(x.name)}</span><span class="cpx-cred-b ${x.checked ? 'is-ok' : ''}">${x.checked ? ic.check + 'Checked by Nexus' : 'Self-reported'}</span></li>`).join('')}
-          </ul>` : '', sampleNote)}
+          <div class="cpx-table-wrap"><table class="cpx-table cpx-cred-table">
+            <thead><tr><th scope="col">Licence or insurance</th><th scope="col">Issued by</th><th scope="col">Valid until</th><th scope="col">Status</th></tr></thead>
+            <tbody>${p.credentials.map((x) => `
+              <tr><th scope="row" class="cpx-cred-n">${esc(x.name.replace(/\s*\(self-reported\)/i, ''))}</th><td>${esc(x.issuer || 'Not added')}</td><td>${esc(x.until || 'Not added')}</td><td class="cpx-cred-b ${x.checked ? 'is-ok' : ''}">${x.checked ? ic.check + 'Document checked by Nexus' : 'Not checked yet'}</td></tr>`).join('')}
+            </tbody></table>
+            <p class="cpx-table-foot">Entered and confirmed by ${esc(first)}. Nexus checks the documents ${esc(first)} uploads. Ask for copies before you book.</p></div>` : '', sampleNote)}
 
-        ${sec('kit', 'Kit', gear.length ? `<div class="cpx-kit cpx-kit-grid">${gear.map((g) => `<span class="cpx-kit-cell">${esc(g)}</span>`).join('')}</div>` : '', 'Self-reported')}
+        ${sec('kit', 'Kit', gear.length ? `
+          <div class="cpx-table-wrap"><table class="cpx-table cpx-kit-table cpx-kit cpx-kit-grid">
+            <thead><tr><th scope="col">Item</th><th scope="col">Type</th><th scope="col">In the price?</th></tr></thead>
+            <tbody>${gear.map((g, gi) => `<tr><th scope="row" class="cpx-kit-cell">${esc(g)}</th><td>${esc(kitType(g))}</td><td class="${gi < 2 ? 'is-in' : ''}">${gi < 2 ? 'Included' : 'On request, extra cost'}</td></tr>`).join('')}</tbody></table>
+            <p class="cpx-table-foot">Kit list entered and confirmed by ${esc(first)}. All items are owned by ${esc(first)}.</p></div>` : '', 'Self-reported')}
 
         ${sec('how', 'How ' + esc(first) + ' works', p.how ? `
-          <dl class="cpx-how">
-            <div><dt>Payment</dt><dd>${esc((p.how.payments || []).join(', '))}. You pay ${esc(first)} directly.</dd></div>
-            <div><dt>Deposit</dt><dd>${esc(p.how.deposit)}</dd></div>
-            <div><dt>Cancellation</dt><dd>${esc(p.how.cancel)}</dd></div>
-            <div><dt>Book ahead</dt><dd>At least ${esc(p.how.notice)}</dd></div>
-            <div><dt>Usually available</dt><dd>${esc(p.how.availability)}</dd></div>
-          </dl>` : '', sampleNote)}
+          <div class="cpx-table-wrap"><table class="cpx-table cpx-how-table"><tbody>
+            <tr><th scope="row">Payment</th><td>${esc((p.how.payments || []).join(' or ').toLowerCase().replace(/^./, (m) => m.toUpperCase()))}. You pay ${esc(first)} directly.</td></tr>
+            <tr><th scope="row">Deposit</th><td>${esc(p.how.deposit)}</td></tr>
+            <tr><th scope="row">Cancellation</th><td>${esc(p.how.cancel)}</td></tr>
+            <tr><th scope="row">Book ahead</th><td>At least ${esc(p.how.notice)}</td></tr>
+            <tr><th scope="row">Usually available</th><td>${esc(p.how.availability)}</td></tr>
+          </tbody></table></div>` : '', sampleNote)}
+
+        ${sec('booking', 'How booking works', `
+          <ol class="cpx-steps">
+            <li><b>1</b><h3>Send a request</h3><p>Tell ${esc(first)} the date, place and what you need. It is free and needs no account.</p></li>
+            <li><b>2</b><h3>Get a reply</h3><p>${esc(first)} answers by email with questions or a quote.</p></li>
+            <li><b>3</b><h3>Agree the details</h3><p>Settle the scope, price and deposit directly with ${esc(first)}.</p></li>
+            <li><b>4</b><h3>Pay ${esc(first)} directly</h3><p>Nexus takes no commission. Your money goes straight to ${esc(first)}.</p></li>
+          </ol>`)}
 
         ${sec('faq', 'Questions', (p.faq || []).length ? `
           <div class="cpx-faq">${p.faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}</div>` : '')}
@@ -211,18 +316,23 @@
         <button type="button" class="cpx-play" id="cpxPlay" aria-label="Pause reel"><span class="cpx-play-ic is-pause"></span></button>` : ''}
         <span class="cpx-cover-tag">${c.reel ? 'Reel' : 'Photo'}</span>
       </div>
-        <div class="cpx-card-wrap">
-        <div class="cpx-card">
-          <p class="cpx-card-rate"><b>${esc(money(rate))}</b><span> / day</span></p>
-          <p class="cpx-card-from">Starting price. Services below.</p>
-          <button type="button" class="cpx-btn cpx-btn-full" data-request>Send request</button>
+        <div class="cpx-card cpx-bcard">
+          <div class="cpx-bcard-top">
+            <div>
+              <p class="cpx-bcard-k">Starting price</p>
+              <p class="cpx-card-rate"><b>${esc(money(rate))}</b><span>${rateUnitLabel(p.rateUnit)}</span></p>
+            </div>
+            ${availabilityPill(p.availability, p.availableFrom)}
+          </div>
+          ${p.how ? `<dl class="cpx-bcard-grid">
+            <div><dt>Book ahead</dt><dd>${esc(p.how.notice)}</dd></div>
+            <div><dt>Deposit</dt><dd>${esc(String(p.how.deposit).replace(/ to confirm the date/i, ''))}</dd></div>
+            <div><dt>Cancellation</dt><dd>${esc(String(p.how.cancel).replace(/^Free up to /i, 'Free, '))}</dd></div>
+            <div><dt>Commission</dt><dd>0%, pay ${esc(first)}</dd></div>
+          </dl>` : ''}
+          <button type="button" class="cpx-btn cpx-btn-full${reqBtnGhost}" data-request>${reqBtnText}</button>
           <button type="button" class="cpx-btn-ghost" id="cpxSave" data-save aria-pressed="${isSaved()}">${ic.save}<span>${isSaved() ? 'Saved' : 'Save'}</span></button>
-          <ul class="cpx-card-list">
-            <li>${ic.check}<span>0% commission. Pay ${esc(first)} directly.</span></li>
-            <li>${ic.check}<span>Free to ask. No account needed.</span></li>
-            ${p.how ? `<li>${ic.check}<span>Book at least ${esc(p.how.notice)} ahead</span></li>` : ''}
-          </ul>
-        </div>
+          <p class="cpx-bcard-note">Free to ask. No account needed.</p>
         </div>
       </aside>
     </div>
@@ -242,8 +352,8 @@
 
     <!-- phone: rate + request in reach -->
     <div class="cpx-dock">
-      <p><b>${esc(money(rate))}</b><span>/day</span></p>
-      <button type="button" class="cpx-btn" data-request>Send request</button>
+      <p><b>${esc(money(rate))}</b><span>${rateUnitLabel(p.rateUnit, true)}</span></p>
+      <button type="button" class="cpx-btn${reqBtnGhost}" data-request>${reqBtnText}</button>
     </div>
 
     <!-- lightbox -->
