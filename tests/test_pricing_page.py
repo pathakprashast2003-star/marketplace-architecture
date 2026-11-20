@@ -11,36 +11,31 @@ def test_pricing_page_render_and_calculator():
         
         # 1. Load Pricing Page
         page.goto("http://localhost:3000/pricing", wait_until="networkidle")
-        assert "Pricing & Membership" in page.title()
-        assert page.locator(".pr-title").is_visible()
-        assert "Zero commission" in page.locator(".pr-title").inner_text()
+        assert "Pricing" in page.title()
+        assert page.locator(".ct-title").is_visible()
+        assert "One platform. Different economics." in page.locator(".ct-title").inner_text()
         
-        # 2. Check Interactive Calculator Initial State
-        billings = page.locator("#calcBillingsDisplay").inner_text().strip()
-        upwork_cut = page.locator("#calcUpworkCut").inner_text().strip()
-        savings = page.locator("#calcNetSavings").inner_text().strip()
-        assert billings == "$100,000"
-        assert upwork_cut == "-$20,000"
-        assert savings == "+$19,412"
+        # 2. Check Interactive Calculator Initial State ($5k default)
+        saved_initial = page.locator("#ctCalcSaved").inner_text().strip()
+        assert saved_initial == "+$1,250"
         
-        # 3. Test Slider Interaction
-        slider = page.locator("#calcSlider")
-        slider.fill("200000")
-        slider.dispatch_event("input")
+        # 3. Test Budget Pill Interaction ($15k)
+        pill_15k = page.locator('.ct-calc-pill[data-budget="15000"]')
+        assert pill_15k.is_visible()
+        pill_15k.click()
         page.wait_for_timeout(100)
         
-        billings_new = page.locator("#calcBillingsDisplay").inner_text().strip()
-        upwork_cut_new = page.locator("#calcUpworkCut").inner_text().strip()
-        savings_new = page.locator("#calcNetSavings").inner_text().strip()
-        assert billings_new == "$200,000"
-        assert upwork_cut_new == "-$40,000"
-        assert savings_new == "+$39,412"
+        saved_new = page.locator("#ctCalcSaved").inner_text().strip()
+        assert saved_new == "+$3,750"
+        assert "$15,000" in page.locator("[data-calc-budget]").first.inner_text()
         
-        # 4. Check 3 Pricing Tier Cards
-        cards = page.locator(".pr-card")
+        # 4. Check 3 Comparison Cards (Freelance, Nexus Hero, Agency)
+        cards = page.locator(".ct-card")
         assert cards.count() == 3
-        assert page.locator(".pr-card-featured").is_visible()
-        assert "Founding Member" in page.locator(".pr-card-featured").inner_text()
+        hero_card = page.locator(".ct-card.is-hero")
+        assert hero_card.is_visible()
+        assert "Nexus" in hero_card.inner_text()
+        assert "0% Commission" in hero_card.inner_text()
         
         # 5. Check Interactive FAQ
         faq_items = page.locator(".pr-faq-item")

@@ -4,15 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Pricing & Membership · Nexus — 0% Commission Creator Marketplace</title>
-  <meta name="description" content="Flat $49/mo membership with 0% commission. Commercial DPs, lookdev artists, and drone pilots keep 100% of client project billings. Claim your 90-day Founding Member pass.">
+  <meta name="description" content="One platform. Different economics. See what you keep on Nexus compared with freelance marketplaces and agencies. Flat membership, 0% commission.">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%233B54EE' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&family=JetBrains+Mono:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="/assets/react-footer/marketplace-architecture.css?v=18">
   <link rel="stylesheet" href="/css/explore.css?v=20">
-  <link rel="stylesheet" href="/css/pricing.css?v=1">
+  <link rel="stylesheet" href="/css/fees.css?v=live28">
+  <link rel="stylesheet" href="/css/pricing.css?v=2">
 </head>
 <body class="pr-body">
   <header>
@@ -44,146 +45,316 @@
   </header>
 
   <main class="pr-main">
-    <!-- HERO -->
-    <section class="pr-hero">
-      <div class="pr-hero-badge">
-        <span class="pr-hero-badge-dot"></span>
+    <!-- TOP FOUNDING BADGE -->
+    <div style="text-align: center; margin-top: 36px; margin-bottom: -16px;">
+      <div class="pr-hero-badge" style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(59, 84, 238, 0.08); border: 1px solid rgba(59, 84, 238, 0.18); border-radius: 999px; font-family: var(--font-mono, monospace); font-size: 11.5px; font-weight: 700; color: #3B54EE; letter-spacing: 0.08em; text-transform: uppercase;">
+        <span class="pr-hero-badge-dot" style="width: 7px; height: 7px; border-radius: 50%; background: #3B54EE; box-shadow: 0 0 8px #3B54EE;"></span>
         <span>FOUNDING PASS • 42 / 100 SPOTS CLAIMED</span>
       </div>
-      <h1 class="pr-title">Zero commission.<br>Keep 100% of what you earn.</h1>
-      <p class="pr-sub">Nexus is a zero-escrow directory built for independent directors of photography, lookdev artists, drone pilots, and virtual production studios. Chat directly, invoice directly, and never surrender a percentage of your day rate.</p>
-      <div class="pr-hero-actions">
-        <a href="#tiers" class="pr-btn-primary">View Membership Passes</a>
-        <a href="#calculator" class="pr-btn-secondary">Calculate Your Savings ↓</a>
-      </div>
-    </section>
+    </div>
 
-    <!-- SAVINGS CALCULATOR -->
-    <section class="pr-calc-sec" id="calculator">
-      <div class="pr-calc-card">
-        <div class="pr-calc-head">
-          <span class="pr-kicker">Interactive Commission Ledger</span>
-          <h2 class="pr-calc-title">How much does 20% commission cost you?</h2>
-          <p class="pr-calc-desc">Slide to your estimated annual billings to see what you keep with Nexus vs. platforms like Upwork or traditional agencies.</p>
+    <!-- LANDING PAGE FEES SECTION (#fees) -->
+    <section class="nx-sec" id="fees" style="padding-top: 32px;">
+      <div class="ct-stage-container">
+        <div class="ct-deck-head nx-reveal">
+          <h1 class="ct-title">
+            One platform. Different <span class="nx-deck-accent">economics.</span>
+          </h1>
+          <p class="ct-sub">
+            See what you keep on Nexus compared with marketplaces and agencies.
+          </p>
         </div>
 
-        <div class="pr-slider-box">
-          <div class="pr-slider-readout">
-            <span class="pr-slider-label">Annual Client Billings</span>
-            <span class="pr-slider-value" id="calcBillingsDisplay">$100,000</span>
+        <div class="ct-calc-bar nx-reveal" role="region" aria-label="Job budget calculator">
+          <div class="ct-calc-left">
+            <span class="ct-calc-label">Est. Job Budget</span>
+            <div class="ct-calc-pills" id="ctCalcPills" role="group" aria-label="Select a sample job budget">
+              <button type="button" class="ct-calc-pill" data-budget="1000">$1k</button>
+              <button type="button" class="ct-calc-pill is-active" data-budget="5000">$5k</button>
+              <button type="button" class="ct-calc-pill" data-budget="15000">$15k</button>
+              <button type="button" class="ct-calc-pill" data-budget="50000">$50k</button>
+            </div>
           </div>
-          <input type="range" id="calcSlider" min="20000" max="300000" step="5000" value="100000" aria-label="Annual client billings slider" class="pr-range">
-          <div class="pr-slider-ticks">
-            <span>$20k</span>
-            <span>$100k</span>
-            <span>$200k</span>
-            <span>$300k+</span>
-          </div>
-        </div>
-
-        <div class="pr-calc-grid">
-          <div class="pr-calc-col pr-calc-col-bad">
-            <span class="pr-col-tag">Traditional Freelance Platforms</span>
-            <div class="pr-col-amount" id="calcUpworkCut">-$20,000</div>
-            <p class="pr-col-note">20% commission fee taken out of your pocket every single year.</p>
-            <ul class="pr-col-list">
-              <li>14-day payment holding period</li>
-              <li>Filtered client messaging</li>
-              <li>Platform owns your client relationship</li>
-            </ul>
-          </div>
-
-          <div class="pr-calc-col pr-calc-col-good">
-            <div class="pr-badge-pill">Nexus Zero-Escrow Directory</div>
-            <div class="pr-col-amount pr-col-savings" id="calcNetSavings">+$19,412</div>
-            <p class="pr-col-note">Net dollars retained in your bank account every single year.</p>
-            <ul class="pr-col-list">
-              <li>Flat $49/mo membership ($588/yr)</li>
-              <li>Free for your first 90 days ($0 today)</li>
-              <li>100% direct client payments via your invoices</li>
-            </ul>
+          <div class="ct-calc-savings">
+            <span>You keep up to</span>
+            <strong id="ctCalcSaved">+$1,250</strong>
+            <span>more per job on Nexus</span>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- PRICING TIERS -->
-    <section class="pr-tiers-sec" id="tiers">
-      <div class="pr-sec-header">
-        <span class="pr-kicker">Fair-Market Pricing</span>
-        <h2 class="pr-h2">Transparent passes. Zero surprises.</h2>
-        <p class="pr-sec-sub">Clients browse and inquire 100% free. Creators pay a simple, flat monthly subscription to belong to a curated atelier.</p>
-      </div>
+        <div class="ct-matrix-wrapper nx-reveal">
+          <div class="ct-matrix-grid">
+            <!-- FREELANCE CARD -->
+            <div class="ct-card is-freelance">
+              <div class="ct-card-head">
+                <div class="ct-card-artwork">
+                  <img src="assets/ai_pricing_freelance_trans.webp?v=4" loading="lazy" decoding="async" alt="Freelance Platforms Illustration"
+                    class="ct-art-img" loading="eager" />
+                </div>
+                <h3 class="ct-card-name">Freelance Marketplaces</h3>
+                <div class="ct-card-sub">Fees on every job</div>
+                <div class="ct-card-pill"><span><span class="nx-count" data-count-from="0" data-count-to="20"
+                      data-count-suffix="%">20%</span> fee (example)</span></div>
+                <div class="ct-budget-impact is-loss">On <span data-calc-budget>$5,000</span> · <span
+                    data-calc-toll="up">-$1,000</span> cut</div>
+              </div>
+              <div class="ct-card-rows">
+                <div class="ct-row">
+                  <span class="ct-cross-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                  <span>Fees taken from every invoice</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-cross-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                  <span>Payment held until the platform releases it</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-cross-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                  <span>Messages stay inside the platform</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-cross-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                  <span>Clients often pay an extra service fee</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-cross-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                  <span>Rules against working with clients off-platform</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-cross-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                  <span>The platform decides who gets seen</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-cross-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                  <span>You compete on price with thousands of sellers</span>
+                </div>
+              </div>
+            </div>
 
-      <div class="pr-cards-grid">
-        <!-- TIER 1: CLIENT -->
-        <article class="pr-card pr-card-client">
-          <div class="pr-card-head">
-            <span class="pr-tier-badge">CLIENTS &amp; BRANDS</span>
-            <h3 class="pr-tier-name">Producer / Client</h3>
-            <p class="pr-tier-desc">For commercial producers, creative directors, and brands seeking vetted talent.</p>
-          </div>
-          <div class="pr-card-price">
-            <span class="pr-currency">$</span>
-            <span class="pr-num">0</span>
-            <span class="pr-unit">forever</span>
-          </div>
-          <p class="pr-price-sub">Free to browse. Free to ask. No account needed.</p>
-          <a href="/explore" class="pr-card-btn pr-btn-ghost">Browse Directory</a>
-          <ul class="pr-features-list">
-            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Direct access to 34+ vetted commercial specialists</span></li>
-            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>0% commission markup or buyer booking fees</span></li>
-            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Full camera packages &amp; technical gear manifests</span></li>
-            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Direct email and phone outreach</span></li>
-          </ul>
-        </article>
+            <!-- NEXUS HERO CARD -->
+            <div class="ct-card is-hero">
+              <div class="ct-hero-top-badge">Founding 100 · 90 days free</div>
+              <div class="ct-card-head">
+                <div class="ct-card-artwork">
+                  <img src="assets/ai_pricing_nexus_hero_trans.webp?v=4" loading="lazy" decoding="async"
+                    alt="Nexus creator membership illustration" class="ct-art-img" loading="eager" />
+                </div>
+                <h3 class="ct-card-name">Nexus</h3>
+                <div class="ct-card-sub">Creator Membership</div>
+                <div class="ct-card-pill is-hero-pill"><span><span class="nx-count" data-count-from="20"
+                      data-count-to="0" data-count-suffix="%">0%</span> Commission · Flat $<span class="nx-count"
+                      data-count-from="49.99" data-count-to="49.00" data-count-decimals="2">49</span>/mo</span>
+                </div>
+                <div class="ct-budget-impact is-win">On <span data-calc-budget>$5,000</span> · Keep <strong
+                    data-calc-keep="nx">$5,000</strong></div>
+              </div>
+              <div class="ct-card-rows">
+                <div class="ct-row">
+                  <span class="ct-check-icon" aria-hidden="true">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <span><span class="nx-count" data-count-from="70" data-count-to="100"
+                      data-count-suffix="%">100%</span> of what clients pay you is yours</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-check-icon" aria-hidden="true">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <span>$49/month flat. First 100 approved get 90 days free</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-check-icon" aria-hidden="true">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <span>Clients pay you directly, however you agree</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-check-icon" aria-hidden="true">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <span>Talk to clients anywhere: email, phone, WhatsApp</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-check-icon" aria-hidden="true">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <span>Your work and files stay yours</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-check-icon" aria-hidden="true">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <span>Founding badge for the first 100, for good</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-check-icon" aria-hidden="true">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                  <span>List your services, camera manifests and reel</span>
+                </div>
+              </div>
+              <div class="ct-card-foot">
+                <a class="ct-btn is-hero-cta" href="/signup" style="text-decoration: none;">
+                  <span>Claim a founding spot</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
 
-        <!-- TIER 2: FOUNDING CREATOR (FEATURED) -->
-        <article class="pr-card pr-card-featured">
-          <div class="pr-featured-banner">★ MOST POPULAR • FIRST 100 ATELIER CREATORS</div>
-          <div class="pr-card-head">
-            <span class="pr-tier-badge pr-badge-sapphire">FOUNDING PASS</span>
-            <h3 class="pr-tier-name">Founding Member</h3>
-            <p class="pr-tier-desc">For cinematographers, lookdev artists, and studios claiming early membership.</p>
+            <!-- AGENCY CARD -->
+            <div class="ct-card is-agency">
+              <div class="ct-card-head">
+                <div class="ct-card-artwork">
+                  <img src="assets/ai_pricing_agency_trans.webp?v=4" loading="lazy" decoding="async" alt="Talent agencies illustration"
+                    class="ct-art-img" loading="eager" />
+                </div>
+                <h3 class="ct-card-name">Talent Agencies</h3>
+                <div class="ct-card-sub">Commission on every booking</div>
+                <div class="ct-card-pill"><span><span class="nx-count" data-count-from="10" data-count-to="25"
+                      data-count-suffix="%">25%</span> commission (example)</span></div>
+                <div class="ct-budget-impact is-loss">On <span data-calc-budget>$5,000</span> · <span
+                    data-calc-toll="ag">-$1,250</span> cut</div>
+              </div>
+              <div class="ct-card-rows">
+                <div class="ct-row">
+                  <span class="ct-cross-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                  <span>A percentage of every booking</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-cross-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                  <span>Payment goes through the agency first</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-cross-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                  <span>The agency owns the client relationship</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-cross-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                  <span>Contracts can limit your own clients</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-cross-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                  <span>Often exclusive, long-term contracts</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-cross-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                  <span>Few agency spots, hard to get represented</span>
+                </div>
+                <div class="ct-row">
+                  <span class="ct-cross-icon" aria-hidden="true">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                  <span>Junior artists subsidise senior talent</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="pr-card-price">
-            <span class="pr-currency">$</span>
-            <span class="pr-num">0</span>
-            <span class="pr-unit">for 90 days</span>
-          </div>
-          <p class="pr-price-sub">Then $49 / month. Cancel anytime with 1 click.</p>
-          <a href="/signup" class="pr-card-btn pr-btn-spotlight">Claim 90-Day Free Pass →</a>
-          <ul class="pr-features-list pr-features-highlight">
-            <li><svg class="pr-ic pr-ic-green" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>0% commission</strong> on all client bookings forever</span></li>
-            <li><svg class="pr-ic pr-ic-green" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Founding Member porcelain badge</strong> on storefront</span></li>
-            <li><svg class="pr-ic pr-ic-green" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Verified credentials &amp; gear vetting</strong> by Tyrone</span></li>
-            <li><svg class="pr-ic pr-ic-green" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Dedicated 4K showreel player &amp; custom SEO link</span></li>
-            <li><svg class="pr-ic pr-ic-green" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>High-intent project inquiries routed to your inbox</span></li>
-            <li><svg class="pr-ic pr-ic-green" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Live SLA response badge ("Replies under 1h")</span></li>
-          </ul>
-        </article>
-
-        <!-- TIER 3: ANNUAL PATRON -->
-        <article class="pr-card pr-card-annual">
-          <div class="pr-card-head">
-            <span class="pr-tier-badge pr-badge-amber">SAVE 20% ANNUAL</span>
-            <h3 class="pr-tier-name">Annual Patron</h3>
-            <p class="pr-tier-desc">Commit annually to secure top algorithmic directory placement and extra reach.</p>
-          </div>
-          <div class="pr-card-price">
-            <span class="pr-currency">$</span>
-            <span class="pr-num">39</span>
-            <span class="pr-unit">/ month</span>
-          </div>
-          <p class="pr-price-sub">Billed as $470 / year. Save $118 vs monthly.</p>
-          <a href="/signup" class="pr-card-btn pr-btn-ghost">Get Annual Patron Pass</a>
-          <ul class="pr-features-list">
-            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Everything included in the Founding Member Pass</span></li>
-            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Priority directory placement</strong> in search and filters</span></li>
-            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Featured showcase spot on homepage rotation</span></li>
-            <li><svg class="pr-ic" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Custom domain integration support</span></li>
-          </ul>
-        </article>
+        </div>
       </div>
     </section>
 
@@ -248,14 +419,14 @@
     </section>
 
     <!-- INTERACTIVE FAQ ACCORDION -->
-    <section class="pr-faq-sec" id="faq">
+    <section class="pr-faq-sec">
       <div class="pr-sec-header">
         <span class="pr-kicker">Frequently Asked Questions</span>
         <h2 class="pr-h2">Everything you need to know.</h2>
         <p class="pr-sec-sub">Clear answers on our membership model, trial duration, and direct payment workflow.</p>
       </div>
 
-      <div class="pr-faq-grid">
+      <div class="pr-faq-list">
         <details class="pr-faq-item" open>
           <summary class="pr-faq-summary">
             <span>How does the 90-day Founding Member free trial work?</span>
@@ -272,7 +443,7 @@
             <span class="pr-faq-chevron" aria-hidden="true">↓</span>
           </summary>
           <div class="pr-faq-answer">
-            <p>Never. Nexus is strictly a discovery directory, not an extractive escrow broker. When a client books you for a $15,000 commercial shoot, all $15,000 goes directly into your bank account. We never touch your invoices or take a single cut.</p>
+            <p>Never. Nexus operates on a pure directory subscription model. Whether you book a $1,500 day shoot or a $50,000 commercial campaign, you invoice clients directly using Stripe, QuickBooks, wire transfer, or check. Nexus takes exactly 0.0% of your earnings.</p>
           </div>
         </details>
 
@@ -282,7 +453,7 @@
             <span class="pr-faq-chevron" aria-hidden="true">↓</span>
           </summary>
           <div class="pr-faq-answer">
-            <p>When a producer clicks "Send request" on your storefront, their verified project brief (dates, budget bracket, scope) is routed straight to your email. You reply directly from your own email and issue invoices using your standard tools (Stripe, Quickbooks, bank wire).</p>
+            <p>Clients send inquiries directly through your storefront contact form or via your listed email and phone number. All messages are forwarded directly to your primary inbox with project scope, budget, and dates. You communicate and invoice on your own terms with no platform intermediary.</p>
           </div>
         </details>
 
@@ -292,7 +463,7 @@
             <span class="pr-faq-chevron" aria-hidden="true">↓</span>
           </summary>
           <div class="pr-faq-answer">
-            <p>Every creator is reviewed personally by Tyrone Strickland Jr. We require verified proof of professional commercial work, high-fidelity showreels, and actual technical production experience across Film, Drone, CGI/3D, Art, or Rigging. We cap the active roster to maintain unmatched quality for hiring clients.</p>
+            <p>Every applicant is manually evaluated by founder Tyrone Strickland Jr. We look for demonstrated commercial production experience, an active portfolio/reel, verified gear ownership or operator proficiency, and professional response discipline.</p>
           </div>
         </details>
 
@@ -335,6 +506,7 @@
   <div id="nexus-footer-root"></div>
 
   <script src="/assets/react-footer/nexus-footer-section.js?v=copy1" defer></script>
-  <script src="/js/pricing.js?v=1" defer></script>
+  <script src="/js/fees-calculator.js?v=copy1" defer></script>
+  <script src="/js/pricing.js?v=2" defer></script>
 </body>
 </html>

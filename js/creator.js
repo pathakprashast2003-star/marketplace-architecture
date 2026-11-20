@@ -73,10 +73,10 @@
     return 'Camera';
   }
   const LINK_ICONS = {
-    instagram: '<svg viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="igG" cx="30%" cy="107%" r="150%"><stop offset="0" stop-color="#FDF497"/><stop offset=".05" stop-color="#FDF497"/><stop offset=".45" stop-color="#FD5949"/><stop offset=".6" stop-color="#D6249F"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" fill="url(#igG)"/><rect x="5.5" y="5.5" width="13" height="13" rx="4" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="3.2" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.3" cy="7.7" r="1" fill="#fff"/></svg>',
-    vimeo: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="#1AB7EA"/><path fill="#fff" d="M18.6 8.6c-.06 1.3-.97 3.08-2.73 5.35-1.82 2.36-3.36 3.55-4.62 3.55-.78 0-1.44-.72-1.98-2.16l-1.08-3.96c-.4-1.44-.83-2.16-1.29-2.16-.1 0-.45.21-1.05.63l-.63-.81 1.95-1.74c.88-.76 1.54-1.16 1.98-1.2 1.04-.1 1.68.61 1.92 2.14.26 1.65.44 2.67.54 3.07.3 1.36.63 2.04.99 2.04.28 0 .7-.44 1.26-1.32.56-.88.86-1.55.9-2.01.08-.76-.22-1.14-.9-1.14-.32 0-.65.07-.99.22.66-2.15 1.91-3.2 3.77-3.14 1.38.04 2.03.93 1.96 2.68z"/></svg>',
-    youtube: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="5" fill="#FF0000"/><path fill="#fff" d="M10 8.6v6.8l5.8-3.4z"/></svg>',
-    website: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="#3B54EE"/><g fill="none" stroke="#fff" stroke-width="1.6"><circle cx="12" cy="12" r="6.5"/><path d="M5.5 12h13M12 5.5c1.8 1.9 2.7 4 2.7 6.5s-.9 4.6-2.7 6.5c-1.8-1.9-2.7-4-2.7-6.5s.9-4.6 2.7-6.5z"/></g></svg>'
+    instagram: '<svg viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="igG" cx="30%" cy="107%" r="150%"><stop offset="0" stop-color="#FDF497"/><stop offset=".05" stop-color="#FDF497"/><stop offset=".45" stop-color="#FD5949"/><stop offset=".6" stop-color="#D6249F"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs><circle cx="12" cy="12" r="11" fill="url(#igG)"/><rect x="6.5" y="6.5" width="11" height="11" rx="3.2" fill="none" stroke="#fff" stroke-width="1.6"/><circle cx="12" cy="12" r="2.8" fill="none" stroke="#fff" stroke-width="1.6"/><circle cx="15.4" cy="8.6" r="0.8" fill="#fff"/></svg>',
+    vimeo: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#1AB7EA"/><path fill="#fff" d="M17.6 9.2c-.05 1.1-.84 2.65-2.35 4.6-1.56 2.03-2.88 3.05-3.96 3.05-.67 0-1.24-.62-1.7-1.85l-.93-3.4c-.34-1.24-.71-1.85-1.11-1.85-.09 0-.39.18-.9.54l-.54-.7 1.67-1.49c.75-.65 1.32-1 1.7-1.03.89-.09 1.44.52 1.65 1.84.22 1.41.38 2.29.46 2.63.26 1.17.54 1.75.85 1.75.24 0 .6-.38 1.08-1.13.48-.75.74-1.33.77-1.72.07-.65-.19-.98-.77-.98-.27 0-.56.06-.85.19.57-1.84 1.64-2.75 3.23-2.7 1.19.03 1.74.8 1.68 2.3z"/></svg>',
+    youtube: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#FF0000"/><path fill="#fff" d="M10 8.6v6.8l5.8-3.4z"/></svg>',
+    website: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#3B54EE"/><g fill="none" stroke="#fff" stroke-width="1.4"><circle cx="12" cy="12" r="5.5"/><path d="M6.5 12h11M12 6.5c1.5 1.6 2.3 3.4 2.3 5.5s-.8 3.9-2.3 5.5c-1.5-1.6-2.3-3.4-2.3-5.5s.8-3.9 2.3-5.5z"/></g></svg>'
   };
   const LINK_LABELS = { instagram: 'Instagram', vimeo: 'Vimeo', youtube: 'YouTube', website: 'Website' };
   function linksRow(links) {
@@ -158,11 +158,11 @@
   };
 
   const facts = [
-    [ic.pin, 'Based in ' + c.city],
-    p.years ? [ic.clock, p.years + ' years doing this'] : null,
-    p.languages && p.languages.length ? [ic.globe, p.languages.join(', ')] : null,
-    p.travel ? [ic.plane, p.travel] : null,
-    p.remote ? [ic.wifi, 'Works remotely too'] : null
+    [ic.pin, 'Based in ' + c.city, 'blue'],
+    p.years ? [ic.clock, p.years + ' years doing this', 'purple'] : null,
+    p.languages && p.languages.length ? [ic.globe, p.languages.join(', '), 'green'] : null,
+    p.travel ? [ic.plane, p.travel, 'amber'] : null,
+    p.remote ? [ic.wifi, 'Works remotely too', 'cyan'] : null
   ].filter(Boolean);
 
   const sec = (id, title, body, note) => body ? `
@@ -190,32 +190,23 @@
     <div class="cpx-layout">
       <div class="cpx-col">
         <header class="cpx-intro">
-      <div class="cpx-intro-text" data-reveal>
-        <div class="cpx-who">
-          <span class="cpx-avatar"><img src="${esc(abs(c.src))}" alt=""></span>
-          <div>
-            <p class="cpx-eyebrow">${esc(CAT[c.cat] || c.craft)}<span class="cpx-sr"> · ${esc(c.craft)}</span></p>
-            ${p.studioName ? `<p class="cpx-studio">${esc(p.studioName)}</p>` : ''}
-            <p class="cpx-where">${esc(c.city)}${p.sample ? ' · <span class="cpx-sample">Sample profile</span>' : ''}</p>
+          <div class="cpx-intro-text" data-reveal>
+            <span class="cpx-eyebrow" style="position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0.01;">${esc(c.craft)}</span>
+            <div class="cpx-title-wrap">
+              <h1 class="cpx-title">${esc(c.creator)}</h1>
+              ${p.founding ? '<span class="cpx-founding-badge">Founding member</span>' : ''}
+            </div>
+            <p class="cpx-headline">${esc(p.headline || c.bio)}</p>
+            <ul class="cpx-facts cpx-facts-grid">
+              ${facts.map((f, i) => `<li class="cpx-fact-cell cpx-fact-cell--${f[2]}" style="--i: ${i}"><span class="cpx-fact-icon cpx-fact-icon--${f[2]}">${f[0]}</span><span class="cpx-fact-divider"></span><span class="cpx-fact-label">${esc(f[1])}</span></li>`).join('')}
+            </ul>
+            <hr class="cpx-hero-divider">
+            ${(p.approved || p.availability || (p.links && Object.keys(p.links).length)) ? `
+            <div class="cpx-meta-bar">
+              ${creatorMetaLine(p.approved, p.availability, p.availableFrom)}
+              ${linksRow(p.links)}
+            </div>` : ''}
           </div>
-        </div>
-        <div class="cpx-title-wrap">
-          <h1 class="cpx-title">${esc(c.creator)}</h1>
-          ${p.founding ? '<span class="cpx-founding-badge">Founding member</span>' : ''}
-        </div>
-        <p class="cpx-headline">${esc(p.headline || c.bio)}</p>
-        <ul class="cpx-facts cpx-facts-grid">${facts.map((f, i) => `<li class="cpx-fact-cell" style="--i: ${i}"><span class="cpx-fact-icon">${f[0]}</span><span class="cpx-fact-divider"></span><span class="cpx-fact-label">${esc(f[1])}</span></li>`).join('')}</ul>
-        ${(p.approved || p.availability || (p.links && Object.keys(p.links).length)) ? `
-        <div class="cpx-meta-bar">
-          ${creatorMetaLine(p.approved, p.availability, p.availableFrom)}
-          ${linksRow(p.links)}
-        </div>` : ''}
-        <div class="cpx-hero-cta">
-          <p class="cpx-hero-rate"><b>${esc(money(rate))}</b><span>${rateUnitLabel(p.rateUnit)}</span></p>
-          <button type="button" class="cpx-btn${reqBtnGhost}" data-request>${reqBtnText}</button>
-          <button type="button" class="cpx-icon-btn" data-save aria-label="Save" aria-pressed="${isSaved()}">${ic.save}</button>
-        </div>
-      </div>
         </header>
         ${sec('about', 'About', (() => {
           const parts = p.about || [c.bio];
@@ -310,29 +301,30 @@
       </div>
 
       <aside class="cpx-side">
-      <div class="cpx-cover" data-reveal>
-        <img src="${esc(abs(c.src))}" alt="${esc(c.creator)}, ${esc(c.craft)}" fetchpriority="high" decoding="async">
-        ${c.reel && !reduce ? `<video src="${esc(abs(c.reel))}" muted loop playsinline autoplay preload="metadata"></video>
-        <button type="button" class="cpx-play" id="cpxPlay" aria-label="Pause reel"><span class="cpx-play-ic is-pause"></span></button>` : ''}
-        <span class="cpx-cover-tag">${c.reel ? 'Reel' : 'Photo'}</span>
-      </div>
-        <div class="cpx-card cpx-bcard">
-          <div class="cpx-bcard-top">
-            <div>
-              <p class="cpx-bcard-k">Starting price</p>
-              <p class="cpx-card-rate"><b>${esc(money(rate))}</b><span>${rateUnitLabel(p.rateUnit)}</span></p>
-            </div>
-            ${availabilityPill(p.availability, p.availableFrom)}
+        <div class="cpx-cover" data-reveal>
+          <img src="${esc(abs(c.src))}" alt="${esc(c.creator)}, ${esc(c.craft)}" fetchpriority="high" decoding="async">
+          ${c.reel && !reduce ? `<video src="${esc(abs(c.reel))}" muted loop playsinline autoplay preload="metadata"></video>
+          <button type="button" class="cpx-play" id="cpxPlay" aria-label="Pause reel"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1.2"/><rect x="14" y="4" width="4" height="16" rx="1.2"/></svg></button>` : ''}
+          <span class="cpx-cover-tag">${c.reel ? 'Reel' : 'Photo'}</span>
+        </div>
+        <div class="cpx-card">
+          <div class="cpx-card-rate-row">
+            <p class="cpx-card-rate"><b>${esc(money(rate))}</b><span>${rateUnitLabel(p.rateUnit)}</span></p>
+            <a href="#booking" class="cpx-guarantee-pill">Guarantee ↳</a>
           </div>
-          ${p.how ? `<dl class="cpx-bcard-grid">
-            <div><dt>Book ahead</dt><dd>${esc(p.how.notice)}</dd></div>
-            <div><dt>Deposit</dt><dd>${esc(String(p.how.deposit).replace(/ to confirm the date/i, ''))}</dd></div>
-            <div><dt>Cancellation</dt><dd>${esc(String(p.how.cancel).replace(/^Free up to /i, 'Free, '))}</dd></div>
-            <div><dt>Commission</dt><dd>0%, pay ${esc(first)}</dd></div>
-          </dl>` : ''}
+          <p class="cpx-card-from">Starting price. Services below.</p>
+          <div class="cpx-card-status">
+            <span class="cpx-card-status-dot"></span>
+            <span>${p.availability === 'open' ? 'Taking bookings' : (p.availability === 'booked_until' ? ('Booked until ' + esc(p.availableFrom || 'soon')) : 'Not taking bookings')}</span>
+          </div>
           <button type="button" class="cpx-btn cpx-btn-full${reqBtnGhost}" data-request>${reqBtnText}</button>
           <button type="button" class="cpx-btn-ghost" id="cpxSave" data-save aria-pressed="${isSaved()}">${ic.save}<span>${isSaved() ? 'Saved' : 'Save'}</span></button>
-          <p class="cpx-bcard-note">Free to ask. No account needed.</p>
+          <hr class="cpx-card-divider">
+          <ul class="cpx-card-list">
+            <li><svg class="cpx-check-svg" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>0% commission. Pay ${esc(first)} directly.</span></li>
+            <li><svg class="cpx-check-svg" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Free to ask. No account needed.</span></li>
+            ${p.how ? `<li><svg class="cpx-check-svg" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Book at least ${esc(p.how.notice)} ahead</span></li>` : ''}
+          </ul>
         </div>
       </aside>
     </div>
@@ -379,9 +371,15 @@
     vid.addEventListener('playing', () => vid.classList.add('is-on'));
     vid.addEventListener('error', () => { vid.remove(); if (play) play.remove(); });
     if (play) play.addEventListener('click', () => {
-      const i = play.querySelector('.cpx-play-ic');
-      if (vid.paused) { vid.play(); i.classList.add('is-pause'); play.setAttribute('aria-label', 'Pause reel'); }
-      else { vid.pause(); i.classList.remove('is-pause'); play.setAttribute('aria-label', 'Play reel'); }
+      if (vid.paused) {
+        vid.play();
+        play.setAttribute('aria-label', 'Pause reel');
+        play.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1.2"/><rect x="14" y="4" width="4" height="16" rx="1.2"/></svg>';
+      } else {
+        vid.pause();
+        play.setAttribute('aria-label', 'Play reel');
+        play.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="7 4 20 12 7 20"/></svg>';
+      }
     });
   }
 
