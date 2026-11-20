@@ -2,227 +2,218 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
   <meta name="description"
-    content="Hire reviewed filmmakers, drone pilots, photographers and artists, or learn from local teachers. Contact them directly. 0% commission.">
-  <title>Nexus · Find the Creative Edge</title>
+    content="Direct access to verified cinematographers, drone pilots, 3D artists, and visual creators. Contact directly with guaranteed fast response times. 0% commission.">
+  <title>Nexus · Direct Access to Top Creative Talent</title>
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%23E9520D' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%233B54EE' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Hero image first; fonts load without holding up the first paint -->
-  <link rel="preload" as="image" href="assets/creator_desk_designer.webp" fetchpriority="high">
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Playfair+Display:ital,wght@0,500..900;1,500..900&family=Archivo+Black&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Playfair+Display:ital,wght@0,500..900;1,500..900&family=Archivo+Black&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Playfair+Display:ital,wght@0,500..900;1,500..900&family=Archivo+Black&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap"></noscript>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&family=JetBrains+Mono:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="assets/react-footer/marketplace-architecture.css?v=18">
-    <!-- Core Modular Design System CSS -->
+  <!-- Master Exploration & Home Hero CSS -->
+  <link rel="stylesheet" href="css/explore.css?v=home1">
+  <link rel="stylesheet" href="css/home-hero.css?v=home1">
   <link rel="stylesheet" href="css/base.css?v=live27">
   <link rel="stylesheet" href="css/motion.css?v=live27">
-  <link rel="stylesheet" href="css/nav.css?v=live27">
-  <link rel="stylesheet" href="css/hero.css?v=tnr1">
   <link rel="stylesheet" href="css/showcase.css?v=explore1">
   <link rel="stylesheet" href="css/join.css?v=live27">
   <link rel="stylesheet" href="css/fees.css?v=live28">
   <link rel="stylesheet" href="css/how.css?v=live30">
   <link rel="stylesheet" href="css/founding.css?v=live27">
-  <link rel="stylesheet" href="css/section-motion.css?v=4">
+  
   <link rel="stylesheet" href="css/perf.css?v=2">
-  <link rel="stylesheet" href="css/mobile.css?v=7">
 </head>
-<body data-theme="sage">
-  <div class="nx-scroll-progress" aria-hidden="true"></div>
-  <nav id="nxStickyNav" class="nx-sticky-nav" aria-label="Primary Page Navigation">
-    <a href="#hero" class="nx-snav-brand">
-      <span class="nx-snav-dot" aria-hidden="true"></span>
-      <span>nexus.</span>
-    </a>
-    <div class="nx-snav-links">
-      <a href="/explore">Explore</a>
-      <a href="#showcase">Showcase</a>
-      <a href="#join">Join</a>
-      <a href="#fees">Pricing</a>
-      <a href="#how">How it works</a>
-      <a href="#join" onclick="document.querySelector('.jn-tab[data-side=login]').click();document.getElementById('join').scrollIntoView({behavior:'smooth'});return false;">Log in</a>
-    </div>
-    <button type="button" class="nx-snav-cta" onclick="openFoundingModal()">
-      <span>Claim a spot</span>
-      <span aria-hidden="true">→</span>
-    </button>
-  </nav>
-  <!-- Mobile Floating Bottom Thumb Nav Capsule (Thumb Zone) -->
-  <nav id="nxMobileBottomNav" class="nx-mobile-bottom-nav" aria-label="Mobile Navigation">
-    <a href="/explore">Explore</a>
-    <a href="#showcase" class="is-active">Showcase</a>
-    <a href="#join">Join</a>
-    <a href="#fees">Pricing</a>
-    <a href="#how">How it works</a>
-  </nav>
-  <div class="character-theme-capsules" role="tablist" aria-label="Slideshow Showcase">
-    <button class="theme-capsule-btn is-active" data-theme="sage" role="tab" aria-selected="true">
-      <span class="theme-pill-dot"></span>
-      <span>3D Art</span>
-      <span class="theme-timer-progress"></span>
-    </button>
-    <button class="theme-capsule-btn" data-theme="cobalt" role="tab" aria-selected="false">
-      <span class="theme-pill-dot"></span>
-      <span>Drone</span>
-      <span class="theme-timer-progress"></span>
-    </button>
-    <button class="theme-capsule-btn" data-theme="lilac" role="tab" aria-selected="false">
-      <span class="theme-pill-dot"></span>
-      <span>Illustration</span>
-      <span class="theme-timer-progress"></span>
-    </button>
-    <button class="theme-capsule-btn" data-theme="amber" role="tab" aria-selected="false">
-      <span class="theme-pill-dot"></span>
-      <span>Film</span>
-      <span class="theme-timer-progress"></span>
-    </button>
-    <button class="theme-capsule-btn" data-theme="coral" role="tab" aria-selected="false">
-      <span class="theme-pill-dot"></span>
-      <span>VR &amp; Unreal</span>
-      <span class="theme-timer-progress"></span>
-    </button>
-  </div>
-  <button id="editorToggle" class="editor-toggle-btn" type="button" aria-label="Toggle Drag and Edit Mode">
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <path d="M12 20h9" />
-      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
-    </svg>
-    <span class="edit-label">Edit</span>
-  </button>
-  <aside id="editorHud" class="editor-hud" aria-label="Editor Controls">
-    <div class="hud-header">
-      <div style="display: flex; align-items: center; gap: 7px;">
-        <span class="hud-mode-badge" title="Editing enabled on mobile and laptop">Laptop</span>
-        <span>Target: <span id="hudTargetName" class="hud-target-name">CREATIVE EDGE</span></span>
-        <span id="hudSaveToast" class="hud-save-toast">✓ Saved</span>
+<body class="nx-home-body">
+  <!-- Top Capsule Navigation (Matching Nexus Master Standard) -->
+  <header>
+    <nav class="nx-explore-nav" aria-label="Main Navigation">
+      <a href="/" class="nx-nav-brand">
+        <span class="nx-nav-brand-dot" aria-hidden="true"></span>
+        <span>nexus.</span>
+      </a>
+      <div class="nx-nav-links">
+        <a href="/" class="nx-nav-link is-active">Home</a>
+        <a href="/explore" class="nx-nav-link">Explore</a>
+        <a href="/pricing" class="nx-nav-link">Pricing</a>
+        <a href="/#how" class="nx-nav-link">How it works</a>
       </div>
-      <span id="hudCoords" class="hud-coords">Drag on screen to reposition</span>
-    </div>
-    <div class="hud-chips">
-    </div>
-    <div class="hud-img-size-row" id="hudImgSizeRow">
-      <span class="hud-size-label">Img Size</span>
-      <button class="hud-btn hud-size-step" type="button" id="hudImgMinus" title="Reduce Image Size (−6%)">−</button>
-      <input type="range" id="hudImgRange" class="hud-size-slider" min="40" max="200" step="2" value="100"
-        aria-label="Adjust selected image size" />
-      <button class="hud-btn hud-size-step" type="button" id="hudImgPlus" title="Increase Image Size (+6%)">+</button>
-      <button class="hud-btn hud-size-val" type="button" id="hudImgScaleVal"
-        title="Click to reset image size to 100%">100%</button>
-    </div>
-    <div class="hud-actions">
-      <div style="display: flex; gap: 4px; flex-wrap: wrap;">
-        <button class="hud-btn" type="button" id="hudDockUp" title="Nudge Action Dock Up">Dock ↑</button>
-        <button class="hud-btn" type="button" id="hudDockDown" title="Nudge Action Dock Down">Dock ↓</button>
-        <button class="hud-btn" type="button" id="hudColorCycle"
-          title="Cycle Color between Dark, Blue, and White">Color</button>
-        <button class="hud-btn" type="button" id="hudPickImage" title="Upload or choose image for this character">Upload
-          Img</button>
-        <input type="file" id="hudFileInput" accept="image/*" style="display:none;" />
-        <button class="hud-btn" type="button" id="hudFontMinus" title="Decrease Font Size">A-</button>
-        <button class="hud-btn" type="button" id="hudFontPlus" title="Increase Font Size">A+</button>
-        <button class="hud-btn" type="button" id="hudZToggle" title="Toggle Layer Behind/In Front">Layer:
-          Behind</button>
-      </div>
-      <div style="display: flex; gap: 4px;">
-        <button class="hud-btn hud-btn-primary" type="button" id="hudCopyCss">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+      <div class="nx-nav-actions">
+        <a href="/explore" id="shortlistToggleBtn" class="nx-shortlist-btn" aria-label="Saved creators">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
           </svg>
-          <span>Copy CSS</span>
-        </button>
-        <button class="hud-btn" type="button" id="hudReset">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-            <path d="M3 3v5h5" />
-          </svg>
-          <span>Reset</span>
-        </button>
-        <button class="hud-btn" type="button" id="hudClose" style="color: #F87171;">✕</button>
+          <span>Saved</span>
+          <span class="badge" id="shortlistBadgeCount">0</span>
+        </a>
+        <a href="/signup" class="nx-nav-apply-btn">
+          <span>Join as a creator</span>
+          <span aria-hidden="true">→</span>
+        </a>
       </div>
-    </div>
-  </aside>
-  <main id="hero" class="hero-viewport">
-    <div class="bg-wave-layer" aria-hidden="true">
-      <svg class="bg-wave-svg bg-wave-svg-desktop" viewBox="0 0 1440 900" fill="none" preserveAspectRatio="none">
-        <path d="M0 760 C160 745 280 810 380 900 L0 900 Z" fill="var(--wave-soft)" fill-opacity="0.3"
-          style="transition: fill 0.7s ease;" />
-        <path d="M520 900 C740 780 900 580 1200 530 C1320 510 1390 540 1440 560 L1440 900 Z" fill="var(--wave-azure)"
-          style="transition: fill 0.7s ease;" />
-        <path d="M720 900 C900 850 1080 730 1280 710 C1360 700 1410 730 1440 750 L1440 900 Z" fill="var(--wave-cobalt)"
-          style="transition: fill 0.7s ease;" />
-      </svg>
-      <svg class="bg-wave-svg bg-wave-svg-mobile" viewBox="0 0 390 844" fill="none" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="nxMobSoftGlow" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="var(--wave-soft)" stop-opacity="0.34" />
-            <stop offset="100%" stop-color="var(--sky-deep)" stop-opacity="0.06" />
-          </linearGradient>
-        </defs>
-        <circle cx="382" cy="232" r="108" fill="url(#nxMobSoftGlow)" style="transition: fill 0.7s ease;" />
-        <path d="M-24 548 C68 525 148 595 212 718 L212 844 L-24 844 Z" fill="var(--wave-soft)" fill-opacity="0.28"
-          style="transition: fill 0.7s ease;" />
-        <path d="M-12 738 C118 672 218 520 392 524 L392 844 L-12 844 Z" fill="var(--wave-azure)"
-          style="transition: fill 0.7s ease;" />
-        <path d="M98 844 C205 776 286 688 392 674 L392 844 L98 844 Z" fill="var(--wave-cobalt)" fill-opacity="0.92"
-          style="transition: fill 0.7s ease;" />
-      </svg>
-    </div>
-    <div class="hero-grid">
-      <section class="hero-left-content">
-        <h1 class="headline-stack theme-fader">
-          <span class="title-row title-wefind text-white">WE FIND</span>
-          <span class="title-row title-the text-white">THE</span>
-          <span class="mobile-only title-wefind-mobile text-white">WE FIND THE</span>
-          <span class="title-row title-creative text-dark">CREATIVE</span>
-          <span class="title-row title-edge text-dark">EDGE</span>
-        </h1>
-        <div class="hero-editorial-chunk theme-fader">
-          <p class="hero-subheadline theme-fader" data-edit-key="hero-subheadline">
-            3D modelers and digital artists, reviewed by a person. Contact them directly. 0% commission.
-          </p>
-          <div class="action-row">
-            <a href="#showcase" class="btn-discover"
-              onclick="document.getElementById('showcase').scrollIntoView({behavior:'smooth'});return false;">
-              <span>Find a creator</span>
-              <span>&rarr;</span>
-            </a>
-            <a href="#founding" class="btn-join" onclick="openFoundingModal();return false;">
-              <span>Join as a creator</span>
-            </a>
+    </nav>
+  </header>
+
+  <!-- Editorial Apple-Grade Masthead & Cinema Hero -->
+  <main id="hero" class="nx-home-hero">
+    <div class="nx-hero-grid">
+      <!-- LEFT MASTHEAD -->
+      <section class="nx-hero-masthead">
+        <div class="nx-hero-kicker-pill">
+          <span class="nx-hero-kicker-dot" aria-hidden="true"></span>
+          <span>Vetted Commercial Talent Directory · 0% Commission</span>
+        </div>
+
+        <h1 class="nx-hero-h1">Direct access to the top <em>1% independent</em> visual artists.</h1>
+
+        <p class="nx-hero-sub">
+          Nexus is a zero-escrow directory built for independent directors of photography, lookdev artists, drone pilots, and virtual production studios. Chat directly, invoice directly, and keep 100% of your day rate.
+        </p>
+
+        <!-- Omnibox Search Bar -->
+        <div class="nx-hero-omnibox-shell">
+          <form class="nx-hero-search-bar" id="nxHeroSearchForm" role="search">
+            <svg class="nx-hero-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="nxHeroSearchInput" class="nx-hero-search-input" placeholder="Search by camera (ARRI Alexa 35), craft, or city..." autocomplete="off">
+            <button type="submit" class="nx-hero-search-submit">Search</button>
+          </form>
+
+          <!-- Quick Gear / Category Chips -->
+          <div class="nx-hero-chips" aria-label="Popular search shortcuts">
+            <span class="nx-hero-chip-label">Popular:</span>
+            <a href="/explore?q=ARRI+Alexa+35" class="nx-hero-chip">ARRI Alexa 35</a>
+            <a href="/explore?cat=film" class="nx-hero-chip">Commercial DP</a>
+            <a href="/explore?q=DJI+Inspire+3" class="nx-hero-chip">FPV Drone</a>
+            <a href="/explore?cat=d3" class="nx-hero-chip">Unreal 5.4</a>
+            <a href="/explore?q=Austin" class="nx-hero-chip">Austin, TX</a>
           </div>
         </div>
-      </section>
-      <section class="hero-right-stage">
-        <div class="image-container-slot">
-          <div class="shockwave-aura" aria-hidden="true"></div>
-          <div class="mobile-backdrop-headline" aria-hidden="true">
-            <span class="mb-word mb-creative">CREATIVE</span>
-            <span class="mb-word mb-edge">EDGE</span>
+
+        <!-- Trust & Performance Metrics -->
+        <div class="nx-hero-stat-row">
+          <div class="nx-hero-stat-item">
+            <span class="nx-hero-stat-val">34+</span>
+            <span class="nx-hero-stat-label">Vetted specialists</span>
           </div>
-          <img id="heroCharacterSlot" class="theme-fader" loading="eager" fetchpriority="high" decoding="sync" src="assets/creator_desk_designer.webp"
-            alt="Upward Flight: Pilot and Drone">
+          <div class="nx-hero-stat-item">
+            <span class="nx-hero-stat-val">100%</span>
+            <span class="nx-hero-stat-label">Direct contact</span>
+          </div>
+          <div class="nx-hero-stat-item">
+            <span class="nx-hero-stat-val">&lt; 2 hrs</span>
+            <span class="nx-hero-stat-label">Avg response SLA</span>
+          </div>
+          <div class="nx-hero-stat-item">
+            <span class="nx-hero-stat-val">0%</span>
+            <span class="nx-hero-stat-label">Platform markup</span>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="nx-hero-cta-row">
+          <a href="/explore" class="nx-hero-btn-primary">
+            <span>Explore Directory</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a href="/pricing" class="nx-hero-btn-secondary">
+            <span>Join as Founding Creator</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- RIGHT CINEMA SHOWREEL STAGE -->
+      <section class="nx-cinema-stage-shell" aria-label="Curated Showreel Showcase">
+        <div class="nx-cinema-card">
+          <!-- Talent Selector Tabs -->
+          <div class="nx-cinema-tabs" role="tablist" aria-label="Featured Talent Switcher">
+            <button type="button" class="nx-cinema-tab is-active" data-talent="marcus" role="tab" aria-selected="true">
+              <span class="nx-cinema-tab-dot"></span>
+              <span>Marcus Vance · DP</span>
+            </button>
+            <button type="button" class="nx-cinema-tab" data-talent="elena" role="tab" aria-selected="false">
+              <span class="nx-cinema-tab-dot"></span>
+              <span>Elena Rostova · FPV</span>
+            </button>
+            <button type="button" class="nx-cinema-tab" data-talent="kai" role="tab" aria-selected="false">
+              <span class="nx-cinema-tab-dot"></span>
+              <span>Kai Tanaka · 3D</span>
+            </button>
+          </div>
+
+          <!-- 16:9 Video Player -->
+          <div class="nx-cinema-viewport">
+            <video id="nxCinemaVideo" class="nx-cinema-video" src="assets/reels/reel_0_director.mp4" poster="assets/reels/reel_0_director.jpg" playsinline autoplay muted loop></video>
+            
+            <div class="nx-cinema-overlay">
+              <div class="nx-cinema-top-badges">
+                <span class="nx-cinema-badge-reel">4K REEL</span>
+                <span class="nx-cinema-badge-gear" id="nxCinemaGear">ARRI Alexa 35 · Atlas Anamorphic</span>
+              </div>
+              
+              <div class="nx-cinema-bottom-ctrls">
+                <button type="button" id="nxCinemaPlayBtn" class="nx-cinema-play-btn" aria-label="Pause showreel">
+                  <svg id="nxCinemaPlayIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="6" y="4" width="4" height="16"></rect>
+                    <rect x="14" y="4" width="4" height="16"></rect>
+                  </svg>
+                </button>
+                <button type="button" id="nxCinemaSoundBtn" class="nx-cinema-sound-btn" aria-label="Unmute audio">
+                  <svg id="nxCinemaSoundIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Credential Strip -->
+          <div class="nx-cinema-meta-strip">
+            <div class="nx-cinema-creator-identity">
+              <img id="nxCinemaAvatar" src="assets/marcus_bust.webp" alt="Marcus Vance" class="nx-cinema-avatar">
+              <div class="nx-cinema-creator-info">
+                <div class="nx-cinema-creator-title-row">
+                  <span id="nxCinemaName" class="nx-cinema-creator-name">Marcus Vance</span>
+                  <svg class="nx-cinema-badge-verified" viewBox="0 0 24 24" fill="currentColor" aria-label="Verified Creator">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </div>
+                <span id="nxCinemaRole" class="nx-cinema-creator-role">Commercial DP · Austin, TX</span>
+              </div>
+            </div>
+
+            <div class="nx-cinema-rate-box">
+              <span id="nxCinemaRateVal" class="nx-cinema-rate-val">$650</span>
+              <span id="nxCinemaRateSub" class="nx-cinema-rate-sub">0% commission direct</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Live Status Link -->
+        <div class="nx-cinema-action-bar">
+          <div class="nx-cinema-live-pill">
+            <span class="nx-cinema-live-dot"></span>
+            <span id="nxCinemaLiveStatus">Taking bookings • Replies &lt; 1h</span>
+          </div>
+          <a id="nxCinemaProfileLink" href="/c/marcus-vance" class="nx-cinema-profile-link">
+            <span>View Full Profile</span>
+            <span aria-hidden="true">→</span>
+          </a>
         </div>
       </section>
     </div>
-    <button type="button" id="mobileShareBtn" class="mobile-share-btn" aria-label="Share Nexus">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"
-        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-        <polyline points="16 6 12 2 8 6" />
-        <line x1="12" y1="2" x2="12" y2="15" />
-      </svg>
-    </button>
   </main>
+  
   <aside class="nx-ticker-strip" aria-label="Live Platform Spec Ticker">
     <div class="nx-ticker-track">
       <div class="nx-ticker-content">
@@ -1061,7 +1052,7 @@
     <!-- Core Animation Engine (Anime.js v4) -->
   <script src="js/vendor/anime.umd.min.js?v=live27" defer></script>
     <!-- Core Modular Application Engines -->
-  <script src="js/theme-engine.js?v=scroll1" defer></script>
+  <script src="js/home-hero.js?v=home1" defer></script>
   <script src="js/bookmarks.js?v=join3" defer></script>
   <script src="js/scroll-choreography.js?v=live27" defer></script>
   <script src="js/fees-calculator.js?v=copy1" defer></script>
@@ -1070,7 +1061,7 @@
   <script src="js/join-form.js?v=live27" defer></script>
   <script src="js/protocol-conduit.js?v=copy1" defer></script>
   <script src="js/mobile-gestures.js?v=live27" defer></script>
-  <script src="js/section-motion.js?v=11" defer></script>
+  
   <script src="js/perf.js?v=1" defer></script>
   <script src="js/mobile-join.js?v=2" defer></script>
 </body>
