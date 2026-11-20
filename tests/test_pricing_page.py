@@ -37,13 +37,20 @@ def test_pricing_page_render_and_calculator():
         assert "Nexus" in hero_card.inner_text()
         assert "0% Commission" in hero_card.inner_text()
         
-        # 5. Check Interactive FAQ
+        # 5. Check Comparison Matrix Section
+        assert page.locator(".pr-matrix-sec").is_visible()
+        assert page.locator(".pr-th-nexus").is_visible()
+        assert page.locator(".pr-pill-win").is_visible()
+        assert "0% · Keep 100%" in page.locator(".pr-pill-win").inner_text()
+        assert page.locator(".pr-table-footer").is_visible()
+        
+        # 6. Check Interactive FAQ
         faq_items = page.locator(".pr-faq-item")
         assert faq_items.count() >= 5
         first_faq = faq_items.first
         assert first_faq.get_attribute("open") is not None
         
-        # 6. Verify Zero Console / Page Errors
+        # 7. Verify Zero Console / Page Errors
         assert len(errors) == 0, f"Encountered console/page errors: {errors}"
         
         browser.close()

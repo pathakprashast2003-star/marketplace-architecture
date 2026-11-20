@@ -624,60 +624,293 @@ body.pr-body {
   color: #248A3D;
 }
 
-/* ── Fair-Market Comparison Matrix ── */
+/* ── Fair-Market Comparison Matrix: Apple Pro Craftwork Elevation ── */
 .pr-matrix-sec {
+  margin-top: 40px;
   margin-bottom: 96px;
+  position: relative;
+}
+
+.pr-sec-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.pr-kicker-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  background: rgba(59, 84, 238, 0.08);
+  border: 1px solid rgba(59, 84, 238, 0.18);
+  border-radius: 9999px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #3B54EE;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.pr-kicker-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3B54EE;
+  box-shadow: 0 0 6px rgba(59, 84, 238, 0.6);
+}
+
+.pr-matrix-sec .pr-h2 {
+  font-family: "Times New Roman", Times, "Apple Garamond", Baskerville, serif;
+  font-size: clamp(32px, 3.8vw, 48px);
+  font-weight: 400;
+  color: #0F172A;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  margin: 0 0 10px 0;
+}
+
+.pr-matrix-sec .pr-sec-sub {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  color: #64748B;
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.5;
 }
 
 .pr-table-wrap {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(28px) saturate(190%);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
-  border: 1px solid var(--pr-hair);
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
   border-radius: 24px;
-  overflow-x: auto;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 16px 40px -10px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 20px 48px -12px rgba(15, 23, 42, 0.08);
+  max-width: 1080px;
+  margin: 0 auto;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.pr-table-wrap:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 28px 56px -12px rgba(15, 23, 42, 0.12);
 }
 
 .pr-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font: 450 14px var(--pr-sans);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
 }
 
 .pr-table th, .pr-table td {
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--pr-hair);
+  padding: 16px 22px;
+  border-bottom: 1px solid #F1F5F9;
+  vertical-align: middle;
 }
 
+/* Headers */
 .pr-table thead th {
-  font: 700 12px/1.2 var(--pr-mono);
-  letter-spacing: 0.08em;
+  background: #F8FAFC;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--pr-mute);
+  color: #64748B;
+  border-bottom: 1px solid #E2E8F0;
+  padding: 18px 22px;
+}
+
+.pr-table thead th.pr-th-feat {
+  width: 25%;
+  color: #475569;
+}
+
+.pr-table thead th.pr-th-nexus {
+  background: rgba(59, 84, 238, 0.05);
+  border-left: 1px solid rgba(59, 84, 238, 0.14);
+  border-right: 1px solid rgba(59, 84, 238, 0.14);
+  width: 27%;
+  position: relative;
+  text-align: left;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.pr-th-nexus-badge {
+  display: inline-block;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #3B54EE;
+  background: #FFFFFF;
+  border: 1px solid rgba(59, 84, 238, 0.25);
+  padding: 2px 7px;
+  border-radius: 9999px;
+  margin-bottom: 4px;
+  box-shadow: 0 1px 3px rgba(59, 84, 238, 0.12);
+}
+
+.pr-th-nexus-title {
+  color: #1E40AF;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.pr-table thead th.pr-th-comp {
+  width: 24%;
+}
+
+/* Rows */
+.pr-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.pr-table tbody tr:hover {
   background: #F8FAFC;
 }
 
 .pr-table tbody th {
-  font: 600 14px var(--pr-sans);
-  color: var(--pr-ink);
-  width: 28%;
+  font-weight: 600;
+  font-size: 14px;
+  color: #0F172A;
+  background: inherit;
 }
 
-.pr-th-nexus {
-  color: var(--pr-blue) !important;
-  background: rgba(0, 113, 227, 0.06) !important;
+/* Nexus Hero Column */
+.pr-table td.pr-cell-highlight {
+  background: rgba(59, 84, 238, 0.03);
+  border-left: 1px solid rgba(59, 84, 238, 0.12);
+  border-right: 1px solid rgba(59, 84, 238, 0.12);
+  color: #0F172A;
+  font-weight: 600;
 }
 
-.pr-cell-highlight {
-  background: rgba(0, 113, 227, 0.02);
-  color: var(--pr-ink);
-  font-weight: 500;
+.pr-table tbody tr:hover td.pr-cell-highlight {
+  background: rgba(59, 84, 238, 0.05);
 }
 
-.pr-cell-highlight strong {
+/* Cell Elements */
+.pr-cell-line {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+
+.pr-icon-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ECFDF5;
   color: #059669;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pr-icon-cross {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #F1F5F9;
+  color: #94A3B8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pr-text-muted {
+  color: #64748B;
+  font-weight: 400;
+}
+
+/* Winning Pill (0% Keep 100%) */
+.pr-pill-win {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  border-radius: 9999px;
+  background: #ECFDF5;
+  border: 1px solid #A7F3D0;
+  color: #047857;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Loss Pill (Cut) */
+.pr-pill-loss {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: #FFF1F2;
+  border: 1px solid #FECDD3;
+  color: #BE123C;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+/* Table Bottom Action Footer */
+.pr-table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: #FAFBFC;
+  border-top: 1px solid #E2E8F0;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.pr-table-footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pr-table-footer-title {
+  font-weight: 700;
+  font-size: 14.5px;
+  color: #0F172A;
+}
+
+.pr-table-footer-sub {
+  font-size: 13px;
+  color: #64748B;
+}
+
+.pr-table-footer-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 9999px;
+  background: #3B54EE;
+  color: #FFFFFF;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(59, 84, 238, 0.28);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pr-table-footer-cta:hover {
+  background: #2D43D8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(59, 84, 238, 0.38);
 }
 
 /* ── Interactive FAQ Section ── */
