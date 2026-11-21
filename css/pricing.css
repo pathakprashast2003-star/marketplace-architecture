@@ -624,514 +624,215 @@ body.pr-body {
   color: #248A3D;
 }
 
-/* ── Fair-Market Comparison Matrix: Apple Pro Craftwork Elevation ── */
-.pr-matrix-sec {
-  margin-top: 56px;
-  margin-bottom: 104px;
-  position: relative;
+/* ── Bespoke Editorial & Jewel Capsule Styling for #fees ── */
+.pr-body #fees {
+  padding-top: 48px;
+  padding-bottom: 84px;
 }
 
-.pr-matrix-sec::before {
-  content: "";
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 380px;
-  background: radial-gradient(ellipse at 50% 20%, rgba(59, 84, 238, 0.08), transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+.pr-body #fees .ct-deck-head {
+  margin-bottom: 28px;
 }
 
-.pr-sec-header {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  margin-bottom: 38px;
+.pr-body #fees .ct-title {
+  font-family: "Times New Roman", Times, "Apple Garamond", Baskerville, serif !important;
+  font-size: clamp(38px, 4.8vw, 56px) !important;
+  font-weight: 400 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.025em !important;
+  color: #0F172A !important;
 }
 
-.pr-kicker-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
-  background: rgba(59, 84, 238, 0.08);
-  border: 1px solid rgba(59, 84, 238, 0.2);
+.pr-body #fees .ct-title .nx-deck-accent {
+  font-family: "Times New Roman", Times, "Apple Garamond", Baskerville, serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.pr-body #fees .ct-sub {
+  font-family: "Times New Roman", Times, "Apple Garamond", Baskerville, serif !important;
+  font-size: 19px !important;
+  font-style: italic !important;
+  color: #64748B !important;
+  line-height: 1.5 !important;
+}
+
+/* Scrubber Bar */
+.pr-body #fees .ct-calc-bar {
   border-radius: 9999px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 11.5px;
-  font-weight: 700;
-  color: #2563EB;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-
-.pr-kicker-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #2563EB;
-  box-shadow: 0 0 8px rgba(37, 99, 235, 0.75);
-}
-
-.pr-matrix-sec .pr-h2 {
-  font-family: "Times New Roman", Times, "Apple Garamond", Baskerville, serif;
-  font-size: clamp(34px, 4vw, 48px);
-  font-weight: 400;
-  color: #0F172A;
-  letter-spacing: -0.025em;
-  line-height: 1.14;
-  margin: 0 0 12px 0;
-}
-
-.pr-matrix-sec .pr-sec-sub {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 16px;
-  color: #64748B;
-  max-width: 620px;
-  margin: 0 auto;
-  line-height: 1.55;
-}
-
-/* Master Comparison Table Chassis */
-.pr-table-wrap {
-  position: relative;
-  z-index: 1;
   background: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  border-radius: 26px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 20px 48px -10px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
-  max-width: 1080px;
-  margin: 0 auto;
-  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
-.pr-table-wrap:hover {
-  border-color: #CBD5E1;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03), 0 28px 56px -12px rgba(15, 23, 42, 0.11);
+.pr-body #fees .ct-calc-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  color: #64748B !important;
 }
 
-.pr-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  text-align: left;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 14px;
+.pr-body #fees .ct-calc-pill {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
 }
 
-/* Table Headers */
-.pr-table thead th {
-  background: #F1F5F9;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  border-bottom: 1px solid #E2E8F0;
-  padding: 22px 24px;
-  vertical-align: bottom;
+.pr-body #fees .ct-calc-savings {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  background: #EFF6FF !important;
+  border: 1px solid rgba(59, 130, 246, 0.2) !important;
+  color: #1E40AF !important;
 }
 
-.pr-table thead th.pr-th-feat {
-  width: 28%;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: #64748B;
+.pr-body #fees .ct-calc-savings strong {
+  font-family: "Times New Roman", Times, "Apple Garamond", Baskerville, serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #2563EB !important;
 }
 
-/* Nexus Hero Column Header */
-.pr-table thead th.pr-th-nexus {
-  width: 30%;
-  background: #FFFFFF !important;
-  border-top: 3.5px solid #2563EB;
-  border-left: 1.5px solid rgba(59, 84, 238, 0.22);
-  border-right: 1.5px solid rgba(59, 84, 238, 0.22);
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  position: relative;
-  z-index: 3;
-  padding: 22px 20px 18px;
-  box-shadow: 0 -6px 20px rgba(59, 84, 238, 0.06);
+/* Card Titles in Times New Roman */
+.pr-body #fees .ct-card-name {
+  font-family: "Times New Roman", Times, "Apple Garamond", Baskerville, serif !important;
+  font-size: 26px !important;
+  font-weight: 400 !important;
+  color: #0F172A !important;
+  letter-spacing: -0.015em !important;
+  margin-bottom: 4px !important;
 }
 
-.pr-th-nexus-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.09em;
-  color: #1D4ED8;
-  background: rgba(59, 84, 238, 0.08);
-  border: 1px solid rgba(59, 84, 238, 0.22);
-  padding: 3px 9px;
-  border-radius: 9999px;
-  margin-bottom: 6px;
-  text-transform: uppercase;
+.pr-body #fees .ct-card.is-hero .ct-card-name {
+  color: #FFFFFF !important;
 }
 
-.pr-badge-glow-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #2563EB;
-  box-shadow: 0 0 6px rgba(37, 99, 235, 0.85);
+.pr-body #fees .ct-card-sub {
+  font-family: "Times New Roman", Times, "Apple Garamond", Baskerville, serif !important;
+  font-style: italic !important;
+  font-size: 14.5px !important;
+  color: #64748B !important;
+  margin-bottom: 12px !important;
 }
 
-.pr-th-nexus-title {
-  color: #0F172A;
-  font-size: 16.5px;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  margin-bottom: 2px;
+.pr-body #fees .ct-card.is-hero .ct-card-sub {
+  color: rgba(255, 255, 255, 0.85) !important;
 }
 
-.pr-th-nexus-sub {
-  font-size: 12px;
-  font-weight: 600;
-  color: #2563EB;
+/* Colorful Jewel Capsules on Card Badges */
+.pr-body #fees .ct-card.is-freelance .ct-card-pill {
+  background: #FEF2F2 !important;
+  border: 1px solid #FECACA !important;
+  color: #DC2626 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  border-radius: 9999px !important;
 }
 
-/* Competitor Column Headers */
-.pr-table thead th.pr-th-comp {
-  width: 21%;
-  padding: 22px 20px;
+.pr-body #fees .ct-card.is-agency .ct-card-pill {
+  background: #FEF2F2 !important;
+  border: 1px solid #FECACA !important;
+  color: #DC2626 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  border-radius: 9999px !important;
 }
 
-.pr-th-comp-title {
-  font-size: 14.5px;
-  font-weight: 700;
-  color: #475569;
-  letter-spacing: -0.01em;
-  margin-bottom: 2px;
+.pr-body #fees .ct-card.is-hero .ct-card-pill {
+  background: #ECFDF5 !important;
+  border: 1.5px solid #6EE7B7 !important;
+  color: #047857 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.22) !important;
 }
 
-.pr-th-comp-sub {
-  font-size: 11.5px;
-  font-weight: 500;
-  color: #94A3B8;
+.pr-body #fees .ct-card.is-hero .ct-hero-top-badge {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  letter-spacing: 0.1em !important;
 }
 
-/* Table Body Rows */
-.pr-table tbody tr {
-  transition: background 0.15s ease;
+/* Budget Impacts */
+.pr-body #fees .ct-budget-impact {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  border-radius: 9999px !important;
 }
 
-.pr-table tbody tr:hover {
-  background: #EDF2F7;
+.pr-body #fees .ct-budget-impact [data-calc-budget],
+.pr-body #fees .ct-budget-impact [data-calc-toll],
+.pr-body #fees .ct-budget-impact [data-calc-keep] {
+  font-family: "Times New Roman", Times, "Apple Garamond", Baskerville, serif !important;
+  font-size: 14px !important;
 }
 
-.pr-table tbody th,
-.pr-table tbody td {
-  padding: 18px 22px;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
-  vertical-align: middle;
+/* Row Typography & Spacing */
+.pr-body #fees .ct-row span {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 13.5px !important;
+  line-height: 1.45 !important;
 }
 
-.pr-table tbody th {
-  background: inherit;
-  font-weight: 500;
+/* Colorful Jewel Checkmarks on Nexus Hero Card */
+.pr-body #fees .ct-card.is-hero .ct-row:nth-child(1) .ct-check-icon {
+  background: #3B82F6 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.45) !important;
+}
+.pr-body #fees .ct-card.is-hero .ct-row:nth-child(2) .ct-check-icon {
+  background: #10B981 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.45) !important;
+}
+.pr-body #fees .ct-card.is-hero .ct-row:nth-child(3) .ct-check-icon {
+  background: #8B5CF6 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.45) !important;
+}
+.pr-body #fees .ct-card.is-hero .ct-row:nth-child(4) .ct-check-icon {
+  background: #F59E0B !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.45) !important;
+}
+.pr-body #fees .ct-card.is-hero .ct-row:nth-child(5) .ct-check-icon {
+  background: #06B6D4 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.45) !important;
+}
+.pr-body #fees .ct-card.is-hero .ct-row:nth-child(6) .ct-check-icon {
+  background: #6366F1 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.45) !important;
+}
+.pr-body #fees .ct-card.is-hero .ct-row:nth-child(7) .ct-check-icon {
+  background: #10B981 !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.45) !important;
 }
 
-/* Feature Dimension Title & Pill Icon */
-.pr-feat-title-wrap {
-  display: flex;
-  align-items: center;
-  gap: 13px;
+/* Subtle cross styling on competitor cards */
+.pr-body #fees .ct-cross-icon {
+  background: #F1F5F9 !important;
+  color: #94A3B8 !important;
+  border-radius: 50% !important;
+  width: 18px !important;
+  height: 18px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
 }
 
-.pr-feat-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-}
-
-.pr-feat-blue {
-  background: rgba(59, 84, 238, 0.08);
-  color: #2563EB;
-  border: 1px solid rgba(59, 84, 238, 0.18);
-}
-
-.pr-feat-purple {
-  background: rgba(139, 92, 246, 0.08);
-  color: #7C3AED;
-  border: 1px solid rgba(139, 92, 246, 0.18);
-}
-
-.pr-feat-green {
-  background: rgba(16, 185, 129, 0.08);
-  color: #059669;
-  border: 1px solid rgba(16, 185, 129, 0.18);
-}
-
-.pr-feat-amber {
-  background: rgba(245, 158, 11, 0.08);
-  color: #D97706;
-  border: 1px solid rgba(245, 158, 11, 0.18);
-}
-
-.pr-feat-cyan {
-  background: rgba(6, 182, 212, 0.08);
-  color: #0891B2;
-  border: 1px solid rgba(6, 182, 212, 0.18);
-}
-
-.pr-feat-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.pr-feat-name {
-  font-size: 14.5px;
-  font-weight: 700;
-  color: #0F172A;
-  letter-spacing: -0.01em;
-}
-
-.pr-feat-desc {
-  font-size: 12px;
-  color: #64748B;
-  line-height: 1.35;
-}
-
-/* Elevated Floating Nexus Column */
-.pr-table td.pr-cell-highlight {
-  background: #FFFFFF !important;
-  border-left: 1.5px solid rgba(59, 84, 238, 0.22);
-  border-right: 1.5px solid rgba(59, 84, 238, 0.22);
-  position: relative;
-  z-index: 3;
-  box-shadow: 0 4px 16px rgba(59, 84, 238, 0.03);
-}
-
-.pr-table tbody tr:last-child td.pr-cell-highlight {
-  border-bottom: 1.5px solid rgba(59, 84, 238, 0.22);
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-  box-shadow: 0 10px 24px -6px rgba(59, 84, 238, 0.08);
-}
-
-.pr-table tbody tr:hover td.pr-cell-highlight {
-  background: #FCFDFF !important;
-  box-shadow: inset 0 0 0 1px rgba(59, 84, 238, 0.3), 0 8px 24px -4px rgba(59, 84, 238, 0.1);
-}
-
-.pr-nexus-cell-body {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.pr-comp-cell-body {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-/* Values & Typography */
-.pr-val-bold {
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #0F172A;
-  letter-spacing: -0.01em;
-}
-
-.pr-cell-sub {
-  font-size: 11.5px;
-  color: #94A3B8;
-  line-height: 1.35;
-}
-
-.pr-cell-sub.pr-win-sub {
-  color: #059669;
-  font-weight: 500;
-}
-
-.pr-cell-line {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 13.5px;
-  line-height: 1.4;
-}
-
-.pr-icon-check {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #ECFDF5;
-  color: #059669;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.pr-icon-cross {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #F1F5F9;
-  color: #94A3B8;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.pr-text-muted {
-  color: #64748B;
-  font-weight: 400;
-}
-
-/* Winning Pill (0% Keep 100%) */
-.pr-pill-win {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  border-radius: 9999px;
-  background: #ECFDF5;
-  border: 1.5px solid #6EE7B7;
-  color: #047857;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.12);
-}
-
-/* Loss Pill (Cut) */
-.pr-pill-loss {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 3.5px 10px;
-  border-radius: 9999px;
-  background: #FEF2F2;
-  border: 1px solid #FECACA;
-  color: #DC2626;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-/* Table Bottom Action Footer */
-.pr-table-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 22px 28px;
-  background: #FFFFFF;
-  border-top: 1px solid #E2E8F0;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.pr-table-footer-left {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.pr-footer-avatars {
-  display: flex;
-  align-items: center;
-}
-
-.pr-avatar-img {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 2.5px solid #FFFFFF;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  object-fit: cover;
-  margin-left: -10px;
-  background: #E2E8F0;
-}
-
-.pr-avatar-img:first-child {
-  margin-left: 0;
-}
-
-.pr-footer-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.pr-table-footer-title {
-  font-weight: 700;
-  font-size: 15px;
-  color: #0F172A;
-  letter-spacing: -0.01em;
-}
-
-.pr-table-footer-sub {
-  font-size: 13px;
-  color: #64748B;
-}
-
-.pr-table-footer-action {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 6px;
-}
-
-.pr-table-footer-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 22px;
-  border-radius: 9999px;
-  background: linear-gradient(135deg, #3B54EE 0%, #2563EB 100%);
-  color: #FFFFFF;
-  font-size: 13.5px;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.32), 0 8px 22px -4px rgba(37, 99, 235, 0.42);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.pr-table-footer-cta:hover {
-  filter: brightness(1.05);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.38), 0 12px 28px -4px rgba(37, 99, 235, 0.52);
-}
-
-.pr-table-footer-guarantee {
-  font-size: 11.5px;
-  font-weight: 500;
-  color: #94A3B8;
-}
-
-@media (max-width: 900px) {
-  .pr-table-wrap {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .pr-table {
-    min-width: 780px;
-  }
-  .pr-table-footer {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .pr-table-footer-action {
-    align-items: flex-start;
-    width: 100%;
-  }
-  .pr-table-footer-cta {
-    width: 100%;
-    justify-content: center;
-  }
+.pr-body #fees .ct-card.is-hero .is-hero-cta {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
 }
 
 /* ── Interactive FAQ Section ── */
