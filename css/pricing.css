@@ -626,49 +626,64 @@ body.pr-body {
 
 /* ── Fair-Market Comparison Matrix: Apple Pro Craftwork Elevation ── */
 .pr-matrix-sec {
-  margin-top: 40px;
-  margin-bottom: 96px;
+  margin-top: 56px;
+  margin-bottom: 104px;
   position: relative;
 }
 
+.pr-matrix-sec::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 380px;
+  background: radial-gradient(ellipse at 50% 20%, rgba(59, 84, 238, 0.08), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .pr-sec-header {
+  position: relative;
+  z-index: 1;
   text-align: center;
-  margin-bottom: 36px;
+  margin-bottom: 38px;
 }
 
 .pr-kicker-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 14px;
+  padding: 6px 16px;
   background: rgba(59, 84, 238, 0.08);
-  border: 1px solid rgba(59, 84, 238, 0.18);
+  border: 1px solid rgba(59, 84, 238, 0.2);
   border-radius: 9999px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
-  color: #3B54EE;
+  color: #2563EB;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 14px;
 }
 
 .pr-kicker-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: #3B54EE;
-  box-shadow: 0 0 6px rgba(59, 84, 238, 0.6);
+  background: #2563EB;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.75);
 }
 
 .pr-matrix-sec .pr-h2 {
   font-family: "Times New Roman", Times, "Apple Garamond", Baskerville, serif;
-  font-size: clamp(32px, 3.8vw, 48px);
+  font-size: clamp(34px, 4vw, 48px);
   font-weight: 400;
   color: #0F172A;
-  letter-spacing: -0.02em;
-  line-height: 1.12;
-  margin: 0 0 10px 0;
+  letter-spacing: -0.025em;
+  line-height: 1.14;
+  margin: 0 0 12px 0;
 }
 
 .pr-matrix-sec .pr-sec-sub {
@@ -677,15 +692,18 @@ body.pr-body {
   color: #64748B;
   max-width: 620px;
   margin: 0 auto;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
+/* Master Comparison Table Chassis */
 .pr-table-wrap {
-  background: #FFFFFF;
+  position: relative;
+  z-index: 1;
+  background: #F8FAFC;
   border: 1px solid #E2E8F0;
-  border-radius: 24px;
+  border-radius: 26px;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 20px 48px -12px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 20px 48px -10px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
   max-width: 1080px;
   margin: 0 auto;
   transition: box-shadow 0.25s ease, border-color 0.25s ease;
@@ -693,109 +711,250 @@ body.pr-body {
 
 .pr-table-wrap:hover {
   border-color: #CBD5E1;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 28px 56px -12px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03), 0 28px 56px -12px rgba(15, 23, 42, 0.11);
 }
 
 .pr-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   text-align: left;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 14px;
 }
 
-.pr-table th, .pr-table td {
-  padding: 16px 22px;
-  border-bottom: 1px solid #F1F5F9;
-  vertical-align: middle;
-}
-
-/* Headers */
+/* Table Headers */
 .pr-table thead th {
-  background: #F8FAFC;
+  background: #F1F5F9;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: #64748B;
   border-bottom: 1px solid #E2E8F0;
-  padding: 18px 22px;
+  padding: 22px 24px;
+  vertical-align: bottom;
 }
 
 .pr-table thead th.pr-th-feat {
-  width: 25%;
-  color: #475569;
+  width: 28%;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #64748B;
 }
 
+/* Nexus Hero Column Header */
 .pr-table thead th.pr-th-nexus {
-  background: rgba(59, 84, 238, 0.05);
-  border-left: 1px solid rgba(59, 84, 238, 0.14);
-  border-right: 1px solid rgba(59, 84, 238, 0.14);
-  width: 27%;
+  width: 30%;
+  background: #FFFFFF !important;
+  border-top: 3.5px solid #2563EB;
+  border-left: 1.5px solid rgba(59, 84, 238, 0.22);
+  border-right: 1.5px solid rgba(59, 84, 238, 0.22);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
   position: relative;
-  text-align: left;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  z-index: 3;
+  padding: 22px 20px 18px;
+  box-shadow: 0 -6px 20px rgba(59, 84, 238, 0.06);
 }
 
 .pr-th-nexus-badge {
-  display: inline-block;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 9.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: 0.1em;
-  color: #3B54EE;
-  background: #FFFFFF;
-  border: 1px solid rgba(59, 84, 238, 0.25);
-  padding: 2px 7px;
+  letter-spacing: 0.09em;
+  color: #1D4ED8;
+  background: rgba(59, 84, 238, 0.08);
+  border: 1px solid rgba(59, 84, 238, 0.22);
+  padding: 3px 9px;
   border-radius: 9999px;
-  margin-bottom: 4px;
-  box-shadow: 0 1px 3px rgba(59, 84, 238, 0.12);
-}
-
-.pr-th-nexus-title {
-  color: #1E40AF;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.05em;
+  margin-bottom: 6px;
   text-transform: uppercase;
 }
 
-.pr-table thead th.pr-th-comp {
-  width: 24%;
+.pr-badge-glow-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #2563EB;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.85);
 }
 
-/* Rows */
+.pr-th-nexus-title {
+  color: #0F172A;
+  font-size: 16.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+}
+
+.pr-th-nexus-sub {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2563EB;
+}
+
+/* Competitor Column Headers */
+.pr-table thead th.pr-th-comp {
+  width: 21%;
+  padding: 22px 20px;
+}
+
+.pr-th-comp-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #475569;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+}
+
+.pr-th-comp-sub {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #94A3B8;
+}
+
+/* Table Body Rows */
 .pr-table tbody tr {
   transition: background 0.15s ease;
 }
 
 .pr-table tbody tr:hover {
-  background: #F8FAFC;
+  background: #EDF2F7;
+}
+
+.pr-table tbody th,
+.pr-table tbody td {
+  padding: 18px 22px;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+  vertical-align: middle;
 }
 
 .pr-table tbody th {
-  font-weight: 600;
-  font-size: 14px;
-  color: #0F172A;
   background: inherit;
+  font-weight: 500;
 }
 
-/* Nexus Hero Column */
-.pr-table td.pr-cell-highlight {
-  background: rgba(59, 84, 238, 0.03);
-  border-left: 1px solid rgba(59, 84, 238, 0.12);
-  border-right: 1px solid rgba(59, 84, 238, 0.12);
+/* Feature Dimension Title & Pill Icon */
+.pr-feat-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.pr-feat-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.pr-feat-blue {
+  background: rgba(59, 84, 238, 0.08);
+  color: #2563EB;
+  border: 1px solid rgba(59, 84, 238, 0.18);
+}
+
+.pr-feat-purple {
+  background: rgba(139, 92, 246, 0.08);
+  color: #7C3AED;
+  border: 1px solid rgba(139, 92, 246, 0.18);
+}
+
+.pr-feat-green {
+  background: rgba(16, 185, 129, 0.08);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.18);
+}
+
+.pr-feat-amber {
+  background: rgba(245, 158, 11, 0.08);
+  color: #D97706;
+  border: 1px solid rgba(245, 158, 11, 0.18);
+}
+
+.pr-feat-cyan {
+  background: rgba(6, 182, 212, 0.08);
+  color: #0891B2;
+  border: 1px solid rgba(6, 182, 212, 0.18);
+}
+
+.pr-feat-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pr-feat-name {
+  font-size: 14.5px;
+  font-weight: 700;
   color: #0F172A;
-  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.pr-feat-desc {
+  font-size: 12px;
+  color: #64748B;
+  line-height: 1.35;
+}
+
+/* Elevated Floating Nexus Column */
+.pr-table td.pr-cell-highlight {
+  background: #FFFFFF !important;
+  border-left: 1.5px solid rgba(59, 84, 238, 0.22);
+  border-right: 1.5px solid rgba(59, 84, 238, 0.22);
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 4px 16px rgba(59, 84, 238, 0.03);
+}
+
+.pr-table tbody tr:last-child td.pr-cell-highlight {
+  border-bottom: 1.5px solid rgba(59, 84, 238, 0.22);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  box-shadow: 0 10px 24px -6px rgba(59, 84, 238, 0.08);
 }
 
 .pr-table tbody tr:hover td.pr-cell-highlight {
-  background: rgba(59, 84, 238, 0.05);
+  background: #FCFDFF !important;
+  box-shadow: inset 0 0 0 1px rgba(59, 84, 238, 0.3), 0 8px 24px -4px rgba(59, 84, 238, 0.1);
 }
 
-/* Cell Elements */
+.pr-nexus-cell-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pr-comp-cell-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Values & Typography */
+.pr-val-bold {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0F172A;
+  letter-spacing: -0.01em;
+}
+
+.pr-cell-sub {
+  font-size: 11.5px;
+  color: #94A3B8;
+  line-height: 1.35;
+}
+
+.pr-cell-sub.pr-win-sub {
+  color: #059669;
+  font-weight: 500;
+}
+
 .pr-cell-line {
   display: flex;
   align-items: center;
@@ -838,15 +997,15 @@ body.pr-body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 11px;
+  padding: 4px 12px;
   border-radius: 9999px;
   background: #ECFDF5;
-  border: 1px solid #A7F3D0;
+  border: 1.5px solid #6EE7B7;
   color: #047857;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.01em;
-  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.1);
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.12);
 }
 
 /* Loss Pill (Cut) */
@@ -854,13 +1013,13 @@ body.pr-body {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 3px 10px;
+  padding: 3.5px 10px;
   border-radius: 9999px;
-  background: #FFF1F2;
-  border: 1px solid #FECDD3;
-  color: #BE123C;
-  font-size: 12.5px;
-  font-weight: 600;
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #DC2626;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 /* Table Bottom Action Footer */
@@ -868,14 +1027,40 @@ body.pr-body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 24px;
-  background: #FAFBFC;
+  padding: 22px 28px;
+  background: #FFFFFF;
   border-top: 1px solid #E2E8F0;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 20px;
 }
 
 .pr-table-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pr-footer-avatars {
+  display: flex;
+  align-items: center;
+}
+
+.pr-avatar-img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2.5px solid #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  object-fit: cover;
+  margin-left: -10px;
+  background: #E2E8F0;
+}
+
+.pr-avatar-img:first-child {
+  margin-left: 0;
+}
+
+.pr-footer-text {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -883,8 +1068,9 @@ body.pr-body {
 
 .pr-table-footer-title {
   font-weight: 700;
-  font-size: 14.5px;
+  font-size: 15px;
   color: #0F172A;
+  letter-spacing: -0.01em;
 }
 
 .pr-table-footer-sub {
@@ -892,25 +1078,60 @@ body.pr-body {
   color: #64748B;
 }
 
+.pr-table-footer-action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
 .pr-table-footer-cta {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px 18px;
+  gap: 8px;
+  padding: 10px 22px;
   border-radius: 9999px;
-  background: #3B54EE;
+  background: linear-gradient(135deg, #3B54EE 0%, #2563EB 100%);
   color: #FFFFFF;
   font-size: 13.5px;
   font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(59, 84, 238, 0.28);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.32), 0 8px 22px -4px rgba(37, 99, 235, 0.42);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .pr-table-footer-cta:hover {
-  background: #2D43D8;
+  filter: brightness(1.05);
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(59, 84, 238, 0.38);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.38), 0 12px 28px -4px rgba(37, 99, 235, 0.52);
+}
+
+.pr-table-footer-guarantee {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #94A3B8;
+}
+
+@media (max-width: 900px) {
+  .pr-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pr-table {
+    min-width: 780px;
+  }
+  .pr-table-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pr-table-footer-action {
+    align-items: flex-start;
+    width: 100%;
+  }
+  .pr-table-footer-cta {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ── Interactive FAQ Section ── */
