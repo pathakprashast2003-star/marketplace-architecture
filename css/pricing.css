@@ -869,29 +869,29 @@ body.pr-body {
 
 .pr-faq-card {
   width: 100%;
-  max-width: 1160px;
+  max-width: 960px;
   background: #FFFFFF;
   border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 32px;
-  padding: clamp(38px, 4.5vw, 56px) clamp(24px, 4.5vw, 64px) clamp(32px, 4vw, 44px);
-  box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
+  border-radius: 26px;
+  padding: clamp(32px, 3.8vw, 42px) clamp(20px, 3.8vw, 46px) clamp(26px, 3.2vw, 34px);
+  box-shadow: 0 16px 40px -12px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
 }
 
 .pr-faq-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 28px;
-  padding-bottom: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
   border-bottom: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .pr-faq-giant-title {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
-  font-size: clamp(74px, 9.2vw, 114px);
+  font-size: clamp(52px, 6.2vw, 76px);
   font-weight: 800;
-  letter-spacing: -0.045em;
-  line-height: 0.88;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
   color: #1D4ED8;
   margin: 0;
   text-transform: uppercase;
@@ -899,12 +899,12 @@ body.pr-body {
 
 .pr-faq-tracker {
   font-family: var(--pr-mono, 'JetBrains Mono', monospace);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: #475569;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .pr-faq-list {
@@ -916,13 +916,13 @@ body.pr-body {
   border: none;
   border-bottom: 1px solid rgba(15, 23, 42, 0.08);
   background: transparent;
-  padding: 24px 0;
+  padding: 18px 0;
   transition: background-color 0.15s ease;
 }
 
 .pr-faq-item:last-child {
   border-bottom: none;
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 }
 
 .pr-faq-summary {
@@ -931,7 +931,7 @@ body.pr-body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 16px;
   user-select: none;
   outline: none;
 }
@@ -942,8 +942,8 @@ body.pr-body {
 
 .pr-faq-sparkle {
   color: #2563EB;
-  width: 22px;
-  height: 22px;
+  width: 19px;
+  height: 19px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -959,7 +959,7 @@ body.pr-body {
 .pr-faq-q-text {
   flex: 1;
   font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif);
-  font-size: clamp(20px, 1.8vw, 24px);
+  font-size: clamp(17.5px, 1.5vw, 19.5px);
   font-weight: 700;
   color: #0F172A;
   letter-spacing: -0.015em;
@@ -972,8 +972,8 @@ body.pr-body {
 }
 
 .pr-faq-circle-btn {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: #2563EB;
   color: #FFFFFF;
@@ -1007,10 +1007,10 @@ body.pr-body {
 }
 
 .pr-faq-answer {
-  padding: 16px 60px 8px 42px;
+  padding: 12px 50px 6px 36px;
   font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif);
-  font-size: clamp(16px, 1.25vw, 17.5px);
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.65;
   color: #475569;
 }
 
@@ -1021,30 +1021,30 @@ body.pr-body {
 /* Mobile Breakpoint */
 @media (max-width: 640px) {
   .pr-faq-card {
-    padding: 32px 20px 24px;
-    border-radius: 20px;
+    padding: 26px 18px 20px;
+    border-radius: 18px;
   }
 
   .pr-faq-top {
     flex-direction: column;
     align-items: flex-start;
-    gap: 6px;
-    margin-bottom: 18px;
-    padding-bottom: 14px;
+    gap: 4px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
   }
 
   .pr-faq-giant-title {
-    font-size: 56px;
+    font-size: 42px;
     line-height: 0.95;
   }
 
   .pr-faq-tracker {
-    font-size: 10.5px;
+    font-size: 10px;
     margin-bottom: 0;
   }
 
   .pr-faq-item {
-    padding: 18px 0;
+    padding: 15px 0;
   }
 
   .pr-faq-summary {
@@ -1052,22 +1052,22 @@ body.pr-body {
   }
 
   .pr-faq-sparkle {
-    width: 18px;
-    height: 18px;
+    width: 17px;
+    height: 17px;
   }
 
   .pr-faq-q-text {
-    font-size: 17.5px;
+    font-size: 16px;
   }
 
   .pr-faq-circle-btn {
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
   }
 
   .pr-faq-answer {
-    padding: 12px 0 4px 30px;
-    font-size: 15px;
+    padding: 10px 0 4px 28px;
+    font-size: 14px;
   }
 }
 
