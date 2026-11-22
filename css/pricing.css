@@ -970,51 +970,235 @@ body.pr-body {
   margin: 0;
 }
 
-/* ── Bottom CTA Banner ── */
+/* ── Bottom CTA Banner (Apple Pro Design) ── */
 .pr-cta-sec {
-  margin-bottom: 32px;
+  margin-top: 48px;
+  margin-bottom: 48px;
+  position: relative;
 }
 
 .pr-cta-card {
+  position: relative;
   text-align: center;
-  background: radial-gradient(100% 120% at 50% 0%, #1E293B 0%, #0F172A 100%);
-  border-radius: 28px;
-  padding: clamp(36px, 5vw, 56px) 24px;
+  background: radial-gradient(120% 140% at 50% 0%, #172554 0%, #0F172A 50%, #060913 100%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 36px;
+  padding: clamp(52px, 6vw, 76px) clamp(24px, 5vw, 56px);
   color: #FFFFFF;
-  box-shadow: 0 20px 50px -15px rgba(15, 23, 42, 0.25);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
+              0 32px 80px -16px rgba(15, 23, 42, 0.45),
+              0 0 0 1px rgba(15, 23, 42, 0.2);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Apple Top Specular Catch-Light */
+.pr-cta-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(520px, 80%);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ambient Blue Aurora Glow */
+.pr-cta-card::after {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 480px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 84, 238, 0.3) 0%, transparent 70%);
+  filter: blur(48px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pr-cta-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.pr-cta-kicker-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.pr-cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(59, 84, 238, 0.16);
+  border: 1px solid rgba(147, 197, 253, 0.26);
+  border-radius: 999px;
+  font-family: var(--pr-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 700;
+  color: #93C5FD;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.pr-cta-badge-dot {
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #60A5FA;
+  box-shadow: 0 0 8px #60A5FA;
 }
 
 .pr-cta-title {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
-  font-size: clamp(30px, 4vw, 42px);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(34px, 4.4vw, 50px);
+  font-weight: 750;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
   color: #FFFFFF;
-  margin: 0 0 12px;
+  margin: 0 auto 16px;
+  max-width: 22ch;
+  text-wrap: balance;
 }
 
 .pr-cta-desc {
-  font: 400 16px/1.55 var(--pr-sans);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Plus Jakarta Sans', sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
   color: #94A3B8;
-  max-width: 560px;
-  margin: 0 auto 32px;
+  max-width: 620px;
+  margin: 0 auto 28px;
+  text-wrap: pretty;
+}
+
+/* Assurance Pillars */
+.pr-cta-pillars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 auto 36px;
+  max-width: 680px;
+}
+
+.pr-cta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #E2E8F0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.pr-cta-pill-icon {
+  color: #34D399;
+  font-weight: 700;
+  font-size: 12px;
 }
 
 .pr-cta-btns {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 16px;
   flex-wrap: wrap;
+  margin-bottom: 22px;
 }
 
-.pr-cta-btns .pr-btn-secondary {
-  background: rgba(255, 255, 255, 0.1);
+.pr-cta-btn-primary {
+  height: 52px;
+  padding: 0 32px;
+  font-size: 15.5px;
+  font-weight: 600;
+  background: linear-gradient(180deg, #3B82F6 0%, #2563EB 55%, #1D4ED8 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.45), 
+              0 10px 28px -4px rgba(37, 99, 235, 0.65);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease, filter 0.15s ease;
+}
+
+.pr-cta-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.55), 
+              0 16px 36px -4px rgba(37, 99, 235, 0.85);
+  filter: brightness(1.05);
+}
+
+.pr-cta-btn-primary:active {
+  transform: scale(0.97);
+  transition: transform 100ms ease-out;
+}
+
+.pr-cta-btn-secondary {
+  height: 52px;
+  padding: 0 28px;
+  font-size: 15.5px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.08);
   color: #FFFFFF;
-  border-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), background 0.15s ease, border-color 0.15s ease;
 }
 
-.pr-cta-btns .pr-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.16);
+.pr-cta-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.pr-cta-btn-secondary:active {
+  transform: scale(0.97);
+  transition: transform 100ms ease-out;
+}
+
+.pr-cta-trust {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Plus Jakarta Sans', sans-serif;
+  font-size: 12.5px;
+  color: #64748B;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 640px) {
+  .pr-cta-card {
+    border-radius: 24px;
+    padding: 44px 20px;
+  }
+  .pr-cta-pillars {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+  .pr-cta-btns {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .pr-cta-btn-primary,
+  .pr-cta-btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
 }
