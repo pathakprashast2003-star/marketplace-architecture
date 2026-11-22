@@ -854,7 +854,7 @@ body.pr-body {
 .pr-faq-sec {
   position: relative;
   z-index: 2;
-  margin-top: 72px;
+  margin-top: 40px;
   margin-bottom: 96px;
   display: flex;
   justify-content: center;
@@ -862,7 +862,7 @@ body.pr-body {
 
 @media (max-width: 640px) {
   .pr-faq-sec {
-    margin-top: 48px;
+    margin-top: 32px;
     margin-bottom: 64px;
   }
 }
@@ -1071,9 +1071,21 @@ body.pr-body {
   }
 }
 
-/* ── Founding Roster Bottom Section Styling ── */
+/* ── Founding Roster Section Styling on Pricing Page ── */
 .pr-body #founding {
-  padding-top: 48px;
-  padding-bottom: 80px;
-  background: #FCFCFD;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background: transparent;
+}
+
+.pr-body #founding .nx-found-container {
+  max-width: 1160px;
+  padding-inline: 0;
+}
+
+@media (max-width: 640px) {
+  .pr-body #founding {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
 }

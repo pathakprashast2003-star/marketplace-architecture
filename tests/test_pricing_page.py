@@ -77,7 +77,16 @@ def test_pricing_page_render_and_calculator():
         page.wait_for_timeout(300)
         assert "is-flipped" not in banner.get_attribute("class")
 
-        # 7. Verify Zero Console / Page Errors
+        # 7. Check Section Ordering: #founding must sit above #faq
+        is_faq_following_founding = page.evaluate(
+            "() => !!(document.getElementById('founding').compareDocumentPosition(document.getElementById('faq')) & Node.DOCUMENT_POSITION_FOLLOWING)"
+        )
+        assert is_faq_following_founding, "Expected #founding to be placed above #faq in DOM"
+        founding_box = founding_sec.bounding_box()
+        faq_box = page.locator("#faq").bounding_box()
+        assert founding_box["y"] < faq_box["y"], "Expected #founding visual position to be above #faq"
+
+        # 8. Verify Zero Console / Page Errors
         assert len(errors) == 0, f"Encountered console/page errors: {errors}"
         
         browser.close()
