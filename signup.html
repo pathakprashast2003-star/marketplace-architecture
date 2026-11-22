@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Join Nexus · Choose Your Path</title>
+  <title>Create your account · Nexus</title>
   <meta name="description" content="Sign up for Nexus. Choose whether you're looking to hire top creative talent or join as a verified creator/business with 0% commission.">
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%233B54EE' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #0F172A;
@@ -28,7 +28,6 @@
       --serif: 'Times New Roman', Times, Georgia, serif;
       --sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
       --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
-      --hand: 'Caveat', cursive;
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -50,7 +49,7 @@
     [hidden] { display: none !important; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
-    /* ── Top Navigation Bar ── */
+    /* Top Navigation */
     .nx-auth-nav {
       display: flex;
       align-items: center;
@@ -60,7 +59,6 @@
       margin: 0 auto;
       padding: 24px clamp(16px, 4vw, 32px);
     }
-
     .nx-auth-brand {
       display: inline-flex;
       align-items: center;
@@ -72,7 +70,6 @@
       letter-spacing: -0.02em;
       text-decoration: none !important;
     }
-
     .nx-auth-brand-dot {
       width: 8px;
       height: 8px;
@@ -80,24 +77,16 @@
       background: var(--blue);
       box-shadow: 0 0 10px var(--blue-glow);
     }
-
     .nx-auth-nav-link {
       font-size: 14.5px;
       font-weight: 600;
       color: var(--sub);
       text-decoration: none;
-      transition: color 0.15s ease;
     }
-    .nx-auth-nav-link:hover {
-      color: var(--ink);
-      text-decoration: none;
-    }
-    .nx-auth-nav-link b {
-      color: var(--blue);
-      font-weight: 700;
-    }
+    .nx-auth-nav-link:hover { color: var(--ink); text-decoration: none; }
+    .nx-auth-nav-link b { color: var(--blue); font-weight: 700; }
 
-    /* ── Main Stage ── */
+    /* Main Stage */
     .nx-auth-main {
       flex: 1;
       display: flex;
@@ -114,39 +103,42 @@
       display: block;
     }
 
-    /* ── Landing Page Style Hero Header (#join from index.html) ── */
-    .jn-head {
-      position: relative;
-      text-align: center;
-      margin: 0 auto 34px;
-      max-width: 980px;
-      padding: 0 16px;
+    /* ── The 2-Choice Stage (Clean, Apple-Grade, Balanced) ── */
+    .nx-fork-wrap {
+      max-width: 940px;
+      margin: 0 auto;
     }
 
-    .jn-pill {
+    .nx-fork-header {
+      text-align: center;
+      margin: 0 auto 36px;
+      max-width: 680px;
+    }
+
+    .nx-kicker-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      margin: 0 auto 16px;
-      padding: 6px 16px;
+      margin: 0 auto 14px;
+      padding: 5px 14px;
       border-radius: 999px;
       background: #EEF2FF;
       border: 1px solid rgba(59, 84, 238, 0.18);
       font-family: var(--mono);
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
       letter-spacing: 0.10em;
       text-transform: uppercase;
       color: var(--blue);
     }
 
-    .jn-title {
-      margin: 0 auto 14px;
+    .nx-fork-title {
+      margin: 0 auto 12px;
       font-family: var(--serif);
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: -0.025em;
-      line-height: 1.05;
-      font-size: clamp(2.3rem, 4.4vw, 3.8rem);
+      line-height: 1.08;
+      font-size: clamp(32px, 4.8vw, 46px);
       color: var(--ink);
       text-wrap: balance;
     }
@@ -161,218 +153,163 @@
       display: inline-block;
     }
 
-    .jn-sub {
-      margin: 0 auto 20px;
-      max-width: 54ch;
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 18px;
-      line-height: 1.5;
-      color: var(--mute);
-    }
-
-    /* Hand-drawn editorial annotations with curved arrows */
-    .jn-note {
-      position: absolute;
-      font-family: var(--hand);
-      font-size: 22px;
-      line-height: 1.05;
-      color: var(--sub);
-      pointer-events: none;
-    }
-    .jn-note svg {
-      display: block;
-      width: 70px;
-      height: 52px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .jn-n-a {
-      left: 0;
-      top: 15%;
-      transform: rotate(-8deg);
-      text-align: left;
-    }
-    .jn-n-a svg {
-      margin: 4px 0 0 40px;
-    }
-    .jn-n-b {
-      right: 0;
-      top: 15%;
-      transform: rotate(7deg);
-      text-align: right;
-    }
-    .jn-n-b svg {
-      margin: 4px 0 0 -10px;
-    }
-
-    /* Horizontal attribute check pills */
-    .jn-head-attrs {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px 24px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      font-size: 14.5px;
-      color: var(--sub);
-    }
-    .jn-head-attrs li {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      white-space: nowrap;
-    }
-    .jn-tick-ic {
-      display: inline-flex;
-      flex: none;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/9px no-repeat;
-    }
-
-    /* ── The 2-Choice Grid Container ── */
-    .jn-grid-shell {
-      max-width: 1040px;
+    .nx-fork-sub {
       margin: 0 auto;
+      max-width: 52ch;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--sub);
+    }
+
+    /* Two Standalone Balanced Cards */
+    .nx-dual-cards {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      border-radius: 32px;
-      overflow: hidden;
-      border: 1px solid rgba(15, 23, 42, 0.08);
-      box-shadow: 0 32px 76px -22px rgba(15, 23, 42, 0.12), 0 4px 18px -4px rgba(15, 23, 42, 0.04);
-      background: #FFFFFF;
+      gap: 24px;
+      margin-top: 32px;
     }
 
-    /* Card A: Client Card (White, Apple-grade) */
-    .jn-client-side {
-      padding: 44px clamp(28px, 4.4vw, 48px);
+    .nx-choice-card {
+      border-radius: 28px;
+      padding: 38px 34px 34px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 20px;
-      background: #FFFFFF;
+      cursor: pointer;
       position: relative;
+      transition: transform 0.22s var(--ease), box-shadow 0.22s ease, border-color 0.22s ease;
+      text-decoration: none !important;
+      outline: none;
+    }
+    .nx-choice-card:hover {
+      transform: translateY(-4px);
+    }
+    .nx-choice-card:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
     }
 
-    /* Card B: Creator Card (Signature Royal Blue Radial Gradient) */
-    .jn-creator-side {
-      padding: 44px clamp(28px, 4.4vw, 48px);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 20px;
-      color: #FFFFFF;
+    /* Left Card: Client (White) */
+    .card-client {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.07), 0 2px 6px rgba(15, 23, 42, 0.02);
+      color: var(--ink);
+    }
+    .card-client:hover {
+      border-color: rgba(59, 84, 238, 0.4);
+      box-shadow: 0 24px 54px -12px rgba(59, 84, 238, 0.12), 0 2px 6px rgba(15, 23, 42, 0.03);
+    }
+
+    /* Right Card: Creator (Signature Royal Blue Radial Gradient) */
+    .card-creator {
       background: radial-gradient(120% 95% at 80% 10%, #5872FF 0%, #3B54EE 48%, #2134B8 100%);
-      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      box-shadow: 0 24px 52px -12px rgba(35, 55, 198, 0.38), 0 2px 6px rgba(15, 23, 42, 0.04);
+      color: #FFFFFF;
+    }
+    .card-creator:hover {
+      box-shadow: 0 28px 60px -10px rgba(35, 55, 198, 0.48), 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
-    .jn-side-top {
+    .card-top-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 6px;
+      margin-bottom: 20px;
     }
 
-    .jn-kicker-mono {
+    .card-icon-bubble {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-client .card-icon-bubble {
+      background: #EEF2FF;
+      color: var(--blue);
+    }
+    .card-creator .card-icon-bubble {
+      background: rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+    }
+
+    .card-badge {
       font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-    }
-    .jn-client-side .jn-kicker-mono { color: var(--blue); }
-    .jn-creator-side .jn-kicker-mono { color: rgba(255, 255, 255, 0.8); }
-
-    .jn-badge-pill {
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.06em;
-      padding: 4px 12px;
+      padding: 5px 12px;
       border-radius: 999px;
       text-transform: uppercase;
-      font-family: var(--mono);
       white-space: nowrap;
     }
-    .badge-client-tag {
+    .card-client .card-badge {
       background: var(--soft);
       color: var(--sub);
       border: 1px solid rgba(15, 23, 42, 0.08);
     }
-    .badge-creator-tag {
-      background: rgba(255, 255, 255, 0.16);
+    .card-creator .card-badge {
+      background: rgba(255, 255, 255, 0.18);
       color: #FFFFFF;
-      border: 1px solid rgba(255, 255, 255, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
-    .jn-card-h2 {
-      margin: 0 0 10px;
+    .card-h2 {
+      margin: 0 0 6px;
       font-family: var(--serif);
-      font-size: clamp(26px, 3.2vw, 32px);
-      font-weight: 600;
-      letter-spacing: -0.025em;
-      line-height: 1.1;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
     }
-    .jn-client-side .jn-card-h2 { color: var(--ink); }
-    .jn-client-side .jn-card-h2 em { font-style: italic; color: var(--blue); }
-    .jn-creator-side .jn-card-h2 { color: #FFFFFF; }
-    .jn-creator-side .jn-card-h2 em { font-style: italic; font-weight: 500; }
+    .card-client .card-h2 { color: var(--ink); }
+    .card-creator .card-h2 { color: #FFFFFF; }
 
-    .jn-card-desc {
-      margin: 0 0 18px;
+    .card-subhead {
+      margin: 0 0 14px;
       font-family: var(--serif);
-      font-size: 16px;
+      font-style: italic;
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .card-client .card-subhead { color: var(--blue); }
+    .card-creator .card-subhead { color: rgba(255, 255, 255, 0.92); }
+
+    .card-desc {
+      margin: 0 0 22px;
+      font-size: 14.5px;
       line-height: 1.5;
     }
-    .jn-client-side .jn-card-desc { color: var(--sub); }
-    .jn-creator-side .jn-card-desc { color: rgba(255, 255, 255, 0.88); }
+    .card-client .card-desc { color: var(--sub); }
+    .card-creator .card-desc { color: rgba(255, 255, 255, 0.88); }
 
-    /* Founding meter for creator card */
-    .jn-founding-track {
-      width: 100%;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 999px;
-      overflow: hidden;
-      margin: 8px 0 14px;
-    }
-    .jn-founding-track > div {
-      width: 42%;
-      height: 100%;
-      background: #FFFFFF;
-      border-radius: 999px;
-    }
-
-    .jn-ticks-list {
+    .card-ticks {
       list-style: none;
-      margin: 0 0 24px;
-      padding: 16px 0 0;
+      margin: 0 0 28px;
+      padding: 18px 0 0;
       display: grid;
-      gap: 10px;
-      font-family: var(--serif);
-      font-size: 15px;
+      gap: 11px;
+      font-size: 14px;
     }
-    .jn-client-side .jn-ticks-list {
+    .card-client .card-ticks {
       border-top: 1px solid rgba(15, 23, 42, 0.08);
       color: var(--ink-light);
     }
-    .jn-creator-side .jn-ticks-list {
+    .card-creator .card-ticks {
       border-top: 1px solid rgba(255, 255, 255, 0.18);
-      color: rgba(255, 255, 255, 0.92);
+      color: rgba(255, 255, 255, 0.94);
     }
 
-    .jn-ticks-list li {
+    .card-ticks li {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .jn-client-side .jn-ticks-list li::before {
+    .card-client .card-ticks li::before {
       content: '';
       flex: none;
       width: 16px;
@@ -380,13 +317,13 @@
       border-radius: 50%;
       background: var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/10px no-repeat;
     }
-    .jn-creator-side .jn-ticks-list li::before {
+    .card-creator .card-ticks li::before {
       content: '';
       flex: none;
       width: 16px;
       height: 16px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.25) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/10px no-repeat;
+      background: rgba(255, 255, 255, 0.24) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/10px no-repeat;
     }
 
     /* Buttons */
@@ -408,43 +345,38 @@
     }
     .btn:active { transform: scale(0.98); }
 
-    .btn-client-choice {
+    .btn-client-cta {
       background: linear-gradient(135deg, #4B66F8 0%, #3B54EE 60%, #2740D6 100%);
       color: #FFFFFF;
       box-shadow: 0 8px 20px -4px rgba(59, 84, 238, 0.4);
     }
-    .btn-client-choice:hover {
+    .btn-client-cta:hover {
       filter: brightness(1.06);
-      transform: translateY(-2px);
       box-shadow: 0 12px 24px -4px rgba(59, 84, 238, 0.5);
     }
 
-    .btn-creator-choice {
+    .btn-creator-cta {
       background: #FFFFFF;
       color: var(--blue);
-      border: 1.5px solid #FFFFFF;
-      box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.16);
+      box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.18);
     }
-    .btn-creator-choice:hover {
+    .btn-creator-cta:hover {
       background: #F8FAFC;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.24);
     }
 
-    .jn-footer-row {
-      margin-top: 28px;
+    .nx-fork-footer {
+      margin-top: 32px;
       text-align: center;
       font-size: 14.5px;
       color: var(--sub);
     }
-    .jn-footer-row a {
-      font-weight: 600;
-    }
+    .nx-fork-footer a { font-weight: 600; }
 
-    /* ── Sub-Flow Auth Cards (Client Magic Link & Creator 3-Step) ── */
+    /* ── Sub-Flow Auth Cards (Client Magic Link & Creator Wizard) ── */
     .nx-auth-box {
       width: 100%;
-      max-width: 490px;
+      max-width: 480px;
       margin: 0 auto;
       background: #FFFFFF;
       border: 1px solid var(--line);
@@ -468,9 +400,7 @@
       cursor: pointer;
       transition: color 0.15s ease;
     }
-    .nx-back-btn:hover {
-      color: var(--ink);
-    }
+    .nx-back-btn:hover { color: var(--ink); }
 
     .nx-form-kicker {
       display: inline-flex;
@@ -501,10 +431,7 @@
       color: var(--sub);
       margin: 0 0 24px;
     }
-    .nx-form-sub b {
-      color: var(--ink);
-      word-break: break-all;
-    }
+    .nx-form-sub b { color: var(--ink); word-break: break-all; }
 
     .nx-banner-founding {
       background: #EFF6FF;
@@ -642,10 +569,6 @@
       border-color: rgba(59, 84, 238, 0.4);
       background: #F8FAFC;
     }
-    .otp-grid input.is-bad {
-      border-color: var(--bad);
-      animation: shake 0.3s;
-    }
 
     .form-msg {
       font-size: 13.5px;
@@ -700,22 +623,16 @@
       justify-content: center;
       margin-bottom: 18px;
     }
-    .done-badge-wrap svg {
-      width: 32px;
-      height: 32px;
-    }
+    .done-badge-wrap svg { width: 32px; height: 32px; }
 
-    /* ── Responsive adjustments ── */
-    @media (max-width: 960px) {
-      .jn-note { display: none; }
-    }
-    @media (max-width: 820px) {
-      .jn-grid-shell {
+    /* Responsive */
+    @media (max-width: 800px) {
+      .nx-dual-cards {
         grid-template-columns: 1fr;
-        border-radius: 24px;
+        gap: 18px;
       }
-      .jn-client-side, .jn-creator-side {
-        padding: 34px 24px;
+      .nx-choice-card {
+        padding: 30px 24px 26px;
       }
       .nx-auth-box {
         padding: 28px 20px;
@@ -740,88 +657,79 @@
   <main class="nx-auth-main">
 
     <!-- ============================================================== -->
-    <!-- VIEW 0: The 2-Choice Role Selector Screen (Landing Page Style) -->
+    <!-- VIEW 0: The 2-Choice Role Selector Screen                      -->
     <!-- ============================================================== -->
     <section class="nx-view is-active" id="viewFork" aria-labelledby="forkTitle">
-      <!-- Section Header with handwritten editorial notes and check pills -->
-      <header class="jn-head">
-        <span class="jn-pill">Founding Roster · Open Now</span>
-        <h1 class="jn-title" id="forkTitle">
-          Find your creative. <span class="nx-deck-accent">Or be found.</span>
-        </h1>
-        <p class="jn-sub">
-          Filmmakers, drone pilots, artists and hobby teachers, all reviewed by a person. Contact them directly. No fees for clients.
-        </p>
-
-        <!-- Hand-drawn editorial annotations with arrows -->
-        <span class="jn-note jn-n-a" aria-hidden="true">
-          post a brief in seconds<br>zero client fee
-          <svg viewBox="0 0 80 60"><path d="M6 8c20 4 40 14 52 40M58 48l-2-12M58 48l-11-4"/></svg>
-        </span>
-        <span class="jn-note jn-n-b" aria-hidden="true">
-          100 founding spots<br>reel, rate &amp; city
-          <svg viewBox="0 0 80 60"><path d="M74 8C54 10 30 20 20 46M20 46l1-12M20 46l11-5"/></svg>
-        </span>
-
-        <!-- Check attributes bar -->
-        <ul class="jn-head-attrs" aria-label="Marketplace attributes">
-          <li><span class="jn-tick-ic" aria-hidden="true"></span><span>We send your request to matching creators</span></li>
-          <li><span class="jn-tick-ic" aria-hidden="true"></span><span>City-local or remote online</span></li>
-          <li><span class="jn-tick-ic" aria-hidden="true"></span><span>Rates shown up front</span></li>
-          <li><span class="jn-tick-ic" aria-hidden="true"></span><span>Free for clients, always</span></li>
-        </ul>
-      </header>
-
-      <!-- The 2 Side-by-Side Cards (Client White Card + Creator Royal Blue Gradient Card) -->
-      <div class="jn-grid-shell">
+      <div class="nx-fork-wrap">
         
-        <!-- Choice 1: "I'm looking to hire" (Clients & Brands) -->
-        <div class="jn-client-side" id="btnChooseHire" role="button" tabindex="0" aria-label="I'm looking to hire">
-          <div>
-            <div class="jn-side-top">
-              <span class="jn-kicker-mono">I'm looking to hire</span>
-              <span class="jn-badge-pill badge-client-tag">Clients &amp; Brands</span>
+        <header class="nx-fork-header">
+          <span class="nx-kicker-pill">Founding Roster · Open Now</span>
+          <h1 class="nx-fork-title" id="forkTitle">
+            Find your creative. <span class="nx-deck-accent">Or be found.</span>
+          </h1>
+          <p class="nx-fork-sub">
+            Direct access to vetted creative talent or build your own verified storefront with 0% commission.
+          </p>
+        </header>
+
+        <div class="nx-dual-cards">
+          
+          <!-- Card 1: "I'm looking to hire" (Clients & Brands) -->
+          <div class="nx-choice-card card-client" id="btnChooseHire" role="button" tabindex="0" aria-label="I'm looking to hire">
+            <div>
+              <div class="card-top-row">
+                <div class="card-icon-bubble">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </div>
+                <span class="card-badge">Clients &amp; Brands</span>
+              </div>
+              <h2 class="card-h2">I'm looking to hire</h2>
+              <div class="card-subhead">Find your creative.</div>
+              <p class="card-desc">
+                Save creators, message them directly, and book with no commission. Free for clients, always.
+              </p>
+              <ul class="card-ticks">
+                <li>Direct communication &amp; inquiries</li>
+                <li>Shortlist &amp; private talent boards</li>
+                <li>100% free for clients, forever</li>
+              </ul>
             </div>
-            <h2 class="jn-card-h2">Find your <em>creative.</em></h2>
-            <p class="jn-card-desc">
-              Save creators, message them directly, and book with no commission. Free for clients, always.
-            </p>
-            <ul class="jn-ticks-list">
-              <li>Direct communication &amp; inquiries</li>
-              <li>Shortlist &amp; private talent boards</li>
-              <li>100% free for clients, forever</li>
-            </ul>
+            <button type="button" class="btn btn-client-cta">Continue as Client →</button>
           </div>
-          <button type="button" class="btn btn-client-choice">Continue as Client →</button>
+
+          <!-- Card 2: "I'm a creator / business" (Creators & Studios) -->
+          <div class="nx-choice-card card-creator" id="btnChooseCreator" role="button" tabindex="0" aria-label="I'm a creator or business">
+            <div>
+              <div class="card-top-row">
+                <div class="card-icon-bubble">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                    <path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/>
+                  </svg>
+                </div>
+                <span class="card-badge">Founding 100 · 90d Free</span>
+              </div>
+              <h2 class="card-h2">I'm a creator / business</h2>
+              <div class="card-subhead">Claim a founding spot.</div>
+              <p class="card-desc">
+                Create your account, then build your profile while a person reviews it. 90 free days start when approved.
+              </p>
+              <ul class="card-ticks">
+                <li>A verified storefront with your reel &amp; rate</li>
+                <li>Clients contact you directly, 0% commission</li>
+                <li>90 days free from approval, then flat $49/mo</li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-creator-cta">Join as Creator →</button>
+          </div>
+
         </div>
 
-        <!-- Choice 2: "I'm a creator / business" (Creators & Studios) -->
-        <div class="jn-creator-side" id="btnChooseCreator" role="button" tabindex="0" aria-label="I'm a creator or business">
-          <div>
-            <div class="jn-side-top">
-              <span class="jn-kicker-mono">I'm a creator / business</span>
-              <span class="jn-badge-pill badge-creator-tag">Founding 100 · 90d Free</span>
-            </div>
-            <h2 class="jn-card-h2">Claim a founding <em>spot.</em></h2>
-            <p class="jn-card-desc">
-              Create your account, then build your profile while a person reviews it. Your 90 free days start when you're approved.
-            </p>
-            <div class="jn-founding-track" aria-hidden="true">
-              <div></div>
-            </div>
-            <ul class="jn-ticks-list">
-              <li>A verified storefront with your work, reel &amp; rate</li>
-              <li>Clients contact you directly, 0% commission</li>
-              <li>90 days free from approval, then flat $49/mo</li>
-            </ul>
-          </div>
-          <button type="button" class="btn btn-creator-choice">Join as Creator →</button>
+        <div class="nx-fork-footer">
+          Already registered? <a href="/login">Log in to your account</a>
         </div>
 
-      </div>
-
-      <div class="jn-footer-row">
-        Already registered? <a href="/login">Log in to your account</a>
       </div>
     </section>
 
@@ -1036,7 +944,6 @@
 
   </main>
 
-  <!-- Client-side Logic -->
   <script>
   (function () {
     'use strict';
@@ -1048,7 +955,6 @@
 
     var $ = function (id) { return document.getElementById(id); };
 
-    // Views
     var viewFork = $('viewFork');
     var viewClient = $('viewClient');
     var viewCreator = $('viewCreator');
@@ -1067,7 +973,6 @@
       history.replaceState(null, '', url);
     }
 
-    // Role Selection Click Handlers
     $('btnChooseHire').addEventListener('click', function () {
       showView('client');
       $('clientEmail').focus();
@@ -1092,14 +997,10 @@
       }
     });
 
-    $('clientBackBtn').addEventListener('click', function () {
-      showView('fork');
-    });
-    $('creatorBackBtn').addEventListener('click', function () {
-      showView('fork');
-    });
+    $('clientBackBtn').addEventListener('click', function () { showView('fork'); });
+    $('creatorBackBtn').addEventListener('click', function () { showView('fork'); });
 
-    // Populate Date of Birth Day/Year Selects
+    // Populate DOB Days & Years
     (function initDob() {
       var daySelect = $('dobDay');
       var yearSelect = $('dobYear');
@@ -1119,7 +1020,6 @@
       }
     })();
 
-    // Helper functions
     function say(el, text, kind) {
       el.textContent = text || '';
       el.className = 'form-msg' + (kind ? ' is-' + kind : '');
@@ -1141,7 +1041,7 @@
       return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val) && val.length <= 254;
     }
 
-    /* ── Client Sign-up: Magic Link flow ── */
+    /* Client Sign-Up */
     $('clientEmailForm').addEventListener('submit', function (e) {
       e.preventDefault();
       var input = $('clientEmail');
@@ -1201,9 +1101,7 @@
       $('clientEmail').select();
     });
 
-
-    /* ── Creator Sign-up Flow ── */
-    // Step 1: Send 6-digit Code
+    /* Creator Sign-Up */
     $('creatorEmailForm').addEventListener('submit', function (e) {
       e.preventDefault();
       var input = $('creatorEmail');
@@ -1234,7 +1132,7 @@
         startCreatorResendTimer();
         setupOtpInputs();
       })
-      .catch(function (err) {
+      .catch(function () {
         say(msg, 'Unable to send verification code. Please try again.', 'err');
       })
       .finally(function () {
@@ -1242,7 +1140,6 @@
       });
     });
 
-    // Step 2: 6-Digit OTP Handlers
     function getOtpInputs() {
       return Array.prototype.slice.call($('creatorOtpGrid').querySelectorAll('input'));
     }
@@ -1390,7 +1287,6 @@
       $('creatorEmail').select();
     });
 
-    // Step 3: Identity & Age Gate
     function calcAge(y, m, d) {
       var b = new Date(parseInt(y, 10), parseInt(m, 10) - 1, parseInt(d, 10));
       var now = new Date();
@@ -1452,18 +1348,18 @@
       });
     });
 
-    // Check URL query param ?intent=... on initial boot
-    var params = new URLSearchParams(location.search);
-    var initialIntent = params.get('intent');
-    if (initialIntent === 'client') {
+    // Handle initial intent param
+    var qs = new URLSearchParams(location.search);
+    var intent = qs.get('intent');
+    if (intent === 'client') {
       showView('client');
-    } else if (initialIntent === 'creator') {
+    } else if (intent === 'creator') {
       showView('creator');
     } else {
       showView('fork');
     }
 
-    // Live Founding spots fetch
+    // Spots count
     fetch('/api/founding')
       .then(function (r) { return r.json(); })
       .then(function (d) {
