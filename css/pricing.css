@@ -850,12 +850,14 @@ body.pr-body {
   letter-spacing: -0.01em !important;
 }
 
-/* ── Clean Human FAQ Section ── */
+/* ── Graphic Editorial FAQ Section (Reverse-Engineered Reference Design) ── */
 .pr-faq-sec {
   position: relative;
   z-index: 2;
   margin-top: 72px;
   margin-bottom: 96px;
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 640px) {
@@ -865,101 +867,147 @@ body.pr-body {
   }
 }
 
-.pr-faq-sec .pr-sec-header {
-  text-align: center;
-  max-width: 640px;
-  margin: 0 auto 44px;
+.pr-faq-card {
+  width: 100%;
+  max-width: 860px;
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 28px;
+  padding: 44px 48px 36px;
+  box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
 }
 
-.pr-faq-sec .pr-h2 {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(32px, 3.8vw, 44px);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-  color: #0F172A;
-  margin: 0 0 10px;
+.pr-faq-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
 }
 
-.pr-faq-sec .pr-sec-sub {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Plus Jakarta Sans', sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #64748B;
+.pr-faq-giant-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-size: clamp(52px, 6.5vw, 82px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: #1D4ED8;
   margin: 0;
+  text-transform: uppercase;
+}
+
+.pr-faq-tracker {
+  font-family: var(--pr-mono, 'JetBrains Mono', monospace);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #475569;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
 }
 
 .pr-faq-list {
-  max-width: 760px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .pr-faq-item {
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 16px;
-  overflow: hidden;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
+  border: none;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  background: transparent;
+  padding: 20px 0;
+  transition: background-color 0.15s ease;
 }
 
-.pr-faq-item:hover {
-  border-color: #CBD5E1;
-}
-
-.pr-faq-item[open] {
-  border-color: #CBD5E1;
-  background: #FFFFFF;
+.pr-faq-item:last-child {
+  border-bottom: none;
+  padding-bottom: 8px;
 }
 
 .pr-faq-summary {
   list-style: none;
   cursor: pointer;
-  padding: 20px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 18px;
   user-select: none;
+  outline: none;
 }
 
 .pr-faq-summary::-webkit-details-marker {
   display: none;
 }
 
-.pr-faq-q-text {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Plus Jakarta Sans', sans-serif;
-  font-size: 16.5px;
-  font-weight: 600;
-  color: #0F172A;
-  letter-spacing: -0.015em;
-  line-height: 1.4;
-}
-
-.pr-faq-chevron {
+.pr-faq-sparkle {
+  color: #2563EB;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  color: #94A3B8;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease;
-  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease;
 }
 
-.pr-faq-item:hover .pr-faq-chevron {
-  color: #475569;
+.pr-faq-item:hover .pr-faq-sparkle {
+  transform: scale(1.15) rotate(15deg);
+  color: #1D4ED8;
 }
 
-.pr-faq-item[open] .pr-faq-chevron {
-  transform: rotate(180deg);
+.pr-faq-q-text {
+  flex: 1;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Plus Jakarta Sans', sans-serif;
+  font-size: 17.5px;
+  font-weight: 600;
   color: #0F172A;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  transition: color 0.15s ease;
+}
+
+.pr-faq-item:hover .pr-faq-q-text {
+  color: #1D4ED8;
+}
+
+.pr-faq-circle-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #2563EB;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.pr-faq-item:hover .pr-faq-circle-btn {
+  background: #1D4ED8;
+  transform: scale(1.05);
+}
+
+/* Open State: Tinted Background + Rotated Arrow pointing up-left */
+.pr-faq-item[open] .pr-faq-circle-btn {
+  background: #EEF2FF;
+  color: #1D4ED8;
+  box-shadow: none;
+  transform: rotate(180deg);
+}
+
+.pr-faq-item[open]:hover .pr-faq-circle-btn {
+  background: #E0E7FF;
+  transform: rotate(180deg) scale(1.05);
 }
 
 .pr-faq-answer {
-  padding: 0 24px 22px;
+  padding: 14px 56px 6px 40px;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Plus Jakarta Sans', sans-serif;
   font-size: 15px;
   line-height: 1.6;
@@ -968,6 +1016,59 @@ body.pr-body {
 
 .pr-faq-answer p {
   margin: 0;
+}
+
+/* Mobile Breakpoint */
+@media (max-width: 640px) {
+  .pr-faq-card {
+    padding: 32px 20px 24px;
+    border-radius: 20px;
+  }
+
+  .pr-faq-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+  }
+
+  .pr-faq-giant-title {
+    font-size: 46px;
+    line-height: 1;
+  }
+
+  .pr-faq-tracker {
+    font-size: 10.5px;
+    margin-bottom: 0;
+  }
+
+  .pr-faq-item {
+    padding: 16px 0;
+  }
+
+  .pr-faq-summary {
+    gap: 12px;
+  }
+
+  .pr-faq-sparkle {
+    width: 18px;
+    height: 18px;
+  }
+
+  .pr-faq-q-text {
+    font-size: 15.5px;
+  }
+
+  .pr-faq-circle-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .pr-faq-answer {
+    padding: 10px 0 4px 30px;
+    font-size: 14px;
+  }
 }
 
 /* ── Founding Roster Bottom Section Styling ── */

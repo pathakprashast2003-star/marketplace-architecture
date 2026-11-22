@@ -39,11 +39,23 @@ def test_pricing_page_render_and_calculator():
         assert hero_card.locator(".ct-hero-top-badge").is_visible()
         assert "Claim a founding spot" in hero_card.locator(".is-hero-cta").inner_text()
         
-        # 5. Check Interactive FAQ
+        # 5. Check Interactive FAQ (Graphic Reference Architecture)
+        assert page.locator(".pr-faq-card").is_visible()
+        assert page.locator(".pr-faq-giant-title").inner_text().strip() == "FAQ"
+        assert "(EVERYTHING YOU NEED TO KNOW)" in page.locator(".pr-faq-tracker").inner_text()
         faq_items = page.locator(".pr-faq-item")
         assert faq_items.count() >= 5
         first_faq = faq_items.first
         assert first_faq.get_attribute("open") is not None
+        assert page.locator(".pr-faq-sparkle").count() >= 5
+        assert page.locator(".pr-faq-circle-btn").count() >= 5
+        
+        # Test FAQ Toggle Interaction
+        second_faq = faq_items.nth(1)
+        assert second_faq.get_attribute("open") is None
+        second_faq.locator(".pr-faq-summary").click()
+        page.wait_for_timeout(200)
+        assert second_faq.get_attribute("open") is not None
         
         # 6. Check Founding Roster Flippable Banner (Parity with Landing Page)
         founding_sec = page.locator("#founding")
