@@ -635,6 +635,10 @@ body.pr-body {
   padding-bottom: 84px;
 }
 
+.pr-body #fees::before {
+  bottom: 0 !important;
+}
+
 .pr-body #fees,
 .pr-body #fees * {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif !important;
@@ -848,8 +852,17 @@ body.pr-body {
 
 /* ── Clean Human FAQ Section ── */
 .pr-faq-sec {
-  margin-top: 16px;
+  position: relative;
+  z-index: 2;
+  margin-top: 72px;
   margin-bottom: 96px;
+}
+
+@media (max-width: 640px) {
+  .pr-faq-sec {
+    margin-top: 48px;
+    margin-bottom: 64px;
+  }
 }
 
 .pr-faq-sec .pr-sec-header {
