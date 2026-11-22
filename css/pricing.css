@@ -629,26 +629,26 @@ body.pr-body {
   color: #248A3D;
 }
 
-/* ── Bespoke Apple Sans & Jewel Capsule Styling for #fees ── */
-.pr-body #fees {
+/* ── Bespoke Apple Sans & Jewel Capsule Styling for #fees-retired ── */
+#fees-retired {
   padding-top: 48px;
   padding-bottom: 84px;
 }
 
-.pr-body #fees::before {
+#fees-retired::before {
   bottom: 0 !important;
 }
 
-.pr-body #fees,
-.pr-body #fees * {
+#fees-retired,
+#fees-retired * {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif !important;
 }
 
-.pr-body #fees .ct-deck-head {
+#fees-retired .ct-deck-head {
   margin-bottom: 28px;
 }
 
-.pr-body #fees .ct-title {
+#fees-retired .ct-title {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif !important;
   font-size: clamp(38px, 4.8vw, 56px) !important;
   font-weight: 800 !important;
@@ -657,7 +657,7 @@ body.pr-body {
   color: #0F172A !important;
 }
 
-.pr-body #fees .ct-title .nx-deck-accent {
+#fees-retired .ct-title .nx-deck-accent {
   font-family: inherit !important;
   font-style: italic !important;
   font-weight: 800 !important;
@@ -666,7 +666,7 @@ body.pr-body {
   -webkit-text-fill-color: transparent !important;
 }
 
-.pr-body #fees .ct-sub {
+#fees-retired .ct-sub {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif !important;
   font-size: 18px !important;
   font-style: normal !important;
@@ -675,14 +675,14 @@ body.pr-body {
 }
 
 /* Scrubber Bar */
-.pr-body #fees .ct-calc-bar {
+#fees-retired .ct-calc-bar {
   border-radius: 9999px;
   background: #F8FAFC;
   border: 1px solid rgba(226, 232, 240, 0.9);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
-.pr-body #fees .ct-calc-label {
+#fees-retired .ct-calc-label {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: 11px !important;
   font-weight: 700 !important;
@@ -690,20 +690,20 @@ body.pr-body {
   color: #64748B !important;
 }
 
-.pr-body #fees .ct-calc-pill {
+#fees-retired .ct-calc-pill {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: 13px !important;
   font-weight: 600 !important;
 }
 
-.pr-body #fees .ct-calc-savings {
+#fees-retired .ct-calc-savings {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   background: #EFF6FF !important;
   border: 1px solid rgba(59, 130, 246, 0.2) !important;
   color: #1E40AF !important;
 }
 
-.pr-body #fees .ct-calc-savings strong {
+#fees-retired .ct-calc-savings strong {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: 15px !important;
   font-weight: 700 !important;
@@ -711,7 +711,7 @@ body.pr-body {
 }
 
 /* Card Titles */
-.pr-body #fees .ct-card-name {
+#fees-retired .ct-card-name {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif !important;
   font-size: 24px !important;
   font-weight: 700 !important;
@@ -720,11 +720,11 @@ body.pr-body {
   margin-bottom: 4px !important;
 }
 
-.pr-body #fees .ct-card.is-hero .ct-card-name {
+#fees-retired .ct-card.is-hero .ct-card-name {
   color: #FFFFFF !important;
 }
 
-.pr-body #fees .ct-card-sub {
+#fees-retired .ct-card-sub {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif !important;
   font-style: normal !important;
   font-size: 14px !important;
@@ -732,12 +732,12 @@ body.pr-body {
   margin-bottom: 12px !important;
 }
 
-.pr-body #fees .ct-card.is-hero .ct-card-sub {
+#fees-retired .ct-card.is-hero .ct-card-sub {
   color: rgba(255, 255, 255, 0.85) !important;
 }
 
 /* Colorful Jewel Capsules on Card Badges */
-.pr-body #fees .ct-card.is-freelance .ct-card-pill {
+#fees-retired .ct-card.is-freelance .ct-card-pill {
   background: #FEF2F2 !important;
   border: 1px solid #FECACA !important;
   color: #DC2626 !important;
@@ -747,7 +747,7 @@ body.pr-body {
   border-radius: 9999px !important;
 }
 
-.pr-body #fees .ct-card.is-agency .ct-card-pill {
+#fees-retired .ct-card.is-agency .ct-card-pill {
   background: #FEF2F2 !important;
   border: 1px solid #FECACA !important;
   color: #DC2626 !important;
@@ -757,7 +757,7 @@ body.pr-body {
   border-radius: 9999px !important;
 }
 
-.pr-body #fees .ct-card.is-hero .ct-card-pill {
+#fees-retired .ct-card.is-hero .ct-card-pill {
   background: #ECFDF5 !important;
   border: 1.5px solid #6EE7B7 !important;
   color: #047857 !important;
@@ -768,71 +768,71 @@ body.pr-body {
   box-shadow: 0 2px 10px rgba(16, 185, 129, 0.22) !important;
 }
 
-.pr-body #fees .ct-card.is-hero .ct-hero-top-badge {
+#fees-retired .ct-card.is-hero .ct-hero-top-badge {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   letter-spacing: 0.1em !important;
 }
 
 /* Budget Impacts */
-.pr-body #fees .ct-budget-impact {
+#fees-retired .ct-budget-impact {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   border-radius: 9999px !important;
 }
 
-.pr-body #fees .ct-budget-impact [data-calc-budget],
-.pr-body #fees .ct-budget-impact [data-calc-toll],
-.pr-body #fees .ct-budget-impact [data-calc-keep] {
+#fees-retired .ct-budget-impact [data-calc-budget],
+#fees-retired .ct-budget-impact [data-calc-toll],
+#fees-retired .ct-budget-impact [data-calc-keep] {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: 13.5px !important;
   font-weight: 600 !important;
 }
 
 /* Row Typography & Spacing */
-.pr-body #fees .ct-row span {
+#fees-retired .ct-row span {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-size: 13.5px !important;
   line-height: 1.45 !important;
 }
 
 /* Colorful Jewel Checkmarks on Nexus Hero Card */
-.pr-body #fees .ct-card.is-hero .ct-row:nth-child(1) .ct-check-icon {
+#fees-retired .ct-card.is-hero .ct-row:nth-child(1) .ct-check-icon {
   background: #3B82F6 !important;
   color: #FFFFFF !important;
   box-shadow: 0 0 10px rgba(59, 130, 246, 0.45) !important;
 }
-.pr-body #fees .ct-card.is-hero .ct-row:nth-child(2) .ct-check-icon {
+#fees-retired .ct-card.is-hero .ct-row:nth-child(2) .ct-check-icon {
   background: #10B981 !important;
   color: #FFFFFF !important;
   box-shadow: 0 0 10px rgba(16, 185, 129, 0.45) !important;
 }
-.pr-body #fees .ct-card.is-hero .ct-row:nth-child(3) .ct-check-icon {
+#fees-retired .ct-card.is-hero .ct-row:nth-child(3) .ct-check-icon {
   background: #8B5CF6 !important;
   color: #FFFFFF !important;
   box-shadow: 0 0 10px rgba(139, 92, 246, 0.45) !important;
 }
-.pr-body #fees .ct-card.is-hero .ct-row:nth-child(4) .ct-check-icon {
+#fees-retired .ct-card.is-hero .ct-row:nth-child(4) .ct-check-icon {
   background: #F59E0B !important;
   color: #FFFFFF !important;
   box-shadow: 0 0 10px rgba(245, 158, 11, 0.45) !important;
 }
-.pr-body #fees .ct-card.is-hero .ct-row:nth-child(5) .ct-check-icon {
+#fees-retired .ct-card.is-hero .ct-row:nth-child(5) .ct-check-icon {
   background: #06B6D4 !important;
   color: #FFFFFF !important;
   box-shadow: 0 0 10px rgba(6, 182, 212, 0.45) !important;
 }
-.pr-body #fees .ct-card.is-hero .ct-row:nth-child(6) .ct-check-icon {
+#fees-retired .ct-card.is-hero .ct-row:nth-child(6) .ct-check-icon {
   background: #6366F1 !important;
   color: #FFFFFF !important;
   box-shadow: 0 0 10px rgba(99, 102, 241, 0.45) !important;
 }
-.pr-body #fees .ct-card.is-hero .ct-row:nth-child(7) .ct-check-icon {
+#fees-retired .ct-card.is-hero .ct-row:nth-child(7) .ct-check-icon {
   background: #10B981 !important;
   color: #FFFFFF !important;
   box-shadow: 0 0 10px rgba(16, 185, 129, 0.45) !important;
 }
 
 /* Subtle cross styling on competitor cards */
-.pr-body #fees .ct-cross-icon {
+#fees-retired .ct-cross-icon {
   background: #F1F5F9 !important;
   color: #94A3B8 !important;
   border-radius: 50% !important;
@@ -844,7 +844,7 @@ body.pr-body {
   flex-shrink: 0 !important;
 }
 
-.pr-body #fees .ct-card.is-hero .is-hero-cta {
+#fees-retired .ct-card.is-hero .is-hero-cta {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   font-weight: 600 !important;
   letter-spacing: -0.01em !important;
@@ -1012,7 +1012,7 @@ body.pr-body {
 }
 
 /* ── Canvas Background & Top Alignment ── */
-.pr-body #fees::before {
+#fees-retired::before {
   display: none !important;
 }
 
@@ -1054,23 +1054,23 @@ body.pr-body {
   }
 
   /* ── Hero & Title ── */
-  #fees {
+  #fees-retired {
     padding-top: 14px !important;
     padding-bottom: 24px !important;
   }
 
-  #fees .ct-deck-head {
+  #fees-retired .ct-deck-head {
     margin-bottom: 18px;
   }
 
-  #fees .ct-title {
+  #fees-retired .ct-title {
     font-size: clamp(28px, 8.2vw, 34px) !important;
     line-height: 1.12 !important;
     letter-spacing: -0.025em;
     margin-bottom: 10px;
   }
 
-  #fees .ct-sub {
+  #fees-retired .ct-sub {
     font-size: 15px !important;
     line-height: 1.45 !important;
     max-width: 32ch !important;
@@ -1078,7 +1078,7 @@ body.pr-body {
   }
 
   /* ── Calculator Bar ── */
-  .pr-body #fees .ct-calc-bar {
+  #fees-retired .ct-calc-bar {
     border-radius: 20px !important;
     background: #FFFFFF !important;
     padding: 14px 12px !important;
@@ -1087,7 +1087,7 @@ body.pr-body {
     gap: 10px !important;
   }
 
-  #fees .ct-calc-left {
+  #fees-retired .ct-calc-left {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -1095,13 +1095,13 @@ body.pr-body {
     gap: 6px;
   }
 
-  #fees .ct-calc-label {
+  #fees-retired .ct-calc-label {
     font-size: 10px;
     letter-spacing: 0.09em;
     color: #64748B;
   }
 
-  #fees .ct-calc-pills {
+  #fees-retired .ct-calc-pills {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -1112,7 +1112,7 @@ body.pr-body {
     gap: 3px;
   }
 
-  #fees .ct-calc-pill {
+  #fees-retired .ct-calc-pill {
     flex: 1;
     text-align: center;
     padding: 6px 0;
@@ -1121,7 +1121,7 @@ body.pr-body {
     border-radius: 999px;
   }
 
-  #fees .ct-calc-savings {
+  #fees-retired .ct-calc-savings {
     width: 100%;
     justify-content: center;
     font-size: 12px;
@@ -1130,85 +1130,85 @@ body.pr-body {
   }
 
   /* ── Comparison Matrix Cards ── */
-  #fees .ct-matrix-wrapper {
+  #fees-retired .ct-matrix-wrapper {
     padding: 0;
   }
 
-  #fees .ct-matrix-grid {
+  #fees-retired .ct-matrix-grid {
     gap: 16px;
     max-width: 100%;
   }
 
-  #fees .ct-card {
+  #fees-retired .ct-card {
     padding: 22px 16px 18px;
     border-radius: 22px;
   }
 
   /* Hide excessive competitor illustrations on mobile for clean scanning */
-  #fees .ct-card.is-freelance .ct-card-artwork,
-  #fees .ct-card.is-agency .ct-card-artwork {
+  #fees-retired .ct-card.is-freelance .ct-card-artwork,
+  #fees-retired .ct-card.is-agency .ct-card-artwork {
     display: none !important;
   }
 
-  #fees .ct-card.is-hero {
+  #fees-retired .ct-card.is-hero {
     padding: 26px 18px 22px;
     border-radius: 24px;
     order: -1;
   }
 
-  #fees .ct-card.is-hero .ct-card-artwork {
+  #fees-retired .ct-card.is-hero .ct-card-artwork {
     height: 100px;
     margin-bottom: 6px;
   }
 
-  #fees .ct-card.is-hero .ct-art-img {
+  #fees-retired .ct-card.is-hero .ct-art-img {
     height: 96px;
   }
 
-  #fees .ct-card-head {
+  #fees-retired .ct-card-head {
     gap: 4px;
     padding-bottom: 12px;
   }
 
-  #fees .ct-card-name {
+  #fees-retired .ct-card-name {
     font-size: 21px;
     margin-bottom: 2px;
   }
 
-  #fees .ct-card-sub {
+  #fees-retired .ct-card-sub {
     font-size: 13.5px;
   }
 
-  #fees .ct-card-pill {
+  #fees-retired .ct-card-pill {
     font-size: 12.5px;
     padding: 4px 12px;
   }
 
-  #fees .ct-budget-impact {
+  #fees-retired .ct-budget-impact {
     font-size: 11.5px;
     margin-top: 6px;
     padding: 4px 10px;
   }
 
-  #fees .ct-card-rows {
+  #fees-retired .ct-card-rows {
     margin-top: 12px;
     padding-top: 4px;
   }
 
-  #fees .ct-row {
+  #fees-retired .ct-row {
     padding: 7px 2px;
     font-size: 13.5px;
     line-height: 1.32;
     min-height: 0;
   }
 
-  #fees .ct-btn.is-hero-cta {
+  #fees-retired .ct-btn.is-hero-cta {
     height: 46px;
     font-size: 15px;
     margin-top: 14px;
   }
 
-  #fees .ct-learn {
+  #fees-retired .ct-learn {
     margin-top: 16px;
     padding: 12px 14px;
     font-size: 13px;
@@ -1305,3 +1305,22 @@ body.pr-body {
     line-height: 1.55;
   }
 }
+
+
+/* Pricing page: same cards as the landing page (Nov 22). Old Apple Sans #fees layer retired above. */
+/* ── PRICING ────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  #fees .ct-calc-bar { gap: 12px; }
+
+  /* Comparison cards: shorter and easier to scan */
+  #fees .ct-card.is-freelance .ct-card-artwork,
+  #fees .ct-card.is-agency .ct-card-artwork { display: none; }
+  #fees .ct-card.is-freelance,
+  #fees .ct-card.is-agency { padding: 24px 18px 18px; }
+  #fees .ct-card.is-hero .ct-card-artwork { height: 112px; }
+  #fees .ct-card.is-hero .ct-art-img { height: 108px; }
+  #fees .ct-card-head { gap: 6px; padding-bottom: 14px; }
+  #fees .ct-row { min-height: 0; padding: 9px 2px; font-size: 14px; line-height: 1.35; }
+  #fees .ct-card.is-hero .ct-row { padding: 10px 2px; }
+}
+

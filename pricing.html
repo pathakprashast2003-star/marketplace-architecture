@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="/css/explore.css?v=20">
   <link rel="stylesheet" href="/css/fees.css?v=live28">
   <link rel="stylesheet" href="/css/founding.css?v=live28">
-  <link rel="stylesheet" href="/css/pricing.css?v=3">
+  <link rel="stylesheet" href="/css/pricing.css?v=lp1">
 </head>
 <body class="pr-body">
   <header>
@@ -56,308 +56,306 @@
 
     <!-- LANDING PAGE FEES SECTION (#fees) -->
     <section class="nx-sec" id="fees">
-      <div class="ct-stage-container">
-        <div class="ct-deck-head nx-reveal">
-          <h1 class="ct-title">
-            One platform. Different <span class="nx-deck-accent">economics.</span>
-          </h1>
-          <p class="ct-sub">
-            See what you keep on Nexus compared with marketplaces and agencies.
+        <div class="ct-stage-container">
+          <div class="ct-deck-head nx-reveal">
+            <h2 class="ct-title">
+              One platform. Different <span class="nx-deck-accent">economics.</span>
+            </h2>
+            <p class="ct-sub">
+              See what you keep on Nexus compared with marketplaces and agencies.
+            </p>
+          </div>
+          <div class="ct-calc-bar nx-reveal" role="region" aria-label="Job budget calculator">
+            <div class="ct-calc-left">
+              <span class="ct-calc-label">Est. Job Budget</span>
+              <div class="ct-calc-pills" id="ctCalcPills" role="group" aria-label="Select a sample job budget">
+                <button type="button" class="ct-calc-pill" data-budget="1000">$1k</button>
+                <button type="button" class="ct-calc-pill is-active" data-budget="5000">$5k</button>
+                <button type="button" class="ct-calc-pill" data-budget="15000">$15k</button>
+                <button type="button" class="ct-calc-pill" data-budget="50000">$50k</button>
+              </div>
+            </div>
+            <div class="ct-calc-savings">
+              <span>You keep up to</span>
+              <strong id="ctCalcSaved">+$1,250</strong>
+              <span>more per job on Nexus</span>
+            </div>
+          </div>
+          <div class="ct-matrix-wrapper nx-reveal">
+            <div class="ct-matrix-grid">
+              <div class="ct-card is-freelance">
+                <div class="ct-card-head">
+                  <div class="ct-card-artwork">
+                    <img src="assets/ai_pricing_freelance_trans.webp?v=4" loading="lazy" decoding="async" alt="Freelance Platforms Illustration"
+                      class="ct-art-img" loading="eager" />
+                  </div>
+                  <h3 class="ct-card-name">Freelance Marketplaces</h3>
+                  <div class="ct-card-sub">Fees on every job</div>
+                  <div class="ct-card-pill"><span><span class="nx-count" data-count-from="0" data-count-to="20"
+                        data-count-suffix="%">20%</span> fee (example)</span></div>
+                  <div class="ct-budget-impact is-loss">On <span data-calc-budget>$5,000</span> · <span
+                      data-calc-toll="up">-$1,000</span> cut</div>
+                </div>
+                <div class="ct-card-rows">
+                  <div class="ct-row">
+                    <span class="ct-cross-icon" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span>Fees taken from every invoice</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-cross-icon" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span>Payment held until the platform releases it</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-cross-icon" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span>Messages stay inside the platform</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-cross-icon" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span>Clients often pay an extra service fee</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-cross-icon" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span>Rules against working with clients off-platform</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-cross-icon" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span>The platform decides who gets seen</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-cross-icon" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span>You compete on price with thousands of sellers</span>
+                  </div>
+                </div>
+              </div>
+              <div class="ct-card is-hero">
+                <div class="ct-hero-top-badge">Founding 100 · 90 days free</div>
+                <div class="ct-card-head">
+                  <div class="ct-card-artwork">
+                    <img src="assets/ai_pricing_nexus_hero_trans.webp?v=4" loading="lazy" decoding="async"
+                      alt="Nexus creator membership illustration" class="ct-art-img" loading="eager" />
+                  </div>
+                  <h3 class="ct-card-name">Nexus</h3>
+                  <div class="ct-card-sub">Creator Membership</div>
+                  <div class="ct-card-pill is-hero-pill"><span><span class="nx-count" data-count-from="20"
+                        data-count-to="0" data-count-suffix="%">0%</span> Commission · Flat $<span class="nx-count"
+                        data-count-from="49.99" data-count-to="19.99" data-count-decimals="2">19.99</span>/mo</span>
+                  </div>
+                  <div class="ct-budget-impact is-win">On <span data-calc-budget>$5,000</span> · Keep <strong
+                      data-calc-keep="nx">$5,000</strong></div>
+                </div>
+                <div class="ct-card-rows">
+                  <div class="ct-row">
+                    <span class="ct-check-icon" aria-hidden="true">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </span>
+                    <span><span class="nx-count" data-count-from="70" data-count-to="100"
+                        data-count-suffix="%">100%</span> of what clients pay you is yours</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-check-icon" aria-hidden="true">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </span>
+                    <span>$19.99/month flat. First 100 approved get 90 days free</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-check-icon" aria-hidden="true">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </span>
+                    <span>Clients pay you directly, however you agree</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-check-icon" aria-hidden="true">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </span>
+                    <span>Talk to clients anywhere: email, phone, WhatsApp</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-check-icon" aria-hidden="true">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </span>
+                    <span>Your work and files stay yours</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-check-icon" aria-hidden="true">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </span>
+                    <span>Founding badge for the first 100, for good</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-check-icon" aria-hidden="true">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </span>
+                    <span>List your services, classes and reel</span>
+                  </div>
+                </div>
+                <div class="ct-card-foot">
+                  <button class="ct-btn is-hero-cta" type="button"
+                    onclick="openFoundingModal()">
+                    <span>Claim a founding spot</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="ct-card is-agency">
+                <div class="ct-card-head">
+                  <div class="ct-card-artwork">
+                    <img src="assets/ai_pricing_agency_trans.webp?v=4" loading="lazy" decoding="async" alt="Talent agencies illustration"
+                      class="ct-art-img" loading="eager" />
+                  </div>
+                  <h3 class="ct-card-name">Talent Agencies</h3>
+                  <div class="ct-card-sub">Commission on every booking</div>
+                  <div class="ct-card-pill"><span><span class="nx-count" data-count-from="10" data-count-to="25"
+                        data-count-suffix="%">25%</span> commission (example)</span></div>
+                  <div class="ct-budget-impact is-loss">On <span data-calc-budget>$5,000</span> · <span
+                      data-calc-toll="ag">-$1,250</span> cut</div>
+                </div>
+                <div class="ct-card-rows">
+                  <div class="ct-row">
+                    <span class="ct-cross-icon" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span>A percentage of every booking</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-cross-icon" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span>Payment goes through the agency first</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-cross-icon" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span>The agency owns the client relationship</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-cross-icon" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span>Contracts can limit your own clients</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-cross-icon" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span>Often exclusive, long-term contracts</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-cross-icon" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span>Hard to get signed</span>
+                  </div>
+                  <div class="ct-row">
+                    <span class="ct-cross-icon" aria-hidden="true">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </span>
+                    <span>Less say over which jobs you take</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="ct-learn nx-reveal">
+            Here to learn? A learner membership for all classes is coming at $11.99 a month.
+            <a href="/#join" onclick="openInquiryModal();var c=document.querySelector('input[name=jnCraft][value=\'A class\']');if(c)c.checked=true;return false;">Join the waitlist →</a>
           </p>
         </div>
-
-        <div class="ct-calc-bar nx-reveal" role="region" aria-label="Job budget calculator">
-          <div class="ct-calc-left">
-            <span class="ct-calc-label">Est. Job Budget</span>
-            <div class="ct-calc-pills" id="ctCalcPills" role="group" aria-label="Select a sample job budget">
-              <button type="button" class="ct-calc-pill" data-budget="1000">$1k</button>
-              <button type="button" class="ct-calc-pill is-active" data-budget="5000">$5k</button>
-              <button type="button" class="ct-calc-pill" data-budget="15000">$15k</button>
-              <button type="button" class="ct-calc-pill" data-budget="50000">$50k</button>
-            </div>
-          </div>
-          <div class="ct-calc-savings">
-            <span>You keep up to</span>
-            <strong id="ctCalcSaved">+$1,250</strong>
-            <span>more per job on Nexus</span>
-          </div>
-        </div>
-
-        <div class="ct-matrix-wrapper nx-reveal">
-          <div class="ct-matrix-grid">
-            <!-- FREELANCE CARD -->
-            <div class="ct-card is-freelance">
-              <div class="ct-card-head">
-                <div class="ct-card-artwork">
-                  <img src="assets/ai_pricing_freelance_trans.webp?v=4" loading="lazy" decoding="async" alt="Freelance Platforms Illustration"
-                    class="ct-art-img" loading="eager" />
-                </div>
-                <h3 class="ct-card-name">Freelance Marketplaces</h3>
-                <div class="ct-card-sub">Fees on every job</div>
-                <div class="ct-card-pill"><span><span class="nx-count" data-count-from="0" data-count-to="20"
-                      data-count-suffix="%">20%</span> fee (example)</span></div>
-                <div class="ct-budget-impact is-loss">On <span data-calc-budget>$5,000</span> · <span
-                    data-calc-toll="up">-$1,000</span> cut</div>
-              </div>
-              <div class="ct-card-rows">
-                <div class="ct-row">
-                  <span class="ct-cross-icon" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </span>
-                  <span>Fees taken from every invoice</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-cross-icon" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </span>
-                  <span>Payment held until the platform releases it</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-cross-icon" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </span>
-                  <span>Messages stay inside the platform</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-cross-icon" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </span>
-                  <span>Clients often pay an extra service fee</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-cross-icon" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </span>
-                  <span>Rules against working with clients off-platform</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-cross-icon" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </span>
-                  <span>The platform decides who gets seen</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-cross-icon" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </span>
-                  <span>You compete on price with thousands of sellers</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- NEXUS HERO CARD -->
-            <div class="ct-card is-hero">
-              <div class="ct-hero-top-badge">Founding 100 · 90 days free</div>
-              <div class="ct-card-head">
-                <div class="ct-card-artwork">
-                  <img src="assets/ai_pricing_nexus_hero_trans.webp?v=4" loading="lazy" decoding="async"
-                    alt="Nexus creator membership illustration" class="ct-art-img" loading="eager" />
-                </div>
-                <h3 class="ct-card-name">Nexus</h3>
-                <div class="ct-card-sub">Creator Membership</div>
-                <div class="ct-card-pill is-hero-pill"><span><span class="nx-count" data-count-from="20"
-                      data-count-to="0" data-count-suffix="%">0%</span> Commission · Flat $<span class="nx-count"
-                      data-count-from="49.99" data-count-to="19.99" data-count-decimals="2">19.99</span>/mo</span>
-                </div>
-                <div class="ct-budget-impact is-win">On <span data-calc-budget>$5,000</span> · Keep <strong
-                    data-calc-keep="nx">$5,000</strong></div>
-              </div>
-              <div class="ct-card-rows">
-                <div class="ct-row">
-                  <span class="ct-check-icon" aria-hidden="true">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </span>
-                  <span><span class="nx-count" data-count-from="70" data-count-to="100"
-                      data-count-suffix="%">100%</span> of what clients pay you is yours</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-check-icon" aria-hidden="true">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </span>
-                  <span>$19.99/month flat. First 100 approved get 90 days free</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-check-icon" aria-hidden="true">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </span>
-                  <span>Clients pay you directly, however you agree</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-check-icon" aria-hidden="true">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </span>
-                  <span>Talk to clients anywhere: email, phone, WhatsApp</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-check-icon" aria-hidden="true">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </span>
-                  <span>Your work and files stay yours</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-check-icon" aria-hidden="true">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </span>
-                  <span>Founding badge for the first 100, for good</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-check-icon" aria-hidden="true">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  </span>
-                  <span>List your services, prices, kit and reel</span>
-                </div>
-              </div>
-              <div class="ct-card-foot">
-                <a class="ct-btn is-hero-cta" href="/#join" style="text-decoration: none;">
-                  <span>Claim a founding spot</span>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- AGENCY CARD -->
-            <div class="ct-card is-agency">
-              <div class="ct-card-head">
-                <div class="ct-card-artwork">
-                  <img src="assets/ai_pricing_agency_trans.webp?v=4" loading="lazy" decoding="async" alt="Talent agencies illustration"
-                    class="ct-art-img" loading="eager" />
-                </div>
-                <h3 class="ct-card-name">Talent Agencies</h3>
-                <div class="ct-card-sub">Commission on every booking</div>
-                <div class="ct-card-pill"><span><span class="nx-count" data-count-from="10" data-count-to="25"
-                      data-count-suffix="%">25%</span> commission (example)</span></div>
-                <div class="ct-budget-impact is-loss">On <span data-calc-budget>$5,000</span> · <span
-                    data-calc-toll="ag">-$1,250</span> cut</div>
-              </div>
-              <div class="ct-card-rows">
-                <div class="ct-row">
-                  <span class="ct-cross-icon" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </span>
-                  <span>A percentage of every booking</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-cross-icon" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </span>
-                  <span>Payment goes through the agency first</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-cross-icon" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </span>
-                  <span>The agency owns the client relationship</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-cross-icon" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </span>
-                  <span>Contracts can limit your own clients</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-cross-icon" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </span>
-                  <span>Often exclusive, long-term contracts</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-cross-icon" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </span>
-                  <span>Few agency spots, hard to get represented</span>
-                </div>
-                <div class="ct-row">
-                  <span class="ct-cross-icon" aria-hidden="true">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </span>
-                  <span>Junior artists subsidise senior talent</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
 
     <!-- FOUNDING ROSTER CTA (Matching Landing Page) -->
     <section class="nx-sec" id="founding">

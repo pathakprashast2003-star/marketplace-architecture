@@ -18,8 +18,8 @@
     // Upwork/Fiverr takes roughly 20% on creative billings
     const upworkCut = billings * 0.20;
     
-    // Nexus charges $49/mo ($588/yr), with $0 for the first 90 days ($441 for year 1, $588 standard)
-    const nexusCost = 588;
+    // Nexus charges $19.99/mo ($239.88/yr)
+    const nexusCost = 239.88;
     const netSavings = upworkCut - nexusCost;
 
     if (billingsDisplay) billingsDisplay.textContent = fmtMoney(billings);

@@ -143,7 +143,22 @@
   const more = ALL.filter((x) => x.slug !== c.slug && x.cat === c.cat).concat(ALL.filter((x) => x.slug !== c.slug && x.cat !== c.cat)).slice(0, 3);
   const isSaved = () => loadSaved().has(c.slug);
 
+  (p.workMeta || []).forEach((m, i) => { if (work[i]) work[i].meta = m; });
   document.title = c.creator + ' · ' + c.craft + ' · Nexus';
+  (function setMeta() {
+    const desc = c.creator + ', ' + c.craft + ' in ' + c.city + '. ' + (p.headline || c.bio || '') + ' Contact directly on Nexus. 0% commission.';
+    const url = location.origin + '/c/' + c.slug;
+    const tags = { 'description': desc, 'og:title': c.creator + ' · ' + c.craft, 'og:description': desc, 'og:image': location.origin + '/' + String(c.src).replace(/^\//, ''), 'og:url': url, 'og:type': 'profile', 'twitter:card': 'summary_large_image' };
+    Object.keys(tags).forEach((k) => {
+      const attr = k.indexOf('og:') === 0 ? 'property' : 'name';
+      let m = document.head.querySelector('meta[' + attr + '="' + k + '"]');
+      if (!m) { m = document.createElement('meta'); m.setAttribute(attr, k); document.head.appendChild(m); }
+      m.setAttribute('content', tags[k]);
+    });
+    let l = document.head.querySelector('link[rel="canonical"]');
+    if (!l) { l = document.createElement('link'); l.rel = 'canonical'; document.head.appendChild(l); }
+    l.href = url;
+  })();
   const md = document.querySelector('meta[name="description"]');
   if (md) md.setAttribute('content', c.creator + ', ' + c.craft + ' in ' + c.city + '. ' + (p.headline || c.bio) + '. Sample profile on Nexus. 0% commission.');
 
@@ -161,7 +176,7 @@
     [ic.pin, 'Based in ' + c.city, 'blue'],
     p.years ? [ic.clock, p.years + ' years doing this', 'purple'] : null,
     p.languages && p.languages.length ? [ic.globe, p.languages.join(', '), 'green'] : null,
-    p.travel ? [ic.plane, p.travel, 'amber'] : null,
+    p.travel ? [ic.plane, p.serviceArea ? 'Covers ' + p.serviceArea : p.travel, 'amber'] : null,
     p.remote ? [ic.wifi, 'Works remotely too', 'cyan'] : null
   ].filter(Boolean);
 
@@ -195,6 +210,7 @@
             <div class="cpx-title-wrap">
               <h1 class="cpx-title">${esc(c.creator)}</h1>
               ${p.founding ? '<span class="cpx-founding-badge">Founding member</span>' : ''}
+              <button type="button" class="cpx-share" id="cpxShare" aria-label="Share ${esc(c.creator)}'s profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg><span>Share</span></button>
             </div>
             <p class="cpx-headline">${esc(p.headline || c.bio)}</p>
             <ul class="cpx-facts cpx-facts-grid">
@@ -231,7 +247,8 @@
         ${sec('work', 'Work', `
           <div class="cpx-grid">${work.map((g, i) => `
             <button type="button" class="cpx-thumb${i === 0 ? ' is-wide' : ''}" data-shot="${i}" aria-label="Open image ${i + 1}">
-              <img src="${esc(abs(g.src))}" alt="${esc(g.caption || '')}" loading="lazy" decoding="async">
+              <img src="${esc(abs(g.src))}" alt="${esc(g.meta ? g.meta.title : (g.caption || ''))}" loading="lazy" decoding="async">
+              ${g.meta ? `<span class="cpx-thumb-cap"><b>${esc(g.meta.title)}</b><span>${esc(g.meta.type)} · ${esc(g.meta.year)}</span></span>` : ''}
             </button>`).join('')}
           </div>`, 'Sample images')}
 
@@ -249,6 +266,14 @@
               </tbody>
             </table>
           </div>` : '', p.sample ? 'Example prices' : '')}
+
+        ${sec('classes', 'Classes', (p.classes || []).length ? `
+          <div class="cpx-table-wrap"><table class="cpx-table cpx-class-table">
+            <thead><tr><th scope="col">Class</th><th scope="col">Format</th><th scope="col">Level</th><th scope="col">Group</th><th scope="col" class="is-num">Price</th><th scope="col">Next date</th><th scope="col"><span class="cpx-sr">Ask</span></th></tr></thead>
+            <tbody>${p.classes.map((k) => `
+              <tr><th scope="row">${esc(k.title)}</th><td>${esc(k.format)}</td><td>${esc(k.level)}</td><td>${esc(k.group)}</td><td class="is-num"><b>${esc(money(k.price))}</b><span>per person</span></td><td>${esc(k.next)}</td><td class="is-act"><button type="button" class="cpx-mini-btn" data-request data-service="${esc(k.title)}">Ask</button></td></tr>`).join('')}
+            </tbody></table>
+            <p class="cpx-table-foot">Classes are added by ${esc(first)}. Ask to book a seat; you pay ${esc(first)} directly.</p></div>` : '', 'Example classes')}
 
         ${sec('experience', 'Experience', (p.experience || []).length ? `
           <div class="cpx-table-wrap">
@@ -384,6 +409,21 @@
   }
 
   /* ── Lightbox for Work ── */
+  const shareBtn = document.getElementById('cpxShare');
+  if (shareBtn) shareBtn.addEventListener('click', async () => {
+    const url = location.origin + '/c/' + c.slug;
+    const label = shareBtn.querySelector('span');
+    try {
+      if (navigator.share) { await navigator.share({ title: c.creator + ' on Nexus', text: c.creator + ', ' + c.craft + ' in ' + c.city, url }); return; }
+      await navigator.clipboard.writeText(url);
+      label.textContent = 'Link copied';
+    } catch (e) {
+      if (e && e.name === 'AbortError') return;
+      window.prompt('Copy this link', url);
+    }
+    setTimeout(() => { label.textContent = 'Share'; }, 2000);
+  });
+
   const lb = document.getElementById('cpxLb');
   const lbImg = lb.querySelector('img');
   const lbCap = lb.querySelector('figcaption');
@@ -391,7 +431,8 @@
   function show(i) {
     at = (i + work.length) % work.length;
     lbImg.src = abs(work[at].src);
-    lbCap.textContent = (work[at].caption || '') + ' · ' + (at + 1) + ' of ' + work.length;
+    const m = work[at].meta;
+    lbCap.innerHTML = m ? '<b>' + esc(m.title) + '</b><span>' + esc(m.type) + ' · ' + esc(m.year) + ' · ' + esc(m.role) + '</span><em>' + (at + 1) + ' of ' + work.length + '</em>' : esc(work[at].caption || '') + ' · ' + (at + 1) + ' of ' + work.length;
   }
   main.querySelectorAll('[data-shot]').forEach((b) => b.addEventListener('click', () => { show(+b.dataset.shot); lb.hidden = false; document.body.style.overflow = 'hidden'; }));
   const closeLb = () => { lb.hidden = true; document.body.style.overflow = ''; };

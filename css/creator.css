@@ -3004,3 +3004,53 @@ body.cpx-body .cpx .cpx-check-svg {
   padding: 0 !important;
   flex-shrink: 0 !important;
 }
+
+/* ═══ Nov 22: share, classes, work details ═══ */
+.cpx-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+body.cpx-body .cpx .cpx-share { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(20,20,22,.14); background: #fff; color: #141416; font: 400 15px "Times New Roman", Times, serif; cursor: pointer; transition: border-color .2s, color .2s; }
+body.cpx-body .cpx .cpx-share:hover { border-color: var(--blue); color: var(--blue); }
+body.cpx-body .cpx .cpx-share svg { width: 15px; height: 15px; }
+body.cpx-body .cpx .cpx-title-wrap { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+body.cpx-body .cpx .cpx-title-wrap .cpx-share { margin-left: auto; }
+/* Classes */
+body.cpx-body .cpx .cpx-class-table tbody th { font: 400 17px/1.3 "Times New Roman", Times, serif !important; color: #141416 !important; text-align: left; }
+body.cpx-body .cpx .cpx-class-table td { font: 400 15px "Times New Roman", Times, serif !important; color: #5E5F66 !important; vertical-align: middle !important; white-space: nowrap; }
+body.cpx-body .cpx .cpx-class-table td.is-num { text-align: right !important; }
+body.cpx-body .cpx .cpx-class-table td.is-num b { display: block; font: 400 20px "Times New Roman", Times, serif; color: #141416; }
+body.cpx-body .cpx .cpx-class-table td.is-num span { font-style: italic; font-size: 13px; }
+body.cpx-body .cpx .cpx-class-table th.is-num { text-align: right !important; }
+@media (max-width: 1180px) and (min-width: 961px) { body.cpx-body .cpx .cpx-class-table td:nth-child(4), body.cpx-body .cpx .cpx-class-table thead th:nth-child(4) { display: none; } }
+@media (max-width: 640px) {
+  body.cpx-body .cpx .cpx-class-table thead { display: none; }
+  body.cpx-body .cpx .cpx-class-table tr { display: grid !important; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 16px 18px; }
+  body.cpx-body .cpx .cpx-class-table tr + tr { border-top: 1px solid rgba(20,20,22,.1); }
+  body.cpx-body .cpx .cpx-class-table :is(th, td) { display: block !important; padding: 0 !important; border: 0 !important; white-space: normal; }
+  body.cpx-body .cpx .cpx-class-table th { grid-column: 1 / -1; }
+  body.cpx-body .cpx .cpx-class-table td:nth-child(2), body.cpx-body .cpx .cpx-class-table td:nth-child(3), body.cpx-body .cpx .cpx-class-table td:nth-child(4), body.cpx-body .cpx .cpx-class-table td:nth-child(6) { display: inline !important; }
+  body.cpx-body .cpx .cpx-class-table td.is-num { text-align: left !important; }
+}
+/* Work captions */
+body.cpx-body .cpx .cpx-thumb { position: relative; }
+body.cpx-body .cpx .cpx-thumb-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 14px 12px; background: linear-gradient(transparent, rgba(0,0,0,.62)); color: #fff; text-align: left; display: flex; flex-direction: column; gap: 2px; opacity: 0; transform: translateY(6px); transition: opacity .25s, transform .25s; pointer-events: none; }
+body.cpx-body .cpx .cpx-thumb:hover .cpx-thumb-cap, body.cpx-body .cpx .cpx-thumb:focus-visible .cpx-thumb-cap { opacity: 1; transform: none; }
+body.cpx-body .cpx .cpx-thumb-cap b { font: 400 16px "Times New Roman", Times, serif; }
+body.cpx-body .cpx .cpx-thumb-cap span { font: italic 400 13px "Times New Roman", Times, serif; opacity: .85; }
+@media (hover: none) { body.cpx-body .cpx .cpx-thumb-cap { opacity: 1; transform: none; } }
+.cpx-lb figcaption { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.cpx-lb figcaption b { font: 400 20px "Times New Roman", Times, serif; color: #fff; }
+.cpx-lb figcaption span { font: italic 400 15px "Times New Roman", Times, serif; color: rgba(255,255,255,.8); }
+.cpx-lb figcaption em { font: 400 12px var(--sf); font-style: normal; color: rgba(255,255,255,.55); }
+@media (max-width: 640px) {
+  body.cpx-body .cpx table.cpx-table.cpx-class-table, body.cpx-body .cpx table.cpx-class-table tbody { display: block !important; width: 100%; }
+  body.cpx-body .cpx table.cpx-class-table tbody tr { display: flex !important; flex-wrap: wrap; align-items: center; gap: 6px 14px; padding: 16px 18px !important; margin: 0 !important; border: 0 !important; border-radius: 0 !important; background: none !important; box-shadow: none !important; }
+  body.cpx-body .cpx table.cpx-class-table tbody tr + tr { border-top: 1px solid rgba(20,20,22,.1) !important; }
+  body.cpx-body .cpx table.cpx-class-table tbody :is(th, td) { display: block !important; padding: 0 !important; margin: 0 !important; border: 0 !important; background: none !important; width: auto !important; min-height: 0 !important; white-space: nowrap; }
+  body.cpx-body .cpx table.cpx-class-table tbody th { flex: 1 0 100%; white-space: normal; font-size: 18px !important; }
+  body.cpx-body .cpx table.cpx-class-table tbody td:nth-child(2)::after, body.cpx-body .cpx table.cpx-class-table tbody td:nth-child(3)::after { content: " ·"; }
+  body.cpx-body .cpx table.cpx-class-table tbody td:nth-child(4) { flex: 1 0 auto; }
+  body.cpx-body .cpx table.cpx-class-table tbody td.is-num { order: 10; flex: 1 0 auto; text-align: left !important; }
+  body.cpx-body .cpx table.cpx-class-table tbody td.is-num b { display: inline; margin-right: 4px; }
+  body.cpx-body .cpx table.cpx-class-table tbody td:nth-child(6) { flex: 1 0 100%; font-style: italic; }
+  body.cpx-body .cpx table.cpx-class-table tbody td.is-act { order: 11; }
+}
+@media (max-width: 640px) { body.cpx-body .cpx table.cpx-table.cpx-class-table tbody tr:nth-child(n) > :is(th, td):nth-child(n) { border: 0 !important; box-shadow: none !important; } }

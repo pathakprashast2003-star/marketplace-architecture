@@ -532,6 +532,8 @@
       experience: [['Director of photography', 'Regional car commercial'], ['Camera operator', 'Independent feature film'], ['DP', 'Music video series'], ['Second unit DP', 'Documentary series']],
       credentials: [['General liability insurance, $2M cover', 'Hiscox', 'Mar 2027', true], ['Equipment insurance, full camera package', 'Athos Insurance', 'Jan 2027', true], ['Union eligible, camera department', 'IATSE Local 600', 'Ongoing', false]],
       services: [['Half day shoot', 'Up to 5 hours on set with my camera package.', 0.6, 'per half day', 'Camera, lenses, monitor'], ['Full day shoot', 'Up to 10 hours on set. The usual choice for commercials and music videos.', 1, 'per day', 'Camera package, 1st AC on request'], ['Camera package rental', 'My camera, lenses and monitor for your own operator.', 0.45, 'per day', 'Prep and check-out included'], ['Music video package', 'Prep call, one shoot day and a shot list built with you.', 1.25, 'per project', 'Shot list, camera package']],
+      classes: [['Intro to cinema cameras', 'In person', 'Beginner', 'Up to 6', 0.18, 'Sat, Dec 13'], ['Lighting a small set', 'In person', 'Intermediate', 'Up to 8', 0.22, 'Sat, Jan 10'], ['Shot lists that work, live Q&A', 'Online', 'All levels', 'Up to 20', 0.06, 'Thu, Dec 4']],
+      work: [['Night car commercial', 'Commercial', '2025', 'Director of photography'], ['Studio product spot', 'Commercial', '2025', 'DP'], ['Feature film, act two', 'Narrative', '2024', 'Camera operator'], ['Music video, single take', 'Music video', '2024', 'DP'], ['Brand documentary', 'Documentary', '2023', 'DP']],
       faq: [['Do you bring your own camera?', 'Yes. My camera package is included in the day rate. Extra lenses or lighting can be added.'], ['Can you travel?', 'Yes. Travel and accommodation are added at cost for shoots outside my city.'], ['How far ahead should I book?', 'Two weeks is ideal. I can sometimes take shoots on shorter notice.'], ['Do you edit too?', 'I can deliver a rough cut, or hand the footage to your editor the same day.'], ['What do you need from me?', 'A short brief, a location and a rough budget. We build the shot list together.']]
     },
     aerial: {
@@ -540,6 +542,8 @@
       experience: [['Drone pilot', 'Tourism board campaign'], ['FPV pilot', 'Car commercial chase sequence'], ['Aerial camera operator', 'Outdoor music festival'], ['Pilot', 'Luxury real estate series']],
       credentials: [['FAA Part 107 remote pilot certificate', 'Federal Aviation Administration', 'Aug 2027', true], ['Drone liability insurance, $1M cover', 'SkyWatch', 'Feb 2027', true], ['LAANC airspace access', 'FAA via Aloft', 'Per flight', false]],
       services: [['Aerial shoot day', 'Cinema drone, pilot and camera operator for up to 8 hours.', 1, 'per day', 'Drone, batteries, airspace check'], ['FPV chase day', 'Fast, close FPV shots for cars, sports and action.', 1.15, 'per day', 'FPV rig, spotter'], ['Location scout flight', 'A short flight to plan shots and check airspace.', 0.35, 'per visit', 'Test footage'], ['Real estate flight', 'Exterior stills and a short video of one property.', 0.5, 'per visit', '20 stills, 60 second video']],
+      classes: [['Drone basics and safe flying', 'In person', 'Beginner', 'Up to 6', 0.2, 'Sun, Dec 14'], ['Part 107 exam prep', 'Online', 'Beginner', 'Up to 15', 0.12, 'Tue, Dec 9'], ['Cinematic drone moves', 'In person', 'Intermediate', 'Up to 5', 0.25, 'Sat, Jan 17']],
+      work: [['Coastal resort film', 'Travel', '2025', 'Drone pilot'], ['Mountain car launch', 'Commercial', '2025', 'FPV pilot'], ['Highway chase scene', 'Narrative', '2024', 'Aerial unit'], ['Property tour', 'Real estate', '2024', 'Pilot and editor'], ['Festival aftermovie', 'Event', '2023', 'Drone operator']],
       faq: [['Do you handle permits?', 'I check airspace and apply for any approvals needed. Some locations need extra time.'], ['What if the weather is bad?', 'We move the flight to the next good day at no extra charge.'], ['Can you fly indoors?', 'Yes, with smaller FPV drones and a safety brief.'], ['Are you licensed and insured?', 'Licence and insurance details are listed above. Ask for copies before booking.'], ['How do I get the footage?', 'Same-day download link, with edited clips within a week.']]
     },
     d3: {
@@ -548,6 +552,8 @@
       experience: [['Real-time artist', 'Virtual production music video'], ['3D lead', 'Product launch film'], ['Environment artist', 'Indie game trailer'], ['Lookdev artist', 'Streaming series pilot']],
       credentials: [['Bachelor of Fine Arts, 3D animation', 'School of Visual Arts', 'Completed 2016', false], ['Unreal Authorized Instructor', 'Epic Games', 'Dec 2026', true], ['Professional indemnity insurance', 'Hiscox', 'Apr 2027', true]],
       services: [['Concept frames', 'Three still frames to set the look before production.', 0.9, 'per project', '2 rounds of changes'], ['Environment build', 'A finished real-time environment ready for camera.', 4, 'per project', 'Source files on request'], ['Look development pass', 'Look development and shader setup for your real-time assets.', 1.2, 'per project', 'Shader setup, lookdev frames'], ['Product render set', 'Six photoreal renders of one product from your CAD or model.', 1.5, 'per project', '6 renders, 2 rounds of changes']],
+      classes: [['Unreal Engine for beginners', 'Online', 'Beginner', 'Up to 12', 0.1, 'Wed, Dec 10'], ['Lighting and lookdev in Unreal', 'Online', 'Intermediate', 'Up to 10', 0.14, 'Wed, Jan 14'], ['Portfolio review, 1 to 1', 'Online', 'All levels', '1 person', 0.12, 'Book anytime']],
+      work: [['Virtual set for a brand film', 'Virtual production', '2025', 'Environment artist'], ['Product launch renders', 'Product', '2025', 'Lookdev artist'], ['Game trailer world', 'Trailer', '2024', 'Lead 3D artist'], ['Music video world', 'Music video', '2024', '3D artist'], ['Museum installation', 'Installation', '2023', 'Real-time artist']],
       faq: [['Which software do you use?', 'Mostly Unreal Engine and Houdini. I can match your studio pipeline.'], ['Do I get the source files?', 'Yes, if agreed up front. It is listed in the quote.'], ['Can you work remotely?', 'Yes. Most of my 3D work is remote with regular check-ins.'], ['How many rounds of changes?', 'Two rounds are included. More can be added at an agreed price.'], ['How long does a project take?', 'Usually one to three weeks, depending on size. The timeline is agreed before starting.']]
     },
     art: {
@@ -556,6 +562,8 @@
       experience: [['Photographer', 'Fashion label lookbook'], ['Creative director', 'Jewellery campaign'], ['Photographer', 'Magazine editorial story'], ['Lighting director', 'Beauty product launch']],
       credentials: [['Professional indemnity insurance, $1M cover', 'Hiscox', 'May 2027', true], ['General liability insurance for studio and location', 'Next Insurance', 'Feb 2027', true], ['Model release and usage contracts', 'Own template', 'Every shoot', false]],
       services: [['Editorial shoot day', 'A full day in the studio or on location.', 1, 'per day', 'Lighting, 20 retouched images'], ['Lookbook', 'Up to 25 looks shot on a clean backdrop.', 1.6, 'per project', 'Retouching included'], ['Retouching', 'High-end retouching for your existing images.', 0.08, 'per image', 'Skin, color, clean-up'], ['Portrait session', 'Two hours of portraits for press, profiles or a team page.', 0.45, 'per session', '10 retouched images']],
+      classes: [['Studio lighting basics', 'In person', 'Beginner', 'Up to 6', 0.2, 'Sat, Dec 13'], ['Retouching skin the right way', 'Online', 'Intermediate', 'Up to 15', 0.09, 'Thu, Dec 11'], ['Portfolio review, 1 to 1', 'Online', 'All levels', '1 person', 0.1, 'Book anytime']],
+      work: [['Autumn lookbook', 'Fashion', '2025', 'Photographer'], ['Magazine portrait series', 'Editorial', '2025', 'Photographer'], ['Jewellery campaign', 'Commercial', '2024', 'Photographer and retoucher'], ['Studio still life', 'Personal', '2024', 'Photographer'], ['Designer profile', 'Editorial', '2023', 'Photographer']],
       faq: [['Do you provide a stylist?', 'I can bring a stylist and hair and makeup team, priced separately.'], ['How soon do I get the images?', 'Edited images arrive within 7 to 10 working days.'], ['Can I use the images for ads?', 'Usage is agreed in the quote. Advertising use may cost more.'], ['Can we shoot at our location?', 'Yes. I bring portable lighting and scout the space first if needed.'], ['Do you shoot on film?', 'On request. Film and scanning are priced separately.']]
     },
     action: {
@@ -564,6 +572,8 @@
       experience: [['Rig operator', 'Car commercial on closed roads'], ['Tracking vehicle driver', 'Sports documentary'], ['Cable cam operator', 'Mountain bike event film'], ['Rig technician', 'Action feature second unit']],
       credentials: [['Equipment liability insurance, $2M cover', 'Athos Insurance', 'Jan 2027', true], ['Precision driving course', 'Bondurant Racing School', 'Completed 2021', false], ['Rigging and fall protection training', 'OSHA 30', 'Jun 2027', false]],
       services: [['Rig day', 'Rig, operator and tech for up to 10 hours.', 1, 'per day', 'Rig, safety brief'], ['Prep and test day', 'Build and test the rig before the shoot.', 0.5, 'per day', 'Test footage'], ['Rig consult', 'A call to plan shots and pick the right rig.', 0.2, 'per call', 'Written shot plan'], ['Half day rig', 'Rig and operator for up to 5 hours.', 0.6, 'per half day', 'Rig, safety brief']],
+      classes: [['Rigging safety basics', 'In person', 'Beginner', 'Up to 8', 0.2, 'Sat, Dec 20'], ['Car rig planning workshop', 'In person', 'Intermediate', 'Up to 6', 0.24, 'Sat, Jan 24'], ['Ask a rigger, live Q&A', 'Online', 'All levels', 'Up to 25', 0.05, 'Mon, Dec 8']],
+      work: [['Car chase sequence', 'Narrative', '2025', 'Rig technician'], ['Sports car launch', 'Commercial', '2025', 'Arm operator'], ['Stadium cable cam', 'Live event', '2024', 'Cable cam operator'], ['Bike stunt film', 'Sports', '2024', 'Rigger'], ['Truck commercial', 'Commercial', '2023', 'Tracking vehicle tech']],
       faq: [['Is the rig road-legal?', 'Yes, for closed or permitted roads. We plan the route together first.'], ['Do you bring a driver?', 'Yes, a trained driver is included on tracking vehicle days.'], ['What size crew do you need?', 'Usually two or three people for the rig, depending on the shot.'], ['Can you work with our camera team?', 'Yes. I run the rig and work alongside your DP and camera crew.'], ['Is there a safety plan?', 'Every rig day starts with a written plan and a safety brief for the crew.']]
     }
   };
@@ -587,6 +597,7 @@
       years,
       languages: LANGS[i % LANGS.length],
       travel: TRAVEL[i % TRAVEL.length],
+      serviceArea: (c.city || '').split(',')[0] + ' + 100 miles',
       remote: c.cat === 'd3' || i % 3 === 0,
       founding: c.founding || false,
       approved: c.approved || false,
@@ -599,6 +610,8 @@
       credentials: t.credentials.map((x) => ({ name: x[0], issuer: x[1], until: x[2], checked: x[3] })),
       services: t.services.map((x) => ({ title: x[0], desc: x[1], price: Math.round(rate * x[2] / 5) * 5, unit: (c.rateUnit === 'project' ? 'per project' : x[3]), includes: x[4] })),
       how: { payments: PAY[i % PAY.length], deposit: i % 2 ? '30% to confirm the date' : '50% to confirm the date', cancel: i % 2 ? 'Free up to 7 days before' : 'Free up to 14 days before', notice: NOTICE[i % NOTICE.length], availability: AVAIL[i % AVAIL.length] },
+      classes: (t.classes || []).map((x) => ({ title: x[0], format: x[1], level: x[2], group: x[3], price: Math.max(25, Math.round(rate * x[4] / 5) * 5), next: x[5] })),
+      workMeta: (t.work || []).map((x) => ({ title: x[0], type: x[1], year: x[2], role: x[3] })),
       faq: t.faq.map((x) => ({ q: x[0], a: x[1] }))
     };
   }
