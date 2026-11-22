@@ -860,13 +860,6 @@ body.pr-body {
   justify-content: center;
 }
 
-@media (max-width: 640px) {
-  .pr-faq-sec {
-    margin-top: 32px;
-    margin-bottom: 64px;
-  }
-}
-
 .pr-faq-card {
   width: 100%;
   max-width: 1160px;
@@ -1018,57 +1011,15 @@ body.pr-body {
   margin: 0;
 }
 
-/* Mobile Breakpoint */
-@media (max-width: 640px) {
-  .pr-faq-card {
-    padding: 30px 20px 22px;
-    border-radius: 20px;
-  }
+/* ── Canvas Background & Top Alignment ── */
+.pr-body #fees::before {
+  display: none !important;
+}
 
-  .pr-faq-top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-  }
-
-  .pr-faq-giant-title {
-    font-size: 48px;
-    line-height: 0.95;
-  }
-
-  .pr-faq-tracker {
-    font-size: 10.5px;
-    margin-bottom: 0;
-  }
-
-  .pr-faq-item {
-    padding: 16px 0;
-  }
-
-  .pr-faq-summary {
-    gap: 14px;
-  }
-
-  .pr-faq-sparkle {
-    width: 18px;
-    height: 18px;
-  }
-
-  .pr-faq-q-text {
-    font-size: 17px;
-  }
-
-  .pr-faq-circle-btn {
-    width: 32px;
-    height: 32px;
-  }
-
-  .pr-faq-answer {
-    padding: 10px 0 4px 30px;
-    font-size: 14.5px;
-  }
+.pr-top-badge-wrap {
+  text-align: center;
+  margin-top: 28px;
+  margin-bottom: 0px;
 }
 
 /* ── Founding Roster Section Styling on Pricing Page ── */
@@ -1083,9 +1034,274 @@ body.pr-body {
   padding-inline: 0;
 }
 
+/* ══════════════════════════════════════════════════════════════════════════════
+   MOBILE LAYOUT & POLISH (≤640px)
+   ══════════════════════════════════════════════════════════════════════════════ */
 @media (max-width: 640px) {
+  .pr-main {
+    width: calc(100vw - 28px);
+    padding: 16px 0 24px;
+  }
+
+  .pr-top-badge-wrap {
+    margin-top: 12px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .pr-hero-badge {
+    padding: 5px 12px !important;
+    font-size: 10px !important;
+  }
+
+  /* ── Hero & Title ── */
+  #fees {
+    padding-top: 14px !important;
+    padding-bottom: 24px !important;
+  }
+
+  #fees .ct-deck-head {
+    margin-bottom: 18px;
+  }
+
+  #fees .ct-title {
+    font-size: clamp(28px, 8.2vw, 34px) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.025em;
+    margin-bottom: 10px;
+  }
+
+  #fees .ct-sub {
+    font-size: 15px !important;
+    line-height: 1.45 !important;
+    max-width: 32ch !important;
+    margin: 0 auto 18px;
+  }
+
+  /* ── Calculator Bar ── */
+  .pr-body #fees .ct-calc-bar {
+    border-radius: 20px !important;
+    background: #FFFFFF !important;
+    padding: 14px 12px !important;
+    margin-bottom: 22px !important;
+    box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.04) !important;
+    gap: 10px !important;
+  }
+
+  #fees .ct-calc-left {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  #fees .ct-calc-label {
+    font-size: 10px;
+    letter-spacing: 0.09em;
+    color: #64748B;
+  }
+
+  #fees .ct-calc-pills {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: #F1F5F9;
+    border-radius: 999px;
+    padding: 3px;
+    border: 1px solid rgba(15, 23, 42, 0.04);
+    gap: 3px;
+  }
+
+  #fees .ct-calc-pill {
+    flex: 1;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12.5px;
+    font-weight: 650;
+    border-radius: 999px;
+  }
+
+  #fees .ct-calc-savings {
+    width: 100%;
+    justify-content: center;
+    font-size: 12px;
+    padding: 7px 10px;
+    border-radius: 10px;
+  }
+
+  /* ── Comparison Matrix Cards ── */
+  #fees .ct-matrix-wrapper {
+    padding: 0;
+  }
+
+  #fees .ct-matrix-grid {
+    gap: 16px;
+    max-width: 100%;
+  }
+
+  #fees .ct-card {
+    padding: 22px 16px 18px;
+    border-radius: 22px;
+  }
+
+  /* Hide excessive competitor illustrations on mobile for clean scanning */
+  #fees .ct-card.is-freelance .ct-card-artwork,
+  #fees .ct-card.is-agency .ct-card-artwork {
+    display: none !important;
+  }
+
+  #fees .ct-card.is-hero {
+    padding: 26px 18px 22px;
+    border-radius: 24px;
+    order: -1;
+  }
+
+  #fees .ct-card.is-hero .ct-card-artwork {
+    height: 100px;
+    margin-bottom: 6px;
+  }
+
+  #fees .ct-card.is-hero .ct-art-img {
+    height: 96px;
+  }
+
+  #fees .ct-card-head {
+    gap: 4px;
+    padding-bottom: 12px;
+  }
+
+  #fees .ct-card-name {
+    font-size: 21px;
+    margin-bottom: 2px;
+  }
+
+  #fees .ct-card-sub {
+    font-size: 13.5px;
+  }
+
+  #fees .ct-card-pill {
+    font-size: 12.5px;
+    padding: 4px 12px;
+  }
+
+  #fees .ct-budget-impact {
+    font-size: 11.5px;
+    margin-top: 6px;
+    padding: 4px 10px;
+  }
+
+  #fees .ct-card-rows {
+    margin-top: 12px;
+    padding-top: 4px;
+  }
+
+  #fees .ct-row {
+    padding: 7px 2px;
+    font-size: 13.5px;
+    line-height: 1.32;
+    min-height: 0;
+  }
+
+  #fees .ct-btn.is-hero-cta {
+    height: 46px;
+    font-size: 15px;
+    margin-top: 14px;
+  }
+
+  #fees .ct-learn {
+    margin-top: 16px;
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  /* ── Founding Roster Banner ── */
   .pr-body #founding {
-    padding-top: 24px;
+    padding-top: 16px;
     padding-bottom: 24px;
+  }
+
+  #founding .nx-found-face {
+    padding: 24px 16px;
+    border-radius: 22px;
+  }
+
+  #founding .nx-found-title {
+    font-size: 26px;
+    line-height: 1.15;
+  }
+
+  #founding .nx-found-sub {
+    font-size: 14.5px;
+    line-height: 1.45;
+  }
+
+  #founding .nx-seat-meter {
+    padding: 10px 12px;
+  }
+
+  #founding .nx-found-btn,
+  #founding .nx-found-sec-btn,
+  #founding .nx-flip-return-btn {
+    width: 100%;
+    padding: 13px 18px;
+    font-size: 14.5px;
+  }
+
+  /* ── FAQ Section ── */
+  .pr-faq-sec {
+    margin-top: 16px;
+    margin-bottom: 56px;
+  }
+
+  .pr-faq-card {
+    padding: 26px 16px 20px;
+    border-radius: 22px;
+  }
+
+  .pr-faq-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+  }
+
+  .pr-faq-giant-title {
+    font-size: 44px;
+    line-height: 0.95;
+  }
+
+  .pr-faq-tracker {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+
+  .pr-faq-item {
+    padding: 14px 0;
+  }
+
+  .pr-faq-summary {
+    gap: 12px;
+  }
+
+  .pr-faq-sparkle {
+    width: 18px;
+    height: 18px;
+  }
+
+  .pr-faq-q-text {
+    font-size: 16.5px;
+    line-height: 1.32;
+  }
+
+  .pr-faq-circle-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .pr-faq-answer {
+    padding: 8px 0 2px 28px;
+    font-size: 14px;
+    line-height: 1.55;
   }
 }

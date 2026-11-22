@@ -90,3 +90,41 @@ def test_pricing_page_render_and_calculator():
         assert len(errors) == 0, f"Encountered console/page errors: {errors}"
         
         browser.close()
+
+
+def test_pricing_page_mobile_layout():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(channel="chrome", headless=True)
+        page = browser.new_page(viewport={"width": 375, "height": 853})
+        
+        errors = []
+        page.on("console", lambda msg: errors.append(msg.text) if msg.type == "error" else None)
+        page.on("pageerror", lambda err: errors.append(str(err)))
+        
+        page.goto("http://localhost:3000/pricing", wait_until="networkidle")
+        
+        # 1. Verify no horizontal overflow
+        scroll_width = page.evaluate("() => document.documentElement.scrollWidth")
+        client_width = page.evaluate("() => document.documentElement.clientWidth")
+        assert scroll_width <= client_width + 1, f"Horizontal overflow detected: scrollWidth={scroll_width}, clientWidth={client_width}"
+        
+        # 2. Verify calculator bar has clean card radius on mobile (not 9999px oval)
+        calc_radius = page.evaluate("() => window.getComputedStyle(document.querySelector('.ct-calc-bar')).borderRadius")
+        assert calc_radius == "20px", f"Expected 20px card radius on mobile, got {calc_radius}"
+        
+        # 3. Verify competitor cards hide large illustrations on mobile
+        freelance_art_display = page.evaluate(
+            "() => window.getComputedStyle(document.querySelector('.ct-card.is-freelance .ct-card-artwork')).display"
+        )
+        assert freelance_art_display == "none", "Expected competitor artwork to be hidden on mobile"
+        
+        # 4. Verify hero card is prioritized and visible
+        hero_card = page.locator(".ct-card.is-hero")
+        assert hero_card.is_visible()
+        
+        # 5. Verify FAQ and Founding sections render within mobile viewport
+        assert page.locator(".pr-faq-card").bounding_box()["width"] <= 350
+        assert page.locator("#founding .nx-found-banner").bounding_box()["width"] <= 350
+        
+        assert len(errors) == 0, f"Encountered console/page errors on mobile: {errors}"
+        browser.close()
