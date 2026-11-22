@@ -1324,3 +1324,13 @@ body.pr-body {
   #fees .ct-card.is-hero .ct-row { padding: 10px 2px; }
 }
 
+
+/* Side comparison cards: visible outer shell on the pricing page */
+.pr-body #fees .ct-card:not(.is-hero) {
+  background: #F3F5F9;
+  border: 1.5px solid #E5484D;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 18px 40px -20px rgba(15, 23, 42, 0.18);
+}
+.pr-body #fees .ct-card:not(.is-hero):hover {
+  border-color: #D13438;
+}
