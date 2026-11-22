@@ -869,26 +869,26 @@ body.pr-body {
 
 .pr-faq-card {
   width: 100%;
-  max-width: 960px;
+  max-width: 1160px;
   background: #FFFFFF;
   border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 26px;
-  padding: clamp(32px, 3.8vw, 42px) clamp(20px, 3.8vw, 46px) clamp(26px, 3.2vw, 34px);
-  box-shadow: 0 16px 40px -12px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
+  border-radius: 30px;
+  padding: clamp(38px, 4.5vw, 54px) clamp(24px, 4.5vw, 64px) clamp(30px, 3.8vw, 42px);
+  box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
 }
 
 .pr-faq-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 20px;
-  padding-bottom: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
   border-bottom: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .pr-faq-giant-title {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
-  font-size: clamp(52px, 6.2vw, 76px);
+  font-size: clamp(66px, 7.8vw, 94px);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 0.9;
@@ -899,7 +899,7 @@ body.pr-body {
 
 .pr-faq-tracker {
   font-family: var(--pr-mono, 'JetBrains Mono', monospace);
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
   color: #475569;
   letter-spacing: 0.07em;
@@ -916,7 +916,7 @@ body.pr-body {
   border: none;
   border-bottom: 1px solid rgba(15, 23, 42, 0.08);
   background: transparent;
-  padding: 18px 0;
+  padding: 22px 0;
   transition: background-color 0.15s ease;
 }
 
@@ -931,7 +931,7 @@ body.pr-body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 18px;
   user-select: none;
   outline: none;
 }
@@ -942,8 +942,8 @@ body.pr-body {
 
 .pr-faq-sparkle {
   color: #2563EB;
-  width: 19px;
-  height: 19px;
+  width: 21px;
+  height: 21px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -959,7 +959,7 @@ body.pr-body {
 .pr-faq-q-text {
   flex: 1;
   font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif);
-  font-size: clamp(17.5px, 1.5vw, 19.5px);
+  font-size: clamp(19px, 1.7vw, 22px);
   font-weight: 700;
   color: #0F172A;
   letter-spacing: -0.015em;
@@ -972,8 +972,8 @@ body.pr-body {
 }
 
 .pr-faq-circle-btn {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background: #2563EB;
   color: #FFFFFF;
@@ -1007,10 +1007,10 @@ body.pr-body {
 }
 
 .pr-faq-answer {
-  padding: 12px 50px 6px 36px;
+  padding: 14px 54px 8px 40px;
   font-family: var(--font-serif, 'Times New Roman', Times, Georgia, serif);
-  font-size: 15px;
-  line-height: 1.65;
+  font-size: clamp(15.5px, 1.2vw, 16.5px);
+  line-height: 1.68;
   color: #475569;
 }
 
@@ -1021,53 +1021,53 @@ body.pr-body {
 /* Mobile Breakpoint */
 @media (max-width: 640px) {
   .pr-faq-card {
-    padding: 26px 18px 20px;
-    border-radius: 18px;
+    padding: 30px 20px 22px;
+    border-radius: 20px;
   }
 
   .pr-faq-top {
     flex-direction: column;
     align-items: flex-start;
-    gap: 4px;
-    margin-bottom: 14px;
-    padding-bottom: 10px;
+    gap: 6px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
   }
 
   .pr-faq-giant-title {
-    font-size: 42px;
+    font-size: 48px;
     line-height: 0.95;
   }
 
   .pr-faq-tracker {
-    font-size: 10px;
+    font-size: 10.5px;
     margin-bottom: 0;
   }
 
   .pr-faq-item {
-    padding: 15px 0;
+    padding: 16px 0;
   }
 
   .pr-faq-summary {
-    gap: 12px;
+    gap: 14px;
   }
 
   .pr-faq-sparkle {
-    width: 17px;
-    height: 17px;
+    width: 18px;
+    height: 18px;
   }
 
   .pr-faq-q-text {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .pr-faq-circle-btn {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
   }
 
   .pr-faq-answer {
-    padding: 10px 0 4px 28px;
-    font-size: 14px;
+    padding: 10px 0 4px 30px;
+    font-size: 14.5px;
   }
 }
 
