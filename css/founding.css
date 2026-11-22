@@ -1,3 +1,13 @@
+    #founding {
+      padding-top: 56px;
+      padding-bottom: 72px;
+      scroll-margin-top: 86px;
+      position: relative;
+      background: #FFFFFF;
+      box-sizing: border-box;
+      font-family: var(--font-body, 'Plus Jakarta Sans', -apple-system, sans-serif);
+      overflow-x: clip;
+    }
     #founding *,
     #founding *::before,
     #founding *::after {

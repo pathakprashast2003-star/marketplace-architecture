@@ -45,7 +45,27 @@ def test_pricing_page_render_and_calculator():
         first_faq = faq_items.first
         assert first_faq.get_attribute("open") is not None
         
-        # 6. Verify Zero Console / Page Errors
+        # 6. Check Founding Roster Flippable Banner (Parity with Landing Page)
+        founding_sec = page.locator("#founding")
+        assert founding_sec.is_visible()
+        banner = page.locator("#foundingBanner")
+        assert banner.is_visible()
+        assert "Join the Founding Roster." in page.locator(".nx-found-title").inner_text()
+        
+        # Test 3D Flip
+        flip_btn = page.locator("#founding .nx-found-sec-btn")
+        flip_btn.click()
+        page.wait_for_timeout(300)
+        assert "is-flipped" in banner.get_attribute("class")
+        assert page.locator(".nx-criteria-grid").is_visible()
+        
+        # Test Return Flip
+        return_btn = page.locator("#founding .nx-flip-return-btn")
+        return_btn.click()
+        page.wait_for_timeout(300)
+        assert "is-flipped" not in banner.get_attribute("class")
+
+        # 7. Verify Zero Console / Page Errors
         assert len(errors) == 0, f"Encountered console/page errors: {errors}"
         
         browser.close()

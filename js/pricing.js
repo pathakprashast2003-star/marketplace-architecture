@@ -48,4 +48,26 @@
 
   updateShortlistCount();
   window.addEventListener('storage', updateShortlistCount);
+
+  // 3. Founding Roster 3D Flip Card
+  function flipFoundingCard(flipToBack) {
+    const banner = document.getElementById('foundingBanner');
+    const flipper = document.getElementById('foundingFlipper');
+    const front = document.querySelector('#founding .nx-found-front');
+    const back = document.querySelector('#founding .nx-found-back');
+    if (!banner || !flipper || !front || !back) return;
+    if (flipToBack) {
+      banner.classList.add('is-flipped');
+      const backH = back.scrollHeight;
+      const frontH = front.scrollHeight;
+      if (backH > frontH) {
+        flipper.style.minHeight = (backH + 4) + 'px';
+      }
+    } else {
+      banner.classList.remove('is-flipped');
+      flipper.style.minHeight = '';
+    }
+  }
+
+  window.flipFoundingCard = flipFoundingCard;
 })();
