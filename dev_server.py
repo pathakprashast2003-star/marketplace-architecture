@@ -9,6 +9,12 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
             self.path = '/explore.html'
         elif self.path == '/pricing' or self.path.startswith('/pricing?'):
             self.path = '/pricing.html'
+        elif self.path == '/signup' or self.path.startswith('/signup?'):
+            self.path = '/signup.html'
+        elif self.path == '/login' or self.path.startswith('/login?'):
+            self.path = '/login.html'
+        elif self.path == '/seller/onboarding' or self.path.startswith('/seller/onboarding?'):
+            self.path = '/seller_onboarding.html'
         elif self.path == '/c' or self.path == '/c/':
             self.path = '/explore.html'
         elif self.path.startswith('/c/'):
@@ -16,22 +22,43 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
             self.path = '/creator.html'
 
     def do_HEAD(self):
+        if self.path.startswith('/api/'):
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Cache-Control', 'no-store')
+            self.end_headers()
+            return
         self._rewrite_path()
         super().do_HEAD()
 
     def do_GET(self):
+        if self.path.startswith('/api/founding'):
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Cache-Control', 'no-store')
+            self.end_headers()
+            self.wfile.write(b'{"ok": true, "open": 58, "claimed": 42, "total": 100}')
+            return
+        elif self.path.startswith('/api/me'):
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.send_header('Cache-Control', 'no-store')
+            self.end_headers()
+            self.wfile.write(b'{"ok": true, "authenticated": false}')
+            return
         self._rewrite_path()
         super().do_GET()
 
     def do_POST(self):
         if self.path.startswith('/api/'):
             content_length = int(self.headers.get('Content-Length', 0))
-            self.rfile.read(content_length)
+            if content_length > 0:
+                self.rfile.read(content_length)
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.send_header('Cache-Control', 'no-store')
             self.end_headers()
-            self.wfile.write(b'{"ok": true, "edit_token": "mock-dev-token"}')
+            self.wfile.write(b'{"ok": true, "message": "Success", "edit_token": "mock-dev-token"}')
             return
         self.send_response(404)
         self.end_headers()

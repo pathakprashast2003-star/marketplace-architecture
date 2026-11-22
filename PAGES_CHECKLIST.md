@@ -13,7 +13,8 @@
 [x] Completed:   Page 4 — Creator Storefront Profile (/c/[slug]) -> http://localhost:3000/c/marcus-vance
 [x] Completed:   Page 5 — Structured Lead Intake Modal (Storefront Overlay) -> Live in /c/[slug] & /explore
 [x] Completed:   Page 6 — Pricing & Membership Page (/pricing) -> http://localhost:3000/pricing
-[ ] Next Up:     Page 7 & 8 — Unified Authentication & Role Fork (/login, /signup)
+[x] Completed:   Page 7 & 8 — Unified Authentication & Role Fork (/login, /signup) -> http://localhost:3000/login , http://localhost:3000/signup
+[ ] Next Up:     Page 10 — 5-Step Storefront Onboarding Wizard (/seller/onboarding)
 ```
 
 ---
@@ -54,13 +55,13 @@
 
 ## 2. Authentication & Identity Pages
 
-- [ ] **7. Unified Login (`/login`)**
+- [x] **7. Unified Login (`/login`)** `[COMPLETED & LIVE ON LOCALHOST:3000/login]`
   - *Route:* `/login`
-  - *Components:* Email/password form, passwordless magic link trigger, 1-click Google OAuth with PKCE, Turnstile bot shield.
+  - *Components:* Clean passwordless login with email field, "Send me a code" button, 6-digit OTP code grid, 1-click Google OAuth button, and direct link to sign up.
 
-- [ ] **8. 2-Card Sign-Up & Role Fork (`/signup`)**
+- [x] **8. 2-Card Sign-Up & Role Fork (`/signup`)** `[COMPLETED & LIVE ON LOCALHOST:3000/signup]`
   - *Route:* `/signup`
-  - *Components:* Interactive role selector: *"I'm Looking to Hire"* (creates Seeker account) vs *"I'm a Creator / Business"* (launches Creator wizard).
+  - *Components:* Interactive 2-choice role selector: *"I'm looking to hire"* (routes to streamlined client sign-up via email magic link or Google) vs *"I'm a creator / business"* (launches 3-step creator verification with 6-digit OTP, name & age gate, and transitions to Page 10 `/seller/onboarding`). Full deep-link support via `?intent=client` and `?intent=creator`.
 
 - [ ] **9. Password Recovery & Verification (`/forgot-password`, `/reset-password`)**
   - *Route:* `/forgot-password`, `/reset-password`

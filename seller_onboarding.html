@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Creator Storefront Onboarding (Page 10) · Nexus</title>
+  <meta name="description" content="Build your creator storefront on Nexus. 5-step wizard to set your slug, reel, packages, and gear.">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%233B54EE' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0F172A; --sub: #475569; --line: rgba(15, 23, 42, 0.08);
+      --blue: #3B54EE; --blue-hover: #2A44E0; --soft: #F8FAFC;
+      --serif: 'Times New Roman', Times, Georgia, serif;
+      --sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; background: #FCFCFD; color: var(--ink); font-family: var(--sans);
+      -webkit-font-smoothing: antialiased; min-height: 100dvh; display: flex; flex-direction: column;
+    }
+    .nx-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1120px; width: 100%; margin: 0 auto; padding: 24px clamp(16px, 4vw, 32px);
+    }
+    .nx-brand {
+      display: inline-flex; align-items: center; gap: 8px; font-family: var(--serif);
+      font-size: 24px; font-weight: 700; color: var(--ink); text-decoration: none;
+    }
+    .nx-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+    .nx-container {
+      flex: 1; max-width: 820px; width: 100%; margin: 0 auto;
+      padding: 32px clamp(16px, 4vw, 32px) 64px;
+    }
+    .nx-badge {
+      display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono);
+      font-size: 11px; font-weight: 700; color: var(--blue); background: rgba(59, 84, 238, 0.08);
+      padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    h1 {
+      font-family: var(--serif); font-size: clamp(32px, 5vw, 44px);
+      margin: 16px 0 10px; letter-spacing: -0.025em; line-height: 1.1;
+    }
+    p.lead { font-size: 17px; line-height: 1.5; color: var(--sub); margin: 0 0 32px; max-width: 60ch; }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px; margin-bottom: 40px;
+    }
+    .step-box {
+      background: #FFFFFF; border: 1px solid var(--line); border-radius: 20px;
+      padding: 24px; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+    }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%; background: var(--soft);
+      display: flex; align-items: center; justify-content: center; font-size: 13px;
+      font-weight: 700; color: var(--blue); margin-bottom: 14px;
+    }
+    .step-title { font-weight: 700; font-size: 16px; margin-bottom: 6px; }
+    .step-desc { font-size: 13.5px; color: var(--sub); line-height: 1.4; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; padding: 0 24px; border-radius: 999px; font-size: 15px; font-weight: 600;
+      text-decoration: none; cursor: pointer; transition: all 0.2s ease;
+    }
+    .btn-primary { background: var(--blue); color: #FFF; border: none; }
+    .btn-primary:hover { background: var(--blue-hover); }
+    .btn-secondary { background: #FFF; color: var(--ink); border: 1px solid var(--line); }
+    .btn-secondary:hover { background: var(--soft); }
+  </style>
+</head>
+<body>
+  <nav class="nx-nav">
+    <a class="nx-brand" href="/"><span class="nx-dot"></span>nexus.</a>
+    <span style="font-size:14px;color:var(--sub)">Page 10 · Creator Storefront Onboarding</span>
+  </nav>
+
+  <main class="nx-container">
+    <span class="nx-badge">5-Step Creator Wizard</span>
+    <h1>Build your verified storefront.</h1>
+    <p class="lead">Congratulations on verifying your creator account! Complete these 5 simple steps to launch your public Nexus storefront and claim your Founding 100 spot.</p>
+
+    <div class="steps-grid">
+      <div class="step-box">
+        <div class="step-num">1</div>
+        <div class="step-title">Identity &amp; Slug</div>
+        <div class="step-desc">Claim your custom URL handle (e.g. <code>nexus.com/c/yourname</code>) and business bio.</div>
+      </div>
+      <div class="step-box">
+        <div class="step-num">2</div>
+        <div class="step-title">Showreel &amp; Media</div>
+        <div class="step-desc">Upload your 4K video reel or high-res stills directly to our CDN.</div>
+      </div>
+      <div class="step-box">
+        <div class="step-num">3</div>
+        <div class="step-title">Service Packages</div>
+        <div class="step-desc">Define your day rates, commercial deliverables, and project tiers.</div>
+      </div>
+      <div class="step-box">
+        <div class="step-num">4</div>
+        <div class="step-title">Gear Manifest</div>
+        <div class="step-desc">List your cameras, lenses, drones, and lighting to prove production capability.</div>
+      </div>
+      <div class="step-box">
+        <div class="step-num">5</div>
+        <div class="step-title">Live Preview</div>
+        <div class="step-desc">Preview your 3D credential badge and submit for Founding 100 approval.</div>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a href="/explore" class="btn btn-secondary">← Back to Explorer</a>
+      <a href="/pricing" class="btn btn-secondary">Review Pricing &amp; Membership</a>
+    </div>
+  </main>
+</body>
+</html>

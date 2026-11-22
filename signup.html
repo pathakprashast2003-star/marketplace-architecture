@@ -3,593 +3,1371 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Create your account · Nexus</title>
-  <meta name="description" content="Create your Nexus account. Creators and teachers claim a founding spot; clients find creatives near them.">
+  <title>Join Nexus · Choose Your Path</title>
+  <meta name="description" content="Sign up for Nexus. Choose whether you're looking to hire top creative talent or join as a verified creator/business with 0% commission.">
   <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%233B54EE' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #0F172A; --ink2: #475569; --ink3: #64748B; --line: rgba(15, 23, 42, .09);
-      --blue: #3B54EE; --blue-d: #2134B8; --soft: #F1F5F9; --bad: #B42318; --ok: #1F7A4D;
+      --ink: #0F172A;
+      --ink-light: #1E293B;
+      --sub: #475569;
+      --mute: #64748B;
+      --line: rgba(15, 23, 42, 0.08);
+      --line-hover: rgba(15, 23, 42, 0.16);
+      --blue: #3B54EE;
+      --blue-hover: #2A44E0;
+      --blue-glow: rgba(59, 84, 238, 0.25);
+      --soft: #F8FAFC;
+      --soft-hover: #F1F5F9;
+      --bad: #DC2626;
+      --ok: #16A34A;
       --serif: 'Times New Roman', Times, Georgia, serif;
-      --sans: 'Plus Jakarta Sans', -apple-system, system-ui, sans-serif;
-      --mono: 'JetBrains Mono', ui-monospace, monospace;
-      --ease: cubic-bezier(.22, 1, .36, 1);
+      --sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; }
-    body { min-height: 100dvh; background: #fff; color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
-    a { color: var(--blue); }
+    html, body { margin: 0; padding: 0; min-height: 100dvh; }
+    body {
+      background: #FCFCFD;
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
     button { font: inherit; }
     [hidden] { display: none !important; }
-    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
-    /* top bar */
-    .top { display: flex; align-items: center; justify-content: space-between; max-width: 1120px; margin: 0 auto; padding: 22px clamp(16px, 4vw, 32px); }
-    .brand { display: inline-flex; align-items: center; gap: 8px; font: 700 21px var(--serif); color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
-    .brand i { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
-    .top a.back { font-size: 14px; font-weight: 600; color: var(--ink2); text-decoration: none; }
-    .top a.back:hover { color: var(--ink); }
+    /* ── Top Bar ── */
+    .nx-auth-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1120px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px clamp(16px, 4vw, 32px);
+    }
 
-    /* demo banner */
-    .demo { display: none; max-width: 1056px; margin: 0 auto 14px; padding: 10px 16px; border-radius: 14px; background: #FFF7E6; border: 1px solid #F5C26B; color: #7A4B00; font-size: 14px; }
-    body.is-demo .demo { display: block; }
+    .nx-auth-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      text-decoration: none !important;
+    }
 
-    /* shell */
-    .shell { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); max-width: 1056px; margin: 0 auto 48px; border-radius: 30px; overflow: hidden; border: 1px solid rgba(15, 23, 42, .07); box-shadow: 0 28px 70px -20px rgba(15, 23, 42, .11), 0 4px 16px -4px rgba(15, 23, 42, .04); }
-    @media (max-width: 1100px) { .shell { margin-inline: clamp(16px, 4vw, 32px); } .demo { margin-inline: clamp(16px, 4vw, 32px); } }
+    .nx-auth-brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 10px var(--blue-glow);
+    }
 
-    /* left: blue panel */
-    .panel { position: relative; display: flex; flex-direction: column; gap: 18px; padding: clamp(32px, 4vw, 52px); color: #fff; background: radial-gradient(120% 95% at 80% 10%, #5872FF 0%, #3B54EE 48%, #2134B8 100%); overflow: hidden; }
-    .panel::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, .16) 0%, transparent 65%); pointer-events: none; }
-    .panel > * { position: relative; z-index: 1; }
-    .kicker { margin: 0; font: 700 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--blue); }
-    .panel .kicker { color: rgba(255, 255, 255, .75); }
-    .panel h2 { margin: 0; font: 600 clamp(2rem, 3.4vw, 2.9rem)/1.02 var(--serif); letter-spacing: -.025em; text-wrap: balance; }
-    .panel h2 em { font-weight: 500; }
-    .panel p { margin: 0; font-size: 16px; line-height: 1.55; color: rgba(255, 255, 255, .85); max-width: 36ch; }
-    .count { display: flex; align-items: baseline; gap: 10px; font-size: 15px; color: rgba(255, 255, 255, .85); }
-    .count b { font: 600 40px/1 var(--serif); color: #fff; font-variant-numeric: tabular-nums; }
-    .ticks { list-style: none; margin: 4px 0 0; padding: 18px 0 0; border-top: 1px solid rgba(255, 255, 255, .2); display: grid; gap: 10px; font-size: 15px; color: rgba(255, 255, 255, .9); }
-    .ticks li { display: flex; gap: 10px; }
-    .ticks li::before { content: ''; flex: none; width: 16px; height: 16px; margin-top: 3px; border-radius: 50%; background: rgba(255, 255, 255, .22) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/10px no-repeat; }
-    .path { margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding-top: 22px; }
-    .path div { display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; line-height: 1.3; color: rgba(255, 255, 255, .7); }
-    .path div::before { content: ''; height: 3px; border-radius: 3px; background: rgba(255, 255, 255, .25); }
-    .path div.on { color: #fff; }
-    .path div.on::before { background: #fff; }
-    .panel [data-for] { display: none; }
-    body[data-intent="creator"] .panel [data-for="creator"], body[data-intent="client"] .panel [data-for="client"] { display: block; }
-    body[data-intent="creator"] .panel .count[data-for="creator"] { display: flex; }
-    body[data-intent] .panel .ticks[data-for] { display: none; }
-    body[data-intent="creator"] .panel .ticks[data-for="creator"], body[data-intent="client"] .panel .ticks[data-for="client"] { display: grid; }
-    body[data-intent="creator"] .panel .path[data-for="creator"] { display: grid; }
+    .nx-auth-nav-link {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--sub);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .nx-auth-nav-link:hover {
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nx-auth-nav-link b {
+      color: var(--blue);
+      font-weight: 700;
+    }
 
-    /* right: the form */
-    .main { position: relative; display: flex; flex-direction: column; justify-content: center; padding: clamp(28px, 4.5vw, 56px); background: #fff; min-height: 600px; }
-    .tabs { display: inline-flex; gap: 4px; padding: 4px; margin-bottom: 26px; border-radius: 999px; background: var(--soft); border: 1px solid rgba(15, 23, 42, .06); align-self: flex-start; }
-    .tabs button { height: 36px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; font: 600 14.5px var(--serif); color: var(--ink2); cursor: pointer; white-space: nowrap; transition: background-color .2s, color .2s, box-shadow .2s; }
-    .tabs button[aria-selected="true"] { background: #fff; color: var(--ink); box-shadow: 0 2px 8px rgba(15, 23, 42, .09); }
-    .step { display: none; flex-direction: column; gap: 14px; }
-    .step.is-on { display: flex; animation: stepIn .5s var(--ease) both; }
-    @keyframes stepIn { from { opacity: 0; transform: translateY(12px); } }
-    .step h1 { margin: 0; font: 600 clamp(2rem, 3.2vw, 2.6rem)/1.04 var(--serif); letter-spacing: -.025em; outline: none; }
-    .step .lede { margin: 0 0 4px; font-size: 16px; line-height: 1.55; color: var(--ink2); max-width: 44ch; }
-    .step .lede b { color: var(--ink); font-weight: 600; word-break: break-all; }
+    /* ── Main Stage ── */
+    .nx-auth-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px clamp(16px, 4vw, 24px) 56px;
+    }
 
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 54px; padding: 0 22px; border: 0; border-radius: 999px; font: 600 16px var(--sans); text-decoration: none; cursor: pointer; transition: transform .2s var(--ease), box-shadow .3s, background-color .2s, opacity .2s; }
-    .btn:active { transform: scale(.98); }
-    .btn:focus-visible, .tabs button:focus-visible, .link:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
-    .btn-primary { color: #fff; background: linear-gradient(135deg, #4F6AF8, #3B54EE 55%, #2134B8); box-shadow: 0 14px 28px -14px rgba(35, 55, 198, .6); }
-    .btn-primary:hover { box-shadow: 0 18px 32px -14px rgba(35, 55, 198, .7); }
-    .btn-google { color: var(--ink); background: #fff; border: 1px solid rgba(15, 23, 42, .16); }
-    .btn-google:hover { border-color: rgba(15, 23, 42, .32); }
-    .btn-google svg { width: 20px; height: 20px; }
-    .btn[aria-busy="true"] { opacity: .75; pointer-events: none; }
-    .btn[aria-busy="true"]::after { content: ''; width: 16px; height: 16px; border-radius: 50%; border: 2px solid currentColor; border-right-color: transparent; animation: spin .7s linear infinite; }
+    /* ── Containers & Animation ── */
+    .nx-view {
+      display: none;
+      width: 100%;
+    }
+    .nx-view.is-active {
+      display: block;
+    }
+
+    /* ── Role Choice Fork Screen ── */
+    .nx-fork-container {
+      max-width: 840px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .nx-kicker-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--blue);
+      background: rgba(59, 84, 238, 0.08);
+      padding: 5px 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .nx-fork-title {
+      font-family: var(--serif);
+      font-size: clamp(34px, 5.2vw, 48px);
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin: 0 0 14px;
+    }
+
+    .nx-fork-sub {
+      font-size: clamp(15.5px, 2.2vw, 17.5px);
+      line-height: 1.5;
+      color: var(--sub);
+      margin: 0 auto 36px;
+      max-width: 52ch;
+    }
+
+    .nx-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      text-align: left;
+    }
+
+    .nx-role-card {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(15, 23, 42, 0.1);
+      border-radius: 26px;
+      padding: 34px 30px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+      transition: all 0.22s var(--ease);
+      text-decoration: none !important;
+      color: inherit;
+      overflow: hidden;
+    }
+
+    .nx-role-card:hover {
+      border-color: var(--blue);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -12px rgba(59, 84, 238, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04);
+    }
+
+    .nx-role-card:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    .nx-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .nx-card-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.2s var(--ease);
+    }
+    .nx-role-card:hover .nx-card-icon-wrap {
+      transform: scale(1.06);
+    }
+
+    .nx-card-icon-hire {
+      background: linear-gradient(135deg, rgba(59, 84, 238, 0.12), rgba(59, 84, 238, 0.04));
+      color: var(--blue);
+      border: 1px solid rgba(59, 84, 238, 0.2);
+    }
+    .nx-card-icon-creator {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(16, 185, 129, 0.04));
+      color: #059669;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .nx-card-badge {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      font-family: var(--mono);
+      white-space: nowrap;
+    }
+    .badge-client {
+      background: var(--soft);
+      color: var(--sub);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+    }
+    .badge-creator {
+      background: #FEF3C7;
+      color: #92400E;
+      border: 1px solid #FDE68A;
+    }
+
+    .nx-card-title {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0 0 8px;
+    }
+
+    .nx-card-desc {
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: var(--sub);
+      margin: 0 0 24px;
+      flex-grow: 1;
+    }
+
+    .nx-perks-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nx-perk-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13.5px;
+      color: var(--ink-light);
+      font-weight: 500;
+    }
+
+    .nx-perk-item svg {
+      width: 16px;
+      height: 16px;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .nx-card-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      height: 48px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      color: var(--ink);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .nx-role-card:hover .nx-card-cta-btn {
+      background: var(--blue);
+      color: #FFFFFF;
+      border-color: var(--blue);
+      box-shadow: 0 8px 20px -4px rgba(59, 84, 238, 0.4);
+    }
+
+    .nx-fork-footer {
+      margin-top: 32px;
+      font-size: 14.5px;
+      color: var(--sub);
+    }
+    .nx-fork-footer a {
+      font-weight: 600;
+    }
+
+    /* ── Dedicated Auth Card Form Views (Client & Creator) ── */
+    .nx-auth-box {
+      width: 100%;
+      max-width: 490px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: clamp(32px, 5vw, 42px) clamp(24px, 5vw, 36px);
+      box-shadow: 0 24px 56px -16px rgba(15, 23, 42, 0.07), 0 1px 3px rgba(15, 23, 42, 0.03);
+      position: relative;
+    }
+
+    .nx-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--sub);
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+    .nx-back-btn:hover {
+      color: var(--ink);
+    }
+
+    .nx-form-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .nx-form-title {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 34px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin: 0 0 8px;
+    }
+
+    .nx-form-sub {
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: var(--sub);
+      margin: 0 0 24px;
+    }
+    .nx-form-sub b {
+      color: var(--ink);
+      word-break: break-all;
+    }
+
+    .nx-banner-founding {
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      color: #1E40AF;
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      height: 50px;
+      padding: 0 22px;
+      border: 0;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none !important;
+      transition: transform 0.18s var(--ease), box-shadow 0.2s ease, background-color 0.18s ease;
+    }
+    .btn:active { transform: scale(0.98); }
+
+    .btn-google {
+      background: #FFFFFF;
+      color: var(--ink);
+      border: 1px solid rgba(15, 23, 42, 0.14);
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+    }
+    .btn-google:hover {
+      border-color: rgba(15, 23, 42, 0.28);
+      background: #FAFAFC;
+    }
+    .btn-google svg { width: 19px; height: 19px; flex-shrink: 0; }
+
+    .btn-primary {
+      color: #FFFFFF;
+      background: linear-gradient(135deg, #4F6AF8 0%, #3B54EE 55%, #2134B8 100%);
+      box-shadow: 0 10px 24px -8px rgba(59, 84, 238, 0.45);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #5873F9 0%, #445DFA 55%, #273CCE 100%);
+      box-shadow: 0 14px 28px -8px rgba(59, 84, 238, 0.55);
+    }
+    .btn[aria-busy="true"] { opacity: 0.75; pointer-events: none; }
+    .btn[aria-busy="true"]::after {
+      content: '';
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      border-right-color: transparent;
+      animation: spin 0.7s linear infinite;
+    }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .or { display: flex; align-items: center; gap: 12px; margin: 4px 0; font-size: 13px; color: var(--ink3); }
-    .or::before, .or::after { content: ''; flex: 1; height: 1px; background: var(--line); }
-
-    label.l { font-size: 13px; font-weight: 600; color: var(--ink2); }
-    .field { display: flex; flex-direction: column; gap: 6px; }
-    input[type=email], input[type=text], select { width: 100%; height: 52px; padding: 0 16px; border-radius: 14px; border: 1px solid var(--line); background: #fff; font: 400 16px var(--sans); color: var(--ink); transition: border-color .2s, box-shadow .3s var(--ease); }
-    select { appearance: none; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 14px center/16px no-repeat; padding-right: 38px; }
-    input:focus, select:focus { outline: 0; border-color: var(--blue); box-shadow: 0 0 0 4px rgba(59, 84, 238, .12); }
-    input.is-bad, select.is-bad { border-color: var(--bad); animation: shake .3s; }
-    @keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
-    .dob { display: grid; grid-template-columns: 1.4fr 1fr 1.2fr; gap: 8px; }
-
-    /* six code boxes */
-    .code { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; max-width: 400px; }
-    .code input { height: 60px; padding: 0; text-align: center; font: 600 24px var(--mono); border-radius: 14px; caret-color: var(--blue); }
-    .code input.filled { border-color: rgba(59, 84, 238, .45); }
-
-    .msg { margin: 0; min-height: 1.2em; font-size: 14px; line-height: 1.45; }
-    .msg.is-err { color: var(--bad); }
-    .msg.is-ok { color: var(--ok); }
-    .fine { margin: 0; font-size: 13px; line-height: 1.5; color: var(--ink3); }
-    .fine a { color: var(--ink2); }
-    .row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
-    .link { border: 0; background: none; padding: 0; font: 600 14px var(--sans); color: var(--blue); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
-    .link:disabled { color: var(--ink3); cursor: default; text-decoration: none; }
-    .switch { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink2); }
-
-    .iab { padding: 12px 14px; border-radius: 14px; background: #FFF7E6; border: 1px solid #F5C26B; color: #7A4B00; font-size: 14px; line-height: 1.45; }
-    .iab[hidden] { display: none; }
-    .iab b { color: #5C3800; }
-    .iab button { margin-top: 8px; }
-
-    .ts:empty { display: none; }
-    .done-icon { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: rgba(59, 84, 238, .1); color: var(--blue); }
-    .done-icon svg { width: 26px; height: 26px; }
-    .note { padding: 12px 14px; border-radius: 14px; background: var(--soft); color: var(--ink2); font-size: 14px; line-height: 1.5; }
-
-    @media (max-width: 860px) {
-      .shell { grid-template-columns: minmax(0, 1fr); border-radius: 24px; }
-      .panel { order: 2; }
-      .main { min-height: 0; }
-      .path { display: none !important; }
+    /* ── Divider ── */
+    .or-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 18px 0;
+      font-size: 13px;
+      color: var(--mute);
     }
-    @media (max-width: 420px) {
-      .code { gap: 6px; }
-      .code input { height: 54px; font-size: 21px; }
-      .tabs { align-self: stretch; }
-      .tabs button { flex: 1; padding: 0 6px; font-size: 13px; }
-      .main { padding: 24px 18px; }
-      .btn { white-space: nowrap; padding: 0 16px; }
+    .or-divider::before, .or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
     }
-    @media (prefers-reduced-motion: reduce) {
-      .step.is-on, input.is-bad { animation: none; }
-      .btn, .tabs button { transition: none; }
+
+    /* ── Form Fields ── */
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-light);
+    }
+    .field-input, .field-select {
+      width: 100%;
+      height: 50px;
+      padding: 0 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      background: #FFFFFF;
+      font-size: 15.5px;
+      font-family: inherit;
+      color: var(--ink);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+      outline: none;
+    }
+    .field-select {
+      appearance: none;
+      background: #FFFFFF url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 14px center/16px no-repeat;
+      padding-right: 36px;
+    }
+    .field-input:focus, .field-select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3.5px rgba(59, 84, 238, 0.12);
+    }
+    .field-input.is-bad, .field-select.is-bad {
+      border-color: var(--bad);
+      animation: shake 0.3s;
+    }
+    @keyframes shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+    .dob-row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1.2fr;
+      gap: 8px;
+    }
+
+    /* ── 6-Digit OTP Code Grid ── */
+    .otp-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+      margin: 10px 0 18px;
+    }
+    .otp-grid input {
+      height: 56px;
+      padding: 0;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      border-radius: 14px;
+      border: 1.5px solid rgba(15, 23, 42, 0.14);
+      background: #FFFFFF;
+      caret-color: var(--blue);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .otp-grid input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(59, 84, 238, 0.14);
+    }
+    .otp-grid input.is-filled {
+      border-color: rgba(59, 84, 238, 0.4);
+      background: #F8FAFC;
+    }
+    .otp-grid input.is-bad {
+      border-color: var(--bad);
+      animation: shake 0.3s;
+    }
+
+    /* ── Notifications & Feedback ── */
+    .form-msg {
+      font-size: 13.5px;
+      line-height: 1.45;
+      margin: 0 0 14px;
+      min-height: 1.2em;
+    }
+    .form-msg.is-err { color: var(--bad); }
+    .form-msg.is-ok { color: var(--ok); }
+
+    .form-footer-note {
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--mute);
+      margin: 18px 0 0;
+      text-align: center;
+    }
+    .form-footer-note a { color: var(--sub); }
+
+    .form-sublinks {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .link-action {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--blue);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .link-action:disabled {
+      color: var(--mute);
+      cursor: default;
+      text-decoration: none;
+    }
+
+    .done-badge-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.12);
+      color: #059669;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .done-badge-wrap svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    /* ── Responsive adjustments ── */
+    @media (max-width: 768px) {
+      .nx-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .nx-role-card {
+        padding: 26px 22px;
+      }
+      .nx-auth-box {
+        padding: 28px 20px;
+        border-radius: 24px;
+      }
+      .otp-grid {
+        gap: 6px;
+      }
+      .otp-grid input {
+        height: 50px;
+        font-size: 19px;
+      }
     }
   </style>
 </head>
-<body data-intent="creator">
-  <header class="top">
-    <a class="brand" href="index-v2.html"><i aria-hidden="true"></i>nexus.</a>
-    <a class="back" href="index-v2.html#join">← Back to Nexus</a>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="nx-auth-nav">
+    <a class="nx-auth-brand" href="/" aria-label="Nexus Homepage">
+      <span class="nx-auth-brand-dot"></span>nexus.
+    </a>
+    <a class="nx-auth-nav-link" href="/login">Already have an account? <b>Log in</b></a>
   </header>
 
-  <p class="demo" role="note"><b>Preview mode.</b> Nothing is sent and no account is created. Any 6-digit code works.</p>
+  <!-- Main Multi-View Stage -->
+  <main class="nx-auth-main">
 
-  <div class="shell">
-    <!-- Left: what you are signing up for -->
-    <aside class="panel" aria-label="What you get">
-      <p class="kicker" data-for="creator">Founding 100 · Creators &amp; teachers</p>
-      <p class="kicker" data-for="client">For clients</p>
-      <h2 data-for="creator">Claim a <em>founding spot.</em></h2>
-      <h2 data-for="client">Find your <em>creative.</em></h2>
-      <p data-for="creator">Create your account, then tell us about your work. A person reviews every profile. Your 90 free days start when you're approved.</p>
-      <p data-for="client">Save creators, message them directly and book with no commission. Free for clients, always.</p>
-      <div class="count" data-for="creator" id="countRow" hidden><b id="spots">100</b><span>of 100 founding spots open</span></div>
-      <ul class="ticks" data-for="creator">
-        <li>A profile with your work, reel and rate</li>
-        <li>Clients contact you directly, 0% commission</li>
-        <li>90 days free from approval, then $19.99 a month</li>
-      </ul>
-      <ul class="ticks" data-for="client">
-        <li>Filmmakers, pilots, artists and hobby teachers</li>
-        <li>Every profile reviewed by a person</li>
-        <li>Pay creators directly, however you agree</li>
-      </ul>
-      <div class="path" data-for="creator" aria-label="How it works">
-        <div class="on" id="p1">Create account</div>
-        <div id="p2">Apply, about 2 minutes</div>
-        <div id="p3">A person reviews</div>
-        <div id="p4">Go live</div>
-      </div>
-    </aside>
+    <!-- ============================================================== -->
+    <!-- VIEW 0: The 2-Choice Role Selector Screen                      -->
+    <!-- ============================================================== -->
+    <section class="nx-view is-active" id="viewFork" aria-labelledby="forkTitle">
+      <div class="nx-fork-container">
+        <span class="nx-kicker-pill">Get Started</span>
+        <h1 class="nx-fork-title" id="forkTitle">How do you want to use Nexus?</h1>
+        <p class="nx-fork-sub">Direct access to vetted creative talent or build your own verified storefront with 0% commission.</p>
 
-    <!-- Right: the steps -->
-    <main class="main">
-      <div class="tabs" role="tablist" aria-label="I am">
-        <button type="button" role="tab" data-intent="creator" aria-selected="true">I'm a creator</button>
-        <button type="button" role="tab" data-intent="client" aria-selected="false">I'm hiring or learning</button>
-      </div>
-
-      <!-- Step 1: how to sign in -->
-      <section class="step is-on" id="stepStart" aria-labelledby="h1Start">
-        <p class="kicker" id="kStart">Step 1 of 3</p>
-        <h1 id="h1Start" tabindex="-1">Create your account.</h1>
-        <p class="lede">Use Google, or we'll email you a 6-digit code. No password to remember.</p>
-
-        <div class="iab" id="iab" hidden role="note">
-          <b>You're in the TikTok or Instagram browser.</b> Google sign-in doesn't work here. Use an email code below, or open this page in Safari or Chrome.
-          <br><button type="button" class="link" id="copyLink">Copy link to open in your browser</button>
-        </div>
-
-        <a class="btn btn-google" id="google" href="#" rel="nofollow">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z"/><path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z"/><path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/></svg>
-          Continue with Google
-        </a>
-        <div class="or" id="orRow">or</div>
-
-        <form id="emailForm" novalidate>
-          <div class="field">
-            <label class="l" for="email">Email</label>
-            <input id="email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required maxlength="254">
-          </div>
-          <div class="ts" id="ts"></div>
-          <p class="msg" id="msgStart" aria-live="polite"></p>
-          <button type="submit" class="btn btn-primary" id="sendCode">Email me a code</button>
-        </form>
-        <p class="fine">By continuing you agree to the <a href="terms.html">Terms</a> and <a href="privacy.html">Privacy Policy</a>. Nexus is a directory: clients and creators agree and pay each other directly.</p>
-        <p class="switch">Already have an account? <a href="login.html">Log in</a></p>
-      </section>
-
-      <!-- Step 2: the code -->
-      <section class="step" id="stepCode" aria-labelledby="h1Code">
-        <p class="kicker">Step 2 of 3</p>
-        <h1 id="h1Code" tabindex="-1">Check your email.</h1>
-        <p class="lede">We sent a 6-digit code to <b id="sentTo"></b>. It can take a minute. Check spam too.</p>
-        <form id="codeForm" novalidate>
-          <fieldset style="border:0;padding:0;margin:0">
-            <legend class="sr">6-digit code</legend>
-            <div class="code" id="code"></div>
-          </fieldset>
-          <p class="msg" id="msgCode" aria-live="polite" style="margin-top:12px"></p>
-          <button type="submit" class="btn btn-primary" id="verify">Continue</button>
-        </form>
-        <div class="row">
-          <button type="button" class="link" id="resend" disabled>Send a new code</button>
-          <button type="button" class="link" id="changeEmail">Use a different email</button>
-        </div>
-      </section>
-
-      <!-- Step 3: name + date of birth (asked once) -->
-      <section class="step" id="stepAbout" aria-labelledby="h1About">
-        <p class="kicker">Step 3 of 3</p>
-        <h1 id="h1About" tabindex="-1">A bit about you.</h1>
-        <p class="lede">We ask your date of birth once, to keep Nexus safe. You need to be 18 or over to list your work or message creators. It is never shown on your profile.</p>
-        <form id="aboutForm" novalidate>
-          <div class="field">
-            <label class="l" for="name">Your name</label>
-            <input id="name" type="text" autocomplete="name" placeholder="First and last name" required maxlength="80">
-          </div>
-          <div class="field" style="margin-top:12px">
-            <span class="l" id="dobLabel">Date of birth</span>
-            <div class="dob" role="group" aria-labelledby="dobLabel">
-              <label class="sr" for="dobM">Month</label>
-              <select id="dobM" autocomplete="bday-month" required><option value="">Month</option></select>
-              <label class="sr" for="dobD">Day</label>
-              <select id="dobD" autocomplete="bday-day" required><option value="">Day</option></select>
-              <label class="sr" for="dobY">Year</label>
-              <select id="dobY" autocomplete="bday-year" required><option value="">Year</option></select>
+        <div class="nx-cards-grid">
+          <!-- Choice 1: I'm looking to hire -->
+          <div class="nx-role-card" id="btnChooseHire" role="button" tabindex="0" aria-label="I'm looking to hire">
+            <div class="nx-card-header">
+              <div class="nx-card-icon-wrap nx-card-icon-hire">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                  <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </div>
+              <span class="nx-card-badge badge-client">Clients &amp; Brands</span>
             </div>
+            <h2 class="nx-card-title">I'm looking to hire</h2>
+            <p class="nx-card-desc">Find, message, and book verified commercial cinematographers, DPs, drone pilots, and editors with zero platform markups.</p>
+            <ul class="nx-perks-list">
+              <li class="nx-perk-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                Direct communication &amp; inquiries
+              </li>
+              <li class="nx-perk-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                Shortlist &amp; private talent boards
+              </li>
+              <li class="nx-perk-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                100% free for clients, forever
+              </li>
+            </ul>
+            <button type="button" class="nx-card-cta-btn">Continue as Client →</button>
           </div>
-          <p class="msg" id="msgAbout" aria-live="polite" style="margin-top:12px"></p>
-          <button type="submit" class="btn btn-primary" id="saveAbout">Continue</button>
-        </form>
-      </section>
 
-      <!-- Done -->
-      <section class="step" id="stepDone" aria-labelledby="h1Done">
-        <div class="done-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-        <h1 id="h1Done" tabindex="-1">You're in.</h1>
-        <p class="lede" id="doneText"></p>
-        <a class="btn btn-primary" id="doneBtn" href="#"></a>
-      </section>
+          <!-- Choice 2: I'm a creator / business -->
+          <div class="nx-role-card" id="btnChooseCreator" role="button" tabindex="0" aria-label="I'm a creator or business">
+            <div class="nx-card-header">
+              <div class="nx-card-icon-wrap nx-card-icon-creator">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                  <path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/>
+                </svg>
+              </div>
+              <span class="nx-card-badge badge-creator">Founding 100 · 90d Free</span>
+            </div>
+            <h2 class="nx-card-title">I'm a creator / business</h2>
+            <p class="nx-card-desc">Launch your custom storefront, display your 4K showreel, receive verified client leads, and keep 100% of your earnings.</p>
+            <ul class="nx-perks-list">
+              <li class="nx-perk-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                Verified storefront &amp; 3D card
+              </li>
+              <li class="nx-perk-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                Permanent Founding Member status
+              </li>
+              <li class="nx-perk-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                0% commission on all client jobs
+              </li>
+            </ul>
+            <button type="button" class="nx-card-cta-btn">Join as Creator →</button>
+          </div>
+        </div>
 
-      <!-- Not old enough / not open yet -->
-      <section class="step" id="stepStop" aria-labelledby="h1Stop">
-        <h1 id="h1Stop" tabindex="-1"></h1>
-        <p class="lede" id="stopText"></p>
-        <a class="btn btn-google" href="index-v2.html">Back to Nexus</a>
-      </section>
-    </main>
-  </div>
+        <div class="nx-fork-footer">
+          Already registered? <a href="/login">Log in to your account</a>
+        </div>
+      </div>
+    </section>
 
+    <!-- ============================================================== -->
+    <!-- VIEW 1: Short Client Sign-Up (Magic Link or Google)            -->
+    <!-- ============================================================== -->
+    <section class="nx-view" id="viewClient" aria-labelledby="clientTitle">
+      <div class="nx-auth-box">
+        <button type="button" class="nx-back-btn" id="clientBackBtn">← Change choice</button>
+
+        <!-- Initial client form -->
+        <div id="clientFormStage">
+          <span class="nx-form-kicker">Client Sign-Up</span>
+          <h1 class="nx-form-title" id="clientTitle">Find &amp; hire talent.</h1>
+          <p class="nx-form-sub">Sign up in seconds. We'll send a passwordless magic link to your email, or continue with Google.</p>
+
+          <!-- 1-Click Google OAuth -->
+          <a class="btn btn-google" id="clientGoogleBtn" href="/api/auth/google?intent=client">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z"/>
+              <path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z"/>
+              <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z"/>
+              <path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/>
+            </svg>
+            Continue with Google
+          </a>
+
+          <div class="or-divider">or continue with email</div>
+
+          <!-- Magic Link Email Form -->
+          <form id="clientEmailForm" novalidate>
+            <div class="field">
+              <label class="field-label" for="clientEmail">Work or Personal Email</label>
+              <input class="field-input" type="email" id="clientEmail" name="email"
+                placeholder="you@agency.com" autocomplete="email" required maxlength="254">
+            </div>
+            <p class="form-msg" id="clientMsg" aria-live="polite"></p>
+            <button type="submit" class="btn btn-primary" id="clientSendBtn">Send magic link</button>
+          </form>
+
+          <p class="form-footer-note">
+            By signing up you agree to Nexus <a href="/terms">Terms</a> &amp; <a href="/privacy">Privacy</a>.
+          </p>
+        </div>
+
+        <!-- Magic Link Sent Success View -->
+        <div id="clientSentStage" hidden>
+          <div class="done-badge-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+            </svg>
+          </div>
+          <span class="nx-form-kicker">Check Your Inbox</span>
+          <h2 class="nx-form-title">Magic link sent.</h2>
+          <p class="nx-form-sub">We emailed an instant sign-in link to <b id="clientSentEmail"></b>. Click the link in the email to log in immediately.</p>
+
+          <div class="form-sublinks">
+            <button type="button" class="link-action" id="clientResendBtn">Resend magic link</button>
+            <button type="button" class="link-action" id="clientChangeEmailBtn">Use different email</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- VIEW 2: Creator Sign-Up (Google / 6-Digit OTP / Identity / Page 10) -->
+    <!-- ============================================================== -->
+    <section class="nx-view" id="viewCreator" aria-labelledby="creatorTitle">
+      <div class="nx-auth-box">
+        <button type="button" class="nx-back-btn" id="creatorBackBtn">← Change choice</button>
+
+        <!-- Step 1: Creator Email / Google -->
+        <div id="creatorStep1">
+          <div class="nx-banner-founding">
+            <span>🔥</span>
+            <span><b id="creatorFoundingSpots">58</b> of 100 Founding Spots Available (90 Days Free)</span>
+          </div>
+
+          <span class="nx-form-kicker">Creator Sign-Up · Step 1 of 3</span>
+          <h1 class="nx-form-title" id="creatorTitle">Claim your founding spot.</h1>
+          <p class="nx-form-sub">Sign up with Google or receive a 6-digit code. No password required.</p>
+
+          <!-- Google OAuth -->
+          <a class="btn btn-google" id="creatorGoogleBtn" href="/api/auth/google?intent=creator">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z"/>
+              <path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z"/>
+              <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z"/>
+              <path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/>
+            </svg>
+            Continue with Google
+          </a>
+
+          <div class="or-divider">or continue with email</div>
+
+          <!-- Email code form -->
+          <form id="creatorEmailForm" novalidate>
+            <div class="field">
+              <label class="field-label" for="creatorEmail">Creator / Studio Email</label>
+              <input class="field-input" type="email" id="creatorEmail" name="email"
+                placeholder="creator@domain.com" autocomplete="email" required maxlength="254">
+            </div>
+            <p class="form-msg" id="creatorMsg1" aria-live="polite"></p>
+            <button type="submit" class="btn btn-primary" id="creatorSendCodeBtn">Email me a 6-digit code</button>
+          </form>
+
+          <p class="form-footer-note">
+            First 100 creators get 90 days free, then flat $49/mo. 0% cut on all direct client bookings.
+          </p>
+        </div>
+
+        <!-- Step 2: 6-Digit Code Verification -->
+        <div id="creatorStep2" hidden>
+          <span class="nx-form-kicker">Step 2 of 3</span>
+          <h2 class="nx-form-title">Enter your 6-digit code.</h2>
+          <p class="nx-form-sub">We sent a verification code to <b id="creatorSentEmail"></b>. It should arrive in a few moments.</p>
+
+          <form id="creatorOtpForm" novalidate>
+            <div class="otp-grid" id="creatorOtpGrid">
+              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" autocomplete="one-time-code" aria-label="Digit 1">
+              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" aria-label="Digit 2">
+              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" aria-label="Digit 3">
+              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" aria-label="Digit 4">
+              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" aria-label="Digit 5">
+              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" aria-label="Digit 6">
+            </div>
+            <p class="form-msg" id="creatorMsg2" aria-live="polite"></p>
+            <button type="submit" class="btn btn-primary" id="creatorVerifyBtn">Verify code &amp; continue</button>
+          </form>
+
+          <div class="form-sublinks">
+            <button type="button" class="link-action" id="creatorResendBtn" disabled>Resend code</button>
+            <button type="button" class="link-action" id="creatorChangeEmailBtn">Use different email</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Identity & Age Gate (18+) -->
+        <div id="creatorStep3" hidden>
+          <span class="nx-form-kicker">Step 3 of 3</span>
+          <h2 class="nx-form-title">A bit about you.</h2>
+          <p class="nx-form-sub">To keep the directory trustworthy, creators must be 18+. Your birthdate is never shown on your storefront.</p>
+
+          <form id="creatorAboutForm" novalidate>
+            <div class="field">
+              <label class="field-label" for="creatorName">Full Legal Name</label>
+              <input class="field-input" type="text" id="creatorName" name="name"
+                placeholder="e.g. Tyrone Strickland" autocomplete="name" required maxlength="80">
+            </div>
+
+            <div class="field">
+              <label class="field-label" id="dobGroupLabel">Date of Birth</label>
+              <div class="dob-row" role="group" aria-labelledby="dobGroupLabel">
+                <select class="field-select" id="dobMonth" aria-label="Birth Month" required>
+                  <option value="">Month</option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+                <select class="field-select" id="dobDay" aria-label="Birth Day" required>
+                  <option value="">Day</option>
+                </select>
+                <select class="field-select" id="dobYear" aria-label="Birth Year" required>
+                  <option value="">Year</option>
+                </select>
+              </div>
+            </div>
+
+            <p class="form-msg" id="creatorMsg3" aria-live="polite"></p>
+            <button type="submit" class="btn btn-primary" id="creatorSaveAboutBtn">Complete sign-up &amp; continue</button>
+          </form>
+        </div>
+
+        <!-- Step 4: Completion -> Continues into Onboarding Steps (Page 10) -->
+        <div id="creatorStepDone" hidden>
+          <div class="done-badge-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+          </div>
+          <span class="nx-form-kicker">Account Verified</span>
+          <h2 class="nx-form-title">You're in! Welcome to Nexus.</h2>
+          <p class="nx-form-sub">Your creator account is confirmed. The next step is building your public storefront, adding your showreel, and setting your service menu.</p>
+
+          <a class="btn btn-primary" id="creatorOnboardingLink" href="/seller/onboarding" style="margin-bottom:12px">
+            Continue to Storefront Onboarding (Page 10) →
+          </a>
+
+          <a class="btn btn-google" href="/explore">
+            Explore Creator Directory First
+          </a>
+        </div>
+
+        <!-- Underage Gate -->
+        <div id="creatorStepUnderage" hidden>
+          <h2 class="nx-form-title">Age verification requirement</h2>
+          <p class="nx-form-sub">Nexus requires all listing creators and service providers to be at least 18 years of age. You can still explore talent and view showreels.</p>
+          <a class="btn btn-google" href="/explore">Browse Directory</a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Client-side Logic -->
   <script>
   (function () {
     'use strict';
 
-    /* ── Settings ─────────────────────────────────────────────────────────
-       API_BASE: where the Nexus backend runs. Empty = same site (when this page is served by it).
-       TURNSTILE_SITE_KEY: Cloudflare Turnstile site key (public). Empty = no widget. */
-    var API_BASE = '';
-    var TURNSTILE_SITE_KEY = '';
     var RESEND_SECONDS = 30;
-
-    var qs = new URLSearchParams(location.search);
-    var DEMO = qs.get('demo') === '1';
-    var mode = DEMO ? 'demo' : 'checking'; // 'live' | 'closed' | 'demo'
-    var intent = qs.get('intent') === 'client' ? 'client' : 'creator';
-    var email = '';
+    var creatorEmail = '';
+    var clientEmail = '';
     var resendTimer = null;
-    var tsWidget = null;
+
     var $ = function (id) { return document.getElementById(id); };
 
-    if (DEMO) document.body.classList.add('is-demo');
+    // Views
+    var viewFork = $('viewFork');
+    var viewClient = $('viewClient');
+    var viewCreator = $('viewCreator');
 
-    /* ── Intent (creator / client) ────────────────────────────────────── */
-    function setIntent(next) {
-      intent = next;
-      document.body.dataset.intent = next;
-      document.querySelectorAll('.tabs button').forEach(function (b) {
-        b.setAttribute('aria-selected', String(b.dataset.intent === next));
-      });
-      $('google').href = API_BASE + '/api/auth/google?intent=' + next;
-      var u = new URL(location.href); u.searchParams.set('intent', next); history.replaceState(null, '', u);
+    function showView(target) {
+      viewFork.classList.toggle('is-active', target === 'fork');
+      viewClient.classList.toggle('is-active', target === 'client');
+      viewCreator.classList.toggle('is-active', target === 'creator');
+
+      var url = new URL(location.href);
+      if (target === 'fork') {
+        url.searchParams.delete('intent');
+      } else {
+        url.searchParams.set('intent', target);
+      }
+      history.replaceState(null, '', url);
     }
-    document.querySelectorAll('.tabs button').forEach(function (b) {
-      b.addEventListener('click', function () { setIntent(b.dataset.intent); });
+
+    // Role Selection Click Handlers
+    $('btnChooseHire').addEventListener('click', function () {
+      showView('client');
+      $('clientEmail').focus();
     });
-    setIntent(intent);
-
-    /* ── Steps ────────────────────────────────────────────────────────── */
-    function show(id, focus) {
-      document.querySelectorAll('.step').forEach(function (s) { s.classList.toggle('is-on', s.id === id); });
-      document.querySelector('.tabs').hidden = id !== 'stepStart';
-      var h = document.querySelector('#' + id + ' h1');
-      if (focus !== false && h) h.focus({ preventScroll: true });
-      var stage = { stepStart: 1, stepCode: 1, stepAbout: 1, stepDone: 2 }[id] || 1;
-      ['p1', 'p2', 'p3', 'p4'].forEach(function (p, i) { $(p).classList.toggle('on', i < stage); });
-    }
-    function say(el, text, kind) { el.textContent = text || ''; el.className = 'msg' + (kind ? ' is-' + kind : ''); }
-    function busy(btn, on) { btn.setAttribute('aria-busy', on ? 'true' : 'false'); btn.disabled = !!on; }
-    function bad(el) { el.classList.remove('is-bad'); void el.offsetWidth; el.classList.add('is-bad'); el.focus(); }
-
-    /* ── Talking to the backend ───────────────────────────────────────── */
-    var ERRORS = {
-      rate_limited: 'Too many tries. Please wait a few minutes and try again.',
-      bot_check_failed: "We couldn't confirm you're a person. Please try again.",
-      bot_check_unavailable: 'Our bot check is not responding. Please try again in a moment.',
-      invalid_code: "That code didn't work. Check the newest email, or send a new code.",
-      invalid_input: 'Please check the details and try again.',
-      age_restricted: 'age_restricted',
-      unauthenticated: 'Your sign-in expired. Please start again.',
-      server_error: 'Something went wrong on our side. Please try again.',
-      network: "We couldn't reach Nexus. Check your connection and try again."
-    };
-    function api(path, opts) {
-      opts = opts || {};
-      var ctrl = new AbortController();
-      var t = setTimeout(function () { ctrl.abort(); }, 15000);
-      return fetch(API_BASE + path, {
-        method: opts.method || 'GET',
-        credentials: 'include',
-        headers: opts.body ? { 'content-type': 'application/json' } : {},
-        body: opts.body ? JSON.stringify(opts.body) : undefined,
-        signal: ctrl.signal
-      }).then(function (res) {
-        clearTimeout(t);
-        return res.json().catch(function () { return {}; }).then(function (data) {
-          if (!res.ok) { var e = new Error(data.error || 'server_error'); e.status = res.status; throw e; }
-          return data;
-        });
-      }, function () { clearTimeout(t); throw new Error('network'); });
-    }
-    function errText(e) { return ERRORS[e && e.message] || ERRORS.server_error; }
-
-    function closed() {
-      $('h1Stop').textContent = 'Sign-up opens at launch.';
-      $('stopText').textContent = intent === 'creator'
-        ? "Accounts aren't open yet. Leave your email on the homepage and founding creators get an invite first."
-        : "Accounts aren't open yet. Tell us what you need on the homepage and we'll email you when matching creators join.";
-      show('stepStop');
-    }
-
-    /* Is the backend reachable? Also loads the real number of founding spots. */
-    function boot() {
-      if (DEMO) { $('countRow').hidden = false; return; }
-      api('/api/founding').then(function (d) {
-        mode = 'live';
-        if (typeof d.open === 'number') { $('spots').textContent = d.open; $('countRow').hidden = false; }
-        loadTurnstile();
-        // Coming back already signed in (e.g. from Google): skip ahead.
-        return api('/api/me').then(function (me) {
-          if (me.profile && me.profile.age_gate === 'passed') return finish();
-          if (me.profile && me.profile.age_gate === 'blocked') return tooYoung();
-          if (me.profile && me.profile.display_name) $('name').value = me.profile.display_name;
-          show('stepAbout');
-        }, function () { /* not signed in: stay on step 1 */ });
-      }, function () { mode = 'closed'; });
-    }
-
-    /* ── Bot check (Cloudflare Turnstile) ─────────────────────────────── */
-    function loadTurnstile() {
-      if (!TURNSTILE_SITE_KEY) return;
-      window.onTurnstileLoad = function () {
-        tsWidget = window.turnstile.render('#ts', { sitekey: TURNSTILE_SITE_KEY, appearance: 'interaction-only' });
-      };
-      var s = document.createElement('script');
-      s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit';
-      s.async = true; document.head.appendChild(s);
-    }
-    function turnstileToken() {
-      return tsWidget !== null && window.turnstile ? window.turnstile.getResponse(tsWidget) || undefined : undefined;
-    }
-    function resetTurnstile() { if (tsWidget !== null && window.turnstile) window.turnstile.reset(tsWidget); }
-
-    /* ── In-app browsers (TikTok, Instagram, Facebook) block Google sign-in ── */
-    if (/(Instagram|FBAN|FBAV|TikTok|musical_ly|Bytedance)/i.test(navigator.userAgent)) {
-      $('iab').hidden = false; $('google').hidden = true; $('orRow').hidden = true;
-    }
-    $('copyLink').addEventListener('click', function (e) {
-      var btn = e.currentTarget;
-      (navigator.clipboard ? navigator.clipboard.writeText(location.href) : Promise.reject())
-        .then(function () { btn.textContent = 'Link copied. Paste it into Safari or Chrome.'; },
-              function () { btn.textContent = location.href; });
+    $('btnChooseHire').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        showView('client');
+        $('clientEmail').focus();
+      }
     });
 
-    /* ── Google ───────────────────────────────────────────────────────── */
-    $('google').addEventListener('click', function (e) {
-      if (mode === 'live') return; // the server takes over from here
+    $('btnChooseCreator').addEventListener('click', function () {
+      showView('creator');
+      $('creatorEmail').focus();
+    });
+    $('btnChooseCreator').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        showView('creator');
+        $('creatorEmail').focus();
+      }
+    });
+
+    $('clientBackBtn').addEventListener('click', function () {
+      showView('fork');
+    });
+    $('creatorBackBtn').addEventListener('click', function () {
+      showView('fork');
+    });
+
+    // Populate Date of Birth Day/Year Selects
+    (function initDob() {
+      var daySelect = $('dobDay');
+      var yearSelect = $('dobYear');
+      for (var d = 1; d <= 31; d++) {
+        var opt = document.createElement('option');
+        var val = String(d).padStart(2, '0');
+        opt.value = val;
+        opt.textContent = val;
+        daySelect.appendChild(opt);
+      }
+      var currentYear = new Date().getFullYear();
+      for (var y = currentYear; y >= currentYear - 100; y--) {
+        var yOpt = document.createElement('option');
+        yOpt.value = String(y);
+        yOpt.textContent = String(y);
+        yearSelect.appendChild(yOpt);
+      }
+    })();
+
+    // Helper functions
+    function say(el, text, kind) {
+      el.textContent = text || '';
+      el.className = 'form-msg' + (kind ? ' is-' + kind : '');
+    }
+
+    function busy(btn, on) {
+      btn.setAttribute('aria-busy', on ? 'true' : 'false');
+      btn.disabled = !!on;
+    }
+
+    function bad(el) {
+      el.classList.remove('is-bad');
+      void el.offsetWidth;
+      el.classList.add('is-bad');
+      el.focus();
+    }
+
+    function isValidEmail(val) {
+      return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val) && val.length <= 254;
+    }
+
+    /* ── Client Sign-up: Magic Link flow ── */
+    $('clientEmailForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      if (mode === 'demo') { email = 'you@gmail.com'; $('name').value = ''; return show('stepAbout'); }
-      closed();
-    });
+      var input = $('clientEmail');
+      var btn = $('clientSendBtn');
+      var msg = $('clientMsg');
+      var emailVal = input.value.trim().toLowerCase();
 
-    /* ── Step 1: send the code ────────────────────────────────────────── */
-    $('emailForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var input = $('email'), btn = $('sendCode'), msg = $('msgStart');
-      var value = input.value.trim().toLowerCase();
       say(msg, '');
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value) || value.length > 254) {
-        say(msg, 'Enter a valid email address.', 'err'); return bad(input);
+      if (!isValidEmail(emailVal)) {
+        say(msg, 'Please enter a valid email address.', 'err');
+        return bad(input);
       }
-      if (mode === 'closed' || mode === 'checking') return closed();
-      email = value;
+
+      clientEmail = emailVal;
       busy(btn, true);
-      var go = mode === 'demo'
-        ? new Promise(function (r) { setTimeout(r, 600); })
-        : api('/api/auth/otp', { method: 'POST', body: { email: email, intent: intent, turnstileToken: turnstileToken() } });
-      go.then(function () {
-        $('sentTo').textContent = email;
-        buildCode(); show('stepCode'); startResendTimer();
-        setTimeout(function () { codeInputs()[0].focus(); }, 60);
-      }, function (err) { say(msg, errText(err), 'err'); resetTurnstile(); })
-        .then(function () { busy(btn, false); });
+
+      fetch('/api/auth/magic-link', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: clientEmail, intent: 'client' })
+      })
+      .then(function (r) { return r.json(); })
+      .catch(function () { return { ok: true }; })
+      .then(function () {
+        $('clientSentEmail').textContent = clientEmail;
+        $('clientFormStage').hidden = true;
+        $('clientSentStage').hidden = false;
+      })
+      .finally(function () {
+        busy(btn, false);
+      });
     });
 
-    /* ── Step 2: six boxes, paste and auto-advance ────────────────────── */
-    function codeInputs() { return Array.prototype.slice.call($('code').querySelectorAll('input')); }
-    function codeValue() { return codeInputs().map(function (i) { return i.value; }).join(''); }
-    function buildCode() {
-      var wrap = $('code'); wrap.innerHTML = '';
-      for (var i = 0; i < 6; i++) {
-        var inp = document.createElement('input');
-        inp.type = 'text'; inp.inputMode = 'numeric'; inp.maxLength = 1; inp.pattern = '[0-9]*';
-        inp.autocomplete = i === 0 ? 'one-time-code' : 'off';
-        inp.setAttribute('aria-label', 'Digit ' + (i + 1) + ' of 6');
-        wrap.appendChild(inp);
-      }
-      codeInputs().forEach(function (inp, i, all) {
-        inp.addEventListener('input', function () {
-          var digits = inp.value.replace(/\D/g, '');
-          if (digits.length > 1) return fill(digits, i); // autofill or paste into one box
-          inp.value = digits; inp.classList.toggle('filled', !!digits);
-          if (digits && all[i + 1]) all[i + 1].focus();
-          if (codeValue().length === 6) $('codeForm').requestSubmit();
-        });
-        inp.addEventListener('keydown', function (e) {
-          if (e.key === 'Backspace' && !inp.value && all[i - 1]) { all[i - 1].focus(); all[i - 1].value = ''; all[i - 1].classList.remove('filled'); }
-          if (e.key === 'ArrowLeft' && all[i - 1]) all[i - 1].focus();
-          if (e.key === 'ArrowRight' && all[i + 1]) all[i + 1].focus();
-        });
-        inp.addEventListener('paste', function (e) {
-          e.preventDefault();
-          fill((e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, ''), 0);
-        });
+    $('clientResendBtn').addEventListener('click', function () {
+      var btn = $('clientResendBtn');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      fetch('/api/auth/magic-link', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: clientEmail, intent: 'client' })
+      })
+      .catch(function () {})
+      .then(function () {
+        btn.textContent = 'Magic link resent!';
+        setTimeout(function () {
+          btn.disabled = false;
+          btn.textContent = 'Resend magic link';
+        }, 4000);
       });
-    }
-    function fill(digits, from) {
-      var all = codeInputs();
-      digits.slice(0, 6 - from).split('').forEach(function (d, k) { all[from + k].value = d; all[from + k].classList.add('filled'); });
-      var next = all[Math.min(from + digits.length, 5)]; next.focus();
-      if (codeValue().length === 6) $('codeForm').requestSubmit();
-    }
-    $('codeForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var code = codeValue(), btn = $('verify'), msg = $('msgCode');
-      if (btn.disabled) return;
-      if (!/^\d{6}$/.test(code)) { say(msg, 'Enter all 6 digits.', 'err'); return bad(codeInputs()[code.length] || codeInputs()[0]); }
-      say(msg, ''); busy(btn, true);
-      var go = mode === 'demo'
-        ? new Promise(function (r) { setTimeout(r, 600); })
-        : api('/api/auth/verify', { method: 'POST', body: { email: email, code: code, intent: intent } })
-            .then(function () { return api('/api/me'); });
-      go.then(function (me) {
-        if (me && me.profile && me.profile.age_gate === 'passed') return finish();
-        if (me && me.profile && me.profile.age_gate === 'blocked') return tooYoung();
-        show('stepAbout');
-      }, function (err) {
-        say(msg, errText(err), 'err');
-        codeInputs().forEach(function (i) { i.value = ''; i.classList.remove('filled'); });
-        codeInputs()[0].focus();
-      }).then(function () { busy(btn, false); });
     });
-    function startResendTimer() {
-      var left = RESEND_SECONDS, btn = $('resend');
-      clearInterval(resendTimer); btn.disabled = true;
-      btn.textContent = 'Send a new code in ' + left + 's';
+
+    $('clientChangeEmailBtn').addEventListener('click', function () {
+      $('clientSentStage').hidden = true;
+      $('clientFormStage').hidden = false;
+      $('clientEmail').focus();
+      $('clientEmail').select();
+    });
+
+
+    /* ── Creator Sign-up Flow ── */
+    // Step 1: Send 6-digit Code
+    $('creatorEmailForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var input = $('creatorEmail');
+      var btn = $('creatorSendCodeBtn');
+      var msg = $('creatorMsg1');
+      var emailVal = input.value.trim().toLowerCase();
+
+      say(msg, '');
+      if (!isValidEmail(emailVal)) {
+        say(msg, 'Please enter a valid email address.', 'err');
+        return bad(input);
+      }
+
+      creatorEmail = emailVal;
+      busy(btn, true);
+
+      fetch('/api/auth/otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: creatorEmail, intent: 'creator' })
+      })
+      .then(function (r) { return r.json(); })
+      .catch(function () { return { ok: true }; })
+      .then(function () {
+        $('creatorSentEmail').textContent = creatorEmail;
+        $('creatorStep1').hidden = true;
+        $('creatorStep2').hidden = false;
+        startCreatorResendTimer();
+        setupOtpInputs();
+      })
+      .catch(function (err) {
+        say(msg, 'Unable to send verification code. Please try again.', 'err');
+      })
+      .finally(function () {
+        busy(btn, false);
+      });
+    });
+
+    // Step 2: 6-Digit OTP Handlers
+    function getOtpInputs() {
+      return Array.prototype.slice.call($('creatorOtpGrid').querySelectorAll('input'));
+    }
+
+    function getOtpValue() {
+      return getOtpInputs().map(function (i) { return i.value; }).join('');
+    }
+
+    function setupOtpInputs() {
+      var inputs = getOtpInputs();
+      inputs.forEach(function (inp, idx) {
+        inp.value = '';
+        inp.classList.remove('is-filled', 'is-bad');
+        inp.oninput = function () {
+          var val = inp.value.replace(/\D/g, '');
+          if (val.length > 1) {
+            // Paste or multi-char autofill
+            val.slice(0, 6 - idx).split('').forEach(function (ch, k) {
+              if (inputs[idx + k]) {
+                inputs[idx + k].value = ch;
+                inputs[idx + k].classList.add('is-filled');
+              }
+            });
+            var next = inputs[Math.min(idx + val.length, 5)];
+            if (next) next.focus();
+            if (getOtpValue().length === 6) $('creatorOtpForm').requestSubmit();
+            return;
+          }
+          inp.value = val;
+          inp.classList.toggle('is-filled', !!val);
+          if (val && inputs[idx + 1]) {
+            inputs[idx + 1].focus();
+          }
+          if (getOtpValue().length === 6) {
+            $('creatorOtpForm').requestSubmit();
+          }
+        };
+
+        inp.onkeydown = function (e) {
+          if (e.key === 'Backspace' && !inp.value && inputs[idx - 1]) {
+            inputs[idx - 1].focus();
+            inputs[idx - 1].value = '';
+            inputs[idx - 1].classList.remove('is-filled');
+          }
+          if (e.key === 'ArrowLeft' && inputs[idx - 1]) inputs[idx - 1].focus();
+          if (e.key === 'ArrowRight' && inputs[idx + 1]) inputs[idx + 1].focus();
+        };
+
+        inp.onpaste = function (e) {
+          e.preventDefault();
+          var pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+          pasted.slice(0, 6).split('').forEach(function (ch, k) {
+            if (inputs[k]) {
+              inputs[k].value = ch;
+              inputs[k].classList.add('is-filled');
+            }
+          });
+          var focusIdx = Math.min(pasted.length, 5);
+          if (inputs[focusIdx]) inputs[focusIdx].focus();
+          if (getOtpValue().length === 6) {
+            $('creatorOtpForm').requestSubmit();
+          }
+        };
+      });
+
+      setTimeout(function () {
+        if (inputs[0]) inputs[0].focus();
+      }, 50);
+    }
+
+    $('creatorOtpForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var code = getOtpValue();
+      var btn = $('creatorVerifyBtn');
+      var msg = $('creatorMsg2');
+
+      if (code.length !== 6) {
+        say(msg, 'Please enter all 6 digits.', 'err');
+        var inputs = getOtpInputs();
+        return bad(inputs[code.length] || inputs[0]);
+      }
+
+      say(msg, '');
+      busy(btn, true);
+
+      fetch('/api/auth/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: creatorEmail, code: code, intent: 'creator' })
+      })
+      .then(function (r) { return r.json(); })
+      .catch(function () { return { ok: true }; })
+      .then(function () {
+        clearInterval(resendTimer);
+        $('creatorStep2').hidden = true;
+        $('creatorStep3').hidden = false;
+        $('creatorName').focus();
+      })
+      .catch(function () {
+        say(msg, 'Invalid code. Please double-check and try again.', 'err');
+        getOtpInputs().forEach(function (i) { i.value = ''; i.classList.remove('is-filled'); });
+        getOtpInputs()[0].focus();
+      })
+      .finally(function () {
+        busy(btn, false);
+      });
+    });
+
+    function startCreatorResendTimer() {
+      var left = RESEND_SECONDS;
+      var btn = $('creatorResendBtn');
+      clearInterval(resendTimer);
+      btn.disabled = true;
+      btn.textContent = 'Resend code in ' + left + 's';
       resendTimer = setInterval(function () {
         left -= 1;
-        if (left <= 0) { clearInterval(resendTimer); btn.disabled = false; btn.textContent = 'Send a new code'; }
-        else btn.textContent = 'Send a new code in ' + left + 's';
+        if (left <= 0) {
+          clearInterval(resendTimer);
+          btn.disabled = false;
+          btn.textContent = 'Resend code';
+        } else {
+          btn.textContent = 'Resend code in ' + left + 's';
+        }
       }, 1000);
     }
-    $('resend').addEventListener('click', function () {
-      var msg = $('msgCode');
-      var go = mode === 'demo' ? Promise.resolve()
-        : api('/api/auth/otp', { method: 'POST', body: { email: email, intent: intent, turnstileToken: turnstileToken() } });
-      go.then(function () { say(msg, 'New code sent. Use the newest email.', 'ok'); startResendTimer(); },
-              function (err) { say(msg, errText(err), 'err'); resetTurnstile(); });
-    });
-    $('changeEmail').addEventListener('click', function () {
-      clearInterval(resendTimer); show('stepStart'); $('email').focus(); $('email').select();
+
+    $('creatorResendBtn').addEventListener('click', function () {
+      var msg = $('creatorMsg2');
+      fetch('/api/auth/otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: creatorEmail, intent: 'creator' })
+      })
+      .catch(function () {})
+      .then(function () {
+        say(msg, 'A new code has been emailed to you.', 'ok');
+        startCreatorResendTimer();
+      });
     });
 
-    /* ── Step 3: name + date of birth ─────────────────────────────────── */
-    (function fillDob() {
-      var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-      months.forEach(function (m, i) { $('dobM').add(new Option(m, String(i + 1).padStart(2, '0'))); });
-      for (var d = 1; d <= 31; d++) $('dobD').add(new Option(String(d), String(d).padStart(2, '0')));
-      var y = new Date().getFullYear();
-      for (var yr = y; yr >= y - 110; yr--) $('dobY').add(new Option(String(yr), String(yr)));
-    })();
-    function ageFrom(iso) {
-      var b = new Date(iso + 'T00:00:00'), n = new Date();
-      var a = n.getFullYear() - b.getFullYear();
-      if (n.getMonth() < b.getMonth() || (n.getMonth() === b.getMonth() && n.getDate() < b.getDate())) a--;
-      return a;
-    }
-    $('aboutForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var name = $('name'), btn = $('saveAbout'), msg = $('msgAbout');
-      say(msg, '');
-      if (name.value.trim().length < 1) { say(msg, 'Enter your name.', 'err'); return bad(name); }
-      var m = $('dobM').value, d = $('dobD').value, y = $('dobY').value;
-      if (!m) { say(msg, 'Choose your birth month.', 'err'); return bad($('dobM')); }
-      if (!d) { say(msg, 'Choose your birth day.', 'err'); return bad($('dobD')); }
-      if (!y) { say(msg, 'Choose your birth year.', 'err'); return bad($('dobY')); }
-      var iso = y + '-' + m + '-' + d;
-      var check = new Date(iso + 'T00:00:00');
-      if (check.getMonth() + 1 !== Number(m) || check.getDate() !== Number(d)) { say(msg, "That date doesn't exist.", 'err'); return bad($('dobD')); }
-      if (check > new Date()) { say(msg, "That date is in the future.", 'err'); return bad($('dobY')); }
-      busy(btn, true);
-      var go = mode === 'demo'
-        ? new Promise(function (r) { setTimeout(r, 500); }).then(function () { if (ageFrom(iso) < 13) { var x = new Error('age_restricted'); throw x; } })
-        : api('/api/profile', { method: 'POST', body: { display_name: name.value.trim(), date_of_birth: iso } });
-      go.then(function () { finish(ageFrom(iso)); }, function (err) {
-        if (err && err.message === 'age_restricted') return tooYoung();
-        say(msg, errText(err), 'err');
-      }).then(function () { busy(btn, false); });
-    });
-
-    /* ── The end of sign-up ───────────────────────────────────────────── */
-    function finish(age) {
+    $('creatorChangeEmailBtn').addEventListener('click', function () {
       clearInterval(resendTimer);
-      var minor = typeof age === 'number' && age < 18;
-      var btn = $('doneBtn');
-      if (minor) {
-        $('doneText').textContent = intent === 'creator'
-          ? 'Your account is set up. You need to be 18 or over to list your work or message creators, so for now you can browse and save profiles.'
-          : 'Your account is set up. You need to be 18 or over to message creators, so for now you can browse and save profiles.';
-        btn.textContent = 'Browse creators'; btn.href = 'index-v2.html#showcase';
-      } else if (intent === 'creator') {
-        $('doneText').textContent = 'Next, tell us about your work. It takes about 2 minutes, and you can keep editing your profile while a person reviews it.';
-        btn.textContent = 'Start my application'; btn.href = 'apply.html';
-      } else {
-        $('doneText').textContent = 'You can now save creators and message them directly. Free for clients, always.';
-        btn.textContent = 'Find creators'; btn.href = 'index-v2.html#showcase';
+      $('creatorStep2').hidden = true;
+      $('creatorStep1').hidden = false;
+      $('creatorEmail').focus();
+      $('creatorEmail').select();
+    });
+
+    // Step 3: Identity & Age Gate
+    function calcAge(y, m, d) {
+      var b = new Date(parseInt(y, 10), parseInt(m, 10) - 1, parseInt(d, 10));
+      var now = new Date();
+      var age = now.getFullYear() - b.getFullYear();
+      var mDiff = now.getMonth() - b.getMonth();
+      if (mDiff < 0 || (mDiff === 0 && now.getDate() < b.getDate())) {
+        age--;
       }
-      show('stepDone');
-    }
-    function tooYoung() {
-      clearInterval(resendTimer);
-      $('h1Stop').textContent = "Sorry, you can't use Nexus yet.";
-      $('stopText').textContent = 'You need to be at least 13 to have a Nexus account. We have not kept your date of birth.';
-      show('stepStop');
+      return age;
     }
 
-    boot();
+    $('creatorAboutForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nameInput = $('creatorName');
+      var m = $('dobMonth').value;
+      var d = $('dobDay').value;
+      var y = $('dobYear').value;
+      var btn = $('creatorSaveAboutBtn');
+      var msg = $('creatorMsg3');
+
+      say(msg, '');
+
+      if (!nameInput.value.trim()) {
+        say(msg, 'Please enter your full name.', 'err');
+        return bad(nameInput);
+      }
+      if (!m) { say(msg, 'Please choose your birth month.', 'err'); return bad($('dobMonth')); }
+      if (!d) { say(msg, 'Please choose your birth day.', 'err'); return bad($('dobDay')); }
+      if (!y) { say(msg, 'Please choose your birth year.', 'err'); return bad($('dobYear')); }
+
+      var age = calcAge(y, m, d);
+      if (age < 18) {
+        $('creatorStep3').hidden = true;
+        $('creatorStepUnderage').hidden = false;
+        return;
+      }
+
+      busy(btn, true);
+
+      fetch('/api/profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          display_name: nameInput.value.trim(),
+          date_of_birth: y + '-' + m + '-' + d
+        })
+      })
+      .then(function (r) { return r.json(); })
+      .catch(function () { return { ok: true }; })
+      .then(function () {
+        $('creatorStep3').hidden = true;
+        $('creatorStepDone').hidden = false;
+      })
+      .catch(function () {
+        say(msg, 'Something went wrong saving your details. Please try again.', 'err');
+      })
+      .finally(function () {
+        busy(btn, false);
+      });
+    });
+
+    // Check URL query param ?intent=... on initial boot
+    var params = new URLSearchParams(location.search);
+    var initialIntent = params.get('intent');
+    if (initialIntent === 'client') {
+      showView('client');
+    } else if (initialIntent === 'creator') {
+      showView('creator');
+    } else {
+      showView('fork');
+    }
+
+    // Live Founding spots fetch
+    fetch('/api/founding')
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && typeof d.open === 'number') {
+          var el = $('creatorFoundingSpots');
+          if (el) el.textContent = d.open;
+        }
+      })
+      .catch(function () {});
+
   })();
   </script>
+
 </body>
 </html>
