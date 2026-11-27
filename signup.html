@@ -105,7 +105,7 @@
       color: var(--jn-ink);
       font-family: var(--jn-serif);
       font-variant-numeric: lining-nums tabular-nums;
-      padding: 20px 0 64px;
+      padding: 14px 0 40px;
     }
     .jn button,
     .jn input,
@@ -127,13 +127,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 0 auto 28px;
+      margin: 0 auto 16px;
       max-width: 1080px;
       padding: 0 24px;
     }
     .jn-pill {
-      margin: 0 0 14px;
-      padding: 6px 15px;
+      margin: 0 0 10px;
+      padding: 5px 14px;
       border-radius: 999px;
       background: #EEF2FF;
       border: 1px solid rgba(59, 84, 238, 0.16);
@@ -145,13 +145,13 @@
       color: #3B54EE;
     }
     .jn-title {
-      margin: 0 auto 12px;
+      margin: 0 auto 8px;
       font-family: var(--jn-serif);
       font-weight: 600;
       letter-spacing: -0.025em;
       line-height: 1.04;
-      font-size: clamp(2.45rem, 4.5vw, 3.9rem);
-      max-width: 18ch;
+      font-size: clamp(2.1rem, 3.6vw, 3.05rem);
+      max-width: 28ch;
       color: #0F172A;
       text-wrap: balance;
     }
@@ -167,33 +167,33 @@
     .jn-note {
       position: absolute;
       font-family: 'Caveat', cursive;
-      font-size: 24px;
+      font-size: 22px;
       line-height: 1.05;
       color: #475569;
       pointer-events: none;
     }
     .jn-note svg {
       display: block;
-      width: 72px;
-      height: 54px;
+      width: 64px;
+      height: 46px;
       fill: none;
       stroke: currentColor;
       stroke-width: 2;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    .jn-n-a { left: 1.5%; top: 20%; transform: rotate(-8deg); text-align: left; }
+    .jn-n-a { left: 2%; top: 14%; transform: rotate(-7deg); text-align: left; }
     .jn-n-a svg { margin: 4px 0 0 42px; }
-    .jn-n-b { right: 1%; top: 20%; transform: rotate(7deg); text-align: right; }
+    .jn-n-b { right: 1.5%; top: 14%; transform: rotate(7deg); text-align: right; }
     .jn-n-b svg { margin: 4px 0 0 -10px; }
 
     .jn-sub {
-      margin: 0 auto 14px;
-      max-width: 50ch;
+      margin: 0 auto;
+      max-width: 52ch;
       font-family: var(--jn-serif);
       font-style: italic;
-      font-size: 18px;
-      line-height: 1.48;
+      font-size: 16.5px;
+      line-height: 1.45;
       color: #64748B;
     }
     .jn-sub-short { display: none; }
@@ -230,7 +230,7 @@
       display: flex;
       justify-content: center;
       width: fit-content;
-      margin: 0 auto 22px;
+      margin: 0 auto 16px;
       gap: 4px;
       padding: 4px;
       border-radius: 999px;
@@ -266,7 +266,7 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0;
       max-width: 1080px;
-      min-height: 580px;
+      min-height: 490px;
       margin: 0 auto;
       border-radius: 32px;
       overflow: hidden;
@@ -279,8 +279,8 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 13px;
-      padding: 44px clamp(32px, 4.6vw, 56px);
+      gap: 10px;
+      padding: 30px clamp(28px, 4vw, 48px);
       background: #FFFFFF;
       color: #0F172A;
       border: 0;
@@ -290,7 +290,7 @@
       opacity: 0;
       pointer-events: none;
     }
-    .jn-step { display: flex; flex-direction: column; gap: 12px; }
+    .jn-step { display: flex; flex-direction: column; gap: 10px; }
     .jn-step[hidden] { display: none; }
 
     .jn-k {
@@ -796,12 +796,6 @@
           <span class="jn-sub-long">Filmmakers, drone pilots, artists and hobby teachers, all reviewed by a person. Contact them directly. No fees for clients.</span>
           <span class="jn-sub-short">Reviewed creators and teachers. Free for clients.</span>
         </p>
-        <ul class="jn-head-attrs" aria-label="Marketplace attributes">
-          <li><span class="jn-tick-ic" aria-hidden="true"></span><span>We send your request to matching creators</span></li>
-          <li><span class="jn-tick-ic" aria-hidden="true"></span><span>City-local or remote online</span></li>
-          <li><span class="jn-tick-ic" aria-hidden="true"></span><span>Rates shown up front</span></li>
-          <li><span class="jn-tick-ic" aria-hidden="true"></span><span>Free for clients, always</span></li>
-        </ul>
         <span class="jn-note jn-n-a" aria-hidden="true">post a brief in seconds<br>zero client fee
           <svg viewBox="0 0 80 60"><path d="M6 8c20 4 40 14 52 40M58 48l-2-12M58 48l-11-4"/></svg></span>
         <span class="jn-note jn-n-b" aria-hidden="true">100 founding spots<br>reel, rate &amp; city
