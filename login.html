@@ -884,6 +884,16 @@
         });
     });
 
+    // Google sends people back here with ?error=... when sign-in fails.
+    (function () {
+      var err = new URLSearchParams(location.search).get('error');
+      if (!err) return;
+      say(msgStart, err === 'sign_in_failed'
+        ? "Google sign-in didn't work. Please try again, or use your email below."
+        : 'Something went wrong signing you in. Please try again.', 'bad');
+      history.replaceState(null, '', location.pathname);
+    })();
+
     changeEmailBtn.addEventListener('click', function () {
       clearInterval(resendTimer);
       showStep('stepLoginStart');

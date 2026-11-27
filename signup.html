@@ -1498,7 +1498,28 @@
           yOpt.textContent = y;
           yearSelect.appendChild(yOpt);
         }
+
+        // Only offer days that exist in the chosen month (Feb 29 only in leap years).
+        function syncDays() {
+          var m = parseInt($('dobMonth').value, 10);
+          var y = parseInt(yearSelect.value, 10) || 2000; // 2000 is a leap year: allow 29 Feb until a year is picked
+          var max = m ? new Date(y, m, 0).getDate() : 31;
+          Array.prototype.forEach.call(daySelect.options, function (o) {
+            if (!o.value) return;
+            var off = parseInt(o.value, 10) > max;
+            o.disabled = off;
+            o.hidden = off;
+          });
+          if (daySelect.value && parseInt(daySelect.value, 10) > max) daySelect.value = '';
+        }
+        $('dobMonth').addEventListener('change', syncDays);
+        yearSelect.addEventListener('change', syncDays);
       })();
+
+      function isRealDate(y, m, d) {
+        var b = new Date(parseInt(y, 10), parseInt(m, 10) - 1, parseInt(d, 10));
+        return b.getFullYear() === parseInt(y, 10) && b.getMonth() === parseInt(m, 10) - 1 && b.getDate() === parseInt(d, 10);
+      }
 
       function say(el, text, kind) {
         el.textContent = text || '';
@@ -1804,6 +1825,7 @@
         if (!m) { say(msg, 'Please choose your birth month.', 'err'); return bad($('dobMonth')); }
         if (!d) { say(msg, 'Please choose your birth day.', 'err'); return bad($('dobDay')); }
         if (!y) { say(msg, 'Please choose your birth year.', 'err'); return bad($('dobYear')); }
+        if (!isRealDate(y, m, d)) { say(msg, 'Please choose a real calendar date.', 'err'); return bad($('dobDay')); }
 
         if (calcAge(y, m, d) < 18) {
           $('creatorStep3').hidden = true;
@@ -1839,6 +1861,27 @@
       } else {
         swEl.dataset.side = 'hire';
       }
+
+      // Back from Google (or already signed in): don't show step 1 again.
+      // Clients go to the directory; creators continue with name + date of birth.
+      fetch('/api/me', { credentials: 'same-origin' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; })
+        .then(function (me) {
+          if (!me || me.authenticated === false || !me.profile) return; // not signed in
+          if (swEl.dataset.side !== 'be') return location.replace('/explore');
+          var gate = me.profile.age_gate;
+          $('creatorStep1').hidden = true;
+          $('creatorStep2').hidden = true;
+          if (gate === 'blocked') {
+            $('creatorStepUnderage').hidden = false;
+          } else if (gate === 'passed') {
+            $('creatorStepDone').hidden = false;
+          } else {
+            $('creatorStep3').hidden = false;
+            if (me.profile.display_name) $('creatorName').value = me.profile.display_name;
+          }
+        });
 
       // Fetch live founding spots count
       fetch('/api/founding')

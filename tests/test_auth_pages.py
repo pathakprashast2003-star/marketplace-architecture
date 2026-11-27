@@ -273,3 +273,56 @@ def test_honeypot_sends_nothing():
         page.locator("#stepLoginCode.is-on").wait_for()
         assert calls == []
         browser.close()
+
+
+ME_PENDING = '{"email_verified": true, "profile": {"display_name": "Maya Chen", "age_gate": "pending"}, "role": "client", "creator": null, "billing": null}'
+
+
+def test_back_from_google_creator_skips_to_name_and_dob():
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(viewport={"width": 1280, "height": 900})
+        page.route("**/api/me", lambda r: r.fulfill(status=200, content_type="application/json", body=ME_PENDING))
+        page.goto(f"{BASE_URL}/signup?intent=creator")
+        page.locator("#creatorStep3").wait_for(state="visible")
+        assert page.locator("#creatorStep1").is_hidden()
+        assert page.locator("#creatorName").input_value() == "Maya Chen"
+        browser.close()
+
+
+def test_back_from_google_client_goes_to_directory():
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(viewport={"width": 1280, "height": 900})
+        page.route("**/api/me", lambda r: r.fulfill(status=200, content_type="application/json", body=ME_PENDING))
+        page.goto(f"{BASE_URL}/signup?intent=client")
+        page.wait_for_url("**/explore")
+        browser.close()
+
+
+def test_login_shows_google_error():
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(viewport={"width": 1280, "height": 900})
+        page.goto(f"{BASE_URL}/login?error=sign_in_failed")
+        assert "Google sign-in didn't work" in page.locator("#msgLoginStart").inner_text()
+        assert "error=" not in page.url
+        browser.close()
+
+
+def test_dob_only_offers_real_days():
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(viewport={"width": 1280, "height": 900})
+        page.route("**/api/me", lambda r: r.fulfill(status=200, content_type="application/json", body=ME_PENDING))
+        page.goto(f"{BASE_URL}/signup?intent=creator")
+        page.locator("#creatorStep3").wait_for(state="visible")
+        page.select_option("#dobDay", "31")
+        page.select_option("#dobMonth", "02")
+        assert page.locator("#dobDay").input_value() == ""
+        assert page.locator("#dobDay option[value='30']").is_disabled()
+        page.select_option("#dobYear", "2001")  # not a leap year
+        assert page.locator("#dobDay option[value='29']").is_disabled()
+        page.select_option("#dobYear", "2000")  # leap year
+        assert not page.locator("#dobDay option[value='29']").is_disabled()
+        browser.close()
