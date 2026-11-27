@@ -1119,6 +1119,14 @@
       }
     }
   </style>
+  <meta name="turnstile-sitekey" content="1x00000000000000000000BB">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  <script src="/js/auth-guard.js?v=1"></script>
+  <style>
+    .hp-field { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .jn-ts:empty { display: none; }
+    .jn-ts { margin-top: 12px; }
+  </style>
 </head>
 
 <body>
@@ -1187,6 +1195,7 @@
             <div class="jn-or">or continue with email</div>
 
             <form id="clientEmailForm" novalidate>
+              <div class="hp-field" aria-hidden="true"><label>Company website <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label></div>
               <label class="jn-l" for="clientEmail">Email address</label>
               <input id="clientEmail" type="email" name="email" placeholder="you@email.com" autocomplete="email"
                 required>
@@ -1228,6 +1237,7 @@
               <button type="button" class="jn-link" id="clientChangeEmailBtn">Use a different email</button>
             </div>
           </div>
+          <div class="jn-ts" id="tsClient"></div>
         </article>
 
         <!-- ============================================================== -->
@@ -1263,6 +1273,7 @@
             <div class="jn-or">or use your email</div>
 
             <form id="creatorEmailForm" novalidate>
+              <div class="hp-field" aria-hidden="true"><label>Company website <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label></div>
               <label class="jn-l" for="creatorEmail">Email address</label>
               <input id="creatorEmail" type="email" name="email" placeholder="alex@visuals.co" autocomplete="email"
                 required>
@@ -1381,6 +1392,7 @@
             </p>
             <a class="jn-btn" id="creatorOnboardingLink" href="/seller/onboarding">Set up your profile →</a>
           </div>
+          <div class="jn-ts" id="tsCreator"></div>
         </article>
 
         <!-- ============================================================== -->
@@ -1508,6 +1520,24 @@
         return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val) && val.length <= 254;
       }
 
+      var cooldowns = {};
+      function startResendCooldown(btn, key) {
+        var left = RESEND_SECONDS;
+        clearInterval(cooldowns[key]);
+        btn.disabled = true;
+        btn.textContent = 'Resend code in ' + left + 's';
+        cooldowns[key] = setInterval(function () {
+          left -= 1;
+          if (left <= 0) {
+            clearInterval(cooldowns[key]);
+            btn.disabled = false;
+            btn.textContent = 'Resend code';
+          } else {
+            btn.textContent = 'Resend code in ' + left + 's';
+          }
+        }, 1000);
+      }
+
       /* ── Client Sign-Up Flow ── */
       $('clientEmailForm').addEventListener('submit', function (e) {
         e.preventDefault();
@@ -1522,45 +1552,42 @@
           return bad(input);
         }
 
+        function showClientCode() {
+          $('clientFormStage').hidden = true;
+          $('clientSentStage').hidden = false;
+          $('clientSentEmail').textContent = val;
+          setupOtpGrid($('clientOtpGrid'), $('clientVerifyBtn'));
+          startResendCooldown($('clientResendBtn'), 'clientResend');
+        }
+        if (NexusAuth.trapped(this)) return showClientCode(); // bot: look normal, send nothing
+
         busy(btn, true);
-        fetch('/api/auth/otp', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: val, intent: 'client' })
-        })
-          .then(function (r) { return r.json(); })
-          .catch(function () { return { ok: true }; })
-          .then(function () {
-            $('clientFormStage').hidden = true;
-            $('clientSentStage').hidden = false;
-            $('clientSentEmail').textContent = val;
-            setupOtpGrid($('clientOtpGrid'), $('clientVerifyBtn'));
-          })
-          .catch(function () {
-            say(msg, 'Unable to send your code right now. Please try again.', 'err');
-          })
-          .finally(function () {
+        NexusAuth.token($('tsClient'))
+          .then(function (t) { return NexusAuth.post('/api/auth/otp', { email: val, intent: 'client', turnstileToken: t }); })
+          .then(function (r) {
             busy(btn, false);
+            if (!r.ok) return say(msg, NexusAuth.message(r, 'Unable to send your code right now. Please try again.'), 'err');
+            showClientCode();
           });
       });
 
       $('clientResendBtn').addEventListener('click', function () {
         var email = $('clientSentEmail').textContent;
         var btn = $('clientResendBtn');
+        var msg = $('clientMsg2');
         btn.disabled = true;
         btn.textContent = 'Sending...';
-        fetch('/api/auth/otp', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: email, intent: 'client' })
-        })
-          .catch(function () { })
-          .then(function () {
-            btn.textContent = 'Code resent ✓';
-            setTimeout(function () {
+        NexusAuth.token($('tsClient'))
+          .then(function (t) { return NexusAuth.post('/api/auth/otp', { email: email, intent: 'client', turnstileToken: t }); })
+          .then(function (r) {
+            if (!r.ok) {
+              say(msg, NexusAuth.message(r, 'Unable to send a new code. Please try again.'), 'err');
               btn.disabled = false;
               btn.textContent = 'Resend code';
-            }, 3000);
+              return;
+            }
+            say(msg, 'A new code has been emailed to you.', 'ok');
+            startResendCooldown(btn, 'clientResend');
           });
       });
 
@@ -1578,22 +1605,17 @@
 
         say(msg, '');
         busy(btn, true);
-        fetch('/api/auth/verify', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: $('clientSentEmail').textContent, code: code, intent: 'client' })
-        })
-          .then(function (r) { return r.json(); })
-          .catch(function () { return { ok: true }; })
-          .then(function () {
+        NexusAuth.post('/api/auth/verify', { email: $('clientSentEmail').textContent, code: code, intent: 'client' })
+          .then(function (r) {
+            if (!r.ok) {
+              say(msg, NexusAuth.message(r, 'Invalid code. Please double-check and try again.'), 'err');
+              inputs.forEach(function (i) { i.value = ''; i.classList.remove('is-filled'); });
+              inputs[0].focus();
+              busy(btn, false);
+              return;
+            }
             say(msg, "You're in. Taking you to the directory…", 'ok');
             setTimeout(function () { location.href = '/explore'; }, 600);
-          })
-          .catch(function () {
-            say(msg, 'Invalid code. Please double-check and try again.', 'err');
-            inputs.forEach(function (i) { i.value = ''; i.classList.remove('is-filled'); });
-            inputs[0].focus();
-            busy(btn, false);
           });
       });
 
@@ -1619,27 +1641,22 @@
         }
 
         creatorEmail = val;
-        busy(btn, true);
+        function showCreatorCode() {
+          $('creatorStep1').hidden = true;
+          $('creatorStep2').hidden = false;
+          $('creatorSentEmail').textContent = val;
+          startCreatorResendTimer();
+          setupOtpGrid($('creatorOtpGrid'), $('creatorVerifyBtn'));
+        }
+        if (NexusAuth.trapped(this)) return showCreatorCode(); // bot: look normal, send nothing
 
-        fetch('/api/auth/otp', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: val, intent: 'creator' })
-        })
-          .then(function (r) { return r.json(); })
-          .catch(function () { return { ok: true }; })
-          .then(function () {
-            $('creatorStep1').hidden = true;
-            $('creatorStep2').hidden = false;
-            $('creatorSentEmail').textContent = val;
-            startCreatorResendTimer();
-            setupOtpGrid($('creatorOtpGrid'), $('creatorVerifyBtn'));
-          })
-          .catch(function () {
-            say(msg, 'Unable to send verification code. Please try again.', 'err');
-          })
-          .finally(function () {
+        busy(btn, true);
+        NexusAuth.token($('tsCreator'))
+          .then(function (t) { return NexusAuth.post('/api/auth/otp', { email: val, intent: 'creator', turnstileToken: t }); })
+          .then(function (r) {
             busy(btn, false);
+            if (!r.ok) return say(msg, NexusAuth.message(r, 'Unable to send verification code. Please try again.'), 'err');
+            showCreatorCode();
           });
       });
 
@@ -1706,26 +1723,19 @@
         say(msg, '');
         busy(btn, true);
 
-        fetch('/api/auth/verify', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: creatorEmail, code: code, intent: 'creator' })
-        })
-          .then(function (r) { return r.json(); })
-          .catch(function () { return { ok: true }; })
-          .then(function () {
+        NexusAuth.post('/api/auth/verify', { email: creatorEmail, code: code, intent: 'creator' })
+          .then(function (r) {
+            busy(btn, false);
+            if (!r.ok) {
+              say(msg, NexusAuth.message(r, 'Invalid code. Please double-check and try again.'), 'err');
+              inputs.forEach(function (i) { i.value = ''; i.classList.remove('is-filled'); });
+              inputs[0].focus();
+              return;
+            }
             clearInterval(resendTimer);
             $('creatorStep2').hidden = true;
             $('creatorStep3').hidden = false;
             $('creatorName').focus();
-          })
-          .catch(function () {
-            say(msg, 'Invalid code. Please double-check and try again.', 'err');
-            inputs.forEach(function (i) { i.value = ''; i.classList.remove('is-filled'); });
-            inputs[0].focus();
-          })
-          .finally(function () {
-            busy(btn, false);
           });
       });
 
@@ -1749,13 +1759,15 @@
 
       $('creatorResendBtn').addEventListener('click', function () {
         var msg = $('creatorMsg2');
-        fetch('/api/auth/otp', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: creatorEmail, intent: 'creator' })
-        })
-          .catch(function () { })
-          .then(function () {
+        var btn = $('creatorResendBtn');
+        btn.disabled = true;
+        NexusAuth.token($('tsCreator'))
+          .then(function (t) { return NexusAuth.post('/api/auth/otp', { email: creatorEmail, intent: 'creator', turnstileToken: t }); })
+          .then(function (r) {
+            if (!r.ok) {
+              btn.disabled = false;
+              return say(msg, NexusAuth.message(r, 'Unable to send a new code. Please try again.'), 'err');
+            }
             say(msg, 'A new code has been emailed to you.', 'ok');
             startCreatorResendTimer();
           });
@@ -1800,25 +1812,20 @@
         }
 
         busy(btn, true);
-        fetch('/api/profile', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            display_name: nameInput.value.trim(),
-            date_of_birth: y + '-' + m + '-' + d
-          })
+        NexusAuth.post('/api/profile', {
+          display_name: nameInput.value.trim(),
+          date_of_birth: y + '-' + m + '-' + d
         })
-          .then(function (r) { return r.json(); })
-          .catch(function () { return { ok: true }; })
-          .then(function () {
+          .then(function (r) {
+            busy(btn, false);
+            if (r.error === 'age_restricted') {
+              $('creatorStep3').hidden = true;
+              $('creatorStepUnderage').hidden = false;
+              return;
+            }
+            if (!r.ok) return say(msg, NexusAuth.message(r, 'Something went wrong saving your details. Please try again.'), 'err');
             $('creatorStep3').hidden = true;
             $('creatorStepDone').hidden = false;
-          })
-          .catch(function () {
-            say(msg, 'Something went wrong saving your details. Please try again.', 'err');
-          })
-          .finally(function () {
-            busy(btn, false);
           });
       });
 

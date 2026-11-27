@@ -1,4 +1,6 @@
+import datetime
 import http.server
+import json
 import socketserver
 
 class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
@@ -49,7 +51,43 @@ class NoCacheHandler(http.server.SimpleHTTPRequestHandler):
         self._rewrite_path()
         super().do_GET()
 
+    def _json(self, status, payload):
+        body = json.dumps(payload).encode()
+        self.send_response(status)
+        self.send_header('Content-Type', 'application/json')
+        self.send_header('Cache-Control', 'no-store')
+        self.end_headers()
+        self.wfile.write(body)
+
     def do_POST(self):
+        # Auth routes imitate the real backend so the pages can't fake success:
+        # the only correct code locally is 123456; under-18 birth dates are refused.
+        if self.path.split('?')[0] in ('/api/auth/otp', '/api/auth/verify', '/api/profile'):
+            length = int(self.headers.get('Content-Length', 0))
+            try:
+                data = json.loads(self.rfile.read(length) or b'{}')
+            except ValueError:
+                return self._json(400, {'error': 'invalid_input'})
+            route = self.path.split('?')[0]
+            if route == '/api/auth/otp':
+                if data.get('intent') not in (None, 'creator', 'client') or '@' not in str(data.get('email', '')):
+                    return self._json(400, {'error': 'invalid_input'})
+                return self._json(200, {'ok': True})
+            if route == '/api/auth/verify':
+                if data.get('intent') not in (None, 'creator', 'client'):
+                    return self._json(400, {'error': 'invalid_input'})
+                if data.get('code') != '123456':
+                    return self._json(400, {'error': 'invalid_code'})
+                return self._json(200, {'ok': True, 'next': '/signup?intent=' + (data.get('intent') or 'client')})
+            try:
+                dob = datetime.date.fromisoformat(str(data.get('date_of_birth')))
+            except ValueError:
+                return self._json(400, {'error': 'invalid_input'})
+            today = datetime.date.today()
+            age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
+            if age < 18:
+                return self._json(403, {'error': 'age_restricted'})
+            return self._json(200, {'ok': True})
         if self.path.startswith('/api/'):
             content_length = int(self.headers.get('Content-Length', 0))
             if content_length > 0:

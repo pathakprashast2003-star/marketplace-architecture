@@ -553,6 +553,14 @@
       .jn-btn, .jn-flip, .auth-step.is-on { transition: none; animation: none; }
     }
   </style>
+  <meta name="turnstile-sitekey" content="1x00000000000000000000BB">
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  <script src="/js/auth-guard.js?v=1"></script>
+  <style>
+    .hp-field { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+    .jn-ts:empty { display: none; }
+    .jn-ts { margin-top: 12px; }
+  </style>
 </head>
 <body>
   <header class="nx-auth-nav">
@@ -609,6 +617,7 @@
             <div class="jn-or">or continue with email</div>
 
             <form id="loginEmailForm" novalidate>
+              <div class="hp-field" aria-hidden="true"><label>Company website <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label></div>
               <label class="jn-l" for="loginEmail">Email address</label>
               <input id="loginEmail" type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required maxlength="254">
               <button type="submit" class="jn-btn" id="loginSendCodeBtn">Send me a code →</button>
@@ -646,6 +655,8 @@
               <span>Don't have an account? <a href="/signup">Sign up for Nexus</a></span>
             </div>
           </section>
+
+          <div class="jn-ts" id="tsLogin"></div>
 
           <!-- STEP 3: Signed In Success -->
           <section class="auth-step" id="stepLoginDone" aria-labelledby="h1LoginDone">
@@ -720,15 +731,7 @@
       }
 
       email = val;
-      busy(sendCodeBtn, true);
-
-      fetch('/api/auth/otp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, intent: 'login' })
-      })
-      .then(function (res) { return res.json().catch(function () { return { ok: true }; }); })
-      .then(function () {
+      function showCodeStep() {
         $('loginSentTo').textContent = email;
         buildCodeInputs();
         showStep('stepLoginCode');
@@ -737,16 +740,17 @@
           var firstInput = $('loginCodeInputs').querySelector('input');
           if (firstInput) firstInput.focus();
         }, 100);
-      })
-      .catch(function () {
-        $('loginSentTo').textContent = email;
-        buildCodeInputs();
-        showStep('stepLoginCode');
-        startResendTimer();
-      })
-      .finally(function () {
-        busy(sendCodeBtn, false);
-      });
+      }
+      if (NexusAuth.trapped(this)) return showCodeStep(); // bot: look normal, send nothing
+
+      busy(sendCodeBtn, true);
+      NexusAuth.token($('tsLogin'))
+        .then(function (t) { return NexusAuth.post('/api/auth/otp', { email: email, turnstileToken: t }); })
+        .then(function (r) {
+          busy(sendCodeBtn, false);
+          if (!r.ok) return say(msgStart, NexusAuth.message(r, 'Unable to send your code right now. Please try again.'), 'bad');
+          showCodeStep();
+        });
     });
 
     /* ── Code Input Boxes ── */
@@ -830,29 +834,22 @@
       say(msgCode, '');
       busy(verifyBtn, true);
 
-      fetch('/api/auth/verify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, code: code, intent: 'login' })
-      })
-      .then(function (res) { return res.json().catch(function () { return { ok: true }; }); })
-      .then(function () {
-        clearInterval(resendTimer);
-        showStep('stepLoginDone');
-        setTimeout(function () {
-          window.location.href = '/explore';
-        }, 1600);
-      })
-      .catch(function () {
-        clearInterval(resendTimer);
-        showStep('stepLoginDone');
-        setTimeout(function () {
-          window.location.href = '/explore';
-        }, 1600);
-      })
-      .finally(function () {
-        busy(verifyBtn, false);
-      });
+      NexusAuth.post('/api/auth/verify', { email: email, code: code })
+        .then(function (r) {
+          busy(verifyBtn, false);
+          if (!r.ok) {
+            say(msgCode, NexusAuth.message(r, 'That code didn\'t work. Please try again.'), 'bad');
+            codeInputs().forEach(function (i) { i.value = ''; i.classList.remove('filled'); });
+            var first = codeInputs()[0];
+            if (first) first.focus();
+            return;
+          }
+          clearInterval(resendTimer);
+          showStep('stepLoginDone');
+          setTimeout(function () {
+            window.location.href = '/explore';
+          }, 1600);
+        });
     });
 
     /* ── Resend Timer ── */
@@ -874,13 +871,17 @@
     }
 
     resendBtn.addEventListener('click', function () {
-      fetch('/api/auth/otp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, intent: 'login' })
-      });
-      say(msgCode, 'A new code has been sent to your email.', 'ok');
-      startResendTimer();
+      resendBtn.disabled = true;
+      NexusAuth.token($('tsLogin'))
+        .then(function (t) { return NexusAuth.post('/api/auth/otp', { email: email, turnstileToken: t }); })
+        .then(function (r) {
+          if (!r.ok) {
+            resendBtn.disabled = false;
+            return say(msgCode, NexusAuth.message(r, 'Unable to send a new code. Please try again.'), 'bad');
+          }
+          say(msgCode, 'A new code has been sent to your email.', 'ok');
+          startResendTimer();
+        });
     });
 
     changeEmailBtn.addEventListener('click', function () {

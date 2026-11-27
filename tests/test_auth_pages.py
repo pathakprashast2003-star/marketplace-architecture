@@ -226,3 +226,50 @@ def test_signup_direct_intent_urls():
         assert page.locator("#loginEmail").count() == 1
 
         browser.close()
+
+
+def test_wrong_code_is_rejected_on_login():
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(viewport={"width": 1280, "height": 900})
+        page.goto(f"{BASE_URL}/login")
+        page.locator("#loginEmail").fill("someone@email.com")
+        page.locator("#loginSendCodeBtn").click()
+        page.locator("#stepLoginCode.is-on").wait_for()
+        for i, d in enumerate("000000"):
+            page.locator("#loginCodeInputs input").nth(i).fill(d)
+        page.wait_for_function("document.getElementById('msgLoginCode').textContent.length > 0")
+        assert "isn't right" in page.locator("#msgLoginCode").inner_text()
+        assert "is-on" not in (page.locator("#stepLoginDone").get_attribute("class") or "")
+        assert page.url.endswith("/login")
+        browser.close()
+
+
+def test_wrong_code_is_rejected_on_creator_signup():
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(viewport={"width": 1280, "height": 900})
+        page.goto(f"{BASE_URL}/signup?intent=creator")
+        page.locator("#creatorEmail").fill("maker@visuals.co")
+        page.locator("#creatorSendCodeBtn").click()
+        page.locator("#creatorStep2").wait_for(state="visible")
+        for i, d in enumerate("999999"):
+            page.locator("#creatorOtpGrid input").nth(i).fill(d)
+        page.wait_for_function("document.getElementById('creatorMsg2').textContent.length > 0")
+        assert page.locator("#creatorStep3").is_hidden()
+        browser.close()
+
+
+def test_honeypot_sends_nothing():
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(viewport={"width": 1280, "height": 900})
+        calls = []
+        page.on("request", lambda r: calls.append(r.url) if "/api/auth/otp" in r.url else None)
+        page.goto(f"{BASE_URL}/login")
+        page.evaluate("document.querySelector('#loginEmailForm input[name=company_website]').value = 'spam.biz'")
+        page.locator("#loginEmail").fill("bot@spam.biz")
+        page.locator("#loginSendCodeBtn").click()
+        page.locator("#stepLoginCode.is-on").wait_for()
+        assert calls == []
+        browser.close()
