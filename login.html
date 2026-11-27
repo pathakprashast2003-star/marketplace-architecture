@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Log in · Nexus — 0% Commission Creator Marketplace</title>
-  <meta name="description" content="Sign in to your Nexus account. Passwordless sign-in with email code or Google.">
+  <meta name="description" content="Log in to your Nexus account with a one-time email code or Google. No password needed.">
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%233B54EE' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
@@ -487,6 +487,18 @@
     }
     .link-btn:disabled { color: #94A3B8; cursor: default; text-decoration: none; }
 
+    .jn-terms {
+      margin: 10px 0 0;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #64748B;
+    }
+    .jn-terms a {
+      color: #475569;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
     .jn-fine {
       margin: 4px 0 0;
       padding-top: 12px;
@@ -561,9 +573,9 @@
     <div class="jn-in">
 
       <header class="jn-head">
-        <p class="jn-pill">Passwordless Sign-In</p>
+        <p class="jn-pill">No password needed</p>
         <h1 class="jn-title" id="jnLoginTitle">Welcome <span class="nx-deck-accent">back.</span></h1>
-        <p class="jn-sub">Sign in to your Nexus account to view client inquiries, saved talent, and your creator storefront.</p>
+        <p class="jn-sub">Log in to see your inquiries, saved creators and your profile.</p>
       </header>
 
       <div class="jn-grid">
@@ -580,8 +592,8 @@
         <div class="jn-card">
           <!-- STEP 1: Email or Google -->
           <section class="auth-step is-on" id="stepLoginStart" aria-labelledby="h1LoginStart">
-            <p class="jn-k">PASSWORDLESS SIGN-IN</p>
-            <h2 id="h1LoginStart" tabindex="-1">Sign in to <em>Nexus.</em></h2>
+            <p class="jn-k">LOG IN</p>
+            <h2 id="h1LoginStart" tabindex="-1">Log in to <em>Nexus.</em></h2>
             <p class="jn-p">Enter your email for a one-time 6-digit code, or continue with Google.</p>
 
             <a class="jn-btn is-google btn-google" id="googleLoginBtn" href="/api/auth/google" rel="nofollow">
@@ -602,6 +614,7 @@
               <button type="submit" class="jn-btn" id="loginSendCodeBtn">Send me a code →</button>
               <p class="msg-feedback" id="msgLoginStart" role="alert" aria-live="polite"></p>
             </form>
+            <p class="jn-terms">By continuing, you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
 
             <div class="jn-fine">
               <span>Don't have an account? <a href="/signup">Sign up for Nexus</a></span>
@@ -620,7 +633,7 @@
                 <legend class="sr-only">6-digit verification code</legend>
                 <div class="code-grid" id="loginCodeInputs"></div>
               </fieldset>
-              <button type="submit" class="jn-btn" id="loginVerifyBtn">Verify &amp; Sign In →</button>
+              <button type="submit" class="jn-btn" id="loginVerifyBtn">Log in →</button>
               <p class="msg-feedback" id="msgLoginCode" role="alert" aria-live="polite"></p>
             </form>
 
@@ -642,9 +655,9 @@
               </svg>
             </div>
             <p class="jn-k">VERIFIED</p>
-            <h2 id="h1LoginDone" tabindex="-1">Signed <em>in.</em></h2>
-            <p class="jn-p" id="loginDoneSub">Welcome back to Nexus! Redirecting you to your account...</p>
-            <a class="jn-btn" id="loginDoneBtn" href="/explore">Go to Directory →</a>
+            <h2 id="h1LoginDone" tabindex="-1">You're <em>in.</em></h2>
+            <p class="jn-p" id="loginDoneSub">Welcome back. Taking you to the directory…</p>
+            <a class="jn-btn" id="loginDoneBtn" href="/explore">Go to the directory →</a>
           </section>
         </div>
       </div>

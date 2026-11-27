@@ -80,7 +80,7 @@ def test_signup_landing_page_structure_and_two_choices():
         assert "Find your creative" in page.locator("#jnT").inner_text()
         assert page.locator("#tabClient").is_visible()
         assert page.locator("#tabCreator").is_visible()
-        assert page.locator("#tabLogin").is_visible()
+        assert page.locator("#tabLogin").count() == 0  # login lives only on /login
 
         # Sliding grid defaults to client ("hire") with blue Creator panel on the right
         sw = page.locator("#jnSw")
@@ -98,7 +98,7 @@ def test_signup_landing_page_structure_and_two_choices():
         browser.close()
 
 
-def test_signup_client_flow_magic_link():
+def test_signup_client_flow_code():
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page(viewport={"width": 1280, "height": 900})
@@ -117,21 +117,27 @@ def test_signup_client_flow_magic_link():
         email_input = page.locator("#clientEmail")
         send_btn = page.locator("#clientSendBtn")
         assert email_input.is_visible()
-        assert "Send magic link" in send_btn.inner_text()
+        assert "6-digit code" in send_btn.inner_text()
+        assert page.locator("#viewClient .jn-terms a[href='/terms']").count() == 1
 
         # Invalid email validation
         email_input.fill("bad-email")
         send_btn.click()
         assert "valid email" in page.locator("#clientMsg").inner_text().lower()
 
-        # Valid email -> Magic link sent
+        # Valid email -> code entry
         email_input.fill("producer@studio.com")
         send_btn.click()
 
         sent_stage = page.locator("#clientSentStage")
         sent_stage.wait_for(state="visible")
-        assert "Magic link sent" in page.locator("#clientSentStage h2").inner_text()
+        assert "6-digit code" in page.locator("#clientSentStage h2").inner_text()
         assert "producer@studio.com" in page.locator("#clientSentEmail").inner_text()
+
+        # Typing 6 digits verifies and sends the client to the directory
+        for i, d in enumerate("123456"):
+            page.locator("#clientOtpGrid input").nth(i).fill(d)
+        page.wait_for_url("**/explore")
 
         browser.close()
 
@@ -195,7 +201,7 @@ def test_signup_creator_flow_to_page10():
         onboarding_link = page.locator("#creatorOnboardingLink")
         assert onboarding_link.is_visible()
         assert "/seller/onboarding" in onboarding_link.get_attribute("href")
-        assert "Page 10" in onboarding_link.inner_text()
+        assert "Set up your profile" in onboarding_link.inner_text()
 
         onboarding_link.click()
         page.wait_for_url("**/seller/onboarding**")
@@ -216,6 +222,7 @@ def test_signup_direct_intent_urls():
         assert page.locator("#jnSw").get_attribute("data-side") == "be"
 
         page.goto(f"{BASE_URL}/signup?intent=login")
-        assert page.locator("#jnSw").get_attribute("data-login") == "open"
+        page.wait_for_url("**/login")
+        assert page.locator("#loginEmail").count() == 1
 
         browser.close()

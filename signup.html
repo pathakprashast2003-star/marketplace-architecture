@@ -663,6 +663,18 @@
       background: #3B54EE url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/9px no-repeat;
     }
 
+    .jn-terms {
+      margin: 10px 0 0;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #64748B;
+    }
+    .jn-terms a {
+      color: #475569;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
     .jn-fine {
       margin: 2px 0 0;
       font-family: var(--jn-serif);
@@ -1144,8 +1156,6 @@
           id="tabClient">For clients</button>
         <button type="button" class="jn-tab" data-side="be" role="tab" aria-selected="false" id="tabCreator">For
           creators</button>
-        <button type="button" class="jn-tab" data-side="login" role="tab" aria-selected="false" id="tabLogin">Log
-          in</button>
       </div>
 
       <!-- Unified Sliding Dual-Panel Split Card -->
@@ -1158,7 +1168,7 @@
           <div class="jn-step" id="clientFormStage">
             <p class="jn-k">I'M LOOKING TO HIRE</p>
             <h3 id="clientTitle">Find &amp; hire <em>talent.</em></h3>
-            <p class="jn-p">Sign up in seconds. We'll send a passwordless magic link to your email, or continue with
+            <p class="jn-p">Sign up in seconds. We'll email you a 6-digit code, no password needed. Or continue with
               Google.</p>
 
             <a class="jn-btn is-google" id="clientGoogleBtn" href="/api/auth/google?intent=client">
@@ -1177,12 +1187,13 @@
             <div class="jn-or">or continue with email</div>
 
             <form id="clientEmailForm" novalidate>
-              <label class="jn-l" for="clientEmail">Work or business email</label>
-              <input id="clientEmail" type="email" name="email" placeholder="you@company.com" autocomplete="email"
+              <label class="jn-l" for="clientEmail">Email address</label>
+              <input id="clientEmail" type="email" name="email" placeholder="you@email.com" autocomplete="email"
                 required>
-              <button type="submit" class="jn-btn" id="clientSendBtn">Send magic link →</button>
+              <button type="submit" class="jn-btn" id="clientSendBtn">Email me a 6-digit code →</button>
               <p class="jn-msg" id="clientMsg" role="alert" aria-live="polite"></p>
             </form>
+            <p class="jn-terms">By continuing, you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
 
             <ul class="jn-ticks">
               <li>Direct communication &amp; inquiries</li>
@@ -1193,24 +1204,28 @@
                 a creator</button></p>
           </div>
 
-          <!-- Magic link confirmation stage -->
+          <!-- Code entry stage -->
           <div class="jn-step" id="clientSentStage" hidden>
-            <div class="jn-done-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect width="20" height="16" x="2" y="4" rx="2" />
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-              </svg>
-            </div>
-            <p class="jn-k">MAGIC LINK SENT</p>
-            <h2>Magic link <em>sent!</em></h2>
-            <p class="jn-p">
-              We sent a passwordless sign-in link to <b id="clientSentEmail"></b>. Click the link to complete your
-              account.
-            </p>
+            <p class="jn-k">SECURITY CODE</p>
+            <h2>Enter your <em>6-digit code.</em></h2>
+            <p class="jn-p">We sent a code to <b id="clientSentEmail"></b>. Check your spam folder if it doesn't arrive within a minute.</p>
+
+            <form id="clientOtpForm" novalidate>
+              <div class="otp-grid" id="clientOtpGrid">
+                <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="0" aria-label="Digit 1">
+                <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="1" aria-label="Digit 2">
+                <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="2" aria-label="Digit 3">
+                <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="3" aria-label="Digit 4">
+                <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="4" aria-label="Digit 5">
+                <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="5" aria-label="Digit 6">
+              </div>
+              <button type="submit" class="jn-btn" id="clientVerifyBtn">Create my account →</button>
+              <p class="jn-msg" id="clientMsg2" role="alert" aria-live="polite"></p>
+            </form>
+
             <div class="jn-sublinks">
-              <button type="button" class="jn-link" id="clientResendBtn">Resend link</button>
-              <button type="button" class="jn-link" id="clientChangeEmailBtn">Use different email</button>
+              <button type="button" class="jn-link" id="clientResendBtn">Resend code</button>
+              <button type="button" class="jn-link" id="clientChangeEmailBtn">Use a different email</button>
             </div>
           </div>
         </article>
@@ -1254,13 +1269,14 @@
               <button type="submit" class="jn-btn" id="creatorSendCodeBtn">Email me a 6-digit code →</button>
               <p class="jn-msg" id="creatorMsg1" role="alert" aria-live="polite"></p>
             </form>
+            <p class="jn-terms">By continuing, you agree to our <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
 
             <ul class="jn-ticks">
               <li>A profile with your work, reel and rate</li>
               <li>Clients contact you directly, 0% commission</li>
               <li>90 days free from approval · Cancel anytime</li>
             </ul>
-            <p class="jn-fine">Already have an account? <button type="button" id="jnOpenLoginBtn">Log in</button></p>
+            <p class="jn-fine">Already have an account? <a href="/login">Log in</a></p>
           </div>
 
           <!-- Step 2: 6-Digit OTP Verification -->
@@ -1363,8 +1379,7 @@
               Your founding creator account has been created. Next, we'll set up your showreel, bio, disciplines, and
               pricing.
             </p>
-            <a class="jn-btn" id="creatorOnboardingLink" href="/seller/onboarding">Continue to Storefront Setup (Page
-              10) →</a>
+            <a class="jn-btn" id="creatorOnboardingLink" href="/seller/onboarding">Set up your profile →</a>
           </div>
         </article>
 
@@ -1394,80 +1409,6 @@
           </div>
         </div>
 
-        <!-- ============================================================== -->
-        <!-- LOG IN SHEET OVERLAY (Matches Landing Page .jn-login-sheet)    -->
-        <!-- ============================================================== -->
-        <div class="jn-login-sheet" id="jnLoginSheet" role="region" aria-label="Member Login">
-          <div class="jn-login-aside">
-            <span class="jn-glass-pill">Log in</span>
-            <h3>Welcome back to <em>Nexus.</em></h3>
-            <p>Manage your profile and reply to inquiries.</p>
-            <button type="button" class="jn-flip" id="jnLoginBack">← Back to sign up</button>
-          </div>
-          <div class="jn-login-form-wrap">
-            <!-- Login Step 1: Email / Google -->
-            <div class="jn-step" id="sheetLoginStep1">
-              <p class="jn-k">ALREADY A MEMBER</p>
-              <h3>Log <em>in.</em></h3>
-              <p class="jn-p">Use the same email or Google account you signed up with. We'll send a 6-digit code, no
-                password needed.</p>
-
-              <a class="jn-btn is-google" href="/api/auth/google?intent=login">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill="#4285F4"
-                    d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z" />
-                  <path fill="#34A853"
-                    d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z" />
-                  <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z" />
-                  <path fill="#EA4335"
-                    d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z" />
-                </svg>
-                <span>Continue with Google</span>
-              </a>
-
-              <div class="jn-or">or continue with email</div>
-
-              <form id="sheetLoginForm" novalidate>
-                <label class="jn-l" for="sheetLoginEmail">Email address</label>
-                <input id="sheetLoginEmail" type="email" placeholder="you@email.com" autocomplete="email" required>
-                <button type="submit" class="jn-btn" id="sheetLoginSendBtn">Send me a code →</button>
-                <p class="jn-msg" id="sheetLoginMsg1" role="alert" aria-live="polite"></p>
-              </form>
-              <p class="jn-fine">Don't have an account? <button type="button" id="sheetGoSignupBtn">Create one
-                  free</button></p>
-            </div>
-
-            <!-- Login Step 2: 6-Digit OTP Code -->
-            <div class="jn-step" id="sheetLoginStep2" hidden>
-              <p class="jn-k">VERIFY LOGIN</p>
-              <h3>Check your <em>email.</em></h3>
-              <p class="jn-p">We sent a 6-digit login code to <b id="sheetLoginSentEmail"></b>.</p>
-              <form id="sheetLoginOtpForm" novalidate>
-                <div class="otp-grid" id="sheetLoginOtpGrid">
-                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="0"
-                    aria-label="Digit 1">
-                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="1"
-                    aria-label="Digit 2">
-                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="2"
-                    aria-label="Digit 3">
-                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="3"
-                    aria-label="Digit 4">
-                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="4"
-                    aria-label="Digit 5">
-                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="5"
-                    aria-label="Digit 6">
-                </div>
-                <button type="submit" class="jn-btn" id="sheetLoginVerifyBtn">Sign in →</button>
-                <p class="jn-msg" id="sheetLoginMsg2" role="alert" aria-live="polite"></p>
-              </form>
-              <div class="jn-sublinks">
-                <button type="button" class="jn-link" id="sheetLoginChangeEmailBtn">Change email</button>
-                <a class="jn-link" href="/login">Open full login page</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div><!-- /.jn-grid -->
 
     </div><!-- /.jn-in -->
@@ -1480,19 +1421,13 @@
       var RESEND_SECONDS = 30;
       var resendTimer = null;
       var creatorEmail = '';
-      var sheetLoginEmail = '';
 
       var $ = function (id) { return document.getElementById(id); };
       var swEl = $('jnSw');
       var tabs = document.querySelectorAll('.jn-tab');
 
       function setMode(mode) {
-        if (mode === 'login') {
-          swEl.dataset.login = 'open';
-        } else {
-          swEl.dataset.login = 'closed';
-          swEl.dataset.side = mode;
-        }
+        swEl.dataset.side = mode;
 
         tabs.forEach(function (t) {
           var on = t.dataset.side === mode;
@@ -1530,9 +1465,6 @@
 
       // Inline switches & Login triggers
       $('clientSwitchToCreatorBtn').addEventListener('click', function () { setMode('be'); });
-      $('jnOpenLoginBtn').addEventListener('click', function () { setMode('login'); });
-      $('jnLoginBack').addEventListener('click', function () { setMode(swEl.dataset.side || 'hire'); });
-      $('sheetGoSignupBtn').addEventListener('click', function () { setMode('be'); });
 
       // Populate DOB Days & Years
       (function initDob() {
@@ -1591,7 +1523,7 @@
         }
 
         busy(btn, true);
-        fetch('/api/auth/magic-link', {
+        fetch('/api/auth/otp', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: val, intent: 'client' })
@@ -1602,9 +1534,10 @@
             $('clientFormStage').hidden = true;
             $('clientSentStage').hidden = false;
             $('clientSentEmail').textContent = val;
+            setupOtpGrid($('clientOtpGrid'), $('clientVerifyBtn'));
           })
           .catch(function () {
-            say(msg, 'Unable to send magic link right now. Please try again.', 'err');
+            say(msg, 'Unable to send your code right now. Please try again.', 'err');
           })
           .finally(function () {
             busy(btn, false);
@@ -1616,18 +1549,51 @@
         var btn = $('clientResendBtn');
         btn.disabled = true;
         btn.textContent = 'Sending...';
-        fetch('/api/auth/magic-link', {
+        fetch('/api/auth/otp', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: email, intent: 'client' })
         })
           .catch(function () { })
           .then(function () {
-            btn.textContent = 'Link resent ✓';
+            btn.textContent = 'Code resent ✓';
             setTimeout(function () {
               btn.disabled = false;
-              btn.textContent = 'Resend link';
+              btn.textContent = 'Resend code';
             }, 3000);
+          });
+      });
+
+      $('clientOtpForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var inputs = Array.prototype.slice.call($('clientOtpGrid').querySelectorAll('input'));
+        var code = inputs.map(function (i) { return i.value; }).join('');
+        var btn = $('clientVerifyBtn');
+        var msg = $('clientMsg2');
+
+        if (code.length < 6) {
+          say(msg, 'Please enter all 6 digits of your code.', 'err');
+          return bad(inputs[code.length] || inputs[0]);
+        }
+
+        say(msg, '');
+        busy(btn, true);
+        fetch('/api/auth/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: $('clientSentEmail').textContent, code: code, intent: 'client' })
+        })
+          .then(function (r) { return r.json(); })
+          .catch(function () { return { ok: true }; })
+          .then(function () {
+            say(msg, "You're in. Taking you to the directory…", 'ok');
+            setTimeout(function () { location.href = '/explore'; }, 600);
+          })
+          .catch(function () {
+            say(msg, 'Invalid code. Please double-check and try again.', 'err');
+            inputs.forEach(function (i) { i.value = ''; i.classList.remove('is-filled'); });
+            inputs[0].focus();
+            busy(btn, false);
           });
       });
 
@@ -1856,82 +1822,15 @@
           });
       });
 
-      /* ── Sheet Login Flow ── */
-      $('sheetLoginForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        var input = $('sheetLoginEmail');
-        var val = (input.value || '').trim();
-        var msg = $('sheetLoginMsg1');
-        var btn = $('sheetLoginSendBtn');
-
-        say(msg, '');
-        if (!val || !isValidEmail(val)) {
-          say(msg, 'Please enter a valid email address.', 'err');
-          return bad(input);
-        }
-
-        sheetLoginEmail = val;
-        busy(btn, true);
-        fetch('/api/auth/otp', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: val, intent: 'login' })
-        })
-          .then(function (r) { return r.json(); })
-          .catch(function () { return { ok: true }; })
-          .then(function () {
-            $('sheetLoginStep1').hidden = true;
-            $('sheetLoginStep2').hidden = false;
-            $('sheetLoginSentEmail').textContent = val;
-            setupOtpGrid($('sheetLoginOtpGrid'), $('sheetLoginVerifyBtn'));
-          })
-          .finally(function () { busy(btn, false); });
-      });
-
-      $('sheetLoginOtpForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        var inputs = Array.prototype.slice.call($('sheetLoginOtpGrid').querySelectorAll('input'));
-        var code = inputs.map(function (i) { return i.value; }).join('');
-        var btn = $('sheetLoginVerifyBtn');
-        var msg = $('sheetLoginMsg2');
-
-        if (code.length < 6) {
-          say(msg, 'Please enter all 6 digits.', 'err');
-          return bad(inputs[code.length] || inputs[0]);
-        }
-
-        say(msg, '');
-        busy(btn, true);
-        fetch('/api/auth/verify', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: sheetLoginEmail, code: code, intent: 'login' })
-        })
-          .then(function (r) { return r.json(); })
-          .catch(function () { return { ok: true }; })
-          .then(function () {
-            say(msg, 'Signed in! Redirecting...', 'ok');
-            setTimeout(function () { location.href = '/explore'; }, 500);
-          })
-          .finally(function () { busy(btn, false); });
-      });
-
-      $('sheetLoginChangeEmailBtn').addEventListener('click', function () {
-        $('sheetLoginStep2').hidden = true;
-        $('sheetLoginStep1').hidden = false;
-        $('sheetLoginEmail').focus();
-      });
-
       /* ── Initial URL intent routing ── */
       var qs = new URLSearchParams(location.search);
       var intent = qs.get('intent');
       if (intent === 'creator' || qs.get('role') === 'creator') {
         setMode('be');
       } else if (intent === 'login') {
-        setMode('login');
+        location.replace('/login');
       } else {
         swEl.dataset.side = 'hire';
-        swEl.dataset.login = 'closed';
       }
 
       // Fetch live founding spots count
