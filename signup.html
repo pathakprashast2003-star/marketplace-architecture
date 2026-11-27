@@ -103,15 +103,16 @@
       display: block;
     }
 
-    /* ── The 2-Choice Stage (Clean, Apple-Grade, Balanced) ── */
+    /* ── The 2-Choice Role Selector Stage (Clean, Elevated, Apple-Grade) ── */
     .nx-fork-wrap {
-      max-width: 940px;
+      max-width: 960px;
       margin: 0 auto;
+      width: 100%;
     }
 
     .nx-fork-header {
       text-align: center;
-      margin: 0 auto 36px;
+      margin: 0 auto 38px;
       max-width: 680px;
     }
 
@@ -119,7 +120,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      margin: 0 auto 14px;
+      margin: 0 auto 16px;
       padding: 5px 14px;
       border-radius: 999px;
       background: #EEF2FF;
@@ -133,12 +134,12 @@
     }
 
     .nx-fork-title {
-      margin: 0 auto 12px;
+      margin: 0 auto 14px;
       font-family: var(--serif);
       font-weight: 700;
       letter-spacing: -0.025em;
-      line-height: 1.08;
-      font-size: clamp(32px, 4.8vw, 46px);
+      line-height: 1.12;
+      font-size: clamp(34px, 4.6vw, 48px);
       color: var(--ink);
       text-wrap: balance;
     }
@@ -155,23 +156,27 @@
 
     .nx-fork-sub {
       margin: 0 auto;
-      max-width: 52ch;
+      max-width: 54ch;
       font-size: 16px;
-      line-height: 1.5;
+      line-height: 1.55;
       color: var(--sub);
+      text-wrap: balance;
     }
 
-    /* Two Standalone Balanced Cards */
+    /* Two Distinct, Symmetrical, Beautiful Cards */
     .nx-dual-cards {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-      margin-top: 32px;
+      gap: 28px;
+      margin-top: 10px;
     }
 
     .nx-choice-card {
-      border-radius: 28px;
-      padding: 38px 34px 34px;
+      background: #FFFFFF;
+      border-radius: 24px;
+      border: 1.5px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 16px 40px -12px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.02);
+      padding: 36px 32px 32px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -183,33 +188,22 @@
     }
     .nx-choice-card:hover {
       transform: translateY(-4px);
+      border-color: rgba(59, 84, 238, 0.40);
+      box-shadow: 0 24px 50px -12px rgba(59, 84, 238, 0.14), 0 2px 6px rgba(15, 23, 42, 0.03);
     }
     .nx-choice-card:focus-visible {
       outline: 3px solid var(--blue);
       outline-offset: 3px;
     }
 
-    /* Left Card: Client (White) */
-    .card-client {
-      background: #FFFFFF;
-      border: 1.5px solid rgba(15, 23, 42, 0.08);
-      box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.07), 0 2px 6px rgba(15, 23, 42, 0.02);
-      color: var(--ink);
-    }
-    .card-client:hover {
-      border-color: rgba(59, 84, 238, 0.4);
-      box-shadow: 0 24px 54px -12px rgba(59, 84, 238, 0.12), 0 2px 6px rgba(15, 23, 42, 0.03);
-    }
-
-    /* Right Card: Creator (Signature Royal Blue Radial Gradient) */
+    /* Subtle elevated accent on Creator Card */
     .card-creator {
-      background: radial-gradient(120% 95% at 80% 10%, #5872FF 0%, #3B54EE 48%, #2134B8 100%);
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      box-shadow: 0 24px 52px -12px rgba(35, 55, 198, 0.38), 0 2px 6px rgba(15, 23, 42, 0.04);
-      color: #FFFFFF;
+      border: 1.5px solid rgba(59, 84, 238, 0.24);
+      box-shadow: 0 16px 40px -12px rgba(59, 84, 238, 0.08), 0 1px 3px rgba(15, 23, 42, 0.02);
     }
     .card-creator:hover {
-      box-shadow: 0 28px 60px -10px rgba(35, 55, 198, 0.48), 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-color: var(--blue);
+      box-shadow: 0 24px 54px -12px rgba(59, 84, 238, 0.18), 0 2px 6px rgba(15, 23, 42, 0.03);
     }
 
     .card-top-row {
@@ -217,7 +211,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .card-icon-bubble {
@@ -227,14 +221,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
     .card-client .card-icon-bubble {
       background: #EEF2FF;
       color: var(--blue);
     }
     .card-creator .card-icon-bubble {
-      background: rgba(255, 255, 255, 0.18);
-      color: #FFFFFF;
+      background: #EFF6FF;
+      color: var(--blue);
     }
 
     .card-badge {
@@ -253,120 +248,105 @@
       border: 1px solid rgba(15, 23, 42, 0.08);
     }
     .card-creator .card-badge {
-      background: rgba(255, 255, 255, 0.18);
-      color: #FFFFFF;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: #FEF3C7;
+      color: #92400E;
+      border: 1px solid rgba(217, 119, 6, 0.22);
     }
 
     .card-h2 {
-      margin: 0 0 6px;
-      font-family: var(--serif);
-      font-size: 26px;
+      font-family: var(--sans);
+      font-size: 22px;
       font-weight: 700;
+      color: var(--ink);
       letter-spacing: -0.02em;
-      line-height: 1.15;
+      margin: 0 0 10px;
     }
-    .card-client .card-h2 { color: var(--ink); }
-    .card-creator .card-h2 { color: #FFFFFF; }
-
-    .card-subhead {
-      margin: 0 0 14px;
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 18px;
-      font-weight: 500;
-    }
-    .card-client .card-subhead { color: var(--blue); }
-    .card-creator .card-subhead { color: rgba(255, 255, 255, 0.92); }
 
     .card-desc {
-      margin: 0 0 22px;
       font-size: 14.5px;
-      line-height: 1.5;
+      line-height: 1.55;
+      color: var(--sub);
+      margin: 0 0 24px;
+      min-height: 44px;
     }
-    .card-client .card-desc { color: var(--sub); }
-    .card-creator .card-desc { color: rgba(255, 255, 255, 0.88); }
 
     .card-ticks {
       list-style: none;
-      margin: 0 0 28px;
-      padding: 18px 0 0;
-      display: grid;
-      gap: 11px;
-      font-size: 14px;
+      padding: 0;
+      margin: 0 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
-    .card-client .card-ticks {
-      border-top: 1px solid rgba(15, 23, 42, 0.08);
-      color: var(--ink-light);
-    }
-    .card-creator .card-ticks {
-      border-top: 1px solid rgba(255, 255, 255, 0.18);
-      color: rgba(255, 255, 255, 0.94);
-    }
-
     .card-ticks li {
       display: flex;
       align-items: center;
       gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-light);
     }
-    .card-client .card-ticks li::before {
-      content: '';
-      flex: none;
-      width: 16px;
-      height: 16px;
+    .card-tick-icon {
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      background: var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/10px no-repeat;
+      background: #EEF2FF;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
-    .card-creator .card-ticks li::before {
-      content: '';
-      flex: none;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.24) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/10px no-repeat;
+    .card-tick-icon svg {
+      width: 12px;
+      height: 12px;
     }
 
-    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
       width: 100%;
       height: 50px;
-      padding: 0 24px;
-      border: 0;
       border-radius: 999px;
-      font-size: 15.5px;
+      font-size: 15px;
       font-weight: 700;
+      letter-spacing: -0.01em;
       cursor: pointer;
+      transition: all 0.18s ease;
+      border: none;
       text-decoration: none !important;
-      transition: all 0.2s ease;
+      box-sizing: border-box;
     }
-    .btn:active { transform: scale(0.98); }
 
+    /* Client Button: High-End Secondary / Slate */
     .btn-client-cta {
-      background: linear-gradient(135deg, #4B66F8 0%, #3B54EE 60%, #2740D6 100%);
-      color: #FFFFFF;
-      box-shadow: 0 8px 20px -4px rgba(59, 84, 238, 0.4);
+      background: #F1F5F9;
+      color: var(--ink);
+      border: 1px solid rgba(15, 23, 42, 0.10);
     }
+    .nx-choice-card.card-client:hover .btn-client-cta,
     .btn-client-cta:hover {
-      filter: brightness(1.06);
-      box-shadow: 0 12px 24px -4px rgba(59, 84, 238, 0.5);
+      background: var(--ink);
+      color: #FFFFFF;
+      border-color: var(--ink);
+      box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.25);
     }
 
+    /* Creator Button: Signature Royal Blue Gradient */
     .btn-creator-cta {
-      background: #FFFFFF;
-      color: var(--blue);
-      box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.18);
+      background: linear-gradient(135deg, #4F6AF8 0%, #3B54EE 55%, #2134B8 100%);
+      color: #FFFFFF;
+      box-shadow: 0 10px 24px -6px rgba(59, 84, 238, 0.38);
     }
+    .nx-choice-card.card-creator:hover .btn-creator-cta,
     .btn-creator-cta:hover {
-      background: #F8FAFC;
-      box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.24);
+      background: linear-gradient(135deg, #5873F9 0%, #445DFA 55%, #273CCE 100%);
+      box-shadow: 0 14px 28px -6px rgba(59, 84, 238, 0.50);
     }
 
     .nx-fork-footer {
-      margin-top: 32px;
+      margin-top: 36px;
       text-align: center;
       font-size: 14.5px;
       color: var(--sub);
@@ -483,10 +463,13 @@
     .or-divider {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin: 18px 0;
-      font-size: 13px;
+      gap: 14px;
+      margin: 20px 0;
+      font-size: 12.5px;
+      font-weight: 600;
       color: var(--mute);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
     }
     .or-divider::before, .or-divider::after {
       content: '';
@@ -495,29 +478,35 @@
       background: var(--line);
     }
 
-    .field {
+    .form-field {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-bottom: 16px;
+      gap: 7px;
+      margin-bottom: 18px;
     }
     .field-label {
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 600;
       color: var(--ink-light);
     }
+    .field-hint {
+      font-size: 12px;
+      color: var(--mute);
+      font-weight: 400;
+    }
     .field-input, .field-select {
       width: 100%;
-      height: 50px;
-      padding: 0 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(15, 23, 42, 0.12);
+      height: 48px;
+      padding: 0 14px;
+      border-radius: 12px;
+      border: 1.5px solid rgba(15, 23, 42, 0.12);
       background: #FFFFFF;
-      font-size: 15.5px;
       font-family: inherit;
+      font-size: 15px;
       color: var(--ink);
-      transition: border-color 0.18s ease, box-shadow 0.18s ease;
       outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      box-sizing: border-box;
     }
     .field-select {
       appearance: none;
@@ -626,13 +615,16 @@
     .done-badge-wrap svg { width: 32px; height: 32px; }
 
     /* Responsive */
-    @media (max-width: 800px) {
+    @media (max-width: 840px) {
       .nx-dual-cards {
         grid-template-columns: 1fr;
         gap: 18px;
       }
       .nx-choice-card {
         padding: 30px 24px 26px;
+      }
+      .card-desc {
+        min-height: auto;
       }
       .nx-auth-box {
         padding: 28px 20px;
@@ -663,9 +655,9 @@
       <div class="nx-fork-wrap">
         
         <header class="nx-fork-header">
-          <span class="nx-kicker-pill">Founding Roster · Open Now</span>
+          <span class="nx-kicker-pill">Get Started</span>
           <h1 class="nx-fork-title" id="forkTitle">
-            Find your creative. <span class="nx-deck-accent">Or be found.</span>
+            How do you want to use <span class="nx-deck-accent">Nexus?</span>
           </h1>
           <p class="nx-fork-sub">
             Direct access to vetted creative talent or build your own verified storefront with 0% commission.
@@ -680,20 +672,35 @@
               <div class="card-top-row">
                 <div class="card-icon-bubble">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
-                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                   </svg>
                 </div>
                 <span class="card-badge">Clients &amp; Brands</span>
               </div>
               <h2 class="card-h2">I'm looking to hire</h2>
-              <div class="card-subhead">Find your creative.</div>
               <p class="card-desc">
-                Save creators, message them directly, and book with no commission. Free for clients, always.
+                Find, message, and book verified commercial cinematographers, DPs, drone pilots, and editors with zero platform markups.
               </p>
               <ul class="card-ticks">
-                <li>Direct communication &amp; inquiries</li>
-                <li>Shortlist &amp; private talent boards</li>
-                <li>100% free for clients, forever</li>
+                <li>
+                  <span class="card-tick-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                  </span>
+                  Direct communication &amp; inquiries
+                </li>
+                <li>
+                  <span class="card-tick-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                  </span>
+                  Shortlist &amp; private talent boards
+                </li>
+                <li>
+                  <span class="card-tick-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                  </span>
+                  100% free for clients, forever
+                </li>
               </ul>
             </div>
             <button type="button" class="btn btn-client-cta">Continue as Client →</button>
@@ -711,14 +718,28 @@
                 <span class="card-badge">Founding 100 · 90d Free</span>
               </div>
               <h2 class="card-h2">I'm a creator / business</h2>
-              <div class="card-subhead">Claim a founding spot.</div>
               <p class="card-desc">
-                Create your account, then build your profile while a person reviews it. 90 free days start when approved.
+                Launch your custom storefront, display your 4K showreel, receive verified client leads, and keep 100% of your earnings.
               </p>
               <ul class="card-ticks">
-                <li>A verified storefront with your reel &amp; rate</li>
-                <li>Clients contact you directly, 0% commission</li>
-                <li>90 days free from approval, then flat $49/mo</li>
+                <li>
+                  <span class="card-tick-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                  </span>
+                  Verified storefront &amp; 3D card
+                </li>
+                <li>
+                  <span class="card-tick-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                  </span>
+                  Permanent Founding Member status
+                </li>
+                <li>
+                  <span class="card-tick-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                  </span>
+                  0% commission on all client jobs
+                </li>
               </ul>
             </div>
             <button type="button" class="btn btn-creator-cta">Join as Creator →</button>
@@ -759,35 +780,34 @@
 
           <div class="or-divider">or continue with email</div>
 
-          <!-- Magic Link Email Form -->
           <form id="clientEmailForm" novalidate>
-            <div class="field">
-              <label class="field-label" for="clientEmail">Work or Personal Email</label>
-              <input class="field-input" type="email" id="clientEmail" name="email"
-                placeholder="you@agency.com" autocomplete="email" required maxlength="254">
+            <div class="form-field">
+              <label class="field-label" for="clientEmail">Work or business email</label>
+              <input class="field-input" type="email" id="clientEmail" name="email" placeholder="you@company.com" autocomplete="email" required>
             </div>
-            <p class="form-msg" id="clientMsg" aria-live="polite"></p>
-            <button type="submit" class="btn btn-primary" id="clientSendBtn">Send magic link</button>
+            <div class="form-msg" id="clientMsg" role="alert" aria-live="polite"></div>
+            <button type="submit" class="btn btn-primary" id="clientSendBtn">Send magic link →</button>
           </form>
 
           <p class="form-footer-note">
-            By signing up you agree to Nexus <a href="/terms">Terms</a> &amp; <a href="/privacy">Privacy</a>.
+            By signing up, you agree to Nexus's <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.
           </p>
         </div>
 
-        <!-- Magic Link Sent Success View -->
+        <!-- Magic link sent confirmation state -->
         <div id="clientSentStage" hidden>
           <div class="done-badge-wrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
             </svg>
           </div>
-          <span class="nx-form-kicker">Check Your Inbox</span>
-          <h2 class="nx-form-title">Magic link sent.</h2>
-          <p class="nx-form-sub">We emailed an instant sign-in link to <b id="clientSentEmail"></b>. Click the link in the email to log in immediately.</p>
-
+          <h2 class="nx-form-title">Magic link sent!</h2>
+          <p class="nx-form-sub">
+            We sent a passwordless sign-in link to <b id="clientSentEmail"></b>. Click the link to complete your account.
+          </p>
           <div class="form-sublinks">
-            <button type="button" class="link-action" id="clientResendBtn">Resend magic link</button>
+            <button type="button" class="link-action" id="clientResendBtn">Resend link</button>
             <button type="button" class="link-action" id="clientChangeEmailBtn">Use different email</button>
           </div>
         </div>
@@ -796,24 +816,24 @@
     </section>
 
     <!-- ============================================================== -->
-    <!-- VIEW 2: Creator Sign-Up (Google / 6-Digit OTP / Identity / Page 10) -->
+    <!-- VIEW 2: Creator Sign-Up Wizard (Email -> OTP -> Age Gate -> P10)-->
     <!-- ============================================================== -->
     <section class="nx-view" id="viewCreator" aria-labelledby="creatorTitle">
       <div class="nx-auth-box">
         <button type="button" class="nx-back-btn" id="creatorBackBtn">← Change choice</button>
 
-        <!-- Step 1: Creator Email / Google -->
+        <!-- STEP 1: Email + Google Start -->
         <div id="creatorStep1">
           <div class="nx-banner-founding">
-            <span>🔥</span>
-            <span><b id="creatorFoundingSpots">58</b> of 100 Founding Spots Available (90 Days Free)</span>
+            <span>✨</span>
+            <span><b>Founding Spots:</b> <span id="creatorFoundingSpots">42</span> / 100 claimed (90 days free)</span>
           </div>
 
           <span class="nx-form-kicker">Creator Sign-Up · Step 1 of 3</span>
           <h1 class="nx-form-title" id="creatorTitle">Claim your founding spot.</h1>
-          <p class="nx-form-sub">Sign up with Google or receive a 6-digit code. No password required.</p>
+          <p class="nx-form-sub">Zero commission, your own 3D storefront, and direct client inquiries. 90 days free.</p>
 
-          <!-- Google OAuth -->
+          <!-- 1-Click Google OAuth -->
           <a class="btn btn-google" id="creatorGoogleBtn" href="/api/auth/google?intent=creator">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z"/>
@@ -824,67 +844,64 @@
             Continue with Google
           </a>
 
-          <div class="or-divider">or continue with email</div>
+          <div class="or-divider">or use your email</div>
 
-          <!-- Email code form -->
           <form id="creatorEmailForm" novalidate>
-            <div class="field">
-              <label class="field-label" for="creatorEmail">Creator / Studio Email</label>
-              <input class="field-input" type="email" id="creatorEmail" name="email"
-                placeholder="creator@domain.com" autocomplete="email" required maxlength="254">
+            <div class="form-field">
+              <label class="field-label" for="creatorEmail">Email address</label>
+              <input class="field-input" type="email" id="creatorEmail" name="email" placeholder="alex@visuals.co" autocomplete="email" required>
             </div>
-            <p class="form-msg" id="creatorMsg1" aria-live="polite"></p>
-            <button type="submit" class="btn btn-primary" id="creatorSendCodeBtn">Email me a 6-digit code</button>
+            <div class="form-msg" id="creatorMsg1" role="alert" aria-live="polite"></div>
+            <button type="submit" class="btn btn-primary" id="creatorSendCodeBtn">Email me a 6-digit code →</button>
           </form>
 
           <p class="form-footer-note">
-            First 100 creators get 90 days free, then flat $49/mo. 0% cut on all direct client bookings.
+            No credit card needed today. Cancel anytime with one click.
           </p>
         </div>
 
-        <!-- Step 2: 6-Digit Code Verification -->
+        <!-- STEP 2: 6-Digit Code Verification -->
         <div id="creatorStep2" hidden>
-          <span class="nx-form-kicker">Step 2 of 3</span>
+          <span class="nx-form-kicker">Security Code · Step 2 of 3</span>
           <h2 class="nx-form-title">Enter your 6-digit code.</h2>
-          <p class="nx-form-sub">We sent a verification code to <b id="creatorSentEmail"></b>. It should arrive in a few moments.</p>
+          <p class="nx-form-sub">We sent a verification code to <b id="creatorSentEmail"></b>.</p>
 
           <form id="creatorOtpForm" novalidate>
             <div class="otp-grid" id="creatorOtpGrid">
-              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" autocomplete="one-time-code" aria-label="Digit 1">
-              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" aria-label="Digit 2">
-              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" aria-label="Digit 3">
-              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" aria-label="Digit 4">
-              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" aria-label="Digit 5">
-              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]*" aria-label="Digit 6">
+              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="0" aria-label="Digit 1" autofocus>
+              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="1" aria-label="Digit 2">
+              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="2" aria-label="Digit 3">
+              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="3" aria-label="Digit 4">
+              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="4" aria-label="Digit 5">
+              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="5" aria-label="Digit 6">
             </div>
-            <p class="form-msg" id="creatorMsg2" aria-live="polite"></p>
-            <button type="submit" class="btn btn-primary" id="creatorVerifyBtn">Verify code &amp; continue</button>
+            <div class="form-msg" id="creatorMsg2" role="alert" aria-live="polite"></div>
+            <button type="submit" class="btn btn-primary" id="creatorVerifyBtn">Verify code →</button>
           </form>
 
           <div class="form-sublinks">
-            <button type="button" class="link-action" id="creatorResendBtn" disabled>Resend code</button>
-            <button type="button" class="link-action" id="creatorChangeEmailBtn">Use different email</button>
+            <button type="button" class="link-action" id="creatorResendBtn">Resend code</button>
+            <button type="button" class="link-action" id="creatorChangeEmailBtn">Change email</button>
           </div>
         </div>
 
-        <!-- Step 3: Identity & Age Gate (18+) -->
+        <!-- STEP 3: Identity & Age Gate (Page 10 Onboarding Requirements) -->
         <div id="creatorStep3" hidden>
-          <span class="nx-form-kicker">Step 3 of 3</span>
+          <span class="nx-form-kicker">Creator Profile · Step 3 of 3</span>
           <h2 class="nx-form-title">A bit about you.</h2>
-          <p class="nx-form-sub">To keep the directory trustworthy, creators must be 18+. Your birthdate is never shown on your storefront.</p>
+          <p class="nx-form-sub">Creators on Nexus must be at least 18 years old to open a commercial storefront.</p>
 
           <form id="creatorAboutForm" novalidate>
-            <div class="field">
-              <label class="field-label" for="creatorName">Full Legal Name</label>
-              <input class="field-input" type="text" id="creatorName" name="name"
-                placeholder="e.g. Tyrone Strickland" autocomplete="name" required maxlength="80">
+            <div class="form-field">
+              <label class="field-label" for="creatorName">Full name / Studio name</label>
+              <input class="field-input" type="text" id="creatorName" placeholder="e.g. Maya Chen" required>
             </div>
 
-            <div class="field">
-              <label class="field-label" id="dobGroupLabel">Date of Birth</label>
-              <div class="dob-row" role="group" aria-labelledby="dobGroupLabel">
+            <div class="form-field">
+              <label class="field-label">Date of birth <span class="field-hint">(Must be 18+)</span></label>
+              <div class="dob-row">
                 <select class="field-select" id="dobMonth" aria-label="Birth Month" required>
-                  <option value="">Month</option>
+                  <option value="" disabled selected>Month</option>
                   <option value="01">January</option>
                   <option value="02">February</option>
                   <option value="03">March</option>
@@ -899,44 +916,48 @@
                   <option value="12">December</option>
                 </select>
                 <select class="field-select" id="dobDay" aria-label="Birth Day" required>
-                  <option value="">Day</option>
+                  <option value="" disabled selected>Day</option>
                 </select>
                 <select class="field-select" id="dobYear" aria-label="Birth Year" required>
-                  <option value="">Year</option>
+                  <option value="" disabled selected>Year</option>
                 </select>
               </div>
             </div>
 
-            <p class="form-msg" id="creatorMsg3" aria-live="polite"></p>
-            <button type="submit" class="btn btn-primary" id="creatorSaveAboutBtn">Complete sign-up &amp; continue</button>
+            <div class="form-msg" id="creatorMsg3" role="alert" aria-live="polite"></div>
+            <button type="submit" class="btn btn-primary" id="creatorSaveAboutBtn">Complete sign-up &amp; build storefront →</button>
           </form>
         </div>
 
-        <!-- Step 4: Completion -> Continues into Onboarding Steps (Page 10) -->
+        <!-- Underage Gate Notification -->
+        <div id="creatorStepUnderage" hidden>
+          <div class="done-badge-wrap" style="background: rgba(239, 68, 68, 0.12); color: #DC2626;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+          <h2 class="nx-form-title">Age requirement not met</h2>
+          <p class="nx-form-sub">
+            To register as a commercial creator and accept paid client bookings on Nexus, you must be at least 18 years of age.
+          </p>
+          <a class="btn btn-google" href="/">Return to Homepage</a>
+        </div>
+
+        <!-- STEP 4: Success & Hand-off to Page 10 Onboarding -->
         <div id="creatorStepDone" hidden>
           <div class="done-badge-wrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 6L9 17l-5-5"/>
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
             </svg>
           </div>
-          <span class="nx-form-kicker">Account Verified</span>
           <h2 class="nx-form-title">You're in! Welcome to Nexus.</h2>
-          <p class="nx-form-sub">Your creator account is confirmed. The next step is building your public storefront, adding your showreel, and setting your service menu.</p>
-
-          <a class="btn btn-primary" id="creatorOnboardingLink" href="/seller/onboarding" style="margin-bottom:12px">
-            Continue to Storefront Onboarding (Page 10) →
-          </a>
-
-          <a class="btn btn-google" href="/explore">
-            Explore Creator Directory First
-          </a>
-        </div>
-
-        <!-- Underage Gate -->
-        <div id="creatorStepUnderage" hidden>
-          <h2 class="nx-form-title">Age verification requirement</h2>
-          <p class="nx-form-sub">Nexus requires all listing creators and service providers to be at least 18 years of age. You can still explore talent and view showreels.</p>
-          <a class="btn btn-google" href="/explore">Browse Directory</a>
+          <p class="nx-form-sub">
+            Your founding creator account has been created. Next, we'll set up your showreel, bio, disciplines, and pricing.
+          </p>
+          <a class="btn btn-primary" id="creatorOnboardingLink" href="/seller/onboarding">Continue to Storefront Setup (Page 10) →</a>
         </div>
 
       </div>
@@ -949,9 +970,8 @@
     'use strict';
 
     var RESEND_SECONDS = 30;
-    var creatorEmail = '';
-    var clientEmail = '';
     var resendTimer = null;
+    var creatorEmail = '';
 
     var $ = function (id) { return document.getElementById(id); };
 
@@ -1004,18 +1024,20 @@
     (function initDob() {
       var daySelect = $('dobDay');
       var yearSelect = $('dobYear');
+      if (!daySelect || !yearSelect) return;
+
       for (var d = 1; d <= 31; d++) {
         var opt = document.createElement('option');
-        var val = String(d).padStart(2, '0');
-        opt.value = val;
-        opt.textContent = val;
+        opt.value = (d < 10 ? '0' : '') + d;
+        opt.textContent = d;
         daySelect.appendChild(opt);
       }
+
       var currentYear = new Date().getFullYear();
-      for (var y = currentYear; y >= currentYear - 100; y--) {
+      for (var y = currentYear - 14; y >= currentYear - 90; y--) {
         var yOpt = document.createElement('option');
-        yOpt.value = String(y);
-        yOpt.textContent = String(y);
+        yOpt.value = y;
+        yOpt.textContent = y;
         yearSelect.appendChild(yOpt);
       }
     })();
@@ -1025,16 +1047,15 @@
       el.className = 'form-msg' + (kind ? ' is-' + kind : '');
     }
 
-    function busy(btn, on) {
-      btn.setAttribute('aria-busy', on ? 'true' : 'false');
-      btn.disabled = !!on;
+    function busy(btn, isBusy) {
+      btn.setAttribute('aria-busy', isBusy ? 'true' : 'false');
+      btn.disabled = !!isBusy;
     }
 
-    function bad(el) {
-      el.classList.remove('is-bad');
-      void el.offsetWidth;
-      el.classList.add('is-bad');
-      el.focus();
+    function bad(input) {
+      input.classList.add('is-bad');
+      input.focus();
+      setTimeout(function () { input.classList.remove('is-bad'); }, 600);
     }
 
     function isValidEmail(val) {
@@ -1045,30 +1066,33 @@
     $('clientEmailForm').addEventListener('submit', function (e) {
       e.preventDefault();
       var input = $('clientEmail');
-      var btn = $('clientSendBtn');
+      var val = (input.value || '').trim();
       var msg = $('clientMsg');
-      var emailVal = input.value.trim().toLowerCase();
+      var btn = $('clientSendBtn');
 
       say(msg, '');
-      if (!isValidEmail(emailVal)) {
+
+      if (!val || !isValidEmail(val)) {
         say(msg, 'Please enter a valid email address.', 'err');
         return bad(input);
       }
 
-      clientEmail = emailVal;
       busy(btn, true);
 
       fetch('/api/auth/magic-link', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: clientEmail, intent: 'client' })
+        body: JSON.stringify({ email: val, intent: 'client' })
       })
       .then(function (r) { return r.json(); })
       .catch(function () { return { ok: true }; })
       .then(function () {
-        $('clientSentEmail').textContent = clientEmail;
         $('clientFormStage').hidden = true;
         $('clientSentStage').hidden = false;
+        $('clientSentEmail').textContent = val;
+      })
+      .catch(function () {
+        say(msg, 'Unable to send magic link right now. Please try again.', 'err');
       })
       .finally(function () {
         busy(btn, false);
@@ -1076,21 +1100,22 @@
     });
 
     $('clientResendBtn').addEventListener('click', function () {
+      var email = $('clientSentEmail').textContent;
       var btn = $('clientResendBtn');
       btn.disabled = true;
       btn.textContent = 'Sending...';
       fetch('/api/auth/magic-link', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: clientEmail, intent: 'client' })
+        body: JSON.stringify({ email: email, intent: 'client' })
       })
       .catch(function () {})
       .then(function () {
-        btn.textContent = 'Magic link resent!';
+        btn.textContent = 'Link resent ✓';
         setTimeout(function () {
           btn.disabled = false;
-          btn.textContent = 'Resend magic link';
-        }, 4000);
+          btn.textContent = 'Resend link';
+        }, 3000);
       });
     });
 
@@ -1105,30 +1130,31 @@
     $('creatorEmailForm').addEventListener('submit', function (e) {
       e.preventDefault();
       var input = $('creatorEmail');
-      var btn = $('creatorSendCodeBtn');
+      var val = (input.value || '').trim();
       var msg = $('creatorMsg1');
-      var emailVal = input.value.trim().toLowerCase();
+      var btn = $('creatorSendCodeBtn');
 
       say(msg, '');
-      if (!isValidEmail(emailVal)) {
+
+      if (!val || !isValidEmail(val)) {
         say(msg, 'Please enter a valid email address.', 'err');
         return bad(input);
       }
 
-      creatorEmail = emailVal;
+      creatorEmail = val;
       busy(btn, true);
 
       fetch('/api/auth/otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: creatorEmail, intent: 'creator' })
+        body: JSON.stringify({ email: val, intent: 'creator' })
       })
       .then(function (r) { return r.json(); })
       .catch(function () { return { ok: true }; })
       .then(function () {
-        $('creatorSentEmail').textContent = creatorEmail;
         $('creatorStep1').hidden = true;
         $('creatorStep2').hidden = false;
+        $('creatorSentEmail').textContent = val;
         startCreatorResendTimer();
         setupOtpInputs();
       })
@@ -1144,62 +1170,50 @@
       return Array.prototype.slice.call($('creatorOtpGrid').querySelectorAll('input'));
     }
 
-    function getOtpValue() {
-      return getOtpInputs().map(function (i) { return i.value; }).join('');
-    }
-
     function setupOtpInputs() {
       var inputs = getOtpInputs();
-      inputs.forEach(function (inp, idx) {
-        inp.value = '';
-        inp.classList.remove('is-filled', 'is-bad');
-        inp.oninput = function () {
-          var val = inp.value.replace(/\D/g, '');
-          if (val.length > 1) {
-            val.slice(0, 6 - idx).split('').forEach(function (ch, k) {
-              if (inputs[idx + k]) {
-                inputs[idx + k].value = ch;
-                inputs[idx + k].classList.add('is-filled');
+      inputs.forEach(function (input, idx) {
+        input.value = '';
+        input.classList.remove('is-filled');
+
+        input.oninput = function () {
+          var val = input.value.replace(/\D/g, '');
+          input.value = val ? val[0] : '';
+          input.classList.toggle('is-filled', !!input.value);
+
+          if (input.value && idx < inputs.length - 1) {
+            inputs[idx + 1].focus();
+            inputs[idx + 1].select();
+          }
+
+          // Auto-submit if all filled
+          var code = inputs.map(function (i) { return i.value; }).join('');
+          if (code.length === 6) {
+            $('creatorVerifyBtn').click();
+          }
+        };
+
+        input.onkeydown = function (e) {
+          if (e.key === 'Backspace' && !input.value && idx > 0) {
+            inputs[idx - 1].focus();
+            inputs[idx - 1].select();
+          }
+        };
+
+        input.onpaste = function (e) {
+          var paste = (e.clipboardData || window.clipboardData).getData('text');
+          var digits = (paste || '').replace(/\D/g, '').slice(0, 6);
+          if (digits) {
+            e.preventDefault();
+            digits.split('').forEach(function (d, i) {
+              if (inputs[i]) {
+                inputs[i].value = d;
+                inputs[i].classList.add('is-filled');
               }
             });
-            var next = inputs[Math.min(idx + val.length, 5)];
+            var next = inputs[Math.min(digits.length, 5)];
             if (next) next.focus();
-            if (getOtpValue().length === 6) $('creatorOtpForm').requestSubmit();
-            return;
-          }
-          inp.value = val;
-          inp.classList.toggle('is-filled', !!val);
-          if (val && inputs[idx + 1]) {
-            inputs[idx + 1].focus();
-          }
-          if (getOtpValue().length === 6) {
-            $('creatorOtpForm').requestSubmit();
-          }
-        };
-
-        inp.onkeydown = function (e) {
-          if (e.key === 'Backspace' && !inp.value && inputs[idx - 1]) {
-            inputs[idx - 1].focus();
-            inputs[idx - 1].value = '';
-            inputs[idx - 1].classList.remove('is-filled');
-          }
-          if (e.key === 'ArrowLeft' && inputs[idx - 1]) inputs[idx - 1].focus();
-          if (e.key === 'ArrowRight' && inputs[idx + 1]) inputs[idx + 1].focus();
-        };
-
-        inp.onpaste = function (e) {
-          e.preventDefault();
-          var pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
-          pasted.slice(0, 6).split('').forEach(function (ch, k) {
-            if (inputs[k]) {
-              inputs[k].value = ch;
-              inputs[k].classList.add('is-filled');
-            }
-          });
-          var focusIdx = Math.min(pasted.length, 5);
-          if (inputs[focusIdx]) inputs[focusIdx].focus();
-          if (getOtpValue().length === 6) {
-            $('creatorOtpForm').requestSubmit();
+            if (digits.length === 6) $('creatorVerifyBtn').click();
           }
         };
       });
@@ -1211,13 +1225,13 @@
 
     $('creatorOtpForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      var code = getOtpValue();
+      var inputs = getOtpInputs();
+      var code = inputs.map(function (i) { return i.value; }).join('');
       var btn = $('creatorVerifyBtn');
       var msg = $('creatorMsg2');
 
-      if (code.length !== 6) {
-        say(msg, 'Please enter all 6 digits.', 'err');
-        var inputs = getOtpInputs();
+      if (code.length < 6) {
+        say(msg, 'Please enter all 6 digits of your code.', 'err');
         return bad(inputs[code.length] || inputs[0]);
       }
 
