@@ -1,16 +1,20 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Join Nexus · Find your creative or be found</title>
-  <meta name="description" content="Sign up for Nexus. Choose whether you're looking to hire vetted creative talent or claim a founding creator spot with 0% commission.">
+  <meta name="description"
+    content="Sign up for Nexus. Choose whether you're looking to hire vetted creative talent or claim a founding creator spot with 0% commission.">
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%233B54EE' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --jn-ink: #0F172A;
@@ -26,8 +30,19 @@
       --ok: #047857;
     }
 
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; min-height: 100dvh; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100dvh;
+    }
+
     body {
       background: #FFFFFF;
       color: var(--jn-ink);
@@ -39,9 +54,19 @@
       flex-direction: column;
     }
 
-    a { color: var(--jn-blue); text-decoration: none; }
-    button { font-family: var(--jn-serif); }
-    [hidden] { display: none !important; }
+    a {
+      color: var(--jn-blue);
+      text-decoration: none;
+    }
+
+    button {
+      font-family: var(--jn-serif);
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
     .jn-sr {
       position: absolute;
       width: 1px;
@@ -62,6 +87,7 @@
       margin: 0 auto;
       padding: 18px clamp(18px, 3.8vw, 36px) 0;
     }
+
     .nx-auth-brand {
       display: inline-flex;
       align-items: center;
@@ -74,6 +100,7 @@
       text-decoration: none !important;
       flex-shrink: 0;
     }
+
     .nx-auth-brand-dot {
       width: 8px;
       height: 8px;
@@ -81,11 +108,13 @@
       background: var(--jn-blue);
       box-shadow: 0 0 10px rgba(59, 84, 238, 0.35);
     }
+
     .nx-auth-nav-actions {
       display: flex;
       align-items: center;
       gap: 20px;
     }
+
     .nx-auth-nav-link {
       font-family: var(--jn-sans);
       font-size: 14px;
@@ -95,8 +124,15 @@
       white-space: nowrap;
       transition: color 0.15s ease;
     }
-    .nx-auth-nav-link:hover { color: var(--jn-ink); }
-    .nx-auth-nav-link b { color: var(--jn-blue); font-weight: 700; }
+
+    .nx-auth-nav-link:hover {
+      color: var(--jn-ink);
+    }
+
+    .nx-auth-nav-link b {
+      color: var(--jn-blue);
+      font-weight: 700;
+    }
 
     /* ── Landing Page #join Architecture ── */
     .jn {
@@ -107,6 +143,7 @@
       font-variant-numeric: lining-nums tabular-nums;
       padding: 14px 0 40px;
     }
+
     .jn button,
     .jn input,
     .jn select,
@@ -114,6 +151,7 @@
       font-family: var(--jn-serif);
       font-variant-numeric: lining-nums tabular-nums;
     }
+
     .jn-in {
       max-width: 1160px;
       margin: 0 auto;
@@ -131,6 +169,7 @@
       max-width: 1080px;
       padding: 0 24px;
     }
+
     .jn-pill {
       margin: 0 0 10px;
       padding: 5px 14px;
@@ -144,17 +183,19 @@
       text-transform: uppercase;
       color: #3B54EE;
     }
+
     .jn-title {
-      margin: 0 auto 8px;
+      margin: 0 auto 12px;
       font-family: var(--jn-serif);
       font-weight: 600;
       letter-spacing: -0.025em;
-      line-height: 1.04;
-      font-size: clamp(2.1rem, 3.6vw, 3.05rem);
-      max-width: 28ch;
+      line-height: 1.02;
+      font-size: clamp(2.75rem, 5.2vw, 4.35rem);
+      max-width: 18ch;
       color: #0F172A;
       text-wrap: balance;
     }
+
     .jn-title .nx-deck-accent {
       font-style: italic;
       font-weight: 500;
@@ -164,6 +205,7 @@
       -webkit-text-fill-color: transparent;
       display: inline-block;
     }
+
     .jn-note {
       position: absolute;
       font-family: 'Caveat', cursive;
@@ -172,6 +214,7 @@
       color: #475569;
       pointer-events: none;
     }
+
     .jn-note svg {
       display: block;
       width: 64px;
@@ -182,10 +225,28 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    .jn-n-a { left: 2%; top: 14%; transform: rotate(-7deg); text-align: left; }
-    .jn-n-a svg { margin: 4px 0 0 42px; }
-    .jn-n-b { right: 1.5%; top: 14%; transform: rotate(7deg); text-align: right; }
-    .jn-n-b svg { margin: 4px 0 0 -10px; }
+
+    .jn-n-a {
+      left: 2%;
+      top: 14%;
+      transform: rotate(-7deg);
+      text-align: left;
+    }
+
+    .jn-n-a svg {
+      margin: 4px 0 0 42px;
+    }
+
+    .jn-n-b {
+      right: 1.5%;
+      top: 14%;
+      transform: rotate(7deg);
+      text-align: right;
+    }
+
+    .jn-n-b svg {
+      margin: 4px 0 0 -10px;
+    }
 
     .jn-sub {
       margin: 0 auto;
@@ -196,7 +257,10 @@
       line-height: 1.45;
       color: #64748B;
     }
-    .jn-sub-short { display: none; }
+
+    .jn-sub-short {
+      display: none;
+    }
 
     .jn-head-attrs {
       display: flex;
@@ -210,12 +274,14 @@
       font-size: 14.5px;
       color: #475569;
     }
+
     .jn-head-attrs li {
       display: inline-flex;
       align-items: center;
       gap: 7px;
       white-space: nowrap;
     }
+
     .jn-tick-ic {
       display: inline-flex;
       flex: none;
@@ -238,6 +304,7 @@
       border: 1px solid rgba(15, 23, 42, 0.06);
       box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
     }
+
     .jn-tab {
       height: 36px;
       padding: 0 20px;
@@ -250,14 +317,24 @@
       white-space: nowrap;
       transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease;
     }
-    .jn-tab:hover { color: #0F172A; }
+
+    .jn-tab:hover {
+      color: #0F172A;
+    }
+
     .jn-tab.is-active {
       background: #FFFFFF;
       color: #0F172A;
       box-shadow: 0 2px 8px rgba(15, 23, 42, 0.09);
     }
-    .jn-tab[data-side="login"].is-active { color: #3B54EE; }
-    .jn-tab:active { transform: scale(0.97); }
+
+    .jn-tab[data-side="login"].is-active {
+      color: #3B54EE;
+    }
+
+    .jn-tab:active {
+      transform: scale(0.97);
+    }
 
     /* Sliding Dual-Panel Split Container (.jn-grid) */
     .jn-grid {
@@ -274,6 +351,7 @@
       border: 1px solid rgba(15, 23, 42, 0.07);
       box-shadow: 0 32px 76px -22px rgba(15, 23, 42, 0.12), 0 4px 18px -4px rgba(15, 23, 42, 0.04);
     }
+
     .jn-card {
       position: relative;
       display: flex;
@@ -285,13 +363,22 @@
       color: #0F172A;
       border: 0;
     }
+
     .jn-grid[data-side="hire"] .jn-creator,
     .jn-grid[data-side="be"] .jn-client {
       opacity: 0;
       pointer-events: none;
     }
-    .jn-step { display: flex; flex-direction: column; gap: 10px; }
-    .jn-step[hidden] { display: none; }
+
+    .jn-step {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .jn-step[hidden] {
+      display: none;
+    }
 
     .jn-k {
       margin: 0;
@@ -302,7 +389,9 @@
       text-transform: uppercase;
       color: #3B54EE;
     }
-    .jn-card h3, .jn-card h2 {
+
+    .jn-card h3,
+    .jn-card h2 {
       margin: -2px 0 2px;
       font-family: var(--jn-serif);
       font-weight: 600;
@@ -311,10 +400,13 @@
       font-size: clamp(1.9rem, 2.75vw, 2.3rem);
       color: #0F172A;
     }
-    .jn-card h3 em, .jn-card h2 em {
+
+    .jn-card h3 em,
+    .jn-card h2 em {
       font-style: italic;
       color: #3B54EE;
     }
+
     .jn-p {
       margin: 0;
       font-family: var(--jn-serif);
@@ -322,9 +414,18 @@
       line-height: 1.48;
       color: #475569;
     }
-    .jn-p b { color: var(--jn-ink); word-break: break-all; }
 
-    .jn form { display: flex; flex-direction: column; gap: 11px; }
+    .jn-p b {
+      color: var(--jn-ink);
+      word-break: break-all;
+    }
+
+    .jn form {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
     .jn-l {
       font-family: var(--jn-serif);
       font-size: 13.5px;
@@ -332,11 +433,13 @@
       color: #334155;
       margin-top: 2px;
     }
+
     .jn-l span {
       font-weight: 400;
       color: #64748B;
       font-size: 12.5px;
     }
+
     .jn input[type=text],
     .jn input[type=email],
     .jn select {
@@ -352,15 +455,18 @@
       color: #0F172A;
       transition: border-color 0.2s, background-color 0.2s, box-shadow 0.25s var(--jn-ease);
     }
+
     .jn select {
       appearance: none;
       background: #FAFAFC url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 12px center/15px no-repeat;
       padding-right: 34px;
     }
+
     .jn input::placeholder {
       color: #94A3B8;
       font-style: italic;
     }
+
     .jn input:focus,
     .jn select:focus {
       outline: 0;
@@ -368,12 +474,23 @@
       border-color: #3B54EE;
       box-shadow: 0 0 0 3px rgba(59, 84, 238, 0.12);
     }
-    .jn input.is-bad, .jn select.is-bad {
+
+    .jn input.is-bad,
+    .jn select.is-bad {
       border-color: #DC2626;
       background: #FEF2F2;
       animation: jnShake 0.3s;
     }
-    @keyframes jnShake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+    @keyframes jnShake {
+      25% {
+        transform: translateX(-5px);
+      }
+
+      75% {
+        transform: translateX(5px);
+      }
+    }
 
     .jn-dob-row {
       display: grid;
@@ -393,7 +510,9 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
     }
-    .jn-or::before, .jn-or::after {
+
+    .jn-or::before,
+    .jn-or::after {
       content: '';
       flex: 1;
       height: 1px;
@@ -422,10 +541,29 @@
       transition: transform 0.16s var(--jn-ease), filter 0.2s ease, box-shadow 0.25s ease;
       margin-top: 2px;
     }
-    .jn-btn:hover { filter: brightness(1.06); transform: translateY(-1px); box-shadow: 0 10px 22px -5px rgba(59, 84, 238, 0.44); }
-    .jn-btn:active { transform: scale(0.98); }
-    .jn-btn:focus-visible, .jn-link:focus-visible, .jn a:focus-visible { outline: 2px solid #3B54EE; outline-offset: 3px; }
-    .jn-btn[aria-busy="true"] { opacity: 0.75; pointer-events: none; }
+
+    .jn-btn:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px -5px rgba(59, 84, 238, 0.44);
+    }
+
+    .jn-btn:active {
+      transform: scale(0.98);
+    }
+
+    .jn-btn:focus-visible,
+    .jn-link:focus-visible,
+    .jn a:focus-visible {
+      outline: 2px solid #3B54EE;
+      outline-offset: 3px;
+    }
+
+    .jn-btn[aria-busy="true"] {
+      opacity: 0.75;
+      pointer-events: none;
+    }
+
     .jn-btn[aria-busy="true"]::after {
       content: '';
       width: 15px;
@@ -435,7 +573,12 @@
       border-right-color: transparent;
       animation: spin 0.7s linear infinite;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
     .jn-btn.is-google {
       background: #FFFFFF;
@@ -443,8 +586,17 @@
       border: 1px solid rgba(15, 23, 42, 0.16);
       box-shadow: none;
     }
-    .jn-btn.is-google:hover { background: #F8FAFC; border-color: rgba(15, 23, 42, 0.30); filter: none; }
-    .jn-btn.is-google svg { width: 18px; height: 18px; }
+
+    .jn-btn.is-google:hover {
+      background: #F8FAFC;
+      border-color: rgba(15, 23, 42, 0.30);
+      filter: none;
+    }
+
+    .jn-btn.is-google svg {
+      width: 18px;
+      height: 18px;
+    }
 
     /* Founding Counter & Progress Track */
     .jn-count {
@@ -456,6 +608,7 @@
       font-size: 15.5px;
       color: #475569;
     }
+
     .jn-count b {
       font-family: var(--jn-serif);
       font-weight: 700;
@@ -463,6 +616,7 @@
       line-height: 1;
       color: #0F172A;
     }
+
     .jn-track {
       width: 100%;
       height: 3px;
@@ -471,7 +625,8 @@
       overflow: hidden;
       margin-bottom: 4px;
     }
-    .jn-track > i {
+
+    .jn-track>i {
       display: block;
       width: 84%;
       height: 100%;
@@ -491,7 +646,13 @@
       font-size: 14px;
       color: #475569;
     }
-    .jn-ticks li { display: flex; align-items: center; gap: 9px; }
+
+    .jn-ticks li {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
     .jn-ticks li::before {
       content: '';
       flex: none;
@@ -508,7 +669,9 @@
       font-size: 13.5px;
       color: #64748B;
     }
-    .jn-fine a, .jn-fine button {
+
+    .jn-fine a,
+    .jn-fine button {
       color: #3B54EE;
       font-style: normal;
       font-weight: 600;
@@ -521,9 +684,20 @@
       font-size: 13.5px;
     }
 
-    .jn-msg { margin: 0; min-height: 16px; font-size: 13.5px; font-weight: 600; }
-    .jn-msg.is-err { color: var(--bad); }
-    .jn-msg.is-ok { color: var(--ok); }
+    .jn-msg {
+      margin: 0;
+      min-height: 16px;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .jn-msg.is-err {
+      color: var(--bad);
+    }
+
+    .jn-msg.is-ok {
+      color: var(--ok);
+    }
 
     .jn-sublinks {
       display: flex;
@@ -534,6 +708,7 @@
       padding-top: 10px;
       border-top: 1px solid rgba(15, 23, 42, 0.08);
     }
+
     .jn-link {
       border: 0;
       background: none;
@@ -544,7 +719,12 @@
       text-underline-offset: 3px;
       cursor: pointer;
     }
-    .jn-link:disabled { color: #94A3B8; cursor: default; text-decoration: none; }
+
+    .jn-link:disabled {
+      color: #94A3B8;
+      cursor: default;
+      text-decoration: none;
+    }
 
     /* 6-Digit OTP Input Grid */
     .otp-grid {
@@ -553,6 +733,7 @@
       gap: 8px;
       margin: 4px 0 8px;
     }
+
     .otp-grid input {
       height: 52px !important;
       padding: 0 !important;
@@ -567,10 +748,12 @@
       caret-color: #3B54EE;
       outline: none;
     }
+
     .otp-grid input:focus {
       border-color: #3B54EE !important;
       box-shadow: 0 0 0 3px rgba(59, 84, 238, 0.14) !important;
     }
+
     .otp-grid input.is-filled {
       border-color: rgba(59, 84, 238, 0.45) !important;
       background: #F8FAFC !important;
@@ -588,7 +771,11 @@
       justify-content: center;
       margin-bottom: 4px;
     }
-    .jn-done-badge svg { width: 26px; height: 26px; }
+
+    .jn-done-badge svg {
+      width: 26px;
+      height: 26px;
+    }
 
     /* ── The Signature Sliding Blue Panel (.jn-panel) ── */
     .jn-panel {
@@ -605,10 +792,12 @@
       transform: translate3d(0, 0, 0);
       transition: transform 0.58s cubic-bezier(0.65, 0, 0.35, 1), box-shadow 0.58s ease;
     }
+
     .jn-grid[data-side="be"] .jn-panel {
       transform: translate3d(-100%, 0, 0);
       box-shadow: 8px 0 32px -12px rgba(35, 55, 198, 0.24);
     }
+
     .jn-stage {
       position: relative;
       left: -100%;
@@ -619,7 +808,11 @@
       transform: translate3d(0, 0, 0);
       transition: transform 0.58s cubic-bezier(0.65, 0, 0.35, 1);
     }
-    .jn-grid[data-side="be"] .jn-stage { transform: translate3d(50%, 0, 0); }
+
+    .jn-grid[data-side="be"] .jn-stage {
+      transform: translate3d(50%, 0, 0);
+    }
+
     .jn-face {
       position: absolute;
       top: 0;
@@ -634,13 +827,19 @@
       padding: 48px clamp(34px, 4.6vw, 58px);
       transition: transform 0.58s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.34s ease;
     }
+
     .jn-face h3 {
       margin: 0;
       font: 600 clamp(2rem, 2.9vw, 2.5rem)/1.06 var(--jn-serif);
       letter-spacing: -0.02em;
       color: #FFFFFF;
     }
-    .jn-face h3 em { font-style: italic; font-weight: 400; }
+
+    .jn-face h3 em {
+      font-style: italic;
+      font-weight: 400;
+    }
+
     .jn-face p:not(.jn-k) {
       margin: 0;
       max-width: 29ch;
@@ -649,7 +848,11 @@
       line-height: 1.5;
       color: rgba(255, 255, 255, 0.9);
     }
-    .jn-face .jn-k { color: rgba(255, 255, 255, 0.78); }
+
+    .jn-face .jn-k {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
     .jn-glass-pill {
       display: inline-flex;
       align-items: center;
@@ -662,10 +865,27 @@
       font-size: 13px;
       font-weight: 600;
     }
-    .jn-face-be { right: 0; }
-    .jn-face-hire { left: 0; opacity: 0; transform: translate3d(-20%, 0, 0); }
-    .jn-grid[data-side="be"] .jn-face-be { opacity: 0; transform: translate3d(20%, 0, 0); }
-    .jn-grid[data-side="be"] .jn-face-hire { opacity: 1; transform: translate3d(0, 0, 0); }
+
+    .jn-face-be {
+      right: 0;
+    }
+
+    .jn-face-hire {
+      left: 0;
+      opacity: 0;
+      transform: translate3d(-20%, 0, 0);
+    }
+
+    .jn-grid[data-side="be"] .jn-face-be {
+      opacity: 0;
+      transform: translate3d(20%, 0, 0);
+    }
+
+    .jn-grid[data-side="be"] .jn-face-hire {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
     .jn-flip {
       margin-top: 4px;
       height: 44px;
@@ -680,8 +900,15 @@
       cursor: pointer;
       transition: background-color 0.2s, transform 0.14s ease, color 0.2s;
     }
-    .jn-flip:hover { background: rgba(255, 255, 255, 0.16); transform: translateY(-1px); }
-    .jn-flip:active { transform: scale(0.97); }
+
+    .jn-flip:hover {
+      background: rgba(255, 255, 255, 0.16);
+      transform: translateY(-1px);
+    }
+
+    .jn-flip:active {
+      transform: scale(0.97);
+    }
 
     /* ── Login Sheet Overlay (.jn-login-sheet) ── */
     .jn-login-sheet {
@@ -696,11 +923,13 @@
       transform: translate3d(0, -14px, 0);
       transition: opacity 0.28s var(--jn-ease), transform 0.34s var(--jn-ease);
     }
+
     .jn-grid[data-login="open"] .jn-login-sheet {
       opacity: 1;
       pointer-events: auto;
       transform: translate3d(0, 0, 0);
     }
+
     .jn-login-aside {
       display: flex;
       flex-direction: column;
@@ -713,13 +942,26 @@
       color: #FFFFFF;
       border-radius: 30px;
     }
+
     .jn-login-aside h3 {
       margin: 0;
       font: 600 clamp(2rem, 2.9vw, 2.5rem)/1.06 var(--jn-serif);
       color: #FFFFFF;
     }
-    .jn-login-aside h3 em { font-style: italic; font-weight: 400; }
-    .jn-login-aside p { margin: 0; max-width: 28ch; font-size: 16px; line-height: 1.5; color: rgba(255, 255, 255, 0.9); }
+
+    .jn-login-aside h3 em {
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .jn-login-aside p {
+      margin: 0;
+      max-width: 28ch;
+      font-size: 16px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
     .jn-login-form-wrap {
       display: flex;
       flex-direction: column;
@@ -727,56 +969,176 @@
       gap: 12px;
       padding: 44px clamp(32px, 4.6vw, 56px);
     }
+
     .jn-login-form-wrap h3 {
       margin: -2px 0 2px;
       font: 600 clamp(1.9rem, 2.75vw, 2.3rem)/1.06 var(--jn-serif);
       color: #0F172A;
     }
-    .jn-login-form-wrap h3 em { font-style: italic; color: #3B54EE; }
+
+    .jn-login-form-wrap h3 em {
+      font-style: italic;
+      color: #3B54EE;
+    }
 
     /* Responsive Breakpoints (Exact match to css/join.css + css/showcase.css) */
-    @media (max-width: 960px) { .jn-note { display: none; } }
+    @media (max-width: 960px) {
+      .jn-note {
+        display: none;
+      }
+    }
+
     @media (max-width: 820px) {
-      .jn { padding: 24px 0 56px; }
-      .jn-title { font-size: clamp(2rem, 8vw, 2.5rem); }
-      .jn-sub { font-size: 16px; margin-bottom: 12px; }
-      .jn-sub-long { display: none; }
-      .jn-sub-short { display: inline; }
-      .jn-head-attrs { gap: 6px 14px; font-size: 13px; }
-      .jn-tab { padding: 0 14px; font-size: 14px; height: 34px; }
-      .jn-grid { grid-template-columns: minmax(0, 1fr); min-height: 0; border-radius: 24px; }
-      .jn-panel { display: none; }
+      .jn {
+        padding: 24px 0 56px;
+      }
+
+      .jn-title {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+      }
+
+      .jn-sub {
+        font-size: 16px;
+        margin-bottom: 12px;
+      }
+
+      .jn-sub-long {
+        display: none;
+      }
+
+      .jn-sub-short {
+        display: inline;
+      }
+
+      .jn-head-attrs {
+        gap: 6px 14px;
+        font-size: 13px;
+      }
+
+      .jn-tab {
+        padding: 0 14px;
+        font-size: 14px;
+        height: 34px;
+      }
+
+      .jn-grid {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: 0;
+        border-radius: 24px;
+      }
+
+      .jn-panel {
+        display: none;
+      }
+
       .jn-grid[data-side="hire"] .jn-creator,
-      .jn-grid[data-side="be"] .jn-client { display: none; }
-      .jn-grid .jn-card { opacity: 1 !important; pointer-events: auto !important; padding: 28px 20px; }
-      .jn-login-sheet { position: relative; grid-template-columns: 1fr; display: none; }
-      .jn-grid[data-login="open"] .jn-login-sheet { display: grid; }
+      .jn-grid[data-side="be"] .jn-client {
+        display: none;
+      }
+
+      .jn-grid .jn-card {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        padding: 28px 20px;
+      }
+
+      .jn-login-sheet {
+        position: relative;
+        grid-template-columns: 1fr;
+        display: none;
+      }
+
+      .jn-grid[data-login="open"] .jn-login-sheet {
+        display: grid;
+      }
+
       .jn-grid[data-login="open"] .jn-client,
-      .jn-grid[data-login="open"] .jn-creator { display: none; }
-      .jn-login-aside { display: none; }
-      .jn-login-form-wrap { padding: 28px 20px; }
-      .otp-grid { gap: 6px; }
-      .otp-grid input { height: 48px !important; font-size: 18px !important; }
+      .jn-grid[data-login="open"] .jn-creator {
+        display: none;
+      }
+
+      .jn-login-aside {
+        display: none;
+      }
+
+      .jn-login-form-wrap {
+        padding: 28px 20px;
+      }
+
+      .otp-grid {
+        gap: 6px;
+      }
+
+      .otp-grid input {
+        height: 48px !important;
+        font-size: 18px !important;
+      }
     }
+
     @media (max-width: 600px) {
+
       .nx-auth-nav-link[href="/explore"],
-      .nx-auth-nav-link[href="/pricing"] { display: none; }
-      .nx-auth-nav-link span.nx-hide-mobile { display: none; }
+      .nx-auth-nav-link[href="/pricing"] {
+        display: none;
+      }
+
+      .nx-auth-nav-link span.nx-hide-mobile {
+        display: none;
+      }
     }
+
     @media (max-width: 480px) {
-      .jn-dob-row { grid-template-columns: 1fr; gap: 8px; }
+      .jn-dob-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
     }
+
     @media (prefers-reduced-motion: reduce) {
-      .jn-panel, .jn-stage, .jn-face, .jn-card, .jn-btn, .jn-login-sheet { transition: none; }
+
+      .jn-panel,
+      .jn-stage,
+      .jn-face,
+      .jn-card,
+      .jn-btn,
+      .jn-login-sheet {
+        transition: none;
+      }
     }
 
     /* ── Calm Editorial Refinement ── */
-    .jn-pill, .jn-head .jn-sub, .jn-note, .jn-ticks { display: none !important; }
-    .jn { padding: 12px 0 48px; }
-    .jn-head { margin: 0 auto 18px; max-width: 960px; padding: 8px 24px 0; }
-    .jn-title { font-size: clamp(1.9rem, 3.1vw, 2.5rem); margin: 0 auto; }
-    .jn-title .nx-deck-accent { background: none; -webkit-text-fill-color: #3B54EE; color: #3B54EE; }
-    .jn-tabs { margin: 0 auto 18px; }
+    .jn-pill,
+    .jn-head .jn-sub,
+    .jn-note,
+    .jn-ticks {
+      display: none !important;
+    }
+
+    .jn {
+      padding: 12px 0 48px;
+    }
+
+    .jn-head {
+      margin: 0 auto 18px;
+      max-width: 960px;
+      padding: 8px 24px 0;
+    }
+
+    .jn-title {
+      font-size: clamp(1.9rem, 3.1vw, 2.5rem);
+      margin: 0 auto;
+    }
+
+    .jn-title .nx-deck-accent {
+      background: none;
+      -webkit-text-fill-color: #3B54EE;
+      color: #3B54EE;
+    }
+
+    .jn-tabs {
+      margin: 0 auto 18px;
+    }
+
     .jn-grid {
       max-width: 960px;
       min-height: 440px;
@@ -784,29 +1146,63 @@
       border: 1px solid rgba(15, 23, 42, 0.08);
       box-shadow: 0 18px 44px -18px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.03);
     }
-    .jn-card { padding: 36px clamp(28px, 4vw, 48px); }
+
+    .jn-card {
+      padding: 36px clamp(28px, 4vw, 48px);
+    }
+
     .jn-btn {
       height: 46px;
       background: #3B54EE;
       box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
     }
-    .jn-btn:hover { background: #2D45D8; filter: none; box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12); }
+
+    .jn-btn:hover {
+      background: #2D45D8;
+      filter: none;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+    }
+
     .jn-panel {
       border-radius: 0;
       box-shadow: none;
       border-left: 1px solid rgba(15, 23, 42, 0.07);
     }
+
     .jn-grid[data-side="be"] .jn-panel {
       box-shadow: none;
       border-left: 0;
       border-right: 1px solid rgba(15, 23, 42, 0.07);
     }
-    .jn-stage { background: #F6F8FC; color: #0F172A; }
-    .jn-face { padding: 40px clamp(30px, 4vw, 50px); }
-    .jn-face h3 { color: #0F172A; font-size: clamp(1.8rem, 2.4vw, 2.2rem); }
-    .jn-face h3 em { color: #3B54EE; font-weight: 500; }
-    .jn-face p:not(.jn-k) { color: #475569; font-size: 15.5px; }
-    .jn-face .jn-k { color: #3B54EE; }
+
+    .jn-stage {
+      background: #F6F8FC;
+      color: #0F172A;
+    }
+
+    .jn-face {
+      padding: 40px clamp(30px, 4vw, 50px);
+    }
+
+    .jn-face h3 {
+      color: #0F172A;
+      font-size: clamp(1.8rem, 2.4vw, 2.2rem);
+    }
+
+    .jn-face h3 em {
+      color: #3B54EE;
+      font-weight: 500;
+    }
+
+    .jn-face p:not(.jn-k) {
+      color: #475569;
+      font-size: 15.5px;
+    }
+
+    .jn-face .jn-k {
+      color: #3B54EE;
+    }
+
     .jn-glass-pill {
       background: #FFFFFF;
       border: 1px solid rgba(15, 23, 42, 0.09);
@@ -814,6 +1210,7 @@
       font-family: var(--jn-mono);
       font-size: 11px;
     }
+
     .jn-flip {
       height: 42px;
       padding: 0 24px;
@@ -824,7 +1221,13 @@
       letter-spacing: 0;
       text-transform: none;
     }
-    .jn-flip:hover { background: #FFFFFF; border-color: #3B54EE; color: #3B54EE; }
+
+    .jn-flip:hover {
+      background: #FFFFFF;
+      border-color: #3B54EE;
+      color: #3B54EE;
+    }
+
     .jn-login-aside {
       background: #F6F8FC;
       color: #0F172A;
@@ -832,14 +1235,31 @@
       border-right: 1px solid rgba(15, 23, 42, 0.07);
       padding: 40px clamp(30px, 4vw, 50px);
     }
-    .jn-login-aside h3 { color: #0F172A; font-size: clamp(1.8rem, 2.4vw, 2.2rem); }
-    .jn-login-aside h3 em { color: #3B54EE; font-weight: 500; }
-    .jn-login-aside p { color: #475569; font-size: 15.5px; }
+
+    .jn-login-aside h3 {
+      color: #0F172A;
+      font-size: clamp(1.8rem, 2.4vw, 2.2rem);
+    }
+
+    .jn-login-aside h3 em {
+      color: #3B54EE;
+      font-weight: 500;
+    }
+
+    .jn-login-aside p {
+      color: #475569;
+      font-size: 15.5px;
+    }
+
     @media (max-width: 820px) {
-      .jn-grid { min-height: 0; border-radius: 20px; }
+      .jn-grid {
+        min-height: 0;
+        border-radius: 20px;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Clean Editorial Top Nav -->
@@ -850,7 +1270,8 @@
     <div class="nx-auth-nav-actions">
       <a class="nx-auth-nav-link" href="/explore">Explore</a>
       <a class="nx-auth-nav-link" href="/pricing">Pricing</a>
-      <a class="nx-auth-nav-link" href="/login" id="topNavLoginLink"><span class="nx-hide-mobile">Already have an account? </span><b>Log in</b></a>
+      <a class="nx-auth-nav-link" href="/login" id="topNavLoginLink"><span class="nx-hide-mobile">Already have an
+          account? </span><b>Log in</b></a>
     </div>
   </header>
 
@@ -862,20 +1283,28 @@
         <p class="jn-pill">Founding Roster · Open Now</p>
         <h1 class="jn-title" id="jnT">Find your creative. <span class="nx-deck-accent">Or be found.</span></h1>
         <p class="jn-sub">
-          <span class="jn-sub-long">Filmmakers, drone pilots, artists and hobby teachers, all reviewed by a person. Contact them directly. No fees for clients.</span>
+          <span class="jn-sub-long">Filmmakers, drone pilots, artists and hobby teachers, all reviewed by a person.
+            Contact them directly. No fees for clients.</span>
           <span class="jn-sub-short">Reviewed creators and teachers. Free for clients.</span>
         </p>
         <span class="jn-note jn-n-a" aria-hidden="true">post a brief in seconds<br>zero client fee
-          <svg viewBox="0 0 80 60"><path d="M6 8c20 4 40 14 52 40M58 48l-2-12M58 48l-11-4"/></svg></span>
+          <svg viewBox="0 0 80 60">
+            <path d="M6 8c20 4 40 14 52 40M58 48l-2-12M58 48l-11-4" />
+          </svg></span>
         <span class="jn-note jn-n-b" aria-hidden="true">100 founding spots<br>reel, rate &amp; city
-          <svg viewBox="0 0 80 60"><path d="M74 8C54 10 30 20 20 46M20 46l1-12M20 46l11-5"/></svg></span>
+          <svg viewBox="0 0 80 60">
+            <path d="M74 8C54 10 30 20 20 46M20 46l1-12M20 46l11-5" />
+          </svg></span>
       </header>
 
       <!-- Segmented Switcher Tabs -->
       <div class="jn-tabs" role="tablist" aria-label="Choose path">
-        <button type="button" class="jn-tab is-active" data-side="hire" role="tab" aria-selected="true" id="tabClient">For clients</button>
-        <button type="button" class="jn-tab" data-side="be" role="tab" aria-selected="false" id="tabCreator">For creators</button>
-        <button type="button" class="jn-tab" data-side="login" role="tab" aria-selected="false" id="tabLogin">Log in</button>
+        <button type="button" class="jn-tab is-active" data-side="hire" role="tab" aria-selected="true"
+          id="tabClient">For clients</button>
+        <button type="button" class="jn-tab" data-side="be" role="tab" aria-selected="false" id="tabCreator">For
+          creators</button>
+        <button type="button" class="jn-tab" data-side="login" role="tab" aria-selected="false" id="tabLogin">Log
+          in</button>
       </div>
 
       <!-- Unified Sliding Dual-Panel Split Card -->
@@ -888,14 +1317,18 @@
           <div class="jn-step" id="clientFormStage">
             <p class="jn-k">I'M LOOKING TO HIRE</p>
             <h3 id="clientTitle">Find &amp; hire <em>talent.</em></h3>
-            <p class="jn-p">Sign up in seconds. We'll send a passwordless magic link to your email, or continue with Google.</p>
+            <p class="jn-p">Sign up in seconds. We'll send a passwordless magic link to your email, or continue with
+              Google.</p>
 
             <a class="jn-btn is-google" id="clientGoogleBtn" href="/api/auth/google?intent=client">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z"/>
-                <path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z"/>
-                <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z"/>
-                <path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/>
+                <path fill="#4285F4"
+                  d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z" />
+                <path fill="#34A853"
+                  d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z" />
+                <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z" />
+                <path fill="#EA4335"
+                  d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z" />
               </svg>
               <span>Continue with Google</span>
             </a>
@@ -904,7 +1337,8 @@
 
             <form id="clientEmailForm" novalidate>
               <label class="jn-l" for="clientEmail">Work or business email</label>
-              <input id="clientEmail" type="email" name="email" placeholder="you@company.com" autocomplete="email" required>
+              <input id="clientEmail" type="email" name="email" placeholder="you@company.com" autocomplete="email"
+                required>
               <button type="submit" class="jn-btn" id="clientSendBtn">Send magic link →</button>
               <p class="jn-msg" id="clientMsg" role="alert" aria-live="polite"></p>
             </form>
@@ -914,21 +1348,24 @@
               <li>Shortlist &amp; private talent boards</li>
               <li>100% free for clients, forever</li>
             </ul>
-            <p class="jn-fine">Are you a creator or studio? <button type="button" id="clientSwitchToCreatorBtn">Join as a creator</button></p>
+            <p class="jn-fine">Are you a creator or studio? <button type="button" id="clientSwitchToCreatorBtn">Join as
+                a creator</button></p>
           </div>
 
           <!-- Magic link confirmation stage -->
           <div class="jn-step" id="clientSentStage" hidden>
             <div class="jn-done-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="20" height="16" x="2" y="4" rx="2"/>
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
               </svg>
             </div>
             <p class="jn-k">MAGIC LINK SENT</p>
             <h2>Magic link <em>sent!</em></h2>
             <p class="jn-p">
-              We sent a passwordless sign-in link to <b id="clientSentEmail"></b>. Click the link to complete your account.
+              We sent a passwordless sign-in link to <b id="clientSentEmail"></b>. Click the link to complete your
+              account.
             </p>
             <div class="jn-sublinks">
               <button type="button" class="jn-link" id="clientResendBtn">Resend link</button>
@@ -946,18 +1383,23 @@
             <p class="jn-k">I'M A CREATOR / BUSINESS</p>
             <h3 id="creatorTitle">Claim your founding <em>spot.</em></h3>
             <p class="jn-p">
-              <span class="jn-sub-long">Create your account, then build your profile while a person reviews it. Your 90 free days start when you're approved.</span>
-              <span class="jn-sub-short">Build your profile while a person reviews it. 90 days free from approval.</span>
+              <span class="jn-sub-long">Create your account, then build your profile while a person reviews it. Your 90
+                free days start when you're approved.</span>
+              <span class="jn-sub-short">Build your profile while a person reviews it. 90 days free from
+                approval.</span>
             </p>
             <p class="jn-count">Limited to <b id="creatorFoundingSpots">100</b> founding spots (90d free)</p>
             <div class="jn-track" aria-hidden="true"><i></i></div>
 
             <a class="jn-btn is-google" id="creatorGoogleBtn" href="/api/auth/google?intent=creator">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z"/>
-                <path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z"/>
-                <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z"/>
-                <path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/>
+                <path fill="#4285F4"
+                  d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z" />
+                <path fill="#34A853"
+                  d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z" />
+                <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z" />
+                <path fill="#EA4335"
+                  d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z" />
               </svg>
               <span>Continue with Google</span>
             </a>
@@ -966,7 +1408,8 @@
 
             <form id="creatorEmailForm" novalidate>
               <label class="jn-l" for="creatorEmail">Email address</label>
-              <input id="creatorEmail" type="email" name="email" placeholder="alex@visuals.co" autocomplete="email" required>
+              <input id="creatorEmail" type="email" name="email" placeholder="alex@visuals.co" autocomplete="email"
+                required>
               <button type="submit" class="jn-btn" id="creatorSendCodeBtn">Email me a 6-digit code →</button>
               <p class="jn-msg" id="creatorMsg1" role="alert" aria-live="polite"></p>
             </form>
@@ -1039,7 +1482,8 @@
                 </select>
               </div>
 
-              <button type="submit" class="jn-btn" id="creatorSaveAboutBtn">Complete sign-up &amp; build storefront →</button>
+              <button type="submit" class="jn-btn" id="creatorSaveAboutBtn">Complete sign-up &amp; build storefront
+                →</button>
               <p class="jn-msg" id="creatorMsg3" role="alert" aria-live="polite"></p>
             </form>
           </div>
@@ -1047,16 +1491,18 @@
           <!-- Underage Gate Notification -->
           <div class="jn-step" id="creatorStepUnderage" hidden>
             <div class="jn-done-badge" style="background: rgba(239, 68, 68, 0.12); color: #DC2626;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="12" y1="8" x2="12" y2="12"/>
-                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
               </svg>
             </div>
             <p class="jn-k">AGE REQUIREMENT</p>
             <h3>Age requirement <em>not met.</em></h3>
             <p class="jn-p">
-              To register as a commercial creator and accept paid client bookings on Nexus, you must be at least 18 years of age.
+              To register as a commercial creator and accept paid client bookings on Nexus, you must be at least 18
+              years of age.
             </p>
             <a class="jn-btn is-google" href="/">Return to Homepage</a>
           </div>
@@ -1064,17 +1510,20 @@
           <!-- Step 4: Completion & Hand-Off to Page 10 Onboarding -->
           <div class="jn-step" id="creatorStepDone" hidden>
             <div class="jn-done-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                <polyline points="22 4 12 14.01 9 11.01"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
               </svg>
             </div>
             <p class="jn-k">ACCOUNT CREATED</p>
             <h2>You're in! Welcome to <em>Nexus.</em></h2>
             <p class="jn-p">
-              Your founding creator account has been created. Next, we'll set up your showreel, bio, disciplines, and pricing.
+              Your founding creator account has been created. Next, we'll set up your showreel, bio, disciplines, and
+              pricing.
             </p>
-            <a class="jn-btn" id="creatorOnboardingLink" href="/seller/onboarding">Continue to Storefront Setup (Page 10) →</a>
+            <a class="jn-btn" id="creatorOnboardingLink" href="/seller/onboarding">Continue to Storefront Setup (Page
+              10) →</a>
           </div>
         </article>
 
@@ -1098,7 +1547,8 @@
               <h3>Creator or <em>business?</em></h3>
               <p>List your work, hear from clients directly, and keep 100% of every booking.</p>
               <span class="jn-glass-pill">Founding 100 · 0% Commission · 90 Days Free</span>
-              <button type="button" class="jn-flip" id="btnChooseCreator" data-side="be">I'm a creator / business →</button>
+              <button type="button" class="jn-flip" id="btnChooseCreator" data-side="be">I'm a creator / business
+                →</button>
             </div>
           </div>
         </div>
@@ -1118,14 +1568,18 @@
             <div class="jn-step" id="sheetLoginStep1">
               <p class="jn-k">ALREADY A MEMBER</p>
               <h3>Log <em>in.</em></h3>
-              <p class="jn-p">Use the same email or Google account you signed up with. We'll send a 6-digit code, no password needed.</p>
+              <p class="jn-p">Use the same email or Google account you signed up with. We'll send a 6-digit code, no
+                password needed.</p>
 
               <a class="jn-btn is-google" href="/api/auth/google?intent=login">
                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z"/>
-                  <path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z"/>
-                  <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z"/>
-                  <path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/>
+                  <path fill="#4285F4"
+                    d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z" />
+                  <path fill="#34A853"
+                    d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z" />
+                  <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z" />
+                  <path fill="#EA4335"
+                    d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z" />
                 </svg>
                 <span>Continue with Google</span>
               </a>
@@ -1138,7 +1592,8 @@
                 <button type="submit" class="jn-btn" id="sheetLoginSendBtn">Send me a code →</button>
                 <p class="jn-msg" id="sheetLoginMsg1" role="alert" aria-live="polite"></p>
               </form>
-              <p class="jn-fine">Don't have an account? <button type="button" id="sheetGoSignupBtn">Create one free</button></p>
+              <p class="jn-fine">Don't have an account? <button type="button" id="sheetGoSignupBtn">Create one
+                  free</button></p>
             </div>
 
             <!-- Login Step 2: 6-Digit OTP Code -->
@@ -1148,12 +1603,18 @@
               <p class="jn-p">We sent a 6-digit login code to <b id="sheetLoginSentEmail"></b>.</p>
               <form id="sheetLoginOtpForm" novalidate>
                 <div class="otp-grid" id="sheetLoginOtpGrid">
-                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="0" aria-label="Digit 1">
-                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="1" aria-label="Digit 2">
-                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="2" aria-label="Digit 3">
-                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="3" aria-label="Digit 4">
-                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="4" aria-label="Digit 5">
-                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="5" aria-label="Digit 6">
+                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="0"
+                    aria-label="Digit 1">
+                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="1"
+                    aria-label="Digit 2">
+                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="2"
+                    aria-label="Digit 3">
+                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="3"
+                    aria-label="Digit 4">
+                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="4"
+                    aria-label="Digit 5">
+                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="5"
+                    aria-label="Digit 6">
                 </div>
                 <button type="submit" class="jn-btn" id="sheetLoginVerifyBtn">Sign in →</button>
                 <p class="jn-msg" id="sheetLoginMsg2" role="alert" aria-live="polite"></p>
@@ -1172,479 +1633,480 @@
   </section>
 
   <script>
-  (function () {
-    'use strict';
+    (function () {
+      'use strict';
 
-    var RESEND_SECONDS = 30;
-    var resendTimer = null;
-    var creatorEmail = '';
-    var sheetLoginEmail = '';
+      var RESEND_SECONDS = 30;
+      var resendTimer = null;
+      var creatorEmail = '';
+      var sheetLoginEmail = '';
 
-    var $ = function (id) { return document.getElementById(id); };
-    var swEl = $('jnSw');
-    var tabs = document.querySelectorAll('.jn-tab');
+      var $ = function (id) { return document.getElementById(id); };
+      var swEl = $('jnSw');
+      var tabs = document.querySelectorAll('.jn-tab');
 
-    function setMode(mode) {
-      if (mode === 'login') {
-        swEl.dataset.login = 'open';
-      } else {
-        swEl.dataset.login = 'closed';
-        swEl.dataset.side = mode;
+      function setMode(mode) {
+        if (mode === 'login') {
+          swEl.dataset.login = 'open';
+        } else {
+          swEl.dataset.login = 'closed';
+          swEl.dataset.side = mode;
+        }
+
+        tabs.forEach(function (t) {
+          var on = t.dataset.side === mode;
+          t.classList.toggle('is-active', on);
+          t.setAttribute('aria-selected', String(on));
+        });
+
+        var url = new URL(location.href);
+        if (mode === 'be') {
+          url.searchParams.set('intent', 'creator');
+        } else if (mode === 'hire') {
+          url.searchParams.set('intent', 'client');
+        } else {
+          url.searchParams.delete('intent');
+        }
+        history.replaceState(null, '', url);
       }
 
+      // Tab clicks
       tabs.forEach(function (t) {
-        var on = t.dataset.side === mode;
-        t.classList.toggle('is-active', on);
-        t.setAttribute('aria-selected', String(on));
+        t.addEventListener('click', function () {
+          setMode(t.dataset.side);
+        });
       });
 
-      var url = new URL(location.href);
-      if (mode === 'be') {
-        url.searchParams.set('intent', 'creator');
-      } else if (mode === 'hire') {
-        url.searchParams.set('intent', 'client');
-      } else {
-        url.searchParams.delete('intent');
-      }
-      history.replaceState(null, '', url);
-    }
-
-    // Tab clicks
-    tabs.forEach(function (t) {
-      t.addEventListener('click', function () {
-        setMode(t.dataset.side);
-      });
-    });
-
-    // Sliding panel click (toggles between hire & be)
-    $('jnPanel').addEventListener('click', function () {
-      var next = swEl.dataset.side === 'hire' ? 'be' : 'hire';
-      setMode(next);
-      setTimeout(function () {
-        var el = next === 'be' ? $('creatorEmail') : $('clientEmail');
-        if (el) el.focus();
-      }, 300);
-    });
-
-    // Inline switches & Login triggers
-    $('clientSwitchToCreatorBtn').addEventListener('click', function () { setMode('be'); });
-    $('jnOpenLoginBtn').addEventListener('click', function () { setMode('login'); });
-    $('jnLoginBack').addEventListener('click', function () { setMode(swEl.dataset.side || 'hire'); });
-    $('sheetGoSignupBtn').addEventListener('click', function () { setMode('be'); });
-
-    // Populate DOB Days & Years
-    (function initDob() {
-      var daySelect = $('dobDay');
-      var yearSelect = $('dobYear');
-      if (!daySelect || !yearSelect) return;
-
-      for (var d = 1; d <= 31; d++) {
-        var opt = document.createElement('option');
-        opt.value = (d < 10 ? '0' : '') + d;
-        opt.textContent = d;
-        daySelect.appendChild(opt);
-      }
-
-      var currentYear = new Date().getFullYear();
-      for (var y = currentYear - 14; y >= currentYear - 90; y--) {
-        var yOpt = document.createElement('option');
-        yOpt.value = y;
-        yOpt.textContent = y;
-        yearSelect.appendChild(yOpt);
-      }
-    })();
-
-    function say(el, text, kind) {
-      el.textContent = text || '';
-      el.className = 'jn-msg' + (kind ? ' is-' + kind : '');
-    }
-
-    function busy(btn, isBusy) {
-      btn.setAttribute('aria-busy', isBusy ? 'true' : 'false');
-      btn.disabled = !!isBusy;
-    }
-
-    function bad(input) {
-      input.classList.add('is-bad');
-      input.focus();
-      setTimeout(function () { input.classList.remove('is-bad'); }, 600);
-    }
-
-    function isValidEmail(val) {
-      return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val) && val.length <= 254;
-    }
-
-    /* ── Client Sign-Up Flow ── */
-    $('clientEmailForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var input = $('clientEmail');
-      var val = (input.value || '').trim();
-      var msg = $('clientMsg');
-      var btn = $('clientSendBtn');
-
-      say(msg, '');
-      if (!val || !isValidEmail(val)) {
-        say(msg, 'Please enter a valid email address.', 'err');
-        return bad(input);
-      }
-
-      busy(btn, true);
-      fetch('/api/auth/magic-link', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: val, intent: 'client' })
-      })
-      .then(function (r) { return r.json(); })
-      .catch(function () { return { ok: true }; })
-      .then(function () {
-        $('clientFormStage').hidden = true;
-        $('clientSentStage').hidden = false;
-        $('clientSentEmail').textContent = val;
-      })
-      .catch(function () {
-        say(msg, 'Unable to send magic link right now. Please try again.', 'err');
-      })
-      .finally(function () {
-        busy(btn, false);
-      });
-    });
-
-    $('clientResendBtn').addEventListener('click', function () {
-      var email = $('clientSentEmail').textContent;
-      var btn = $('clientResendBtn');
-      btn.disabled = true;
-      btn.textContent = 'Sending...';
-      fetch('/api/auth/magic-link', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, intent: 'client' })
-      })
-      .catch(function () {})
-      .then(function () {
-        btn.textContent = 'Link resent ✓';
+      // Sliding panel click (toggles between hire & be)
+      $('jnPanel').addEventListener('click', function () {
+        var next = swEl.dataset.side === 'hire' ? 'be' : 'hire';
+        setMode(next);
         setTimeout(function () {
-          btn.disabled = false;
-          btn.textContent = 'Resend link';
-        }, 3000);
+          var el = next === 'be' ? $('creatorEmail') : $('clientEmail');
+          if (el) el.focus();
+        }, 300);
       });
-    });
 
-    $('clientChangeEmailBtn').addEventListener('click', function () {
-      $('clientSentStage').hidden = true;
-      $('clientFormStage').hidden = false;
-      $('clientEmail').focus();
-      $('clientEmail').select();
-    });
+      // Inline switches & Login triggers
+      $('clientSwitchToCreatorBtn').addEventListener('click', function () { setMode('be'); });
+      $('jnOpenLoginBtn').addEventListener('click', function () { setMode('login'); });
+      $('jnLoginBack').addEventListener('click', function () { setMode(swEl.dataset.side || 'hire'); });
+      $('sheetGoSignupBtn').addEventListener('click', function () { setMode('be'); });
 
-    /* ── Creator Sign-Up Flow ── */
-    $('creatorEmailForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var input = $('creatorEmail');
-      var val = (input.value || '').trim();
-      var msg = $('creatorMsg1');
-      var btn = $('creatorSendCodeBtn');
+      // Populate DOB Days & Years
+      (function initDob() {
+        var daySelect = $('dobDay');
+        var yearSelect = $('dobYear');
+        if (!daySelect || !yearSelect) return;
 
-      say(msg, '');
-      if (!val || !isValidEmail(val)) {
-        say(msg, 'Please enter a valid email address.', 'err');
-        return bad(input);
+        for (var d = 1; d <= 31; d++) {
+          var opt = document.createElement('option');
+          opt.value = (d < 10 ? '0' : '') + d;
+          opt.textContent = d;
+          daySelect.appendChild(opt);
+        }
+
+        var currentYear = new Date().getFullYear();
+        for (var y = currentYear - 14; y >= currentYear - 90; y--) {
+          var yOpt = document.createElement('option');
+          yOpt.value = y;
+          yOpt.textContent = y;
+          yearSelect.appendChild(yOpt);
+        }
+      })();
+
+      function say(el, text, kind) {
+        el.textContent = text || '';
+        el.className = 'jn-msg' + (kind ? ' is-' + kind : '');
       }
 
-      creatorEmail = val;
-      busy(btn, true);
-
-      fetch('/api/auth/otp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: val, intent: 'creator' })
-      })
-      .then(function (r) { return r.json(); })
-      .catch(function () { return { ok: true }; })
-      .then(function () {
-        $('creatorStep1').hidden = true;
-        $('creatorStep2').hidden = false;
-        $('creatorSentEmail').textContent = val;
-        startCreatorResendTimer();
-        setupOtpGrid($('creatorOtpGrid'), $('creatorVerifyBtn'));
-      })
-      .catch(function () {
-        say(msg, 'Unable to send verification code. Please try again.', 'err');
-      })
-      .finally(function () {
-        busy(btn, false);
-      });
-    });
-
-    function setupOtpGrid(gridEl, verifyBtn) {
-      var inputs = Array.prototype.slice.call(gridEl.querySelectorAll('input'));
-      inputs.forEach(function (input, idx) {
-        input.value = '';
-        input.classList.remove('is-filled');
-
-        input.oninput = function () {
-          var val = input.value.replace(/\D/g, '');
-          input.value = val ? val[0] : '';
-          input.classList.toggle('is-filled', !!input.value);
-
-          if (input.value && idx < inputs.length - 1) {
-            inputs[idx + 1].focus();
-            inputs[idx + 1].select();
-          }
-
-          var code = inputs.map(function (i) { return i.value; }).join('');
-          if (code.length === 6) verifyBtn.click();
-        };
-
-        input.onkeydown = function (e) {
-          if (e.key === 'Backspace' && !input.value && idx > 0) {
-            inputs[idx - 1].focus();
-            inputs[idx - 1].select();
-          }
-        };
-
-        input.onpaste = function (e) {
-          var paste = (e.clipboardData || window.clipboardData).getData('text');
-          var digits = (paste || '').replace(/\D/g, '').slice(0, 6);
-          if (digits) {
-            e.preventDefault();
-            digits.split('').forEach(function (d, i) {
-              if (inputs[i]) {
-                inputs[i].value = d;
-                inputs[i].classList.add('is-filled');
-              }
-            });
-            var next = inputs[Math.min(digits.length, 5)];
-            if (next) next.focus();
-            if (digits.length === 6) verifyBtn.click();
-          }
-        };
-      });
-
-      setTimeout(function () { if (inputs[0]) inputs[0].focus(); }, 50);
-    }
-
-    $('creatorOtpForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var inputs = Array.prototype.slice.call($('creatorOtpGrid').querySelectorAll('input'));
-      var code = inputs.map(function (i) { return i.value; }).join('');
-      var btn = $('creatorVerifyBtn');
-      var msg = $('creatorMsg2');
-
-      if (code.length < 6) {
-        say(msg, 'Please enter all 6 digits of your code.', 'err');
-        return bad(inputs[code.length] || inputs[0]);
+      function busy(btn, isBusy) {
+        btn.setAttribute('aria-busy', isBusy ? 'true' : 'false');
+        btn.disabled = !!isBusy;
       }
 
-      say(msg, '');
-      busy(btn, true);
+      function bad(input) {
+        input.classList.add('is-bad');
+        input.focus();
+        setTimeout(function () { input.classList.remove('is-bad'); }, 600);
+      }
 
-      fetch('/api/auth/verify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: creatorEmail, code: code, intent: 'creator' })
-      })
-      .then(function (r) { return r.json(); })
-      .catch(function () { return { ok: true }; })
-      .then(function () {
+      function isValidEmail(val) {
+        return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val) && val.length <= 254;
+      }
+
+      /* ── Client Sign-Up Flow ── */
+      $('clientEmailForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var input = $('clientEmail');
+        var val = (input.value || '').trim();
+        var msg = $('clientMsg');
+        var btn = $('clientSendBtn');
+
+        say(msg, '');
+        if (!val || !isValidEmail(val)) {
+          say(msg, 'Please enter a valid email address.', 'err');
+          return bad(input);
+        }
+
+        busy(btn, true);
+        fetch('/api/auth/magic-link', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: val, intent: 'client' })
+        })
+          .then(function (r) { return r.json(); })
+          .catch(function () { return { ok: true }; })
+          .then(function () {
+            $('clientFormStage').hidden = true;
+            $('clientSentStage').hidden = false;
+            $('clientSentEmail').textContent = val;
+          })
+          .catch(function () {
+            say(msg, 'Unable to send magic link right now. Please try again.', 'err');
+          })
+          .finally(function () {
+            busy(btn, false);
+          });
+      });
+
+      $('clientResendBtn').addEventListener('click', function () {
+        var email = $('clientSentEmail').textContent;
+        var btn = $('clientResendBtn');
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+        fetch('/api/auth/magic-link', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, intent: 'client' })
+        })
+          .catch(function () { })
+          .then(function () {
+            btn.textContent = 'Link resent ✓';
+            setTimeout(function () {
+              btn.disabled = false;
+              btn.textContent = 'Resend link';
+            }, 3000);
+          });
+      });
+
+      $('clientChangeEmailBtn').addEventListener('click', function () {
+        $('clientSentStage').hidden = true;
+        $('clientFormStage').hidden = false;
+        $('clientEmail').focus();
+        $('clientEmail').select();
+      });
+
+      /* ── Creator Sign-Up Flow ── */
+      $('creatorEmailForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var input = $('creatorEmail');
+        var val = (input.value || '').trim();
+        var msg = $('creatorMsg1');
+        var btn = $('creatorSendCodeBtn');
+
+        say(msg, '');
+        if (!val || !isValidEmail(val)) {
+          say(msg, 'Please enter a valid email address.', 'err');
+          return bad(input);
+        }
+
+        creatorEmail = val;
+        busy(btn, true);
+
+        fetch('/api/auth/otp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: val, intent: 'creator' })
+        })
+          .then(function (r) { return r.json(); })
+          .catch(function () { return { ok: true }; })
+          .then(function () {
+            $('creatorStep1').hidden = true;
+            $('creatorStep2').hidden = false;
+            $('creatorSentEmail').textContent = val;
+            startCreatorResendTimer();
+            setupOtpGrid($('creatorOtpGrid'), $('creatorVerifyBtn'));
+          })
+          .catch(function () {
+            say(msg, 'Unable to send verification code. Please try again.', 'err');
+          })
+          .finally(function () {
+            busy(btn, false);
+          });
+      });
+
+      function setupOtpGrid(gridEl, verifyBtn) {
+        var inputs = Array.prototype.slice.call(gridEl.querySelectorAll('input'));
+        inputs.forEach(function (input, idx) {
+          input.value = '';
+          input.classList.remove('is-filled');
+
+          input.oninput = function () {
+            var val = input.value.replace(/\D/g, '');
+            input.value = val ? val[0] : '';
+            input.classList.toggle('is-filled', !!input.value);
+
+            if (input.value && idx < inputs.length - 1) {
+              inputs[idx + 1].focus();
+              inputs[idx + 1].select();
+            }
+
+            var code = inputs.map(function (i) { return i.value; }).join('');
+            if (code.length === 6) verifyBtn.click();
+          };
+
+          input.onkeydown = function (e) {
+            if (e.key === 'Backspace' && !input.value && idx > 0) {
+              inputs[idx - 1].focus();
+              inputs[idx - 1].select();
+            }
+          };
+
+          input.onpaste = function (e) {
+            var paste = (e.clipboardData || window.clipboardData).getData('text');
+            var digits = (paste || '').replace(/\D/g, '').slice(0, 6);
+            if (digits) {
+              e.preventDefault();
+              digits.split('').forEach(function (d, i) {
+                if (inputs[i]) {
+                  inputs[i].value = d;
+                  inputs[i].classList.add('is-filled');
+                }
+              });
+              var next = inputs[Math.min(digits.length, 5)];
+              if (next) next.focus();
+              if (digits.length === 6) verifyBtn.click();
+            }
+          };
+        });
+
+        setTimeout(function () { if (inputs[0]) inputs[0].focus(); }, 50);
+      }
+
+      $('creatorOtpForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var inputs = Array.prototype.slice.call($('creatorOtpGrid').querySelectorAll('input'));
+        var code = inputs.map(function (i) { return i.value; }).join('');
+        var btn = $('creatorVerifyBtn');
+        var msg = $('creatorMsg2');
+
+        if (code.length < 6) {
+          say(msg, 'Please enter all 6 digits of your code.', 'err');
+          return bad(inputs[code.length] || inputs[0]);
+        }
+
+        say(msg, '');
+        busy(btn, true);
+
+        fetch('/api/auth/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: creatorEmail, code: code, intent: 'creator' })
+        })
+          .then(function (r) { return r.json(); })
+          .catch(function () { return { ok: true }; })
+          .then(function () {
+            clearInterval(resendTimer);
+            $('creatorStep2').hidden = true;
+            $('creatorStep3').hidden = false;
+            $('creatorName').focus();
+          })
+          .catch(function () {
+            say(msg, 'Invalid code. Please double-check and try again.', 'err');
+            inputs.forEach(function (i) { i.value = ''; i.classList.remove('is-filled'); });
+            inputs[0].focus();
+          })
+          .finally(function () {
+            busy(btn, false);
+          });
+      });
+
+      function startCreatorResendTimer() {
+        var left = RESEND_SECONDS;
+        var btn = $('creatorResendBtn');
+        clearInterval(resendTimer);
+        btn.disabled = true;
+        btn.textContent = 'Resend code in ' + left + 's';
+        resendTimer = setInterval(function () {
+          left -= 1;
+          if (left <= 0) {
+            clearInterval(resendTimer);
+            btn.disabled = false;
+            btn.textContent = 'Resend code';
+          } else {
+            btn.textContent = 'Resend code in ' + left + 's';
+          }
+        }, 1000);
+      }
+
+      $('creatorResendBtn').addEventListener('click', function () {
+        var msg = $('creatorMsg2');
+        fetch('/api/auth/otp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: creatorEmail, intent: 'creator' })
+        })
+          .catch(function () { })
+          .then(function () {
+            say(msg, 'A new code has been emailed to you.', 'ok');
+            startCreatorResendTimer();
+          });
+      });
+
+      $('creatorChangeEmailBtn').addEventListener('click', function () {
         clearInterval(resendTimer);
         $('creatorStep2').hidden = true;
-        $('creatorStep3').hidden = false;
-        $('creatorName').focus();
-      })
-      .catch(function () {
-        say(msg, 'Invalid code. Please double-check and try again.', 'err');
-        inputs.forEach(function (i) { i.value = ''; i.classList.remove('is-filled'); });
-        inputs[0].focus();
-      })
-      .finally(function () {
-        busy(btn, false);
+        $('creatorStep1').hidden = false;
+        $('creatorEmail').focus();
+        $('creatorEmail').select();
       });
-    });
 
-    function startCreatorResendTimer() {
-      var left = RESEND_SECONDS;
-      var btn = $('creatorResendBtn');
-      clearInterval(resendTimer);
-      btn.disabled = true;
-      btn.textContent = 'Resend code in ' + left + 's';
-      resendTimer = setInterval(function () {
-        left -= 1;
-        if (left <= 0) {
-          clearInterval(resendTimer);
-          btn.disabled = false;
-          btn.textContent = 'Resend code';
-        } else {
-          btn.textContent = 'Resend code in ' + left + 's';
-        }
-      }, 1000);
-    }
-
-    $('creatorResendBtn').addEventListener('click', function () {
-      var msg = $('creatorMsg2');
-      fetch('/api/auth/otp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: creatorEmail, intent: 'creator' })
-      })
-      .catch(function () {})
-      .then(function () {
-        say(msg, 'A new code has been emailed to you.', 'ok');
-        startCreatorResendTimer();
-      });
-    });
-
-    $('creatorChangeEmailBtn').addEventListener('click', function () {
-      clearInterval(resendTimer);
-      $('creatorStep2').hidden = true;
-      $('creatorStep1').hidden = false;
-      $('creatorEmail').focus();
-      $('creatorEmail').select();
-    });
-
-    function calcAge(y, m, d) {
-      var b = new Date(parseInt(y, 10), parseInt(m, 10) - 1, parseInt(d, 10));
-      var now = new Date();
-      var age = now.getFullYear() - b.getFullYear();
-      var mDiff = now.getMonth() - b.getMonth();
-      if (mDiff < 0 || (mDiff === 0 && now.getDate() < b.getDate())) age--;
-      return age;
-    }
-
-    $('creatorAboutForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var nameInput = $('creatorName');
-      var m = $('dobMonth').value;
-      var d = $('dobDay').value;
-      var y = $('dobYear').value;
-      var btn = $('creatorSaveAboutBtn');
-      var msg = $('creatorMsg3');
-
-      say(msg, '');
-      if (!nameInput.value.trim()) { say(msg, 'Please enter your full name.', 'err'); return bad(nameInput); }
-      if (!m) { say(msg, 'Please choose your birth month.', 'err'); return bad($('dobMonth')); }
-      if (!d) { say(msg, 'Please choose your birth day.', 'err'); return bad($('dobDay')); }
-      if (!y) { say(msg, 'Please choose your birth year.', 'err'); return bad($('dobYear')); }
-
-      if (calcAge(y, m, d) < 18) {
-        $('creatorStep3').hidden = true;
-        $('creatorStepUnderage').hidden = false;
-        return;
+      function calcAge(y, m, d) {
+        var b = new Date(parseInt(y, 10), parseInt(m, 10) - 1, parseInt(d, 10));
+        var now = new Date();
+        var age = now.getFullYear() - b.getFullYear();
+        var mDiff = now.getMonth() - b.getMonth();
+        if (mDiff < 0 || (mDiff === 0 && now.getDate() < b.getDate())) age--;
+        return age;
       }
 
-      busy(btn, true);
-      fetch('/api/profile', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          display_name: nameInput.value.trim(),
-          date_of_birth: y + '-' + m + '-' + d
+      $('creatorAboutForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var nameInput = $('creatorName');
+        var m = $('dobMonth').value;
+        var d = $('dobDay').value;
+        var y = $('dobYear').value;
+        var btn = $('creatorSaveAboutBtn');
+        var msg = $('creatorMsg3');
+
+        say(msg, '');
+        if (!nameInput.value.trim()) { say(msg, 'Please enter your full name.', 'err'); return bad(nameInput); }
+        if (!m) { say(msg, 'Please choose your birth month.', 'err'); return bad($('dobMonth')); }
+        if (!d) { say(msg, 'Please choose your birth day.', 'err'); return bad($('dobDay')); }
+        if (!y) { say(msg, 'Please choose your birth year.', 'err'); return bad($('dobYear')); }
+
+        if (calcAge(y, m, d) < 18) {
+          $('creatorStep3').hidden = true;
+          $('creatorStepUnderage').hidden = false;
+          return;
+        }
+
+        busy(btn, true);
+        fetch('/api/profile', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            display_name: nameInput.value.trim(),
+            date_of_birth: y + '-' + m + '-' + d
+          })
         })
-      })
-      .then(function (r) { return r.json(); })
-      .catch(function () { return { ok: true }; })
-      .then(function () {
-        $('creatorStep3').hidden = true;
-        $('creatorStepDone').hidden = false;
-      })
-      .catch(function () {
-        say(msg, 'Something went wrong saving your details. Please try again.', 'err');
-      })
-      .finally(function () {
-        busy(btn, false);
+          .then(function (r) { return r.json(); })
+          .catch(function () { return { ok: true }; })
+          .then(function () {
+            $('creatorStep3').hidden = true;
+            $('creatorStepDone').hidden = false;
+          })
+          .catch(function () {
+            say(msg, 'Something went wrong saving your details. Please try again.', 'err');
+          })
+          .finally(function () {
+            busy(btn, false);
+          });
       });
-    });
 
-    /* ── Sheet Login Flow ── */
-    $('sheetLoginForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var input = $('sheetLoginEmail');
-      var val = (input.value || '').trim();
-      var msg = $('sheetLoginMsg1');
-      var btn = $('sheetLoginSendBtn');
+      /* ── Sheet Login Flow ── */
+      $('sheetLoginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var input = $('sheetLoginEmail');
+        var val = (input.value || '').trim();
+        var msg = $('sheetLoginMsg1');
+        var btn = $('sheetLoginSendBtn');
 
-      say(msg, '');
-      if (!val || !isValidEmail(val)) {
-        say(msg, 'Please enter a valid email address.', 'err');
-        return bad(input);
-      }
-
-      sheetLoginEmail = val;
-      busy(btn, true);
-      fetch('/api/auth/otp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: val, intent: 'login' })
-      })
-      .then(function (r) { return r.json(); })
-      .catch(function () { return { ok: true }; })
-      .then(function () {
-        $('sheetLoginStep1').hidden = true;
-        $('sheetLoginStep2').hidden = false;
-        $('sheetLoginSentEmail').textContent = val;
-        setupOtpGrid($('sheetLoginOtpGrid'), $('sheetLoginVerifyBtn'));
-      })
-      .finally(function () { busy(btn, false); });
-    });
-
-    $('sheetLoginOtpForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var inputs = Array.prototype.slice.call($('sheetLoginOtpGrid').querySelectorAll('input'));
-      var code = inputs.map(function (i) { return i.value; }).join('');
-      var btn = $('sheetLoginVerifyBtn');
-      var msg = $('sheetLoginMsg2');
-
-      if (code.length < 6) {
-        say(msg, 'Please enter all 6 digits.', 'err');
-        return bad(inputs[code.length] || inputs[0]);
-      }
-
-      say(msg, '');
-      busy(btn, true);
-      fetch('/api/auth/verify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: sheetLoginEmail, code: code, intent: 'login' })
-      })
-      .then(function (r) { return r.json(); })
-      .catch(function () { return { ok: true }; })
-      .then(function () {
-        say(msg, 'Signed in! Redirecting...', 'ok');
-        setTimeout(function () { location.href = '/explore'; }, 500);
-      })
-      .finally(function () { busy(btn, false); });
-    });
-
-    $('sheetLoginChangeEmailBtn').addEventListener('click', function () {
-      $('sheetLoginStep2').hidden = true;
-      $('sheetLoginStep1').hidden = false;
-      $('sheetLoginEmail').focus();
-    });
-
-    /* ── Initial URL intent routing ── */
-    var qs = new URLSearchParams(location.search);
-    var intent = qs.get('intent');
-    if (intent === 'creator' || qs.get('role') === 'creator') {
-      setMode('be');
-    } else if (intent === 'login') {
-      setMode('login');
-    } else {
-      swEl.dataset.side = 'hire';
-      swEl.dataset.login = 'closed';
-    }
-
-    // Fetch live founding spots count
-    fetch('/api/founding')
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        if (d && typeof d.open === 'number') {
-          var el = $('creatorFoundingSpots');
-          if (el) el.textContent = d.open;
+        say(msg, '');
+        if (!val || !isValidEmail(val)) {
+          say(msg, 'Please enter a valid email address.', 'err');
+          return bad(input);
         }
-      })
-      .catch(function () {});
 
-  })();
+        sheetLoginEmail = val;
+        busy(btn, true);
+        fetch('/api/auth/otp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: val, intent: 'login' })
+        })
+          .then(function (r) { return r.json(); })
+          .catch(function () { return { ok: true }; })
+          .then(function () {
+            $('sheetLoginStep1').hidden = true;
+            $('sheetLoginStep2').hidden = false;
+            $('sheetLoginSentEmail').textContent = val;
+            setupOtpGrid($('sheetLoginOtpGrid'), $('sheetLoginVerifyBtn'));
+          })
+          .finally(function () { busy(btn, false); });
+      });
+
+      $('sheetLoginOtpForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var inputs = Array.prototype.slice.call($('sheetLoginOtpGrid').querySelectorAll('input'));
+        var code = inputs.map(function (i) { return i.value; }).join('');
+        var btn = $('sheetLoginVerifyBtn');
+        var msg = $('sheetLoginMsg2');
+
+        if (code.length < 6) {
+          say(msg, 'Please enter all 6 digits.', 'err');
+          return bad(inputs[code.length] || inputs[0]);
+        }
+
+        say(msg, '');
+        busy(btn, true);
+        fetch('/api/auth/verify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: sheetLoginEmail, code: code, intent: 'login' })
+        })
+          .then(function (r) { return r.json(); })
+          .catch(function () { return { ok: true }; })
+          .then(function () {
+            say(msg, 'Signed in! Redirecting...', 'ok');
+            setTimeout(function () { location.href = '/explore'; }, 500);
+          })
+          .finally(function () { busy(btn, false); });
+      });
+
+      $('sheetLoginChangeEmailBtn').addEventListener('click', function () {
+        $('sheetLoginStep2').hidden = true;
+        $('sheetLoginStep1').hidden = false;
+        $('sheetLoginEmail').focus();
+      });
+
+      /* ── Initial URL intent routing ── */
+      var qs = new URLSearchParams(location.search);
+      var intent = qs.get('intent');
+      if (intent === 'creator' || qs.get('role') === 'creator') {
+        setMode('be');
+      } else if (intent === 'login') {
+        setMode('login');
+      } else {
+        swEl.dataset.side = 'hire';
+        swEl.dataset.login = 'closed';
+      }
+
+      // Fetch live founding spots count
+      fetch('/api/founding')
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d && typeof d.open === 'number') {
+            var el = $('creatorFoundingSpots');
+            if (el) el.textContent = d.open;
+          }
+        })
+        .catch(function () { });
+
+    })();
   </script>
 
 </body>
+
 </html>
