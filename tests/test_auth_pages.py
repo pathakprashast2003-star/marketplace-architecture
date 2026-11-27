@@ -3,6 +3,7 @@ from playwright.sync_api import sync_playwright
 
 BASE_URL = "http://localhost:3000"
 
+
 def test_login_page_renders_and_functions():
     with sync_playwright() as p:
         browser = p.chromium.launch()
@@ -55,21 +56,19 @@ def test_login_page_renders_and_functions():
         otp_boxes = page.locator("#loginCodeInputs input")
         assert otp_boxes.count() == 6
 
-        # Fill code
         for i in range(6):
             otp_boxes.nth(i).fill(str(i + 1))
 
-        # Check for any fatal console errors
         critical_errors = [e for e in console_errors if "favicon" not in e.lower() and "turnstile" not in e.lower()]
         assert len(critical_errors) == 0, f"Unexpected console errors: {critical_errors}"
 
         browser.close()
 
 
-def test_signup_page_two_choice_fork():
+def test_signup_landing_page_structure_and_two_choices():
     with sync_playwright() as p:
         browser = p.chromium.launch()
-        page = browser.new_page()
+        page = browser.new_page(viewport={"width": 1280, "height": 900})
 
         console_errors = []
         page.on("console", lambda msg: console_errors.append(msg.text) if msg.type == "error" else None)
@@ -77,25 +76,21 @@ def test_signup_page_two_choice_fork():
         response = page.goto(f"{BASE_URL}/signup")
         assert response.status == 200, f"Expected 200 OK for /signup, got {response.status}"
 
-        # Check viewFork is active
-        view_fork = page.locator("#viewFork")
-        assert view_fork.is_visible()
+        # Matches landing page #join header & tabs
+        assert "Find your creative" in page.locator("#jnT").inner_text()
+        assert page.locator("#tabClient").is_visible()
+        assert page.locator("#tabCreator").is_visible()
+        assert page.locator("#tabLogin").is_visible()
 
-        # Check two choices are present
-        card_hire = page.locator("#btnChooseHire")
-        card_creator = page.locator("#btnChooseCreator")
-
-        assert card_hire.is_visible()
-        assert "I'm looking to hire" in card_hire.inner_text()
-        assert "clients & brands" in card_hire.inner_text().lower()
-
-        assert card_creator.is_visible()
-        assert "I'm a creator / business" in card_creator.inner_text()
-        assert "founding 100" in card_creator.inner_text().lower()
+        # Sliding grid defaults to client ("hire") with blue Creator panel on the right
+        sw = page.locator("#jnSw")
+        assert sw.get_attribute("data-side") == "hire"
+        assert page.locator("#viewClient").is_visible()
+        assert page.locator("#btnChooseCreator").is_visible()
+        assert "creator / business" in page.locator("#btnChooseCreator").inner_text().lower()
 
         # Link to login page
-        login_link = page.locator(".nx-auth-nav a:has-text('Log in')")
-        assert login_link.is_visible()
+        assert page.locator("#topNavLoginLink").is_visible()
 
         critical_errors = [e for e in console_errors if "favicon" not in e.lower() and "turnstile" not in e.lower()]
         assert len(critical_errors) == 0, f"Unexpected console errors: {critical_errors}"
@@ -106,16 +101,12 @@ def test_signup_page_two_choice_fork():
 def test_signup_client_flow_magic_link():
     with sync_playwright() as p:
         browser = p.chromium.launch()
-        page = browser.new_page()
+        page = browser.new_page(viewport={"width": 1280, "height": 900})
 
         page.goto(f"{BASE_URL}/signup")
 
-        # Click choice "I'm looking to hire"
-        page.locator("#btnChooseHire").click()
-
-        # Verify client view is active
-        view_client = page.locator("#viewClient")
-        assert view_client.is_visible()
+        # Client view is active on left
+        assert page.locator("#viewClient").is_visible()
         assert "Find & hire talent" in page.locator("#clientTitle").inner_text()
 
         # Google button and email input
@@ -128,24 +119,19 @@ def test_signup_client_flow_magic_link():
         assert email_input.is_visible()
         assert "Send magic link" in send_btn.inner_text()
 
-        # Submit invalid email
+        # Invalid email validation
         email_input.fill("bad-email")
         send_btn.click()
         assert "valid email" in page.locator("#clientMsg").inner_text().lower()
 
-        # Submit valid email
+        # Valid email -> Magic link sent
         email_input.fill("producer@studio.com")
         send_btn.click()
 
-        # Magic link sent stage appears
         sent_stage = page.locator("#clientSentStage")
         sent_stage.wait_for(state="visible")
         assert "Magic link sent" in page.locator("#clientSentStage h2").inner_text()
         assert "producer@studio.com" in page.locator("#clientSentEmail").inner_text()
-
-        # Test changing back to fork
-        page.locator("#clientBackBtn").click()
-        assert page.locator("#viewFork").is_visible()
 
         browser.close()
 
@@ -153,26 +139,24 @@ def test_signup_client_flow_magic_link():
 def test_signup_creator_flow_to_page10():
     with sync_playwright() as p:
         browser = p.chromium.launch()
-        page = browser.new_page()
+        page = browser.new_page(viewport={"width": 1280, "height": 900})
 
         page.goto(f"{BASE_URL}/signup")
 
-        # Click choice "I'm a creator / business"
+        # Switch to creator via blue panel CTA ("I'm a creator / business →")
         page.locator("#btnChooseCreator").click()
+        assert page.locator("#jnSw").get_attribute("data-side") == "be"
 
-        # Verify creator view is active
+        # Wait for sliding transition
+        page.wait_for_timeout(650)
+
         view_creator = page.locator("#viewCreator")
         assert view_creator.is_visible()
         assert "Claim your founding spot" in page.locator("#creatorTitle").inner_text()
-
-        # Check Founding spots banner
-        banner = page.locator(".nx-banner-founding")
-        assert banner.is_visible()
-        assert "Founding Spots" in banner.inner_text()
+        assert "founding spots" in page.locator(".jn-count").inner_text().lower()
 
         # Google button & Email field
-        google_btn = page.locator("#creatorGoogleBtn")
-        assert google_btn.is_visible()
+        assert page.locator("#creatorGoogleBtn").is_visible()
         email_input = page.locator("#creatorEmail")
         send_btn = page.locator("#creatorSendCodeBtn")
         assert "Email me a 6-digit code" in send_btn.inner_text()
@@ -192,31 +176,27 @@ def test_signup_creator_flow_to_page10():
         for i in range(6):
             otp_boxes.nth(i).fill(str(i + 1))
 
-        # Submits code and enters Step 3 (Identity / DOB)
+        # Step 3: Identity & Age Gate
         step3 = page.locator("#creatorStep3")
         step3.wait_for(state="visible")
         assert "A bit about you" in step3.inner_text()
 
-        # Fill name & DOB (25 years old)
         page.locator("#creatorName").fill("Marcus Vance")
         page.locator("#dobMonth").select_option("05")
         page.locator("#dobDay").select_option("15")
         page.locator("#dobYear").select_option("1998")
-
         page.locator("#creatorSaveAboutBtn").click()
 
-        # Step 4: Completion view appears
+        # Step 4: Completion -> Page 10
         step_done = page.locator("#creatorStepDone")
         step_done.wait_for(state="visible")
         assert "You're in! Welcome to Nexus" in step_done.inner_text()
 
-        # Primary button leads to Page 10 (Storefront Onboarding)
         onboarding_link = page.locator("#creatorOnboardingLink")
         assert onboarding_link.is_visible()
         assert "/seller/onboarding" in onboarding_link.get_attribute("href")
         assert "Page 10" in onboarding_link.inner_text()
 
-        # Test navigating to onboarding
         onboarding_link.click()
         page.wait_for_url("**/seller/onboarding**")
         assert "Build your verified storefront" in page.locator("h1").inner_text()
@@ -227,16 +207,15 @@ def test_signup_creator_flow_to_page10():
 def test_signup_direct_intent_urls():
     with sync_playwright() as p:
         browser = p.chromium.launch()
-        page = browser.new_page()
+        page = browser.new_page(viewport={"width": 1280, "height": 900})
 
-        # Directly visiting ?intent=client
         page.goto(f"{BASE_URL}/signup?intent=client")
-        assert page.locator("#viewClient").is_visible()
-        assert not page.locator("#viewFork").is_visible()
+        assert page.locator("#jnSw").get_attribute("data-side") == "hire"
 
-        # Directly visiting ?intent=creator
         page.goto(f"{BASE_URL}/signup?intent=creator")
-        assert page.locator("#viewCreator").is_visible()
-        assert not page.locator("#viewFork").is_visible()
+        assert page.locator("#jnSw").get_attribute("data-side") == "be"
+
+        page.goto(f"{BASE_URL}/signup?intent=login")
+        assert page.locator("#jnSw").get_attribute("data-login") == "open"
 
         browser.close()

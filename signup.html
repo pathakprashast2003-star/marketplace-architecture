@@ -3,148 +3,159 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Create your account · Nexus</title>
-  <meta name="description" content="Sign up for Nexus. Choose whether you're looking to hire top creative talent or join as a verified creator/business with 0% commission.">
+  <title>Join Nexus · Find your creative or be found</title>
+  <meta name="description" content="Sign up for Nexus. Choose whether you're looking to hire vetted creative talent or claim a founding creator spot with 0% commission.">
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%233B54EE' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #0F172A;
-      --ink-light: #1E293B;
-      --sub: #475569;
-      --mute: #64748B;
-      --line: rgba(15, 23, 42, 0.08);
-      --line-hover: rgba(15, 23, 42, 0.16);
-      --blue: #3B54EE;
-      --blue-hover: #2A44E0;
-      --blue-glow: rgba(59, 84, 238, 0.25);
-      --soft: #F8FAFC;
+      --jn-ink: #0F172A;
+      --jn-ink2: #475569;
+      --jn-ink3: #64748B;
+      --jn-line: rgba(15, 23, 42, 0.10);
+      --jn-blue: #3B54EE;
+      --jn-serif: 'Times New Roman', Times, Georgia, serif;
+      --jn-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
+      --jn-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+      --jn-ease: cubic-bezier(0.22, 1, 0.36, 1);
       --bad: #DC2626;
-      --ok: #16A34A;
-      --serif: 'Times New Roman', Times, Georgia, serif;
-      --sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
-      --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
-      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --ok: #047857;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; min-height: 100dvh; }
     body {
-      background: #FCFCFD;
-      color: var(--ink);
-      font-family: var(--sans);
+      background: #FFFFFF;
+      color: var(--jn-ink);
+      font-family: var(--jn-serif);
+      font-variant-numeric: lining-nums tabular-nums;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       display: flex;
       flex-direction: column;
     }
 
-    a { color: var(--blue); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    button { font: inherit; }
+    a { color: var(--jn-blue); text-decoration: none; }
+    button { font-family: var(--jn-serif); }
     [hidden] { display: none !important; }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    .jn-sr {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
 
-    /* Top Navigation */
+    /* ── Top Navigation Bar (Clean Editorial Pill Style matching landing) ── */
     .nx-auth-nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 1140px;
+      gap: 16px;
+      max-width: 1160px;
       width: 100%;
       margin: 0 auto;
-      padding: 24px clamp(16px, 4vw, 32px);
+      padding: 18px clamp(18px, 3.8vw, 36px) 0;
     }
     .nx-auth-brand {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      font-family: var(--serif);
+      font-family: var(--jn-serif);
       font-size: 24px;
       font-weight: 700;
-      color: var(--ink);
+      color: var(--jn-ink);
       letter-spacing: -0.02em;
       text-decoration: none !important;
+      flex-shrink: 0;
     }
     .nx-auth-brand-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--blue);
-      box-shadow: 0 0 10px var(--blue-glow);
+      background: var(--jn-blue);
+      box-shadow: 0 0 10px rgba(59, 84, 238, 0.35);
     }
-    .nx-auth-nav-link {
-      font-size: 14.5px;
-      font-weight: 600;
-      color: var(--sub);
-      text-decoration: none;
-    }
-    .nx-auth-nav-link:hover { color: var(--ink); text-decoration: none; }
-    .nx-auth-nav-link b { color: var(--blue); font-weight: 700; }
-
-    /* Main Stage */
-    .nx-auth-main {
-      flex: 1;
+    .nx-auth-nav-actions {
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 10px clamp(16px, 4vw, 24px) 56px;
+      gap: 20px;
     }
+    .nx-auth-nav-link {
+      font-family: var(--jn-sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--jn-ink2);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.15s ease;
+    }
+    .nx-auth-nav-link:hover { color: var(--jn-ink); }
+    .nx-auth-nav-link b { color: var(--jn-blue); font-weight: 700; }
 
-    .nx-view {
-      display: none;
-      width: 100%;
+    /* ── Landing Page #join Architecture ── */
+    .jn {
+      flex: 1;
+      background: #FFFFFF;
+      color: var(--jn-ink);
+      font-family: var(--jn-serif);
+      font-variant-numeric: lining-nums tabular-nums;
+      padding: 20px 0 64px;
     }
-    .nx-view.is-active {
-      display: block;
+    .jn button,
+    .jn input,
+    .jn select,
+    .jn a {
+      font-family: var(--jn-serif);
+      font-variant-numeric: lining-nums tabular-nums;
     }
-
-    /* ── The 2-Choice Role Selector Stage (Clean, Elevated, Apple-Grade) ── */
-    .nx-fork-wrap {
-      max-width: 960px;
+    .jn-in {
+      max-width: 1160px;
       margin: 0 auto;
-      width: 100%;
+      padding-inline: clamp(18px, 3.8vw, 36px);
     }
 
-    .nx-fork-header {
+    /* Header (.jn-head) */
+    .jn-head {
+      position: relative;
       text-align: center;
-      margin: 0 auto 38px;
-      max-width: 680px;
-    }
-
-    .nx-kicker-pill {
-      display: inline-flex;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 6px;
-      margin: 0 auto 16px;
-      padding: 5px 14px;
+      margin: 0 auto 28px;
+      max-width: 1080px;
+      padding: 0 24px;
+    }
+    .jn-pill {
+      margin: 0 0 14px;
+      padding: 6px 15px;
       border-radius: 999px;
       background: #EEF2FF;
-      border: 1px solid rgba(59, 84, 238, 0.18);
-      font-family: var(--mono);
+      border: 1px solid rgba(59, 84, 238, 0.16);
+      font-family: var(--jn-mono);
       font-size: 10.5px;
       font-weight: 700;
       letter-spacing: 0.10em;
       text-transform: uppercase;
-      color: var(--blue);
+      color: #3B54EE;
     }
-
-    .nx-fork-title {
-      margin: 0 auto 14px;
-      font-family: var(--serif);
-      font-weight: 700;
+    .jn-title {
+      margin: 0 auto 12px;
+      font-family: var(--jn-serif);
+      font-weight: 600;
       letter-spacing: -0.025em;
-      line-height: 1.12;
-      font-size: clamp(34px, 4.6vw, 48px);
-      color: var(--ink);
+      line-height: 1.04;
+      font-size: clamp(2.45rem, 4.5vw, 3.9rem);
+      max-width: 18ch;
+      color: #0F172A;
       text-wrap: balance;
     }
-
-    .nx-deck-accent {
+    .jn-title .nx-deck-accent {
       font-style: italic;
       font-weight: 500;
       background: linear-gradient(135deg, #4F6AF8 0%, #3B54EE 55%, #1E3A8A 100%);
@@ -153,306 +164,272 @@
       -webkit-text-fill-color: transparent;
       display: inline-block;
     }
+    .jn-note {
+      position: absolute;
+      font-family: 'Caveat', cursive;
+      font-size: 24px;
+      line-height: 1.05;
+      color: #475569;
+      pointer-events: none;
+    }
+    .jn-note svg {
+      display: block;
+      width: 72px;
+      height: 54px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .jn-n-a { left: 1.5%; top: 20%; transform: rotate(-8deg); text-align: left; }
+    .jn-n-a svg { margin: 4px 0 0 42px; }
+    .jn-n-b { right: 1%; top: 20%; transform: rotate(7deg); text-align: right; }
+    .jn-n-b svg { margin: 4px 0 0 -10px; }
 
-    .nx-fork-sub {
-      margin: 0 auto;
-      max-width: 54ch;
-      font-size: 16px;
-      line-height: 1.55;
-      color: var(--sub);
-      text-wrap: balance;
+    .jn-sub {
+      margin: 0 auto 14px;
+      max-width: 50ch;
+      font-family: var(--jn-serif);
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.48;
+      color: #64748B;
     }
+    .jn-sub-short { display: none; }
 
-    /* Two Distinct, Symmetrical, Beautiful Cards */
-    .nx-dual-cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 28px;
-      margin-top: 10px;
-    }
-
-    .nx-choice-card {
-      background: #FFFFFF;
-      border-radius: 24px;
-      border: 1.5px solid rgba(15, 23, 42, 0.08);
-      box-shadow: 0 16px 40px -12px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.02);
-      padding: 36px 32px 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      cursor: pointer;
-      position: relative;
-      transition: transform 0.22s var(--ease), box-shadow 0.22s ease, border-color 0.22s ease;
-      text-decoration: none !important;
-      outline: none;
-    }
-    .nx-choice-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(59, 84, 238, 0.40);
-      box-shadow: 0 24px 50px -12px rgba(59, 84, 238, 0.14), 0 2px 6px rgba(15, 23, 42, 0.03);
-    }
-    .nx-choice-card:focus-visible {
-      outline: 3px solid var(--blue);
-      outline-offset: 3px;
-    }
-
-    /* Subtle elevated accent on Creator Card */
-    .card-creator {
-      border: 1.5px solid rgba(59, 84, 238, 0.24);
-      box-shadow: 0 16px 40px -12px rgba(59, 84, 238, 0.08), 0 1px 3px rgba(15, 23, 42, 0.02);
-    }
-    .card-creator:hover {
-      border-color: var(--blue);
-      box-shadow: 0 24px 54px -12px rgba(59, 84, 238, 0.18), 0 2px 6px rgba(15, 23, 42, 0.03);
-    }
-
-    .card-top-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 22px;
-    }
-
-    .card-icon-bubble {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
+    .jn-head-attrs {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 8px 22px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 14.5px;
+      color: #475569;
     }
-    .card-client .card-icon-bubble {
-      background: #EEF2FF;
-      color: var(--blue);
-    }
-    .card-creator .card-icon-bubble {
-      background: #EFF6FF;
-      color: var(--blue);
-    }
-
-    .card-badge {
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 5px 12px;
-      border-radius: 999px;
-      text-transform: uppercase;
+    .jn-head-attrs li {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
       white-space: nowrap;
     }
-    .card-client .card-badge {
-      background: var(--soft);
-      color: var(--sub);
-      border: 1px solid rgba(15, 23, 42, 0.08);
-    }
-    .card-creator .card-badge {
-      background: #FEF3C7;
-      color: #92400E;
-      border: 1px solid rgba(217, 119, 6, 0.22);
+    .jn-tick-ic {
+      display: inline-flex;
+      flex: none;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #3B54EE url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/9px no-repeat;
     }
 
-    .card-h2 {
-      font-family: var(--sans);
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-      margin: 0 0 10px;
+    /* Segmented Tabs (.jn-tabs) */
+    .jn-tabs {
+      display: flex;
+      justify-content: center;
+      width: fit-content;
+      margin: 0 auto 22px;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 999px;
+      background: #F1F5F9;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
     }
-
-    .card-desc {
-      font-size: 14.5px;
-      line-height: 1.55;
-      color: var(--sub);
-      margin: 0 0 24px;
-      min-height: 44px;
+    .jn-tab {
+      height: 36px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      font: 600 15px var(--jn-serif);
+      color: #475569;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease;
     }
+    .jn-tab:hover { color: #0F172A; }
+    .jn-tab.is-active {
+      background: #FFFFFF;
+      color: #0F172A;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.09);
+    }
+    .jn-tab[data-side="login"].is-active { color: #3B54EE; }
+    .jn-tab:active { transform: scale(0.97); }
 
-    .card-ticks {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 32px;
+    /* Sliding Dual-Panel Split Container (.jn-grid) */
+    .jn-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0;
+      max-width: 1080px;
+      min-height: 580px;
+      margin: 0 auto;
+      border-radius: 32px;
+      overflow: hidden;
+      background: #FFFFFF;
+      border: 1px solid rgba(15, 23, 42, 0.07);
+      box-shadow: 0 32px 76px -22px rgba(15, 23, 42, 0.12), 0 4px 18px -4px rgba(15, 23, 42, 0.04);
+    }
+    .jn-card {
+      position: relative;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-    }
-    .card-ticks li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ink-light);
-    }
-    .card-tick-icon {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #EEF2FF;
-      color: var(--blue);
-      display: flex;
-      align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-    }
-    .card-tick-icon svg {
-      width: 12px;
-      height: 12px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 50px;
-      border-radius: 999px;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      cursor: pointer;
-      transition: all 0.18s ease;
-      border: none;
-      text-decoration: none !important;
-      box-sizing: border-box;
-    }
-
-    /* Client Button: High-End Secondary / Slate */
-    .btn-client-cta {
-      background: #F1F5F9;
-      color: var(--ink);
-      border: 1px solid rgba(15, 23, 42, 0.10);
-    }
-    .nx-choice-card.card-client:hover .btn-client-cta,
-    .btn-client-cta:hover {
-      background: var(--ink);
-      color: #FFFFFF;
-      border-color: var(--ink);
-      box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.25);
-    }
-
-    /* Creator Button: Signature Royal Blue Gradient */
-    .btn-creator-cta {
-      background: linear-gradient(135deg, #4F6AF8 0%, #3B54EE 55%, #2134B8 100%);
-      color: #FFFFFF;
-      box-shadow: 0 10px 24px -6px rgba(59, 84, 238, 0.38);
-    }
-    .nx-choice-card.card-creator:hover .btn-creator-cta,
-    .btn-creator-cta:hover {
-      background: linear-gradient(135deg, #5873F9 0%, #445DFA 55%, #273CCE 100%);
-      box-shadow: 0 14px 28px -6px rgba(59, 84, 238, 0.50);
-    }
-
-    .nx-fork-footer {
-      margin-top: 36px;
-      text-align: center;
-      font-size: 14.5px;
-      color: var(--sub);
-    }
-    .nx-fork-footer a { font-weight: 600; }
-
-    /* ── Sub-Flow Auth Cards (Client Magic Link & Creator Wizard) ── */
-    .nx-auth-box {
-      width: 100%;
-      max-width: 480px;
-      margin: 0 auto;
+      gap: 13px;
+      padding: 44px clamp(32px, 4.6vw, 56px);
       background: #FFFFFF;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: clamp(32px, 5vw, 42px) clamp(24px, 5vw, 36px);
-      box-shadow: 0 24px 56px -16px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.03);
-      position: relative;
+      color: #0F172A;
+      border: 0;
     }
+    .jn-grid[data-side="hire"] .jn-creator,
+    .jn-grid[data-side="be"] .jn-client {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .jn-step { display: flex; flex-direction: column; gap: 12px; }
+    .jn-step[hidden] { display: none; }
 
-    .nx-back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .jn-k {
+      margin: 0;
+      font-family: var(--jn-mono) !important;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #3B54EE;
+    }
+    .jn-card h3, .jn-card h2 {
+      margin: -2px 0 2px;
+      font-family: var(--jn-serif);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.06;
+      font-size: clamp(1.9rem, 2.75vw, 2.3rem);
+      color: #0F172A;
+    }
+    .jn-card h3 em, .jn-card h2 em {
+      font-style: italic;
+      color: #3B54EE;
+    }
+    .jn-p {
+      margin: 0;
+      font-family: var(--jn-serif);
+      font-size: 15.5px;
+      line-height: 1.48;
+      color: #475569;
+    }
+    .jn-p b { color: var(--jn-ink); word-break: break-all; }
+
+    .jn form { display: flex; flex-direction: column; gap: 11px; }
+    .jn-l {
+      font-family: var(--jn-serif);
       font-size: 13.5px;
       font-weight: 600;
-      color: var(--sub);
-      background: transparent;
-      border: none;
-      padding: 0;
-      margin-bottom: 20px;
-      cursor: pointer;
-      transition: color 0.15s ease;
+      color: #334155;
+      margin-top: 2px;
     }
-    .nx-back-btn:hover { color: var(--ink); }
+    .jn-l span {
+      font-weight: 400;
+      color: #64748B;
+      font-size: 12.5px;
+    }
+    .jn input[type=text],
+    .jn input[type=email],
+    .jn select {
+      width: 100%;
+      height: 46px;
+      padding: 0 14px;
+      border-radius: 11px;
+      border: 1px solid rgba(15, 23, 42, 0.14);
+      background: #FAFAFC;
+      font-family: var(--jn-serif);
+      font-size: 15.5px;
+      font-weight: 500;
+      color: #0F172A;
+      transition: border-color 0.2s, background-color 0.2s, box-shadow 0.25s var(--jn-ease);
+    }
+    .jn select {
+      appearance: none;
+      background: #FAFAFC url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 12px center/15px no-repeat;
+      padding-right: 34px;
+    }
+    .jn input::placeholder {
+      color: #94A3B8;
+      font-style: italic;
+    }
+    .jn input:focus,
+    .jn select:focus {
+      outline: 0;
+      background: #FFFFFF;
+      border-color: #3B54EE;
+      box-shadow: 0 0 0 3px rgba(59, 84, 238, 0.12);
+    }
+    .jn input.is-bad, .jn select.is-bad {
+      border-color: #DC2626;
+      background: #FEF2F2;
+      animation: jnShake 0.3s;
+    }
+    @keyframes jnShake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
 
-    .nx-form-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--blue);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
+    .jn-dob-row {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1.2fr;
+      gap: 10px;
     }
 
-    .nx-form-title {
-      font-family: var(--serif);
-      font-size: clamp(28px, 4vw, 34px);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.025em;
-      color: var(--ink);
-      margin: 0 0 8px;
-    }
-
-    .nx-form-sub {
-      font-size: 14.5px;
-      line-height: 1.5;
-      color: var(--sub);
-      margin: 0 0 24px;
-    }
-    .nx-form-sub b { color: var(--ink); word-break: break-all; }
-
-    .nx-banner-founding {
-      background: #EFF6FF;
-      border: 1px solid #BFDBFE;
-      color: #1E40AF;
-      border-radius: 14px;
-      padding: 10px 14px;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 20px;
+    .jn-or {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
+      margin: 2px 0;
+      font-family: var(--jn-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
-
-    .btn-google {
-      background: #FFFFFF;
-      color: var(--ink);
-      border: 1px solid rgba(15, 23, 42, 0.14);
-      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
-    }
-    .btn-google:hover {
-      border-color: rgba(15, 23, 42, 0.28);
-      background: #FAFAFC;
-    }
-    .btn-google svg { width: 19px; height: 19px; flex-shrink: 0; }
-
-    .btn-primary {
-      color: #FFFFFF;
-      background: linear-gradient(135deg, #4F6AF8 0%, #3B54EE 55%, #2134B8 100%);
-      box-shadow: 0 10px 24px -8px rgba(59, 84, 238, 0.45);
-    }
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #5873F9 0%, #445DFA 55%, #273CCE 100%);
-      box-shadow: 0 14px 28px -8px rgba(59, 84, 238, 0.55);
-    }
-    .btn[aria-busy="true"] { opacity: 0.75; pointer-events: none; }
-    .btn[aria-busy="true"]::after {
+    .jn-or::before, .jn-or::after {
       content: '';
-      width: 16px;
-      height: 16px;
+      flex: 1;
+      height: 1px;
+      background: rgba(15, 23, 42, 0.09);
+    }
+
+    /* Buttons (.jn-btn) */
+    .jn-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      height: 48px;
+      width: 100%;
+      padding: 0 24px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #4B66F8 0%, #3B54EE 60%, #2740D6 100%);
+      color: #FFFFFF;
+      font-family: var(--jn-serif);
+      font-size: 15.5px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 6px 16px -4px rgba(59, 84, 238, 0.36);
+      transition: transform 0.16s var(--jn-ease), filter 0.2s ease, box-shadow 0.25s ease;
+      margin-top: 2px;
+    }
+    .jn-btn:hover { filter: brightness(1.06); transform: translateY(-1px); box-shadow: 0 10px 22px -5px rgba(59, 84, 238, 0.44); }
+    .jn-btn:active { transform: scale(0.98); }
+    .jn-btn:focus-visible, .jn-link:focus-visible, .jn a:focus-visible { outline: 2px solid #3B54EE; outline-offset: 3px; }
+    .jn-btn[aria-busy="true"] { opacity: 0.75; pointer-events: none; }
+    .jn-btn[aria-busy="true"]::after {
+      content: '';
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
       border: 2px solid currentColor;
       border-right-color: transparent;
@@ -460,447 +437,523 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .or-divider {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin: 20px 0;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--mute);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+    .jn-btn.is-google {
+      background: #FFFFFF;
+      color: #0F172A;
+      border: 1px solid rgba(15, 23, 42, 0.16);
+      box-shadow: none;
     }
-    .or-divider::before, .or-divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--line);
-    }
+    .jn-btn.is-google:hover { background: #F8FAFC; border-color: rgba(15, 23, 42, 0.30); filter: none; }
+    .jn-btn.is-google svg { width: 18px; height: 18px; }
 
-    .form-field {
+    /* Founding Counter & Progress Track */
+    .jn-count {
       display: flex;
-      flex-direction: column;
+      align-items: baseline;
       gap: 7px;
-      margin-bottom: 18px;
+      margin: 2px 0 -2px;
+      font-family: var(--jn-serif);
+      font-size: 15.5px;
+      color: #475569;
     }
-    .field-label {
-      font-size: 13.5px;
-      font-weight: 600;
-      color: var(--ink-light);
-    }
-    .field-hint {
-      font-size: 12px;
-      color: var(--mute);
-      font-weight: 400;
-    }
-    .field-input, .field-select {
-      width: 100%;
-      height: 48px;
-      padding: 0 14px;
-      border-radius: 12px;
-      border: 1.5px solid rgba(15, 23, 42, 0.12);
-      background: #FFFFFF;
-      font-family: inherit;
-      font-size: 15px;
-      color: var(--ink);
-      outline: none;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
-      box-sizing: border-box;
-    }
-    .field-select {
-      appearance: none;
-      background: #FFFFFF url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 14px center/16px no-repeat;
-      padding-right: 36px;
-    }
-    .field-input:focus, .field-select:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3.5px rgba(59, 84, 238, 0.12);
-    }
-    .field-input.is-bad, .field-select.is-bad {
-      border-color: var(--bad);
-      animation: shake 0.3s;
-    }
-    @keyframes shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
-
-    .dob-row {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1.2fr;
-      gap: 8px;
-    }
-
-    .otp-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 8px;
-      margin: 10px 0 18px;
-    }
-    .otp-grid input {
-      height: 56px;
-      padding: 0;
-      text-align: center;
-      font-family: var(--mono);
-      font-size: 22px;
+    .jn-count b {
+      font-family: var(--jn-serif);
       font-weight: 700;
-      color: var(--ink);
-      border-radius: 14px;
-      border: 1.5px solid rgba(15, 23, 42, 0.14);
-      background: #FFFFFF;
-      caret-color: var(--blue);
-      outline: none;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      font-size: 30px;
+      line-height: 1;
+      color: #0F172A;
     }
-    .otp-grid input:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(59, 84, 238, 0.14);
+    .jn-track {
+      width: 100%;
+      height: 3px;
+      background: #E2E8F0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 4px;
     }
-    .otp-grid input.is-filled {
-      border-color: rgba(59, 84, 238, 0.4);
-      background: #F8FAFC;
+    .jn-track > i {
+      display: block;
+      width: 84%;
+      height: 100%;
+      background: linear-gradient(90deg, #3B54EE 0%, #10B981 100%);
+      border-radius: 999px;
     }
 
-    .form-msg {
+    /* Checkmark List (.jn-ticks) */
+    .jn-ticks {
+      list-style: none;
+      margin: 4px 0 0;
+      padding: 12px 0 0;
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
+      display: grid;
+      gap: 6px;
+      font-family: var(--jn-serif);
+      font-size: 14px;
+      color: #475569;
+    }
+    .jn-ticks li { display: flex; align-items: center; gap: 9px; }
+    .jn-ticks li::before {
+      content: '';
+      flex: none;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #3B54EE url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/9px no-repeat;
+    }
+
+    .jn-fine {
+      margin: 2px 0 0;
+      font-family: var(--jn-serif);
+      font-style: italic;
       font-size: 13.5px;
-      line-height: 1.45;
-      margin: 0 0 14px;
-      min-height: 1.2em;
+      color: #64748B;
     }
-    .form-msg.is-err { color: var(--bad); }
-    .form-msg.is-ok { color: var(--ok); }
-
-    .form-footer-note {
-      font-size: 12.5px;
-      line-height: 1.5;
-      color: var(--mute);
-      margin: 18px 0 0;
-      text-align: center;
+    .jn-fine a, .jn-fine button {
+      color: #3B54EE;
+      font-style: normal;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      background: none;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      font-size: 13.5px;
     }
-    .form-footer-note a { color: var(--sub); }
 
-    .form-sublinks {
+    .jn-msg { margin: 0; min-height: 16px; font-size: 13.5px; font-weight: 600; }
+    .jn-msg.is-err { color: var(--bad); }
+    .jn-msg.is-ok { color: var(--ok); }
+
+    .jn-sublinks {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-top: 16px;
+      margin-top: 6px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
     }
-    .link-action {
+    .jn-link {
+      border: 0;
       background: none;
-      border: none;
       padding: 0;
-      font-size: 13.5px;
-      font-weight: 600;
-      color: var(--blue);
-      cursor: pointer;
+      font: 600 14px var(--jn-serif);
+      color: #3B54EE;
       text-decoration: underline;
       text-underline-offset: 3px;
+      cursor: pointer;
     }
-    .link-action:disabled {
-      color: var(--mute);
-      cursor: default;
-      text-decoration: none;
+    .jn-link:disabled { color: #94A3B8; cursor: default; text-decoration: none; }
+
+    /* 6-Digit OTP Input Grid */
+    .otp-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+      margin: 4px 0 8px;
+    }
+    .otp-grid input {
+      height: 52px !important;
+      padding: 0 !important;
+      text-align: center;
+      font-family: var(--jn-mono) !important;
+      font-size: 21px !important;
+      font-weight: 700 !important;
+      color: #0F172A;
+      border-radius: 12px !important;
+      border: 1.5px solid rgba(15, 23, 42, 0.16) !important;
+      background: #FFFFFF !important;
+      caret-color: #3B54EE;
+      outline: none;
+    }
+    .otp-grid input:focus {
+      border-color: #3B54EE !important;
+      box-shadow: 0 0 0 3px rgba(59, 84, 238, 0.14) !important;
+    }
+    .otp-grid input.is-filled {
+      border-color: rgba(59, 84, 238, 0.45) !important;
+      background: #F8FAFC !important;
     }
 
-    .done-badge-wrap {
-      width: 64px;
-      height: 64px;
+    /* Success Badge */
+    .jn-done-badge {
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       background: rgba(16, 185, 129, 0.12);
       color: #059669;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 18px;
+      margin-bottom: 4px;
     }
-    .done-badge-wrap svg { width: 32px; height: 32px; }
+    .jn-done-badge svg { width: 26px; height: 26px; }
 
-    /* Responsive */
-    @media (max-width: 840px) {
-      .nx-dual-cards {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-      .nx-choice-card {
-        padding: 30px 24px 26px;
-      }
-      .card-desc {
-        min-height: auto;
-      }
-      .nx-auth-box {
-        padding: 28px 20px;
-        border-radius: 24px;
-      }
+    /* ── The Signature Sliding Blue Panel (.jn-panel) ── */
+    .jn-panel {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 50%;
+      overflow: hidden;
+      z-index: 5;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: -8px 0 32px -12px rgba(35, 55, 198, 0.24);
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.58s cubic-bezier(0.65, 0, 0.35, 1), box-shadow 0.58s ease;
+    }
+    .jn-grid[data-side="be"] .jn-panel {
+      transform: translate3d(-100%, 0, 0);
+      box-shadow: 8px 0 32px -12px rgba(35, 55, 198, 0.24);
+    }
+    .jn-stage {
+      position: relative;
+      left: -100%;
+      width: 200%;
+      height: 100%;
+      color: #FFFFFF;
+      background: radial-gradient(120% 95% at 80% 10%, #5872FF 0%, #3B54EE 48%, #2134B8 100%);
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.58s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .jn-grid[data-side="be"] .jn-stage { transform: translate3d(50%, 0, 0); }
+    .jn-face {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 14px;
+      padding: 48px clamp(34px, 4.6vw, 58px);
+      transition: transform 0.58s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.34s ease;
+    }
+    .jn-face h3 {
+      margin: 0;
+      font: 600 clamp(2rem, 2.9vw, 2.5rem)/1.06 var(--jn-serif);
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+    }
+    .jn-face h3 em { font-style: italic; font-weight: 400; }
+    .jn-face p:not(.jn-k) {
+      margin: 0;
+      max-width: 29ch;
+      font-family: var(--jn-serif);
+      font-size: 16.5px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .jn-face .jn-k { color: rgba(255, 255, 255, 0.78); }
+    .jn-glass-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #FFFFFF;
+      font-family: var(--jn-serif);
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .jn-face-be { right: 0; }
+    .jn-face-hire { left: 0; opacity: 0; transform: translate3d(-20%, 0, 0); }
+    .jn-grid[data-side="be"] .jn-face-be { opacity: 0; transform: translate3d(20%, 0, 0); }
+    .jn-grid[data-side="be"] .jn-face-hire { opacity: 1; transform: translate3d(0, 0, 0); }
+    .jn-flip {
+      margin-top: 4px;
+      height: 44px;
+      padding: 0 28px;
+      border: 1.5px solid rgba(255, 255, 255, 0.88);
+      border-radius: 999px;
+      background: transparent;
+      color: #FFFFFF;
+      font: 700 13.5px var(--jn-serif);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.14s ease, color 0.2s;
+    }
+    .jn-flip:hover { background: rgba(255, 255, 255, 0.16); transform: translateY(-1px); }
+    .jn-flip:active { transform: scale(0.97); }
+
+    /* ── Login Sheet Overlay (.jn-login-sheet) ── */
+    .jn-login-sheet {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #FFFFFF;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate3d(0, -14px, 0);
+      transition: opacity 0.28s var(--jn-ease), transform 0.34s var(--jn-ease);
+    }
+    .jn-grid[data-login="open"] .jn-login-sheet {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translate3d(0, 0, 0);
+    }
+    .jn-login-aside {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 14px;
+      padding: 48px clamp(34px, 4.6vw, 58px);
+      background: radial-gradient(120% 95% at 80% 10%, #5872FF 0%, #3B54EE 48%, #2134B8 100%);
+      color: #FFFFFF;
+      border-radius: 30px;
+    }
+    .jn-login-aside h3 {
+      margin: 0;
+      font: 600 clamp(2rem, 2.9vw, 2.5rem)/1.06 var(--jn-serif);
+      color: #FFFFFF;
+    }
+    .jn-login-aside h3 em { font-style: italic; font-weight: 400; }
+    .jn-login-aside p { margin: 0; max-width: 28ch; font-size: 16px; line-height: 1.5; color: rgba(255, 255, 255, 0.9); }
+    .jn-login-form-wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+      padding: 44px clamp(32px, 4.6vw, 56px);
+    }
+    .jn-login-form-wrap h3 {
+      margin: -2px 0 2px;
+      font: 600 clamp(1.9rem, 2.75vw, 2.3rem)/1.06 var(--jn-serif);
+      color: #0F172A;
+    }
+    .jn-login-form-wrap h3 em { font-style: italic; color: #3B54EE; }
+
+    /* Responsive Breakpoints (Exact match to css/join.css + css/showcase.css) */
+    @media (max-width: 960px) { .jn-note { display: none; } }
+    @media (max-width: 820px) {
+      .jn { padding: 24px 0 56px; }
+      .jn-title { font-size: clamp(2rem, 8vw, 2.5rem); }
+      .jn-sub { font-size: 16px; margin-bottom: 12px; }
+      .jn-sub-long { display: none; }
+      .jn-sub-short { display: inline; }
+      .jn-head-attrs { gap: 6px 14px; font-size: 13px; }
+      .jn-tab { padding: 0 14px; font-size: 14px; height: 34px; }
+      .jn-grid { grid-template-columns: minmax(0, 1fr); min-height: 0; border-radius: 24px; }
+      .jn-panel { display: none; }
+      .jn-grid[data-side="hire"] .jn-creator,
+      .jn-grid[data-side="be"] .jn-client { display: none; }
+      .jn-grid .jn-card { opacity: 1 !important; pointer-events: auto !important; padding: 28px 20px; }
+      .jn-login-sheet { position: relative; grid-template-columns: 1fr; display: none; }
+      .jn-grid[data-login="open"] .jn-login-sheet { display: grid; }
+      .jn-grid[data-login="open"] .jn-client,
+      .jn-grid[data-login="open"] .jn-creator { display: none; }
+      .jn-login-aside { display: none; }
+      .jn-login-form-wrap { padding: 28px 20px; }
       .otp-grid { gap: 6px; }
-      .otp-grid input { height: 50px; font-size: 19px; }
+      .otp-grid input { height: 48px !important; font-size: 18px !important; }
+    }
+    @media (max-width: 600px) {
+      .nx-auth-nav-link[href="/explore"],
+      .nx-auth-nav-link[href="/pricing"] { display: none; }
+      .nx-auth-nav-link span.nx-hide-mobile { display: none; }
+    }
+    @media (max-width: 480px) {
+      .jn-dob-row { grid-template-columns: 1fr; gap: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .jn-panel, .jn-stage, .jn-face, .jn-card, .jn-btn, .jn-login-sheet { transition: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation Header -->
+  <!-- Clean Editorial Top Nav -->
   <header class="nx-auth-nav">
     <a class="nx-auth-brand" href="/" aria-label="Nexus Homepage">
       <span class="nx-auth-brand-dot"></span>nexus.
     </a>
-    <a class="nx-auth-nav-link" href="/login">Already have an account? <b>Log in</b></a>
+    <div class="nx-auth-nav-actions">
+      <a class="nx-auth-nav-link" href="/explore">Explore</a>
+      <a class="nx-auth-nav-link" href="/pricing">Pricing</a>
+      <a class="nx-auth-nav-link" href="/login" id="topNavLoginLink"><span class="nx-hide-mobile">Already have an account? </span><b>Log in</b></a>
+    </div>
   </header>
 
-  <!-- Main Multi-View Stage -->
-  <main class="nx-auth-main">
+  <!-- Main Join Stage (Exact Landing Page #join Structure) -->
+  <section class="jn" id="join" aria-labelledby="jnT">
+    <div class="jn-in">
 
-    <!-- ============================================================== -->
-    <!-- VIEW 0: The 2-Choice Role Selector Screen                      -->
-    <!-- ============================================================== -->
-    <section class="nx-view is-active" id="viewFork" aria-labelledby="forkTitle">
-      <div class="nx-fork-wrap">
-        
-        <header class="nx-fork-header">
-          <span class="nx-kicker-pill">Get Started</span>
-          <h1 class="nx-fork-title" id="forkTitle">
-            How do you want to use <span class="nx-deck-accent">Nexus?</span>
-          </h1>
-          <p class="nx-fork-sub">
-            Direct access to vetted creative talent or build your own verified storefront with 0% commission.
-          </p>
-        </header>
+      <header class="jn-head">
+        <p class="jn-pill">Founding Roster · Open Now</p>
+        <h1 class="jn-title" id="jnT">Find your creative. <span class="nx-deck-accent">Or be found.</span></h1>
+        <p class="jn-sub">
+          <span class="jn-sub-long">Filmmakers, drone pilots, artists and hobby teachers, all reviewed by a person. Contact them directly. No fees for clients.</span>
+          <span class="jn-sub-short">Reviewed creators and teachers. Free for clients.</span>
+        </p>
+        <ul class="jn-head-attrs" aria-label="Marketplace attributes">
+          <li><span class="jn-tick-ic" aria-hidden="true"></span><span>We send your request to matching creators</span></li>
+          <li><span class="jn-tick-ic" aria-hidden="true"></span><span>City-local or remote online</span></li>
+          <li><span class="jn-tick-ic" aria-hidden="true"></span><span>Rates shown up front</span></li>
+          <li><span class="jn-tick-ic" aria-hidden="true"></span><span>Free for clients, always</span></li>
+        </ul>
+        <span class="jn-note jn-n-a" aria-hidden="true">post a brief in seconds<br>zero client fee
+          <svg viewBox="0 0 80 60"><path d="M6 8c20 4 40 14 52 40M58 48l-2-12M58 48l-11-4"/></svg></span>
+        <span class="jn-note jn-n-b" aria-hidden="true">100 founding spots<br>reel, rate &amp; city
+          <svg viewBox="0 0 80 60"><path d="M74 8C54 10 30 20 20 46M20 46l1-12M20 46l11-5"/></svg></span>
+      </header>
 
-        <div class="nx-dual-cards">
-          
-          <!-- Card 1: "I'm looking to hire" (Clients & Brands) -->
-          <div class="nx-choice-card card-client" id="btnChooseHire" role="button" tabindex="0" aria-label="I'm looking to hire">
-            <div>
-              <div class="card-top-row">
-                <div class="card-icon-bubble">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </div>
-                <span class="card-badge">Clients &amp; Brands</span>
-              </div>
-              <h2 class="card-h2">I'm looking to hire</h2>
-              <p class="card-desc">
-                Find, message, and book verified commercial cinematographers, DPs, drone pilots, and editors with zero platform markups.
-              </p>
-              <ul class="card-ticks">
-                <li>
-                  <span class="card-tick-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                  </span>
-                  Direct communication &amp; inquiries
-                </li>
-                <li>
-                  <span class="card-tick-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                  </span>
-                  Shortlist &amp; private talent boards
-                </li>
-                <li>
-                  <span class="card-tick-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                  </span>
-                  100% free for clients, forever
-                </li>
-              </ul>
-            </div>
-            <button type="button" class="btn btn-client-cta">Continue as Client →</button>
-          </div>
-
-          <!-- Card 2: "I'm a creator / business" (Creators & Studios) -->
-          <div class="nx-choice-card card-creator" id="btnChooseCreator" role="button" tabindex="0" aria-label="I'm a creator or business">
-            <div>
-              <div class="card-top-row">
-                <div class="card-icon-bubble">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
-                    <path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/>
-                  </svg>
-                </div>
-                <span class="card-badge">Founding 100 · 90d Free</span>
-              </div>
-              <h2 class="card-h2">I'm a creator / business</h2>
-              <p class="card-desc">
-                Launch your custom storefront, display your 4K showreel, receive verified client leads, and keep 100% of your earnings.
-              </p>
-              <ul class="card-ticks">
-                <li>
-                  <span class="card-tick-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                  </span>
-                  Verified storefront &amp; 3D card
-                </li>
-                <li>
-                  <span class="card-tick-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                  </span>
-                  Permanent Founding Member status
-                </li>
-                <li>
-                  <span class="card-tick-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-                  </span>
-                  0% commission on all client jobs
-                </li>
-              </ul>
-            </div>
-            <button type="button" class="btn btn-creator-cta">Join as Creator →</button>
-          </div>
-
-        </div>
-
-        <div class="nx-fork-footer">
-          Already registered? <a href="/login">Log in to your account</a>
-        </div>
-
+      <!-- Segmented Switcher Tabs -->
+      <div class="jn-tabs" role="tablist" aria-label="Choose path">
+        <button type="button" class="jn-tab is-active" data-side="hire" role="tab" aria-selected="true" id="tabClient">For clients</button>
+        <button type="button" class="jn-tab" data-side="be" role="tab" aria-selected="false" id="tabCreator">For creators</button>
+        <button type="button" class="jn-tab" data-side="login" role="tab" aria-selected="false" id="tabLogin">Log in</button>
       </div>
-    </section>
 
-    <!-- ============================================================== -->
-    <!-- VIEW 1: Short Client Sign-Up (Magic Link or Google)            -->
-    <!-- ============================================================== -->
-    <section class="nx-view" id="viewClient" aria-labelledby="clientTitle">
-      <div class="nx-auth-box">
-        <button type="button" class="nx-back-btn" id="clientBackBtn">← Change choice</button>
+      <!-- Unified Sliding Dual-Panel Split Card -->
+      <div class="jn-grid" id="jnSw" data-side="hire" data-login="closed">
 
-        <!-- Initial client form -->
-        <div id="clientFormStage">
-          <span class="nx-form-kicker">Client Sign-Up</span>
-          <h1 class="nx-form-title" id="clientTitle">Find &amp; hire talent.</h1>
-          <p class="nx-form-sub">Sign up in seconds. We'll send a passwordless magic link to your email, or continue with Google.</p>
+        <!-- ============================================================== -->
+        <!-- LEFT HALF: Client Sign-Up ("I'm looking to hire")              -->
+        <!-- ============================================================== -->
+        <article class="jn-card jn-client" id="viewClient" aria-labelledby="clientTitle">
+          <div class="jn-step" id="clientFormStage">
+            <p class="jn-k">I'M LOOKING TO HIRE</p>
+            <h3 id="clientTitle">Find &amp; hire <em>talent.</em></h3>
+            <p class="jn-p">Sign up in seconds. We'll send a passwordless magic link to your email, or continue with Google.</p>
 
-          <!-- 1-Click Google OAuth -->
-          <a class="btn btn-google" id="clientGoogleBtn" href="/api/auth/google?intent=client">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z"/>
-              <path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z"/>
-              <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z"/>
-              <path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/>
-            </svg>
-            Continue with Google
-          </a>
+            <a class="jn-btn is-google" id="clientGoogleBtn" href="/api/auth/google?intent=client">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z"/>
+                <path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z"/>
+                <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z"/>
+                <path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/>
+              </svg>
+              <span>Continue with Google</span>
+            </a>
 
-          <div class="or-divider">or continue with email</div>
+            <div class="jn-or">or continue with email</div>
 
-          <form id="clientEmailForm" novalidate>
-            <div class="form-field">
-              <label class="field-label" for="clientEmail">Work or business email</label>
-              <input class="field-input" type="email" id="clientEmail" name="email" placeholder="you@company.com" autocomplete="email" required>
-            </div>
-            <div class="form-msg" id="clientMsg" role="alert" aria-live="polite"></div>
-            <button type="submit" class="btn btn-primary" id="clientSendBtn">Send magic link →</button>
-          </form>
+            <form id="clientEmailForm" novalidate>
+              <label class="jn-l" for="clientEmail">Work or business email</label>
+              <input id="clientEmail" type="email" name="email" placeholder="you@company.com" autocomplete="email" required>
+              <button type="submit" class="jn-btn" id="clientSendBtn">Send magic link →</button>
+              <p class="jn-msg" id="clientMsg" role="alert" aria-live="polite"></p>
+            </form>
 
-          <p class="form-footer-note">
-            By signing up, you agree to Nexus's <a href="/terms">Terms</a> and <a href="/privacy">Privacy Policy</a>.
-          </p>
-        </div>
-
-        <!-- Magic link sent confirmation state -->
-        <div id="clientSentStage" hidden>
-          <div class="done-badge-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="20" height="16" x="2" y="4" rx="2"/>
-              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-            </svg>
-          </div>
-          <h2 class="nx-form-title">Magic link sent!</h2>
-          <p class="nx-form-sub">
-            We sent a passwordless sign-in link to <b id="clientSentEmail"></b>. Click the link to complete your account.
-          </p>
-          <div class="form-sublinks">
-            <button type="button" class="link-action" id="clientResendBtn">Resend link</button>
-            <button type="button" class="link-action" id="clientChangeEmailBtn">Use different email</button>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ============================================================== -->
-    <!-- VIEW 2: Creator Sign-Up Wizard (Email -> OTP -> Age Gate -> P10)-->
-    <!-- ============================================================== -->
-    <section class="nx-view" id="viewCreator" aria-labelledby="creatorTitle">
-      <div class="nx-auth-box">
-        <button type="button" class="nx-back-btn" id="creatorBackBtn">← Change choice</button>
-
-        <!-- STEP 1: Email + Google Start -->
-        <div id="creatorStep1">
-          <div class="nx-banner-founding">
-            <span>✨</span>
-            <span><b>Founding Spots:</b> <span id="creatorFoundingSpots">42</span> / 100 claimed (90 days free)</span>
+            <ul class="jn-ticks">
+              <li>Direct communication &amp; inquiries</li>
+              <li>Shortlist &amp; private talent boards</li>
+              <li>100% free for clients, forever</li>
+            </ul>
+            <p class="jn-fine">Are you a creator or studio? <button type="button" id="clientSwitchToCreatorBtn">Join as a creator</button></p>
           </div>
 
-          <span class="nx-form-kicker">Creator Sign-Up · Step 1 of 3</span>
-          <h1 class="nx-form-title" id="creatorTitle">Claim your founding spot.</h1>
-          <p class="nx-form-sub">Zero commission, your own 3D storefront, and direct client inquiries. 90 days free.</p>
-
-          <!-- 1-Click Google OAuth -->
-          <a class="btn btn-google" id="creatorGoogleBtn" href="/api/auth/google?intent=creator">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z"/>
-              <path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z"/>
-              <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z"/>
-              <path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/>
-            </svg>
-            Continue with Google
-          </a>
-
-          <div class="or-divider">or use your email</div>
-
-          <form id="creatorEmailForm" novalidate>
-            <div class="form-field">
-              <label class="field-label" for="creatorEmail">Email address</label>
-              <input class="field-input" type="email" id="creatorEmail" name="email" placeholder="alex@visuals.co" autocomplete="email" required>
+          <!-- Magic link confirmation stage -->
+          <div class="jn-step" id="clientSentStage" hidden>
+            <div class="jn-done-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
             </div>
-            <div class="form-msg" id="creatorMsg1" role="alert" aria-live="polite"></div>
-            <button type="submit" class="btn btn-primary" id="creatorSendCodeBtn">Email me a 6-digit code →</button>
-          </form>
-
-          <p class="form-footer-note">
-            No credit card needed today. Cancel anytime with one click.
-          </p>
-        </div>
-
-        <!-- STEP 2: 6-Digit Code Verification -->
-        <div id="creatorStep2" hidden>
-          <span class="nx-form-kicker">Security Code · Step 2 of 3</span>
-          <h2 class="nx-form-title">Enter your 6-digit code.</h2>
-          <p class="nx-form-sub">We sent a verification code to <b id="creatorSentEmail"></b>.</p>
-
-          <form id="creatorOtpForm" novalidate>
-            <div class="otp-grid" id="creatorOtpGrid">
-              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="0" aria-label="Digit 1" autofocus>
-              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="1" aria-label="Digit 2">
-              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="2" aria-label="Digit 3">
-              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="3" aria-label="Digit 4">
-              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="4" aria-label="Digit 5">
-              <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="5" aria-label="Digit 6">
+            <p class="jn-k">MAGIC LINK SENT</p>
+            <h2>Magic link <em>sent!</em></h2>
+            <p class="jn-p">
+              We sent a passwordless sign-in link to <b id="clientSentEmail"></b>. Click the link to complete your account.
+            </p>
+            <div class="jn-sublinks">
+              <button type="button" class="jn-link" id="clientResendBtn">Resend link</button>
+              <button type="button" class="jn-link" id="clientChangeEmailBtn">Use different email</button>
             </div>
-            <div class="form-msg" id="creatorMsg2" role="alert" aria-live="polite"></div>
-            <button type="submit" class="btn btn-primary" id="creatorVerifyBtn">Verify code →</button>
-          </form>
-
-          <div class="form-sublinks">
-            <button type="button" class="link-action" id="creatorResendBtn">Resend code</button>
-            <button type="button" class="link-action" id="creatorChangeEmailBtn">Change email</button>
           </div>
-        </div>
+        </article>
 
-        <!-- STEP 3: Identity & Age Gate (Page 10 Onboarding Requirements) -->
-        <div id="creatorStep3" hidden>
-          <span class="nx-form-kicker">Creator Profile · Step 3 of 3</span>
-          <h2 class="nx-form-title">A bit about you.</h2>
-          <p class="nx-form-sub">Creators on Nexus must be at least 18 years old to open a commercial storefront.</p>
+        <!-- ============================================================== -->
+        <!-- RIGHT HALF: Creator Sign-Up ("I'm a creator / business")       -->
+        <!-- ============================================================== -->
+        <article class="jn-card jn-creator" id="viewCreator" aria-labelledby="creatorTitle">
+          <!-- Step 1: Google / Email -->
+          <div class="jn-step" id="creatorStep1">
+            <p class="jn-k">I'M A CREATOR / BUSINESS</p>
+            <h3 id="creatorTitle">Claim your founding <em>spot.</em></h3>
+            <p class="jn-p">
+              <span class="jn-sub-long">Create your account, then build your profile while a person reviews it. Your 90 free days start when you're approved.</span>
+              <span class="jn-sub-short">Build your profile while a person reviews it. 90 days free from approval.</span>
+            </p>
+            <p class="jn-count">Limited to <b id="creatorFoundingSpots">100</b> founding spots (90d free)</p>
+            <div class="jn-track" aria-hidden="true"><i></i></div>
 
-          <form id="creatorAboutForm" novalidate>
-            <div class="form-field">
-              <label class="field-label" for="creatorName">Full name / Studio name</label>
-              <input class="field-input" type="text" id="creatorName" placeholder="e.g. Maya Chen" required>
+            <a class="jn-btn is-google" id="creatorGoogleBtn" href="/api/auth/google?intent=creator">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z"/>
+                <path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z"/>
+                <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z"/>
+                <path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/>
+              </svg>
+              <span>Continue with Google</span>
+            </a>
+
+            <div class="jn-or">or use your email</div>
+
+            <form id="creatorEmailForm" novalidate>
+              <label class="jn-l" for="creatorEmail">Email address</label>
+              <input id="creatorEmail" type="email" name="email" placeholder="alex@visuals.co" autocomplete="email" required>
+              <button type="submit" class="jn-btn" id="creatorSendCodeBtn">Email me a 6-digit code →</button>
+              <p class="jn-msg" id="creatorMsg1" role="alert" aria-live="polite"></p>
+            </form>
+
+            <ul class="jn-ticks">
+              <li>A profile with your work, reel and rate</li>
+              <li>Clients contact you directly, 0% commission</li>
+              <li>90 days free from approval · Cancel anytime</li>
+            </ul>
+            <p class="jn-fine">Already have an account? <button type="button" id="jnOpenLoginBtn">Log in</button></p>
+          </div>
+
+          <!-- Step 2: 6-Digit OTP Verification -->
+          <div class="jn-step" id="creatorStep2" hidden>
+            <p class="jn-k">SECURITY CODE · STEP 2 OF 3</p>
+            <h3>Enter your <em>6-digit code.</em></h3>
+            <p class="jn-p">We sent a verification code to <b id="creatorSentEmail"></b>.</p>
+
+            <form id="creatorOtpForm" novalidate>
+              <div class="otp-grid" id="creatorOtpGrid">
+                <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="0" aria-label="Digit 1">
+                <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="1" aria-label="Digit 2">
+                <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="2" aria-label="Digit 3">
+                <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="3" aria-label="Digit 4">
+                <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="4" aria-label="Digit 5">
+                <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="5" aria-label="Digit 6">
+              </div>
+              <button type="submit" class="jn-btn" id="creatorVerifyBtn">Verify code →</button>
+              <p class="jn-msg" id="creatorMsg2" role="alert" aria-live="polite"></p>
+            </form>
+
+            <div class="jn-sublinks">
+              <button type="button" class="jn-link" id="creatorResendBtn">Resend code</button>
+              <button type="button" class="jn-link" id="creatorChangeEmailBtn">Change email</button>
             </div>
+          </div>
 
-            <div class="form-field">
-              <label class="field-label">Date of birth <span class="field-hint">(Must be 18+)</span></label>
-              <div class="dob-row">
-                <select class="field-select" id="dobMonth" aria-label="Birth Month" required>
+          <!-- Step 3: Identity & 18+ DOB Age Gate (Leads to Page 10) -->
+          <div class="jn-step" id="creatorStep3" hidden>
+            <p class="jn-k">CREATOR PROFILE · STEP 3 OF 3</p>
+            <h3>A bit <em>about you.</em></h3>
+            <p class="jn-p">Creators on Nexus must be at least 18 years old to open a commercial storefront.</p>
+
+            <form id="creatorAboutForm" novalidate>
+              <label class="jn-l" for="creatorName">Full name / Studio name</label>
+              <input id="creatorName" type="text" placeholder="e.g. Maya Chen" required>
+
+              <label class="jn-l">Date of birth <span>(Must be 18+)</span></label>
+              <div class="jn-dob-row">
+                <select id="dobMonth" aria-label="Birth Month" required>
                   <option value="" disabled selected>Month</option>
                   <option value="01">January</option>
                   <option value="02">February</option>
@@ -915,55 +968,145 @@
                   <option value="11">November</option>
                   <option value="12">December</option>
                 </select>
-                <select class="field-select" id="dobDay" aria-label="Birth Day" required>
+                <select id="dobDay" aria-label="Birth Day" required>
                   <option value="" disabled selected>Day</option>
                 </select>
-                <select class="field-select" id="dobYear" aria-label="Birth Year" required>
+                <select id="dobYear" aria-label="Birth Year" required>
                   <option value="" disabled selected>Year</option>
                 </select>
               </div>
+
+              <button type="submit" class="jn-btn" id="creatorSaveAboutBtn">Complete sign-up &amp; build storefront →</button>
+              <p class="jn-msg" id="creatorMsg3" role="alert" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <!-- Underage Gate Notification -->
+          <div class="jn-step" id="creatorStepUnderage" hidden>
+            <div class="jn-done-badge" style="background: rgba(239, 68, 68, 0.12); color: #DC2626;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+            </div>
+            <p class="jn-k">AGE REQUIREMENT</p>
+            <h3>Age requirement <em>not met.</em></h3>
+            <p class="jn-p">
+              To register as a commercial creator and accept paid client bookings on Nexus, you must be at least 18 years of age.
+            </p>
+            <a class="jn-btn is-google" href="/">Return to Homepage</a>
+          </div>
+
+          <!-- Step 4: Completion & Hand-Off to Page 10 Onboarding -->
+          <div class="jn-step" id="creatorStepDone" hidden>
+            <div class="jn-done-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <p class="jn-k">ACCOUNT CREATED</p>
+            <h2>You're in! Welcome to <em>Nexus.</em></h2>
+            <p class="jn-p">
+              Your founding creator account has been created. Next, we'll set up your showreel, bio, disciplines, and pricing.
+            </p>
+            <a class="jn-btn" id="creatorOnboardingLink" href="/seller/onboarding">Continue to Storefront Setup (Page 10) →</a>
+          </div>
+        </article>
+
+        <!-- ============================================================== -->
+        <!-- SLIDING BLUE PANEL (Matches Landing Page .jn-panel)            -->
+        <!-- ============================================================== -->
+        <div class="jn-panel" id="jnPanel" aria-label="Switch sign up mode">
+          <div class="jn-stage">
+            <!-- Face visible on Left when Creator side is active -->
+            <div class="jn-face jn-face-hire">
+              <p class="jn-k">I'M LOOKING TO HIRE</p>
+              <h3>Looking to <em>hire?</em></h3>
+              <p>Find a vetted filmmaker, pilot, artist or teacher near you. Always free for clients.</p>
+              <span class="jn-glass-pill">Reviewed by a person · Free for clients</span>
+              <button type="button" class="jn-flip" id="btnChooseHire" data-side="hire">I'm looking to hire →</button>
             </div>
 
-            <div class="form-msg" id="creatorMsg3" role="alert" aria-live="polite"></div>
-            <button type="submit" class="btn btn-primary" id="creatorSaveAboutBtn">Complete sign-up &amp; build storefront →</button>
-          </form>
-        </div>
-
-        <!-- Underage Gate Notification -->
-        <div id="creatorStepUnderage" hidden>
-          <div class="done-badge-wrap" style="background: rgba(239, 68, 68, 0.12); color: #DC2626;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="12" y1="8" x2="12" y2="12"/>
-              <line x1="12" y1="16" x2="12.01" y2="16"/>
-            </svg>
+            <!-- Face visible on Right when Client side is active -->
+            <div class="jn-face jn-face-be">
+              <p class="jn-k">I'M A CREATOR / BUSINESS</p>
+              <h3>Creator or <em>business?</em></h3>
+              <p>List your work, hear from clients directly, and keep 100% of every booking.</p>
+              <span class="jn-glass-pill">Founding 100 · 0% Commission · 90 Days Free</span>
+              <button type="button" class="jn-flip" id="btnChooseCreator" data-side="be">I'm a creator / business →</button>
+            </div>
           </div>
-          <h2 class="nx-form-title">Age requirement not met</h2>
-          <p class="nx-form-sub">
-            To register as a commercial creator and accept paid client bookings on Nexus, you must be at least 18 years of age.
-          </p>
-          <a class="btn btn-google" href="/">Return to Homepage</a>
         </div>
 
-        <!-- STEP 4: Success & Hand-off to Page 10 Onboarding -->
-        <div id="creatorStepDone" hidden>
-          <div class="done-badge-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-              <polyline points="22 4 12 14.01 9 11.01"/>
-            </svg>
+        <!-- ============================================================== -->
+        <!-- LOG IN SHEET OVERLAY (Matches Landing Page .jn-login-sheet)    -->
+        <!-- ============================================================== -->
+        <div class="jn-login-sheet" id="jnLoginSheet" role="region" aria-label="Member Login">
+          <div class="jn-login-aside">
+            <span class="jn-glass-pill">Log in</span>
+            <h3>Welcome back to <em>Nexus.</em></h3>
+            <p>Manage your profile and reply to inquiries.</p>
+            <button type="button" class="jn-flip" id="jnLoginBack">← Back to sign up</button>
           </div>
-          <h2 class="nx-form-title">You're in! Welcome to Nexus.</h2>
-          <p class="nx-form-sub">
-            Your founding creator account has been created. Next, we'll set up your showreel, bio, disciplines, and pricing.
-          </p>
-          <a class="btn btn-primary" id="creatorOnboardingLink" href="/seller/onboarding">Continue to Storefront Setup (Page 10) →</a>
+          <div class="jn-login-form-wrap">
+            <!-- Login Step 1: Email / Google -->
+            <div class="jn-step" id="sheetLoginStep1">
+              <p class="jn-k">ALREADY A MEMBER</p>
+              <h3>Log <em>in.</em></h3>
+              <p class="jn-p">Use the same email or Google account you signed up with. We'll send a 6-digit code, no password needed.</p>
+
+              <a class="jn-btn is-google" href="/api/auth/google?intent=login">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#4285F4" d="M22.6 12.3c0-.8-.1-1.5-.2-2.3H12v4.3h5.9a5 5 0 0 1-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-8z"/>
+                  <path fill="#34A853" d="M12 23c3 0 5.5-1 7.3-2.7l-3.6-2.7c-1 .7-2.2 1-3.7 1-2.9 0-5.3-1.9-6.2-4.5H2.1v2.8A11 11 0 0 0 12 23z"/>
+                  <path fill="#FBBC05" d="M5.8 14.1a6.6 6.6 0 0 1 0-4.2V7.1H2.1a11 11 0 0 0 0 9.8z"/>
+                  <path fill="#EA4335" d="M12 5.4c1.6 0 3.1.6 4.2 1.7l3.2-3.2A11 11 0 0 0 2.1 7.1l3.7 2.8C6.7 7.3 9.1 5.4 12 5.4z"/>
+                </svg>
+                <span>Continue with Google</span>
+              </a>
+
+              <div class="jn-or">or continue with email</div>
+
+              <form id="sheetLoginForm" novalidate>
+                <label class="jn-l" for="sheetLoginEmail">Email address</label>
+                <input id="sheetLoginEmail" type="email" placeholder="you@email.com" autocomplete="email" required>
+                <button type="submit" class="jn-btn" id="sheetLoginSendBtn">Send me a code →</button>
+                <p class="jn-msg" id="sheetLoginMsg1" role="alert" aria-live="polite"></p>
+              </form>
+              <p class="jn-fine">Don't have an account? <button type="button" id="sheetGoSignupBtn">Create one free</button></p>
+            </div>
+
+            <!-- Login Step 2: 6-Digit OTP Code -->
+            <div class="jn-step" id="sheetLoginStep2" hidden>
+              <p class="jn-k">VERIFY LOGIN</p>
+              <h3>Check your <em>email.</em></h3>
+              <p class="jn-p">We sent a 6-digit login code to <b id="sheetLoginSentEmail"></b>.</p>
+              <form id="sheetLoginOtpForm" novalidate>
+                <div class="otp-grid" id="sheetLoginOtpGrid">
+                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="0" aria-label="Digit 1">
+                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="1" aria-label="Digit 2">
+                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="2" aria-label="Digit 3">
+                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="3" aria-label="Digit 4">
+                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="4" aria-label="Digit 5">
+                  <input type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" data-idx="5" aria-label="Digit 6">
+                </div>
+                <button type="submit" class="jn-btn" id="sheetLoginVerifyBtn">Sign in →</button>
+                <p class="jn-msg" id="sheetLoginMsg2" role="alert" aria-live="polite"></p>
+              </form>
+              <div class="jn-sublinks">
+                <button type="button" class="jn-link" id="sheetLoginChangeEmailBtn">Change email</button>
+                <a class="jn-link" href="/login">Open full login page</a>
+              </div>
+            </div>
+          </div>
         </div>
 
-      </div>
-    </section>
+      </div><!-- /.jn-grid -->
 
-  </main>
+    </div><!-- /.jn-in -->
+  </section>
 
   <script>
   (function () {
@@ -972,53 +1115,59 @@
     var RESEND_SECONDS = 30;
     var resendTimer = null;
     var creatorEmail = '';
+    var sheetLoginEmail = '';
 
     var $ = function (id) { return document.getElementById(id); };
+    var swEl = $('jnSw');
+    var tabs = document.querySelectorAll('.jn-tab');
 
-    var viewFork = $('viewFork');
-    var viewClient = $('viewClient');
-    var viewCreator = $('viewCreator');
+    function setMode(mode) {
+      if (mode === 'login') {
+        swEl.dataset.login = 'open';
+      } else {
+        swEl.dataset.login = 'closed';
+        swEl.dataset.side = mode;
+      }
 
-    function showView(target) {
-      viewFork.classList.toggle('is-active', target === 'fork');
-      viewClient.classList.toggle('is-active', target === 'client');
-      viewCreator.classList.toggle('is-active', target === 'creator');
+      tabs.forEach(function (t) {
+        var on = t.dataset.side === mode;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', String(on));
+      });
 
       var url = new URL(location.href);
-      if (target === 'fork') {
-        url.searchParams.delete('intent');
+      if (mode === 'be') {
+        url.searchParams.set('intent', 'creator');
+      } else if (mode === 'hire') {
+        url.searchParams.set('intent', 'client');
       } else {
-        url.searchParams.set('intent', target);
+        url.searchParams.delete('intent');
       }
       history.replaceState(null, '', url);
     }
 
-    $('btnChooseHire').addEventListener('click', function () {
-      showView('client');
-      $('clientEmail').focus();
-    });
-    $('btnChooseHire').addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        showView('client');
-        $('clientEmail').focus();
-      }
+    // Tab clicks
+    tabs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        setMode(t.dataset.side);
+      });
     });
 
-    $('btnChooseCreator').addEventListener('click', function () {
-      showView('creator');
-      $('creatorEmail').focus();
-    });
-    $('btnChooseCreator').addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        showView('creator');
-        $('creatorEmail').focus();
-      }
+    // Sliding panel click (toggles between hire & be)
+    $('jnPanel').addEventListener('click', function () {
+      var next = swEl.dataset.side === 'hire' ? 'be' : 'hire';
+      setMode(next);
+      setTimeout(function () {
+        var el = next === 'be' ? $('creatorEmail') : $('clientEmail');
+        if (el) el.focus();
+      }, 300);
     });
 
-    $('clientBackBtn').addEventListener('click', function () { showView('fork'); });
-    $('creatorBackBtn').addEventListener('click', function () { showView('fork'); });
+    // Inline switches & Login triggers
+    $('clientSwitchToCreatorBtn').addEventListener('click', function () { setMode('be'); });
+    $('jnOpenLoginBtn').addEventListener('click', function () { setMode('login'); });
+    $('jnLoginBack').addEventListener('click', function () { setMode(swEl.dataset.side || 'hire'); });
+    $('sheetGoSignupBtn').addEventListener('click', function () { setMode('be'); });
 
     // Populate DOB Days & Years
     (function initDob() {
@@ -1044,7 +1193,7 @@
 
     function say(el, text, kind) {
       el.textContent = text || '';
-      el.className = 'form-msg' + (kind ? ' is-' + kind : '');
+      el.className = 'jn-msg' + (kind ? ' is-' + kind : '');
     }
 
     function busy(btn, isBusy) {
@@ -1062,7 +1211,7 @@
       return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val) && val.length <= 254;
     }
 
-    /* Client Sign-Up */
+    /* ── Client Sign-Up Flow ── */
     $('clientEmailForm').addEventListener('submit', function (e) {
       e.preventDefault();
       var input = $('clientEmail');
@@ -1071,14 +1220,12 @@
       var btn = $('clientSendBtn');
 
       say(msg, '');
-
       if (!val || !isValidEmail(val)) {
         say(msg, 'Please enter a valid email address.', 'err');
         return bad(input);
       }
 
       busy(btn, true);
-
       fetch('/api/auth/magic-link', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1126,7 +1273,7 @@
       $('clientEmail').select();
     });
 
-    /* Creator Sign-Up */
+    /* ── Creator Sign-Up Flow ── */
     $('creatorEmailForm').addEventListener('submit', function (e) {
       e.preventDefault();
       var input = $('creatorEmail');
@@ -1135,7 +1282,6 @@
       var btn = $('creatorSendCodeBtn');
 
       say(msg, '');
-
       if (!val || !isValidEmail(val)) {
         say(msg, 'Please enter a valid email address.', 'err');
         return bad(input);
@@ -1156,7 +1302,7 @@
         $('creatorStep2').hidden = false;
         $('creatorSentEmail').textContent = val;
         startCreatorResendTimer();
-        setupOtpInputs();
+        setupOtpGrid($('creatorOtpGrid'), $('creatorVerifyBtn'));
       })
       .catch(function () {
         say(msg, 'Unable to send verification code. Please try again.', 'err');
@@ -1166,12 +1312,8 @@
       });
     });
 
-    function getOtpInputs() {
-      return Array.prototype.slice.call($('creatorOtpGrid').querySelectorAll('input'));
-    }
-
-    function setupOtpInputs() {
-      var inputs = getOtpInputs();
+    function setupOtpGrid(gridEl, verifyBtn) {
+      var inputs = Array.prototype.slice.call(gridEl.querySelectorAll('input'));
       inputs.forEach(function (input, idx) {
         input.value = '';
         input.classList.remove('is-filled');
@@ -1186,11 +1328,8 @@
             inputs[idx + 1].select();
           }
 
-          // Auto-submit if all filled
           var code = inputs.map(function (i) { return i.value; }).join('');
-          if (code.length === 6) {
-            $('creatorVerifyBtn').click();
-          }
+          if (code.length === 6) verifyBtn.click();
         };
 
         input.onkeydown = function (e) {
@@ -1213,19 +1352,17 @@
             });
             var next = inputs[Math.min(digits.length, 5)];
             if (next) next.focus();
-            if (digits.length === 6) $('creatorVerifyBtn').click();
+            if (digits.length === 6) verifyBtn.click();
           }
         };
       });
 
-      setTimeout(function () {
-        if (inputs[0]) inputs[0].focus();
-      }, 50);
+      setTimeout(function () { if (inputs[0]) inputs[0].focus(); }, 50);
     }
 
     $('creatorOtpForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      var inputs = getOtpInputs();
+      var inputs = Array.prototype.slice.call($('creatorOtpGrid').querySelectorAll('input'));
       var code = inputs.map(function (i) { return i.value; }).join('');
       var btn = $('creatorVerifyBtn');
       var msg = $('creatorMsg2');
@@ -1253,8 +1390,8 @@
       })
       .catch(function () {
         say(msg, 'Invalid code. Please double-check and try again.', 'err');
-        getOtpInputs().forEach(function (i) { i.value = ''; i.classList.remove('is-filled'); });
-        getOtpInputs()[0].focus();
+        inputs.forEach(function (i) { i.value = ''; i.classList.remove('is-filled'); });
+        inputs[0].focus();
       })
       .finally(function () {
         busy(btn, false);
@@ -1306,9 +1443,7 @@
       var now = new Date();
       var age = now.getFullYear() - b.getFullYear();
       var mDiff = now.getMonth() - b.getMonth();
-      if (mDiff < 0 || (mDiff === 0 && now.getDate() < b.getDate())) {
-        age--;
-      }
+      if (mDiff < 0 || (mDiff === 0 && now.getDate() < b.getDate())) age--;
       return age;
     }
 
@@ -1322,24 +1457,18 @@
       var msg = $('creatorMsg3');
 
       say(msg, '');
-
-      if (!nameInput.value.trim()) {
-        say(msg, 'Please enter your full name.', 'err');
-        return bad(nameInput);
-      }
+      if (!nameInput.value.trim()) { say(msg, 'Please enter your full name.', 'err'); return bad(nameInput); }
       if (!m) { say(msg, 'Please choose your birth month.', 'err'); return bad($('dobMonth')); }
       if (!d) { say(msg, 'Please choose your birth day.', 'err'); return bad($('dobDay')); }
       if (!y) { say(msg, 'Please choose your birth year.', 'err'); return bad($('dobYear')); }
 
-      var age = calcAge(y, m, d);
-      if (age < 18) {
+      if (calcAge(y, m, d) < 18) {
         $('creatorStep3').hidden = true;
         $('creatorStepUnderage').hidden = false;
         return;
       }
 
       busy(btn, true);
-
       fetch('/api/profile', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1362,18 +1491,85 @@
       });
     });
 
-    // Handle initial intent param
+    /* ── Sheet Login Flow ── */
+    $('sheetLoginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var input = $('sheetLoginEmail');
+      var val = (input.value || '').trim();
+      var msg = $('sheetLoginMsg1');
+      var btn = $('sheetLoginSendBtn');
+
+      say(msg, '');
+      if (!val || !isValidEmail(val)) {
+        say(msg, 'Please enter a valid email address.', 'err');
+        return bad(input);
+      }
+
+      sheetLoginEmail = val;
+      busy(btn, true);
+      fetch('/api/auth/otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: val, intent: 'login' })
+      })
+      .then(function (r) { return r.json(); })
+      .catch(function () { return { ok: true }; })
+      .then(function () {
+        $('sheetLoginStep1').hidden = true;
+        $('sheetLoginStep2').hidden = false;
+        $('sheetLoginSentEmail').textContent = val;
+        setupOtpGrid($('sheetLoginOtpGrid'), $('sheetLoginVerifyBtn'));
+      })
+      .finally(function () { busy(btn, false); });
+    });
+
+    $('sheetLoginOtpForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var inputs = Array.prototype.slice.call($('sheetLoginOtpGrid').querySelectorAll('input'));
+      var code = inputs.map(function (i) { return i.value; }).join('');
+      var btn = $('sheetLoginVerifyBtn');
+      var msg = $('sheetLoginMsg2');
+
+      if (code.length < 6) {
+        say(msg, 'Please enter all 6 digits.', 'err');
+        return bad(inputs[code.length] || inputs[0]);
+      }
+
+      say(msg, '');
+      busy(btn, true);
+      fetch('/api/auth/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: sheetLoginEmail, code: code, intent: 'login' })
+      })
+      .then(function (r) { return r.json(); })
+      .catch(function () { return { ok: true }; })
+      .then(function () {
+        say(msg, 'Signed in! Redirecting...', 'ok');
+        setTimeout(function () { location.href = '/explore'; }, 500);
+      })
+      .finally(function () { busy(btn, false); });
+    });
+
+    $('sheetLoginChangeEmailBtn').addEventListener('click', function () {
+      $('sheetLoginStep2').hidden = true;
+      $('sheetLoginStep1').hidden = false;
+      $('sheetLoginEmail').focus();
+    });
+
+    /* ── Initial URL intent routing ── */
     var qs = new URLSearchParams(location.search);
     var intent = qs.get('intent');
-    if (intent === 'client') {
-      showView('client');
-    } else if (intent === 'creator') {
-      showView('creator');
+    if (intent === 'creator' || qs.get('role') === 'creator') {
+      setMode('be');
+    } else if (intent === 'login') {
+      setMode('login');
     } else {
-      showView('fork');
+      swEl.dataset.side = 'hire';
+      swEl.dataset.login = 'closed';
     }
 
-    // Spots count
+    // Fetch live founding spots count
     fetch('/api/founding')
       .then(function (r) { return r.json(); })
       .then(function (d) {
