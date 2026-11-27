@@ -3,119 +3,1494 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Creator Storefront Onboarding (Page 10) · Nexus</title>
-  <meta name="description" content="Build your creator storefront on Nexus. 5-step wizard to set your slug, reel, packages, and gear.">
+  <title>Build Your Storefront · Nexus</title>
+  <meta name="description" content="Build your creator storefront on Nexus. 5-step wizard to set your identity, media, services, verification, and live preview.">
+  <meta name="robots" content="noindex">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%233B54EE' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/react-footer/marketplace-architecture.css?v=18">
   <style>
     :root {
-      --ink: #0F172A; --sub: #475569; --line: rgba(15, 23, 42, 0.08);
-      --blue: #3B54EE; --blue-hover: #2A44E0; --soft: #F8FAFC;
+      --ink: #0F172A;
+      --ink2: #334155;
+      --sub: #475569;
+      --mute: #64748B;
+      --line: rgba(15, 23, 42, 0.09);
+      --line-strong: rgba(15, 23, 42, 0.16);
+      --blue: #3B54EE;
+      --blue-hover: #2A44E0;
+      --blue-soft: #EEF2FF;
+      --soft: #F8FAFC;
+      --ok: #047857;
+      --bad: #DC2626;
       --serif: 'Times New Roman', Times, Georgia, serif;
-      --sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --mono: 'JetBrains Mono', ui-monospace, monospace;
+      --sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
+
     *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; min-height: 100dvh; }
     body {
-      margin: 0; background: #FCFCFD; color: var(--ink); font-family: var(--sans);
-      -webkit-font-smoothing: antialiased; min-height: 100dvh; display: flex; flex-direction: column;
+      background: #FCFCFD;
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      flex-direction: column;
     }
-    .nx-nav {
-      display: flex; align-items: center; justify-content: space-between;
-      max-width: 1120px; width: 100%; margin: 0 auto; padding: 24px clamp(16px, 4vw, 32px);
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button { font-family: inherit; }
+    [hidden] { display: none !important; }
+
+    /* ── Top Nav ── */
+    .ob-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 18px clamp(16px, 3.6vw, 32px);
     }
-    .nx-brand {
-      display: inline-flex; align-items: center; gap: 8px; font-family: var(--serif);
-      font-size: 24px; font-weight: 700; color: var(--ink); text-decoration: none;
+    .ob-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      text-decoration: none !important;
+      flex-shrink: 0;
     }
-    .nx-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
-    .nx-container {
-      flex: 1; max-width: 820px; width: 100%; margin: 0 auto;
-      padding: 32px clamp(16px, 4vw, 32px) 64px;
+    .ob-brand-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 10px rgba(59, 84, 238, 0.35);
     }
-    .nx-badge {
-      display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono);
-      font-size: 11px; font-weight: 700; color: var(--blue); background: rgba(59, 84, 238, 0.08);
-      padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.08em;
+    .ob-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13.5px;
+      color: var(--sub);
     }
-    h1 {
-      font-family: var(--serif); font-size: clamp(32px, 5vw, 44px);
-      margin: 16px 0 10px; letter-spacing: -0.025em; line-height: 1.1;
+    .ob-save-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: #ECFDF5;
+      color: var(--ok);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
     }
-    p.lead { font-size: 17px; line-height: 1.5; color: var(--sub); margin: 0 0 32px; max-width: 60ch; }
-    .steps-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px; margin-bottom: 40px;
+    .ob-nav-link {
+      font-weight: 600;
+      color: var(--sub);
+      white-space: nowrap;
     }
-    .step-box {
-      background: #FFFFFF; border: 1px solid var(--line); border-radius: 20px;
-      padding: 24px; box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+    .ob-nav-link:hover { color: var(--ink); text-decoration: none; }
+
+    /* ── Main Shell ── */
+    .ob-main {
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 8px clamp(16px, 3.6vw, 32px) 64px;
     }
-    .step-num {
-      width: 28px; height: 28px; border-radius: 50%; background: var(--soft);
-      display: flex; align-items: center; justify-content: center; font-size: 13px;
-      font-weight: 700; color: var(--blue); margin-bottom: 14px;
+
+    /* ── Hero Header ── */
+    .ob-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
     }
-    .step-title { font-weight: 700; font-size: 16px; margin-bottom: 6px; }
-    .step-desc { font-size: 13.5px; color: var(--sub); line-height: 1.4; }
-    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      height: 48px; padding: 0 24px; border-radius: 999px; font-size: 15px; font-weight: 600;
-      text-decoration: none; cursor: pointer; transition: all 0.2s ease;
+    .ob-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin: 0 0 10px;
+      padding: 5px 13px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      border: 1px solid rgba(59, 84, 238, 0.16);
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
     }
-    .btn-primary { background: var(--blue); color: #FFF; border: none; }
-    .btn-primary:hover { background: var(--blue-hover); }
-    .btn-secondary { background: #FFF; color: var(--ink); border: 1px solid var(--line); }
-    .btn-secondary:hover { background: var(--soft); }
+    .ob-head h1 {
+      margin: 0 0 6px;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.8vw, 2.85rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.06;
+      color: var(--ink);
+    }
+    .ob-head h1 em {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--blue);
+    }
+    .ob-lead {
+      margin: 0;
+      font-size: 15.5px;
+      line-height: 1.5;
+      color: var(--sub);
+      max-width: 58ch;
+    }
+    .ob-founding-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 16px;
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      box-shadow: 0 6px 20px -8px rgba(15, 23, 42, 0.07);
+      font-size: 13px;
+      color: var(--sub);
+      white-space: nowrap;
+    }
+    .ob-founding-chip b {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--ink);
+    }
+
+    /* ── 5-Step Progress Stepper ── */
+    .ob-stepper {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .ob-step-tab {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #FFFFFF;
+      color: var(--sub);
+      font-size: 13px;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s, transform 0.14s var(--ease);
+    }
+    .ob-step-tab:hover { border-color: var(--line-strong); color: var(--ink); }
+    .ob-step-tab.is-active {
+      border-color: var(--blue);
+      background: #F5F7FF;
+      color: var(--ink);
+      box-shadow: 0 4px 14px -6px rgba(59, 84, 238, 0.25);
+    }
+    .ob-step-tab.is-done .ob-step-num {
+      background: #ECFDF5;
+      color: var(--ok);
+      border-color: rgba(4, 120, 87, 0.25);
+    }
+    .ob-step-num {
+      flex: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      color: var(--sub);
+    }
+    .ob-step-tab.is-active .ob-step-num {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #FFFFFF;
+    }
+    .ob-step-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* ── 2-Column Workspace ── */
+    .ob-workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.85fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* Left Wizard Card */
+    .ob-card {
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: clamp(24px, 4vw, 38px);
+      box-shadow: 0 24px 56px -22px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+    .ob-panel { display: none; }
+    .ob-panel.is-on { display: block; animation: obFade 0.28s var(--ease) both; }
+    @keyframes obFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .ob-kicker {
+      margin: 0 0 6px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .ob-panel h2 {
+      margin: 0 0 6px;
+      font-family: var(--serif);
+      font-size: clamp(1.55rem, 2.5vw, 2rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .ob-panel h2 em { font-style: italic; color: var(--blue); font-weight: 500; }
+    .ob-panel-sub {
+      margin: 0 0 22px;
+      font-size: 14.5px;
+      line-height: 1.5;
+      color: var(--sub);
+    }
+
+    /* Form Controls */
+    .ob-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .ob-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .ob-label {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink2);
+    }
+    .ob-label span {
+      font-weight: 500;
+      font-size: 12px;
+      color: var(--mute);
+    }
+    .ob-input, .ob-select, .ob-textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(15, 23, 42, 0.14);
+      background: #FAFAFC;
+      font-family: var(--sans);
+      font-size: 14.5px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.18s, background-color 0.18s, box-shadow 0.2s;
+    }
+    .ob-input, .ob-select { height: 46px; }
+    .ob-textarea { min-height: 104px; resize: vertical; line-height: 1.5; }
+    .ob-input:focus, .ob-select:focus, .ob-textarea:focus {
+      background: #FFFFFF;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(59, 84, 238, 0.12);
+    }
+    .ob-input.is-bad, .ob-select.is-bad, .ob-textarea.is-bad {
+      border-color: var(--bad);
+      background: #FEF2F2;
+    }
+    .ob-slug-wrap {
+      display: flex;
+      align-items: center;
+      border-radius: 12px;
+      border: 1px solid rgba(15, 23, 42, 0.14);
+      background: #FAFAFC;
+      overflow: hidden;
+      transition: border-color 0.18s, box-shadow 0.2s;
+    }
+    .ob-slug-wrap:focus-within {
+      background: #FFFFFF;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(59, 84, 238, 0.12);
+    }
+    .ob-slug-prefix {
+      padding: 0 10px 0 14px;
+      font-family: var(--mono);
+      font-size: 12.5px;
+      color: var(--mute);
+      background: #F1F5F9;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      border-right: 1px solid var(--line);
+      flex-shrink: 0;
+    }
+    .ob-slug-wrap input {
+      border: 0;
+      background: transparent;
+      height: 44px;
+      padding: 0 12px;
+      width: 100%;
+      font-family: var(--mono);
+      font-size: 13.5px;
+      color: var(--ink);
+      outline: none;
+    }
+
+    /* Toggle Switch Row */
+    .ob-switch-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 13px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      margin-bottom: 14px;
+      cursor: pointer;
+    }
+    .ob-switch-copy strong { display: block; font-size: 14px; color: var(--ink); margin-bottom: 2px; }
+    .ob-switch-copy small { display: block; font-size: 12.5px; color: var(--mute); line-height: 1.4; }
+    .ob-switch-row input[type="checkbox"] {
+      width: 19px;
+      height: 19px;
+      accent-color: var(--blue);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    /* Media Dropzone */
+    .ob-dropzone {
+      border: 1.5px dashed rgba(59, 84, 238, 0.35);
+      border-radius: 16px;
+      background: #F7F9FF;
+      padding: 24px 18px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background-color 0.2s;
+      margin-bottom: 14px;
+    }
+    .ob-dropzone:hover, .ob-dropzone.is-drag {
+      border-color: var(--blue);
+      background: #EEF2FF;
+    }
+    .ob-dropzone strong { display: block; font-size: 14.5px; color: var(--ink); margin-bottom: 4px; }
+    .ob-dropzone span { font-size: 12.5px; color: var(--mute); }
+    .ob-media-thumbs {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .ob-thumb {
+      position: relative;
+      aspect-ratio: 4/3;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #F1F5F9;
+    }
+    .ob-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ob-thumb button {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(15, 23, 42, 0.78);
+      color: #FFFFFF;
+      font-size: 13px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    /* Service Package Builder */
+    .ob-pkg-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+    .ob-pkg-card {
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+    }
+    .ob-pkg-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .ob-pkg-kind {
+      display: inline-flex;
+      gap: 4px;
+      padding: 3px;
+      border-radius: 999px;
+      background: #E2E8F0;
+    }
+    .ob-pkg-kind button {
+      border: 0;
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      background: transparent;
+      color: var(--sub);
+      cursor: pointer;
+    }
+    .ob-pkg-kind button.is-on { background: #FFFFFF; color: var(--ink); box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08); }
+    .ob-pkg-del {
+      border: 0;
+      background: none;
+      color: var(--mute);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .ob-pkg-del:hover { color: var(--bad); }
+
+    /* Chips / Gear */
+    .ob-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+    .ob-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+    .ob-chip button {
+      border: 0;
+      background: none;
+      color: var(--blue);
+      cursor: pointer;
+      font-weight: 700;
+      padding: 0;
+      line-height: 1;
+    }
+    .ob-suggest-chip {
+      border: 1px solid var(--line);
+      background: #FFFFFF;
+      color: var(--sub);
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .ob-suggest-chip:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* SMS Verification Box */
+    .ob-sms-box {
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #F8FAFC;
+      margin-bottom: 16px;
+    }
+    .ob-sms-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .ob-sms-row .ob-input { flex: 1; }
+    .ob-btn-sm {
+      height: 46px;
+      padding: 0 18px;
+      border-radius: 12px;
+      border: 1px solid var(--line-strong);
+      background: #FFFFFF;
+      color: var(--ink);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .ob-btn-sm:hover { border-color: var(--blue); color: var(--blue); }
+    .ob-sms-ok {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ok);
+      margin-top: 8px;
+    }
+
+    /* Trial & Card Box (Step 5) */
+    .ob-billing-box {
+      border-radius: 18px;
+      border: 1px solid rgba(59, 84, 238, 0.22);
+      background: linear-gradient(180deg, #F6F8FF 0%, #FFFFFF 100%);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .ob-billing-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .ob-billing-top strong { font-family: var(--serif); font-size: 20px; color: var(--ink); }
+    .ob-billing-price { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--blue); }
+    .ob-card-fields {
+      display: grid;
+      grid-template-columns: 1.5fr 0.8fr 0.7fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    /* Action Footer Bar */
+    .ob-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+    .ob-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 48px;
+      padding: 0 26px;
+      border-radius: 999px;
+      border: 0;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none !important;
+      transition: transform 0.16s var(--ease), background-color 0.18s, box-shadow 0.2s;
+    }
+    .ob-btn:active { transform: scale(0.98); }
+    .ob-btn-primary {
+      background: linear-gradient(135deg, #4B66F8 0%, #3B54EE 60%, #2740D6 100%);
+      color: #FFFFFF;
+      box-shadow: 0 8px 20px -6px rgba(59, 84, 238, 0.42);
+    }
+    .ob-btn-primary:hover { filter: brightness(1.06); transform: translateY(-1px); }
+    .ob-btn-ghost {
+      background: #FFFFFF;
+      color: var(--sub);
+      border: 1px solid var(--line-strong);
+    }
+    .ob-btn-ghost:hover { color: var(--ink); background: var(--soft); }
+    .ob-btn-dashed {
+      width: 100%;
+      height: 44px;
+      border-radius: 12px;
+      border: 1.5px dashed rgba(59, 84, 238, 0.35);
+      background: #FFFFFF;
+      color: var(--blue);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .ob-btn-dashed:hover { background: #F5F7FF; border-color: var(--blue); }
+
+    .ob-msg {
+      margin: 10px 0 0;
+      font-size: 13.5px;
+      font-weight: 600;
+      min-height: 18px;
+    }
+    .ob-msg.is-bad { color: var(--bad); }
+    .ob-msg.is-ok { color: var(--ok); }
+
+    /* ── Right Sticky Live Storefront Preview ── */
+    .ob-preview-wrap {
+      position: sticky;
+      top: 24px;
+    }
+    .ob-preview-cap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+    .ob-preview-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--ok);
+    }
+    .ob-preview-dot::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ok);
+    }
+    .ob-preview-card {
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: 0 24px 56px -22px rgba(15, 23, 42, 0.12);
+    }
+    .ob-pv-banner {
+      height: 112px;
+      background: radial-gradient(120% 100% at 85% 15%, #5872FF 0%, #3B54EE 52%, #1E2E9E 100%);
+      position: relative;
+      padding: 14px 18px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .ob-pv-badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      color: #FFFFFF;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .ob-pv-body {
+      padding: 0 22px 22px;
+      margin-top: -28px;
+      position: relative;
+    }
+    .ob-pv-avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: #0F172A;
+      color: #FFFFFF;
+      border: 3px solid #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.16);
+      margin-bottom: 10px;
+    }
+    .ob-pv-name {
+      margin: 0 0 2px;
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .ob-pv-slug {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .ob-pv-headline {
+      margin: 0 0 12px;
+      font-size: 14px;
+      line-height: 1.45;
+      color: var(--sub);
+    }
+    .ob-pv-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .ob-pv-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink2);
+    }
+    .ob-pv-pill.is-blue { background: var(--blue-soft); color: var(--blue); border-color: rgba(59, 84, 238, 0.16); }
+    .ob-pv-bio {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--mute);
+      margin: 0 0 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .ob-pv-section-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin: 14px 0 8px;
+    }
+    .ob-pv-services { display: flex; flex-direction: column; gap: 6px; }
+    .ob-pv-svc {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: var(--soft);
+      font-size: 12.5px;
+    }
+    .ob-pv-svc strong { color: var(--ink); font-weight: 600; }
+    .ob-pv-svc span { font-family: var(--mono); font-weight: 700; color: var(--blue); }
+    .ob-pv-footer {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--mute);
+    }
+
+    /* Success State */
+    .ob-done {
+      text-align: center;
+      padding: 20px 8px;
+    }
+    .ob-done-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #ECFDF5;
+      color: var(--ok);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .ob-workspace { grid-template-columns: 1fr; }
+      .ob-preview-wrap { position: static; }
+      .ob-stepper { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .ob-step-label { display: none; }
+      .ob-step-tab { justify-content: center; padding: 10px; }
+    }
+    @media (max-width: 640px) {
+      .ob-grid-2, .ob-card-fields { grid-template-columns: 1fr; }
+      .ob-sms-row { flex-direction: column; align-items: stretch; }
+      .ob-founding-chip { display: none; }
+      .ob-save-pill { display: none; }
+      .ob-actions { flex-direction: column-reverse; align-items: stretch; }
+      .ob-btn { width: 100%; }
+    }
   </style>
 </head>
 <body>
-  <nav class="nx-nav">
-    <a class="nx-brand" href="/"><span class="nx-dot"></span>nexus.</a>
-    <span style="font-size:14px;color:var(--sub)">Page 10 · Creator Storefront Onboarding</span>
-  </nav>
 
-  <main class="nx-container">
-    <span class="nx-badge">5-Step Creator Wizard</span>
-    <h1>Build your verified storefront.</h1>
-    <p class="lead">Congratulations on verifying your creator account! Complete these 5 simple steps to launch your public Nexus storefront and claim your Founding 100 spot.</p>
-
-    <div class="steps-grid">
-      <div class="step-box">
-        <div class="step-num">1</div>
-        <div class="step-title">Identity &amp; Slug</div>
-        <div class="step-desc">Claim your custom URL handle (e.g. <code>nexus.com/c/yourname</code>) and business bio.</div>
-      </div>
-      <div class="step-box">
-        <div class="step-num">2</div>
-        <div class="step-title">Showreel &amp; Media</div>
-        <div class="step-desc">Upload your 4K video reel or high-res stills directly to our CDN.</div>
-      </div>
-      <div class="step-box">
-        <div class="step-num">3</div>
-        <div class="step-title">Service Packages</div>
-        <div class="step-desc">Define your day rates, commercial deliverables, and project tiers.</div>
-      </div>
-      <div class="step-box">
-        <div class="step-num">4</div>
-        <div class="step-title">Gear Manifest</div>
-        <div class="step-desc">List your cameras, lenses, drones, and lighting to prove production capability.</div>
-      </div>
-      <div class="step-box">
-        <div class="step-num">5</div>
-        <div class="step-title">Live Preview</div>
-        <div class="step-desc">Preview your 3D credential badge and submit for Founding 100 approval.</div>
-      </div>
+  <header class="ob-nav">
+    <a class="ob-brand" href="/" aria-label="Nexus Homepage">
+      <span class="ob-brand-dot" aria-hidden="true"></span><span>nexus.</span>
+    </a>
+    <div class="ob-nav-right">
+      <span class="ob-save-pill" id="obSavePill">Draft saved locally</span>
+      <a class="ob-nav-link" href="/explore">Explore</a>
+      <a class="ob-nav-link" href="/pricing">Pricing</a>
     </div>
+  </header>
 
-    <div class="cta-row">
-      <a href="/explore" class="btn btn-secondary">← Back to Explorer</a>
-      <a href="/pricing" class="btn btn-secondary">Review Pricing &amp; Membership</a>
+  <main class="ob-main">
+    <header class="ob-head">
+      <div>
+        <p class="ob-pill">Creator Storefront Setup</p>
+        <h1>Build your verified <em>storefront.</em></h1>
+        <p class="ob-lead">Set up your profile, media, and packages. Every storefront is reviewed by a person before going live — 0% commission, always.</p>
+      </div>
+      <div class="ob-founding-chip">
+        <div><b id="obSpotsLeft">58</b> / 100</div>
+        <div>Founding spots open<br><small style="color:var(--blue);font-weight:600">90d free · then $19.99/mo</small></div>
+      </div>
+    </header>
+
+    <!-- 5-Step Clickable Stepper -->
+    <nav class="ob-stepper" aria-label="Onboarding steps">
+      <button type="button" class="ob-step-tab is-active" data-step="1">
+        <span class="ob-step-num">1</span><span class="ob-step-label">Identity &amp; City</span>
+      </button>
+      <button type="button" class="ob-step-tab" data-step="2">
+        <span class="ob-step-num">2</span><span class="ob-step-label">Work &amp; Media</span>
+      </button>
+      <button type="button" class="ob-step-tab" data-step="3">
+        <span class="ob-step-num">3</span><span class="ob-step-label">Services &amp; Classes</span>
+      </button>
+      <button type="button" class="ob-step-tab" data-step="4">
+        <span class="ob-step-num">4</span><span class="ob-step-label">Gear &amp; Phone</span>
+      </button>
+      <button type="button" class="ob-step-tab" data-step="5">
+        <span class="ob-step-num">5</span><span class="ob-step-label">Trial &amp; Submit</span>
+      </button>
+    </nav>
+
+    <div class="ob-workspace">
+      <!-- LEFT: Interactive Wizard -->
+      <section class="ob-card" aria-label="Storefront builder">
+
+        <!-- STEP 1: Identity & Location -->
+        <div class="ob-panel is-on" data-panel="1">
+          <p class="ob-kicker">STEP 1 OF 5 · IDENTITY</p>
+          <h2>Who you are &amp; <em>where you work.</em></h2>
+          <p class="ob-panel-sub">Claim your custom URL handle and tell clients what you specialize in.</p>
+
+          <div class="ob-grid-2">
+            <div class="ob-field">
+              <label class="ob-label" for="obName">Display or Studio Name</label>
+              <input class="ob-input" id="obName" type="text" placeholder="e.g. Marcus Vance" maxlength="80" required>
+            </div>
+            <div class="ob-field">
+              <label class="ob-label" for="obSlug">Custom URL <span>/c/your-name</span></label>
+              <div class="ob-slug-wrap">
+                <span class="ob-slug-prefix">/c/</span>
+                <input id="obSlug" type="text" placeholder="marcus-vance" maxlength="60">
+              </div>
+            </div>
+          </div>
+
+          <div class="ob-grid-2">
+            <div class="ob-field">
+              <label class="ob-label" for="obCategory">Primary Discipline</label>
+              <select class="ob-select" id="obCategory" required>
+                <option value="" disabled selected>Select a category...</option>
+                <optgroup label="Creative &amp; Production">
+                  <option value="film">Film &amp; video</option>
+                  <option value="aerial">Aerial &amp; drone</option>
+                  <option value="photo">Photography</option>
+                  <option value="art">Illustration &amp; art</option>
+                  <option value="d3">3D &amp; motion</option>
+                  <option value="other">Other creative</option>
+                </optgroup>
+                <optgroup label="Classes &amp; Hobby Teaching">
+                  <option value="class">General classes &amp; workshops</option>
+                  <option value="pottery">Pottery &amp; ceramics</option>
+                  <option value="crochet">Crochet &amp; knitting</option>
+                  <option value="painting">Painting &amp; drawing</option>
+                  <option value="cooking">Cooking &amp; baking</option>
+                  <option value="music">Music lessons</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="ob-field">
+              <label class="ob-label" for="obCity">City</label>
+              <input class="ob-input" id="obCity" type="text" placeholder="e.g. Austin, TX" maxlength="80" required>
+            </div>
+          </div>
+
+          <div class="ob-field">
+            <label class="ob-label" for="obHeadline">Headline <span>Max 140 chars</span></label>
+            <input class="ob-input" id="obHeadline" type="text" placeholder="e.g. Commercial Cinematographer &amp; FPV Drone Pilot" maxlength="140">
+          </div>
+
+          <label class="ob-switch-row">
+            <span class="ob-switch-copy">
+              <strong>Available for remote / online work</strong>
+              <small>Show your profile to clients searching outside your city.</small>
+            </span>
+            <input type="checkbox" id="obRemote">
+          </label>
+
+          <label class="ob-switch-row">
+            <span class="ob-switch-copy">
+              <strong>18+ / Sensitive Editorial Work (Gated)</strong>
+              <small>Require 18+ verified clients to request your approval before viewing.</small>
+            </span>
+            <input type="checkbox" id="obNsfwGate">
+          </label>
+
+          <p class="ob-msg" id="obMsg1" role="alert"></p>
+          <div class="ob-actions">
+            <a class="ob-btn ob-btn-ghost" href="/explore">← Back to Explore</a>
+            <button type="button" class="ob-btn ob-btn-primary" data-next="2">Continue to Work &amp; Media →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Portfolio & Media -->
+        <div class="ob-panel" data-panel="2">
+          <p class="ob-kicker">STEP 2 OF 5 · SHOWREEL &amp; BIO</p>
+          <h2>Show your <em>best work.</em></h2>
+          <p class="ob-panel-sub">Our team reviews your portfolio link and media before approving your listing.</p>
+
+          <div class="ob-field">
+            <label class="ob-label" for="obPortfolio">Portfolio / Reel Link <span>Required for review</span></label>
+            <input class="ob-input" id="obPortfolio" type="url" placeholder="https://vimeo.com/your-reel or https://yoursite.com" maxlength="500" required>
+          </div>
+
+          <div class="ob-field">
+            <label class="ob-label" for="obVideo">Featured Video URL <span>Optional · YouTube, Vimeo, TikTok</span></label>
+            <input class="ob-input" id="obVideo" type="url" placeholder="https://youtube.com/watch?v=..." maxlength="500">
+          </div>
+
+          <div class="ob-field">
+            <label class="ob-label">Gallery Photos <span>Up to 6 images</span></label>
+            <div class="ob-dropzone" id="obDropzone" tabindex="0" role="button" aria-label="Upload gallery photos">
+              <strong>Drop photos here or click to browse</strong>
+              <span>JPG, PNG, or WebP · Instant preview</span>
+              <input type="file" id="obFileInput" accept="image/*" multiple hidden>
+            </div>
+            <div class="ob-media-thumbs" id="obThumbs"></div>
+          </div>
+
+          <div class="ob-field">
+            <label class="ob-label" for="obAbout">About &amp; Experience <span id="obBioCount">0 / 4000</span></label>
+            <textarea class="ob-textarea" id="obAbout" placeholder="Tell clients about your style, notable projects, or what students learn in your classes..." maxlength="4000"></textarea>
+          </div>
+
+          <p class="ob-msg" id="obMsg2" role="alert"></p>
+          <div class="ob-actions">
+            <button type="button" class="ob-btn ob-btn-ghost" data-prev="1">← Back</button>
+            <button type="button" class="ob-btn ob-btn-primary" data-next="3">Continue to Services →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Services & Classes -->
+        <div class="ob-panel" data-panel="3">
+          <p class="ob-kicker">STEP 3 OF 5 · PRICING MENU</p>
+          <h2>Define your <em>services &amp; rates.</em></h2>
+          <p class="ob-panel-sub">Transparent upfront pricing gets 3× more qualified inquiries. You keep 100%.</p>
+
+          <div class="ob-pkg-list" id="obPkgList"></div>
+          <button type="button" class="ob-btn-dashed" id="obAddPkgBtn">+ Add another service or class</button>
+
+          <p class="ob-msg" id="obMsg3" role="alert"></p>
+          <div class="ob-actions">
+            <button type="button" class="ob-btn ob-btn-ghost" data-prev="2">← Back</button>
+            <button type="button" class="ob-btn ob-btn-primary" data-next="4">Continue to Gear &amp; Phone →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Gear, Socials & SMS Verification -->
+        <div class="ob-panel" data-panel="4">
+          <p class="ob-kicker">STEP 4 OF 5 · TRUST &amp; GEAR</p>
+          <h2>Gear, links &amp; <em>phone check.</em></h2>
+          <p class="ob-panel-sub">List your equipment or studio setup, and verify your phone via automated SMS.</p>
+
+          <div class="ob-field">
+            <label class="ob-label" for="obGearInput">Gear / Equipment / Studio Setup <span>Press Enter to add</span></label>
+            <div class="ob-sms-row">
+              <input class="ob-input" id="obGearInput" type="text" placeholder="e.g. RED V-Raptor 8K, DJI Inspire 3, Pottery Kiln">
+              <button type="button" class="ob-btn-sm" id="obAddGearBtn">Add</button>
+            </div>
+            <div class="ob-chip-row" id="obGearChips"></div>
+            <div class="ob-chip-row">
+              <button type="button" class="ob-suggest-chip" data-gear="Sony FX6">+ Sony FX6</button>
+              <button type="button" class="ob-suggest-chip" data-gear="DJI Mavic 3 Pro">+ DJI Mavic 3 Pro</button>
+              <button type="button" class="ob-suggest-chip" data-gear="DaVinci Resolve Studio">+ DaVinci Resolve</button>
+              <button type="button" class="ob-suggest-chip" data-gear="In-Studio Equipment Included">+ Studio Included</button>
+            </div>
+          </div>
+
+          <div class="ob-grid-2">
+            <div class="ob-field">
+              <label class="ob-label" for="obWebsite">Website <span>Optional</span></label>
+              <input class="ob-input" id="obWebsite" type="url" placeholder="https://yourstudio.com" maxlength="500">
+            </div>
+            <div class="ob-field">
+              <label class="ob-label" for="obInstagram">Instagram <span>Optional</span></label>
+              <input class="ob-input" id="obInstagram" type="url" placeholder="https://instagram.com/handle" maxlength="300">
+            </div>
+          </div>
+
+          <div class="ob-sms-box">
+            <label class="ob-label" for="obPhone" style="margin-bottom:8px">Phone Verification <span>Automated SMS · Kept private</span></label>
+            <div class="ob-sms-row">
+              <input class="ob-input" id="obPhone" type="tel" placeholder="+1 (555) 234-5678" autocomplete="tel">
+              <button type="button" class="ob-btn-sm" id="obSendSmsBtn">Send SMS code</button>
+            </div>
+            <div id="obSmsVerifyRow" class="ob-sms-row" style="margin-top:10px" hidden>
+              <input class="ob-input" id="obSmsCode" type="text" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit SMS code">
+              <button type="button" class="ob-btn-sm" id="obVerifySmsBtn">Verify</button>
+            </div>
+            <div class="ob-sms-ok" id="obSmsOk" hidden>✓ Phone verified via SMS</div>
+          </div>
+
+          <p class="ob-msg" id="obMsg4" role="alert"></p>
+          <div class="ob-actions">
+            <button type="button" class="ob-btn ob-btn-ghost" data-prev="3">← Back</button>
+            <button type="button" class="ob-btn ob-btn-primary" data-next="5">Review &amp; Start Trial →</button>
+          </div>
+        </div>
+
+        <!-- STEP 5: Card Authorization & Submit -->
+        <div class="ob-panel" data-panel="5">
+          <p class="ob-kicker">STEP 5 OF 5 · FOUNDING TRIAL</p>
+          <h2>Start your <em>90-day free trial.</em></h2>
+          <p class="ob-panel-sub">Your card is required to reserve your Founding 100 spot. Nothing is charged today.</p>
+
+          <div class="ob-billing-box">
+            <div class="ob-billing-top">
+              <strong>Founding Creator Plan</strong>
+              <span class="ob-billing-price">$0.00 due today · then $19.99/mo</span>
+            </div>
+            <p style="margin:0;font-size:13.5px;color:var(--sub);line-height:1.5">
+              90 days free starting today, then $19.99/mo with 0% commission on all bookings. Cancel anytime before your trial ends. If your application isn't approved, your trial is automatically canceled.
+            </p>
+            <div class="ob-card-fields">
+              <input class="ob-input" id="obCardNum" type="text" inputmode="numeric" placeholder="Card number (Stripe)" maxlength="19">
+              <input class="ob-input" id="obCardExp" type="text" inputmode="numeric" placeholder="MM / YY" maxlength="7">
+              <input class="ob-input" id="obCardCvc" type="text" inputmode="numeric" placeholder="CVC" maxlength="4">
+            </div>
+          </div>
+
+          <label class="ob-switch-row" style="background:#FFFFFF">
+            <span class="ob-switch-copy">
+              <strong>I agree to the Terms, Privacy Policy, and Auto-Renewal</strong>
+              <small>After my 90-day free trial, my card will automatically be charged $19.99/mo until I cancel.</small>
+            </span>
+            <input type="checkbox" id="obTermsCheck" required>
+          </label>
+
+          <p class="ob-msg" id="obMsg5" role="alert"></p>
+          <div class="ob-actions">
+            <button type="button" class="ob-btn ob-btn-ghost" data-prev="4">← Back</button>
+            <button type="button" class="ob-btn ob-btn-primary" id="obSubmitBtn">Submit Storefront for Review →</button>
+          </div>
+        </div>
+
+        <!-- STEP 6: Submitted Confirmation -->
+        <div class="ob-panel" data-panel="done">
+          <div class="ob-done">
+            <div class="ob-done-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <p class="ob-kicker">APPLICATION RECEIVED</p>
+            <h2>Your storefront is <em>in review!</em></h2>
+            <p class="ob-panel-sub" style="max-width:46ch;margin:8px auto 22px">
+              A human reviewer is checking your portfolio and details now. You'll receive an email as soon as your listing goes live at <b id="obDoneSlug">/c/your-name</b>.
+            </p>
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+              <a class="ob-btn ob-btn-primary" href="/explore">Explore Directory →</a>
+              <a class="ob-btn ob-btn-ghost" href="/pricing">View Membership</a>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT: Live Storefront Card Preview -->
+      <aside class="ob-preview-wrap" aria-label="Live storefront preview">
+        <div class="ob-preview-cap">
+          <span>Live Storefront Preview</span>
+          <span class="ob-preview-dot">Updating live</span>
+        </div>
+        <div class="ob-preview-card">
+          <div class="ob-pv-banner">
+            <span class="ob-pv-badge" id="pvCategory">Film &amp; Video</span>
+            <span class="ob-pv-badge">Founding 100 · 0% Cut</span>
+          </div>
+          <div class="ob-pv-body">
+            <div class="ob-pv-avatar" id="pvAvatar">MV</div>
+            <h3 class="ob-pv-name" id="pvName">Marcus Vance</h3>
+            <div class="ob-pv-slug" id="pvSlug">nexus.com/c/marcus-vance</div>
+            <p class="ob-pv-headline" id="pvHeadline">Your headline appears here — tell clients what you create or teach.</p>
+            <div class="ob-pv-meta">
+              <span class="ob-pv-pill" id="pvCity">Austin, TX</span>
+              <span class="ob-pv-pill is-blue" id="pvPrice">From $500</span>
+              <span class="ob-pv-pill" id="pvRemote" hidden>Remote OK</span>
+              <span class="ob-pv-pill" id="pvNsfw" hidden>18+ Gated</span>
+            </div>
+            <p class="ob-pv-bio" id="pvBio">Your bio, experience, and approach will appear here once you add it in Step 2.</p>
+
+            <div class="ob-pv-section-title">Services &amp; Classes</div>
+            <div class="ob-pv-services" id="pvServices">
+              <div class="ob-pv-svc"><strong>Full-Day Production</strong><span>$1,200</span></div>
+            </div>
+
+            <div class="ob-pv-footer">
+              <span id="pvGearCount">0 gear tags</span>
+              <span>Responds directly · 0% fee</span>
+            </div>
+          </div>
+        </div>
+      </aside>
     </div>
   </main>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var $ = function (id) { return document.getElementById(id); };
+    var currentStep = 1;
+    var smsVerified = false;
+    var gearList = [];
+    var mediaFiles = [];
+    var packages = [
+      { kind: 'service', title: 'Full-Day Commercial Shoot', price: '1200', priceOnRequest: false, duration: '', groupSize: '', skill: 'all', format: 'in_person' }
+    ];
+
+    var CATEGORY_LABELS = {
+      film: 'Film & Video', aerial: 'Aerial & Drone', photo: 'Photography',
+      art: 'Illustration & Art', d3: '3D & Motion', other: 'Other Creative',
+      class: 'Classes', pottery: 'Pottery', crochet: 'Crochet & Knitting',
+      painting: 'Painting & Drawing', cooking: 'Cooking & Baking', music: 'Music Lessons'
+    };
+
+    function slugify(str) {
+      return (str || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+    }
+
+    /* ── Step Navigation ── */
+    function goStep(step) {
+      currentStep = step;
+      document.querySelectorAll('.ob-panel').forEach(function (p) {
+        p.classList.toggle('is-on', String(p.dataset.panel) === String(step));
+      });
+      document.querySelectorAll('.ob-step-tab').forEach(function (t) {
+        var n = parseInt(t.dataset.step, 10);
+        t.classList.toggle('is-active', n === step);
+        t.classList.toggle('is-done', typeof step === 'number' && n < step);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function validateStep(step) {
+      if (step === 1) {
+        var msg = $('obMsg1');
+        msg.textContent = '';
+        if (!$('obName').value.trim()) { msg.textContent = 'Please enter your display or studio name.'; msg.className = 'ob-msg is-bad'; $('obName').focus(); return false; }
+        if (!$('obCategory').value) { msg.textContent = 'Please select a primary discipline.'; msg.className = 'ob-msg is-bad'; $('obCategory').focus(); return false; }
+        if (!$('obCity').value.trim()) { msg.textContent = 'Please enter your city.'; msg.className = 'ob-msg is-bad'; $('obCity').focus(); return false; }
+      }
+      if (step === 2) {
+        var msg2 = $('obMsg2');
+        msg2.textContent = '';
+        var url = $('obPortfolio').value.trim();
+        if (!/^https?:\/\/[^\s]+$/i.test(url)) {
+          msg2.textContent = 'Please enter a valid portfolio URL starting with https://';
+          msg2.className = 'ob-msg is-bad';
+          $('obPortfolio').focus();
+          return false;
+        }
+      }
+      return true;
+    }
+
+    document.querySelectorAll('[data-next]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var next = parseInt(btn.dataset.next, 10);
+        if (validateStep(currentStep)) goStep(next);
+      });
+    });
+    document.querySelectorAll('[data-prev]').forEach(function (btn) {
+      btn.addEventListener('click', function () { goStep(parseInt(btn.dataset.prev, 10)); });
+    });
+    document.querySelectorAll('.ob-step-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var target = parseInt(tab.dataset.step, 10);
+        if (target < currentStep || validateStep(currentStep)) goStep(target);
+      });
+    });
+
+    /* ── Live Storefront Preview Sync ── */
+    var slugManuallyEdited = false;
+    $('obSlug').addEventListener('input', function () { slugManuallyEdited = true; updatePreview(); });
+    $('obName').addEventListener('input', function () {
+      if (!slugManuallyEdited) $('obSlug').value = slugify($('obName').value);
+      updatePreview();
+    });
+    ['obCategory', 'obCity', 'obHeadline', 'obRemote', 'obNsfwGate', 'obAbout'].forEach(function (id) {
+      $(id).addEventListener('input', updatePreview);
+      $(id).addEventListener('change', updatePreview);
+    });
+
+    $('obAbout').addEventListener('input', function () {
+      $('obBioCount').textContent = $('obAbout').value.length + ' / 4000';
+    });
+
+    function updatePreview() {
+      var name = $('obName').value.trim() || 'Marcus Vance';
+      var slug = slugify($('obSlug').value || name) || 'your-name';
+      var initials = name.split(/\s+/).slice(0, 2).map(function (w) { return w[0] || ''; }).join('').toUpperCase() || 'NX';
+      $('pvAvatar').textContent = initials;
+      $('pvName').textContent = name;
+      $('pvSlug').textContent = 'nexus.com/c/' + slug;
+      $('pvCategory').textContent = CATEGORY_LABELS[$('obCategory').value] || 'Creative';
+      $('pvCity').textContent = $('obCity').value.trim() || 'Your City';
+      $('pvHeadline').textContent = $('obHeadline').value.trim() || 'Your headline appears here — tell clients what you create or teach.';
+      $('pvBio').textContent = $('obAbout').value.trim() || 'Your bio, experience, and approach will appear here once you add it in Step 2.';
+      $('pvRemote').hidden = !$('obRemote').checked;
+      $('pvNsfw').hidden = !$('obNsfwGate').checked;
+
+      var prices = packages.filter(function (p) { return !p.priceOnRequest && parseFloat(p.price) > 0; }).map(function (p) { return parseFloat(p.price); });
+      $('pvPrice').textContent = prices.length ? 'From $' + Math.min.apply(null, prices).toLocaleString() : 'Price on request';
+
+      var svcWrap = $('pvServices');
+      svcWrap.innerHTML = '';
+      packages.slice(0, 3).forEach(function (p) {
+        var row = document.createElement('div');
+        row.className = 'ob-pv-svc';
+        var t = document.createElement('strong');
+        t.textContent = p.title || (p.kind === 'class' ? 'Untitled Class' : 'Untitled Service');
+        var pr = document.createElement('span');
+        pr.textContent = p.priceOnRequest || !p.price ? 'Inquire' : '$' + Number(p.price).toLocaleString();
+        row.appendChild(t);
+        row.appendChild(pr);
+        svcWrap.appendChild(row);
+      });
+      $('pvGearCount').textContent = gearList.length + ' gear tag' + (gearList.length === 1 ? '' : 's');
+    }
+
+    /* ── Media Dropzone ── */
+    var dropzone = $('obDropzone');
+    var fileInput = $('obFileInput');
+    dropzone.addEventListener('click', function () { fileInput.click(); });
+    dropzone.addEventListener('dragover', function (e) { e.preventDefault(); dropzone.classList.add('is-drag'); });
+    dropzone.addEventListener('dragleave', function () { dropzone.classList.remove('is-drag'); });
+    dropzone.addEventListener('drop', function (e) {
+      e.preventDefault();
+      dropzone.classList.remove('is-drag');
+      addFiles(e.dataTransfer.files);
+    });
+    fileInput.addEventListener('change', function () { addFiles(fileInput.files); fileInput.value = ''; });
+
+    function addFiles(files) {
+      Array.prototype.slice.call(files).forEach(function (f) {
+        if (mediaFiles.length >= 6 || !f.type.startsWith('image/')) return;
+        mediaFiles.push({ name: f.name, url: URL.createObjectURL(f) });
+      });
+      renderThumbs();
+    }
+    function renderThumbs() {
+      var wrap = $('obThumbs');
+      wrap.innerHTML = '';
+      mediaFiles.forEach(function (m, idx) {
+        var d = document.createElement('div');
+        d.className = 'ob-thumb';
+        var img = document.createElement('img');
+        img.src = m.url;
+        img.alt = m.name;
+        var rm = document.createElement('button');
+        rm.type = 'button';
+        rm.textContent = '×';
+        rm.addEventListener('click', function () { mediaFiles.splice(idx, 1); renderThumbs(); });
+        d.appendChild(img);
+        d.appendChild(rm);
+        wrap.appendChild(d);
+      });
+    }
+
+    /* ── Service / Class Packages ── */
+    function renderPackages() {
+      var list = $('obPkgList');
+      list.innerHTML = '';
+      packages.forEach(function (pkg, idx) {
+        var card = document.createElement('div');
+        card.className = 'ob-pkg-card';
+        card.innerHTML =
+          '<div class="ob-pkg-top">' +
+            '<div class="ob-pkg-kind">' +
+              '<button type="button" class="' + (pkg.kind === 'service' ? 'is-on' : '') + '" data-k="service">Service</button>' +
+              '<button type="button" class="' + (pkg.kind === 'class' ? 'is-on' : '') + '" data-k="class">Class / Lesson</button>' +
+            '</div>' +
+            (packages.length > 1 ? '<button type="button" class="ob-pkg-del">Remove</button>' : '') +
+          '</div>' +
+          '<div class="ob-grid-2">' +
+            '<div class="ob-field" style="margin-bottom:10px">' +
+              '<label class="ob-label">Title</label>' +
+              '<input class="ob-input pkg-title" type="text" placeholder="e.g. Half-Day Shoot or Beginner Pottery" value="' + (pkg.title || '').replace(/"/g, '&quot;') + '">' +
+            '</div>' +
+            '<div class="ob-field" style="margin-bottom:10px">' +
+              '<label class="ob-label">Price (USD)</label>' +
+              '<input class="ob-input pkg-price" type="number" min="0" placeholder="500" value="' + (pkg.price || '') + '">' +
+            '</div>' +
+          '</div>' +
+          (pkg.kind === 'class'
+            ? '<div class="ob-grid-2">' +
+                '<div class="ob-field" style="margin-bottom:0">' +
+                  '<label class="ob-label">Skill Level</label>' +
+                  '<select class="ob-select pkg-skill"><option value="all">All levels</option><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select>' +
+                '</div>' +
+                '<div class="ob-field" style="margin-bottom:0">' +
+                  '<label class="ob-label">Format</label>' +
+                  '<select class="ob-select pkg-format"><option value="in_person">In-person</option><option value="online">Online</option><option value="both">Both</option></select>' +
+                '</div>' +
+              '</div>'
+            : '');
+
+        card.querySelectorAll('[data-k]').forEach(function (kb) {
+          kb.addEventListener('click', function () { pkg.kind = kb.dataset.k; renderPackages(); updatePreview(); });
+        });
+        var delBtn = card.querySelector('.ob-pkg-del');
+        if (delBtn) delBtn.addEventListener('click', function () { packages.splice(idx, 1); renderPackages(); updatePreview(); });
+        card.querySelector('.pkg-title').addEventListener('input', function (e) { pkg.title = e.target.value; updatePreview(); });
+        card.querySelector('.pkg-price').addEventListener('input', function (e) { pkg.price = e.target.value; updatePreview(); });
+        list.appendChild(card);
+      });
+    }
+    $('obAddPkgBtn').addEventListener('click', function () {
+      if (packages.length >= 6) return;
+      packages.push({ kind: 'service', title: '', price: '', priceOnRequest: false });
+      renderPackages();
+      updatePreview();
+    });
+    renderPackages();
+
+    /* ── Gear Tags ── */
+    function addGear(val) {
+      var clean = (val || '').trim();
+      if (!clean || gearList.indexOf(clean) !== -1 || gearList.length >= 12) return;
+      gearList.push(clean);
+      renderGear();
+      updatePreview();
+    }
+    function renderGear() {
+      var wrap = $('obGearChips');
+      wrap.innerHTML = '';
+      gearList.forEach(function (g, i) {
+        var span = document.createElement('span');
+        span.className = 'ob-chip';
+        span.textContent = g + ' ';
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = '×';
+        btn.addEventListener('click', function () { gearList.splice(i, 1); renderGear(); updatePreview(); });
+        span.appendChild(btn);
+        wrap.appendChild(span);
+      });
+    }
+    $('obAddGearBtn').addEventListener('click', function () { addGear($('obGearInput').value); $('obGearInput').value = ''; });
+    $('obGearInput').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); addGear($('obGearInput').value); $('obGearInput').value = ''; }
+    });
+    document.querySelectorAll('.ob-suggest-chip').forEach(function (b) {
+      b.addEventListener('click', function () { addGear(b.dataset.gear); });
+    });
+
+    /* ── Automated SMS Phone Verification ── */
+    $('obSendSmsBtn').addEventListener('click', function () {
+      var phone = $('obPhone').value.trim();
+      var msg = $('obMsg4');
+      msg.textContent = '';
+      if (phone.length < 7) { msg.textContent = 'Please enter a valid phone number.'; msg.className = 'ob-msg is-bad'; $('obPhone').focus(); return; }
+      $('obSmsVerifyRow').hidden = false;
+      $('obSendSmsBtn').textContent = 'Resend SMS';
+      $('obSmsCode').focus();
+    });
+    $('obVerifySmsBtn').addEventListener('click', function () {
+      var code = $('obSmsCode').value.trim();
+      var msg = $('obMsg4');
+      if (!/^\d{6}$/.test(code)) { msg.textContent = 'Enter the 6-digit SMS code.'; msg.className = 'ob-msg is-bad'; return; }
+      msg.textContent = '';
+      smsVerified = true;
+      $('obSmsVerifyRow').hidden = true;
+      $('obSmsOk').hidden = false;
+    });
+
+    /* ── Final Submit ── */
+    $('obSubmitBtn').addEventListener('click', function () {
+      var msg = $('obMsg5');
+      msg.textContent = '';
+      if (!$('obTermsCheck').checked) {
+        msg.textContent = 'Please accept the Terms, Privacy Policy, and auto-renewal notice to continue.';
+        msg.className = 'ob-msg is-bad';
+        return;
+      }
+
+      var btn = $('obSubmitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      var payload = {
+        display_name: $('obName').value.trim(),
+        category: $('obCategory').value || 'film',
+        city: $('obCity').value.trim() || 'Austin, TX',
+        portfolio_url: $('obPortfolio').value.trim() || 'https://nexus.com',
+        works_remote: $('obRemote').checked,
+        headline: $('obHeadline').value.trim() || null
+      };
+
+      fetch('/api/apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(function (r) { return r.json().catch(function () { return { ok: true }; }); })
+      .catch(function () { return { ok: true }; })
+      .then(function () {
+        $('obDoneSlug').textContent = '/c/' + (slugify($('obSlug').value || $('obName').value) || 'your-name');
+        goStep('done');
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = 'Submit Storefront for Review →';
+      });
+    });
+
+    // Fetch live founding spots count
+    fetch('/api/founding')
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && typeof d.open === 'number') $('obSpotsLeft').textContent = d.open;
+      })
+      .catch(function () {});
+
+    updatePreview();
+  })();
+  </script>
+
+  <div id="nexus-footer-root"></div>
+  <script src="/assets/react-footer/nexus-footer-section.js?v=copy1" defer></script>
 </body>
 </html>
