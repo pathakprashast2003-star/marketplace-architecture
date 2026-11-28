@@ -1419,12 +1419,7 @@
       <!-- RIGHT: Overlapping White Editorial Form Card -->
       <section class="ob-form-card" aria-label="Storefront builder">
         <div>
-          <div class="ob-card-meta">
-            <p class="ob-kicker" id="obTopKicker">STEP 1 OF 5 · IDENTITY</p>
-            <div class="ob-meta-right">
-              <button type="button" class="ob-preview-trigger" id="obOpenPreviewBtn">Preview storefront</button>
-            </div>
-          </div>
+          <p class="ob-kicker" id="obTopKicker" hidden>STEP 1 OF 5 · IDENTITY</p>
 
           <!-- STEP 1: Identity & Location -->
           <div class="ob-panel is-on" data-panel="1">
@@ -1980,7 +1975,7 @@
         });
         $('obPreviewModal').hidden = false;
       }
-      $('obOpenPreviewBtn').addEventListener('click', openPreview);
+      if ($('obOpenPreviewBtn')) $('obOpenPreviewBtn').addEventListener('click', openPreview);
       $('obClosePreviewBtn').addEventListener('click', function () { $('obPreviewModal').hidden = true; });
       $('obPreviewModal').addEventListener('click', function (e) { if (e.target === $('obPreviewModal')) $('obPreviewModal').hidden = true; });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') $('obPreviewModal').hidden = true; });
