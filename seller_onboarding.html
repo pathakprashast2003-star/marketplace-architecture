@@ -484,14 +484,14 @@
     .ob-grid-2 {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      gap: 18px 22px;
     }
 
     .ob-field {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-bottom: 14px;
+      gap: 7px;
+      margin-bottom: 18px;
     }
 
     .ob-label {
@@ -583,17 +583,53 @@
     }
 
     .ob-slug-prefix {
-      padding: 0 10px 0 13px;
+      padding: 0 11px 0 14px;
       font-family: var(--sans);
       font-size: 14px;
-      font-weight: 500;
-      color: #94A3B8;
+      font-weight: 600;
+      color: var(--ink);
       background: transparent;
       height: 46px;
       display: inline-flex;
       align-items: center;
-      border-right: 1px solid #F1F5F9;
+      border-right: 1px solid #E2E8F0;
       flex-shrink: 0;
+    }
+
+    .ob-city-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .ob-city-wrap .ob-input {
+      padding-right: 84px;
+    }
+    .ob-locate-btn {
+      position: absolute;
+      right: 7px;
+      height: 32px;
+      padding: 0 10px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #F8FAFC;
+      color: var(--ink2);
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: background-color 0.16s, border-color 0.16s, color 0.16s;
+    }
+    .ob-locate-btn:hover {
+      background: #EEF2FF;
+      border-color: rgba(59, 84, 238, 0.35);
+      color: var(--blue);
+    }
+    .ob-locate-btn:disabled {
+      opacity: 0.6;
+      cursor: wait;
     }
 
     .ob-slug-wrap input {
@@ -676,6 +712,19 @@
 
     .ob-switch-row input[type="checkbox"]:checked::after {
       transform: translateX(18px);
+    }
+
+    /* 18+ Gated Toggle: Red when off, Green when enabled */
+    .ob-switch-nsfw .ob-switch-copy small {
+      color: #DC2626;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .ob-switch-nsfw.is-gated-on .ob-switch-copy small {
+      color: #059669;
+    }
+    .ob-switch-nsfw input[type="checkbox"]:checked {
+      background: #10B981;
     }
 
     /* Media Dropzone */
@@ -1421,14 +1470,36 @@
               </div>
               <div class="ob-field">
                 <label class="ob-label" for="obCity">City</label>
-                <input class="ob-input" id="obCity" type="text" placeholder="e.g. Austin, TX" maxlength="80" required>
+                <div class="ob-city-wrap">
+                  <input class="ob-input" id="obCity" type="text" list="obCityList" placeholder="Select or type city..." maxlength="80" required>
+                  <button type="button" class="ob-locate-btn" id="obLocateCityBtn" title="Use current location">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Locate
+                  </button>
+                </div>
+                <datalist id="obCityList">
+                  <option value="Austin, TX"></option>
+                  <option value="Los Angeles, CA"></option>
+                  <option value="New York, NY"></option>
+                  <option value="San Francisco, CA"></option>
+                  <option value="Chicago, IL"></option>
+                  <option value="Miami, FL"></option>
+                  <option value="Seattle, WA"></option>
+                  <option value="Nashville, TN"></option>
+                  <option value="London, UK"></option>
+                  <option value="Toronto, ON"></option>
+                  <option value="Berlin, DE"></option>
+                  <option value="Paris, FR"></option>
+                  <option value="Tokyo, JP"></option>
+                  <option value="Sydney, AU"></option>
+                </datalist>
               </div>
             </div>
 
             <div class="ob-field">
-              <label class="ob-label" for="obHeadline">Headline</label>
+              <label class="ob-label" for="obHeadline">Headline <span id="obHeadlineCount">0 / 100</span></label>
               <input class="ob-input" id="obHeadline" type="text"
-                placeholder="e.g. Commercial Cinematographer &amp; FPV Drone Pilot" maxlength="140">
+                placeholder="e.g. Commercial Cinematographer &amp; FPV Drone Pilot" maxlength="100">
             </div>
 
             <label class="ob-switch-row">
@@ -1439,7 +1510,7 @@
               <input type="checkbox" id="obRemote">
             </label>
 
-            <label class="ob-switch-row">
+            <label class="ob-switch-row ob-switch-nsfw" id="obNsfwRow">
               <span class="ob-switch-copy">
                 <strong>18+ / Sensitive Editorial Work (Gated)</strong>
                 <small>Require 18+ verified clients to request your approval before viewing.</small>
@@ -1795,9 +1866,10 @@
           if (d.slug) $('obSlug').value = d.slug;
           if (d.category) $('obCategory').value = d.category;
           if (d.city) $('obCity').value = d.city;
-          if (d.headline) $('obHeadline').value = d.headline;
+          if (d.headline) { $('obHeadline').value = d.headline; syncHeadlineCount(); }
           $('obRemote').checked = !!d.remote;
           $('obNsfwGate').checked = !!d.nsfwGate;
+          syncNsfwState();
           if (d.portfolio) $('obPortfolio').value = d.portfolio;
           if (d.video) $('obVideo').value = d.video;
           if (d.about) { $('obAbout').value = d.about; $('obBioCount').textContent = d.about.length + ' / 4000'; }
@@ -1826,6 +1898,62 @@
         $(id).addEventListener('input', saveDraft);
         $(id).addEventListener('change', saveDraft);
       });
+      function syncHeadlineCount() {
+        var len = $('obHeadline').value.length;
+        var el = $('obHeadlineCount');
+        if (!el) return;
+        el.textContent = len + ' / 100';
+        el.style.color = len >= 100 ? '#DC2626' : (len >= 85 ? '#D97706' : '');
+      }
+      function syncNsfwState() {
+        var row = $('obNsfwRow');
+        if (row) row.classList.toggle('is-gated-on', $('obNsfwGate').checked);
+      }
+      $('obHeadline').addEventListener('input', syncHeadlineCount);
+      $('obNsfwGate').addEventListener('change', syncNsfwState);
+      syncHeadlineCount();
+      syncNsfwState();
+
+      var locateBtn = $('obLocateCityBtn');
+      if (locateBtn) {
+        locateBtn.addEventListener('click', function () {
+          if (!navigator.geolocation) {
+            $('obMsg1').textContent = 'Geolocation is not supported by your browser. Please pick or type your city.';
+            $('obMsg1').className = 'ob-msg is-bad';
+            return;
+          }
+          locateBtn.disabled = true;
+          var origHtml = locateBtn.innerHTML;
+          locateBtn.textContent = 'Locating…';
+          navigator.geolocation.getCurrentPosition(function (pos) {
+            fetch('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + pos.coords.latitude + '&lon=' + pos.coords.longitude)
+              .then(function (r) { return r.json(); })
+              .then(function (data) {
+                var a = (data && data.address) || {};
+                var city = a.city || a.town || a.village || a.county || '';
+                var region = a.state_code || a.state || a.country_code && a.country_code.toUpperCase() || '';
+                if (city) {
+                  $('obCity').value = region ? (city + ', ' + region) : city;
+                  saveDraft();
+                }
+              })
+              .catch(function () {
+                $('obMsg1').textContent = 'Could not look up city name. Please select or type your city.';
+                $('obMsg1').className = 'ob-msg is-bad';
+              })
+              .finally(function () {
+                locateBtn.disabled = false;
+                locateBtn.innerHTML = origHtml;
+              });
+          }, function () {
+            locateBtn.disabled = false;
+            locateBtn.innerHTML = origHtml;
+            $('obMsg1').textContent = 'Location permission denied. Please select or type your city.';
+            $('obMsg1').className = 'ob-msg is-bad';
+          }, { timeout: 8000 });
+        });
+      }
+
       $('obAbout').addEventListener('input', function () {
         $('obBioCount').textContent = $('obAbout').value.length + ' / 4000';
       });
