@@ -1,10 +1,12 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Build Your Storefront · Nexus</title>
-  <meta name="description" content="Build your creator storefront on Nexus. 5-step editorial setup for identity, portfolio, services, verification, and trial.">
+  <meta name="description"
+    content="Build your creator storefront on Nexus. 5-step editorial setup for identity, portfolio, services, verification, and trial.">
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 24' fill='none'%3E%3Cpath d='M6.2 19.8L10.6 4.4L20.8 19.6L25.4 4.2' stroke='%233B54EE' stroke-width='4.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
@@ -32,8 +34,20 @@
       --spring: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; min-height: 100dvh; overflow-x: clip; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100dvh;
+      overflow-x: clip;
+    }
+
     body {
       background: #FFFFFF;
       color: var(--ink);
@@ -45,11 +59,31 @@
       flex-direction: column;
     }
 
-    a { color: var(--blue); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    button, input, select, textarea { font-family: var(--serif); font-variant-numeric: lining-nums tabular-nums; }
-    :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-    [hidden] { display: none !important; }
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-family: var(--serif);
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 2px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
 
     /* ── Top Nav ── */
     .ob-nav {
@@ -62,6 +96,7 @@
       margin: 0 auto;
       padding: 20px clamp(18px, 4vw, 32px) 10px;
     }
+
     .ob-brand {
       display: inline-flex;
       align-items: center;
@@ -74,12 +109,14 @@
       text-decoration: none !important;
       flex-shrink: 0;
     }
+
     .ob-brand-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: var(--blue);
     }
+
     .ob-nav-right {
       display: flex;
       align-items: center;
@@ -87,12 +124,14 @@
       font-size: 14.5px;
       color: var(--sub);
     }
+
     .ob-save-pill {
       font-family: var(--mono);
       font-size: 11px;
       color: var(--mute);
       white-space: nowrap;
     }
+
     .ob-clear-draft {
       border: 0;
       background: transparent;
@@ -103,14 +142,26 @@
       text-underline-offset: 2px;
       cursor: pointer;
     }
-    .ob-clear-draft:hover { color: var(--bad); }
-    .ob-nav-link { color: var(--sub); font-weight: 600; white-space: nowrap; }
-    .ob-nav-link:hover { color: var(--ink); text-decoration: none; }
+
+    .ob-clear-draft:hover {
+      color: var(--bad);
+    }
+
+    .ob-nav-link {
+      color: var(--sub);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .ob-nav-link:hover {
+      color: var(--ink);
+      text-decoration: none;
+    }
 
     /* ── Page Container ── */
     .ob-main {
       flex: 1;
-      max-width: 1080px;
+      max-width: 1320px;
       width: 100%;
       margin: 0 auto;
       padding: 8px clamp(18px, 4vw, 32px) 72px;
@@ -119,38 +170,41 @@
     /* Editorial Page Header */
     .ob-head {
       text-align: center;
-      margin: 0 auto 28px;
-      max-width: 680px;
+      margin: 0 auto 30px;
+      max-width: 780px;
     }
+
     .ob-head h1 {
-      margin: 0 0 8px;
+      margin: 0 0 10px;
       font-family: var(--serif);
       font-weight: 600;
-      font-size: clamp(2.15rem, 4.2vw, 3.1rem);
+      font-size: clamp(2.5rem, 4.8vw, 3.65rem);
       line-height: 1.04;
       letter-spacing: -0.025em;
       color: var(--ink);
     }
+
     .ob-head h1 em {
-      font-style: italic;
-      font-weight: 500;
+      font-style: normal;
+      font-weight: 400;
       color: var(--blue);
     }
+
     .ob-lead {
       margin: 0 auto;
       font-family: var(--serif);
-      font-style: italic;
-      font-size: 17px;
+      font-style: normal;
+      font-size: 18px;
       line-height: 1.45;
-      color: var(--mute);
+      color: #64748B;
     }
 
     /* ── Overlapping Split Shell (Royal-Blue Stepper + Floating White Form) ── */
     .ob-shell {
       display: grid;
-      grid-template-columns: 280px minmax(0, 1fr);
+      grid-template-columns: 300px minmax(0, 1fr);
       align-items: stretch;
-      max-width: 1040px;
+      max-width: 1260px;
       margin: 0 auto;
       position: relative;
     }
@@ -161,17 +215,19 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 40px 44px 32px 30px;
+      padding: 40px 36px 32px 26px;
       border-radius: 28px 0 0 28px;
       background: radial-gradient(120% 95% at 80% 10%, #5872FF 0%, #3B54EE 48%, #2134B8 100%);
       color: #FFFFFF;
     }
+
     .ob-stepper {
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: 0;
+      gap: 12px;
     }
+
     .ob-step-tab {
       position: relative;
       display: flex;
@@ -179,34 +235,60 @@
       justify-content: space-between;
       gap: 14px;
       width: 100%;
-      padding: 0 0 34px;
-      border: 0;
+      padding: 12px 14px 12px 16px;
+      border-radius: 16px;
+      border: 1px solid transparent;
       background: transparent;
-      color: rgba(255, 255, 255, 0.72);
+      color: rgba(255, 255, 255, 0.76);
       text-align: left;
       cursor: pointer;
-      transition: color 0.18s ease, transform 100ms ease-out;
+      transition: color 0.18s ease, transform 0.24s var(--spring), background 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
     }
-    .ob-step-tab:last-child { padding-bottom: 0; }
-    .ob-step-tab:active { transform: scale(0.98); }
-    .ob-step-tab:hover { color: #FFFFFF; }
-    .ob-step-tab.is-active,
-    .ob-step-tab.is-done { color: #FFFFFF; }
 
-    /* Vertical line connecting straddling nodes */
+    .ob-step-tab:active {
+      transform: scale(0.98);
+    }
+
+    .ob-step-tab:hover {
+      color: #FFFFFF;
+    }
+
+    .ob-step-tab.is-active {
+      color: #FFFFFF;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.10) 100%);
+      border-color: rgba(255, 255, 255, 0.36);
+      box-shadow: 0 16px 32px -10px rgba(13, 24, 92, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.12);
+      margin-left: -18px;
+      width: calc(100% + 18px);
+      padding-left: 24px;
+      backdrop-filter: blur(8px);
+      z-index: 4;
+    }
+
+    .ob-step-tab.is-done {
+      color: #FFFFFF;
+    }
+
+    /* Vertical line connecting step nodes inside the blue panel */
     .ob-step-tab::after {
       content: "";
       position: absolute;
-      right: -27px;
-      top: 18px;
-      bottom: -16px;
+      right: 30px;
+      top: calc(50% + 17px);
+      bottom: -29px;
       width: 2px;
-      background: rgba(59, 84, 238, 0.28);
-      z-index: 4;
+      background: rgba(255, 255, 255, 0.32);
+      z-index: 1;
       transition: background-color 0.25s ease;
     }
-    .ob-step-tab:last-child::after { display: none; }
-    .ob-step-tab.is-done::after { background: var(--ok); }
+
+    .ob-step-tab:last-child::after {
+      display: none;
+    }
+
+    .ob-step-tab.is-done::after {
+      background: var(--ok);
+    }
 
     .ob-step-text {
       display: flex;
@@ -214,25 +296,27 @@
       gap: 2px;
       min-width: 0;
     }
+
     .ob-step-kicker {
       font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.08em;
+      font-size: 10.5px;
+      letter-spacing: 0.10em;
       text-transform: uppercase;
-      opacity: 0.78;
+      opacity: 0.82;
     }
+
     .ob-step-label {
       font-family: var(--serif);
-      font-size: 16.5px;
+      font-size: 19px;
       font-weight: 600;
       line-height: 1.2;
     }
 
-    /* Straddling Circular Seam Node */
+    /* Step Number Node (completely on the blue side) */
     .ob-seam-node {
       position: relative;
-      z-index: 5;
-      margin-right: -43px;
+      z-index: 2;
+      margin-right: 0;
       flex: none;
       width: 34px;
       height: 34px;
@@ -249,12 +333,14 @@
       box-shadow: 0 4px 12px rgba(15, 23, 42, 0.14);
       transition: all 0.24s var(--spring);
     }
+
     .ob-step-tab.is-active .ob-seam-node {
       background: #FFFFFF;
       color: var(--blue);
       border-color: var(--ok);
       box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.24), 0 6px 16px rgba(15, 23, 42, 0.16);
     }
+
     .ob-step-tab.is-done .ob-seam-node {
       background: var(--ok);
       color: #FFFFFF;
@@ -268,6 +354,7 @@
       font-size: 13.5px;
       color: rgba(255, 255, 255, 0.84);
     }
+
     .ob-rail-help a {
       color: #FFFFFF;
       font-weight: 700;
@@ -283,7 +370,7 @@
       background: #FFFFFF;
       border: 1px solid rgba(15, 23, 42, 0.08);
       border-radius: 26px;
-      padding: clamp(28px, 4vw, 44px) clamp(26px, 4.5vw, 52px);
+      padding: clamp(32px, 4vw, 48px) clamp(28px, 4.5vw, 56px);
       box-shadow: 0 26px 64px -22px rgba(15, 23, 42, 0.14), 0 2px 6px rgba(15, 23, 42, 0.03);
       display: flex;
       flex-direction: column;
@@ -297,6 +384,7 @@
       gap: 12px;
       margin-bottom: 18px;
     }
+
     .ob-kicker {
       margin: 0;
       font-family: var(--mono);
@@ -306,6 +394,7 @@
       text-transform: uppercase;
       color: var(--blue);
     }
+
     .ob-meta-right {
       display: inline-flex;
       align-items: center;
@@ -315,6 +404,7 @@
       white-space: nowrap;
       flex-shrink: 0;
     }
+
     .ob-preview-trigger {
       border: 0;
       background: transparent;
@@ -327,27 +417,73 @@
       cursor: pointer;
       white-space: nowrap;
     }
-    .ob-preview-trigger:active { transform: scale(0.97); transition: transform 100ms ease-out; }
 
-    .ob-panel { display: none; }
-    .ob-panel.is-on { display: block; animation: obStepIn 0.28s var(--spring) both; }
-    @keyframes obStepIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .ob-preview-trigger:active {
+      transform: scale(0.97);
+      transition: transform 100ms ease-out;
+    }
+
+    .ob-panel {
+      display: none;
+    }
+
+    .ob-panel.is-on {
+      display: block;
+      animation: obStepIn 0.28s var(--spring) both;
+    }
+
+    @keyframes obStepIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     .ob-panel h2 {
-      margin: 0 0 6px;
+      margin: 0 0 8px;
       font-family: var(--serif);
-      font-size: clamp(1.7rem, 2.8vw, 2.15rem);
+      font-size: clamp(1.95rem, 3.2vw, 2.55rem);
       font-weight: 600;
       letter-spacing: -0.02em;
       line-height: 1.08;
       color: var(--ink);
     }
-    .ob-panel h2 em { font-style: italic; font-weight: 500; color: var(--blue); }
+
+    .ob-panel h2 em {
+      font-family: var(--serif);
+      font-style: normal;
+      font-weight: 400;
+      color: var(--blue);
+    }
+
+    .ob-panel[data-step="2"] h2 em {
+      color: #059669;
+    }
+
+    .ob-panel[data-step="3"] h2 em {
+      color: #6366F1;
+    }
+
+    .ob-panel[data-step="4"] h2 em {
+      color: #D97706;
+    }
+
+    .ob-panel[data-step="5"] h2 em {
+      color: #0284C7;
+    }
+
     .ob-panel-sub {
       margin: 0 0 24px;
-      font-size: 15.5px;
+      font-family: var(--serif);
+      font-style: normal;
+      font-size: 16.5px;
       line-height: 1.48;
-      color: var(--sub);
+      color: #64748B;
     }
 
     /* Form Controls */
@@ -356,12 +492,14 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
     }
+
     .ob-field {
       display: flex;
       flex-direction: column;
       gap: 6px;
       margin-bottom: 18px;
     }
+
     .ob-label {
       display: flex;
       align-items: baseline;
@@ -371,13 +509,26 @@
       font-weight: 600;
       color: var(--ink2);
     }
+
     .ob-label span {
+      font-family: var(--serif);
       font-weight: 400;
-      font-size: 13px;
-      font-style: italic;
-      color: var(--mute);
+      font-size: 13.5px;
+      font-style: normal;
+      color: #6366F1;
     }
-    .ob-input, .ob-select, .ob-textarea {
+
+    .ob-field:nth-child(2n) .ob-label span {
+      color: #0D9488;
+    }
+
+    .ob-field:nth-child(3n) .ob-label span {
+      color: #D97706;
+    }
+
+    .ob-input,
+    .ob-select,
+    .ob-textarea {
       width: 100%;
       padding: 11px 14px;
       border-radius: 12px;
@@ -388,15 +539,34 @@
       outline: none;
       transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.2s var(--spring);
     }
-    .ob-input, .ob-select { height: 48px; }
+
+    .ob-input,
+    .ob-select {
+      height: 48px;
+    }
+
     .ob-select {
       appearance: none;
       background: #FAFAFC url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 14px center/15px no-repeat;
       padding-right: 36px;
     }
-    .ob-textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
-    .ob-input::placeholder, .ob-textarea::placeholder { color: #94A3B8; font-style: italic; }
-    .ob-input:focus, .ob-select:focus, .ob-textarea:focus {
+
+    .ob-textarea {
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .ob-input::placeholder,
+    .ob-textarea::placeholder {
+      font-family: var(--serif);
+      color: #94A3B8;
+      font-style: normal;
+    }
+
+    .ob-input:focus,
+    .ob-select:focus,
+    .ob-textarea:focus {
       background: #FFFFFF;
       border-color: var(--blue);
       box-shadow: 0 0 0 3px rgba(59, 84, 238, 0.12);
@@ -411,11 +581,13 @@
       overflow: hidden;
       transition: border-color 0.18s, box-shadow 0.2s var(--spring);
     }
+
     .ob-slug-wrap:focus-within {
       background: #FFFFFF;
       border-color: var(--blue);
       box-shadow: 0 0 0 3px rgba(59, 84, 238, 0.12);
     }
+
     .ob-slug-prefix {
       padding: 0 11px 0 14px;
       font-family: var(--mono);
@@ -428,6 +600,7 @@
       border-right: 1px solid var(--line);
       flex-shrink: 0;
     }
+
     .ob-slug-wrap input {
       border: 0;
       background: transparent;
@@ -453,8 +626,24 @@
       margin-bottom: 12px;
       cursor: pointer;
     }
-    .ob-switch-copy strong { display: block; font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
-    .ob-switch-copy small { display: block; font-size: 13.5px; font-style: italic; color: var(--mute); line-height: 1.38; }
+
+    .ob-switch-copy strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .ob-switch-copy small {
+      display: block;
+      font-family: var(--serif);
+      font-size: 14px;
+      font-style: normal;
+      color: #7C879B;
+      line-height: 1.38;
+    }
+
     .ob-switch-row input[type="checkbox"] {
       -webkit-appearance: none;
       appearance: none;
@@ -468,6 +657,7 @@
       cursor: pointer;
       transition: background-color 0.22s var(--spring);
     }
+
     .ob-switch-row input[type="checkbox"]::after {
       content: "";
       position: absolute;
@@ -480,8 +670,14 @@
       box-shadow: 0 1px 3px rgba(15, 23, 42, 0.22);
       transition: transform 0.24s var(--spring);
     }
-    .ob-switch-row input[type="checkbox"]:checked { background: var(--blue); }
-    .ob-switch-row input[type="checkbox"]:checked::after { transform: translateX(18px); }
+
+    .ob-switch-row input[type="checkbox"]:checked {
+      background: var(--blue);
+    }
+
+    .ob-switch-row input[type="checkbox"]:checked::after {
+      transform: translateX(18px);
+    }
 
     /* Media Dropzone */
     .ob-dropzone {
@@ -494,52 +690,251 @@
       transition: border-color 0.2s, background-color 0.2s;
       margin-bottom: 14px;
     }
-    .ob-dropzone:hover, .ob-dropzone.is-drag { border-color: var(--blue); background: #EEF2FF; }
-    .ob-dropzone strong { display: block; font-size: 15.5px; color: var(--ink); margin-bottom: 3px; }
-    .ob-dropzone span { font-size: 13.5px; font-style: italic; color: var(--mute); }
-    .ob-media-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; margin-bottom: 14px; }
-    .ob-thumb { position: relative; aspect-ratio: 4/3; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
-    .ob-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .ob-dropzone:hover,
+    .ob-dropzone.is-drag {
+      border-color: var(--blue);
+      background: #EEF2FF;
+    }
+
+    .ob-dropzone strong {
+      display: block;
+      font-size: 15.5px;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .ob-dropzone span {
+      font-family: var(--serif);
+      font-size: 14px;
+      font-style: normal;
+      color: #7C879B;
+    }
+
+    .ob-media-thumbs {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .ob-thumb {
+      position: relative;
+      aspect-ratio: 4/3;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .ob-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .ob-thumb button {
-      position: absolute; top: 4px; right: 4px; width: 22px; height: 22px;
-      border-radius: 50%; border: 0; background: rgba(15, 23, 42, 0.78);
-      color: #FFFFFF; font-size: 13px; cursor: pointer;
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(15, 23, 42, 0.78);
+      color: #FFFFFF;
+      font-size: 13px;
+      cursor: pointer;
     }
 
     /* Services & Gear */
-    .ob-pkg-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
-    .ob-pkg-card { padding: 16px; border-radius: 16px; border: 1px solid var(--line); background: var(--soft); }
-    .ob-pkg-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
-    .ob-pkg-kind { display: inline-flex; gap: 4px; padding: 3px; border-radius: 999px; background: #E2E8F0; }
-    .ob-pkg-kind button { border: 0; border-radius: 999px; padding: 5px 13px; font-size: 13px; font-weight: 600; background: transparent; color: var(--sub); cursor: pointer; }
-    .ob-pkg-kind button.is-on { background: #FFFFFF; color: var(--ink); box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08); }
-    .ob-pkg-del { border: 0; background: none; color: var(--mute); font-size: 13.5px; cursor: pointer; text-decoration: underline; }
-    .ob-pkg-del:hover { color: var(--bad); }
-
-    .ob-chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 12px; }
-    .ob-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; background: var(--blue-soft); color: var(--blue); font-size: 13.5px; font-weight: 600; }
-    .ob-chip button { border: 0; background: none; color: var(--blue); cursor: pointer; font-weight: 700; padding: 0; }
-    .ob-suggest-chip { border: 1px solid var(--line); background: #FFFFFF; color: var(--sub); padding: 5px 12px; border-radius: 999px; font-size: 13px; cursor: pointer; }
-    .ob-suggest-chip:hover { border-color: var(--blue); color: var(--blue); }
-
-    .ob-sms-box { padding: 16px; border-radius: 16px; border: 1px solid var(--line); background: var(--soft); margin-bottom: 14px; }
-    .ob-sms-row { display: flex; gap: 10px; align-items: center; }
-    .ob-sms-row .ob-input { flex: 1; }
-    .ob-btn-sm {
-      height: 48px; padding: 0 18px; border-radius: 12px;
-      border: 1px solid var(--line-strong); background: #FFFFFF;
-      color: var(--ink); font-size: 14.5px; font-weight: 600; cursor: pointer; white-space: nowrap;
+    .ob-pkg-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 14px;
     }
-    .ob-btn-sm:hover { border-color: var(--blue); color: var(--blue); }
-    .ob-btn-sm:active { transform: scale(0.97); transition: transform 100ms ease-out; }
-    .ob-sms-ok { margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--ok-text); }
+
+    .ob-pkg-card {
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+    }
+
+    .ob-pkg-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .ob-pkg-kind {
+      display: inline-flex;
+      gap: 4px;
+      padding: 3px;
+      border-radius: 999px;
+      background: #E2E8F0;
+    }
+
+    .ob-pkg-kind button {
+      border: 0;
+      border-radius: 999px;
+      padding: 5px 13px;
+      font-size: 13px;
+      font-weight: 600;
+      background: transparent;
+      color: var(--sub);
+      cursor: pointer;
+    }
+
+    .ob-pkg-kind button.is-on {
+      background: #FFFFFF;
+      color: var(--ink);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+    }
+
+    .ob-pkg-del {
+      border: 0;
+      background: none;
+      color: var(--mute);
+      font-size: 13.5px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .ob-pkg-del:hover {
+      color: var(--bad);
+    }
+
+    .ob-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 12px;
+    }
+
+    .ob-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .ob-chip button {
+      border: 0;
+      background: none;
+      color: var(--blue);
+      cursor: pointer;
+      font-weight: 700;
+      padding: 0;
+    }
+
+    .ob-suggest-chip {
+      border: 1px solid var(--line);
+      background: #FFFFFF;
+      color: var(--sub);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .ob-suggest-chip:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .ob-sms-box {
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--soft);
+      margin-bottom: 14px;
+    }
+
+    .ob-sms-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .ob-sms-row .ob-input {
+      flex: 1;
+    }
+
+    .ob-btn-sm {
+      height: 48px;
+      padding: 0 18px;
+      border-radius: 12px;
+      border: 1px solid var(--line-strong);
+      background: #FFFFFF;
+      color: var(--ink);
+      font-size: 14.5px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .ob-btn-sm:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .ob-btn-sm:active {
+      transform: scale(0.97);
+      transition: transform 100ms ease-out;
+    }
+
+    .ob-sms-ok {
+      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ok-text);
+    }
 
     /* Step 5 Trial & Billing */
-    .ob-billing-box { border-radius: 18px; border: 1px solid rgba(59, 84, 238, 0.22); background: #F8FAFF; padding: 20px; margin-bottom: 14px; }
-    .ob-billing-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
-    .ob-billing-top strong { font-size: 20px; color: var(--ink); }
-    .ob-billing-price { font-family: var(--mono); font-size: 12.5px; font-weight: 600; color: var(--blue); }
-    .ob-card-fields { display: grid; grid-template-columns: 1.5fr 0.8fr 0.7fr; gap: 10px; margin-top: 14px; }
+    .ob-billing-box {
+      border-radius: 18px;
+      border: 1px solid rgba(59, 84, 238, 0.22);
+      background: #F8FAFF;
+      padding: 20px;
+      margin-bottom: 14px;
+    }
+
+    .ob-billing-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .ob-billing-top strong {
+      font-size: 20px;
+      color: var(--ink);
+    }
+
+    .ob-billing-price {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    .ob-card-fields {
+      display: grid;
+      grid-template-columns: 1.5fr 0.8fr 0.7fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
 
     /* Bottom Action Footer (Progress on left, Buttons on right) */
     .ob-footer-bar {
@@ -551,12 +946,14 @@
       padding-top: 20px;
       border-top: 1px solid var(--line);
     }
+
     .ob-prog-wrap {
       display: flex;
       align-items: center;
       gap: 10px;
       min-width: 140px;
     }
+
     .ob-prog-track {
       width: 96px;
       height: 5px;
@@ -564,7 +961,8 @@
       background: #E2E8F0;
       overflow: hidden;
     }
-    .ob-prog-track > i {
+
+    .ob-prog-track>i {
       display: block;
       height: 100%;
       width: 20%;
@@ -572,17 +970,20 @@
       border-radius: 999px;
       transition: width 0.35s var(--spring);
     }
+
     .ob-prog-label {
       font-family: var(--mono);
       font-size: 11px;
       color: var(--mute);
       white-space: nowrap;
     }
+
     .ob-actions {
       display: flex;
       align-items: center;
       gap: 10px;
     }
+
     .ob-btn {
       display: inline-flex;
       align-items: center;
@@ -600,82 +1001,224 @@
       text-decoration: none !important;
       transition: background-color 0.18s ease, box-shadow 0.2s var(--spring), transform 100ms ease-out;
     }
-    .ob-btn:active { transform: scale(0.97); }
-    .ob-btn-primary { background: var(--blue); color: #FFFFFF; box-shadow: 0 2px 8px rgba(59, 84, 238, 0.24); }
-    .ob-btn-primary:hover { background: var(--blue-hover); }
-    .ob-btn-ghost { background: #FFFFFF; color: var(--ink); border: 1px solid var(--line-strong); }
-    .ob-btn-ghost:hover { background: var(--soft); border-color: rgba(15, 23, 42, 0.3); }
-    .ob-btn-dashed {
-      width: 100%; height: 46px; border-radius: 12px;
-      border: 1.5px dashed rgba(59, 84, 238, 0.32); background: #FFFFFF;
-      color: var(--blue); font-size: 14.5px; font-weight: 600; cursor: pointer;
-    }
-    .ob-btn-dashed:hover { background: #F5F7FF; border-color: var(--blue); }
 
-    .ob-msg { margin: 8px 0 0; font-size: 14px; font-weight: 600; min-height: 18px; }
-    .ob-msg.is-bad { color: var(--bad); }
-    .ob-msg.is-ok { color: var(--ok-text); }
+    .ob-btn:active {
+      transform: scale(0.97);
+    }
+
+    .ob-btn-primary {
+      background: var(--blue);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(59, 84, 238, 0.24);
+    }
+
+    .ob-btn-primary:hover {
+      background: var(--blue-hover);
+    }
+
+    .ob-btn-ghost {
+      background: #FFFFFF;
+      color: var(--ink);
+      border: 1px solid var(--line-strong);
+    }
+
+    .ob-btn-ghost:hover {
+      background: var(--soft);
+      border-color: rgba(15, 23, 42, 0.3);
+    }
+
+    .ob-btn-dashed {
+      width: 100%;
+      height: 46px;
+      border-radius: 12px;
+      border: 1.5px dashed rgba(59, 84, 238, 0.32);
+      background: #FFFFFF;
+      color: var(--blue);
+      font-size: 14.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .ob-btn-dashed:hover {
+      background: #F5F7FF;
+      border-color: var(--blue);
+    }
+
+    .ob-msg {
+      margin: 8px 0 0;
+      font-size: 14px;
+      font-weight: 600;
+      min-height: 18px;
+    }
+
+    .ob-msg.is-bad {
+      color: var(--bad);
+    }
+
+    .ob-msg.is-ok {
+      color: var(--ok-text);
+    }
 
     /* Translucent Apple Preview Sheet Modal */
     .ob-preview-modal {
-      position: fixed; inset: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: center; padding: 18px;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
       background: rgba(15, 23, 42, 0.42);
-      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
     }
+
     .ob-preview-sheet {
-      width: 100%; max-width: 440px;
+      width: 100%;
+      max-width: 440px;
       background: rgba(255, 255, 255, 0.94);
-      -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%);
-      border-radius: 26px; border: 1px solid rgba(255, 255, 255, 0.6);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      backdrop-filter: blur(24px) saturate(180%);
+      border-radius: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
       box-shadow: 0 28px 64px -18px rgba(15, 23, 42, 0.3);
-      overflow: hidden; animation: obStepIn 0.28s var(--spring) both;
+      overflow: hidden;
+      animation: obStepIn 0.28s var(--spring) both;
     }
+
     .ob-pv-banner {
       padding: 16px 20px;
       background: linear-gradient(135deg, #4B66F8 0%, #3B54EE 60%, #2740D6 100%);
-      color: #FFFFFF; display: flex; align-items: center; justify-content: space-between;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
+
     .ob-pv-badge {
-      font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 4px 10px; border-radius: 999px;
-      background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.24);
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.24);
     }
-    .ob-pv-close { width: 30px; height: 30px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, 0.2); color: #FFFFFF; font-size: 18px; cursor: pointer; }
-    .ob-pv-body { padding: 20px 22px 24px; }
-    .ob-pv-name { margin: 0 0 2px; font-size: 24px; font-weight: 700; }
-    .ob-pv-slug { font-family: var(--mono); font-size: 12px; color: var(--blue); margin-bottom: 10px; }
-    .ob-pv-headline { margin: 0 0 12px; font-size: 15px; color: var(--sub); line-height: 1.45; }
-    .ob-pv-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-    .ob-pv-pill { padding: 4px 10px; border-radius: 999px; background: var(--soft); border: 1px solid var(--line); font-size: 12.5px; }
-    .ob-pv-svc { display: flex; justify-content: space-between; padding: 8px 12px; border-radius: 10px; background: var(--soft); font-size: 14px; margin-bottom: 6px; }
+
+    .ob-pv-close {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .ob-pv-body {
+      padding: 20px 22px 24px;
+    }
+
+    .ob-pv-name {
+      margin: 0 0 2px;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .ob-pv-slug {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+
+    .ob-pv-headline {
+      margin: 0 0 12px;
+      font-size: 15px;
+      color: var(--sub);
+      line-height: 1.45;
+    }
+
+    .ob-pv-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .ob-pv-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      font-size: 12.5px;
+    }
+
+    .ob-pv-svc {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: var(--soft);
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
 
     /* Done State */
-    .ob-done { text-align: center; padding: 20px 4px; }
+    .ob-done {
+      text-align: center;
+      padding: 20px 4px;
+    }
+
     .ob-done-icon {
-      width: 56px; height: 56px; border-radius: 50%; background: #ECFDF5; color: var(--ok-text);
-      display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #ECFDF5;
+      color: var(--ok-text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
     }
 
     /* ── Responsive Collapse (≤ 860px) ── */
     @media (max-width: 860px) {
-      .ob-shell { grid-template-columns: 1fr; }
+      .ob-shell {
+        grid-template-columns: 1fr;
+      }
+
       .ob-blue-rail {
         border-radius: 20px;
         padding: 16px 18px;
         margin-bottom: 14px;
       }
+
       .ob-stepper {
         display: grid;
         grid-template-columns: repeat(5, minmax(0, 1fr));
         gap: 6px;
       }
+
       .ob-step-tab {
         flex-direction: column;
         justify-content: center;
         padding: 0;
         gap: 0;
       }
+
+      .ob-step-tab.is-active {
+        margin-left: 0;
+        width: 100%;
+        padding: 0;
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+        backdrop-filter: none;
+      }
+
       .ob-step-tab::after {
         left: calc(50% + 18px);
         right: calc(-50% + 18px);
@@ -684,27 +1227,84 @@
         width: auto;
         height: 2px;
       }
-      .ob-step-text, .ob-rail-help { display: none; }
-      .ob-seam-node { margin-right: 0; width: 32px; height: 32px; }
-      .ob-form-card { margin-left: 0; border-radius: 22px; }
+
+      .ob-step-text,
+      .ob-rail-help {
+        display: none;
+      }
+
+      .ob-seam-node {
+        margin-right: 0;
+        width: 32px;
+        height: 32px;
+      }
+
+      .ob-form-card {
+        margin-left: 0;
+        border-radius: 22px;
+      }
     }
+
     @media (max-width: 640px) {
-      .ob-grid-2, .ob-card-fields { grid-template-columns: 1fr; }
-      .ob-sms-row { flex-direction: column; align-items: stretch; }
-      .ob-save-pill { display: none; }
-      .ob-form-card { padding: 24px 18px; }
-      .ob-footer-bar { flex-direction: column; align-items: stretch; }
-      .ob-prog-wrap { justify-content: space-between; }
-      .ob-prog-track { flex: 1; }
-      .ob-actions { flex-direction: column-reverse; align-items: stretch; }
-      .ob-btn { width: 100%; }
+
+      .ob-grid-2,
+      .ob-card-fields {
+        grid-template-columns: 1fr;
+      }
+
+      .ob-sms-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .ob-save-pill {
+        display: none;
+      }
+
+      .ob-form-card {
+        padding: 24px 18px;
+      }
+
+      .ob-footer-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .ob-prog-wrap {
+        justify-content: space-between;
+      }
+
+      .ob-prog-track {
+        flex: 1;
+      }
+
+      .ob-actions {
+        flex-direction: column-reverse;
+        align-items: stretch;
+      }
+
+      .ob-btn {
+        width: 100%;
+      }
     }
+
     @media (prefers-reduced-motion: reduce) {
-      .ob-panel.is-on, .ob-preview-sheet { animation: none; }
-      .ob-seam-node, .ob-btn, .ob-switch-row input[type="checkbox"]::after, .ob-prog-track > i { transition: none; }
+
+      .ob-panel.is-on,
+      .ob-preview-sheet {
+        animation: none;
+      }
+
+      .ob-seam-node,
+      .ob-btn,
+      .ob-switch-row input[type="checkbox"]::after,
+      .ob-prog-track>i {
+        transition: none;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <header class="ob-nav">
@@ -832,7 +1432,8 @@
 
             <div class="ob-field">
               <label class="ob-label" for="obHeadline">Headline <span>Max 140 chars</span></label>
-              <input class="ob-input" id="obHeadline" type="text" placeholder="e.g. Commercial Cinematographer &amp; FPV Drone Pilot" maxlength="140">
+              <input class="ob-input" id="obHeadline" type="text"
+                placeholder="e.g. Commercial Cinematographer &amp; FPV Drone Pilot" maxlength="140">
             </div>
 
             <label class="ob-switch-row">
@@ -871,12 +1472,14 @@
 
             <div class="ob-field">
               <label class="ob-label" for="obPortfolio">Portfolio / Reel Link <span>Required for review</span></label>
-              <input class="ob-input" id="obPortfolio" type="url" placeholder="https://vimeo.com/your-reel or https://yoursite.com" maxlength="500" required>
+              <input class="ob-input" id="obPortfolio" type="url"
+                placeholder="https://vimeo.com/your-reel or https://yoursite.com" maxlength="500" required>
             </div>
 
             <div class="ob-field">
               <label class="ob-label" for="obVideo">Featured Video URL <span>Optional</span></label>
-              <input class="ob-input" id="obVideo" type="url" placeholder="https://youtube.com/watch?v=..." maxlength="500">
+              <input class="ob-input" id="obVideo" type="url" placeholder="https://youtube.com/watch?v=..."
+                maxlength="500">
             </div>
 
             <div class="ob-field">
@@ -891,7 +1494,9 @@
 
             <div class="ob-field">
               <label class="ob-label" for="obAbout">About &amp; Experience <span id="obBioCount">0 / 4000</span></label>
-              <textarea class="ob-textarea" id="obAbout" placeholder="Tell clients about your style, notable projects, or what students learn in your classes..." maxlength="4000"></textarea>
+              <textarea class="ob-textarea" id="obAbout"
+                placeholder="Tell clients about your style, notable projects, or what students learn in your classes..."
+                maxlength="4000"></textarea>
             </div>
 
             <p class="ob-msg" id="obMsg2" role="alert"></p>
@@ -934,7 +1539,8 @@
             <p class="ob-panel-sub">List your equipment or studio setup, and verify your phone via automated SMS.</p>
 
             <div class="ob-field">
-              <label class="ob-label" for="obGearInput">Gear / Equipment / Studio Setup <span>Press Enter to add</span></label>
+              <label class="ob-label" for="obGearInput">Gear / Equipment / Studio Setup <span>Press Enter to
+                  add</span></label>
               <div class="ob-sms-row">
                 <input class="ob-input" id="obGearInput" type="text" placeholder="e.g. RED V-Raptor 8K, DJI Inspire 3">
                 <button type="button" class="ob-btn-sm" id="obAddGearBtn">Add</button>
@@ -943,7 +1549,8 @@
               <div class="ob-chip-row">
                 <button type="button" class="ob-suggest-chip" data-gear="Sony FX6">+ Sony FX6</button>
                 <button type="button" class="ob-suggest-chip" data-gear="DJI Mavic 3 Pro">+ DJI Mavic 3 Pro</button>
-                <button type="button" class="ob-suggest-chip" data-gear="DaVinci Resolve Studio">+ DaVinci Resolve</button>
+                <button type="button" class="ob-suggest-chip" data-gear="DaVinci Resolve Studio">+ DaVinci
+                  Resolve</button>
               </div>
             </div>
 
@@ -954,18 +1561,21 @@
               </div>
               <div class="ob-field">
                 <label class="ob-label" for="obInstagram">Instagram <span>Optional</span></label>
-                <input class="ob-input" id="obInstagram" type="url" placeholder="https://instagram.com/handle" maxlength="300">
+                <input class="ob-input" id="obInstagram" type="url" placeholder="https://instagram.com/handle"
+                  maxlength="300">
               </div>
             </div>
 
             <div class="ob-sms-box">
-              <label class="ob-label" for="obPhone" style="margin-bottom:8px">Phone Verification <span>Automated SMS · Kept private</span></label>
+              <label class="ob-label" for="obPhone" style="margin-bottom:8px">Phone Verification <span>Automated SMS ·
+                  Kept private</span></label>
               <div class="ob-sms-row">
                 <input class="ob-input" id="obPhone" type="tel" placeholder="+1 (555) 234-5678" autocomplete="tel">
                 <button type="button" class="ob-btn-sm" id="obSendSmsBtn">Send SMS code</button>
               </div>
               <div id="obSmsVerifyRow" class="ob-sms-row" style="margin-top:10px" hidden>
-                <input class="ob-input" id="obSmsCode" type="text" inputmode="numeric" maxlength="6" placeholder="6-digit SMS code">
+                <input class="ob-input" id="obSmsCode" type="text" inputmode="numeric" maxlength="6"
+                  placeholder="6-digit SMS code">
                 <button type="button" class="ob-btn-sm" id="obVerifySmsBtn">Verify</button>
               </div>
               <div class="ob-sms-ok" id="obSmsOk" hidden>✓ Phone verified via SMS</div>
@@ -995,11 +1605,14 @@
                 <span class="ob-billing-price">$0.00 today · then $19.99/mo</span>
               </div>
               <p style="margin:0;font-size:14.5px;color:var(--sub);line-height:1.48">
-                90 days free starting today, then $19.99/mo with 0% commission. Cancel anytime. Auto-canceled if not approved.
+                90 days free starting today, then $19.99/mo with 0% commission. Cancel anytime. Auto-canceled if not
+                approved.
               </p>
               <div class="ob-card-fields">
-                <input class="ob-input" id="obCardNum" type="text" inputmode="numeric" placeholder="Card number" maxlength="19">
-                <input class="ob-input" id="obCardExp" type="text" inputmode="numeric" placeholder="MM / YY" maxlength="7">
+                <input class="ob-input" id="obCardNum" type="text" inputmode="numeric" placeholder="Card number"
+                  maxlength="19">
+                <input class="ob-input" id="obCardExp" type="text" inputmode="numeric" placeholder="MM / YY"
+                  maxlength="7">
                 <input class="ob-input" id="obCardCvc" type="text" inputmode="numeric" placeholder="CVC" maxlength="4">
               </div>
             </div>
@@ -1029,14 +1642,16 @@
           <div class="ob-panel" data-panel="done">
             <div class="ob-done">
               <div class="ob-done-icon">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
               </div>
               <p class="ob-kicker">APPLICATION RECEIVED</p>
               <h2>Your storefront is <em>in review.</em></h2>
               <p class="ob-panel-sub" style="max-width:44ch;margin:8px auto 22px">
-                A person is reviewing your portfolio now. We'll email you when <b id="obDoneSlug">/c/your-name</b> goes live.
+                A person is reviewing your portfolio now. We'll email you when <b id="obDoneSlug">/c/your-name</b> goes
+                live.
               </p>
               <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
                 <a class="ob-btn ob-btn-primary" href="/explore">Explore Directory →</a>
@@ -1072,312 +1687,313 @@
   </div>
 
   <script>
-  (function () {
-    'use strict';
+    (function () {
+      'use strict';
 
-    var $ = function (id) { return document.getElementById(id); };
-    var DRAFT_KEY = 'nexus_seller_onboarding_draft_v1';
-    var currentStep = 1;
-    var smsVerified = false;
-    var gearList = [];
-    var mediaFiles = [];
-    var packages = [{ kind: 'service', title: 'Full-Day Commercial Shoot', price: '1200' }];
+      var $ = function (id) { return document.getElementById(id); };
+      var DRAFT_KEY = 'nexus_seller_onboarding_draft_v1';
+      var currentStep = 1;
+      var smsVerified = false;
+      var gearList = [];
+      var mediaFiles = [];
+      var packages = [{ kind: 'service', title: 'Full-Day Commercial Shoot', price: '1200' }];
 
-    var STEP_KICKERS = {
-      1: 'STEP 1 OF 5 · IDENTITY',
-      2: 'STEP 2 OF 5 · SHOWREEL & BIO',
-      3: 'STEP 3 OF 5 · PRICING MENU',
-      4: 'STEP 4 OF 5 · TRUST & GEAR',
-      5: 'STEP 5 OF 5 · FOUNDING TRIAL',
-      done: 'APPLICATION RECEIVED'
-    };
+      var STEP_KICKERS = {
+        1: 'STEP 1 OF 5 · IDENTITY',
+        2: 'STEP 2 OF 5 · SHOWREEL & BIO',
+        3: 'STEP 3 OF 5 · PRICING MENU',
+        4: 'STEP 4 OF 5 · TRUST & GEAR',
+        5: 'STEP 5 OF 5 · FOUNDING TRIAL',
+        done: 'APPLICATION RECEIVED'
+      };
 
-    var CATEGORY_LABELS = {
-      film: 'Film & Video', aerial: 'Aerial & Drone', photo: 'Photography',
-      art: 'Illustration & Art', d3: '3D & Motion', other: 'Other Creative',
-      class: 'Classes', pottery: 'Pottery', crochet: 'Crochet & Knitting',
-      painting: 'Painting & Drawing', cooking: 'Cooking & Baking', music: 'Music Lessons'
-    };
+      var CATEGORY_LABELS = {
+        film: 'Film & Video', aerial: 'Aerial & Drone', photo: 'Photography',
+        art: 'Illustration & Art', d3: '3D & Motion', other: 'Other Creative',
+        class: 'Classes', pottery: 'Pottery', crochet: 'Crochet & Knitting',
+        painting: 'Painting & Drawing', cooking: 'Cooking & Baking', music: 'Music Lessons'
+      };
 
-    function slugify(str) {
-      return (str || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
-    }
+      function slugify(str) {
+        return (str || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+      }
 
-    function goStep(step, skipScroll) {
-      currentStep = step;
-      document.querySelectorAll('.ob-panel').forEach(function (p) {
-        p.classList.toggle('is-on', String(p.dataset.panel) === String(step));
+      function goStep(step, skipScroll) {
+        currentStep = step;
+        document.querySelectorAll('.ob-panel').forEach(function (p) {
+          p.classList.toggle('is-on', String(p.dataset.panel) === String(step));
+        });
+        document.querySelectorAll('.ob-step-tab').forEach(function (t) {
+          var n = parseInt(t.dataset.step, 10);
+          var active = n === step;
+          var done = step === 'done' || (typeof step === 'number' && n < step);
+          t.classList.toggle('is-active', active);
+          t.classList.toggle('is-done', done);
+          var node = t.querySelector('.ob-seam-node');
+          if (node) node.textContent = done ? '✓' : String(n);
+          if (active) t.setAttribute('aria-current', 'step');
+          else t.removeAttribute('aria-current');
+        });
+        if ($('obTopKicker')) $('obTopKicker').textContent = STEP_KICKERS[step] || '';
+        saveDraft();
+        if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function validateStep(step) {
+        if (step === 1) {
+          var msg = $('obMsg1');
+          msg.textContent = '';
+          if (!$('obName').value.trim()) { msg.textContent = 'Please enter your display or studio name.'; msg.className = 'ob-msg is-bad'; $('obName').focus(); return false; }
+          if (!$('obCategory').value) { msg.textContent = 'Please select a primary discipline.'; msg.className = 'ob-msg is-bad'; $('obCategory').focus(); return false; }
+          if (!$('obCity').value.trim()) { msg.textContent = 'Please enter your city.'; msg.className = 'ob-msg is-bad'; $('obCity').focus(); return false; }
+        }
+        if (step === 2) {
+          var msg2 = $('obMsg2');
+          msg2.textContent = '';
+          if (!/^https?:\/\/[^\s]+$/i.test($('obPortfolio').value.trim())) {
+            msg2.textContent = 'Please enter a valid portfolio URL starting with https://';
+            msg2.className = 'ob-msg is-bad';
+            $('obPortfolio').focus();
+            return false;
+          }
+        }
+        return true;
+      }
+
+      document.querySelectorAll('[data-next]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var next = parseInt(b.dataset.next, 10);
+          if (validateStep(currentStep)) goStep(next);
+        });
+      });
+      document.querySelectorAll('[data-prev]').forEach(function (b) {
+        b.addEventListener('click', function () { goStep(parseInt(b.dataset.prev, 10)); });
       });
       document.querySelectorAll('.ob-step-tab').forEach(function (t) {
-        var n = parseInt(t.dataset.step, 10);
-        var active = n === step;
-        var done = step === 'done' || (typeof step === 'number' && n < step);
-        t.classList.toggle('is-active', active);
-        t.classList.toggle('is-done', done);
-        var node = t.querySelector('.ob-seam-node');
-        if (node) node.textContent = done ? '✓' : String(n);
-        if (active) t.setAttribute('aria-current', 'step');
-        else t.removeAttribute('aria-current');
-      });
-      if ($('obTopKicker')) $('obTopKicker').textContent = STEP_KICKERS[step] || '';
-      saveDraft();
-      if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function validateStep(step) {
-      if (step === 1) {
-        var msg = $('obMsg1');
-        msg.textContent = '';
-        if (!$('obName').value.trim()) { msg.textContent = 'Please enter your display or studio name.'; msg.className = 'ob-msg is-bad'; $('obName').focus(); return false; }
-        if (!$('obCategory').value) { msg.textContent = 'Please select a primary discipline.'; msg.className = 'ob-msg is-bad'; $('obCategory').focus(); return false; }
-        if (!$('obCity').value.trim()) { msg.textContent = 'Please enter your city.'; msg.className = 'ob-msg is-bad'; $('obCity').focus(); return false; }
-      }
-      if (step === 2) {
-        var msg2 = $('obMsg2');
-        msg2.textContent = '';
-        if (!/^https?:\/\/[^\s]+$/i.test($('obPortfolio').value.trim())) {
-          msg2.textContent = 'Please enter a valid portfolio URL starting with https://';
-          msg2.className = 'ob-msg is-bad';
-          $('obPortfolio').focus();
-          return false;
-        }
-      }
-      return true;
-    }
-
-    document.querySelectorAll('[data-next]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var next = parseInt(b.dataset.next, 10);
-        if (validateStep(currentStep)) goStep(next);
-      });
-    });
-    document.querySelectorAll('[data-prev]').forEach(function (b) {
-      b.addEventListener('click', function () { goStep(parseInt(b.dataset.prev, 10)); });
-    });
-    document.querySelectorAll('.ob-step-tab').forEach(function (t) {
-      t.addEventListener('click', function () {
-        var target = parseInt(t.dataset.step, 10);
-        if (target < currentStep || validateStep(currentStep)) goStep(target);
-      });
-    });
-
-    /* ── Draft Persistence ── */
-    function saveDraft() {
-      try {
-        localStorage.setItem(DRAFT_KEY, JSON.stringify({
-          step: typeof currentStep === 'number' ? currentStep : 1,
-          name: $('obName').value, slug: $('obSlug').value, category: $('obCategory').value,
-          city: $('obCity').value, headline: $('obHeadline').value, remote: $('obRemote').checked,
-          nsfwGate: $('obNsfwGate').checked, portfolio: $('obPortfolio').value, video: $('obVideo').value,
-          about: $('obAbout').value, packages: packages, gearList: gearList,
-          website: $('obWebsite').value, instagram: $('obInstagram').value, phone: $('obPhone').value
-        }));
-        $('obSavePill').textContent = 'Draft saved';
-      } catch (e) {}
-    }
-
-    function restoreDraft() {
-      try {
-        var raw = localStorage.getItem(DRAFT_KEY);
-        if (!raw) return;
-        var d = JSON.parse(raw);
-        if (d.name) $('obName').value = d.name;
-        if (d.slug) $('obSlug').value = d.slug;
-        if (d.category) $('obCategory').value = d.category;
-        if (d.city) $('obCity').value = d.city;
-        if (d.headline) $('obHeadline').value = d.headline;
-        $('obRemote').checked = !!d.remote;
-        $('obNsfwGate').checked = !!d.nsfwGate;
-        if (d.portfolio) $('obPortfolio').value = d.portfolio;
-        if (d.video) $('obVideo').value = d.video;
-        if (d.about) { $('obAbout').value = d.about; $('obBioCount').textContent = d.about.length + ' / 4000'; }
-        if (Array.isArray(d.packages) && d.packages.length) packages = d.packages;
-        if (Array.isArray(d.gearList)) gearList = d.gearList;
-        if (d.website) $('obWebsite').value = d.website;
-        if (d.instagram) $('obInstagram').value = d.instagram;
-        if (d.phone) $('obPhone').value = d.phone;
-        if (d.step >= 1 && d.step <= 5) goStep(d.step, true);
-      } catch (e) {}
-    }
-
-    $('obClearDraftBtn').addEventListener('click', function () {
-      try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
-      location.reload();
-    });
-
-    /* ── Live Slug & Preview Modal ── */
-    var slugEdited = false;
-    $('obSlug').addEventListener('input', function () { slugEdited = true; saveDraft(); });
-    $('obName').addEventListener('input', function () {
-      if (!slugEdited) $('obSlug').value = slugify($('obName').value);
-      saveDraft();
-    });
-    ['obCategory', 'obCity', 'obHeadline', 'obRemote', 'obNsfwGate', 'obPortfolio', 'obVideo', 'obAbout', 'obWebsite', 'obInstagram', 'obPhone'].forEach(function (id) {
-      $(id).addEventListener('input', saveDraft);
-      $(id).addEventListener('change', saveDraft);
-    });
-    $('obAbout').addEventListener('input', function () {
-      $('obBioCount').textContent = $('obAbout').value.length + ' / 4000';
-    });
-
-    function openPreview() {
-      var name = $('obName').value.trim() || 'Marcus Vance';
-      var slug = slugify($('obSlug').value || name) || 'your-name';
-      $('pvCategory').textContent = CATEGORY_LABELS[$('obCategory').value] || 'Creative';
-      $('pvName').textContent = name;
-      $('pvSlug').textContent = 'nexus.com/c/' + slug;
-      $('pvHeadline').textContent = $('obHeadline').value.trim() || 'Your headline appears here.';
-      $('pvCity').textContent = $('obCity').value.trim() || 'Your City';
-      var prices = packages.filter(function (p) { return parseFloat(p.price) > 0; }).map(function (p) { return parseFloat(p.price); });
-      $('pvPrice').textContent = prices.length ? 'From $' + Math.min.apply(null, prices).toLocaleString() : 'Inquire';
-      $('pvRemote').hidden = !$('obRemote').checked;
-      $('pvNsfw').hidden = !$('obNsfwGate').checked;
-      var svc = $('pvServices');
-      svc.innerHTML = '';
-      packages.slice(0, 3).forEach(function (p) {
-        var row = document.createElement('div');
-        row.className = 'ob-pv-svc';
-        row.innerHTML = '<strong>' + (p.title || 'Service').replace(/</g, '&lt;') + '</strong><span>' + (p.price ? '$' + Number(p.price).toLocaleString() : 'Inquire') + '</span>';
-        svc.appendChild(row);
-      });
-      $('obPreviewModal').hidden = false;
-    }
-    $('obOpenPreviewBtn').addEventListener('click', openPreview);
-    $('obClosePreviewBtn').addEventListener('click', function () { $('obPreviewModal').hidden = true; });
-    $('obPreviewModal').addEventListener('click', function (e) { if (e.target === $('obPreviewModal')) $('obPreviewModal').hidden = true; });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') $('obPreviewModal').hidden = true; });
-
-    /* ── Media Dropzone ── */
-    var dropzone = $('obDropzone');
-    var fileInput = $('obFileInput');
-    dropzone.addEventListener('click', function () { fileInput.click(); });
-    dropzone.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); } });
-    dropzone.addEventListener('dragover', function (e) { e.preventDefault(); dropzone.classList.add('is-drag'); });
-    dropzone.addEventListener('dragleave', function () { dropzone.classList.remove('is-drag'); });
-    dropzone.addEventListener('drop', function (e) { e.preventDefault(); dropzone.classList.remove('is-drag'); addFiles(e.dataTransfer.files); });
-    fileInput.addEventListener('change', function () { addFiles(fileInput.files); fileInput.value = ''; });
-
-    function addFiles(files) {
-      Array.prototype.slice.call(files).forEach(function (f) {
-        if (mediaFiles.length >= 6 || !f.type.startsWith('image/')) return;
-        mediaFiles.push({ name: f.name, url: URL.createObjectURL(f) });
-      });
-      renderThumbs();
-    }
-    function renderThumbs() {
-      var wrap = $('obThumbs'); wrap.innerHTML = '';
-      mediaFiles.forEach(function (m, idx) {
-        var d = document.createElement('div'); d.className = 'ob-thumb';
-        var img = document.createElement('img'); img.src = m.url; img.alt = m.name;
-        var rm = document.createElement('button'); rm.type = 'button'; rm.textContent = '×';
-        rm.addEventListener('click', function () { mediaFiles.splice(idx, 1); renderThumbs(); });
-        d.appendChild(img); d.appendChild(rm); wrap.appendChild(d);
-      });
-    }
-
-    /* ── Packages ── */
-    function renderPackages() {
-      var list = $('obPkgList'); list.innerHTML = '';
-      packages.forEach(function (pkg, idx) {
-        var card = document.createElement('div'); card.className = 'ob-pkg-card';
-        card.innerHTML =
-          '<div class="ob-pkg-top"><div class="ob-pkg-kind">' +
-          '<button type="button" class="' + (pkg.kind === 'service' ? 'is-on' : '') + '" data-k="service">Service</button>' +
-          '<button type="button" class="' + (pkg.kind === 'class' ? 'is-on' : '') + '" data-k="class">Class / Lesson</button>' +
-          '</div>' + (packages.length > 1 ? '<button type="button" class="ob-pkg-del">Remove</button>' : '') + '</div>' +
-          '<div class="ob-grid-2"><div class="ob-field" style="margin-bottom:0"><label class="ob-label">Title</label>' +
-          '<input class="ob-input pkg-title" type="text" placeholder="e.g. Half-Day Shoot" value="' + (pkg.title || '').replace(/"/g, '&quot;') + '"></div>' +
-          '<div class="ob-field" style="margin-bottom:0"><label class="ob-label">Price (USD)</label>' +
-          '<input class="ob-input pkg-price" type="number" min="0" placeholder="500" value="' + (pkg.price || '') + '"></div></div>';
-        card.querySelectorAll('[data-k]').forEach(function (kb) {
-          kb.addEventListener('click', function () { pkg.kind = kb.dataset.k; renderPackages(); saveDraft(); });
+        t.addEventListener('click', function () {
+          var target = parseInt(t.dataset.step, 10);
+          if (target < currentStep || validateStep(currentStep)) goStep(target);
         });
-        var delBtn = card.querySelector('.ob-pkg-del');
-        if (delBtn) delBtn.addEventListener('click', function () { packages.splice(idx, 1); renderPackages(); saveDraft(); });
-        card.querySelector('.pkg-title').addEventListener('input', function (e) { pkg.title = e.target.value; saveDraft(); });
-        card.querySelector('.pkg-price').addEventListener('input', function (e) { pkg.price = e.target.value; saveDraft(); });
-        list.appendChild(card);
       });
-    }
-    $('obAddPkgBtn').addEventListener('click', function () {
-      if (packages.length < 6) { packages.push({ kind: 'service', title: '', price: '' }); renderPackages(); saveDraft(); }
-    });
 
-    /* ── Gear ── */
-    function addGear(val) {
-      var c = (val || '').trim();
-      if (!c || gearList.indexOf(c) !== -1 || gearList.length >= 12) return;
-      gearList.push(c); renderGear(); saveDraft();
-    }
-    function renderGear() {
-      var wrap = $('obGearChips'); wrap.innerHTML = '';
-      gearList.forEach(function (g, i) {
-        var s = document.createElement('span'); s.className = 'ob-chip'; s.textContent = g + ' ';
-        var b = document.createElement('button'); b.type = 'button'; b.textContent = '×';
-        b.addEventListener('click', function () { gearList.splice(i, 1); renderGear(); saveDraft(); });
-        s.appendChild(b); wrap.appendChild(s);
-      });
-    }
-    $('obAddGearBtn').addEventListener('click', function () { addGear($('obGearInput').value); $('obGearInput').value = ''; });
-    $('obGearInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addGear($('obGearInput').value); $('obGearInput').value = ''; } });
-    document.querySelectorAll('.ob-suggest-chip').forEach(function (b) { b.addEventListener('click', function () { addGear(b.dataset.gear); }); });
-
-    /* ── SMS & Card Formatting ── */
-    $('obSendSmsBtn').addEventListener('click', function () {
-      var msg = $('obMsg4'); msg.textContent = '';
-      if ($('obPhone').value.trim().length < 7) { msg.textContent = 'Please enter a valid phone number.'; msg.className = 'ob-msg is-bad'; $('obPhone').focus(); return; }
-      $('obSmsVerifyRow').hidden = false; $('obSendSmsBtn').textContent = 'Resend SMS'; $('obSmsCode').focus();
-    });
-    $('obVerifySmsBtn').addEventListener('click', function () {
-      var msg = $('obMsg4');
-      if (!/^\d{6}$/.test($('obSmsCode').value.trim())) { msg.textContent = 'Enter the 6-digit SMS code.'; msg.className = 'ob-msg is-bad'; return; }
-      msg.textContent = ''; smsVerified = true; $('obSmsVerifyRow').hidden = true; $('obSmsOk').hidden = false;
-    });
-    $('obCardNum').addEventListener('input', function () {
-      var d = $('obCardNum').value.replace(/\D/g, '').slice(0, 16);
-      $('obCardNum').value = d.replace(/(\d{4})(?=\d)/g, '$1 ');
-    });
-    $('obCardExp').addEventListener('input', function () {
-      var d = $('obCardExp').value.replace(/\D/g, '').slice(0, 4);
-      $('obCardExp').value = d.length > 2 ? d.slice(0, 2) + ' / ' + d.slice(2) : d;
-    });
-
-    /* ── Submit ── */
-    $('obSubmitBtn').addEventListener('click', function () {
-      var msg = $('obMsg5'); msg.textContent = '';
-      if (!$('obTermsCheck').checked) {
-        msg.textContent = 'Please accept the Terms, Privacy Policy, and auto-renewal notice.';
-        msg.className = 'ob-msg is-bad'; return;
+      /* ── Draft Persistence ── */
+      function saveDraft() {
+        try {
+          localStorage.setItem(DRAFT_KEY, JSON.stringify({
+            step: typeof currentStep === 'number' ? currentStep : 1,
+            name: $('obName').value, slug: $('obSlug').value, category: $('obCategory').value,
+            city: $('obCity').value, headline: $('obHeadline').value, remote: $('obRemote').checked,
+            nsfwGate: $('obNsfwGate').checked, portfolio: $('obPortfolio').value, video: $('obVideo').value,
+            about: $('obAbout').value, packages: packages, gearList: gearList,
+            website: $('obWebsite').value, instagram: $('obInstagram').value, phone: $('obPhone').value
+          }));
+          $('obSavePill').textContent = 'Draft saved';
+        } catch (e) { }
       }
-      var btn = $('obSubmitBtn'); btn.disabled = true; btn.textContent = 'Submitting...';
-      fetch('/api/apply', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          display_name: $('obName').value.trim(),
-          category: $('obCategory').value || 'film',
-          city: $('obCity').value.trim() || 'Austin, TX',
-          portfolio_url: $('obPortfolio').value.trim() || 'https://nexus.com',
-          works_remote: $('obRemote').checked,
-          headline: $('obHeadline').value.trim() || null
-        })
-      })
-      .then(function (r) { return r.json().catch(function () { return { ok: true }; }); })
-      .catch(function () { return { ok: true }; })
-      .then(function () {
-        $('obDoneSlug').textContent = '/c/' + (slugify($('obSlug').value || $('obName').value) || 'your-name');
-        goStep('done');
-      })
-      .finally(function () { btn.disabled = false; btn.textContent = 'Submit for Review →'; });
-    });
 
-    restoreDraft();
-    renderPackages();
-    renderGear();
-  })();
+      function restoreDraft() {
+        try {
+          var raw = localStorage.getItem(DRAFT_KEY);
+          if (!raw) return;
+          var d = JSON.parse(raw);
+          if (d.name) $('obName').value = d.name;
+          if (d.slug) $('obSlug').value = d.slug;
+          if (d.category) $('obCategory').value = d.category;
+          if (d.city) $('obCity').value = d.city;
+          if (d.headline) $('obHeadline').value = d.headline;
+          $('obRemote').checked = !!d.remote;
+          $('obNsfwGate').checked = !!d.nsfwGate;
+          if (d.portfolio) $('obPortfolio').value = d.portfolio;
+          if (d.video) $('obVideo').value = d.video;
+          if (d.about) { $('obAbout').value = d.about; $('obBioCount').textContent = d.about.length + ' / 4000'; }
+          if (Array.isArray(d.packages) && d.packages.length) packages = d.packages;
+          if (Array.isArray(d.gearList)) gearList = d.gearList;
+          if (d.website) $('obWebsite').value = d.website;
+          if (d.instagram) $('obInstagram').value = d.instagram;
+          if (d.phone) $('obPhone').value = d.phone;
+          if (d.step >= 1 && d.step <= 5) goStep(d.step, true);
+        } catch (e) { }
+      }
+
+      $('obClearDraftBtn').addEventListener('click', function () {
+        try { localStorage.removeItem(DRAFT_KEY); } catch (e) { }
+        location.reload();
+      });
+
+      /* ── Live Slug & Preview Modal ── */
+      var slugEdited = false;
+      $('obSlug').addEventListener('input', function () { slugEdited = true; saveDraft(); });
+      $('obName').addEventListener('input', function () {
+        if (!slugEdited) $('obSlug').value = slugify($('obName').value);
+        saveDraft();
+      });
+      ['obCategory', 'obCity', 'obHeadline', 'obRemote', 'obNsfwGate', 'obPortfolio', 'obVideo', 'obAbout', 'obWebsite', 'obInstagram', 'obPhone'].forEach(function (id) {
+        $(id).addEventListener('input', saveDraft);
+        $(id).addEventListener('change', saveDraft);
+      });
+      $('obAbout').addEventListener('input', function () {
+        $('obBioCount').textContent = $('obAbout').value.length + ' / 4000';
+      });
+
+      function openPreview() {
+        var name = $('obName').value.trim() || 'Marcus Vance';
+        var slug = slugify($('obSlug').value || name) || 'your-name';
+        $('pvCategory').textContent = CATEGORY_LABELS[$('obCategory').value] || 'Creative';
+        $('pvName').textContent = name;
+        $('pvSlug').textContent = 'nexus.com/c/' + slug;
+        $('pvHeadline').textContent = $('obHeadline').value.trim() || 'Your headline appears here.';
+        $('pvCity').textContent = $('obCity').value.trim() || 'Your City';
+        var prices = packages.filter(function (p) { return parseFloat(p.price) > 0; }).map(function (p) { return parseFloat(p.price); });
+        $('pvPrice').textContent = prices.length ? 'From $' + Math.min.apply(null, prices).toLocaleString() : 'Inquire';
+        $('pvRemote').hidden = !$('obRemote').checked;
+        $('pvNsfw').hidden = !$('obNsfwGate').checked;
+        var svc = $('pvServices');
+        svc.innerHTML = '';
+        packages.slice(0, 3).forEach(function (p) {
+          var row = document.createElement('div');
+          row.className = 'ob-pv-svc';
+          row.innerHTML = '<strong>' + (p.title || 'Service').replace(/</g, '&lt;') + '</strong><span>' + (p.price ? '$' + Number(p.price).toLocaleString() : 'Inquire') + '</span>';
+          svc.appendChild(row);
+        });
+        $('obPreviewModal').hidden = false;
+      }
+      $('obOpenPreviewBtn').addEventListener('click', openPreview);
+      $('obClosePreviewBtn').addEventListener('click', function () { $('obPreviewModal').hidden = true; });
+      $('obPreviewModal').addEventListener('click', function (e) { if (e.target === $('obPreviewModal')) $('obPreviewModal').hidden = true; });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') $('obPreviewModal').hidden = true; });
+
+      /* ── Media Dropzone ── */
+      var dropzone = $('obDropzone');
+      var fileInput = $('obFileInput');
+      dropzone.addEventListener('click', function () { fileInput.click(); });
+      dropzone.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); } });
+      dropzone.addEventListener('dragover', function (e) { e.preventDefault(); dropzone.classList.add('is-drag'); });
+      dropzone.addEventListener('dragleave', function () { dropzone.classList.remove('is-drag'); });
+      dropzone.addEventListener('drop', function (e) { e.preventDefault(); dropzone.classList.remove('is-drag'); addFiles(e.dataTransfer.files); });
+      fileInput.addEventListener('change', function () { addFiles(fileInput.files); fileInput.value = ''; });
+
+      function addFiles(files) {
+        Array.prototype.slice.call(files).forEach(function (f) {
+          if (mediaFiles.length >= 6 || !f.type.startsWith('image/')) return;
+          mediaFiles.push({ name: f.name, url: URL.createObjectURL(f) });
+        });
+        renderThumbs();
+      }
+      function renderThumbs() {
+        var wrap = $('obThumbs'); wrap.innerHTML = '';
+        mediaFiles.forEach(function (m, idx) {
+          var d = document.createElement('div'); d.className = 'ob-thumb';
+          var img = document.createElement('img'); img.src = m.url; img.alt = m.name;
+          var rm = document.createElement('button'); rm.type = 'button'; rm.textContent = '×';
+          rm.addEventListener('click', function () { mediaFiles.splice(idx, 1); renderThumbs(); });
+          d.appendChild(img); d.appendChild(rm); wrap.appendChild(d);
+        });
+      }
+
+      /* ── Packages ── */
+      function renderPackages() {
+        var list = $('obPkgList'); list.innerHTML = '';
+        packages.forEach(function (pkg, idx) {
+          var card = document.createElement('div'); card.className = 'ob-pkg-card';
+          card.innerHTML =
+            '<div class="ob-pkg-top"><div class="ob-pkg-kind">' +
+            '<button type="button" class="' + (pkg.kind === 'service' ? 'is-on' : '') + '" data-k="service">Service</button>' +
+            '<button type="button" class="' + (pkg.kind === 'class' ? 'is-on' : '') + '" data-k="class">Class / Lesson</button>' +
+            '</div>' + (packages.length > 1 ? '<button type="button" class="ob-pkg-del">Remove</button>' : '') + '</div>' +
+            '<div class="ob-grid-2"><div class="ob-field" style="margin-bottom:0"><label class="ob-label">Title</label>' +
+            '<input class="ob-input pkg-title" type="text" placeholder="e.g. Half-Day Shoot" value="' + (pkg.title || '').replace(/"/g, '&quot;') + '"></div>' +
+            '<div class="ob-field" style="margin-bottom:0"><label class="ob-label">Price (USD)</label>' +
+            '<input class="ob-input pkg-price" type="number" min="0" placeholder="500" value="' + (pkg.price || '') + '"></div></div>';
+          card.querySelectorAll('[data-k]').forEach(function (kb) {
+            kb.addEventListener('click', function () { pkg.kind = kb.dataset.k; renderPackages(); saveDraft(); });
+          });
+          var delBtn = card.querySelector('.ob-pkg-del');
+          if (delBtn) delBtn.addEventListener('click', function () { packages.splice(idx, 1); renderPackages(); saveDraft(); });
+          card.querySelector('.pkg-title').addEventListener('input', function (e) { pkg.title = e.target.value; saveDraft(); });
+          card.querySelector('.pkg-price').addEventListener('input', function (e) { pkg.price = e.target.value; saveDraft(); });
+          list.appendChild(card);
+        });
+      }
+      $('obAddPkgBtn').addEventListener('click', function () {
+        if (packages.length < 6) { packages.push({ kind: 'service', title: '', price: '' }); renderPackages(); saveDraft(); }
+      });
+
+      /* ── Gear ── */
+      function addGear(val) {
+        var c = (val || '').trim();
+        if (!c || gearList.indexOf(c) !== -1 || gearList.length >= 12) return;
+        gearList.push(c); renderGear(); saveDraft();
+      }
+      function renderGear() {
+        var wrap = $('obGearChips'); wrap.innerHTML = '';
+        gearList.forEach(function (g, i) {
+          var s = document.createElement('span'); s.className = 'ob-chip'; s.textContent = g + ' ';
+          var b = document.createElement('button'); b.type = 'button'; b.textContent = '×';
+          b.addEventListener('click', function () { gearList.splice(i, 1); renderGear(); saveDraft(); });
+          s.appendChild(b); wrap.appendChild(s);
+        });
+      }
+      $('obAddGearBtn').addEventListener('click', function () { addGear($('obGearInput').value); $('obGearInput').value = ''; });
+      $('obGearInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addGear($('obGearInput').value); $('obGearInput').value = ''; } });
+      document.querySelectorAll('.ob-suggest-chip').forEach(function (b) { b.addEventListener('click', function () { addGear(b.dataset.gear); }); });
+
+      /* ── SMS & Card Formatting ── */
+      $('obSendSmsBtn').addEventListener('click', function () {
+        var msg = $('obMsg4'); msg.textContent = '';
+        if ($('obPhone').value.trim().length < 7) { msg.textContent = 'Please enter a valid phone number.'; msg.className = 'ob-msg is-bad'; $('obPhone').focus(); return; }
+        $('obSmsVerifyRow').hidden = false; $('obSendSmsBtn').textContent = 'Resend SMS'; $('obSmsCode').focus();
+      });
+      $('obVerifySmsBtn').addEventListener('click', function () {
+        var msg = $('obMsg4');
+        if (!/^\d{6}$/.test($('obSmsCode').value.trim())) { msg.textContent = 'Enter the 6-digit SMS code.'; msg.className = 'ob-msg is-bad'; return; }
+        msg.textContent = ''; smsVerified = true; $('obSmsVerifyRow').hidden = true; $('obSmsOk').hidden = false;
+      });
+      $('obCardNum').addEventListener('input', function () {
+        var d = $('obCardNum').value.replace(/\D/g, '').slice(0, 16);
+        $('obCardNum').value = d.replace(/(\d{4})(?=\d)/g, '$1 ');
+      });
+      $('obCardExp').addEventListener('input', function () {
+        var d = $('obCardExp').value.replace(/\D/g, '').slice(0, 4);
+        $('obCardExp').value = d.length > 2 ? d.slice(0, 2) + ' / ' + d.slice(2) : d;
+      });
+
+      /* ── Submit ── */
+      $('obSubmitBtn').addEventListener('click', function () {
+        var msg = $('obMsg5'); msg.textContent = '';
+        if (!$('obTermsCheck').checked) {
+          msg.textContent = 'Please accept the Terms, Privacy Policy, and auto-renewal notice.';
+          msg.className = 'ob-msg is-bad'; return;
+        }
+        var btn = $('obSubmitBtn'); btn.disabled = true; btn.textContent = 'Submitting...';
+        fetch('/api/apply', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            display_name: $('obName').value.trim(),
+            category: $('obCategory').value || 'film',
+            city: $('obCity').value.trim() || 'Austin, TX',
+            portfolio_url: $('obPortfolio').value.trim() || 'https://nexus.com',
+            works_remote: $('obRemote').checked,
+            headline: $('obHeadline').value.trim() || null
+          })
+        })
+          .then(function (r) { return r.json().catch(function () { return { ok: true }; }); })
+          .catch(function () { return { ok: true }; })
+          .then(function () {
+            $('obDoneSlug').textContent = '/c/' + (slugify($('obSlug').value || $('obName').value) || 'your-name');
+            goStep('done');
+          })
+          .finally(function () { btn.disabled = false; btn.textContent = 'Submit for Review →'; });
+      });
+
+      restoreDraft();
+      renderPackages();
+      renderGear();
+    })();
   </script>
 
   <div id="nexus-footer-root"></div>
   <script src="/assets/react-footer/nexus-footer-section.js?v=copy1" defer></script>
 </body>
+
 </html>
