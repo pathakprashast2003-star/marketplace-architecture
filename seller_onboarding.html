@@ -1247,6 +1247,280 @@
       .ob-panel.is-on, .ob-preview-modal-sheet { animation: none; }
       .ob-preview-card, .ob-readiness-fill, .ob-btn, .ob-step-tab { transition: none; }
     }
+
+    /* ── Fintech / Editorial 3-Column Layout & Connected Stepper ── */
+    .ob-workspace {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1.25fr) minmax(300px, 0.9fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    /* Left Vertical Stepper Sidebar */
+    .ob-sidebar {
+      position: sticky;
+      top: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 18px 18px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #F5F7FF 100%);
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 48px -22px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+    .ob-stepper {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 0;
+    }
+    .ob-step-tab {
+      position: relative;
+      display: grid;
+      grid-template-columns: 30px minmax(0, 1fr);
+      align-items: start;
+      gap: 12px;
+      padding: 0 0 22px;
+      border: 0;
+      border-radius: 0;
+      background: transparent !important;
+      box-shadow: none !important;
+      color: var(--sub);
+      text-align: left;
+      cursor: pointer;
+    }
+    .ob-step-tab:last-child { padding-bottom: 0; }
+    .ob-step-tab::after {
+      content: "";
+      position: absolute;
+      left: 14px;
+      top: 32px;
+      bottom: 4px;
+      width: 2px;
+      border-radius: 999px;
+      background: #E2E8F0;
+      transition: background-color 0.25s ease;
+    }
+    .ob-step-tab:last-child::after { display: none; }
+    .ob-step-tab.is-done::after { background: #10B981; }
+    .ob-step-tab:hover { transform: none; }
+    .ob-step-tab:hover .ob-step-title { color: var(--ink); }
+
+    .ob-step-num {
+      position: relative;
+      z-index: 2;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      background: #FFFFFF;
+      border: 1.5px solid #CBD5E1;
+      color: var(--mute);
+      transition: all 0.22s var(--ease);
+    }
+    .ob-step-tab.is-active .ob-step-num {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #FFFFFF;
+      box-shadow: 0 0 0 4px rgba(59, 84, 238, 0.16);
+    }
+    .ob-step-tab.is-done .ob-step-num {
+      background: #10B981;
+      border-color: #10B981;
+      color: #FFFFFF;
+    }
+    .ob-step-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      padding-top: 1px;
+    }
+    .ob-step-kicker {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+    .ob-step-label {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--sub);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ob-step-tab.is-active .ob-step-label { color: var(--ink); }
+    .ob-step-tab.is-done .ob-step-label { color: var(--ink); }
+    .ob-step-status {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      margin-top: 3px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 600;
+      background: #F1F5F9;
+      color: var(--mute);
+    }
+    .ob-step-tab.is-active .ob-step-status { background: var(--blue-soft); color: var(--blue); }
+    .ob-step-tab.is-done .ob-step-status { background: var(--ok-soft); color: var(--ok); }
+
+    .ob-help-box {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      text-decoration: none !important;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+    .ob-help-box:hover {
+      border-color: var(--blue);
+      box-shadow: 0 6px 18px -10px rgba(59, 84, 238, 0.25);
+    }
+    .ob-help-ic {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      color: var(--sub);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .ob-help-box small { display: block; font-size: 11.5px; color: var(--mute); }
+    .ob-help-box strong { display: block; font-size: 13px; color: var(--ink); }
+
+    /* Center Card Top Progress Line */
+    .ob-card { position: relative; overflow: hidden; }
+    .ob-card-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #EEF2F7;
+    }
+    .ob-card-progress > i {
+      display: block;
+      height: 100%;
+      width: 20%;
+      background: linear-gradient(90deg, #3B54EE 0%, #5872FF 100%);
+      transition: width 0.4s var(--ease);
+    }
+
+    /* Royal-Blue Review SLA Status Card (above Preview) */
+    .ob-sla-card {
+      border-radius: 22px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      color: #FFFFFF;
+      background: radial-gradient(120% 100% at 88% 10%, #5872FF 0%, #3B54EE 55%, #2032B4 100%);
+      box-shadow: 0 18px 40px -18px rgba(35, 55, 198, 0.52);
+    }
+    .ob-sla-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .ob-sla-kicker {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    .ob-sla-pill {
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      font-size: 11px;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+    .ob-sla-title {
+      margin: 0 0 4px;
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+    .ob-sla-sub {
+      margin: 0 0 12px;
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.86);
+    }
+    .ob-sla-track {
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.22);
+      overflow: hidden;
+    }
+    .ob-sla-track > i {
+      display: block;
+      height: 100%;
+      width: 20%;
+      border-radius: 999px;
+      background: #FFFFFF;
+      transition: width 0.4s var(--ease);
+    }
+
+    @media (max-width: 1080px) {
+      .ob-workspace { grid-template-columns: 1fr; }
+      .ob-sidebar {
+        position: static;
+        padding: 14px 16px;
+        gap: 12px;
+      }
+      .ob-stepper {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 6px;
+      }
+      .ob-step-tab {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        padding: 0;
+        gap: 6px;
+      }
+      .ob-step-tab::after {
+        left: calc(50% + 18px);
+        right: calc(-50% + 18px);
+        top: 14px;
+        bottom: auto;
+        width: auto;
+        height: 2px;
+      }
+      .ob-step-kicker, .ob-step-status, .ob-help-box { display: none; }
+      .ob-step-label { font-size: 11.5px; }
+      .ob-preview-wrap { display: none; }
+    }
+    @media (max-width: 640px) {
+      .ob-step-label { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -1289,28 +1563,64 @@
       <span class="ob-readiness-pct" id="obReadinessPct">0% ready</span>
     </div>
 
-    <!-- 5-Step Clickable Stepper -->
-    <nav class="ob-stepper" aria-label="Onboarding steps">
-      <button type="button" class="ob-step-tab is-active" data-step="1" aria-current="step">
-        <span class="ob-step-num">1</span><span class="ob-step-label">Identity &amp; City</span>
-      </button>
-      <button type="button" class="ob-step-tab" data-step="2">
-        <span class="ob-step-num">2</span><span class="ob-step-label">Work &amp; Media</span>
-      </button>
-      <button type="button" class="ob-step-tab" data-step="3">
-        <span class="ob-step-num">3</span><span class="ob-step-label">Services &amp; Classes</span>
-      </button>
-      <button type="button" class="ob-step-tab" data-step="4">
-        <span class="ob-step-num">4</span><span class="ob-step-label">Gear &amp; Phone</span>
-      </button>
-      <button type="button" class="ob-step-tab" data-step="5">
-        <span class="ob-step-num">5</span><span class="ob-step-label">Trial &amp; Submit</span>
-      </button>
-    </nav>
-
     <div class="ob-workspace">
-      <!-- LEFT: Interactive Wizard -->
+      <!-- LEFT: Vertical Connected Stepper Sidebar -->
+      <aside class="ob-sidebar" aria-label="Onboarding progress">
+        <nav class="ob-stepper" aria-label="Onboarding steps">
+          <button type="button" class="ob-step-tab is-active" data-step="1" aria-current="step">
+            <span class="ob-step-num">1</span>
+            <span class="ob-step-meta">
+              <span class="ob-step-kicker">Step 1</span>
+              <span class="ob-step-label">Identity &amp; City</span>
+              <span class="ob-step-status">In Progress</span>
+            </span>
+          </button>
+          <button type="button" class="ob-step-tab" data-step="2">
+            <span class="ob-step-num">2</span>
+            <span class="ob-step-meta">
+              <span class="ob-step-kicker">Step 2</span>
+              <span class="ob-step-label">Work &amp; Media</span>
+              <span class="ob-step-status">Pending</span>
+            </span>
+          </button>
+          <button type="button" class="ob-step-tab" data-step="3">
+            <span class="ob-step-num">3</span>
+            <span class="ob-step-meta">
+              <span class="ob-step-kicker">Step 3</span>
+              <span class="ob-step-label">Services &amp; Classes</span>
+              <span class="ob-step-status">Pending</span>
+            </span>
+          </button>
+          <button type="button" class="ob-step-tab" data-step="4">
+            <span class="ob-step-num">4</span>
+            <span class="ob-step-meta">
+              <span class="ob-step-kicker">Step 4</span>
+              <span class="ob-step-label">Gear &amp; Phone</span>
+              <span class="ob-step-status">Pending</span>
+            </span>
+          </button>
+          <button type="button" class="ob-step-tab" data-step="5">
+            <span class="ob-step-num">5</span>
+            <span class="ob-step-meta">
+              <span class="ob-step-kicker">Step 5</span>
+              <span class="ob-step-label">Trial &amp; Submit</span>
+              <span class="ob-step-status">Pending</span>
+            </span>
+          </button>
+        </nav>
+
+        <a class="ob-help-box" href="mailto:support@nexus.com">
+          <span class="ob-help-ic" aria-hidden="true">?</span>
+          <span>
+            <small>Having troubles?</small>
+            <strong>Contact us</strong>
+          </span>
+        </a>
+      </aside>
+
+      <!-- CENTER: Interactive Wizard -->
       <section class="ob-card" aria-label="Storefront builder">
+        <div class="ob-card-progress" aria-hidden="true"><i id="obCardProgress"></i></div>
 
         <!-- STEP 1: Identity & Location -->
         <div class="ob-panel is-on" data-panel="1">
@@ -1553,8 +1863,18 @@
 
       </section>
 
-      <!-- RIGHT: Live Storefront Card Preview -->
+      <!-- RIGHT: Review Status Card + Live Storefront Card Preview -->
       <aside class="ob-preview-wrap" aria-label="Live storefront preview">
+        <div class="ob-sla-card">
+          <div class="ob-sla-top">
+            <span class="ob-sla-kicker" id="obSlaStep">Step 1 of 5 · Application</span>
+            <span class="ob-sla-pill">In Progress</span>
+          </div>
+          <h3 class="ob-sla-title">Human Review: 24–48 hrs</h3>
+          <p class="ob-sla-sub">Your 90-day free trial ($19.99/mo after, 0% commission) starts at sign-up. Auto-canceled if not approved.</p>
+          <div class="ob-sla-track" aria-hidden="true"><i id="obSlaFill"></i></div>
+        </div>
+
         <div class="ob-preview-cap">
           <div class="ob-preview-title">
             <span>Live Preview</span>
@@ -1846,11 +2166,20 @@
       document.querySelectorAll('.ob-step-tab').forEach(function (t) {
         var n = parseInt(t.dataset.step, 10);
         var active = n === step;
+        var done = step === 'done' || (typeof step === 'number' && n < step);
         t.classList.toggle('is-active', active);
-        t.classList.toggle('is-done', typeof step === 'number' && n < step);
+        t.classList.toggle('is-done', done);
+        var numEl = t.querySelector('.ob-step-num');
+        if (numEl) numEl.textContent = done ? '✓' : String(n);
+        var stEl = t.querySelector('.ob-step-status');
+        if (stEl) stEl.textContent = done ? 'Completed' : (active ? 'In Progress' : 'Pending');
         if (active) t.setAttribute('aria-current', 'step');
         else t.removeAttribute('aria-current');
       });
+      var pctStep = step === 'done' ? 100 : (Math.max(1, Math.min(5, Number(step) || 1)) / 5) * 100;
+      if ($('obCardProgress')) $('obCardProgress').style.width = pctStep + '%';
+      if ($('obSlaFill')) $('obSlaFill').style.width = pctStep + '%';
+      if ($('obSlaStep')) $('obSlaStep').textContent = step === 'done' ? 'Submitted · In Review' : ('Step ' + step + ' of 5 · Application');
       scheduleSave();
       if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
     }
