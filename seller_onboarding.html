@@ -24,7 +24,8 @@
       --blue-hover: #2D45D8;
       --blue-soft: #EEF2FF;
       --soft: #F8FAFC;
-      --ok: #047857;
+      --ok: #10B981;
+      --ok-text: #047857;
       --bad: #DC2626;
       --serif: 'Times New Roman', Times, Georgia, serif;
       --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
@@ -50,7 +51,7 @@
     :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
     [hidden] { display: none !important; }
 
-    /* ── Editorial Top Nav ── */
+    /* ── Top Nav ── */
     .ob-nav {
       display: flex;
       align-items: center;
@@ -59,7 +60,7 @@
       max-width: 1080px;
       width: 100%;
       margin: 0 auto;
-      padding: 20px clamp(18px, 4vw, 36px);
+      padding: 20px clamp(18px, 4vw, 32px) 10px;
     }
     .ob-brand {
       display: inline-flex;
@@ -103,32 +104,29 @@
       cursor: pointer;
     }
     .ob-clear-draft:hover { color: var(--bad); }
-    .ob-nav-link {
-      color: var(--sub);
-      font-weight: 600;
-      white-space: nowrap;
-    }
+    .ob-nav-link { color: var(--sub); font-weight: 600; white-space: nowrap; }
     .ob-nav-link:hover { color: var(--ink); text-decoration: none; }
 
-    /* ── Centered Single-Column Editorial Stage ── */
+    /* ── Page Container ── */
     .ob-main {
       flex: 1;
-      max-width: 640px;
+      max-width: 1080px;
       width: 100%;
       margin: 0 auto;
-      padding: 12px clamp(18px, 4vw, 24px) 72px;
+      padding: 8px clamp(18px, 4vw, 32px) 72px;
     }
 
-    /* Editorial Header */
+    /* Editorial Page Header */
     .ob-head {
       text-align: center;
-      margin-bottom: 26px;
+      margin: 0 auto 28px;
+      max-width: 680px;
     }
     .ob-head h1 {
       margin: 0 0 8px;
       font-family: var(--serif);
       font-weight: 600;
-      font-size: clamp(2.1rem, 4.4vw, 2.95rem);
+      font-size: clamp(2.15rem, 4.2vw, 3.1rem);
       line-height: 1.04;
       letter-spacing: -0.025em;
       color: var(--ink);
@@ -140,7 +138,6 @@
     }
     .ob-lead {
       margin: 0 auto;
-      max-width: 46ch;
       font-family: var(--serif);
       font-style: italic;
       font-size: 17px;
@@ -148,33 +145,176 @@
       color: var(--mute);
     }
 
-    /* Quiet Step Indicator */
-    .ob-progress-bar {
+    /* ── Overlapping Split Shell (Royal-Blue Stepper + Floating White Form) ── */
+    .ob-shell {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      align-items: stretch;
+      max-width: 1040px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Left Royal-Blue Stepper Panel */
+    .ob-blue-rail {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 40px 44px 32px 30px;
+      border-radius: 28px 0 0 28px;
+      background: radial-gradient(120% 95% at 80% 10%, #5872FF 0%, #3B54EE 48%, #2134B8 100%);
+      color: #FFFFFF;
+    }
+    .ob-stepper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .ob-step-tab {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      width: 100%;
+      padding: 0 0 34px;
+      border: 0;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.72);
+      text-align: left;
+      cursor: pointer;
+      transition: color 0.18s ease, transform 100ms ease-out;
+    }
+    .ob-step-tab:last-child { padding-bottom: 0; }
+    .ob-step-tab:active { transform: scale(0.98); }
+    .ob-step-tab:hover { color: #FFFFFF; }
+    .ob-step-tab.is-active,
+    .ob-step-tab.is-done { color: #FFFFFF; }
+
+    /* Vertical line connecting straddling nodes */
+    .ob-step-tab::after {
+      content: "";
+      position: absolute;
+      right: -27px;
+      top: 18px;
+      bottom: -16px;
+      width: 2px;
+      background: rgba(59, 84, 238, 0.28);
+      z-index: 4;
+      transition: background-color 0.25s ease;
+    }
+    .ob-step-tab:last-child::after { display: none; }
+    .ob-step-tab.is-done::after { background: var(--ok); }
+
+    .ob-step-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .ob-step-kicker {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.78;
+    }
+    .ob-step-label {
+      font-family: var(--serif);
+      font-size: 16.5px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    /* Straddling Circular Seam Node */
+    .ob-seam-node {
+      position: relative;
+      z-index: 5;
+      margin-right: -43px;
+      flex: none;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      background: #FFFFFF;
+      color: var(--mute);
+      border: 2px solid rgba(15, 23, 42, 0.12);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.14);
+      transition: all 0.24s var(--spring);
+    }
+    .ob-step-tab.is-active .ob-seam-node {
+      background: #FFFFFF;
+      color: var(--blue);
+      border-color: var(--ok);
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.24), 0 6px 16px rgba(15, 23, 42, 0.16);
+    }
+    .ob-step-tab.is-done .ob-seam-node {
+      background: var(--ok);
+      color: #FFFFFF;
+      border-color: #FFFFFF;
+    }
+
+    .ob-rail-help {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.84);
+    }
+    .ob-rail-help a {
+      color: #FFFFFF;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Right Overlapping White Form Card */
+    .ob-form-card {
+      position: relative;
+      z-index: 3;
+      margin-left: -18px;
+      background: #FFFFFF;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 26px;
+      padding: clamp(28px, 4vw, 44px) clamp(26px, 4.5vw, 52px);
+      box-shadow: 0 26px 64px -22px rgba(15, 23, 42, 0.14), 0 2px 6px rgba(15, 23, 42, 0.03);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .ob-card-meta {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 12px;
-      padding: 0 4px;
+      margin-bottom: 18px;
     }
-    .ob-step-dots {
+    .ob-kicker {
+      margin: 0;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .ob-meta-right {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 12px;
+      font-size: 13.5px;
+      color: var(--mute);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
-    .ob-dot-btn {
-      width: 24px;
-      height: 6px;
-      padding: 0;
-      border: 0;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.12);
-      cursor: pointer;
-      transition: width 0.28s var(--spring), background-color 0.25s ease;
-    }
-    .ob-dot-btn.is-done { background: #10B981; width: 14px; }
-    .ob-dot-btn.is-active { background: var(--blue); width: 32px; }
-    .ob-dot-btn:active { transform: scale(0.95); transition: transform 100ms ease-out; }
     .ob-preview-trigger {
       border: 0;
       background: transparent;
@@ -185,34 +325,18 @@
       text-decoration: underline;
       text-underline-offset: 3px;
       cursor: pointer;
+      white-space: nowrap;
     }
     .ob-preview-trigger:active { transform: scale(0.97); transition: transform 100ms ease-out; }
 
-    /* Main Form Surface */
-    .ob-card {
-      background: #FFFFFF;
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      padding: clamp(26px, 4.5vw, 44px);
-      box-shadow: 0 20px 50px -24px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.03);
-    }
     .ob-panel { display: none; }
-    .ob-panel.is-on { display: block; animation: obStepIn 0.3s var(--spring) both; }
+    .ob-panel.is-on { display: block; animation: obStepIn 0.28s var(--spring) both; }
     @keyframes obStepIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-    .ob-kicker {
-      margin: 0 0 6px;
-      font-family: var(--mono);
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: var(--blue);
-    }
     .ob-panel h2 {
       margin: 0 0 6px;
       font-family: var(--serif);
-      font-size: clamp(1.65rem, 3vw, 2.05rem);
+      font-size: clamp(1.7rem, 2.8vw, 2.15rem);
       font-weight: 600;
       letter-spacing: -0.02em;
       line-height: 1.08;
@@ -226,11 +350,11 @@
       color: var(--sub);
     }
 
-    /* Form Fields */
+    /* Form Controls */
     .ob-grid-2 {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      gap: 16px;
     }
     .ob-field {
       display: flex;
@@ -270,7 +394,7 @@
       background: #FAFAFC url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 14px center/15px no-repeat;
       padding-right: 36px;
     }
-    .ob-textarea { min-height: 112px; resize: vertical; line-height: 1.5; }
+    .ob-textarea { min-height: 110px; resize: vertical; line-height: 1.5; }
     .ob-input::placeholder, .ob-textarea::placeholder { color: #94A3B8; font-style: italic; }
     .ob-input:focus, .ob-select:focus, .ob-textarea:focus {
       background: #FFFFFF;
@@ -316,13 +440,13 @@
       outline: none;
     }
 
-    /* Apple-Style Pill Toggle Switch Row */
+    /* Apple Pill Toggle Switches */
     .ob-switch-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 14px 16px;
+      padding: 13px 16px;
       border-radius: 14px;
       border: 1px solid var(--line);
       background: var(--soft);
@@ -373,162 +497,99 @@
     .ob-dropzone:hover, .ob-dropzone.is-drag { border-color: var(--blue); background: #EEF2FF; }
     .ob-dropzone strong { display: block; font-size: 15.5px; color: var(--ink); margin-bottom: 3px; }
     .ob-dropzone span { font-size: 13.5px; font-style: italic; color: var(--mute); }
-    .ob-media-thumbs {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(92px, 1fr));
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-    .ob-thumb {
-      position: relative;
-      aspect-ratio: 4/3;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-    }
+    .ob-media-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; margin-bottom: 14px; }
+    .ob-thumb { position: relative; aspect-ratio: 4/3; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
     .ob-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .ob-thumb button {
-      position: absolute;
-      top: 4px;
-      right: 4px;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      border: 0;
-      background: rgba(15, 23, 42, 0.78);
-      color: #FFFFFF;
-      font-size: 13px;
-      cursor: pointer;
+      position: absolute; top: 4px; right: 4px; width: 22px; height: 22px;
+      border-radius: 50%; border: 0; background: rgba(15, 23, 42, 0.78);
+      color: #FFFFFF; font-size: 13px; cursor: pointer;
     }
 
-    /* Service Package Cards */
+    /* Services & Gear */
     .ob-pkg-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
-    .ob-pkg-card {
-      padding: 16px;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: var(--soft);
-    }
-    .ob-pkg-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-    .ob-pkg-kind {
-      display: inline-flex;
-      gap: 4px;
-      padding: 3px;
-      border-radius: 999px;
-      background: #E2E8F0;
-    }
-    .ob-pkg-kind button {
-      border: 0;
-      border-radius: 999px;
-      padding: 5px 13px;
-      font-size: 13px;
-      font-weight: 600;
-      background: transparent;
-      color: var(--sub);
-      cursor: pointer;
-    }
+    .ob-pkg-card { padding: 16px; border-radius: 16px; border: 1px solid var(--line); background: var(--soft); }
+    .ob-pkg-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+    .ob-pkg-kind { display: inline-flex; gap: 4px; padding: 3px; border-radius: 999px; background: #E2E8F0; }
+    .ob-pkg-kind button { border: 0; border-radius: 999px; padding: 5px 13px; font-size: 13px; font-weight: 600; background: transparent; color: var(--sub); cursor: pointer; }
     .ob-pkg-kind button.is-on { background: #FFFFFF; color: var(--ink); box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08); }
     .ob-pkg-del { border: 0; background: none; color: var(--mute); font-size: 13.5px; cursor: pointer; text-decoration: underline; }
     .ob-pkg-del:hover { color: var(--bad); }
 
-    /* Chips & SMS */
     .ob-chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 12px; }
-    .ob-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
-      border-radius: 999px;
-      background: var(--blue-soft);
-      color: var(--blue);
-      font-size: 13.5px;
-      font-weight: 600;
-    }
+    .ob-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; background: var(--blue-soft); color: var(--blue); font-size: 13.5px; font-weight: 600; }
     .ob-chip button { border: 0; background: none; color: var(--blue); cursor: pointer; font-weight: 700; padding: 0; }
-    .ob-suggest-chip {
-      border: 1px solid var(--line);
-      background: #FFFFFF;
-      color: var(--sub);
-      padding: 5px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      cursor: pointer;
-    }
+    .ob-suggest-chip { border: 1px solid var(--line); background: #FFFFFF; color: var(--sub); padding: 5px 12px; border-radius: 999px; font-size: 13px; cursor: pointer; }
     .ob-suggest-chip:hover { border-color: var(--blue); color: var(--blue); }
 
-    .ob-sms-box {
-      padding: 16px;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: var(--soft);
-      margin-bottom: 14px;
-    }
+    .ob-sms-box { padding: 16px; border-radius: 16px; border: 1px solid var(--line); background: var(--soft); margin-bottom: 14px; }
     .ob-sms-row { display: flex; gap: 10px; align-items: center; }
     .ob-sms-row .ob-input { flex: 1; }
     .ob-btn-sm {
-      height: 48px;
-      padding: 0 18px;
-      border-radius: 12px;
-      border: 1px solid var(--line-strong);
-      background: #FFFFFF;
-      color: var(--ink);
-      font-size: 14.5px;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
+      height: 48px; padding: 0 18px; border-radius: 12px;
+      border: 1px solid var(--line-strong); background: #FFFFFF;
+      color: var(--ink); font-size: 14.5px; font-weight: 600; cursor: pointer; white-space: nowrap;
     }
     .ob-btn-sm:hover { border-color: var(--blue); color: var(--blue); }
     .ob-btn-sm:active { transform: scale(0.97); transition: transform 100ms ease-out; }
-    .ob-sms-ok { margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--ok); }
+    .ob-sms-ok { margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--ok-text); }
 
     /* Step 5 Trial & Billing */
-    .ob-billing-box {
-      border-radius: 18px;
-      border: 1px solid rgba(59, 84, 238, 0.22);
-      background: #F8FAFF;
-      padding: 20px;
-      margin-bottom: 14px;
-    }
-    .ob-billing-top {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 8px;
-    }
+    .ob-billing-box { border-radius: 18px; border: 1px solid rgba(59, 84, 238, 0.22); background: #F8FAFF; padding: 20px; margin-bottom: 14px; }
+    .ob-billing-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
     .ob-billing-top strong { font-size: 20px; color: var(--ink); }
     .ob-billing-price { font-family: var(--mono); font-size: 12.5px; font-weight: 600; color: var(--blue); }
-    .ob-card-fields {
-      display: grid;
-      grid-template-columns: 1.5fr 0.8fr 0.7fr;
-      gap: 10px;
-      margin-top: 14px;
-    }
+    .ob-card-fields { display: grid; grid-template-columns: 1.5fr 0.8fr 0.7fr; gap: 10px; margin-top: 14px; }
 
-    /* Editorial Action Buttons (Apple pointer-down response + crisp nowrap) */
-    .ob-actions {
+    /* Bottom Action Footer (Progress on left, Buttons on right) */
+    .ob-footer-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 16px;
       margin-top: 26px;
       padding-top: 20px;
       border-top: 1px solid var(--line);
+    }
+    .ob-prog-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 140px;
+    }
+    .ob-prog-track {
+      width: 96px;
+      height: 5px;
+      border-radius: 999px;
+      background: #E2E8F0;
+      overflow: hidden;
+    }
+    .ob-prog-track > i {
+      display: block;
+      height: 100%;
+      width: 20%;
+      background: var(--blue);
+      border-radius: 999px;
+      transition: width 0.35s var(--spring);
+    }
+    .ob-prog-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--mute);
+      white-space: nowrap;
+    }
+    .ob-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .ob-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      height: 48px;
-      padding: 0 26px;
+      height: 46px;
+      padding: 0 24px;
       border-radius: 999px;
       border: 0;
       font-family: var(--serif);
@@ -540,88 +601,47 @@
       transition: background-color 0.18s ease, box-shadow 0.2s var(--spring), transform 100ms ease-out;
     }
     .ob-btn:active { transform: scale(0.97); }
-    .ob-btn-primary {
-      background: var(--blue);
-      color: #FFFFFF;
-      box-shadow: 0 2px 8px rgba(59, 84, 238, 0.24);
-    }
+    .ob-btn-primary { background: var(--blue); color: #FFFFFF; box-shadow: 0 2px 8px rgba(59, 84, 238, 0.24); }
     .ob-btn-primary:hover { background: var(--blue-hover); }
-    .ob-btn-ghost {
-      background: #FFFFFF;
-      color: var(--ink);
-      border: 1px solid var(--line-strong);
-    }
+    .ob-btn-ghost { background: #FFFFFF; color: var(--ink); border: 1px solid var(--line-strong); }
     .ob-btn-ghost:hover { background: var(--soft); border-color: rgba(15, 23, 42, 0.3); }
     .ob-btn-dashed {
-      width: 100%;
-      height: 46px;
-      border-radius: 12px;
-      border: 1.5px dashed rgba(59, 84, 238, 0.32);
-      background: #FFFFFF;
-      color: var(--blue);
-      font-size: 14.5px;
-      font-weight: 600;
-      cursor: pointer;
+      width: 100%; height: 46px; border-radius: 12px;
+      border: 1.5px dashed rgba(59, 84, 238, 0.32); background: #FFFFFF;
+      color: var(--blue); font-size: 14.5px; font-weight: 600; cursor: pointer;
     }
     .ob-btn-dashed:hover { background: #F5F7FF; border-color: var(--blue); }
 
-    .ob-msg { margin: 10px 0 0; font-size: 14px; font-weight: 600; min-height: 18px; }
+    .ob-msg { margin: 8px 0 0; font-size: 14px; font-weight: 600; min-height: 18px; }
     .ob-msg.is-bad { color: var(--bad); }
-    .ob-msg.is-ok { color: var(--ok); }
+    .ob-msg.is-ok { color: var(--ok-text); }
 
-    /* Translucent Apple Material Preview Sheet Modal */
+    /* Translucent Apple Preview Sheet Modal */
     .ob-preview-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
+      position: fixed; inset: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: center; padding: 18px;
       background: rgba(15, 23, 42, 0.42);
-      -webkit-backdrop-filter: blur(8px);
-      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
     }
     .ob-preview-sheet {
-      width: 100%;
-      max-width: 440px;
+      width: 100%; max-width: 440px;
       background: rgba(255, 255, 255, 0.94);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
-      backdrop-filter: blur(24px) saturate(180%);
-      border-radius: 26px;
-      border: 1px solid rgba(255, 255, 255, 0.6);
+      -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%);
+      border-radius: 26px; border: 1px solid rgba(255, 255, 255, 0.6);
       box-shadow: 0 28px 64px -18px rgba(15, 23, 42, 0.3);
-      overflow: hidden;
-      animation: obStepIn 0.28s var(--spring) both;
+      overflow: hidden; animation: obStepIn 0.28s var(--spring) both;
     }
     .ob-pv-banner {
       padding: 16px 20px;
       background: linear-gradient(135deg, #4B66F8 0%, #3B54EE 60%, #2740D6 100%);
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      color: #FFFFFF; display: flex; align-items: center; justify-content: space-between;
     }
     .ob-pv-badge {
-      font-family: var(--mono);
-      font-size: 10.5px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.24);
+      font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16); border: 1px solid rgba(255, 255, 255, 0.24);
     }
-    .ob-pv-close {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      border: 0;
-      background: rgba(255, 255, 255, 0.2);
-      color: #FFFFFF;
-      font-size: 18px;
-      cursor: pointer;
-    }
+    .ob-pv-close { width: 30px; height: 30px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, 0.2); color: #FFFFFF; font-size: 18px; cursor: pointer; }
     .ob-pv-body { padding: 20px 22px 24px; }
     .ob-pv-name { margin: 0 0 2px; font-size: 24px; font-weight: 700; }
     .ob-pv-slug { font-family: var(--mono); font-size: 12px; color: var(--blue); margin-bottom: 10px; }
@@ -631,30 +651,57 @@
     .ob-pv-svc { display: flex; justify-content: space-between; padding: 8px 12px; border-radius: 10px; background: var(--soft); font-size: 14px; margin-bottom: 6px; }
 
     /* Done State */
-    .ob-done { text-align: center; padding: 16px 4px; }
+    .ob-done { text-align: center; padding: 20px 4px; }
     .ob-done-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: #ECFDF5;
-      color: var(--ok);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 12px;
+      width: 56px; height: 56px; border-radius: 50%; background: #ECFDF5; color: var(--ok-text);
+      display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px;
     }
 
+    /* ── Responsive Collapse (≤ 860px) ── */
+    @media (max-width: 860px) {
+      .ob-shell { grid-template-columns: 1fr; }
+      .ob-blue-rail {
+        border-radius: 20px;
+        padding: 16px 18px;
+        margin-bottom: 14px;
+      }
+      .ob-stepper {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 6px;
+      }
+      .ob-step-tab {
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+        gap: 0;
+      }
+      .ob-step-tab::after {
+        left: calc(50% + 18px);
+        right: calc(-50% + 18px);
+        top: 16px;
+        bottom: auto;
+        width: auto;
+        height: 2px;
+      }
+      .ob-step-text, .ob-rail-help { display: none; }
+      .ob-seam-node { margin-right: 0; width: 32px; height: 32px; }
+      .ob-form-card { margin-left: 0; border-radius: 22px; }
+    }
     @media (max-width: 640px) {
       .ob-grid-2, .ob-card-fields { grid-template-columns: 1fr; }
       .ob-sms-row { flex-direction: column; align-items: stretch; }
       .ob-save-pill { display: none; }
-      .ob-card { padding: 24px 18px; border-radius: 22px; }
+      .ob-form-card { padding: 24px 18px; }
+      .ob-footer-bar { flex-direction: column; align-items: stretch; }
+      .ob-prog-wrap { justify-content: space-between; }
+      .ob-prog-track { flex: 1; }
       .ob-actions { flex-direction: column-reverse; align-items: stretch; }
       .ob-btn { width: 100%; }
     }
     @media (prefers-reduced-motion: reduce) {
       .ob-panel.is-on, .ob-preview-sheet { animation: none; }
-      .ob-dot-btn, .ob-btn, .ob-switch-row input[type="checkbox"]::after { transition: none; }
+      .ob-seam-node, .ob-btn, .ob-switch-row input[type="checkbox"]::after, .ob-prog-track > i { transition: none; }
     }
   </style>
 </head>
@@ -678,257 +725,328 @@
       <p class="ob-lead">Every profile is reviewed by a person before going live. 0% commission, always.</p>
     </header>
 
-    <div class="ob-progress-bar">
-      <div class="ob-step-dots" role="tablist" aria-label="Onboarding steps">
-        <button type="button" class="ob-dot-btn is-active" data-step="1" aria-label="Step 1: Identity"></button>
-        <button type="button" class="ob-dot-btn" data-step="2" aria-label="Step 2: Media"></button>
-        <button type="button" class="ob-dot-btn" data-step="3" aria-label="Step 3: Services"></button>
-        <button type="button" class="ob-dot-btn" data-step="4" aria-label="Step 4: Gear and Phone"></button>
-        <button type="button" class="ob-dot-btn" data-step="5" aria-label="Step 5: Trial and Submit"></button>
-      </div>
-      <button type="button" class="ob-preview-trigger" id="obOpenPreviewBtn">Preview storefront</button>
-    </div>
+    <div class="ob-shell">
+      <!-- LEFT: Royal-Blue Stepper Panel with Straddling Seam Nodes -->
+      <aside class="ob-blue-rail" aria-label="Onboarding steps">
+        <nav class="ob-stepper" role="tablist" aria-label="Storefront setup steps">
+          <button type="button" class="ob-step-tab is-active" data-step="1" aria-current="step">
+            <span class="ob-step-text">
+              <span class="ob-step-kicker">Step 1</span>
+              <span class="ob-step-label">Identity &amp; City</span>
+            </span>
+            <span class="ob-seam-node">1</span>
+          </button>
+          <button type="button" class="ob-step-tab" data-step="2">
+            <span class="ob-step-text">
+              <span class="ob-step-kicker">Step 2</span>
+              <span class="ob-step-label">Work &amp; Media</span>
+            </span>
+            <span class="ob-seam-node">2</span>
+          </button>
+          <button type="button" class="ob-step-tab" data-step="3">
+            <span class="ob-step-text">
+              <span class="ob-step-kicker">Step 3</span>
+              <span class="ob-step-label">Services &amp; Rates</span>
+            </span>
+            <span class="ob-seam-node">3</span>
+          </button>
+          <button type="button" class="ob-step-tab" data-step="4">
+            <span class="ob-step-text">
+              <span class="ob-step-kicker">Step 4</span>
+              <span class="ob-step-label">Gear &amp; Phone</span>
+            </span>
+            <span class="ob-seam-node">4</span>
+          </button>
+          <button type="button" class="ob-step-tab" data-step="5">
+            <span class="ob-step-text">
+              <span class="ob-step-kicker">Step 5</span>
+              <span class="ob-step-label">Trial &amp; Submit</span>
+            </span>
+            <span class="ob-seam-node">5</span>
+          </button>
+        </nav>
 
-    <section class="ob-card" aria-label="Storefront builder">
+        <div class="ob-rail-help">
+          Having troubles? <a href="mailto:support@nexus.com">Contact us</a>
+        </div>
+      </aside>
 
-      <!-- STEP 1: Identity & Location -->
-      <div class="ob-panel is-on" data-panel="1">
-        <p class="ob-kicker">STEP 1 OF 5 · IDENTITY</p>
-        <h2>Who you are &amp; <em>where you work.</em></h2>
-        <p class="ob-panel-sub">Claim your custom URL handle and tell clients what you specialize in.</p>
-
-        <div class="ob-grid-2">
-          <div class="ob-field">
-            <label class="ob-label" for="obName">Display or Studio Name</label>
-            <input class="ob-input" id="obName" type="text" placeholder="e.g. Marcus Vance" maxlength="80" required>
+      <!-- RIGHT: Overlapping White Editorial Form Card -->
+      <section class="ob-form-card" aria-label="Storefront builder">
+        <div>
+          <div class="ob-card-meta">
+            <p class="ob-kicker" id="obTopKicker">STEP 1 OF 5 · IDENTITY</p>
+            <div class="ob-meta-right">
+              <span>~2 mins</span>
+              <button type="button" class="ob-preview-trigger" id="obOpenPreviewBtn">Preview storefront</button>
+            </div>
           </div>
-          <div class="ob-field">
-            <label class="ob-label" for="obSlug">Custom URL <span>/c/your-name</span></label>
-            <div class="ob-slug-wrap">
-              <span class="ob-slug-prefix">/c/</span>
-              <input id="obSlug" type="text" placeholder="marcus-vance" maxlength="60">
+
+          <!-- STEP 1: Identity & Location -->
+          <div class="ob-panel is-on" data-panel="1">
+            <h2>Who you are &amp; <em>where you work.</em></h2>
+            <p class="ob-panel-sub">Claim your custom URL handle and tell clients what you specialize in.</p>
+
+            <div class="ob-grid-2">
+              <div class="ob-field">
+                <label class="ob-label" for="obName">Display or Studio Name</label>
+                <input class="ob-input" id="obName" type="text" placeholder="e.g. Marcus Vance" maxlength="80" required>
+              </div>
+              <div class="ob-field">
+                <label class="ob-label" for="obSlug">Custom URL <span>/c/your-name</span></label>
+                <div class="ob-slug-wrap">
+                  <span class="ob-slug-prefix">/c/</span>
+                  <input id="obSlug" type="text" placeholder="marcus-vance" maxlength="60">
+                </div>
+              </div>
+            </div>
+
+            <div class="ob-grid-2">
+              <div class="ob-field">
+                <label class="ob-label" for="obCategory">Primary Discipline</label>
+                <select class="ob-select" id="obCategory" required>
+                  <option value="" disabled selected>Select a category...</option>
+                  <optgroup label="Creative &amp; Production">
+                    <option value="film">Film &amp; video</option>
+                    <option value="aerial">Aerial &amp; drone</option>
+                    <option value="photo">Photography</option>
+                    <option value="art">Illustration &amp; art</option>
+                    <option value="d3">3D &amp; motion</option>
+                    <option value="other">Other creative</option>
+                  </optgroup>
+                  <optgroup label="Classes &amp; Hobby Teaching">
+                    <option value="class">General classes &amp; workshops</option>
+                    <option value="pottery">Pottery &amp; ceramics</option>
+                    <option value="crochet">Crochet &amp; knitting</option>
+                    <option value="painting">Painting &amp; drawing</option>
+                    <option value="cooking">Cooking &amp; baking</option>
+                    <option value="music">Music lessons</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="ob-field">
+                <label class="ob-label" for="obCity">City</label>
+                <input class="ob-input" id="obCity" type="text" placeholder="e.g. Austin, TX" maxlength="80" required>
+              </div>
+            </div>
+
+            <div class="ob-field">
+              <label class="ob-label" for="obHeadline">Headline <span>Max 140 chars</span></label>
+              <input class="ob-input" id="obHeadline" type="text" placeholder="e.g. Commercial Cinematographer &amp; FPV Drone Pilot" maxlength="140">
+            </div>
+
+            <label class="ob-switch-row">
+              <span class="ob-switch-copy">
+                <strong>Available for remote / online work</strong>
+                <small>Show your profile to clients searching outside your city.</small>
+              </span>
+              <input type="checkbox" id="obRemote">
+            </label>
+
+            <label class="ob-switch-row">
+              <span class="ob-switch-copy">
+                <strong>18+ / Sensitive Editorial Work (Gated)</strong>
+                <small>Require 18+ verified clients to request your approval before viewing.</small>
+              </span>
+              <input type="checkbox" id="obNsfwGate">
+            </label>
+
+            <p class="ob-msg" id="obMsg1" role="alert"></p>
+            <div class="ob-footer-bar">
+              <div class="ob-prog-wrap">
+                <div class="ob-prog-track"><i style="width:20%"></i></div>
+                <span class="ob-prog-label">20%</span>
+              </div>
+              <div class="ob-actions">
+                <a class="ob-btn ob-btn-ghost" href="/explore">← Explore</a>
+                <button type="button" class="ob-btn ob-btn-primary" data-next="2">Continue →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: Portfolio & Media -->
+          <div class="ob-panel" data-panel="2">
+            <h2>Show your <em>best work.</em></h2>
+            <p class="ob-panel-sub">Our team reviews your portfolio link and media before approving your listing.</p>
+
+            <div class="ob-field">
+              <label class="ob-label" for="obPortfolio">Portfolio / Reel Link <span>Required for review</span></label>
+              <input class="ob-input" id="obPortfolio" type="url" placeholder="https://vimeo.com/your-reel or https://yoursite.com" maxlength="500" required>
+            </div>
+
+            <div class="ob-field">
+              <label class="ob-label" for="obVideo">Featured Video URL <span>Optional</span></label>
+              <input class="ob-input" id="obVideo" type="url" placeholder="https://youtube.com/watch?v=..." maxlength="500">
+            </div>
+
+            <div class="ob-field">
+              <label class="ob-label">Gallery Photos <span>Up to 6 images</span></label>
+              <div class="ob-dropzone" id="obDropzone" tabindex="0" role="button" aria-label="Upload gallery photos">
+                <strong>Drop photos here or click to browse</strong>
+                <span>JPG, PNG, or WebP · Instant preview</span>
+                <input type="file" id="obFileInput" accept="image/*" multiple hidden>
+              </div>
+              <div class="ob-media-thumbs" id="obThumbs"></div>
+            </div>
+
+            <div class="ob-field">
+              <label class="ob-label" for="obAbout">About &amp; Experience <span id="obBioCount">0 / 4000</span></label>
+              <textarea class="ob-textarea" id="obAbout" placeholder="Tell clients about your style, notable projects, or what students learn in your classes..." maxlength="4000"></textarea>
+            </div>
+
+            <p class="ob-msg" id="obMsg2" role="alert"></p>
+            <div class="ob-footer-bar">
+              <div class="ob-prog-wrap">
+                <div class="ob-prog-track"><i style="width:40%"></i></div>
+                <span class="ob-prog-label">40%</span>
+              </div>
+              <div class="ob-actions">
+                <button type="button" class="ob-btn ob-btn-ghost" data-prev="1">← Previous</button>
+                <button type="button" class="ob-btn ob-btn-primary" data-next="3">Continue →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: Services & Classes -->
+          <div class="ob-panel" data-panel="3">
+            <h2>Define your <em>services &amp; rates.</em></h2>
+            <p class="ob-panel-sub">Transparent upfront pricing gets 3× more qualified inquiries. You keep 100%.</p>
+
+            <div class="ob-pkg-list" id="obPkgList"></div>
+            <button type="button" class="ob-btn-dashed" id="obAddPkgBtn">+ Add another service or class</button>
+
+            <p class="ob-msg" id="obMsg3" role="alert"></p>
+            <div class="ob-footer-bar">
+              <div class="ob-prog-wrap">
+                <div class="ob-prog-track"><i style="width:60%"></i></div>
+                <span class="ob-prog-label">60%</span>
+              </div>
+              <div class="ob-actions">
+                <button type="button" class="ob-btn ob-btn-ghost" data-prev="2">← Previous</button>
+                <button type="button" class="ob-btn ob-btn-primary" data-next="4">Continue →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 4: Gear, Socials & SMS Verification -->
+          <div class="ob-panel" data-panel="4">
+            <h2>Gear, links &amp; <em>phone check.</em></h2>
+            <p class="ob-panel-sub">List your equipment or studio setup, and verify your phone via automated SMS.</p>
+
+            <div class="ob-field">
+              <label class="ob-label" for="obGearInput">Gear / Equipment / Studio Setup <span>Press Enter to add</span></label>
+              <div class="ob-sms-row">
+                <input class="ob-input" id="obGearInput" type="text" placeholder="e.g. RED V-Raptor 8K, DJI Inspire 3">
+                <button type="button" class="ob-btn-sm" id="obAddGearBtn">Add</button>
+              </div>
+              <div class="ob-chip-row" id="obGearChips"></div>
+              <div class="ob-chip-row">
+                <button type="button" class="ob-suggest-chip" data-gear="Sony FX6">+ Sony FX6</button>
+                <button type="button" class="ob-suggest-chip" data-gear="DJI Mavic 3 Pro">+ DJI Mavic 3 Pro</button>
+                <button type="button" class="ob-suggest-chip" data-gear="DaVinci Resolve Studio">+ DaVinci Resolve</button>
+              </div>
+            </div>
+
+            <div class="ob-grid-2">
+              <div class="ob-field">
+                <label class="ob-label" for="obWebsite">Website <span>Optional</span></label>
+                <input class="ob-input" id="obWebsite" type="url" placeholder="https://yourstudio.com" maxlength="500">
+              </div>
+              <div class="ob-field">
+                <label class="ob-label" for="obInstagram">Instagram <span>Optional</span></label>
+                <input class="ob-input" id="obInstagram" type="url" placeholder="https://instagram.com/handle" maxlength="300">
+              </div>
+            </div>
+
+            <div class="ob-sms-box">
+              <label class="ob-label" for="obPhone" style="margin-bottom:8px">Phone Verification <span>Automated SMS · Kept private</span></label>
+              <div class="ob-sms-row">
+                <input class="ob-input" id="obPhone" type="tel" placeholder="+1 (555) 234-5678" autocomplete="tel">
+                <button type="button" class="ob-btn-sm" id="obSendSmsBtn">Send SMS code</button>
+              </div>
+              <div id="obSmsVerifyRow" class="ob-sms-row" style="margin-top:10px" hidden>
+                <input class="ob-input" id="obSmsCode" type="text" inputmode="numeric" maxlength="6" placeholder="6-digit SMS code">
+                <button type="button" class="ob-btn-sm" id="obVerifySmsBtn">Verify</button>
+              </div>
+              <div class="ob-sms-ok" id="obSmsOk" hidden>✓ Phone verified via SMS</div>
+            </div>
+
+            <p class="ob-msg" id="obMsg4" role="alert"></p>
+            <div class="ob-footer-bar">
+              <div class="ob-prog-wrap">
+                <div class="ob-prog-track"><i style="width:80%"></i></div>
+                <span class="ob-prog-label">80%</span>
+              </div>
+              <div class="ob-actions">
+                <button type="button" class="ob-btn ob-btn-ghost" data-prev="3">← Previous</button>
+                <button type="button" class="ob-btn ob-btn-primary" data-next="5">Continue →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 5: Trial & Submit -->
+          <div class="ob-panel" data-panel="5">
+            <h2>Start your <em>90-day free trial.</em></h2>
+            <p class="ob-panel-sub">Your card reserves your Founding 100 spot. Nothing is charged today.</p>
+
+            <div class="ob-billing-box">
+              <div class="ob-billing-top">
+                <strong>Founding Creator Plan</strong>
+                <span class="ob-billing-price">$0.00 today · then $19.99/mo</span>
+              </div>
+              <p style="margin:0;font-size:14.5px;color:var(--sub);line-height:1.48">
+                90 days free starting today, then $19.99/mo with 0% commission. Cancel anytime. Auto-canceled if not approved.
+              </p>
+              <div class="ob-card-fields">
+                <input class="ob-input" id="obCardNum" type="text" inputmode="numeric" placeholder="Card number" maxlength="19">
+                <input class="ob-input" id="obCardExp" type="text" inputmode="numeric" placeholder="MM / YY" maxlength="7">
+                <input class="ob-input" id="obCardCvc" type="text" inputmode="numeric" placeholder="CVC" maxlength="4">
+              </div>
+            </div>
+
+            <label class="ob-switch-row" style="background:#FFFFFF">
+              <span class="ob-switch-copy">
+                <strong>I agree to the Terms, Privacy Policy &amp; Auto-Renewal</strong>
+                <small>After 90 free days, my card is charged $19.99/mo until I cancel.</small>
+              </span>
+              <input type="checkbox" id="obTermsCheck" required>
+            </label>
+
+            <p class="ob-msg" id="obMsg5" role="alert"></p>
+            <div class="ob-footer-bar">
+              <div class="ob-prog-wrap">
+                <div class="ob-prog-track"><i style="width:100%"></i></div>
+                <span class="ob-prog-label">100%</span>
+              </div>
+              <div class="ob-actions">
+                <button type="button" class="ob-btn ob-btn-ghost" data-prev="4">← Previous</button>
+                <button type="button" class="ob-btn ob-btn-primary" id="obSubmitBtn">Submit for Review →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 6: Submitted Confirmation -->
+          <div class="ob-panel" data-panel="done">
+            <div class="ob-done">
+              <div class="ob-done-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <p class="ob-kicker">APPLICATION RECEIVED</p>
+              <h2>Your storefront is <em>in review.</em></h2>
+              <p class="ob-panel-sub" style="max-width:44ch;margin:8px auto 22px">
+                A person is reviewing your portfolio now. We'll email you when <b id="obDoneSlug">/c/your-name</b> goes live.
+              </p>
+              <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+                <a class="ob-btn ob-btn-primary" href="/explore">Explore Directory →</a>
+                <a class="ob-btn ob-btn-ghost" href="/pricing">View Membership</a>
+              </div>
             </div>
           </div>
         </div>
-
-        <div class="ob-grid-2">
-          <div class="ob-field">
-            <label class="ob-label" for="obCategory">Primary Discipline</label>
-            <select class="ob-select" id="obCategory" required>
-              <option value="" disabled selected>Select a category...</option>
-              <optgroup label="Creative &amp; Production">
-                <option value="film">Film &amp; video</option>
-                <option value="aerial">Aerial &amp; drone</option>
-                <option value="photo">Photography</option>
-                <option value="art">Illustration &amp; art</option>
-                <option value="d3">3D &amp; motion</option>
-                <option value="other">Other creative</option>
-              </optgroup>
-              <optgroup label="Classes &amp; Hobby Teaching">
-                <option value="class">General classes &amp; workshops</option>
-                <option value="pottery">Pottery &amp; ceramics</option>
-                <option value="crochet">Crochet &amp; knitting</option>
-                <option value="painting">Painting &amp; drawing</option>
-                <option value="cooking">Cooking &amp; baking</option>
-                <option value="music">Music lessons</option>
-              </optgroup>
-            </select>
-          </div>
-          <div class="ob-field">
-            <label class="ob-label" for="obCity">City</label>
-            <input class="ob-input" id="obCity" type="text" placeholder="e.g. Austin, TX" maxlength="80" required>
-          </div>
-        </div>
-
-        <div class="ob-field">
-          <label class="ob-label" for="obHeadline">Headline <span>Max 140 chars</span></label>
-          <input class="ob-input" id="obHeadline" type="text" placeholder="e.g. Commercial Cinematographer &amp; FPV Drone Pilot" maxlength="140">
-        </div>
-
-        <label class="ob-switch-row">
-          <span class="ob-switch-copy">
-            <strong>Available for remote / online work</strong>
-            <small>Show your profile to clients searching outside your city.</small>
-          </span>
-          <input type="checkbox" id="obRemote">
-        </label>
-
-        <label class="ob-switch-row">
-          <span class="ob-switch-copy">
-            <strong>18+ / Sensitive Editorial Work (Gated)</strong>
-            <small>Require 18+ verified clients to request your approval before viewing.</small>
-          </span>
-          <input type="checkbox" id="obNsfwGate">
-        </label>
-
-        <p class="ob-msg" id="obMsg1" role="alert"></p>
-        <div class="ob-actions">
-          <a class="ob-btn ob-btn-ghost" href="/explore">← Back to Explore</a>
-          <button type="button" class="ob-btn ob-btn-primary" data-next="2">Continue →</button>
-        </div>
-      </div>
-
-      <!-- STEP 2: Portfolio & Media -->
-      <div class="ob-panel" data-panel="2">
-        <p class="ob-kicker">STEP 2 OF 5 · SHOWREEL &amp; BIO</p>
-        <h2>Show your <em>best work.</em></h2>
-        <p class="ob-panel-sub">Our team reviews your portfolio link and media before approving your listing.</p>
-
-        <div class="ob-field">
-          <label class="ob-label" for="obPortfolio">Portfolio / Reel Link <span>Required for review</span></label>
-          <input class="ob-input" id="obPortfolio" type="url" placeholder="https://vimeo.com/your-reel or https://yoursite.com" maxlength="500" required>
-        </div>
-
-        <div class="ob-field">
-          <label class="ob-label" for="obVideo">Featured Video URL <span>Optional</span></label>
-          <input class="ob-input" id="obVideo" type="url" placeholder="https://youtube.com/watch?v=..." maxlength="500">
-        </div>
-
-        <div class="ob-field">
-          <label class="ob-label">Gallery Photos <span>Up to 6 images</span></label>
-          <div class="ob-dropzone" id="obDropzone" tabindex="0" role="button" aria-label="Upload gallery photos">
-            <strong>Drop photos here or click to browse</strong>
-            <span>JPG, PNG, or WebP · Instant preview</span>
-            <input type="file" id="obFileInput" accept="image/*" multiple hidden>
-          </div>
-          <div class="ob-media-thumbs" id="obThumbs"></div>
-        </div>
-
-        <div class="ob-field">
-          <label class="ob-label" for="obAbout">About &amp; Experience <span id="obBioCount">0 / 4000</span></label>
-          <textarea class="ob-textarea" id="obAbout" placeholder="Tell clients about your style, notable projects, or what students learn in your classes..." maxlength="4000"></textarea>
-        </div>
-
-        <p class="ob-msg" id="obMsg2" role="alert"></p>
-        <div class="ob-actions">
-          <button type="button" class="ob-btn ob-btn-ghost" data-prev="1">← Back</button>
-          <button type="button" class="ob-btn ob-btn-primary" data-next="3">Continue →</button>
-        </div>
-      </div>
-
-      <!-- STEP 3: Services & Classes -->
-      <div class="ob-panel" data-panel="3">
-        <p class="ob-kicker">STEP 3 OF 5 · PRICING MENU</p>
-        <h2>Define your <em>services &amp; rates.</em></h2>
-        <p class="ob-panel-sub">Transparent upfront pricing gets 3× more qualified inquiries. You keep 100%.</p>
-
-        <div class="ob-pkg-list" id="obPkgList"></div>
-        <button type="button" class="ob-btn-dashed" id="obAddPkgBtn">+ Add another service or class</button>
-
-        <p class="ob-msg" id="obMsg3" role="alert"></p>
-        <div class="ob-actions">
-          <button type="button" class="ob-btn ob-btn-ghost" data-prev="2">← Back</button>
-          <button type="button" class="ob-btn ob-btn-primary" data-next="4">Continue →</button>
-        </div>
-      </div>
-
-      <!-- STEP 4: Gear, Socials & SMS Verification -->
-      <div class="ob-panel" data-panel="4">
-        <p class="ob-kicker">STEP 4 OF 5 · TRUST &amp; GEAR</p>
-        <h2>Gear, links &amp; <em>phone check.</em></h2>
-        <p class="ob-panel-sub">List your equipment or studio setup, and verify your phone via automated SMS.</p>
-
-        <div class="ob-field">
-          <label class="ob-label" for="obGearInput">Gear / Equipment / Studio Setup <span>Press Enter to add</span></label>
-          <div class="ob-sms-row">
-            <input class="ob-input" id="obGearInput" type="text" placeholder="e.g. RED V-Raptor 8K, DJI Inspire 3">
-            <button type="button" class="ob-btn-sm" id="obAddGearBtn">Add</button>
-          </div>
-          <div class="ob-chip-row" id="obGearChips"></div>
-          <div class="ob-chip-row">
-            <button type="button" class="ob-suggest-chip" data-gear="Sony FX6">+ Sony FX6</button>
-            <button type="button" class="ob-suggest-chip" data-gear="DJI Mavic 3 Pro">+ DJI Mavic 3 Pro</button>
-            <button type="button" class="ob-suggest-chip" data-gear="DaVinci Resolve Studio">+ DaVinci Resolve</button>
-          </div>
-        </div>
-
-        <div class="ob-grid-2">
-          <div class="ob-field">
-            <label class="ob-label" for="obWebsite">Website <span>Optional</span></label>
-            <input class="ob-input" id="obWebsite" type="url" placeholder="https://yourstudio.com" maxlength="500">
-          </div>
-          <div class="ob-field">
-            <label class="ob-label" for="obInstagram">Instagram <span>Optional</span></label>
-            <input class="ob-input" id="obInstagram" type="url" placeholder="https://instagram.com/handle" maxlength="300">
-          </div>
-        </div>
-
-        <div class="ob-sms-box">
-          <label class="ob-label" for="obPhone" style="margin-bottom:8px">Phone Verification <span>Automated SMS · Kept private</span></label>
-          <div class="ob-sms-row">
-            <input class="ob-input" id="obPhone" type="tel" placeholder="+1 (555) 234-5678" autocomplete="tel">
-            <button type="button" class="ob-btn-sm" id="obSendSmsBtn">Send SMS code</button>
-          </div>
-          <div id="obSmsVerifyRow" class="ob-sms-row" style="margin-top:10px" hidden>
-            <input class="ob-input" id="obSmsCode" type="text" inputmode="numeric" maxlength="6" placeholder="6-digit SMS code">
-            <button type="button" class="ob-btn-sm" id="obVerifySmsBtn">Verify</button>
-          </div>
-          <div class="ob-sms-ok" id="obSmsOk" hidden>✓ Phone verified via SMS</div>
-        </div>
-
-        <p class="ob-msg" id="obMsg4" role="alert"></p>
-        <div class="ob-actions">
-          <button type="button" class="ob-btn ob-btn-ghost" data-prev="3">← Back</button>
-          <button type="button" class="ob-btn ob-btn-primary" data-next="5">Continue →</button>
-        </div>
-      </div>
-
-      <!-- STEP 5: Trial & Submit -->
-      <div class="ob-panel" data-panel="5">
-        <p class="ob-kicker">STEP 5 OF 5 · FOUNDING TRIAL</p>
-        <h2>Start your <em>90-day free trial.</em></h2>
-        <p class="ob-panel-sub">Your card reserves your Founding 100 spot. Nothing is charged today.</p>
-
-        <div class="ob-billing-box">
-          <div class="ob-billing-top">
-            <strong>Founding Creator Plan</strong>
-            <span class="ob-billing-price">$0.00 today · then $19.99/mo</span>
-          </div>
-          <p style="margin:0;font-size:14.5px;color:var(--sub);line-height:1.48">
-            90 days free starting today, then $19.99/mo with 0% commission. Cancel anytime. Auto-canceled if not approved.
-          </p>
-          <div class="ob-card-fields">
-            <input class="ob-input" id="obCardNum" type="text" inputmode="numeric" placeholder="Card number" maxlength="19">
-            <input class="ob-input" id="obCardExp" type="text" inputmode="numeric" placeholder="MM / YY" maxlength="7">
-            <input class="ob-input" id="obCardCvc" type="text" inputmode="numeric" placeholder="CVC" maxlength="4">
-          </div>
-        </div>
-
-        <label class="ob-switch-row" style="background:#FFFFFF">
-          <span class="ob-switch-copy">
-            <strong>I agree to the Terms, Privacy Policy &amp; Auto-Renewal</strong>
-            <small>After 90 free days, my card is charged $19.99/mo until I cancel.</small>
-          </span>
-          <input type="checkbox" id="obTermsCheck" required>
-        </label>
-
-        <p class="ob-msg" id="obMsg5" role="alert"></p>
-        <div class="ob-actions">
-          <button type="button" class="ob-btn ob-btn-ghost" data-prev="4">← Back</button>
-          <button type="button" class="ob-btn ob-btn-primary" id="obSubmitBtn">Submit for Review →</button>
-        </div>
-      </div>
-
-      <!-- STEP 6: Submitted Confirmation -->
-      <div class="ob-panel" data-panel="done">
-        <div class="ob-done">
-          <div class="ob-done-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-          </div>
-          <p class="ob-kicker">APPLICATION RECEIVED</p>
-          <h2>Your storefront is <em>in review.</em></h2>
-          <p class="ob-panel-sub" style="max-width:44ch;margin:8px auto 22px">
-            A person is reviewing your portfolio now. We'll email you when <b id="obDoneSlug">/c/your-name</b> goes live.
-          </p>
-          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-            <a class="ob-btn ob-btn-primary" href="/explore">Explore Directory →</a>
-            <a class="ob-btn ob-btn-ghost" href="/pricing">View Membership</a>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <!-- On-Demand Translucent Preview Sheet -->
@@ -965,6 +1083,15 @@
     var mediaFiles = [];
     var packages = [{ kind: 'service', title: 'Full-Day Commercial Shoot', price: '1200' }];
 
+    var STEP_KICKERS = {
+      1: 'STEP 1 OF 5 · IDENTITY',
+      2: 'STEP 2 OF 5 · SHOWREEL & BIO',
+      3: 'STEP 3 OF 5 · PRICING MENU',
+      4: 'STEP 4 OF 5 · TRUST & GEAR',
+      5: 'STEP 5 OF 5 · FOUNDING TRIAL',
+      done: 'APPLICATION RECEIVED'
+    };
+
     var CATEGORY_LABELS = {
       film: 'Film & Video', aerial: 'Aerial & Drone', photo: 'Photography',
       art: 'Illustration & Art', d3: '3D & Motion', other: 'Other Creative',
@@ -981,11 +1108,18 @@
       document.querySelectorAll('.ob-panel').forEach(function (p) {
         p.classList.toggle('is-on', String(p.dataset.panel) === String(step));
       });
-      document.querySelectorAll('.ob-dot-btn').forEach(function (b) {
-        var n = parseInt(b.dataset.step, 10);
-        b.classList.toggle('is-active', n === step);
-        b.classList.toggle('is-done', step === 'done' || (typeof step === 'number' && n < step));
+      document.querySelectorAll('.ob-step-tab').forEach(function (t) {
+        var n = parseInt(t.dataset.step, 10);
+        var active = n === step;
+        var done = step === 'done' || (typeof step === 'number' && n < step);
+        t.classList.toggle('is-active', active);
+        t.classList.toggle('is-done', done);
+        var node = t.querySelector('.ob-seam-node');
+        if (node) node.textContent = done ? '✓' : String(n);
+        if (active) t.setAttribute('aria-current', 'step');
+        else t.removeAttribute('aria-current');
       });
+      if ($('obTopKicker')) $('obTopKicker').textContent = STEP_KICKERS[step] || '';
       saveDraft();
       if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -1020,9 +1154,9 @@
     document.querySelectorAll('[data-prev]').forEach(function (b) {
       b.addEventListener('click', function () { goStep(parseInt(b.dataset.prev, 10)); });
     });
-    document.querySelectorAll('.ob-dot-btn').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var target = parseInt(b.dataset.step, 10);
+    document.querySelectorAll('.ob-step-tab').forEach(function (t) {
+      t.addEventListener('click', function () {
+        var target = parseInt(t.dataset.step, 10);
         if (target < currentStep || validateStep(currentStep)) goStep(target);
       });
     });
@@ -1131,11 +1265,9 @@
       renderThumbs();
     }
     function renderThumbs() {
-      var wrap = $('obThumbs');
-      wrap.innerHTML = '';
+      var wrap = $('obThumbs'); wrap.innerHTML = '';
       mediaFiles.forEach(function (m, idx) {
-        var d = document.createElement('div');
-        d.className = 'ob-thumb';
+        var d = document.createElement('div'); d.className = 'ob-thumb';
         var img = document.createElement('img'); img.src = m.url; img.alt = m.name;
         var rm = document.createElement('button'); rm.type = 'button'; rm.textContent = '×';
         rm.addEventListener('click', function () { mediaFiles.splice(idx, 1); renderThumbs(); });
@@ -1145,11 +1277,9 @@
 
     /* ── Packages ── */
     function renderPackages() {
-      var list = $('obPkgList');
-      list.innerHTML = '';
+      var list = $('obPkgList'); list.innerHTML = '';
       packages.forEach(function (pkg, idx) {
-        var card = document.createElement('div');
-        card.className = 'ob-pkg-card';
+        var card = document.createElement('div'); card.className = 'ob-pkg-card';
         card.innerHTML =
           '<div class="ob-pkg-top"><div class="ob-pkg-kind">' +
           '<button type="button" class="' + (pkg.kind === 'service' ? 'is-on' : '') + '" data-k="service">Service</button>' +
