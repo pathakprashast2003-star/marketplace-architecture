@@ -147,6 +147,24 @@
       color: var(--bad);
     }
 
+    .ob-fill-demo {
+      border: 1px solid rgba(59, 84, 238, 0.28);
+      background: #EEF2FF;
+      color: var(--blue);
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.16s, border-color 0.16s;
+    }
+
+    .ob-fill-demo:hover {
+      background: #E0E7FF;
+      border-color: var(--blue);
+    }
+
     .ob-nav-link {
       color: var(--sub);
       font-weight: 600;
@@ -504,6 +522,32 @@
       color: var(--ink2);
     }
 
+    .ob-label > span:first-child {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--ink2);
+    }
+
+    .ob-req {
+      color: #DC2626;
+      font-style: normal;
+      font-weight: 700;
+      margin-left: 2px;
+    }
+
+    .ob-opt {
+      font-family: var(--sans) !important;
+      font-size: 12px !important;
+      font-weight: 500;
+      color: #94A3B8 !important;
+    }
+
+    .is-invalid {
+      border-color: #DC2626 !important;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.14) !important;
+    }
+
     .ob-label span {
       font-family: var(--serif);
       font-weight: 400;
@@ -630,6 +674,45 @@
     .ob-locate-btn:disabled {
       opacity: 0.6;
       cursor: wait;
+    }
+
+    .ob-city-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      z-index: 30;
+      max-height: 220px;
+      overflow-y: auto;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.16);
+      padding: 5px;
+    }
+    .ob-city-opt {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      border: 0;
+      background: transparent;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+    }
+    .ob-city-opt:hover,
+    .ob-city-opt.is-hi {
+      background: #EEF2FF;
+      color: var(--blue);
+    }
+    .ob-city-opt small {
+      font-size: 11.5px;
+      color: #94A3B8;
     }
 
     .ob-slug-wrap input {
@@ -1358,6 +1441,7 @@
     </a>
     <div class="ob-nav-right">
       <span class="ob-save-pill" id="obSavePill" aria-live="polite">Draft saved</span>
+      <button type="button" class="ob-fill-demo" id="obFillDemoBtn">Fill sample data</button>
       <button type="button" class="ob-clear-draft" id="obClearDraftBtn">Clear draft</button>
       <a class="ob-nav-link" href="/explore">Explore</a>
       <a class="ob-nav-link" href="/pricing">Pricing</a>
@@ -1428,11 +1512,11 @@
 
             <div class="ob-grid-2">
               <div class="ob-field">
-                <label class="ob-label" for="obName">Display or Studio Name</label>
+                <label class="ob-label" for="obName"><span>Display or Studio Name<em class="ob-req">*</em></span></label>
                 <input class="ob-input" id="obName" type="text" placeholder="e.g. Marcus Vance" maxlength="80" required>
               </div>
               <div class="ob-field">
-                <label class="ob-label" for="obSlug">Custom URL</label>
+                <label class="ob-label" for="obSlug">Custom URL <span class="ob-opt">Optional</span></label>
                 <div class="ob-slug-wrap">
                   <span class="ob-slug-prefix">/c/</span>
                   <input id="obSlug" type="text" placeholder="marcus-vance" maxlength="60">
@@ -1442,7 +1526,7 @@
 
             <div class="ob-grid-2">
               <div class="ob-field">
-                <label class="ob-label" for="obCategory">Primary Discipline</label>
+                <label class="ob-label" for="obCategory"><span>Primary Discipline<em class="ob-req">*</em></span></label>
                 <select class="ob-select" id="obCategory" required>
                   <option value="" disabled selected>Select a category...</option>
                   <optgroup label="Creative &amp; Production">
@@ -1464,35 +1548,20 @@
                 </select>
               </div>
               <div class="ob-field">
-                <label class="ob-label" for="obCity">City</label>
+                <label class="ob-label" for="obCity"><span>City<em class="ob-req">*</em></span></label>
                 <div class="ob-city-wrap">
-                  <input class="ob-input" id="obCity" type="text" list="obCityList" placeholder="Select or type city..." maxlength="80" required>
+                  <input class="ob-input" id="obCity" type="text" autocomplete="off" placeholder="Search or select city..." maxlength="80" required>
                   <button type="button" class="ob-locate-btn" id="obLocateCityBtn" title="Use current location">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
                     Locate
                   </button>
+                  <div class="ob-city-menu" id="obCityMenu" role="listbox" hidden></div>
                 </div>
-                <datalist id="obCityList">
-                  <option value="Austin, TX"></option>
-                  <option value="Los Angeles, CA"></option>
-                  <option value="New York, NY"></option>
-                  <option value="San Francisco, CA"></option>
-                  <option value="Chicago, IL"></option>
-                  <option value="Miami, FL"></option>
-                  <option value="Seattle, WA"></option>
-                  <option value="Nashville, TN"></option>
-                  <option value="London, UK"></option>
-                  <option value="Toronto, ON"></option>
-                  <option value="Berlin, DE"></option>
-                  <option value="Paris, FR"></option>
-                  <option value="Tokyo, JP"></option>
-                  <option value="Sydney, AU"></option>
-                </datalist>
               </div>
             </div>
 
             <div class="ob-field">
-              <label class="ob-label" for="obHeadline">Headline <span id="obHeadlineCount">0 / 100</span></label>
+              <label class="ob-label" for="obHeadline"><span>Headline <span class="ob-opt">Optional</span></span> <span id="obHeadlineCount">0 / 100</span></label>
               <input class="ob-input" id="obHeadline" type="text"
                 placeholder="e.g. Commercial Cinematographer &amp; FPV Drone Pilot" maxlength="100">
             </div>
@@ -1532,19 +1601,19 @@
             <p class="ob-panel-sub">Our team reviews your portfolio link and media before approving your listing.</p>
 
             <div class="ob-field">
-              <label class="ob-label" for="obPortfolio">Portfolio / Reel Link <span>Required for review</span></label>
+              <label class="ob-label" for="obPortfolio"><span>Portfolio / Reel Link<em class="ob-req">*</em></span> <span>Required for review</span></label>
               <input class="ob-input" id="obPortfolio" type="url"
                 placeholder="https://vimeo.com/your-reel or https://yoursite.com" maxlength="500" required>
             </div>
 
             <div class="ob-field">
-              <label class="ob-label" for="obVideo">Featured Video URL <span>Optional</span></label>
+              <label class="ob-label" for="obVideo">Featured Video URL <span class="ob-opt">Optional</span></label>
               <input class="ob-input" id="obVideo" type="url" placeholder="https://youtube.com/watch?v=..."
                 maxlength="500">
             </div>
 
             <div class="ob-field">
-              <label class="ob-label">Gallery Photos <span>Up to 6 images</span></label>
+              <label class="ob-label">Gallery Photos <span class="ob-opt">Optional · Up to 6 images</span></label>
               <div class="ob-dropzone" id="obDropzone" tabindex="0" role="button" aria-label="Upload gallery photos">
                 <strong>Drop photos here or click to browse</strong>
                 <span>JPG, PNG, or WebP · Instant preview</span>
@@ -1554,7 +1623,7 @@
             </div>
 
             <div class="ob-field">
-              <label class="ob-label" for="obAbout">About &amp; Experience <span id="obBioCount">0 / 4000</span></label>
+              <label class="ob-label" for="obAbout"><span>About &amp; Experience <span class="ob-opt">Optional</span></span> <span id="obBioCount">0 / 4000</span></label>
               <textarea class="ob-textarea" id="obAbout"
                 placeholder="Tell clients about your style, notable projects, or what students learn in your classes..."
                 maxlength="4000"></textarea>
@@ -1600,7 +1669,7 @@
             <p class="ob-panel-sub">List your equipment or studio setup, and verify your phone via automated SMS.</p>
 
             <div class="ob-field">
-              <label class="ob-label" for="obGearInput">Gear / Equipment / Studio Setup <span>Press Enter to
+              <label class="ob-label" for="obGearInput"><span>Gear / Equipment / Studio Setup <span class="ob-opt">Optional</span></span> <span>Press Enter to
                   add</span></label>
               <div class="ob-sms-row">
                 <input class="ob-input" id="obGearInput" type="text" placeholder="e.g. RED V-Raptor 8K, DJI Inspire 3">
@@ -1617,18 +1686,18 @@
 
             <div class="ob-grid-2">
               <div class="ob-field">
-                <label class="ob-label" for="obWebsite">Website <span>Optional</span></label>
+                <label class="ob-label" for="obWebsite">Website <span class="ob-opt">Optional</span></label>
                 <input class="ob-input" id="obWebsite" type="url" placeholder="https://yourstudio.com" maxlength="500">
               </div>
               <div class="ob-field">
-                <label class="ob-label" for="obInstagram">Instagram <span>Optional</span></label>
+                <label class="ob-label" for="obInstagram">Instagram <span class="ob-opt">Optional</span></label>
                 <input class="ob-input" id="obInstagram" type="url" placeholder="https://instagram.com/handle"
                   maxlength="300">
               </div>
             </div>
 
             <div class="ob-sms-box">
-              <label class="ob-label" for="obPhone" style="margin-bottom:8px">Phone Verification <span>Automated SMS ·
+              <label class="ob-label" for="obPhone" style="margin-bottom:8px"><span>Phone Verification <span class="ob-opt">Optional</span></span> <span>Automated SMS ·
                   Kept private</span></label>
               <div class="ob-sms-row">
                 <input class="ob-input" id="obPhone" type="tel" placeholder="+1 (555) 234-5678" autocomplete="tel">
@@ -1680,7 +1749,7 @@
 
             <label class="ob-switch-row" style="background:#FFFFFF">
               <span class="ob-switch-copy">
-                <strong>I agree to the Terms, Privacy Policy &amp; Auto-Renewal</strong>
+                <strong>I agree to the Terms, Privacy Policy &amp; Auto-Renewal<em class="ob-req">*</em></strong>
                 <small>After 90 free days, my card is charged $19.99/mo until I cancel.</small>
               </span>
               <input type="checkbox" id="obTermsCheck" required>
@@ -1800,22 +1869,43 @@
         if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
+      function clearInvalid() {
+        document.querySelectorAll('.is-invalid').forEach(function (el) { el.classList.remove('is-invalid'); });
+        document.querySelectorAll('.ob-msg').forEach(function (m) { m.textContent = ''; });
+      }
+      function flagInvalid(el, msgEl, text) {
+        clearInvalid();
+        if (msgEl) { msgEl.textContent = text; msgEl.className = 'ob-msg is-bad'; }
+        if (el) {
+          el.classList.add('is-invalid');
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          setTimeout(function () { try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); } }, 180);
+          var clearOnce = function () {
+            el.classList.remove('is-invalid');
+            if (msgEl) msgEl.textContent = '';
+            el.removeEventListener('input', clearOnce);
+            el.removeEventListener('change', clearOnce);
+          };
+          el.addEventListener('input', clearOnce);
+          el.addEventListener('change', clearOnce);
+        }
+        return false;
+      }
+
       function validateStep(step) {
+        clearInvalid();
         if (step === 1) {
           var msg = $('obMsg1');
           msg.textContent = '';
-          if (!$('obName').value.trim()) { msg.textContent = 'Please enter your display or studio name.'; msg.className = 'ob-msg is-bad'; $('obName').focus(); return false; }
-          if (!$('obCategory').value) { msg.textContent = 'Please select a primary discipline.'; msg.className = 'ob-msg is-bad'; $('obCategory').focus(); return false; }
-          if (!$('obCity').value.trim()) { msg.textContent = 'Please enter your city.'; msg.className = 'ob-msg is-bad'; $('obCity').focus(); return false; }
+          if (!$('obName').value.trim()) return flagInvalid($('obName'), msg, 'Please enter your display or studio name.');
+          if (!$('obCategory').value) return flagInvalid($('obCategory'), msg, 'Please select a primary discipline.');
+          if (!$('obCity').value.trim()) return flagInvalid($('obCity'), msg, 'Please enter or select your city.');
         }
         if (step === 2) {
           var msg2 = $('obMsg2');
           msg2.textContent = '';
           if (!/^https?:\/\/[^\s]+$/i.test($('obPortfolio').value.trim())) {
-            msg2.textContent = 'Please enter a valid portfolio URL starting with https://';
-            msg2.className = 'ob-msg is-bad';
-            $('obPortfolio').focus();
-            return false;
+            return flagInvalid($('obPortfolio'), msg2, 'Please enter a valid portfolio URL starting with https://');
           }
         }
         return true;
@@ -1908,6 +1998,132 @@
       $('obNsfwGate').addEventListener('change', syncNsfwState);
       syncHeadlineCount();
       syncNsfwState();
+
+      /* ── Custom Searchable City Combobox ── */
+      var CITIES = [
+        { name: 'Austin, TX', region: 'US' },
+        { name: 'Los Angeles, CA', region: 'US' },
+        { name: 'New York, NY', region: 'US' },
+        { name: 'San Francisco, CA', region: 'US' },
+        { name: 'Chicago, IL', region: 'US' },
+        { name: 'Miami, FL', region: 'US' },
+        { name: 'Seattle, WA', region: 'US' },
+        { name: 'Nashville, TN', region: 'US' },
+        { name: 'Atlanta, GA', region: 'US' },
+        { name: 'Denver, CO', region: 'US' },
+        { name: 'London, UK', region: 'Europe' },
+        { name: 'Berlin, DE', region: 'Europe' },
+        { name: 'Paris, FR', region: 'Europe' },
+        { name: 'Amsterdam, NL', region: 'Europe' },
+        { name: 'Toronto, ON', region: 'Canada' },
+        { name: 'Vancouver, BC', region: 'Canada' },
+        { name: 'Tokyo, JP', region: 'Asia' },
+        { name: 'Singapore, SG', region: 'Asia' },
+        { name: 'Mumbai, IN', region: 'Asia' },
+        { name: 'Sydney, AU', region: 'Oceania' }
+      ];
+      var cityInput = $('obCity');
+      var cityMenu = $('obCityMenu');
+      var cityHi = -1;
+
+      function renderCityMenu(query) {
+        if (!cityMenu) return;
+        var q = (query || '').toLowerCase().trim();
+        var matches = CITIES.filter(function (c) { return !q || c.name.toLowerCase().indexOf(q) !== -1; });
+        cityMenu.innerHTML = '';
+        cityHi = -1;
+        if (!matches.length) { cityMenu.hidden = true; return; }
+        matches.forEach(function (c) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'ob-city-opt';
+          btn.setAttribute('role', 'option');
+          btn.innerHTML = '<span>' + c.name + '</span><small>' + c.region + '</small>';
+          btn.addEventListener('mousedown', function (e) {
+            e.preventDefault();
+            cityInput.value = c.name;
+            cityInput.dispatchEvent(new Event('input', { bubbles: true }));
+            cityMenu.hidden = true;
+            saveDraft();
+          });
+          cityMenu.appendChild(btn);
+        });
+        cityMenu.hidden = false;
+      }
+
+      if (cityInput && cityMenu) {
+        cityInput.addEventListener('focus', function () { renderCityMenu(cityInput.value); });
+        cityInput.addEventListener('input', function () { renderCityMenu(cityInput.value); });
+        cityInput.addEventListener('keydown', function (e) {
+          if (cityMenu.hidden) return;
+          var opts = cityMenu.querySelectorAll('.ob-city-opt');
+          if (!opts.length) return;
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            cityHi = (cityHi + 1) % opts.length;
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            cityHi = (cityHi - 1 + opts.length) % opts.length;
+          } else if (e.key === 'Enter' && cityHi >= 0) {
+            e.preventDefault();
+            opts[cityHi].dispatchEvent(new Event('mousedown'));
+            return;
+          } else if (e.key === 'Escape') {
+            cityMenu.hidden = true;
+            return;
+          } else { return; }
+          opts.forEach(function (o, i) { o.classList.toggle('is-hi', i === cityHi); });
+          if (opts[cityHi]) opts[cityHi].scrollIntoView({ block: 'nearest' });
+        });
+        document.addEventListener('click', function (e) {
+          if (!e.target.closest('.ob-city-wrap')) cityMenu.hidden = true;
+        });
+      }
+
+      /* ── One-Click Full Sample Data (Demo) ── */
+      if ($('obFillDemoBtn')) {
+        $('obFillDemoBtn').addEventListener('click', function () {
+          clearInvalid();
+          $('obName').value = 'Marcus Vance';
+          $('obSlug').value = 'marcus-vance';
+          slugEdited = true;
+          $('obCategory').value = 'film';
+          $('obCity').value = 'Austin, TX';
+          $('obHeadline').value = 'Commercial Cinematographer & FPV Drone Pilot';
+          syncHeadlineCount();
+          $('obRemote').checked = true;
+          $('obNsfwGate').checked = true;
+          syncNsfwState();
+
+          $('obPortfolio').value = 'https://vimeo.com/marcusvance';
+          $('obVideo').value = 'https://youtube.com/watch?v=dQw4w9WgXcQ';
+          $('obAbout').value = '10+ years directing commercial brand films, music videos, and stabilized FPV aerial sequences across Texas and the US. Available for full-day productions and 1-on-1 cinematography mentorship.';
+          $('obBioCount').textContent = $('obAbout').value.length + ' / 4000';
+
+          packages = [
+            { kind: 'service', title: 'Full-Day Commercial Shoot', price: '1200' },
+            { kind: 'class', title: '1-on-1 FPV & Color Grading Workshop', price: '280' }
+          ];
+          renderPackages();
+
+          gearList = ['RED V-Raptor 8K', 'DJI Inspire 3', 'Sony FX6', 'DaVinci Resolve Studio'];
+          renderGear();
+          $('obWebsite').value = 'https://marcusvance.studio';
+          $('obInstagram').value = 'https://instagram.com/marcusvance';
+          $('obPhone').value = '+1 (512) 555-0194';
+          smsVerified = true;
+          $('obSmsVerifyRow').hidden = true;
+          $('obSmsOk').hidden = false;
+
+          $('obCardNum').value = '4242 4242 4242 4242';
+          $('obCardExp').value = '12 / 29';
+          $('obCardCvc').value = '424';
+          $('obTermsCheck').checked = true;
+
+          saveDraft();
+          $('obSavePill').textContent = 'Sample data loaded';
+        });
+      }
 
       var locateBtn = $('obLocateCityBtn');
       if (locateBtn) {
@@ -2079,8 +2295,7 @@
       $('obSubmitBtn').addEventListener('click', function () {
         var msg = $('obMsg5'); msg.textContent = '';
         if (!$('obTermsCheck').checked) {
-          msg.textContent = 'Please accept the Terms, Privacy Policy, and auto-renewal notice.';
-          msg.className = 'ob-msg is-bad'; return;
+          return flagInvalid($('obTermsCheck').closest('.ob-switch-row') || $('obTermsCheck'), msg, 'Please accept the Terms, Privacy Policy, and auto-renewal notice.');
         }
         var btn = $('obSubmitBtn'); btn.disabled = true; btn.textContent = 'Submitting...';
         fetch('/api/apply', {
