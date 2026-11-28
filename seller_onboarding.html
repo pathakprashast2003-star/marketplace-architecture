@@ -389,10 +389,10 @@
       margin: 0;
       font-family: var(--mono);
       font-size: 10.5px;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 0.10em;
       text-transform: uppercase;
-      color: var(--blue);
+      color: #94A3B8;
     }
 
     .ob-meta-right {
@@ -531,23 +531,23 @@
     .ob-textarea {
       width: 100%;
       padding: 11px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(15, 23, 42, 0.14);
-      background: #FAFAFC;
+      border-radius: 10px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
       font-size: 15.5px;
       color: var(--ink);
       outline: none;
-      transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.2s var(--spring);
+      transition: border-color 0.18s ease, box-shadow 0.2s var(--spring);
     }
 
     .ob-input,
     .ob-select {
-      height: 48px;
+      height: 46px;
     }
 
     .ob-select {
       appearance: none;
-      background: #FAFAFC url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 14px center/15px no-repeat;
+      background: #FFFFFF url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right 14px center/15px no-repeat;
       padding-right: 36px;
     }
 
@@ -613,18 +613,21 @@
       outline: none;
     }
 
-    /* Apple Pill Toggle Switches */
+    /* Apple Pill Toggle Switches (borderless editorial rows) */
     .ob-switch-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 13px 16px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: var(--soft);
-      margin-bottom: 12px;
+      padding: 13px 2px;
+      border: 0;
+      border-top: 1px solid rgba(15, 23, 42, 0.07);
+      background: transparent;
+      margin-bottom: 0;
       cursor: pointer;
+    }
+    .ob-switch-row + .ob-switch-row {
+      margin-top: 2px;
     }
 
     .ob-switch-copy strong {
@@ -936,22 +939,19 @@
       margin-top: 14px;
     }
 
-    /* Bottom Action Footer (Progress on left, Buttons on right) */
+    /* Bottom Action Footer */
     .ob-footer-bar {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 26px;
-      padding-top: 20px;
-      border-top: 1px solid var(--line);
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(15, 23, 42, 0.07);
     }
 
     .ob-prog-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 140px;
+      display: none;
     }
 
     .ob-prog-track {
@@ -1377,7 +1377,6 @@
           <div class="ob-card-meta">
             <p class="ob-kicker" id="obTopKicker">STEP 1 OF 5 · IDENTITY</p>
             <div class="ob-meta-right">
-              <span>~2 mins</span>
               <button type="button" class="ob-preview-trigger" id="obOpenPreviewBtn">Preview storefront</button>
             </div>
           </div>
@@ -1393,7 +1392,7 @@
                 <input class="ob-input" id="obName" type="text" placeholder="e.g. Marcus Vance" maxlength="80" required>
               </div>
               <div class="ob-field">
-                <label class="ob-label" for="obSlug">Custom URL <span>/c/your-name</span></label>
+                <label class="ob-label" for="obSlug">Custom URL</label>
                 <div class="ob-slug-wrap">
                   <span class="ob-slug-prefix">/c/</span>
                   <input id="obSlug" type="text" placeholder="marcus-vance" maxlength="60">
@@ -1431,7 +1430,7 @@
             </div>
 
             <div class="ob-field">
-              <label class="ob-label" for="obHeadline">Headline <span>Max 140 chars</span></label>
+              <label class="ob-label" for="obHeadline">Headline</label>
               <input class="ob-input" id="obHeadline" type="text"
                 placeholder="e.g. Commercial Cinematographer &amp; FPV Drone Pilot" maxlength="140">
             </div>
