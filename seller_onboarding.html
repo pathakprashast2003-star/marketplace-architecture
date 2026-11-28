@@ -18,13 +18,14 @@
       --ink2: #334155;
       --sub: #475569;
       --mute: #64748B;
-      --line: rgba(15, 23, 42, 0.09);
+      --line: rgba(15, 23, 42, 0.08);
       --line-strong: rgba(15, 23, 42, 0.16);
       --blue: #3B54EE;
       --blue-hover: #2A44E0;
       --blue-soft: #EEF2FF;
       --soft: #F8FAFC;
       --ok: #047857;
+      --ok-soft: #ECFDF5;
       --bad: #DC2626;
       --serif: 'Times New Roman', Times, Georgia, serif;
       --sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
@@ -33,9 +34,10 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; min-height: 100dvh; }
+    html, body { margin: 0; padding: 0; min-height: 100dvh; overflow-x: clip; }
     body {
-      background: #FCFCFD;
+      position: relative;
+      background: #FBFBFD;
       color: var(--ink);
       font-family: var(--sans);
       -webkit-font-smoothing: antialiased;
@@ -43,9 +45,21 @@
       display: flex;
       flex-direction: column;
     }
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 640px;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(58% 68% at 82% 10%, rgba(59, 84, 238, 0.075), transparent 72%),
+        radial-gradient(46% 58% at 10% 4%, rgba(59, 84, 238, 0.045), transparent 70%);
+    }
     a { color: var(--blue); text-decoration: none; }
     a:hover { text-decoration: underline; }
     button { font-family: inherit; }
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
     [hidden] { display: none !important; }
 
     /* ── Top Nav ── */
@@ -53,11 +67,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
       max-width: 1200px;
       width: 100%;
       margin: 0 auto;
-      padding: 18px clamp(16px, 3.6vw, 32px);
+      padding: 18px clamp(14px, 3.6vw, 32px);
     }
     .ob-brand {
       display: inline-flex;
@@ -76,27 +90,59 @@
       height: 8px;
       border-radius: 50%;
       background: var(--blue);
-      box-shadow: 0 0 10px rgba(59, 84, 238, 0.35);
+      box-shadow: 0 0 10px rgba(59, 84, 238, 0.4);
     }
     .ob-nav-right {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
       font-size: 13.5px;
       color: var(--sub);
+      min-width: 0;
+    }
+    .ob-draft-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
     .ob-save-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 5px 12px;
+      padding: 5px 11px;
       border-radius: 999px;
-      background: #ECFDF5;
+      background: var(--ok-soft);
+      border: 1px solid rgba(4, 120, 87, 0.14);
       color: var(--ok);
       font-family: var(--mono);
       font-size: 11px;
       font-weight: 600;
       white-space: nowrap;
+      transition: background-color 0.25s, color 0.25s;
+    }
+    .ob-save-pill::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+    .ob-clear-draft {
+      border: 1px solid var(--line);
+      background: #FFFFFF;
+      color: var(--mute);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: border-color 0.18s, color 0.18s, background-color 0.18s;
+    }
+    .ob-clear-draft:hover {
+      border-color: rgba(220, 38, 38, 0.35);
+      color: var(--bad);
+      background: #FEF2F2;
     }
     .ob-nav-link {
       font-weight: 600;
@@ -111,7 +157,7 @@
       max-width: 1200px;
       width: 100%;
       margin: 0 auto;
-      padding: 8px clamp(16px, 3.6vw, 32px) 64px;
+      padding: 8px clamp(14px, 3.6vw, 32px) 72px;
     }
 
     /* ── Hero Header ── */
@@ -121,7 +167,7 @@
       justify-content: space-between;
       gap: 20px;
       flex-wrap: wrap;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
     .ob-pill {
       display: inline-flex;
@@ -142,7 +188,7 @@
     .ob-head h1 {
       margin: 0 0 6px;
       font-family: var(--serif);
-      font-size: clamp(2rem, 3.8vw, 2.85rem);
+      font-size: clamp(2rem, 3.8vw, 2.9rem);
       font-weight: 600;
       letter-spacing: -0.025em;
       line-height: 1.06;
@@ -160,6 +206,12 @@
       color: var(--sub);
       max-width: 58ch;
     }
+    .ob-head-right {
+      display: flex;
+      align-items: stretch;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
     .ob-founding-chip {
       display: inline-flex;
       align-items: center;
@@ -168,7 +220,7 @@
       border-radius: 16px;
       background: #FFFFFF;
       border: 1px solid var(--line);
-      box-shadow: 0 6px 20px -8px rgba(15, 23, 42, 0.07);
+      box-shadow: 0 8px 22px -10px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
       font-size: 13px;
       color: var(--sub);
       white-space: nowrap;
@@ -178,6 +230,53 @@
       font-size: 20px;
       color: var(--ink);
     }
+
+    /* ── Readiness Bar ── */
+    .ob-readiness {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 11px 16px;
+      margin-bottom: 14px;
+      border-radius: 14px;
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      box-shadow: 0 2px 10px -4px rgba(15, 23, 42, 0.04);
+    }
+    .ob-readiness-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--sub);
+      white-space: nowrap;
+    }
+    .ob-readiness-track {
+      flex: 1;
+      height: 6px;
+      border-radius: 999px;
+      background: #EEF2F7;
+      overflow: hidden;
+      min-width: 60px;
+    }
+    .ob-readiness-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #3B54EE 0%, #6366F1 65%, #10B981 100%);
+      transition: width 0.45s var(--ease);
+    }
+    .ob-readiness-pct {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue);
+      white-space: nowrap;
+      min-width: 66px;
+      text-align: right;
+    }
+    .ob-readiness-pct.is-complete { color: var(--ok); }
 
     /* ── 5-Step Progress Stepper ── */
     .ob-stepper {
@@ -199,17 +298,19 @@
       font-weight: 600;
       text-align: left;
       cursor: pointer;
+      min-width: 0;
       transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s, transform 0.14s var(--ease);
     }
-    .ob-step-tab:hover { border-color: var(--line-strong); color: var(--ink); }
+    .ob-step-tab:hover { border-color: var(--line-strong); color: var(--ink); transform: translateY(-1px); }
+    .ob-step-tab:active { transform: scale(0.99); }
     .ob-step-tab.is-active {
-      border-color: var(--blue);
+      border-color: rgba(59, 84, 238, 0.45);
       background: #F5F7FF;
       color: var(--ink);
-      box-shadow: 0 4px 14px -6px rgba(59, 84, 238, 0.25);
+      box-shadow: 0 6px 18px -8px rgba(59, 84, 238, 0.28);
     }
     .ob-step-tab.is-done .ob-step-num {
-      background: #ECFDF5;
+      background: var(--ok-soft);
       color: var(--ok);
       border-color: rgba(4, 120, 87, 0.25);
     }
@@ -227,6 +328,7 @@
       background: var(--soft);
       border: 1px solid var(--line);
       color: var(--sub);
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s;
     }
     .ob-step-tab.is-active .ob-step-num {
       background: var(--blue);
@@ -242,8 +344,8 @@
     /* ── 2-Column Workspace ── */
     .ob-workspace {
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.85fr);
-      gap: 24px;
+      grid-template-columns: minmax(0, 1.32fr) minmax(300px, 0.88fr);
+      gap: 26px;
       align-items: start;
     }
 
@@ -252,12 +354,19 @@
       background: #FFFFFF;
       border: 1px solid var(--line);
       border-radius: 26px;
-      padding: clamp(24px, 4vw, 38px);
-      box-shadow: 0 24px 56px -22px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.03);
+      padding: clamp(20px, 4vw, 38px);
+      box-shadow:
+        0 24px 56px -24px rgba(15, 23, 42, 0.08),
+        0 2px 6px rgba(15, 23, 42, 0.03),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      min-width: 0;
     }
     .ob-panel { display: none; }
-    .ob-panel.is-on { display: block; animation: obFade 0.28s var(--ease) both; }
-    @keyframes obFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .ob-panel.is-on { display: block; animation: obFade 0.34s var(--ease) both; }
+    @keyframes obFade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .ob-kicker {
       margin: 0 0 6px;
@@ -295,6 +404,7 @@
       flex-direction: column;
       gap: 6px;
       margin-bottom: 16px;
+      min-width: 0;
     }
     .ob-label {
       display: flex;
@@ -312,9 +422,10 @@
     }
     .ob-input, .ob-select, .ob-textarea {
       width: 100%;
+      max-width: 100%;
       padding: 11px 14px;
       border-radius: 12px;
-      border: 1px solid rgba(15, 23, 42, 0.14);
+      border: 1px solid rgba(15, 23, 42, 0.13);
       background: #FAFAFC;
       font-family: var(--sans);
       font-size: 14.5px;
@@ -337,9 +448,10 @@
       display: flex;
       align-items: center;
       border-radius: 12px;
-      border: 1px solid rgba(15, 23, 42, 0.14);
+      border: 1px solid rgba(15, 23, 42, 0.13);
       background: #FAFAFC;
       overflow: hidden;
+      min-width: 0;
       transition: border-color 0.18s, box-shadow 0.2s;
     }
     .ob-slug-wrap:focus-within {
@@ -365,6 +477,7 @@
       height: 44px;
       padding: 0 12px;
       width: 100%;
+      min-width: 0;
       font-family: var(--mono);
       font-size: 13.5px;
       color: var(--ink);
@@ -383,7 +496,10 @@
       background: var(--soft);
       margin-bottom: 14px;
       cursor: pointer;
+      transition: border-color 0.18s, background-color 0.18s;
     }
+    .ob-switch-row:hover { border-color: var(--line-strong); background: #F4F7FB; }
+    .ob-switch-copy { min-width: 0; }
     .ob-switch-copy strong { display: block; font-size: 14px; color: var(--ink); margin-bottom: 2px; }
     .ob-switch-copy small { display: block; font-size: 12.5px; color: var(--mute); line-height: 1.4; }
     .ob-switch-row input[type="checkbox"] {
@@ -402,18 +518,19 @@
       padding: 24px 18px;
       text-align: center;
       cursor: pointer;
-      transition: border-color 0.2s, background-color 0.2s;
+      transition: border-color 0.2s, background-color 0.2s, transform 0.16s var(--ease);
       margin-bottom: 14px;
     }
     .ob-dropzone:hover, .ob-dropzone.is-drag {
       border-color: var(--blue);
       background: #EEF2FF;
+      transform: translateY(-1px);
     }
     .ob-dropzone strong { display: block; font-size: 14.5px; color: var(--ink); margin-bottom: 4px; }
     .ob-dropzone span { font-size: 12.5px; color: var(--mute); }
     .ob-media-thumbs {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
       gap: 10px;
       margin-bottom: 16px;
     }
@@ -448,7 +565,9 @@
       border-radius: 16px;
       border: 1px solid var(--line);
       background: var(--soft);
+      transition: border-color 0.2s;
     }
+    .ob-pkg-card:hover { border-color: var(--line-strong); }
     .ob-pkg-top {
       display: flex;
       align-items: center;
@@ -472,6 +591,7 @@
       background: transparent;
       color: var(--sub);
       cursor: pointer;
+      transition: background-color 0.16s, color 0.16s;
     }
     .ob-pkg-kind button.is-on { background: #FFFFFF; color: var(--ink); box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08); }
     .ob-pkg-del {
@@ -498,9 +618,11 @@
       padding: 6px 12px;
       border-radius: 999px;
       background: var(--blue-soft);
+      border: 1px solid rgba(59, 84, 238, 0.15);
       color: var(--blue);
       font-size: 12.5px;
       font-weight: 600;
+      transition: transform 0.14s var(--ease);
     }
     .ob-chip button {
       border: 0;
@@ -520,8 +642,9 @@
       font-size: 12px;
       font-weight: 500;
       cursor: pointer;
+      transition: border-color 0.16s, color 0.16s, transform 0.14s var(--ease);
     }
-    .ob-suggest-chip:hover { border-color: var(--blue); color: var(--blue); }
+    .ob-suggest-chip:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-1px); }
 
     /* SMS Verification Box */
     .ob-sms-box {
@@ -536,7 +659,7 @@
       gap: 10px;
       align-items: center;
     }
-    .ob-sms-row .ob-input { flex: 1; }
+    .ob-sms-row .ob-input { flex: 1; min-width: 0; }
     .ob-btn-sm {
       height: 46px;
       padding: 0 18px;
@@ -548,8 +671,10 @@
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
+      transition: border-color 0.16s, color 0.16s, transform 0.12s;
     }
     .ob-btn-sm:hover { border-color: var(--blue); color: var(--blue); }
+    .ob-btn-sm:active { transform: scale(0.98); }
     .ob-sms-ok {
       display: inline-flex;
       align-items: center;
@@ -584,6 +709,7 @@
       gap: 10px;
       margin-top: 12px;
     }
+    .ob-card-fields .ob-input { font-family: var(--mono); font-size: 13.5px; letter-spacing: 0.02em; }
 
     /* Action Footer Bar */
     .ob-actions {
@@ -608,7 +734,7 @@
       font-weight: 700;
       cursor: pointer;
       text-decoration: none !important;
-      transition: transform 0.16s var(--ease), background-color 0.18s, box-shadow 0.2s;
+      transition: transform 0.16s var(--ease), background-color 0.18s, box-shadow 0.2s, filter 0.18s;
     }
     .ob-btn:active { transform: scale(0.98); }
     .ob-btn-primary {
@@ -633,6 +759,7 @@
       font-size: 13.5px;
       font-weight: 600;
       cursor: pointer;
+      transition: background-color 0.18s, border-color 0.18s;
     }
     .ob-btn-dashed:hover { background: #F5F7FF; border-color: var(--blue); }
 
@@ -649,12 +776,29 @@
     .ob-preview-wrap {
       position: sticky;
       top: 24px;
+      min-width: 0;
+    }
+    .ob-preview-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 16px -14px -18px -14px;
+      border-radius: 36px;
+      background: radial-gradient(75% 65% at 50% 25%, rgba(59, 84, 238, 0.16), rgba(99, 102, 241, 0.05) 55%, transparent 78%);
+      filter: blur(18px);
+      z-index: -1;
+      pointer-events: none;
     }
     .ob-preview-cap {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
       margin-bottom: 10px;
+    }
+    .ob-preview-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-family: var(--mono);
       font-size: 11px;
       font-weight: 700;
@@ -665,31 +809,79 @@
     .ob-preview-dot {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       color: var(--ok);
     }
     .ob-preview-dot::before {
       content: '';
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--ok);
+      box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.15);
+    }
+    .ob-pv-mode-toggle {
+      display: inline-flex;
+      padding: 3px;
+      border-radius: 999px;
+      background: #E2E8F0;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+    }
+    .ob-pv-mode-btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      background: transparent;
+      color: var(--sub);
+      cursor: pointer;
+      transition: background-color 0.18s, color 0.18s, box-shadow 0.18s;
+    }
+    .ob-pv-mode-btn.is-on {
+      background: #FFFFFF;
+      color: var(--ink);
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.1);
+    }
+
+    .ob-preview-stage {
+      perspective: 1100px;
     }
     .ob-preview-card {
+      position: relative;
       background: #FFFFFF;
-      border: 1px solid var(--line);
+      border: 1px solid rgba(15, 23, 42, 0.09);
       border-radius: 26px;
       overflow: hidden;
-      box-shadow: 0 24px 56px -22px rgba(15, 23, 42, 0.12);
+      box-shadow:
+        0 28px 60px -24px rgba(15, 23, 42, 0.16),
+        0 4px 12px -2px rgba(15, 23, 42, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      transform-style: preserve-3d;
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+      will-change: transform;
     }
+    .ob-preview-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 30%), rgba(255, 255, 255, 0.32), transparent 60%);
+      transition: opacity 0.25s ease;
+      z-index: 3;
+    }
+    .ob-preview-card:hover::after { opacity: 1; }
+
     .ob-pv-banner {
-      height: 112px;
+      height: 108px;
       background: radial-gradient(120% 100% at 85% 15%, #5872FF 0%, #3B54EE 52%, #1E2E9E 100%);
       position: relative;
       padding: 14px 18px;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
+      gap: 8px;
     }
     .ob-pv-badge {
       padding: 4px 10px;
@@ -702,11 +894,22 @@
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      white-space: nowrap;
     }
     .ob-pv-body {
       padding: 0 22px 22px;
       margin-top: -28px;
       position: relative;
+      z-index: 2;
+    }
+    .ob-pv-avatar-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
     }
     .ob-pv-avatar {
       width: 58px;
@@ -721,8 +924,26 @@
       font-family: var(--serif);
       font-size: 22px;
       font-weight: 700;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.16);
-      margin-bottom: 10px;
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.18);
+      flex-shrink: 0;
+    }
+    .ob-pv-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #ECFDF5;
+      border: 1px solid rgba(4, 120, 87, 0.18);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ok);
+    }
+    .ob-pv-status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
     }
     .ob-pv-name {
       margin: 0 0 2px;
@@ -731,12 +952,14 @@
       font-weight: 700;
       color: var(--ink);
       line-height: 1.15;
+      word-break: break-word;
     }
     .ob-pv-slug {
       font-family: var(--mono);
       font-size: 11.5px;
       color: var(--blue);
       margin-bottom: 8px;
+      word-break: break-all;
     }
     .ob-pv-headline {
       margin: 0 0 12px;
@@ -764,11 +987,38 @@
       font-size: 13px;
       line-height: 1.5;
       color: var(--mute);
-      margin: 0 0 14px;
+      margin: 0 0 12px;
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
+    }
+    .ob-preview-card.is-full .ob-pv-bio {
+      display: block;
+      -webkit-line-clamp: unset;
+    }
+    .ob-pv-photos {
+      display: flex;
+      gap: 7px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin: 8px 0 12px;
+      scrollbar-width: none;
+    }
+    .ob-pv-photos::-webkit-scrollbar { display: none; }
+    .ob-pv-photo-thumb {
+      flex: 0 0 64px;
+      height: 48px;
+      border-radius: 9px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #F1F5F9;
+    }
+    .ob-pv-photo-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .ob-pv-section-title {
       font-family: var(--mono);
@@ -788,17 +1038,62 @@
       padding: 8px 12px;
       border-radius: 10px;
       background: var(--soft);
+      border: 1px solid rgba(15, 23, 42, 0.04);
       font-size: 12.5px;
     }
-    .ob-pv-svc strong { color: var(--ink); font-weight: 600; }
-    .ob-pv-svc span { font-family: var(--mono); font-weight: 700; color: var(--blue); }
-    .ob-pv-footer {
-      margin-top: 16px;
+    .ob-pv-svc strong { color: var(--ink); font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .ob-pv-svc span { font-family: var(--mono); font-weight: 700; color: var(--blue); flex-shrink: 0; }
+    .ob-pv-gear-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 8px;
+    }
+    .ob-pv-gear-chip {
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #FFFFFF;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink2);
+    }
+    .ob-pv-full-cta {
+      display: none;
+      margin-top: 14px;
       padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+    .ob-preview-card.is-full .ob-pv-full-cta { display: block; }
+    .ob-pv-cta-btn {
+      width: 100%;
+      height: 40px;
+      border-radius: 999px;
+      border: 0;
+      background: #3B54EE;
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: default;
+      box-shadow: 0 4px 14px rgba(59, 84, 238, 0.25);
+    }
+    .ob-pv-cta-notes {
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 5px;
+      font-size: 11.5px;
+      color: var(--sub);
+    }
+    .ob-pv-footer {
+      margin-top: 14px;
+      padding-top: 12px;
       border-top: 1px solid var(--line);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 8px;
       font-size: 12px;
       color: var(--mute);
     }
@@ -812,7 +1107,7 @@
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      background: #ECFDF5;
+      background: var(--ok-soft);
       color: var(--ok);
       display: inline-flex;
       align-items: center;
@@ -820,13 +1115,111 @@
       margin-bottom: 14px;
     }
 
+    /* Mobile Sticky Bar & Preview Modal */
+    .ob-mobile-bar { display: none; }
+    .ob-preview-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(15, 23, 42, 0.56);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 16px;
+    }
+    .ob-preview-modal-sheet {
+      width: 100%;
+      max-width: 460px;
+      max-height: 88dvh;
+      overflow-y: auto;
+      background: #FBFBFD;
+      border-radius: 26px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      box-shadow: 0 24px 64px rgba(15, 23, 42, 0.28);
+      animation: obFade 0.25s var(--ease) both;
+    }
+    .ob-preview-modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .ob-preview-modal-close {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--line-strong);
+      background: #FFFFFF;
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     /* Responsive */
     @media (max-width: 960px) {
       .ob-workspace { grid-template-columns: 1fr; }
-      .ob-preview-wrap { position: static; }
+      .ob-preview-wrap { display: none; }
       .ob-stepper { grid-template-columns: repeat(5, minmax(0, 1fr)); }
       .ob-step-label { display: none; }
-      .ob-step-tab { justify-content: center; padding: 10px; }
+      .ob-step-tab { justify-content: center; padding: 10px 6px; }
+      .ob-main { padding-bottom: 96px; }
+      .ob-mobile-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        z-index: 90;
+        padding: 8px 8px 8px 16px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.94);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--line-strong);
+        box-shadow: 0 16px 36px -14px rgba(15, 23, 42, 0.28);
+      }
+      .ob-mobile-bar-meta {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .ob-mobile-bar-meta strong {
+        font-size: 13px;
+        color: var(--ink);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .ob-mobile-bar-meta span {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--blue);
+        font-weight: 600;
+      }
+      .ob-mobile-bar-btn {
+        height: 40px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 0;
+        background: var(--blue);
+        color: #FFFFFF;
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
     }
     @media (max-width: 640px) {
       .ob-grid-2, .ob-card-fields { grid-template-columns: 1fr; }
@@ -834,7 +1227,25 @@
       .ob-founding-chip { display: none; }
       .ob-save-pill { display: none; }
       .ob-actions { flex-direction: column-reverse; align-items: stretch; }
-      .ob-btn { width: 100%; }
+      .ob-btn { width: 100%; padding: 0 18px; font-size: 14.5px; }
+      .ob-card { border-radius: 22px; padding: 18px 16px; }
+      .ob-readiness { padding: 10px 12px; gap: 10px; }
+      .ob-readiness-label { font-size: 10px; }
+    }
+    @media (max-width: 360px) {
+      .ob-nav { gap: 8px; padding: 14px 12px; }
+      .ob-nav-right { gap: 8px; font-size: 12.5px; }
+      .ob-clear-draft { padding: 4px 8px; font-size: 11px; }
+      .ob-main { padding: 4px 12px 92px; }
+      .ob-stepper { gap: 5px; }
+      .ob-step-tab { padding: 8px 4px; border-radius: 10px; }
+      .ob-slug-prefix { padding: 0 8px 0 10px; font-size: 11.5px; }
+      .ob-mobile-bar { left: 8px; right: 8px; padding: 7px 7px 7px 14px; }
+      .ob-mobile-bar-btn { padding: 0 12px; font-size: 12.5px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ob-panel.is-on, .ob-preview-modal-sheet { animation: none; }
+      .ob-preview-card, .ob-readiness-fill, .ob-btn, .ob-step-tab { transition: none; }
     }
   </style>
 </head>
@@ -845,7 +1256,10 @@
       <span class="ob-brand-dot" aria-hidden="true"></span><span>nexus.</span>
     </a>
     <div class="ob-nav-right">
-      <span class="ob-save-pill" id="obSavePill">Draft saved locally</span>
+      <div class="ob-draft-group">
+        <span class="ob-save-pill" id="obSavePill" aria-live="polite">Draft saved locally</span>
+        <button type="button" class="ob-clear-draft" id="obClearDraftBtn" title="Reset form and clear saved draft">Clear draft</button>
+      </div>
       <a class="ob-nav-link" href="/explore">Explore</a>
       <a class="ob-nav-link" href="/pricing">Pricing</a>
     </div>
@@ -858,15 +1272,26 @@
         <h1>Build your verified <em>storefront.</em></h1>
         <p class="ob-lead">Set up your profile, media, and packages. Every storefront is reviewed by a person before going live — 0% commission, always.</p>
       </div>
-      <div class="ob-founding-chip">
-        <div><b id="obSpotsLeft">58</b> / 100</div>
-        <div>Founding spots open<br><small style="color:var(--blue);font-weight:600">90d free · then $19.99/mo</small></div>
+      <div class="ob-head-right">
+        <div class="ob-founding-chip">
+          <div><b id="obSpotsLeft">58</b> / 100</div>
+          <div>Founding spots open<br><small style="color:var(--blue);font-weight:600">90d free · then $19.99/mo</small></div>
+        </div>
       </div>
     </header>
 
+    <!-- Completion Readiness Indicator -->
+    <div class="ob-readiness" aria-label="Storefront completion readiness">
+      <span class="ob-readiness-label">Storefront readiness</span>
+      <div class="ob-readiness-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="obReadinessBar">
+        <div class="ob-readiness-fill" id="obReadinessFill"></div>
+      </div>
+      <span class="ob-readiness-pct" id="obReadinessPct">0% ready</span>
+    </div>
+
     <!-- 5-Step Clickable Stepper -->
     <nav class="ob-stepper" aria-label="Onboarding steps">
-      <button type="button" class="ob-step-tab is-active" data-step="1">
+      <button type="button" class="ob-step-tab is-active" data-step="1" aria-current="step">
         <span class="ob-step-num">1</span><span class="ob-step-label">Identity &amp; City</span>
       </button>
       <button type="button" class="ob-step-tab" data-step="2">
@@ -1131,35 +1556,58 @@
       <!-- RIGHT: Live Storefront Card Preview -->
       <aside class="ob-preview-wrap" aria-label="Live storefront preview">
         <div class="ob-preview-cap">
-          <span>Live Storefront Preview</span>
-          <span class="ob-preview-dot">Updating live</span>
-        </div>
-        <div class="ob-preview-card">
-          <div class="ob-pv-banner">
-            <span class="ob-pv-badge" id="pvCategory">Film &amp; Video</span>
-            <span class="ob-pv-badge">Founding 100 · 0% Cut</span>
+          <div class="ob-preview-title">
+            <span>Live Preview</span>
+            <span class="ob-preview-dot">Live</span>
           </div>
-          <div class="ob-pv-body">
-            <div class="ob-pv-avatar" id="pvAvatar">MV</div>
-            <h3 class="ob-pv-name" id="pvName">Marcus Vance</h3>
-            <div class="ob-pv-slug" id="pvSlug">nexus.com/c/marcus-vance</div>
-            <p class="ob-pv-headline" id="pvHeadline">Your headline appears here — tell clients what you create or teach.</p>
-            <div class="ob-pv-meta">
-              <span class="ob-pv-pill" id="pvCity">Austin, TX</span>
-              <span class="ob-pv-pill is-blue" id="pvPrice">From $500</span>
-              <span class="ob-pv-pill" id="pvRemote" hidden>Remote OK</span>
-              <span class="ob-pv-pill" id="pvNsfw" hidden>18+ Gated</span>
+          <div class="ob-pv-mode-toggle" role="group" aria-label="Preview view mode">
+            <button type="button" class="ob-pv-mode-btn is-on" id="pvModeCard" data-pv-mode="card" aria-pressed="true">Card</button>
+            <button type="button" class="ob-pv-mode-btn" id="pvModeFull" data-pv-mode="full" aria-pressed="false">Full Preview</button>
+          </div>
+        </div>
+        <div class="ob-preview-stage" id="obPreviewStage">
+          <div class="ob-preview-card" id="obPreviewCard">
+            <div class="ob-pv-banner">
+              <span class="ob-pv-badge" id="pvCategory">Film &amp; Video</span>
+              <span class="ob-pv-badge">Founding 100 · 0% Cut</span>
             </div>
-            <p class="ob-pv-bio" id="pvBio">Your bio, experience, and approach will appear here once you add it in Step 2.</p>
+            <div class="ob-pv-body">
+              <div class="ob-pv-avatar-row">
+                <div class="ob-pv-avatar" id="pvAvatar">MV</div>
+                <span class="ob-pv-status"><span class="ob-pv-status-dot" aria-hidden="true"></span>Taking bookings</span>
+              </div>
+              <h3 class="ob-pv-name" id="pvName">Marcus Vance</h3>
+              <div class="ob-pv-slug" id="pvSlug">nexus.com/c/marcus-vance</div>
+              <p class="ob-pv-headline" id="pvHeadline">Your headline appears here — tell clients what you create or teach.</p>
+              <div class="ob-pv-meta">
+                <span class="ob-pv-pill" id="pvCity">Austin, TX</span>
+                <span class="ob-pv-pill is-blue" id="pvPrice">From $500</span>
+                <span class="ob-pv-pill" id="pvRemote" hidden>Remote OK</span>
+                <span class="ob-pv-pill" id="pvNsfw" hidden>18+ Gated</span>
+              </div>
+              <p class="ob-pv-bio" id="pvBio">Your bio, experience, and approach will appear here once you add it in Step 2.</p>
 
-            <div class="ob-pv-section-title">Services &amp; Classes</div>
-            <div class="ob-pv-services" id="pvServices">
-              <div class="ob-pv-svc"><strong>Full-Day Production</strong><span>$1,200</span></div>
-            </div>
+              <div class="ob-pv-photos" id="pvPhotos" hidden aria-label="Uploaded gallery preview"></div>
 
-            <div class="ob-pv-footer">
-              <span id="pvGearCount">0 gear tags</span>
-              <span>Responds directly · 0% fee</span>
+              <div class="ob-pv-section-title">Services &amp; Classes</div>
+              <div class="ob-pv-services" id="pvServices">
+                <div class="ob-pv-svc"><strong>Full-Day Production</strong><span>$1,200</span></div>
+              </div>
+
+              <div class="ob-pv-gear-chips" id="pvGearChips" hidden aria-label="Gear preview"></div>
+
+              <div class="ob-pv-full-cta" aria-hidden="true">
+                <button type="button" class="ob-pv-cta-btn" tabindex="-1">Request Booking · 0% Fee</button>
+                <ul class="ob-pv-cta-notes">
+                  <li>✓ Direct inquiry — no middleman markup</li>
+                  <li>✓ Verified creator profile on nexus.com</li>
+                </ul>
+              </div>
+
+              <div class="ob-pv-footer">
+                <span id="pvGearCount">0 gear tags</span>
+                <span>Responds directly · 0% fee</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1167,15 +1615,48 @@
     </div>
   </main>
 
+  <!-- Mobile Sticky Preview Bar -->
+  <div class="ob-mobile-bar" id="obMobileBar">
+    <div class="ob-mobile-bar-meta">
+      <strong id="obMobileName">Marcus Vance</strong>
+      <span id="obMobilePct">0% ready · Tap to preview</span>
+    </div>
+    <button type="button" class="ob-mobile-bar-btn" id="obMobilePreviewBtn" aria-haspopup="dialog" aria-controls="obPreviewModal">Preview Storefront</button>
+  </div>
+
+  <!-- Mobile Preview Modal -->
+  <div class="ob-preview-modal" id="obPreviewModal" role="dialog" aria-modal="true" aria-labelledby="obModalTitle" hidden>
+    <div class="ob-preview-modal-sheet">
+      <div class="ob-preview-modal-head">
+        <div class="ob-preview-title" id="obModalTitle">
+          <span>Live Preview</span>
+          <span class="ob-preview-dot">Live</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="ob-pv-mode-toggle" role="group" aria-label="Mobile preview view mode">
+            <button type="button" class="ob-pv-mode-btn is-on" data-pv-mode="card" aria-pressed="true">Card</button>
+            <button type="button" class="ob-pv-mode-btn" data-pv-mode="full" aria-pressed="false">Full Preview</button>
+          </div>
+          <button type="button" class="ob-preview-modal-close" id="obModalCloseBtn" aria-label="Close preview">&times;</button>
+        </div>
+      </div>
+      <div id="obModalPreviewSlot"></div>
+    </div>
+  </div>
+
   <script>
   (function () {
     'use strict';
 
     var $ = function (id) { return document.getElementById(id); };
+    var DRAFT_KEY = 'nexus_seller_onboarding_draft_v1';
     var currentStep = 1;
     var smsVerified = false;
     var gearList = [];
     var mediaFiles = [];
+    var previewMode = 'card';
+    var slugManuallyEdited = false;
+    var saveTimer = null;
     var packages = [
       { kind: 'service', title: 'Full-Day Commercial Shoot', price: '1200', priceOnRequest: false, duration: '', groupSize: '', skill: 'all', format: 'in_person' }
     ];
@@ -1191,18 +1672,187 @@
       return (str || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
     }
 
+    function setSavePill(text) {
+      var pill = $('obSavePill');
+      if (pill) pill.textContent = text;
+    }
+
+    /* ── LocalStorage Draft Auto-Save & Restore ── */
+    function buildDraftPayload(includeMedia) {
+      return {
+        v: 1,
+        step: typeof currentStep === 'number' ? currentStep : 1,
+        slugManuallyEdited: slugManuallyEdited,
+        name: $('obName').value,
+        slug: $('obSlug').value,
+        category: $('obCategory').value,
+        city: $('obCity').value,
+        headline: $('obHeadline').value,
+        remote: $('obRemote').checked,
+        nsfwGate: $('obNsfwGate').checked,
+        portfolio: $('obPortfolio').value,
+        video: $('obVideo').value,
+        about: $('obAbout').value,
+        packages: packages,
+        gearList: gearList,
+        website: $('obWebsite').value,
+        instagram: $('obInstagram').value,
+        phone: $('obPhone').value,
+        smsVerified: smsVerified,
+        mediaFiles: includeMedia ? mediaFiles.filter(function (m) { return m.dataUrl; }).map(function (m) {
+          return { name: m.name, dataUrl: m.dataUrl };
+        }) : []
+      };
+    }
+
+    function saveDraftNow() {
+      try {
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(buildDraftPayload(true)));
+        setSavePill('Draft saved locally');
+      } catch (e) {
+        try {
+          localStorage.setItem(DRAFT_KEY, JSON.stringify(buildDraftPayload(false)));
+          setSavePill('Draft saved locally');
+        } catch (err) { /* ignore storage quota/private mode errors */ }
+      }
+    }
+
+    function scheduleSave() {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(saveDraftNow, 180);
+    }
+
+    function restoreDraft() {
+      try {
+        var raw = localStorage.getItem(DRAFT_KEY);
+        if (!raw) return;
+        var d = JSON.parse(raw);
+        if (!d || typeof d !== 'object') return;
+        if (typeof d.name === 'string') $('obName').value = d.name;
+        if (typeof d.slug === 'string') $('obSlug').value = d.slug;
+        slugManuallyEdited = !!d.slugManuallyEdited;
+        if (typeof d.category === 'string' && d.category) $('obCategory').value = d.category;
+        if (typeof d.city === 'string') $('obCity').value = d.city;
+        if (typeof d.headline === 'string') $('obHeadline').value = d.headline;
+        $('obRemote').checked = !!d.remote;
+        $('obNsfwGate').checked = !!d.nsfwGate;
+        if (typeof d.portfolio === 'string') $('obPortfolio').value = d.portfolio;
+        if (typeof d.video === 'string') $('obVideo').value = d.video;
+        if (typeof d.about === 'string') {
+          $('obAbout').value = d.about;
+          $('obBioCount').textContent = d.about.length + ' / 4000';
+        }
+        if (Array.isArray(d.packages) && d.packages.length) packages = d.packages;
+        if (Array.isArray(d.gearList)) gearList = d.gearList;
+        if (typeof d.website === 'string') $('obWebsite').value = d.website;
+        if (typeof d.instagram === 'string') $('obInstagram').value = d.instagram;
+        if (typeof d.phone === 'string') $('obPhone').value = d.phone;
+        if (d.smsVerified) {
+          smsVerified = true;
+          $('obSmsOk').hidden = false;
+        }
+        if (Array.isArray(d.mediaFiles) && d.mediaFiles.length) {
+          mediaFiles = d.mediaFiles.slice(0, 6).map(function (m) {
+            return { name: m.name || 'photo', url: m.dataUrl, dataUrl: m.dataUrl };
+          });
+        }
+        if (typeof d.step === 'number' && d.step >= 1 && d.step <= 5) {
+          goStep(d.step, true);
+        }
+        setSavePill('Draft restored');
+      } catch (e) { /* ignore corrupt draft */ }
+    }
+
+    function clearDraft() {
+      try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+      slugManuallyEdited = false;
+      smsVerified = false;
+      gearList = [];
+      mediaFiles.forEach(function (m) {
+        if (m.url && m.url.indexOf('blob:') === 0) {
+          try { URL.revokeObjectURL(m.url); } catch (e) {}
+        }
+      });
+      mediaFiles = [];
+      packages = [
+        { kind: 'service', title: 'Full-Day Commercial Shoot', price: '1200', priceOnRequest: false, duration: '', groupSize: '', skill: 'all', format: 'in_person' }
+      ];
+      ['obName', 'obSlug', 'obCity', 'obHeadline', 'obPortfolio', 'obVideo', 'obAbout', 'obGearInput', 'obWebsite', 'obInstagram', 'obPhone', 'obSmsCode', 'obCardNum', 'obCardExp', 'obCardCvc'].forEach(function (id) {
+        if ($(id)) $(id).value = '';
+      });
+      $('obCategory').selectedIndex = 0;
+      $('obRemote').checked = false;
+      $('obNsfwGate').checked = false;
+      $('obTermsCheck').checked = false;
+      $('obSmsVerifyRow').hidden = true;
+      $('obSmsOk').hidden = true;
+      $('obSendSmsBtn').textContent = 'Send SMS code';
+      $('obBioCount').textContent = '0 / 4000';
+      ['obMsg1', 'obMsg2', 'obMsg3', 'obMsg4', 'obMsg5'].forEach(function (id) {
+        if ($(id)) { $(id).textContent = ''; $(id).className = 'ob-msg'; }
+      });
+      renderThumbs();
+      renderPackages();
+      renderGear();
+      goStep(1, true);
+      updatePreview();
+      setSavePill('Draft cleared');
+    }
+
+    if ($('obClearDraftBtn')) {
+      $('obClearDraftBtn').addEventListener('click', clearDraft);
+    }
+
+    /* ── Completion Readiness Indicator ── */
+    function computeReadiness() {
+      var checks = [
+        !!$('obName').value.trim(),
+        !!$('obCategory').value,
+        !!$('obCity').value.trim(),
+        !!$('obHeadline').value.trim(),
+        /^https?:\/\/[^\s]+$/i.test($('obPortfolio').value.trim()),
+        $('obAbout').value.trim().length >= 20,
+        mediaFiles.length > 0,
+        packages.some(function (p) { return (p.title || '').trim().length > 0 && parseFloat(p.price) > 0; }),
+        gearList.length > 0,
+        smsVerified || $('obPhone').value.replace(/\D/g, '').length >= 7,
+        $('obCardNum').value.replace(/\D/g, '').length >= 15 && $('obTermsCheck').checked
+      ];
+      var done = checks.filter(Boolean).length;
+      return Math.round((done / checks.length) * 100);
+    }
+
+    function updateReadiness() {
+      var pct = computeReadiness();
+      var fill = $('obReadinessFill');
+      var label = $('obReadinessPct');
+      var bar = $('obReadinessBar');
+      if (fill) fill.style.width = pct + '%';
+      if (bar) bar.setAttribute('aria-valuenow', String(pct));
+      if (label) {
+        label.textContent = pct + '% ready';
+        label.classList.toggle('is-complete', pct === 100);
+      }
+      var mobPct = $('obMobilePct');
+      if (mobPct) mobPct.textContent = pct + '% ready · Tap to preview';
+    }
+
     /* ── Step Navigation ── */
-    function goStep(step) {
+    function goStep(step, skipScroll) {
       currentStep = step;
       document.querySelectorAll('.ob-panel').forEach(function (p) {
         p.classList.toggle('is-on', String(p.dataset.panel) === String(step));
       });
       document.querySelectorAll('.ob-step-tab').forEach(function (t) {
         var n = parseInt(t.dataset.step, 10);
-        t.classList.toggle('is-active', n === step);
+        var active = n === step;
+        t.classList.toggle('is-active', active);
         t.classList.toggle('is-done', typeof step === 'number' && n < step);
+        if (active) t.setAttribute('aria-current', 'step');
+        else t.removeAttribute('aria-current');
       });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scheduleSave();
+      if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function validateStep(step) {
@@ -1243,16 +1893,83 @@
       });
     });
 
+    /* ── Card / Full Preview Mode Toggle ── */
+    function setPreviewMode(mode) {
+      previewMode = mode === 'full' ? 'full' : 'card';
+      $('obPreviewCard').classList.toggle('is-full', previewMode === 'full');
+      document.querySelectorAll('[data-pv-mode]').forEach(function (btn) {
+        var on = btn.dataset.pvMode === previewMode;
+        btn.classList.toggle('is-on', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      updatePreview();
+    }
+    document.querySelectorAll('[data-pv-mode]').forEach(function (btn) {
+      btn.addEventListener('click', function () { setPreviewMode(btn.dataset.pvMode); });
+    });
+
+    /* ── Interactive 3D Tilt on Preview Card ── */
+    var previewCard = $('obPreviewCard');
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (previewCard && !reduceMotion) {
+      previewCard.addEventListener('mousemove', function (e) {
+        if (window.innerWidth <= 960) return;
+        var rect = previewCard.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        var x = (e.clientX - rect.left) / rect.width;
+        var y = (e.clientY - rect.top) / rect.height;
+        var rotY = (x - 0.5) * 8;
+        var rotX = (0.5 - y) * 7;
+        previewCard.style.transform = 'rotateX(' + rotX.toFixed(2) + 'deg) rotateY(' + rotY.toFixed(2) + 'deg)';
+        previewCard.style.setProperty('--mx', Math.round(x * 100) + '%');
+        previewCard.style.setProperty('--my', Math.round(y * 100) + '%');
+      });
+      previewCard.addEventListener('mouseleave', function () {
+        previewCard.style.transform = '';
+      });
+    }
+
+    /* ── Mobile Preview Modal ── */
+    var modal = $('obPreviewModal');
+    var modalSlot = $('obModalPreviewSlot');
+    var stage = $('obPreviewStage');
+    function openMobilePreview() {
+      if (!modal || !modalSlot || !previewCard) return;
+      previewCard.style.transform = '';
+      modalSlot.appendChild(previewCard);
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      $('obModalCloseBtn').focus();
+    }
+    function closeMobilePreview() {
+      if (!modal || !stage || !previewCard) return;
+      modal.hidden = true;
+      stage.appendChild(previewCard);
+      document.body.style.overflow = '';
+      if ($('obMobilePreviewBtn')) $('obMobilePreviewBtn').focus();
+    }
+    if ($('obMobilePreviewBtn')) $('obMobilePreviewBtn').addEventListener('click', openMobilePreview);
+    if ($('obModalCloseBtn')) $('obModalCloseBtn').addEventListener('click', closeMobilePreview);
+    if (modal) {
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeMobilePreview();
+      });
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal && !modal.hidden) closeMobilePreview();
+    });
+
     /* ── Live Storefront Preview Sync ── */
-    var slugManuallyEdited = false;
-    $('obSlug').addEventListener('input', function () { slugManuallyEdited = true; updatePreview(); });
+    $('obSlug').addEventListener('input', function () { slugManuallyEdited = true; updatePreview(); scheduleSave(); });
     $('obName').addEventListener('input', function () {
       if (!slugManuallyEdited) $('obSlug').value = slugify($('obName').value);
       updatePreview();
+      scheduleSave();
     });
-    ['obCategory', 'obCity', 'obHeadline', 'obRemote', 'obNsfwGate', 'obAbout'].forEach(function (id) {
-      $(id).addEventListener('input', updatePreview);
-      $(id).addEventListener('change', updatePreview);
+    ['obCategory', 'obCity', 'obHeadline', 'obRemote', 'obNsfwGate', 'obAbout', 'obPortfolio', 'obVideo', 'obWebsite', 'obInstagram', 'obTermsCheck'].forEach(function (id) {
+      if (!$(id)) return;
+      $(id).addEventListener('input', function () { updatePreview(); scheduleSave(); });
+      $(id).addEventListener('change', function () { updatePreview(); scheduleSave(); });
     });
 
     $('obAbout').addEventListener('input', function () {
@@ -1272,13 +1989,36 @@
       $('pvBio').textContent = $('obAbout').value.trim() || 'Your bio, experience, and approach will appear here once you add it in Step 2.';
       $('pvRemote').hidden = !$('obRemote').checked;
       $('pvNsfw').hidden = !$('obNsfwGate').checked;
+      if ($('obMobileName')) $('obMobileName').textContent = name;
 
       var prices = packages.filter(function (p) { return !p.priceOnRequest && parseFloat(p.price) > 0; }).map(function (p) { return parseFloat(p.price); });
       $('pvPrice').textContent = prices.length ? 'From $' + Math.min.apply(null, prices).toLocaleString() : 'Price on request';
 
+      // Live photo thumbnail strip
+      var pvPhotos = $('pvPhotos');
+      if (pvPhotos) {
+        pvPhotos.innerHTML = '';
+        if (mediaFiles.length) {
+          pvPhotos.hidden = false;
+          mediaFiles.forEach(function (m) {
+            var item = document.createElement('div');
+            item.className = 'ob-pv-photo-thumb';
+            var img = document.createElement('img');
+            img.src = m.url;
+            img.alt = m.name || 'Storefront gallery photo';
+            item.appendChild(img);
+            pvPhotos.appendChild(item);
+          });
+        } else {
+          pvPhotos.hidden = true;
+        }
+      }
+
+      // Live services list (3 in Card mode, all in Full Preview mode)
       var svcWrap = $('pvServices');
       svcWrap.innerHTML = '';
-      packages.slice(0, 3).forEach(function (p) {
+      var limit = previewMode === 'full' ? packages.length : 3;
+      packages.slice(0, limit).forEach(function (p) {
         var row = document.createElement('div');
         row.className = 'ob-pv-svc';
         var t = document.createElement('strong');
@@ -1289,13 +2029,42 @@
         row.appendChild(pr);
         svcWrap.appendChild(row);
       });
+
+      // Live gear chips
+      var pvGearChips = $('pvGearChips');
+      if (pvGearChips) {
+        pvGearChips.innerHTML = '';
+        if (gearList.length) {
+          pvGearChips.hidden = false;
+          var maxChips = previewMode === 'full' ? gearList.length : 4;
+          gearList.slice(0, maxChips).forEach(function (g) {
+            var chip = document.createElement('span');
+            chip.className = 'ob-pv-gear-chip';
+            chip.textContent = g;
+            pvGearChips.appendChild(chip);
+          });
+          if (gearList.length > maxChips) {
+            var more = document.createElement('span');
+            more.className = 'ob-pv-gear-chip';
+            more.textContent = '+' + (gearList.length - maxChips) + ' more';
+            pvGearChips.appendChild(more);
+          }
+        } else {
+          pvGearChips.hidden = true;
+        }
+      }
+
       $('pvGearCount').textContent = gearList.length + ' gear tag' + (gearList.length === 1 ? '' : 's');
+      updateReadiness();
     }
 
     /* ── Media Dropzone ── */
     var dropzone = $('obDropzone');
     var fileInput = $('obFileInput');
     dropzone.addEventListener('click', function () { fileInput.click(); });
+    dropzone.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); }
+    });
     dropzone.addEventListener('dragover', function (e) { e.preventDefault(); dropzone.classList.add('is-drag'); });
     dropzone.addEventListener('dragleave', function () { dropzone.classList.remove('is-drag'); });
     dropzone.addEventListener('drop', function (e) {
@@ -1308,9 +2077,20 @@
     function addFiles(files) {
       Array.prototype.slice.call(files).forEach(function (f) {
         if (mediaFiles.length >= 6 || !f.type.startsWith('image/')) return;
-        mediaFiles.push({ name: f.name, url: URL.createObjectURL(f) });
+        var entry = { name: f.name, url: URL.createObjectURL(f), dataUrl: '' };
+        mediaFiles.push(entry);
+        if (f.size <= 350000 && typeof FileReader !== 'undefined') {
+          var reader = new FileReader();
+          reader.onload = function (ev) {
+            entry.dataUrl = ev.target && ev.target.result ? String(ev.target.result) : '';
+            scheduleSave();
+          };
+          reader.readAsDataURL(f);
+        }
       });
       renderThumbs();
+      updatePreview();
+      scheduleSave();
     }
     function renderThumbs() {
       var wrap = $('obThumbs');
@@ -1323,8 +2103,17 @@
         img.alt = m.name;
         var rm = document.createElement('button');
         rm.type = 'button';
+        rm.setAttribute('aria-label', 'Remove ' + (m.name || 'photo'));
         rm.textContent = '×';
-        rm.addEventListener('click', function () { mediaFiles.splice(idx, 1); renderThumbs(); });
+        rm.addEventListener('click', function () {
+          var removed = mediaFiles.splice(idx, 1)[0];
+          if (removed && removed.url && removed.url.indexOf('blob:') === 0) {
+            try { URL.revokeObjectURL(removed.url); } catch (e) {}
+          }
+          renderThumbs();
+          updatePreview();
+          scheduleSave();
+        });
         d.appendChild(img);
         d.appendChild(rm);
         wrap.appendChild(d);
@@ -1370,22 +2159,32 @@
             : '');
 
         card.querySelectorAll('[data-k]').forEach(function (kb) {
-          kb.addEventListener('click', function () { pkg.kind = kb.dataset.k; renderPackages(); updatePreview(); });
+          kb.addEventListener('click', function () { pkg.kind = kb.dataset.k; renderPackages(); updatePreview(); scheduleSave(); });
         });
         var delBtn = card.querySelector('.ob-pkg-del');
-        if (delBtn) delBtn.addEventListener('click', function () { packages.splice(idx, 1); renderPackages(); updatePreview(); });
-        card.querySelector('.pkg-title').addEventListener('input', function (e) { pkg.title = e.target.value; updatePreview(); });
-        card.querySelector('.pkg-price').addEventListener('input', function (e) { pkg.price = e.target.value; updatePreview(); });
+        if (delBtn) delBtn.addEventListener('click', function () { packages.splice(idx, 1); renderPackages(); updatePreview(); scheduleSave(); });
+        card.querySelector('.pkg-title').addEventListener('input', function (e) { pkg.title = e.target.value; updatePreview(); scheduleSave(); });
+        card.querySelector('.pkg-price').addEventListener('input', function (e) { pkg.price = e.target.value; updatePreview(); scheduleSave(); });
+        var skillSel = card.querySelector('.pkg-skill');
+        if (skillSel) {
+          skillSel.value = pkg.skill || 'all';
+          skillSel.addEventListener('change', function (e) { pkg.skill = e.target.value; scheduleSave(); });
+        }
+        var formatSel = card.querySelector('.pkg-format');
+        if (formatSel) {
+          formatSel.value = pkg.format || 'in_person';
+          formatSel.addEventListener('change', function (e) { pkg.format = e.target.value; scheduleSave(); });
+        }
         list.appendChild(card);
       });
     }
     $('obAddPkgBtn').addEventListener('click', function () {
       if (packages.length >= 6) return;
-      packages.push({ kind: 'service', title: '', price: '', priceOnRequest: false });
+      packages.push({ kind: 'service', title: '', price: '', priceOnRequest: false, skill: 'all', format: 'in_person' });
       renderPackages();
       updatePreview();
+      scheduleSave();
     });
-    renderPackages();
 
     /* ── Gear Tags ── */
     function addGear(val) {
@@ -1394,6 +2193,7 @@
       gearList.push(clean);
       renderGear();
       updatePreview();
+      scheduleSave();
     }
     function renderGear() {
       var wrap = $('obGearChips');
@@ -1404,8 +2204,9 @@
         span.textContent = g + ' ';
         var btn = document.createElement('button');
         btn.type = 'button';
+        btn.setAttribute('aria-label', 'Remove ' + g);
         btn.textContent = '×';
-        btn.addEventListener('click', function () { gearList.splice(i, 1); renderGear(); updatePreview(); });
+        btn.addEventListener('click', function () { gearList.splice(i, 1); renderGear(); updatePreview(); scheduleSave(); });
         span.appendChild(btn);
         wrap.appendChild(span);
       });
@@ -1418,12 +2219,48 @@
       b.addEventListener('click', function () { addGear(b.dataset.gear); });
     });
 
+    /* ── Phone & Card Input Formatting ── */
+    $('obPhone').addEventListener('input', function (e) {
+      var raw = e.target.value;
+      var digits = raw.replace(/\D/g, '');
+      var hasPlus = raw.trim().charAt(0) === '+';
+      if (!digits) { e.target.value = hasPlus ? '+' : ''; scheduleSave(); return; }
+      if (digits.length === 11 && digits.charAt(0) === '1') {
+        e.target.value = '+1 (' + digits.slice(1, 4) + ') ' + digits.slice(4, 7) + '-' + digits.slice(7, 11);
+      } else if (!hasPlus && digits.length <= 10) {
+        if (digits.length <= 3) e.target.value = digits;
+        else if (digits.length <= 6) e.target.value = '(' + digits.slice(0, 3) + ') ' + digits.slice(3);
+        else e.target.value = '(' + digits.slice(0, 3) + ') ' + digits.slice(3, 6) + '-' + digits.slice(6, 10);
+      }
+      updateReadiness();
+      scheduleSave();
+    });
+
+    $('obCardNum').addEventListener('input', function (e) {
+      var digits = e.target.value.replace(/\D/g, '').slice(0, 16);
+      e.target.value = digits.replace(/(\d{4})(?=\d)/g, '$1 ');
+      updateReadiness();
+    });
+
+    $('obCardExp').addEventListener('input', function (e) {
+      var digits = e.target.value.replace(/\D/g, '').slice(0, 4);
+      if (digits.length >= 3) {
+        e.target.value = digits.slice(0, 2) + ' / ' + digits.slice(2);
+      } else {
+        e.target.value = digits;
+      }
+    });
+
+    $('obCardCvc').addEventListener('input', function (e) {
+      e.target.value = e.target.value.replace(/\D/g, '').slice(0, 4);
+    });
+
     /* ── Automated SMS Phone Verification ── */
     $('obSendSmsBtn').addEventListener('click', function () {
       var phone = $('obPhone').value.trim();
       var msg = $('obMsg4');
       msg.textContent = '';
-      if (phone.length < 7) { msg.textContent = 'Please enter a valid phone number.'; msg.className = 'ob-msg is-bad'; $('obPhone').focus(); return; }
+      if (phone.replace(/\D/g, '').length < 7) { msg.textContent = 'Please enter a valid phone number.'; msg.className = 'ob-msg is-bad'; $('obPhone').focus(); return; }
       $('obSmsVerifyRow').hidden = false;
       $('obSendSmsBtn').textContent = 'Resend SMS';
       $('obSmsCode').focus();
@@ -1436,6 +2273,8 @@
       smsVerified = true;
       $('obSmsVerifyRow').hidden = true;
       $('obSmsOk').hidden = false;
+      updateReadiness();
+      scheduleSave();
     });
 
     /* ── Final Submit ── */
@@ -1469,6 +2308,7 @@
       .then(function (r) { return r.json().catch(function () { return { ok: true }; }); })
       .catch(function () { return { ok: true }; })
       .then(function () {
+        try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
         $('obDoneSlug').textContent = '/c/' + (slugify($('obSlug').value || $('obName').value) || 'your-name');
         goStep('done');
       })
@@ -1486,6 +2326,10 @@
       })
       .catch(function () {});
 
+    restoreDraft();
+    renderThumbs();
+    renderPackages();
+    renderGear();
     updatePreview();
   })();
   </script>
