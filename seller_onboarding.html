@@ -1248,284 +1248,12 @@
       .ob-preview-card, .ob-readiness-fill, .ob-btn, .ob-step-tab { transition: none; }
     }
 
-    /* ── Fintech / Editorial 3-Column Layout & Connected Stepper ── */
-    .ob-workspace {
-      display: grid;
-      grid-template-columns: 260px minmax(0, 1.25fr) minmax(300px, 0.9fr);
-      gap: 22px;
-      align-items: start;
-    }
-
-    /* Left Vertical Stepper Sidebar */
-    .ob-sidebar {
-      position: sticky;
-      top: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 22px 18px 18px;
-      border-radius: 24px;
-      background: linear-gradient(180deg, #FFFFFF 0%, #F5F7FF 100%);
-      border: 1px solid var(--line);
-      box-shadow: 0 20px 48px -22px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    }
-    .ob-stepper {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      margin: 0;
-    }
-    .ob-step-tab {
-      position: relative;
-      display: grid;
-      grid-template-columns: 30px minmax(0, 1fr);
-      align-items: start;
-      gap: 12px;
-      padding: 0 0 22px;
-      border: 0;
-      border-radius: 0;
-      background: transparent !important;
-      box-shadow: none !important;
-      color: var(--sub);
-      text-align: left;
-      cursor: pointer;
-    }
-    .ob-step-tab:last-child { padding-bottom: 0; }
-    .ob-step-tab::after {
-      content: "";
-      position: absolute;
-      left: 14px;
-      top: 32px;
-      bottom: 4px;
-      width: 2px;
-      border-radius: 999px;
-      background: #E2E8F0;
-      transition: background-color 0.25s ease;
-    }
-    .ob-step-tab:last-child::after { display: none; }
-    .ob-step-tab.is-done::after { background: #10B981; }
-    .ob-step-tab:hover { transform: none; }
-    .ob-step-tab:hover .ob-step-title { color: var(--ink); }
-
-    .ob-step-num {
-      position: relative;
-      z-index: 2;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--mono);
-      font-size: 11.5px;
-      font-weight: 700;
-      background: #FFFFFF;
-      border: 1.5px solid #CBD5E1;
-      color: var(--mute);
-      transition: all 0.22s var(--ease);
-    }
-    .ob-step-tab.is-active .ob-step-num {
-      background: var(--blue);
-      border-color: var(--blue);
-      color: #FFFFFF;
-      box-shadow: 0 0 0 4px rgba(59, 84, 238, 0.16);
-    }
-    .ob-step-tab.is-done .ob-step-num {
-      background: #10B981;
-      border-color: #10B981;
-      color: #FFFFFF;
-    }
-    .ob-step-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      min-width: 0;
-      padding-top: 1px;
-    }
-    .ob-step-kicker {
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--mute);
-    }
-    .ob-step-label {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: var(--sub);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .ob-step-tab.is-active .ob-step-label { color: var(--ink); }
-    .ob-step-tab.is-done .ob-step-label { color: var(--ink); }
-    .ob-step-status {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      margin-top: 3px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      font-size: 10.5px;
-      font-weight: 600;
-      background: #F1F5F9;
-      color: var(--mute);
-    }
-    .ob-step-tab.is-active .ob-step-status { background: var(--blue-soft); color: var(--blue); }
-    .ob-step-tab.is-done .ob-step-status { background: var(--ok-soft); color: var(--ok); }
-
-    .ob-help-box {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: #FFFFFF;
-      border: 1px solid var(--line);
-      text-decoration: none !important;
-      transition: border-color 0.18s, box-shadow 0.18s;
-    }
-    .ob-help-box:hover {
-      border-color: var(--blue);
-      box-shadow: 0 6px 18px -10px rgba(59, 84, 238, 0.25);
-    }
-    .ob-help-ic {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: var(--soft);
-      border: 1px solid var(--line);
-      color: var(--sub);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 13px;
-      flex-shrink: 0;
-    }
-    .ob-help-box small { display: block; font-size: 11.5px; color: var(--mute); }
-    .ob-help-box strong { display: block; font-size: 13px; color: var(--ink); }
-
-    /* Center Card Top Progress Line */
-    .ob-card { position: relative; overflow: hidden; }
-    .ob-card-progress {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: #EEF2F7;
-    }
-    .ob-card-progress > i {
-      display: block;
-      height: 100%;
-      width: 20%;
-      background: linear-gradient(90deg, #3B54EE 0%, #5872FF 100%);
-      transition: width 0.4s var(--ease);
-    }
-
-    /* Royal-Blue Review SLA Status Card (above Preview) */
-    .ob-sla-card {
-      border-radius: 22px;
-      padding: 18px 20px;
-      margin-bottom: 16px;
-      color: #FFFFFF;
-      background: radial-gradient(120% 100% at 88% 10%, #5872FF 0%, #3B54EE 55%, #2032B4 100%);
-      box-shadow: 0 18px 40px -18px rgba(35, 55, 198, 0.52);
-    }
-    .ob-sla-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    .ob-sla-kicker {
-      font-family: var(--mono);
-      font-size: 10.5px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.8);
-    }
-    .ob-sla-pill {
-      padding: 3px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.18);
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      font-size: 11px;
-      font-weight: 600;
-      color: #FFFFFF;
-    }
-    .ob-sla-title {
-      margin: 0 0 4px;
-      font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 600;
-      color: #FFFFFF;
-    }
-    .ob-sla-sub {
-      margin: 0 0 12px;
-      font-size: 12.5px;
-      line-height: 1.45;
-      color: rgba(255, 255, 255, 0.86);
-    }
-    .ob-sla-track {
-      height: 5px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.22);
-      overflow: hidden;
-    }
-    .ob-sla-track > i {
-      display: block;
-      height: 100%;
-      width: 20%;
-      border-radius: 999px;
-      background: #FFFFFF;
-      transition: width 0.4s var(--ease);
-    }
-
-    @media (max-width: 1080px) {
-      .ob-workspace { grid-template-columns: 1fr; }
-      .ob-sidebar {
-        position: static;
-        padding: 14px 16px;
-        gap: 12px;
-      }
-      .ob-stepper {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 6px;
-      }
-      .ob-step-tab {
-        grid-template-columns: 1fr;
-        justify-items: center;
-        text-align: center;
-        padding: 0;
-        gap: 6px;
-      }
-      .ob-step-tab::after {
-        left: calc(50% + 18px);
-        right: calc(-50% + 18px);
-        top: 14px;
-        bottom: auto;
-        width: auto;
-        height: 2px;
-      }
-      .ob-step-kicker, .ob-step-status, .ob-help-box { display: none; }
-      .ob-step-label { font-size: 11.5px; }
-      .ob-preview-wrap { display: none; }
-    }
-    @media (max-width: 640px) {
-      .ob-step-label { display: none; }
-    }
-
-    /* ── Pure Editorial Calm Override ── */
+    /* ── Clean 2-Column Editorial Layout (Spacious Form + Live Preview) ── */
     body { background: #FFFFFF; }
     body::before { display: none; }
-    .ob-nav { padding: 22px clamp(16px, 3.6vw, 32px) 8px; }
+    .ob-nav { max-width: 1160px; padding: 20px clamp(16px, 3.6vw, 32px) 8px; }
+    .ob-main { max-width: 1160px; padding: 8px clamp(16px, 3.6vw, 32px) 64px; }
+
     .ob-save-pill {
       background: transparent;
       border: 0;
@@ -1541,9 +1269,11 @@
       text-decoration: underline;
       text-underline-offset: 2px;
     }
-    .ob-head { margin-bottom: 28px; }
-    .ob-head h1 { font-size: clamp(2.2rem, 3.9vw, 3.1rem); }
-    .ob-lead { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--mute); }
+
+    .ob-head { margin-bottom: 22px; }
+    .ob-head h1 { font-size: clamp(2.1rem, 3.6vw, 2.85rem); margin-bottom: 6px; }
+    .ob-lead { font-family: var(--sans); font-size: 15.5px; color: var(--sub); }
+
     .ob-pill,
     .ob-head-right,
     .ob-readiness,
@@ -1554,49 +1284,102 @@
     .ob-pv-mode-toggle,
     .ob-preview-dot { display: none !important; }
 
-    .ob-workspace {
-      grid-template-columns: 220px minmax(0, 1.3fr) minmax(300px, 0.85fr);
-      gap: 28px;
-    }
-    .ob-sidebar {
-      background: transparent;
-      border: 0;
-      box-shadow: none;
-      padding: 8px 0 0;
+    /* Horizontal 5-Step Stepper */
+    .ob-stepper {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0 0 24px;
     }
     .ob-step-tab {
-      padding: 0 0 24px;
+      display: flex;
       align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: #FFFFFF;
+      color: var(--sub);
+      text-align: left;
+      cursor: pointer;
+      min-width: 0;
+      transition: border-color 0.18s, background-color 0.18s, box-shadow 0.18s;
     }
-    .ob-step-tab::after {
-      top: 30px;
-      bottom: 2px;
-      width: 1.5px;
-      background: rgba(15, 23, 42, 0.1);
+    .ob-step-tab:hover { border-color: rgba(15, 23, 42, 0.2); color: var(--ink); transform: none; }
+    .ob-step-tab.is-active {
+      border-color: rgba(59, 84, 238, 0.45);
+      background: #F6F8FF;
+      color: var(--ink);
+      box-shadow: 0 4px 14px -8px rgba(59, 84, 238, 0.25);
     }
     .ob-step-num {
-      width: 28px;
-      height: 28px;
-      border-width: 1px;
+      flex: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--mono);
       font-size: 11px;
+      font-weight: 700;
+      background: #F8FAFC;
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      color: var(--mute);
     }
     .ob-step-tab.is-active .ob-step-num {
-      box-shadow: 0 0 0 3px rgba(59, 84, 238, 0.12);
+      background: #3B54EE;
+      border-color: #3B54EE;
+      color: #FFFFFF;
     }
-    .ob-step-label { font-size: 13.5px; font-weight: 600; }
-    .ob-help-box {
-      background: var(--soft);
-      border-color: rgba(15, 23, 42, 0.07);
-      padding: 10px 12px;
+    .ob-step-tab.is-done .ob-step-num {
+      background: #10B981;
+      border-color: #10B981;
+      color: #FFFFFF;
+    }
+    .ob-step-meta { min-width: 0; }
+    .ob-step-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
+    /* Spacious 2-Column Workspace */
+    .ob-workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 28px;
+      align-items: start;
+    }
     .ob-card {
+      position: relative;
+      overflow: hidden;
       border-radius: 24px;
       border: 1px solid rgba(15, 23, 42, 0.08);
       box-shadow: 0 18px 44px -20px rgba(15, 23, 42, 0.07);
-      padding: clamp(26px, 3.8vw, 40px);
+      padding: clamp(28px, 4vw, 42px);
     }
-    .ob-card-progress { height: 2px; }
+    .ob-card-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #EEF2F7;
+    }
+    .ob-card-progress > i {
+      display: block;
+      height: 100%;
+      width: 20%;
+      background: #3B54EE;
+      transition: width 0.35s var(--ease);
+    }
+
+    /* Never wrap pill button text */
+    .ob-btn { white-space: nowrap; }
     .ob-btn-primary {
       background: #3B54EE;
       box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
@@ -1607,6 +1390,36 @@
       box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
     }
 
+    /* Sleek Custom Pill Toggle Switches (replaces raw OS checkboxes) */
+    .ob-switch-row input[type="checkbox"] {
+      -webkit-appearance: none;
+      appearance: none;
+      position: relative;
+      width: 42px;
+      height: 24px;
+      border-radius: 999px;
+      background: #CBD5E1;
+      border: 0;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .ob-switch-row input[type="checkbox"]::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.2);
+      transition: transform 0.2s var(--ease);
+    }
+    .ob-switch-row input[type="checkbox"]:checked { background: #3B54EE; }
+    .ob-switch-row input[type="checkbox"]:checked::after { transform: translateX(18px); }
+
+    /* Clean Live Preview */
     .ob-preview-wrap::before { display: none; }
     .ob-preview-card {
       border-radius: 22px;
@@ -1617,9 +1430,15 @@
       height: 88px;
       background: linear-gradient(135deg, #4B66F8 0%, #3B54EE 60%, #2740D6 100%);
     }
-    @media (max-width: 1080px) {
-      .ob-workspace { grid-template-columns: 1fr; gap: 18px; }
-      .ob-sidebar { padding: 0; }
+
+    @media (max-width: 960px) {
+      .ob-workspace { grid-template-columns: 1fr; }
+      .ob-preview-wrap { display: none; }
+      .ob-step-label { display: none; }
+      .ob-step-tab { justify-content: center; padding: 10px 6px; }
+    }
+    @media (max-width: 640px) {
+      .ob-card { padding: 22px 18px; border-radius: 20px; }
     }
   </style>
 </head>
@@ -1663,62 +1482,31 @@
       <span class="ob-readiness-pct" id="obReadinessPct">0% ready</span>
     </div>
 
+    <nav class="ob-stepper" aria-label="Onboarding steps">
+      <button type="button" class="ob-step-tab is-active" data-step="1" aria-current="step">
+        <span class="ob-step-num">1</span>
+        <span class="ob-step-meta"><span class="ob-step-label">Identity &amp; City</span></span>
+      </button>
+      <button type="button" class="ob-step-tab" data-step="2">
+        <span class="ob-step-num">2</span>
+        <span class="ob-step-meta"><span class="ob-step-label">Work &amp; Media</span></span>
+      </button>
+      <button type="button" class="ob-step-tab" data-step="3">
+        <span class="ob-step-num">3</span>
+        <span class="ob-step-meta"><span class="ob-step-label">Services &amp; Classes</span></span>
+      </button>
+      <button type="button" class="ob-step-tab" data-step="4">
+        <span class="ob-step-num">4</span>
+        <span class="ob-step-meta"><span class="ob-step-label">Gear &amp; Phone</span></span>
+      </button>
+      <button type="button" class="ob-step-tab" data-step="5">
+        <span class="ob-step-num">5</span>
+        <span class="ob-step-meta"><span class="ob-step-label">Trial &amp; Submit</span></span>
+      </button>
+    </nav>
+
     <div class="ob-workspace">
-      <!-- LEFT: Vertical Connected Stepper Sidebar -->
-      <aside class="ob-sidebar" aria-label="Onboarding progress">
-        <nav class="ob-stepper" aria-label="Onboarding steps">
-          <button type="button" class="ob-step-tab is-active" data-step="1" aria-current="step">
-            <span class="ob-step-num">1</span>
-            <span class="ob-step-meta">
-              <span class="ob-step-kicker">Step 1</span>
-              <span class="ob-step-label">Identity &amp; City</span>
-              <span class="ob-step-status">In Progress</span>
-            </span>
-          </button>
-          <button type="button" class="ob-step-tab" data-step="2">
-            <span class="ob-step-num">2</span>
-            <span class="ob-step-meta">
-              <span class="ob-step-kicker">Step 2</span>
-              <span class="ob-step-label">Work &amp; Media</span>
-              <span class="ob-step-status">Pending</span>
-            </span>
-          </button>
-          <button type="button" class="ob-step-tab" data-step="3">
-            <span class="ob-step-num">3</span>
-            <span class="ob-step-meta">
-              <span class="ob-step-kicker">Step 3</span>
-              <span class="ob-step-label">Services &amp; Classes</span>
-              <span class="ob-step-status">Pending</span>
-            </span>
-          </button>
-          <button type="button" class="ob-step-tab" data-step="4">
-            <span class="ob-step-num">4</span>
-            <span class="ob-step-meta">
-              <span class="ob-step-kicker">Step 4</span>
-              <span class="ob-step-label">Gear &amp; Phone</span>
-              <span class="ob-step-status">Pending</span>
-            </span>
-          </button>
-          <button type="button" class="ob-step-tab" data-step="5">
-            <span class="ob-step-num">5</span>
-            <span class="ob-step-meta">
-              <span class="ob-step-kicker">Step 5</span>
-              <span class="ob-step-label">Trial &amp; Submit</span>
-              <span class="ob-step-status">Pending</span>
-            </span>
-          </button>
-        </nav>
-
-        <a class="ob-help-box" href="mailto:support@nexus.com">
-          <span class="ob-help-ic" aria-hidden="true">?</span>
-          <span>
-            <small>Having troubles?</small>
-            <strong>Contact us</strong>
-          </span>
-        </a>
-      </aside>
-
-      <!-- CENTER: Interactive Wizard -->
+      <!-- LEFT: Interactive Wizard -->
       <section class="ob-card" aria-label="Storefront builder">
         <div class="ob-card-progress" aria-hidden="true"><i id="obCardProgress"></i></div>
 
